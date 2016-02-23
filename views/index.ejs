@@ -3,14 +3,16 @@
 
 <head>
     <title><%= title %></title>
+
+    <script>
+        var ractiveData = <%- ractiveData %>;
+    </script>
+
 </head>
 
 <body>
 
-    <h1><%= title %></h1>
-    <p>Welcome to
-        <%= title %>
-    </p>
+    <%- ractiveHtml %>
 
     <script src="js/bundle.js"></script>
 

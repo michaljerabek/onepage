@@ -21,5 +21,11 @@ module.exports = {
 
     plugins: [
         new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+
+    module: {
+        loaders: [
+            { test: /\.html$/, loader: 'ractive' }
+        ]
+    }
 };
