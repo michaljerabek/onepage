@@ -1,4 +1,4 @@
 {
     "verbose": true,
-    "ignore": ["views", "public", "app"]
+    "ignore": ["views", "public", "client"]
 }

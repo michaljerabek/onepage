@@ -3,16 +3,22 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = {
-    entry: ['webpack/hot/dev-server',
-            'webpack-hot-middleware/client', "./app/main.js"],
+    entry: [
+        "webpack/hot/dev-server",
+        "webpack-hot-middleware/client",
+        "./client/main.js"
+    ],
+
     output: {
         path: "/",
         publicPath: "http://localhost/js/",
         filename: "bundle.js"
     },
+
     resolve: {
         extentions: ["js", ""]
     },
+
     plugins: [
         new webpack.HotModuleReplacementPlugin()
     ]

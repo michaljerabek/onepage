@@ -14,7 +14,7 @@
     "mongoose": "^4.4.4",
     "morgan": "~1.6.1",
     "passport": "^0.3.2",
-    "ractive": "^0.7.3",
+    "ractive": "git://github.com/ractivejs/ractive.git#edge",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {

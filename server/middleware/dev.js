@@ -2,11 +2,10 @@
 var lrserver = require("tiny-lr")();
 var webpack = require("webpack");
 var webpackMiddleware = require("webpack-dev-middleware");
-var path = require("path");
 
 module.exports = function (app, webpackConfigPath, livereloadPort) {
 
-    var webpackConfig = require(webpackConfigPath || "./../webpack.config.js");
+    var webpackConfig = require(webpackConfigPath || "./../../webpack.config.js");
     var livereloadServerConfig = {
         port: livereloadPort || 35729
     };
