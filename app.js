@@ -1,15 +1,14 @@
 /*jslint devel: true, node: true, plusplus: true, sloppy: true*/
 /*jshint node: true*/
+var path = require("path");
+
+var config = require("./config");
 
 var express = require("express");
-var path = require("path");
-var favicon = require("serve-favicon");
-var logger = require("morgan");
-var cookieParser = require("cookie-parser");
-var bodyParser = require("body-parser");
 
-var routes = require("./server/routes/index");
-var users = require("./server/routes/users");
+var middleware = require("./server/middleware");
+
+var pageRoutes = require("./server/page/routes/index");
 
 var app = express();
 
@@ -17,24 +16,14 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-/*spuštění webpacku a vlastního nastavení dev serveru*/
-if (app.get("env") === "development") {
+middleware(app, express);
 
-    require("./server/middleware/dev")(app);
-}
+/*Routes*/
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
-app.use(logger("dev"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/", pageRoutes);
 
-app.use("/", routes);
-app.use("/users", users);
+/*Spuštění Socket.io*/
+require("./server/WSComm");
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

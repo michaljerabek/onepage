@@ -3,16 +3,15 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = {
-    entry: [
-        "webpack/hot/dev-server",
-        "webpack-hot-middleware/client",
-        "./client/main.js"
-    ],
+    entry: {
+        page: ["./client/page.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"]/*,
+        admin: ["./client/admin.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"]*/
+    },
 
     output: {
         path: "/",
         publicPath: "http://localhost/js/",
-        filename: "bundle.js"
+        filename: "[name].bundle.js"
     },
 
     resolve: {
