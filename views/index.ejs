@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+
+    <script>var ractiveData = <%- ractiveData %>;</script>
+
+    <% if (typeof env !== "undefined") { %>
+        <script>var env = "<%= env %>";</script>
+    <% } %>
+
+</head>
+
+<body>
+
+    <div id="app"><%- ractiveHtml %></div>
+
+<!--    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>-->
+    <script src="js/page.bundle.js"></script>
+
+</body>
+
+</html>
