@@ -11,10 +11,11 @@ var ractive = function (data, el) {
 
         el: el,
 
-        template: require("./page.tpl"),
+        template: require("./admin.tpl"),
 
         components: {
-            Page: require("./page/")
+            Page: require("./page/"),
+            Admin: require("./admin/")
         },
 
         partials: {

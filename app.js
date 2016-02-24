@@ -8,8 +8,6 @@ var express = require("express");
 
 var middleware = require("./server/middleware");
 
-var pageRoutes = require("./server/page/routes/index");
-
 var app = express();
 
 // view engine setup
@@ -19,8 +17,11 @@ app.set("view engine", "ejs");
 middleware(app, express);
 
 /*Routes*/
+var pageRoutes = require("./server/page/routes/index");
+var adminRoutes = require("./server/admin/routes/index");
 
 app.use("/", pageRoutes);
+app.use("/admin", adminRoutes);
 
 /*Spuštění Socket.io*/
 require("./server/WSComm");

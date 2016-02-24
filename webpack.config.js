@@ -4,8 +4,8 @@ var webpack = require("webpack");
 
 module.exports = {
     entry: {
-        page: ["./client/page.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"]/*,
-        admin: ["./client/admin.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"]*/
+        page: ["./client/page.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"],
+        admin: ["./client/admin.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"]
     },
 
     output: {
@@ -24,7 +24,7 @@ module.exports = {
 
     module: {
         loaders: [
-            { test: /\.html$/, loader: 'ractive' }
+            { test: /\.(html|tpl)$/, loader: "ractive" }
         ]
     }
 };

@@ -4,22 +4,22 @@ var router = express.Router();
 require("ractive-require-templates")(".tpl");
 var Ractive = require("ractive");
 
-/* GET home page. */
 router.get("/", function (req, res, next) {
-
     var data = {
         test: "test",
         num: 1
     };
 
-    var App = require("./../../../client/page.js")(data);
+    var App = require("./../../../client/admin.js")(data);
 
     res.render("index", {
-        title: "onepage",
+        title: "onepage - Admin",
         ractiveHtml: App.toHtml(),
         ractiveData: JSON.stringify(data),
-        env: "dev"
+        env: "dev",
+        isAdmin: true
     });
+
 });
 
 module.exports = router;
