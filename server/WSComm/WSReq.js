@@ -1,4 +1,4 @@
-var on = require("./on");
+var on = require("./../../helpers/on");
 
 var serverReq = function (socket, reqPrefix, resPrefix) {
 
@@ -22,7 +22,7 @@ var serverReq = function (socket, reqPrefix, resPrefix) {
 
                 } else {
 
-                    socket.emit(resPrefix + type, data);
+                    socket.emit(resPrefix + type + (request.doNotForceLastRequest ? "" : request.timestamp), data);
                 }
             });
         });
@@ -31,22 +31,34 @@ var serverReq = function (socket, reqPrefix, resPrefix) {
 
 var clientReq = function (socket, reqPrefix, resPrefix) {
 
+    var requestIds = {};
+
     reqPrefix = typeof reqPrefix !== "string" ? "req." : reqPrefix + ".";
 
     resPrefix = typeof resPrefix !== "string" ? "res." : resPrefix + ".";
 
-    return function req(name, params) {
+    return function req(name, params, doNotForceLastRequest) {
+
+        var id = Date.now();
+
+        requestIds[name] = id;
 
         var request = {
             params: params || {},
             name: name,
             hostname: window.location.hostname,
-            timestamp: Date.now()
+            timestamp: id,
+            doNotForceLastRequest: doNotForceLastRequest
         };
 
         var promise = new Promise(function (resolve, reject) {
 
-            socket.once(resPrefix + name, function (response) {
+            socket.once(resPrefix + name + (doNotForceLastRequest ? "" : id), function (response) {
+
+                if (id !== requestIds[name]) {
+
+                    return;
+                }
 
                 if (response.error) {
 

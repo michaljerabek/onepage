@@ -5,23 +5,45 @@ var path = require("path");
 var config = require("./config");
 
 var express = require("express");
+var app = express();
 
 var middleware = require("./server/middleware");
-
-var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-middleware(app, express);
+middleware(app, express, config);
 
 /*Routes*/
-var pageRoutes = require("./server/page/routes/index");
-var adminRoutes = require("./server/admin/routes/index");
+var pageRoutes = require("./server/routes/page");
+var adminRoutes = require("./server/routes/admin");
+var usersRoutes = require("./server/routes/users");
 
-app.use("/", pageRoutes);
-app.use("/admin", adminRoutes);
+var checkAppHostname = function (req, res, next) {
+
+    if (req.hostname === config.appHostname) {
+
+        return next();
+    }
+
+    /*Uživatel se pokouší použít adresu své stránky pro administraci (např. mujweb.cz/admin).*/
+    res.redirect("/");
+};
+
+var checkNotAppHostname = function (req, res, next) {
+
+    if (req.hostname !== config.appHostname) {
+
+        return next();
+    }
+
+    res.send("Tady bude prezentační stránka systému!");
+};
+
+app.use("/admin", checkAppHostname, adminRoutes);
+app.use("/users", usersRoutes);
+app.use("/", checkNotAppHostname, pageRoutes);
 
 /*Spuštění Socket.io*/
 require("./server/WSComm");

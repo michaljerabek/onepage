@@ -8,14 +8,16 @@ var Ractive = require("ractive");
 router.get("/", function (req, res, next) {
 
     var data = {
-        test: "test",
-        num: 1
+        page: {
+            name: req.Page.name,
+            sections: req.Page.sections
+        }
     };
 
     var App = require("./../../../client/page.js")(data);
 
     res.render("index", {
-        title: "onepage",
+        title: req.Page.name,
         ractiveHtml: App.toHtml(),
         ractiveData: JSON.stringify(data),
         env: "dev"

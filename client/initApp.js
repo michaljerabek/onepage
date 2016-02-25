@@ -11,11 +11,20 @@ var initPolyfills = function () {
     }
 };
 
-var connectToSocketIO = function (config) {
+var connectToSocketIO = function (config, databaseName) {
 
     var socket = io("http://" + window.location.hostname + ":" + config.websocket.port);
 
-    Ractive.defaults.req = require("./../helpers/WSReq")(socket);
+    Ractive.defaults.req = require("./../server/WSComm/WSReq")(socket);
+
+    socket.on("connect", function () {
+
+        socket.emit("databaseName", {
+            databaseName: databaseName
+        });
+    });
+
+    return socket;
 };
 
 module.exports = function (ractive, ractiveData, config) {
@@ -26,7 +35,7 @@ module.exports = function (ractive, ractiveData, config) {
 
         initPolyfills();
 
-        connectToSocketIO(config);
+        connectToSocketIO(config, ractiveData.databaseName);
 
         App = ractive(ractiveData, "#app");
 
