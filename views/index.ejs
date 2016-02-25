@@ -17,7 +17,11 @@
     <div id="app"><%- ractiveHtml %></div>
 
 <!--    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>-->
-    <script src="js/page.bundle.js"></script>
+    <% if (typeof isAdmin !== "undefined" && isAdmin) { %>
+        <script src="js/admin.bundle.js"></script>
+    <% } else { %>
+        <script src="js/page.bundle.js"></script>
+    <% } %>
 
 </body>
 

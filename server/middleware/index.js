@@ -10,7 +10,7 @@ var bodyParser = require("body-parser");
 var session = require("express-session");
 var MongoStore = require("connect-mongo")(session);
 
-module.exports = function (app, express) {
+module.exports = function (app, express, config) {
 
     /*spuštění webpacku a vlastního nastavení dev serveru*/
     if (app.get("env") === "development") {
@@ -35,6 +35,20 @@ module.exports = function (app, express) {
             url: "mongodb://localhost/global"
         })
     }));
+
+    /*Přiřazení adresy k requestu.*/
+    app.use(function (req, res, next) {
+
+        req.hostname = req.headers.host.split(":").shift();
+
+        next();
+    });
+
+    var dbMiddleware = require("./db");
+
+    app.use(dbMiddleware.start(config));
+
+    app.use(dbMiddleware.end());
 
 };
 
