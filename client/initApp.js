@@ -39,7 +39,16 @@ module.exports = function (ractive, ractiveData, config) {
 
         connectToSocketIO(config, ractiveData.databaseName);
 
-        App = ractive(ractiveData, "#app");
+        App = ractive({
+
+            el: "#app",
+
+            data: ractiveData,
+
+            events: {
+                tap: require("ractive-events-tap")
+            }
+        });
 
         if (typeof ns.env !== "undefined" && ns.env === "dev") {
 

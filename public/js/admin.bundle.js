@@ -233,7 +233,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = 1;
+/******/ 			var chunkId = 0;
 /******/ 			{ // eslint-disable-line no-lone-blocks
 /******/ 				/*globals chunkId */
 /******/ 				hotEnsureUpdateChunk(chunkId);
@@ -551,7 +551,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(74)(__webpack_require__.s = 74);
+/******/ 	return hotCreateRequire(73)(__webpack_require__.s = 73);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -24173,8 +24173,7 @@
 	/* (ignored) */
 
 /***/ },
-/* 67 */,
-/* 68 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*jslint browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true, node: true*/
@@ -24190,10 +24189,11 @@
 
 	        el: el,
 
-	        template: __webpack_require__(72),
+	        template: __webpack_require__(70),
 
 	        components: {
-	            Page: __webpack_require__(26)
+	            Page: __webpack_require__(26),
+	            Admin: __webpack_require__(69)
 	        },
 
 	        partials: {
@@ -24221,20 +24221,70 @@
 
 
 /***/ },
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */
+/* 68 */,
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.e={"v":3,"t":[{"t":7,"e":"Page"}]};
+	var Ractive = __webpack_require__(5);
+
+	module.e = Ractive.extend({
+
+	    template: __webpack_require__(71),
+
+	    data: function () {
+
+	        return {
+	            selectedPage: null,
+	            editPage: null
+	        };
+
+	    },
+
+	    onrender: function () {
+
+	        this.observe("selectedPage", function (page) {
+
+	            if (!page || page._id === this.get("pageId")) {
+
+	                return;
+	            }
+
+	            this.loadPage(page._id);
+
+	        }, {init: false});
+	    },
+
+	    loadPage: function (pageId) {
+
+	        var pageReq = this.req("/page", { _id: pageId });
+
+	        pageReq.then(function (page) {
+
+	            this.set("pageId", page._id);
+
+	        }.bind(this));
+	    }
+	});
+
 
 /***/ },
-/* 73 */,
-/* 74 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(68);
+	module.e={"v":3,"t":[{"t":7,"e":"Admin"}]};
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.e={"v":3,"t":[{"t":7,"e":"h1","f":["Admin: ",{"t":2,"r":"user"}]}," ",{"t":7,"e":"p","f":[{"t":7,"e":"a","a":{"href":"/users/logout"},"f":["odhlásit se"]}]}," ",{"t":4,"f":[{"t":7,"e":"button","a":{"style":[{"t":4,"f":["background: red; border: 1px solid;"],"n":50,"x":{"r":["selectedPage._id","./_id"],"s":"_0===_1"}}]},"v":{"click":{"m":"set","a":{"r":["."],"s":"[\"selectedPage\",_0]"}}},"f":[{"t":2,"r":"./name"}]}],"n":52,"r":"pages"},{"t":4,"f":[{"t":7,"e":"br"}," ",{"t":7,"e":"button","v":{"click":{"m":"set","a":{"r":[],"s":"[\"selectedPage\",null]"}}},"f":["Zrušit výběr"]}," ",{"t":7,"e":"button","v":{"click":{"m":"set","a":{"r":[".selectedPage._id"],"s":"[\"editPage\",_0]"}}},"f":["Upravit: ",{"t":2,"r":".pageId"}]}],"n":50,"r":".selectedPage"},{"t":4,"f":[{"t":7,"e":"Page","a":{"isAdmin":"true","pageId":[{"t":2,"r":".editPage"}]}}],"n":50,"r":".editPage"}],"e":{}};
+
+/***/ },
+/* 72 */,
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(67);
 	__webpack_require__(24);
 	module.e = __webpack_require__(23);
 

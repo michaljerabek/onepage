@@ -1,11 +1,16 @@
-
-<div style="{{#if .isAdmin}}position:fixed;top:0;left:0;width:100%;height:100%;background:white;{{/if}}">
 {{#if !pageId || pageId === page._id}}
-    <h1>{{page.name}}</h1>
-    {{#if .isAdmin}}
-        <button on-click="closePage()">Zavřít</button>
-    {{/if}}
+    <div id="page">
+        <h1>{{page.name}}</h1>
+
+        {{#if .isAdmin === true}}
+            <button on-tap="closePage()">Zavřít</button>
+        {{/if}}
+
+        {{#each page.sections:sectionIndex}}
+
+            <PageSection section="{{this}}" sectionIndex="{{sectionIndex}}" />
+
+        {{/each}}
+
+    </div>
 {{/if}}
-</div>
-
-

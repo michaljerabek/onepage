@@ -1,16 +1,18 @@
+/*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 var express = require("express");
 var router = express.Router();
+
 
 require("ractive-require-templates")(".tpl");
 var Ractive = require("ractive");
 
-/* GET home page. */
 router.get("/", function (req, res, next) {
 
     var data = {
         page: {
             name: req.Page.name,
-            sections: req.Page.sections
+            sections: req.Page.sections,
+            isAdmin: req.query.admin !== undefined ? "development" : false
         }
     };
 
