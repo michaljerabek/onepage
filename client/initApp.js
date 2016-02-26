@@ -9,6 +9,8 @@ var initPolyfills = function () {
 
         window.Promise = Ractive.Promise;
     }
+
+    require("polyfill-function-prototype-bind");
 };
 
 var connectToSocketIO = function (config, databaseName) {
