@@ -1,6 +1,4 @@
-/*jslint devel: true, node: true, plusplus: true, sloppy: true*/
-/*jshint node: true*/
-
+/*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 var path = require("path");
 var favicon = require("serve-favicon");
 var logger = require("morgan");
@@ -9,8 +7,9 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var MongoStore = require("connect-mongo")(session);
+var flash = require("express-flash");
 
-module.exports = function (app, express, config) {
+module.exports = function (app, express) {
 
     /*spuštění webpacku a vlastního nastavení dev serveru*/
     if (app.get("env") === "development") {
@@ -25,6 +24,7 @@ module.exports = function (app, express, config) {
     }));
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, "public")));
+    app.use(flash());
 
     app.use(session({
         secret: "aEcGcHrZjfDRbcddSD",
@@ -44,11 +44,14 @@ module.exports = function (app, express, config) {
         next();
     });
 
-    var dbMiddleware = require("./db");
+    var dbMws = require("./db");
 
-    app.use(dbMiddleware.start(config));
+    require("./passport")(app);
 
-    app.use(dbMiddleware.end());
+    app.use(dbMws.reqStart);
+    app.use(dbMws.resEnd);
 
+    /*Najde stránku podle adresy.*/
+    app.use(require("./pageRequest"));
 };
 

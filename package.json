@@ -23,6 +23,7 @@
     "multer": "^1.1.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "passport-remember-me": "0.0.1",
     "ractive": "git://github.com/ractivejs/ractive.git#edge",
     "ractive-loader": "^0.5.6",
     "ractive-require-templates": "^1.0.2",
