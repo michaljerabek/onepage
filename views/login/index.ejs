@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title><%= title %></title>
+
+        <% if (typeof env !== "undefined") { %>
+        <script>var env = "<%= env %>";</script>
+        <% } %>
+
+    </head>
+
+    <body>
+
+        <h1>Přihlásit se</h1>
+
+        <p><%= typeof message !== "undefined" ? message : "" %></p>
+
+        <form method="post" action="/users/login">
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email">
+
+            <label for="password">Heslo:</label>
+            <input type="password" name="password" id="password">
+
+            <button type="submit">Přihlásit se</button>
+
+            <a href="/registration">Registrovat se</a>
+
+        </form>
+
+
+    </body>
+
+</html>

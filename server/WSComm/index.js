@@ -5,8 +5,6 @@ var io = require("socket.io")(config.websocket.port);
 var WSReq = require("./WSReq");
 var mongoose = require("mongoose");
 
-var PageModel = require("./../models/Page");
-
 var getHostFromSocket = function (socket) {
 
     return socket.handshake.headers.host.split(":").shift();
@@ -31,7 +29,7 @@ io.on("connection", function (socket) {
 
     socket.on("databaseName", function (data) {
 
-        db = mongoose.createConnection("mongodb://" + config.DB.global.host + "/" + data.databaseName);
+        db = mongoose.createConnection("mongodb://" + config.Db.global.host + "/" + data.databaseName);
 
         var adminRequests = require("./admin");
 //        require("./page")(req, db);

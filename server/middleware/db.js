@@ -1,88 +1,79 @@
+/*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+var config = require("./../../config");
 var mongoose = require("mongoose");
 var User = require("./../models/User");
-var Page = require("./../models/Page");
 
-var useUserDbForAdmin = function (req, res, next, db, config) {
+var db = mongoose.connect("mongodb://" + config.Db.global.host + "/" + config.Db.global.name);
 
-    req.db = db;
+var assignUserDbForAdmin = function (req, res, next) {
 
-    User(db).findByDatabaseName(req.query.databaseName, function (err, user) {
+    if (req.user) {
 
-        if (user) {
+        req.userDb = mongoose.createConnection(
+            "mongodb://" + config.Db.users.host + "/" + req.user.databaseName
+        );
 
-            req.user = user;
-            req.userDb = mongoose.createConnection("mongodb://" + config.DB.users.host + "/" + user.databaseName);
-        }
+        return next();
+    }
 
-        next(err);
-    });
+    next();
 };
 
-var useUserDbForPage = function (req, res, next, db, config) {
+var assignUserDbForPage = function (req, res, next) {
 
-    req.db = db;
-
-    User(db).findByHost(req.hostname, function (err, user) {
+    User.findByHost(req.hostname, function (err, user) {
 
         if (user) {
 
-            req.user = user;
-            req.userDb = mongoose.createConnection("mongodb://" + config.DB.global.host + "/" + user.databaseName);
+            req.requestForPage = true;
 
-            Page(req.userDb).findByHost(req.hostname, function (err, page) {
+            req.userDb = mongoose.createConnection(
+                "mongodb://" + config.Db.global.host + "/" + user.databaseName
+            );
 
-                req.Page = page;
-
-                next(err);
-            });
-
-            return;
+            return next();
         }
 
-        next(err);
+        var error = new Error("Not Found");
+        error.status = 404;
+
+        next(error);
     });
 };
 
 module.exports = {
 
-    start: function (config) {
+    reqStart: function (req, res, next) {
 
-        var db = mongoose.createConnection("mongodb://" + config.DB.global.host + "/" + config.DB.global.name);
+        req.db = db;
 
-        return function (req, res, next) {
+        if (req.hostname === config.appHostname) {
 
-            if (req.hostname === config.appHostname) {
+            if (req.path.match(/^\/admin/)) {
 
-                if (req.path.match(/^\/admin/)) {
-
-                    return useUserDbForAdmin(req, res, next, db, config);
-                }
-
-                return next();
+                return assignUserDbForAdmin(req, res, next);
             }
 
-            useUserDbForPage(req, res, next, db, config);
-        };
+            return next();
+        }
+
+        assignUserDbForPage(req, res, next);
     },
 
-    end: function () {
+    resEnd: function (req, res, next) {
 
-        return function (req, res, next) {
+        if (req.userDb) {
 
-            if (req.userDb) {
+            res.on("finish", function () {
+                req.userDb.close();
+            });
 
-                res.on("finish", function () {
-                    req.userDb.close();
-                });
+            res.on("close", function () {
+                req.userDb.close();
+            });
+        }
 
-                res.on("close", function () {
-                    req.userDb.close();
-                });
-            }
-
-            next();
-        };
-
+        next();
     }
 };
 

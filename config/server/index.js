@@ -1,5 +1,5 @@
 module.exports = {
-    DB: {
+    Db: {
         global: {
             name: "global",
             host: "localhost"
