@@ -1,1 +1,1 @@
-<Page />
+<Page isAdmin="{{.page.isAdmin}}" />

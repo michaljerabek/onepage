@@ -6,19 +6,21 @@
 
 {{#each pages}}
 
-    <button style="{{#if selectedPage._id === this._id}}background: red; border: 1px solid;{{/if}}" on-click="set('selectedPage', this)">{{this.name}}</button>
+    <button style="{{#if selectedPage._id === this._id}}background: red; border: 1px solid;{{/if}}" on-tap="set('selectedPage', this)">{{this.name}}</button>
 {{/each}}
 
 {{#if .selectedPage}}
 
     <br>
-    <button on-click="set('selectedPage', null)">Zrušit výběr</button>
-    <button on-click="set('editPage', .selectedPage._id)">Upravit: {{.pageId}}</button>
+    <button on-tap="set('selectedPage', null)">Zrušit výběr</button>
+    <button on-tap="set('editPage', .selectedPage._id)">Upravit: {{.pageId}}</button>
 
 {{/if}}
 
 
 {{#if .editPage}}
-    <Page isAdmin="true" pageId={{.editPage}} />
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:white;">
+        <Page isAdmin="true" pageId={{.editPage}} />
+    </div>
 {{/if}}
 

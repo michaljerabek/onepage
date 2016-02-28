@@ -5,11 +5,11 @@ var Ractive = require("ractive");
 var config = require("./../config");
 var on = require("./../helpers/on");
 
-var ractive = function (data, el) {
+var ractive = function (settings) {
 
     return new Ractive({
 
-        el: el,
+        el: settings.el,
 
         template: require("./page.tpl"),
 
@@ -21,7 +21,11 @@ var ractive = function (data, el) {
 
         },
 
-        data: data,
+        events: settings.events,
+
+        transitions: settings.transitions,
+
+        data: settings.data,
 
         onconfig: function () {
         }
