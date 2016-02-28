@@ -20,13 +20,17 @@ module.exports = Ractive.extend({
 
             var pageId = this.get("pageId");
 
-            if (pageId === this.root.get("page._id")) {
+            if (this.isCurrentPage(pageId)) {
 
                 return;
             }
 
             this.loadPage(pageId);
         }
+    },
+
+    isCurrentPage: function (pageId) {
+        return pageId === this.root.get("page._id");
     },
 
     loadPage: function (pageId) {

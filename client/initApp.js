@@ -3,6 +3,22 @@
 var Ractive = require("ractive");
 var io = require("socket.io-client");
 
+Ractive.defaults.findSiblingComponents = function (name) {
+
+    var components = this.parent.findAllComponents(name),
+        c = components.length - 1;
+
+    for (c; c > -1; c--) {
+
+        if (components[c] === this || components[c].parent !== this.parent) {
+
+            components.splice(c, 1);
+        }
+    }
+
+    return components;
+};
+
 var initPolyfills = function () {
 
     if (!window.Promise) {
@@ -47,6 +63,10 @@ module.exports = function (ractive, ractiveData, config) {
 
             events: {
                 tap: require("ractive-events-tap")
+            },
+
+            transitions: {
+                slide: require("ractive-transitions-slide")
             }
         });
 

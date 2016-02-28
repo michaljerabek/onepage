@@ -24,6 +24,8 @@ var ractive = function (settings) {
 
         events: settings.events,
 
+        transitions: settings.transitions,
+
         data: settings.data,
 
         onconfig: function () {

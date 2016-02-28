@@ -4,8 +4,8 @@ var webpack = require("webpack");
 
 module.exports = {
     entry: {
-        page: ["./client/page.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"],
-        admin: ["./client/admin.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"]
+        page: ["./client/Page.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"],
+        admin: ["./client/Admin.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"]
     },
 
     output: {

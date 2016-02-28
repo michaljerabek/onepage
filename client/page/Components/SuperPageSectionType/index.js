@@ -9,7 +9,12 @@ module.exports = Ractive.extend({
     partials: {
     },
 
-    onconfig: function () {
+    superOnconfig: function () {
+
+    },
+
+    superOnrender: function () {
+
     }
 
 });

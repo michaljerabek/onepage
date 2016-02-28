@@ -16,7 +16,7 @@ router.get("/", function (req, res, next) {
         }
     };
 
-    var App = require("./../../../client/page.js")(data);
+    var App = require("./../../../client/Page.js")(data);
 
     res.render("index", {
         title: req.Page.name,
