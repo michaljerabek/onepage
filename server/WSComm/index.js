@@ -29,7 +29,7 @@ io.on("connection", function (socket) {
 
     socket.on("databaseName", function (data) {
 
-        db = mongoose.createConnection("mongodb://" + config.Db.global.host + "/" + data.databaseName);
+        db = mongoose.createConnection("mongodb://" + config.Db.users.host + "/" + data.databaseName);
 
         var adminRequests = require("./admin");
 //        require("./page")(req, db);

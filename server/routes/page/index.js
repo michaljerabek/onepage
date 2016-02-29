@@ -9,7 +9,9 @@ var Ractive = require("ractive");
 router.get("/", function (req, res, next) {
 
     var data = {
+        databaseName: req.userDb.name,
         page: {
+            _id: req.Page._id,
             name: req.Page.name,
             sections: req.Page.sections,
             isAdmin: req.query.admin !== undefined ? "development" : false
