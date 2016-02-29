@@ -35,14 +35,35 @@ module.exports = Ractive.extend({
 
     loadPage: function (pageId) {
 
-        var pageReq = this.req("/page", { _id: pageId });
+        var loadReq = this.req("page", { _id: pageId });
 
-        pageReq.then(function (page) {
+        loadReq.then(function (page) {
 
             this.root.set("page.name", page.name);
             this.root.set("page.sections", page.sections);
             this.root.set("page._id", page._id);
 
+        }.bind(this));
+    },
+
+    savePage: function () {
+        this.set("pageIsSaving", true);
+
+        var params = {
+            name: this.get("page.name"),
+            sections: this.get("page.sections"),
+            _id: this.get("page._id")
+        };
+
+        var saveReq = this.req("page.save", params);
+
+        saveReq.then(function (res) {
+
+            if (res.saved) {
+
+                this.set("pageIsSaving", false);
+                console.log("Uloženo!");
+            }
         }.bind(this));
     },
 
