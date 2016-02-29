@@ -4,6 +4,14 @@
 <head>
     <title><%= title %></title>
 
+    <!--STYLES-->
+    <% if (typeof isAdmin !== "undefined" && isAdmin === true) { %>
+        <link rel="stylesheet" href="css/admin.css">
+        <link rel="stylesheet" href="css/page.css">
+    <% } else { %>
+        <link rel="stylesheet" href="css/page.css">
+    <% } %>
+
     <script>var ractiveData = <%- ractiveData %>;</script>
 
     <% if (typeof env !== "undefined") { %>
@@ -17,7 +25,7 @@
     <div id="app"><%- ractiveHtml %></div>
 
 <!--    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>-->
-    <% if (typeof isAdmin !== "undefined" && isAdmin) { %>
+    <% if (typeof isAdmin !== "undefined" && isAdmin === true) { %>
         <script src="js/admin.bundle.js"></script>
     <% } else { %>
         <script src="js/page.bundle.js"></script>
