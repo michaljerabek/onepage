@@ -4,6 +4,7 @@
 <head>
     <title><%= title %></title>
 
+<<<<<<< HEAD
     <style type="text/css"><%= ractiveCss %></style>
 
     <style>
@@ -52,6 +53,9 @@
 
     </style>
 
+=======
+<<<<<<< HEAD
+>>>>>>> sekce se přeřazují animovaně
     <!--STYLES-->
     <% if (typeof isAdmin !== "undefined" && isAdmin === true) { %>
         <link rel="stylesheet" href="css/admin.css">
@@ -59,6 +63,55 @@
     <% } else { %>
         <link rel="stylesheet" href="css/page.css">
     <% } %>
+=======
+    <style type="text/css"><%= ractiveCss %></style>
+
+    <style>
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .E_PageSection--placeholder {
+            height: 40px;
+            width: 100%;
+
+            outline: 3px dashed #5c5c5c;
+            outline-offset: -7px;
+
+            transition: height 0.35s;
+        }
+
+        .E_sortable-sections [id^="__ph"] {
+            height: 40px;
+
+            outline: 3px dashed #5c5c5c;
+            outline-offset: -7px;
+        }
+
+        .P_PageSection {
+            transition: height 0.35s;
+        }
+
+        .P_PageSection--placed {
+            z-index: 100;
+
+            overflow: hidden;
+        }
+
+        .E_PageSection--dragged {
+            z-index: 100;
+
+            height: 40px;
+            min-height: 40px;
+            width: 100%;
+
+            overflow: hidden;
+        }
+
+    </style>
+>>>>>>> sekce se přeřazují animovaně
 
     <script>var ractiveData = <%- ractiveData %>;</script>
 
