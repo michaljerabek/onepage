@@ -1,4 +1,4 @@
-<section class="P_PageSection" style="background: white;position: relative; text-align: center; line-height: 200px; font-size: 32px; border: 1px solid #ddd;">
+<section class="P_PageSection" style="position: relative; text-align: center; line-height: 200px; font-size: 32px; border: 1px solid #ddd;">
 
     {{> .section.type this}}
 

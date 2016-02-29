@@ -1,4 +1,5 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+/*global $*/
 
 var Ractive = require("ractive");
 
@@ -52,9 +53,23 @@ module.exports = Ractive.extend({
         }.bind(this));
     },
 
+    getSectionsSortedByIndex: function () {
+
+        var sections = [];
+
+        this.findAllComponents("PageSection").forEach(function (pageSection) {
+
+            sections[$(pageSection.find(".P_PageSection")).index()] = pageSection.get("section");
+        });
+
+        return sections;
+    },
+
     savePage: function () {
 
         this.set("pageIsSaving", true);
+
+        var sortedSections = this.getSectionsSortedByIndex();
 
         var params = {
             name: this.get("page.name"),
