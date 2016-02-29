@@ -69,7 +69,7 @@ module.exports = Ractive.extend({
 
     findSectionElement: function () {
 
-        return this.find("." + CLASS.PageSections.section);
+        return this.find("." + CLASS.PageSection.section);
     }
 
 });

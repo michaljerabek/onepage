@@ -24,7 +24,8 @@ router.get("/", function (req, res, next) {
 
     res.render("index", {
         title: req.Page.name,
-        ractiveHtml: App.toHtml(),
+        ractiveHtml: App.toHTML(),
+        ractiveCss: App.toCSS(),
         ractiveData: JSON.stringify(data),
         env: "dev"
     });

@@ -2,10 +2,15 @@
 
 module.exports = {
 
-    PageSections: {
-        parentOfSortable: "E_sortable-sections",
+    PageSection: {
         section: "P_PageSection",
-        sortHandle: "E_PageSection--sort-handle"
+
+        //Seřazování sekcí
+        parentOfSortable: "E_sortable-sections",
+        sortHandle: "E_PageSection--sort-handle",
+        draggedSection: "E_PageSection--dragged",
+        placedSection: "E_PageSection--placed",
+        placeholder: "E_PageSection--placeholder"
     }
 
 };
