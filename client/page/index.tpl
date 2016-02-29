@@ -17,11 +17,15 @@
 
         <hr style="clear: both">
 
-        {{#each page.sections:sectionIndex}}
+        <div class="E_sortable-sections">
 
-            <PageSection section="{{this}}" sectionIndex="{{sectionIndex}}" />
+            {{#each page.sections:sectionIndex}}
 
-        {{/each}}
+                <PageSection section="{{this}}" sectionIndex="{{sectionIndex}}" />
+
+            {{/each}}
+
+        </div>
 
     </div>
 {{/if}}

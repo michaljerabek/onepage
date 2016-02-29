@@ -4,6 +4,7 @@
 <head>
     <title><%= title %></title>
 
+
     <script>var ractiveData = <%- ractiveData %>;</script>
 
     <% if (typeof env !== "undefined") { %>
@@ -17,11 +18,14 @@
     <div id="app"><%- ractiveHtml %></div>
 
 <!--    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>-->
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+
     <% if (typeof isAdmin !== "undefined" && isAdmin) { %>
         <script src="js/admin.bundle.js"></script>
     <% } else { %>
         <script src="js/page.bundle.js"></script>
     <% } %>
+
 
 </body>
 
