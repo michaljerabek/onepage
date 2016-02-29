@@ -4,6 +4,7 @@
 <head>
     <title><%= title %></title>
 
+<<<<<<< HEAD
     <style type="text/css"><%= ractiveCss %></style>
 
     <style>
@@ -51,6 +52,15 @@
         }
 
     </style>
+=======
+    <!--STYLES-->
+    <% if (typeof isAdmin !== "undefined" && isAdmin === true) { %>
+        <link rel="stylesheet" href="css/admin.css">
+        <link rel="stylesheet" href="css/page.css">
+    <% } else { %>
+        <link rel="stylesheet" href="css/page.css">
+    <% } %>
+>>>>>>> gulp css
 
     <script>var ractiveData = <%- ractiveData %>;</script>
 
@@ -65,9 +75,13 @@
     <div id="app"><%- ractiveHtml %></div>
 
 <!--    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>-->
+<<<<<<< HEAD
     <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 
     <% if (typeof isAdmin !== "undefined" && isAdmin) { %>
+=======
+    <% if (typeof isAdmin !== "undefined" && isAdmin === true) { %>
+>>>>>>> gulp css
         <script src="js/admin.bundle.js"></script>
     <% } else { %>
         <script src="js/page.bundle.js"></script>
