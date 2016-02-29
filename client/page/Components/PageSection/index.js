@@ -1,5 +1,8 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+/*global $*/
 var Ractive = require("ractive");
+
+var CLASS = require("./../../../CLASSNAMES");
 
 module.exports = Ractive.extend({
 
@@ -57,6 +60,16 @@ module.exports = Ractive.extend({
 
             siblingSections[s].set("openPageSectionSettings", false);
         }
+    },
+
+    //Vrátí současnou pozici sekce na stránce.
+    getCurrentIndex: function () {
+        return $(this.findSectionElement()).index();
+    },
+
+    findSectionElement: function () {
+
+        return this.find("." + CLASS.PageSections.section);
     }
 
 });

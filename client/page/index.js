@@ -12,16 +12,10 @@ module.exports = Ractive.extend({
 
     onrender: function () {
 
-        var Page = this;
-
-        $(".E_sortable-sections").sortable({
-            items: ".P_PageSection",
-            onlyYDir: true,
-            fixedX: true,
-            handle: ".E_PageSection-sort"
-        }).on("sortable:deactivate", function (e, ui) {
-
-        });
+        if (this.get("isAdmin")) {
+            
+            this.sectionOrderChanger = require("./SectionOrderChanger")(this);
+        }
     },
 
     onconfig: function () {
@@ -29,7 +23,7 @@ module.exports = Ractive.extend({
         if (this.get("isAdmin") === true) {
 
             this.Admin = this.root.findComponent("Admin");
-
+            
             var pageId = this.get("pageId");
 
             if (this.isCurrentPage(pageId)) {
@@ -58,27 +52,13 @@ module.exports = Ractive.extend({
         }.bind(this));
     },
 
-    getSectionsSortedByIndex: function () {
-
-        var sections = [];
-
-        this.findAllComponents("PageSection").forEach(function (pageSection) {
-
-            sections[$(pageSection.find(".P_PageSection")).index()] = pageSection.get("section");
-        });
-
-        return sections;
-    },
-
     savePage: function () {
 
         this.set("pageIsSaving", true);
 
-        var sortedSections = this.getSectionsSortedByIndex();
-
         var params = {
             name: this.get("page.name"),
-            sections: sortedSections,
+            sections: this.sectionOrderChanger.getSectionsSortedByIndex(),
             _id: this.get("page._id")
         };
 
@@ -95,6 +75,13 @@ module.exports = Ractive.extend({
     },
 
     closePage: function () {
+        
         this.Admin.set("editPage", null);
+    },
+    
+    findAllPageSections: function () {
+        
+        return this.findAllComponents("PageSection");
     }
+
 });
