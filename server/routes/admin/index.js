@@ -27,7 +27,9 @@ router.get("/", isAuthenticated, function (req, res, next) {
             pages: pages
         };
 
-        var App = require("./../../../client/Admin.js")(data);
+        var App = require("./../../../client/Admin.js")({
+            data: data
+        });
 
         res.render("index", {
             title: "Admin: " + data.user,

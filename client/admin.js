@@ -9,6 +9,8 @@ var ractive = function (settings) {
 
     return new Ractive({
 
+        enhance: true,
+
         el: settings.el,
 
         template: require("./admin.tpl"),
