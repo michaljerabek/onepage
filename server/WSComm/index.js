@@ -24,6 +24,10 @@ io.on("connection", function (socket) {
         if (db) {
 
             db.close();
+
+            req = null;
+            db = null;
+            socket = null;
         }
     });
 
@@ -31,10 +35,11 @@ io.on("connection", function (socket) {
 
         db = mongoose.createConnection("mongodb://" + config.Db.users.host + "/" + data.databaseName);
 
-        var adminRequests = require("./admin");
-//        require("./page")(req, db);
+//        var adminRequests = require("./Admin");
+        var pageRequests = require("./Page");
 
-        adminRequests(req, db);
+//        adminRequests(req, db);
+        pageRequests(req, db);
     });
 
 });

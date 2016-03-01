@@ -16,8 +16,8 @@ var ractive = function (settings) {
         template: require("./admin.tpl"),
 
         components: {
-            Page: require("./page/"),
-            Admin: require("./admin/")
+            Page: require("./Page/"),
+            Admin: require("./Admin/")
         },
 
         partials: {

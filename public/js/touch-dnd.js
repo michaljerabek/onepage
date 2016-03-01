@@ -173,7 +173,7 @@
 
         opts.stopClass && el.addClass(opts.stopClass);
         setTimeout((function (el, origin) {
-            transition(el[0], opts.transition ? opts.transition : 'all 0.25s ease-out 0s')
+            transition(el[0], opts.transition ? opts.transition : 'all 0.35s ease-out 0s')
             vendorify('transform', el[0], origin.transform || '')
             el.data("draggingOrigin", origin);
 

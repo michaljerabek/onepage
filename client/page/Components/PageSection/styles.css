@@ -1,0 +1,55 @@
+.P_PageSection {
+    position: relative;
+
+    transition-property: height;
+    transition-duration: var(--P_PageSection_sorting-transition-duration);
+    transition-timing-function: var(--P_PageSection_sorting-transition-easing);
+}
+
+.P_PageSection--placed {
+    z-index: 100;
+
+    overflow: hidden;
+}
+
+.P_PageSection--dragged {
+    z-index: 100;
+
+    height: var(--P_PageSection--dragged_height);
+    min-height: var(--P_PageSection--dragged_height);
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.E .P_PageSection:after {
+    content: attr(data-section-name);
+
+    font-size: 19px;
+
+    z-index: 100;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    color: #fff;
+    background-color: #404040;
+    opacity: 0;
+    visibility: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition-property: opacity, visibility;
+    transition-duration: var(--P_PageSection_sorting-transition-duration);
+    transition-timing-function: var(--P_PageSection_sorting-transition-easing);
+}
+
+.E .P_PageSection--dragged:after {
+    opacity: 1;
+    visibility: visible;
+}

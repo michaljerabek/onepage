@@ -10,8 +10,8 @@ module.exports = {
 
     output: {
         path: "/",
-        publicPath: "http://localhost/js/",
-        filename: "[name].bundle.js"
+        publicPath: "http://127.0.0.1:80/",
+        filename: "js/[name].bundle.js"
     },
 
     resolve: {

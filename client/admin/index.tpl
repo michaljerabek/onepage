@@ -19,7 +19,7 @@
 
 {{#if .editPage}}
     <div intro-outro="fade" style="position:absolute;top:0;left:0;width:100%;height:100%;background:white;">
-        <Page isAdmin="true" pageId={{.editPage}} />
+        <Page editMode="true" isAdmin="true" pageId={{.editPage}} />
     </div>
 {{/if}}
 

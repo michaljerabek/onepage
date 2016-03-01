@@ -2,7 +2,6 @@
 var express = require("express");
 var router = express.Router();
 
-
 require("ractive-require-templates")(".tpl");
 var Ractive = require("ractive");
 
@@ -14,7 +13,7 @@ router.get("/", function (req, res, next) {
             _id: req.Page._id,
             name: req.Page.name,
             sections: req.Page.sections,
-            isAdmin: req.query.admin !== undefined ? "development" : false
+            editMode: req.query.editMode !== undefined
         }
     };
 

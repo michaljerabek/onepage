@@ -2,7 +2,7 @@
 /*global $*/
 var Ractive = require("ractive");
 
-var CLASS = require("./../../../CLASSNAMES");
+var CLASS = require("./../../CLASSNAMES");
 
 module.exports = Ractive.extend({
 
@@ -69,7 +69,7 @@ module.exports = Ractive.extend({
 
     findSectionElement: function () {
 
-        return this.find("." + CLASS.PageSection.section);
+        return this.find("." + CLASS.PageSection.self);
     }
 
 });
