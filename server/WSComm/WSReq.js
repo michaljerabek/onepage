@@ -1,37 +1,58 @@
 var on = require("./../../helpers/on");
 
-var serverReq = function (socket, reqPrefix, resPrefix) {
+var serverReq = function (socket, onReq, reqPrefix, resPrefix) {
+
+    var requestTimes = {};
 
     reqPrefix = typeof reqPrefix !== "string" ? "req." : reqPrefix + ".";
 
     resPrefix = typeof resPrefix !== "string" ? "res." : resPrefix + ".";
 
-    return function req(type, res) {
+    return function req(name, reqHandler) {
 
-        socket.on(reqPrefix + type, function (request) {
+        socket.on(reqPrefix + name, function (request) {
 
-            res(request, function (data, broadcast) {
+            if (!request.doNotForceLastRequest && requestTimes[name] > request.timestamp) {
+
+                if (typeof onReq === "function") {
+
+                    request.rejected = true;
+
+                    onReq(request);
+                }
+
+                return;
+            }
+
+            requestTimes[name] = request.timestamp;
+
+            if (typeof onReq === "function") {
+
+                onReq(request);
+            }
+
+            reqHandler(request, function (data, broadcast) {
 
                 if (broadcast === true) {
 
-                    socket.broadcast.emit(resPrefix + type, data);
+                    socket.broadcast.emit(resPrefix + name, data);
 
                 } else if (typeof broadcast === "string") {
 
-                    socket.broadcast.to(broadcast).emit(resPrefix + type, data);
+                    socket.broadcast.to(broadcast).emit(resPrefix + name, data);
 
                 } else {
 
-                    socket.emit(resPrefix + type + (request.doNotForceLastRequest ? "" : request.timestamp), data);
+                    socket.emit(resPrefix + name + (request.doNotForceLastRequest ? "" : request.timestamp), data);
                 }
             });
         });
     };
 };
 
-var clientReq = function (socket, reqPrefix, resPrefix) {
+var clientReq = function (socket, onRes, reqPrefix, resPrefix) {
 
-    var requestIds = {};
+    var requestTimes = {};
 
     reqPrefix = typeof reqPrefix !== "string" ? "req." : reqPrefix + ".";
 
@@ -39,25 +60,37 @@ var clientReq = function (socket, reqPrefix, resPrefix) {
 
     return function req(name, params, doNotForceLastRequest) {
 
-        var id = Date.now();
+        var timestamp = Date.now();
 
-        requestIds[name] = id;
+        requestTimes[name] = timestamp;
 
         var request = {
             params: params || {},
             name: name,
             hostname: window.location.hostname,
-            timestamp: id,
+            timestamp: timestamp,
             doNotForceLastRequest: doNotForceLastRequest
         };
 
         var promise = new Promise(function (resolve, reject) {
 
-            socket.once(resPrefix + name + (doNotForceLastRequest ? "" : id), function (response) {
+            socket.once(resPrefix + name + (doNotForceLastRequest ? "" : timestamp), function (response) {
 
-                if (id !== requestIds[name]) {
+                if (timestamp !== requestTimes[name]) {
+
+                    if (typeof onRes === "function") {
+
+                        response.rejected = true;
+
+                        onRes(response);
+                    }
 
                     return;
+                }
+
+                if (typeof onRes === "function") {
+
+                    onRes(response);
                 }
 
                 if (response.error) {

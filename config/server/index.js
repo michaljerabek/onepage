@@ -8,5 +8,10 @@ module.exports = {
             host: "localhost"
         }
     },
+
+    websocket: {
+        dbTimeout: 60 * 1000
+    },
+
     appHostname: "app.dev"
 };
