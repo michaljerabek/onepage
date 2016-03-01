@@ -6,20 +6,24 @@
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 }
 
-.P_PageSection--placed {
+.P_PageSection__placed {
     z-index: 100;
 
     overflow: hidden;
 }
 
-.P_PageSection--dragged {
+.P_PageSection__dragged {
     z-index: 100;
 
-    height: var(--P_PageSection--dragged_height);
-    min-height: var(--P_PageSection--dragged_height);
+    height: var(--P_PageSection__dragged_height);
+    min-height: var(--P_PageSection__dragged_height);
     width: 100%;
 
     overflow: hidden;
+}
+
+.E [class*='P_PageSection'], .E [class*='P_PageSection']:after {
+    will-change: transform, opacity, width, height;
 }
 
 .E .P_PageSection:after {
@@ -49,7 +53,7 @@
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 }
 
-.E .P_PageSection--dragged:after {
+.E .P_PageSection__dragged:after {
     opacity: 1;
     visibility: visible;
 }

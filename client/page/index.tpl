@@ -4,6 +4,12 @@
         <div outro="fade" style="position: fixed; z-index: 99999; top: 0; left: 0; width: 100%; height: 100%; background: black; opacity: 0.75;"></div>
     {{/if}}
 
+    {{#if .editMode}}
+
+        <NewPageSectionSelector />
+
+    {{/if}}
+
     <div id="page" class="{{#if .editMode}}E{{/if}}">
         <h1 style="float: left">{{page.name}}</h1>
 

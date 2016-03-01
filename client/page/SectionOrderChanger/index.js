@@ -13,7 +13,10 @@ module.exports = (function () {
 
         page,
 
+        $body,
+
         $sortable,
+        $draggable,
 
         $placeholder,
         $placeholderTransitions = $("<div></div>"),
@@ -70,6 +73,11 @@ module.exports = (function () {
 
         onSortableActivate = function (e, ui) {
 
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
+
+                return;
+            }
+
             var sectionHeight = ui.item[0].getBoundingClientRect().height;
 
             //Placeholder pro transitions se nastaví na velikost sekce mínus velikost velikost
@@ -90,6 +98,11 @@ module.exports = (function () {
 
         onSortableStart = function (e, ui) {
 
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
+
+                return;
+            }
+
             //Sekce se zmenší
             ui.item.css({
                 height: OPTIONS.DRAGGED_SECTION_HEIGHT
@@ -99,11 +112,39 @@ module.exports = (function () {
             $placeholderTransitions.css({
                 height: 0
             });
-
-            $placeholder = $placeholder && $placeholder.length ? $placeholder : $sortable.find("." + CLASS.PageSection.placeholder);
         },
 
-        onSortableChange = function () {
+        onSortableChange = function (e, ui) {
+
+            $placeholder = $placeholder && $placeholder.length ? $placeholder : $sortable.find("." + CLASS.PageSection.placeholder);
+
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType) && !ui.item.hasClass(CLASS.NewPageSectionSelector.inserted)) {
+
+                ui.item.addClass(CLASS.NewPageSectionSelector.inserted);
+
+                $placeholder.css({
+                    height: 0,
+                    transition: "none"
+                });
+
+                $placeholderTransitions.css({
+                    height: 0,
+                    transition: "none"
+                });
+
+                setTimeout(function() {
+
+                    $placeholder.css({
+                        height: OPTIONS.DRAGGED_SECTION_HEIGHT,
+                        transition: ""
+                    });
+
+                    $placeholderTransitions.css({
+                        transition: ""
+                    });
+
+                }, 0);
+            }
 
             //Placeholder pro transitions je potřeba vložit za "umisťovací" placehloder,
             //protože ho bude potřeba na chvíli zobrazit při umístění sekce
@@ -111,6 +152,101 @@ module.exports = (function () {
         },
 
         onSortableStop = function (e, ui) {
+
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
+
+                ui.item.removeClass(CLASS.NewPageSectionSelector.inserted);
+
+                var $clone = $("." + CLASS.NewPageSectionSelector.clone),
+
+                    itemOffset = ui.item.offset(),
+
+                    cloneWidth = $clone.outerWidth(),
+                    cloneHeight = $clone.outerHeight(),
+                    cloneOffset = $clone.offset();
+
+                var $newSection = $("<section class='P_PageSection' style='font-size: 22px;padding: 40px 30px; line-height: 1.6'><div class='P_PageSection--inner-wrapper'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe temporibus possimus omnis sint commodi repellendus minima accusamus quas. Dignissimos vel, ipsa eveniet quo. Totam aspernatur quis, incidunt consequuntur provident deserunt officia tempora illum sequi ad ullam quos quas ducimus non, maxime ipsum hic accusamus reprehenderit minima quo rerum distinctio fuga!</div></section>"),
+                    $inner = $newSection.find("." + CLASS.PageSection.innerWrapper);
+
+                ui.item.after($newSection);
+
+                var newSectionHeight = $newSection.outerHeight(),
+                    newSectionWidth = $newSection.outerWidth();
+
+                $inner.css({
+                    width: $inner.outerWidth()
+                });
+
+                $newSection
+                    .addClass(CLASS.PageSection.placedSection)
+                    .css({
+                        marginBottom: -cloneHeight + OPTIONS.DRAGGED_SECTION_HEIGHT,
+
+                        height: cloneHeight,
+                        width: cloneWidth,
+
+                        transform: "translate(" + (cloneOffset.left - itemOffset.left) + "px, " + (cloneOffset.top - itemOffset.top) + "px)",
+                        transition: "none"
+                    });
+
+                ui.item.css({
+                    zIndex: 110,
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+
+                    height: cloneHeight,
+                    width: cloneWidth,
+
+                    opacity: 1,
+
+                    transform: "translate(" + cloneOffset.left + "px, " + cloneOffset.top + "px)"
+                });
+
+                setTimeout(function() {
+
+                    ui.item
+                        .css({
+                            height: newSectionHeight,
+                            width: newSectionWidth,
+                            opacity: 0,
+                            transform: "translate(" + itemOffset.left + "px, " + itemOffset.top + "px)",
+                            transition: "all " + OPTIONS.PLACED_SECTION_SPEED + " " + OPTIONS.PLACED_SECTION_EASING
+                        })
+                        .one("transitionend", function () {
+                            ui.item.remove();
+                        });
+
+                    $newSection
+                        .css({
+                            marginBottom: 0,
+
+                            height: newSectionHeight,
+                            width: newSectionWidth,
+
+                            transform: "translate(0px, 0px)",
+                            transition: "all " + OPTIONS.PLACED_SECTION_SPEED + " " + OPTIONS.PLACED_SECTION_EASING
+                        })
+                        .one("transitionend", function () {
+
+                            $inner.css({
+                                width: ""
+                            });
+
+                            $newSection
+                                .removeClass(CLASS.PageSection.placedSection)
+                                .css({
+                                    marginBottom: "",
+                                    width: "",
+                                    height: "",
+                                    transition: "",
+                                    transform: ""
+                                });
+                        });
+                }, 0);
+
+                return;
+            }
 
             //Zobrazí se placeholder pro transitions, protože umisťovací je odstraněn
             //a sekce se vloží až v následujícím cyklu prohlížeče.
@@ -151,7 +287,39 @@ module.exports = (function () {
             }, 0);
         },
 
+        onDraggableStart = function (e, ui) {
+
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
+
+                var $clone = ui.item.siblings("." + CLASS.NewPageSectionSelector.clone);
+
+                $body.append($clone);
+
+                var offset = ui.item.offset();
+
+                $clone.css({
+                    top: offset.top,
+                    left: offset.left,
+                    transform: "translate(0px, 0px)"
+                });
+            }
+        },
+
         init = function () {
+
+            $draggable = $("." + CLASS.NewPageSectionSelector.sectionType).draggable({
+                connectWith: "." + CLASS.PageSection.parentOfSortable,
+                placeholder: CLASS.PageSection.placeholder,
+                cloneClass: CLASS.NewPageSectionSelector.clone,
+
+                clone: true,
+
+                transition: "all " + OPTIONS.PLACED_SECTION_SPEED + " " + OPTIONS.PLACED_SECTION_EASING,
+
+                onlyYDir: true
+            });
+
+            $draggable.on("draggable:start", onDraggableStart);
 
             $sortable = $("." + CLASS.PageSection.parentOfSortable).sortable({
                 items: "." + CLASS.PageSection.self,
@@ -177,6 +345,11 @@ module.exports = (function () {
 
                 $sortable.sortable("destroy");
             }
+
+            if ($draggable) {
+
+                $draggable.draggable("destroy");
+            }
         },
 
         reset = function () {
@@ -190,6 +363,8 @@ module.exports = (function () {
         page = pageComponent;
 
         $placeholderTransitions.addClass(CLASS.PageSection.placeholderTransitions);
+
+        $body = $("body");
 
         if (!deferInit) {
 

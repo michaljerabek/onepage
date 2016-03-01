@@ -7,7 +7,8 @@ module.exports = Ractive.extend({
     template: require("./index.tpl"),
 
     components: {
-        PageSection: require("./Components/PageSection")
+        PageSection: require("./Components/PageSection"),
+        NewPageSectionSelector: require("./Components/NewPageSectionSelector")
     },
 
     onrender: function () {

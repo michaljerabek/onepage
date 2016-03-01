@@ -1,0 +1,49 @@
+.E_NewPageSectionSelector {
+    z-index: 110;
+    position: fixed;
+    top: calc(-100% + 20px);
+    left: 0px;
+
+    padding: 20px;
+    width: 300px;
+    height: 100%;
+
+    background-color: #ddd;
+
+    transition: all 0.3s ease-in-out 0s;
+}
+
+[class*='E_NewPageSection'] {
+    will-change: transform, opacity, width, height;
+}
+
+.E_NewPageSectionSelector:hover {
+    top: 0%;
+}
+
+.E_NewPageSectionSelector--page-section-types {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.E_NewPageSectionSelector--page-section-type {
+    font-size: 23px;
+
+    margin-bottom: 20px;
+
+	width: calc(50% - 10px);
+    height: 105px;
+
+    color: #fff;
+    background-color: #404040;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.E_NewPageSectionSelector--clone {
+    z-index: 120;
+}

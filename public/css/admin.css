@@ -3,6 +3,8 @@ html, body {
     margin: 0;
 
     padding: 0;
+
+    will-change: scroll-position;
 }
 
 * {
@@ -17,15 +19,35 @@ html, body {
     box-sizing: inherit;
 }
 
+
 .P_PageSection--placeholder {
     position: relative;
 
+    min-height: 0px;
     height: 40px;
     width: 100%;
 
     color: #888;
     outline: 2px dashed currentColor;
     outline-offset: -4px;
+
+    -webkit-transition-property: height, min-height;
+
+    -moz-transition-property: height, min-height;
+
+    -o-transition-property: height, min-height;
+
+    transition-property: height, min-height;
+    -webkit-transition-duration: 0.1s;
+       -moz-transition-duration: 0.1s;
+         -o-transition-duration: 0.1s;
+            transition-duration: 0.1s;
+    -webkit-transition-timing-function: ease-out;
+       -moz-transition-timing-function: ease-out;
+         -o-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+
+    will-change: height;
 }
 
 .P_PageSection--placeholder:after {
@@ -80,6 +102,101 @@ html, body {
        -moz-transition-timing-function: ease-out;
          -o-transition-timing-function: ease-out;
             transition-timing-function: ease-out;
+
+    will-change: height;
+}
+
+
+.E_NewPageSectionSelector {
+    z-index: 110;
+    position: fixed;
+    top: -webkit-calc(-100% + 20px);
+    top: -moz-calc(-100% + 20px);
+    top: calc(-100% + 20px);
+    left: 0px;
+
+    padding: 20px;
+    width: 300px;
+    height: 100%;
+
+    background-color: #ddd;
+
+    -webkit-transition: all 0.3s ease-in-out 0s;
+
+    -moz-transition: all 0.3s ease-in-out 0s;
+
+    -o-transition: all 0.3s ease-in-out 0s;
+
+    transition: all 0.3s ease-in-out 0s;
+}
+
+[class*='E_NewPageSection'] {
+    will-change: transform, opacity, width, height;
+}
+
+.E_NewPageSectionSelector:hover {
+    top: 0%;
+}
+
+.E_NewPageSectionSelector--page-section-types {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+       -moz-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+       -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+.E_NewPageSectionSelector--page-section-type {
+    font-size: 23px;
+
+    margin-bottom: 20px;
+
+	width: -webkit-calc(50% - 10px);
+
+	width: -moz-calc(50% - 10px);
+
+	width: calc(50% - 10px);
+    height: 105px;
+
+    color: #fff;
+    background-color: #404040;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.E_NewPageSectionSelector--clone {
+    z-index: 120;
 }
 
 .P_PageSection {
@@ -102,13 +219,13 @@ html, body {
             transition-timing-function: ease-out;
 }
 
-.P_PageSection--placed {
+.P_PageSection__placed {
     z-index: 100;
 
     overflow: hidden;
 }
 
-.P_PageSection--dragged {
+.P_PageSection__dragged {
     z-index: 100;
 
     height: 40px;
@@ -116,6 +233,10 @@ html, body {
     width: 100%;
 
     overflow: hidden;
+}
+
+.E [class*='P_PageSection'], .E [class*='P_PageSection']:after {
+    will-change: transform, opacity, width, height;
 }
 
 .E .P_PageSection:after {
@@ -173,7 +294,7 @@ html, body {
             transition-timing-function: ease-out;
 }
 
-.E .P_PageSection--dragged:after {
+.E .P_PageSection__dragged:after {
     opacity: 1;
     visibility: visible;
 }
