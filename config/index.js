@@ -3,4 +3,4 @@
 var extend = require("extend");
 var on = require("./../helpers/on");
 
-module.exports = extend({}, require("./shared"), on.server ? require("./server") : require("./client"));
+module.exports = extend(true, {}, require("./shared"), on.server ? require("./server") : require("./client"));

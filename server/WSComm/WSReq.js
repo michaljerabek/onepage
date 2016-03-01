@@ -1,6 +1,6 @@
 var on = require("./../../helpers/on");
 
-var serverReq = function (socket, reqPrefix, resPrefix) {
+var serverReq = function (socket, onReq, reqPrefix, resPrefix) {
 
     var requestTimes = {};
 
@@ -14,10 +14,22 @@ var serverReq = function (socket, reqPrefix, resPrefix) {
 
             if (!request.doNotForceLastRequest && requestTimes[name] > request.timestamp) {
 
+                if (typeof onReq === "function") {
+
+                    request.rejected = true;
+
+                    onReq(request);
+                }
+
                 return;
             }
 
             requestTimes[name] = request.timestamp;
+
+            if (typeof onReq === "function") {
+
+                onReq(request);
+            }
 
             reqHandler(request, function (data, broadcast) {
 
@@ -38,7 +50,7 @@ var serverReq = function (socket, reqPrefix, resPrefix) {
     };
 };
 
-var clientReq = function (socket, reqPrefix, resPrefix) {
+var clientReq = function (socket, onRes, reqPrefix, resPrefix) {
 
     var requestTimes = {};
 
@@ -66,7 +78,19 @@ var clientReq = function (socket, reqPrefix, resPrefix) {
 
                 if (timestamp !== requestTimes[name]) {
 
+                    if (typeof onRes === "function") {
+
+                        response.rejected = true;
+
+                        onRes(response);
+                    }
+
                     return;
+                }
+
+                if (typeof onRes === "function") {
+
+                    onRes(response);
                 }
 
                 if (response.error) {
