@@ -1,6 +1,4 @@
 /*jslint white: true, nomen: true, regexp: true, unparam: true, indent: 4, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
-var mongoose = require("mongoose");
-var ObjectId = mongoose.Types.ObjectId;
 var PageModel = require("./../../models/Page");
 
 module.exports = function (req, db) {

@@ -10,7 +10,7 @@ gulp.task("css.page", function () {
         .pipe(concat("page.css"))
         .pipe(sourcemaps.init())
         .pipe(postcss([require("autoprefixer")({
-            browsers: "> 1%"
+            browsers: "> 0.001%"
         }), require("precss")]))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest("public/css/"));
@@ -21,11 +21,11 @@ gulp.task("css.admin", function () {
     var sourcemaps = require("gulp-sourcemaps");
     var concat = require("gulp-concat");
 
-    gulp.src(["./client/css/*.css", "./client/Admin/**/*.css"])
+    gulp.src(["./client/css/*.css", "./client/Admin/**/*.css", "./client/Page/**/*.css"])
         .pipe(concat("admin.css"))
         .pipe(sourcemaps.init())
         .pipe(postcss([require("autoprefixer")({
-            browsers: "> 1%"
+            browsers: "> 0.001%"
         }), require("precss")]))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest("public/css/"));

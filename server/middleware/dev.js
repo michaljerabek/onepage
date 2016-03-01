@@ -2,6 +2,7 @@
 var lrserver = require("tiny-lr")();
 var webpack = require("webpack");
 var webpackMiddleware = require("webpack-dev-middleware");
+var path = require("path");
 
 module.exports = function (app, webpackConfigPath, livereloadPort) {
 
@@ -15,7 +16,7 @@ module.exports = function (app, webpackConfigPath, livereloadPort) {
     var triggerLiveReloadChanges = function () {
         lrserver.changed({
             body: {
-                files: [webpackConfig.output.filename]
+                files: [webpackConfig.output.filename, "./../../public/css/page.css"]
             }
         });
     };

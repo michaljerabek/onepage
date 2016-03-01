@@ -1,1 +1,1 @@
-<Page isAdmin="{{.page.isAdmin}}" />
+<Page editMode="{{.page.editMode}}" />

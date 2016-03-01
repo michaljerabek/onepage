@@ -5,13 +5,23 @@
     <title><%= title %></title>
 
     <!--STYLES-->
+<<<<<<< HEAD
     <% if (typeof isAdmin !== "undefined" && isAdmin === true) { %>
         <link rel="stylesheet" href="css/admin.css">
         <link rel="stylesheet" href="css/page.css">
+=======
+    <% if (typeof isAdmin !== "undefined") { %>
+        <link rel="stylesheet" href="css/admin.css">
+>>>>>>> prerazovani-sekci
     <% } else { %>
         <link rel="stylesheet" href="css/page.css">
     <% } %>
 
+<<<<<<< HEAD
+=======
+    <style type="text/css"><%= ractiveCss %></style>
+
+>>>>>>> prerazovani-sekci
     <script>var ractiveData = <%- ractiveData %>;</script>
 
     <% if (typeof env !== "undefined") { %>
@@ -25,11 +35,18 @@
     <div id="app"><%- ractiveHtml %></div>
 
 <!--    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>-->
+<<<<<<< HEAD
     <% if (typeof isAdmin !== "undefined" && isAdmin === true) { %>
+=======
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+    <% if (typeof isAdmin !== "undefined") { %>
+>>>>>>> prerazovani-sekci
         <script src="js/admin.bundle.js"></script>
     <% } else { %>
         <script src="js/page.bundle.js"></script>
     <% } %>
+
 
 </body>
 

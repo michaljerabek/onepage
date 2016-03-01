@@ -8,7 +8,7 @@ var Ractive = require("ractive");
 
 
 var isAuthenticated = function (req, res, next) {
-    console.log(req.isAuthenticated());
+
     if (req.isAuthenticated()) {
 
         return next();
@@ -33,7 +33,8 @@ router.get("/", isAuthenticated, function (req, res, next) {
 
         res.render("index", {
             title: "Admin: " + data.user,
-            ractiveHtml: App.toHtml(),
+            ractiveHtml: App.toHTML(),
+            ractiveCss: App.toCSS(),
             ractiveData: JSON.stringify(data),
             env: "dev",
             isAdmin: true

@@ -16,8 +16,8 @@ app.set("view engine", "ejs");
 middleware(app, express, config);
 
 /*Routes*/
-var pageRoutes = require("./server/routes/page");
-var adminRoutes = require("./server/routes/admin");
+var pageRoutes = require("./server/routes/Page");
+var adminRoutes = require("./server/routes/Admin");
 var usersRoutes = require("./server/routes/users");
 
 

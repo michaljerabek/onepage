@@ -4,14 +4,14 @@ var webpack = require("webpack");
 
 module.exports = {
     entry: {
-        page: ["./client/Page.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"],
-        admin: ["./client/Admin.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"]
+        page: ["./public/js/touch-dnd.js", "./client/Page.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"],
+        admin: ["./public/js/touch-dnd.js", "./client/Admin.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"]
     },
 
     output: {
         path: "/",
-        publicPath: "http://localhost/js/",
-        filename: "[name].bundle.js"
+        publicPath: "http://127.0.0.1:80/",
+        filename: "js/[name].bundle.js"
     },
 
     resolve: {
