@@ -1,3 +1,39 @@
+.E .P_sortable-sections {
+    position: relative;
+
+    min-height: 40px;
+}
+
+.E .P_sortable-sections:after {
+    content: var(--P_PageSection--empty_text);
+
+    font-size: 17px;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    color: #888;
+    opacity: 0;
+    visibility: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.1s ease-in 0s;
+}
+
+.E .P_sortable-sections:empty:after {
+    opacity: 1;
+    visibility: visible;
+
+    transition: all 0.35s ease-out 0s;
+}
+
 .P_PageSection--placeholder {
     position: relative;
 
@@ -6,6 +42,7 @@
     width: 100%;
 
     color: #888;
+    background-color: #fff;
     outline: 2px dashed currentColor;
     outline-offset: -4px;
 
@@ -14,6 +51,7 @@
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 
     will-change: height;
+    overflow: hidden;
 }
 
 .P_PageSection--placeholder:after {
@@ -36,6 +74,8 @@
 .P_PageSection--placeholder__transitions {
     height: var(--P_PageSection__dragged_height);
     width: 100%;
+
+    background-color: #fff;
 
     transition-property: height;
     transition-duration: var(--P_PageSection_sorting-transition-duration);

@@ -13,6 +13,7 @@ module.exports = {
         sortHandle: "P_PageSection--sort-handle",
         draggedSection: "P_PageSection__dragged",
         placedSection: "P_PageSection__placed",
+        removedSection: "P_PageSection__removed",
 
         placeholderTransitions: "P_PageSection--placeholder__transitions",
         placeholder: "P_PageSection--placeholder"

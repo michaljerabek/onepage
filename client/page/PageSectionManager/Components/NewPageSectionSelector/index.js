@@ -26,7 +26,6 @@ module.exports = Ractive.extend({
     },
 
     oncomplete: function () {
-
     }
 
 });

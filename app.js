@@ -20,7 +20,6 @@ var pageRoutes = require("./server/routes/Page");
 var adminRoutes = require("./server/routes/Admin");
 var usersRoutes = require("./server/routes/users");
 
-
 app.use("/admin", function (req, res, next) {
 
     if (req.hostname === config.appHostname) {
@@ -32,6 +31,7 @@ app.use("/admin", function (req, res, next) {
     res.redirect("http://" + config.appHostname + "/admin");
 
 }, adminRoutes);
+
 app.use("/users", usersRoutes);
 
 app.get(/\w+/i, function (req, res, next) {

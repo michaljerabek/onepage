@@ -27,6 +27,8 @@ var initPolyfills = function () {
     }
 
     require("polyfill-function-prototype-bind");
+
+    require("request-frame")("native");
 };
 
 var connectToSocketIO = function (config, databaseName) {

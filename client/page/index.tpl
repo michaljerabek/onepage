@@ -11,19 +11,18 @@
     {{/if}}
 
     <div id="page" class="{{#if .editMode}}E{{/if}}">
-        <h1 style="float: left">{{page.name}}</h1>
 
-        {{#if .isAdmin}}
-            <button style="float: left; margin-top: 30px; margin-left: 10px" on-tap="closePage()">Zavřít</button>
-        {{/if}}
+        <div class="P_nonsortable-sections" style="overflow: hidden">
 
-        {{#if .editMode}}
-            <button style="float: left; margin-top: 30px; margin-left: 10px" on-tap="savePage()">Uložit</button>
-        {{/if}}
+            <h1 style="float: left">{{page.name}}</h1>
 
-        <hr style="clear: both">
+            {{#if .isAdmin}}
+                <button style="float: left; margin-top: 30px; margin-left: 10px" on-tap="closePage()">Zavřít</button>
+            {{/if}}
 
-        <div class="P_nonsortable-sections">
+            {{#if .editMode}}
+                <button style="float: left; margin-top: 30px; margin-left: 10px" on-tap="savePage()">Uložit</button>
+            {{/if}}
 
             {{#each page.sections:sectionIndex}}
 
