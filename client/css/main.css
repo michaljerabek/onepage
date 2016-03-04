@@ -4,14 +4,14 @@ html, body {
     padding: 0;
 }
 
+body {
+    will-change: scroll-position;
+}
+
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 *:after, *:before {
-    -webkit-box-sizing: inherit;
-    -moz-box-sizing: inherit;
     box-sizing: inherit;
 }

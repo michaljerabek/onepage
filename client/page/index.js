@@ -7,19 +7,28 @@ module.exports = Ractive.extend({
     template: require("./index.tpl"),
 
     components: {
-        PageSection: require("./Components/PageSection")
+        PageSection: require("./Components/PageSection"),
+        NewPageSectionSelector: require("./PageSectionsManager/Components/NewPageSectionSelector")
     },
 
     onrender: function () {
 
+    },
+
+    oncomplete: function () {
+
         if (this.get("editMode")) {
 
-            this.sectionOrderChanger = require("./SectionOrderChanger")(this, !this.get("page._id"));
+            var PageSectionBuilder = require("./PageSectionBuilder");
+
+            this.pageSectionsManager = require("./PageSectionsManager")(
+                this, new PageSectionBuilder(this), !this.get("page._id")
+            );
         }
     },
 
     onteardown: function () {
-        this.sectionOrderChanger.destroy();
+        this.pageSectionsManager.destroy();
     },
 
     onconfig: function () {
@@ -58,7 +67,7 @@ module.exports = Ractive.extend({
 
         loadReq.then(function () {
 
-            this.sectionOrderChanger.reset();
+            this.pageSectionsManager.reset();
 
         }.bind(this));
     },
@@ -69,7 +78,7 @@ module.exports = Ractive.extend({
 
         var params = {
             name: this.get("page.name"),
-            sections: this.sectionOrderChanger.getSectionsSortedByIndex(),
+            sections: this.pageSectionsManager.getSectionsSortedByIndex(),
             _id: this.get("page._id")
         };
 

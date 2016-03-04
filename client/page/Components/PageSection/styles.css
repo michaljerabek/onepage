@@ -1,29 +1,36 @@
 .P_PageSection {
     position: relative;
 
+    width: 100%;
+
     transition-property: height;
     transition-duration: var(--P_PageSection_sorting-transition-duration);
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 }
 
-.P_PageSection--placed {
+.P_PageSection__dragged,
+.P_PageSection__removed,
+.P_PageSection__placed {
     z-index: 100;
 
     overflow: hidden;
 }
 
-.P_PageSection--dragged {
-    z-index: 100;
+.P_PageSection__removed {
+    transition: none;
+}
 
-    height: var(--P_PageSection--dragged_height);
-    min-height: var(--P_PageSection--dragged_height);
-    width: 100%;
+.P_PageSection__dragged {
+    height: var(--P_PageSection__dragged_height);
+    min-height: var(--P_PageSection__dragged_height);
+}
 
-    overflow: hidden;
+.E [class*='P_PageSection'], .E [class*='P_PageSection']:after {
+    will-change: transform, opacity, width, height, margin, margin-bottom;
 }
 
 .E .P_PageSection:after {
-    content: attr(data-section-name);
+    content: attr(data-page-section-name);
 
     font-size: 19px;
 
@@ -49,7 +56,7 @@
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 }
 
-.E .P_PageSection--dragged:after {
+.E .P_PageSection__dragged:after {
     opacity: 1;
     visibility: visible;
 }

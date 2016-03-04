@@ -9,11 +9,11 @@ module.exports = Ractive.extend({
     template: require("./index.tpl"),
 
     components: {
-        PageSectionA: require("./../PageSectionA"),
-        PageSectionB: require("./../PageSectionB"),
-        PageSectionC: require("./../PageSectionC"),
+        PageSectionA: require("./Types/PageSectionA"),
+        PageSectionB: require("./Types/PageSectionB"),
+        PageSectionC: require("./Types/PageSectionC"),
 
-        PageSectionSettings: require("./../PageSectionSettings")
+        PageSectionSettings: require("./PageSectionSettings")
     },
 
     partials: {
@@ -64,10 +64,10 @@ module.exports = Ractive.extend({
 
     //Vrátí současnou pozici sekce na stránce.
     getCurrentIndex: function () {
-        return $(this.findSectionElement()).index();
+        return $(this.getSectionElement()).index();
     },
 
-    findSectionElement: function () {
+    getSectionElement: function () {
 
         return this.find("." + CLASS.PageSection.self);
     }

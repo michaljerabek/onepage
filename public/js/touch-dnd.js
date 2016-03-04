@@ -139,14 +139,38 @@
         return this.el
     }
 
+    Dragging.prototype.hasParent = function (el, parent) {
+
+        if (!el || !parent) {
+
+            return false;
+        }
+
+        if (el.parentNode === parent) {
+
+            return true;
+        }
+
+        return Dragging.prototype.hasParent.call(this, el.parentNode, parent);
+
+    };
+
     Dragging.prototype.stop = function (e) {
         var dropEvent = null
         var revert = true
         if (this.last) {
             var last = this.last
             this.last = null
-            dropEvent = trigger($(last), 'dragging:drop', e)
-            revert = !dropEvent.isDefaultPrevented()
+
+            if (this.parent instanceof Sortable && !this.hasParent(last, this.parent.el)) {
+
+                last = this.placeholder;
+            }
+
+            if (last) {
+                dropEvent = trigger($(last), 'dragging:drop', e)
+                revert = !dropEvent.isDefaultPrevented()
+            }
         }
 
         if (!this.el) {
@@ -159,10 +183,10 @@
         }
 
         trigger(this.eventHandler, 'dragging:stop', e, this.el)
-        this.placeholder = null
         if (!this.handle) {
             this.adjustPlacement(e)
         }
+        this.placeholder = null
 
         var el = this.el
         if (this.handle) {
@@ -172,27 +196,35 @@
         var opts = this.parent.opts;
 
         opts.stopClass && el.addClass(opts.stopClass);
-        setTimeout((function (el, origin) {
+
+        requestAnimationFrame(function (el, origin) {
+
             transition(el[0], opts.transition ? opts.transition : 'all 0.35s ease-out 0s')
             vendorify('transform', el[0], origin.transform || '')
+
             el.data("draggingOrigin", origin);
 
             var tDuration = el.css("transition-duration") || "0";
+
             setTimeout(function () {
+
                 transition(el[0], origin.transition || '');
+
                 opts.stopClass && el.removeClass(opts.stopClass);
                 el.data("draggingOrigin", null);
+
             }, tDuration.match(/ms$/) ? parseFloat(tDuration) : parseFloat(tDuration) * 1000);
 
             el[0].style.pointerEvents = ''
 
-        }).bind(null, el, this.origin))
+        }.bind(null, el, this.origin))
 
         this.windows.forEach(function (win) {
             $(win).off(MOVE_EVENT, this.move)
             $(win).off(END_EVENT, this.stop)
         }, this)
         this.parent = this.el = this.handle = this.fixedX = this.fixedY = null
+        this.scrollBottomActivated = this.scrollTopActivated = false;
     }
 
     Dragging.prototype.getOver = function ($overs, counter) {
@@ -291,20 +323,42 @@
         // border scrolling only for root window
         //        if (e.view !== win && e.view && e.view.frameElement) {
         if (!(e.view && e.view.frameElement)) {
+
             var bottom = (pageY - (window.scrollY || window.pageYOffset) - window.innerHeight) * -1
             var bottomReached = document.documentElement.offsetHeight < (window.scrollY || window.pageYOffset) + window.innerHeight
-            if (bottom <= 25 && !bottomReached) {
-                setTimeout(function () {
-                    window.scrollBy(0, bottom <= 3 ? 7 : bottom <= 17 ? 5 : 2)
-                }, 25)
-            }
-
             var top = (pageY - (window.scrollY || window.pageYOffset))
             var topReached = (window.scrollY || window.pageYOffset) <= 0
-            if (top <= 25 && !topReached) {
-                setTimeout(function () {
-                    window.scrollBy(0, top <= 3 ? -7 : top <= 17 ? -5 : -2)
-                }, 25)
+
+            this.activationArea = e.type === "touchmove" ? 100 : 50;
+            this.mouseFromBottom = bottom;
+            this.mouseFromTop = top;
+
+            if ((bottom > this.activationArea || bottomReached) && this.scrollBottomActivated) {
+
+                this.scrollBottomActivated = false;
+            }
+
+            if ((top > this.activationArea || topReached) && this.scrollTopActivated) {
+
+                this.scrollTopActivated = false;
+            }
+
+            if (bottom <= this.activationArea && !bottomReached && !this.scrollBottomActivated) {
+
+                this.scrollDirection = 1;
+                this.scrollTopActivated = false;
+                this.scrollBottomActivated = true;
+
+                requestAnimationFrame(this.scrollTo.bind(this));
+            }
+
+            if (top <= this.activationArea && !topReached && !this.scrollTopActivated) {
+
+                this.scrollDirection = -1;
+                this.scrollTopActivated = true;
+                this.scrollBottomActivated = false;
+
+                requestAnimationFrame(this.scrollTo.bind(this));
             }
         }
 
@@ -314,6 +368,34 @@
 
         translate(el[0], this.parent.opts.fixedX ? this.fixedX : deltaX, this.parent.opts.fixedY ? this.fixedY : deltaY)
     }
+
+    Dragging.prototype.scrollTo = function () {
+
+        var amount = 0;
+
+        if (this.scrollDirection === 1) {
+
+            amount = Math.ceil(Math.max(0, this.activationArea - Math.max(0, this.mouseFromBottom)) / 12);
+
+        } else {
+
+            amount = Math.ceil(Math.max(0, this.activationArea - Math.max(0, this.mouseFromTop)) / 12);
+        }
+
+        if (this.activationArea > 50) {
+
+            amount = amount / 2;
+        }
+
+        amount = amount * amount;
+
+        window.scrollBy(0, amount * this.scrollDirection);
+
+        if (this.scrollBottomActivated || this.scrollTopActivated) {
+
+            requestAnimationFrame(this.scrollTo.bind(this));
+        }
+    };
 
     Dragging.prototype.setCurrent = function (target) {
         this.currentTarget = target
@@ -328,6 +410,7 @@
     Dragging.prototype.adjustPlacement = function (e) {
         var el = this.handle && this.handle[0] || this.el[0]
         translate(el, 0, 0)
+
         var rect = el.getBoundingClientRect()
         this.origin.x = rect.left + (window.scrollX || window.pageXOffset) - this.origin.offset.x
         this.origin.y = rect.top + (window.scrollY || window.pageYOffset) - this.origin.offset.y
@@ -712,7 +795,12 @@
 
         // hide placeholder, if set (e.g. enter the droppable after
         // entering a sortable)
-        if (dragging.placeholder) dragging.placeholder.hide()
+
+        if (!this.opts.alwaysShowPlaceholder) {
+
+            if (dragging.placeholder) dragging.placeholder.hide()
+
+        }
 
         if (!this.accept) return
 
@@ -1172,6 +1260,7 @@
         handle: false,
         initialized: false,
         clone: false,
+        alwaysShowPlaceholder: false,
         cloneClass: '',
         scope: 'default',
         stopClass: 'draggable-stop',
@@ -1190,6 +1279,7 @@
         scope: 'default',
         receiveHandler: null,
         stopClass: 'draggable-stop',
+        alwaysShowPlaceholder: false,
         onlyXDir: false,
         onlyYDir: false,
         fixdX: false,
@@ -1203,6 +1293,7 @@
         connectWith: false,
         disabled: false,
         forcePlaceholderSize: false,
+        alwaysShowPlaceholder: false,
         handle: false,
         initialized: false,
         items: 'li, div',

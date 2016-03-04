@@ -28,7 +28,7 @@ var assignUserDbForPage = function (req, res, next) {
             req.requestForPage = true;
 
             req.userDb = mongoose.createConnection(
-                "mongodb://" + config.Db.global.host + "/" + user.databaseName
+                "mongodb://" + config.Db.users.host + "/" + user.databaseName
             );
 
             return next();

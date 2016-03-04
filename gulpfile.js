@@ -1,5 +1,6 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 var gulp = require("gulp");
+var watch = require("gulp-watch");
 
 gulp.task("css.page", function () {
     var postcss    = require("gulp-postcss");
@@ -10,7 +11,7 @@ gulp.task("css.page", function () {
         .pipe(concat("page.css"))
         .pipe(sourcemaps.init())
         .pipe(postcss([require("autoprefixer")({
-            browsers: "> 0.001%"
+            browsers: "> 0.01%"
         }), require("precss")]))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest("public/css/"));
@@ -25,12 +26,12 @@ gulp.task("css.admin", function () {
         .pipe(concat("admin.css"))
         .pipe(sourcemaps.init())
         .pipe(postcss([require("autoprefixer")({
-            browsers: "> 0.001%"
+            browsers: "> 0.01%"
         }), require("precss")]))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest("public/css/"));
 });
 
 gulp.task("watch", function () {
-    gulp.watch("./client/**/*.css", ["css.page", "css.admin"]);
+    gulp.watch("client/**/*.css", ["css.page", "css.admin"]);
 });
