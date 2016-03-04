@@ -139,14 +139,38 @@
         return this.el
     }
 
+    Dragging.prototype.hasParent = function (el, parent) {
+
+        if (!el || !parent) {
+
+            return false;
+        }
+
+        if (el.parentNode === parent) {
+
+            return true;
+        }
+
+        return Dragging.prototype.hasParent.call(this, el.parentNode, parent);
+
+    };
+
     Dragging.prototype.stop = function (e) {
         var dropEvent = null
         var revert = true
         if (this.last) {
             var last = this.last
             this.last = null
-            dropEvent = trigger($(last), 'dragging:drop', e)
-            revert = !dropEvent.isDefaultPrevented()
+
+            if (this.parent instanceof Sortable && !this.hasParent(last, this.parent.el)) {
+
+                last = this.placeholder;
+            }
+
+            if (last) {
+                dropEvent = trigger($(last), 'dragging:drop', e)
+                revert = !dropEvent.isDefaultPrevented()
+            }
         }
 
         if (!this.el) {
@@ -159,10 +183,10 @@
         }
 
         trigger(this.eventHandler, 'dragging:stop', e, this.el)
-        this.placeholder = null
         if (!this.handle) {
             this.adjustPlacement(e)
         }
+        this.placeholder = null
 
         var el = this.el
         if (this.handle) {
@@ -172,21 +196,28 @@
         var opts = this.parent.opts;
 
         opts.stopClass && el.addClass(opts.stopClass);
-        setTimeout((function (el, origin) {
+
+        requestAnimationFrame(function (el, origin) {
+
             transition(el[0], opts.transition ? opts.transition : 'all 0.35s ease-out 0s')
             vendorify('transform', el[0], origin.transform || '')
+
             el.data("draggingOrigin", origin);
 
             var tDuration = el.css("transition-duration") || "0";
+
             setTimeout(function () {
+
                 transition(el[0], origin.transition || '');
+
                 opts.stopClass && el.removeClass(opts.stopClass);
                 el.data("draggingOrigin", null);
+
             }, tDuration.match(/ms$/) ? parseFloat(tDuration) : parseFloat(tDuration) * 1000);
 
             el[0].style.pointerEvents = ''
 
-        }).bind(null, el, this.origin))
+        }.bind(null, el, this.origin))
 
         this.windows.forEach(function (win) {
             $(win).off(MOVE_EVENT, this.move)
@@ -379,6 +410,7 @@
     Dragging.prototype.adjustPlacement = function (e) {
         var el = this.handle && this.handle[0] || this.el[0]
         translate(el, 0, 0)
+
         var rect = el.getBoundingClientRect()
         this.origin.x = rect.left + (window.scrollX || window.pageXOffset) - this.origin.offset.x
         this.origin.y = rect.top + (window.scrollY || window.pageYOffset) - this.origin.offset.y
@@ -763,7 +795,12 @@
 
         // hide placeholder, if set (e.g. enter the droppable after
         // entering a sortable)
-        if (dragging.placeholder) dragging.placeholder.hide()
+
+        if (!this.opts.alwaysShowPlaceholder) {
+
+            if (dragging.placeholder) dragging.placeholder.hide()
+
+        }
 
         if (!this.accept) return
 
@@ -1223,6 +1260,7 @@
         handle: false,
         initialized: false,
         clone: false,
+        alwaysShowPlaceholder: false,
         cloneClass: '',
         scope: 'default',
         stopClass: 'draggable-stop',
@@ -1241,6 +1279,7 @@
         scope: 'default',
         receiveHandler: null,
         stopClass: 'draggable-stop',
+        alwaysShowPlaceholder: false,
         onlyXDir: false,
         onlyYDir: false,
         fixdX: false,
@@ -1254,6 +1293,7 @@
         connectWith: false,
         disabled: false,
         forcePlaceholderSize: false,
+        alwaysShowPlaceholder: false,
         handle: false,
         initialized: false,
         items: 'li, div',

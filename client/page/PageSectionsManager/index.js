@@ -105,6 +105,7 @@ module.exports = (function () {
 
                         //spoždění zapnutí transition kvůli iOS
                         requestAnimationFrame(function () {
+
                             $pageSection.css({
                                 transition: ""
                             });
@@ -187,6 +188,8 @@ module.exports = (function () {
             $placeholderTransitions.css({
                 height: 0
             });
+
+            $placeholder = $placeholder && $placeholder.length ? $placeholder : $sortable.find("." + CLASS.PageSection.placeholder);
         },
 
         onSortableChange = function (e, ui) {
@@ -195,7 +198,7 @@ module.exports = (function () {
 
             //označení, že sekce se nachází uvnit stránky - důležité pro přidávání nových sekcí,
             //aby se zjistilo, jestli je sekce ve stránce nebo ve výběru sekcí (pro odsranění)
-            ui.item.data("inSortable", true);
+            ui.item.data("inSortable.PageSectionsManager", true);
 
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType) && !ui.item.hasClass(CLASS.NewPageSectionSelector.inserted)) {
 
@@ -226,14 +229,24 @@ module.exports = (function () {
                         transition: ""
                     });
                 });
+
+                return;
             }
 
-            //Placeholder pro transitions je potřeba vložit za "umisťovací" placehloder,
-            //protože ho bude potřeba na chvíli zobrazit při umístění sekce
-            $placeholder.after($placeholderTransitions);
+            ui.item.data("positionChanged.PageSectionsManager", true);
+
         },
 
         onSortableStop = function (e, ui) {
+
+            //Placeholder pro transitions je potřeba vložit za "umisťovací" placehloder,
+            //protože ho bude potřeba na chvíli zobrazit při umístění sekce
+            if (ui.item.data("positionChanged.PageSectionsManager")) {
+
+                $placeholder.before($placeholderTransitions);
+
+                ui.item.data("positionChanged.PageSectionsManager", false);
+            }
 
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
 
@@ -386,6 +399,8 @@ module.exports = (function () {
                 return;
             }
 
+            $placeholder.remove();
+
             //Zobrazí se placeholder pro transitions, protože umisťovací je odstraněn
             //a sekce se vloží až v následujícím cyklu prohlížeče.
             $placeholderTransitions.css({
@@ -460,7 +475,7 @@ module.exports = (function () {
         onDroppableOut = function (e, ui) {
 
             //zvětší placeholder, když uživatel přetáhne sekci zpět do stránky
-            if ($placeholder && !ui.item.data("inSortable")) {
+            if ($placeholder && !ui.item.data("inSortable.PageSectionsManager")) {
 
                 $placeholder.css({
                     height: 0,
@@ -482,7 +497,7 @@ module.exports = (function () {
         onDroppableOver = function (e, ui) {
 
             //zmenší placeholder na nulu, když uživatel přetáhne sekci zpět do výběru ("koše")
-            if ($placeholder && ui.item.data("inSortable")) {
+            if ($placeholder && ui.item.data("inSortable.PageSectionsManager")) {
 
                 $placeholder.css({
                     height: 0,
@@ -493,7 +508,7 @@ module.exports = (function () {
             }
 
             //události "out" a "over" se spouští příliš často -> zajištění, aby se vše provedlo jen jednou
-            ui.item.data("inSortable", false);
+            ui.item.data("inSortable.PageSectionsManager", false);
         },
 
         onDroppableDrop = function (e, ui) {
@@ -515,7 +530,11 @@ module.exports = (function () {
 
         init = function () {
 
-            $droppable = $("." + CLASS.NewPageSectionSelector.self + ", ." + CLASS.PageSection.parentOfNonSortable).droppable({});
+            $droppable = $("." + CLASS.NewPageSectionSelector.self + ", ." + CLASS.PageSection.parentOfNonSortable).droppable({
+                accept: ".___XXX",
+
+                alwaysShowPlaceholder: true
+            });
 
             $droppable
                 .on("droppable:out", onDroppableOut)
@@ -528,9 +547,6 @@ module.exports = (function () {
                 cloneClass: CLASS.NewPageSectionSelector.clone,
 
                 clone: true,
-
-                transition: "all " + OPTIONS.SECTION_SPEED + " " + OPTIONS.SECTION_EASING,
-
                 onlyYDir: true
             });
 
