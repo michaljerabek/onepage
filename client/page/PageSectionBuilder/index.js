@@ -11,6 +11,8 @@ module.exports = (function () {
 
         generateId = function (name, counter) {
 
+            name = name || DEF_SECTION_NAME;
+
             var id = slug(counter ? name + "-" + counter : name),
 
                 sections = page.findAllPageSections(),
@@ -34,7 +36,7 @@ module.exports = (function () {
             var dataTemplate = require("./../Components/PageSection/Types/" + type + "/dataTemplate.js")();
 
             var base = {
-                id: generateId(dataTemplate.name || DEF_SECTION_NAME)
+                id: generateId(dataTemplate.name)
             };
 
             return $.extend(true, base, dataTemplate, rewriteData);
