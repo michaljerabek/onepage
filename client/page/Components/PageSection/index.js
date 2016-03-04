@@ -24,6 +24,8 @@ module.exports = Ractive.extend({
 
     onconfig: function () {
 
+        this.observe("section.name", this.regenerateId, {init: false, defer: true});
+
         //Když se otevírá nastavení sekce, je potřeba zavřít již otevřené nastavení
         this.observe("openPageSectionSettings", this.closeOtherOpenedSettings);
 
@@ -42,6 +44,13 @@ module.exports = Ractive.extend({
     },
 
     onrender: function () {
+    },
+
+    regenerateId: function (newName) {
+
+        var builder = this.findParent("Page").pageSectionBuilder;
+
+        this.set("section.id", builder.generateId(newName));
     },
 
     //Když se otevírá nastavení sekce, je potřeba zavřít již otevřené nastavení
