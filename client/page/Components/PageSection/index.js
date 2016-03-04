@@ -43,10 +43,20 @@ module.exports = Ractive.extend({
         });
     },
 
+    onteardown: function () {
+
+        this.off("PageSectionSettings.closeThisSettings");
+    },
+
     onrender: function () {
     },
 
     regenerateId: function (newName) {
+
+        if (!newName) {
+
+            return;
+        }
 
         var builder = this.findParent("Page").pageSectionBuilder;
 

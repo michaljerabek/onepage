@@ -20,6 +20,7 @@ module.exports = function (req, db) {
 
             update = {
                 $set: {
+                    settings: req.params.settings,
                     sections: req.params.sections,
                         name: req.params.name
                 }

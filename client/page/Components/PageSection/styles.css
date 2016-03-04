@@ -8,6 +8,10 @@
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 }
 
+.P_PageSection--section {
+    position: relative;
+}
+
 .P_PageSection__dragged,
 .P_PageSection__removed,
 .P_PageSection__placed {
@@ -59,4 +63,12 @@
 .E .P_PageSection__dragged:after {
     opacity: 1;
     visibility: visible;
+}
+
+.P_font-type-1 .P_PageSection--content {
+    font-family: serif;
+}
+
+.P_font-type-2 .P_PageSection--content {
+    font-family: sans-serif;
 }

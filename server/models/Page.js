@@ -10,6 +10,10 @@ var PageSchema = new Schema({
 
     sections: Array,
 
+    settings: {
+        type: Object
+    },
+
     hostnames: [String]
 
 });
