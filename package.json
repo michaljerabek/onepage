@@ -33,6 +33,7 @@
     "ractive-transitions-slide": "^0.4.0",
     "request-frame": "^1.4.1",
     "serve-favicon": "~2.3.0",
+    "slugg": "^1.0.0",
     "socket.io": "^1.4.5"
   },
   "devDependencies": {

@@ -21,8 +21,10 @@ module.exports = Ractive.extend({
 
             var PageSectionBuilder = require("./PageSectionBuilder");
 
+            this.pageSectionBuilder = new PageSectionBuilder(this);
+
             this.pageSectionsManager = require("./PageSectionsManager")(
-                this, new PageSectionBuilder(this), !this.get("page._id")
+                this, this.pageSectionBuilder, !this.get("page._id")
             );
         }
     },

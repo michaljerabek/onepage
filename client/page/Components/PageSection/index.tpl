@@ -1,7 +1,8 @@
 <section class="P_PageSection" data-page-section-name="{{.section.name}}" style="background: white;position: relative; text-align: center; line-height: 200px; font-size: 32px; border: 1px solid #ddd;">
 
     <div class="P_PageSection--inner-wrapper">
-        {{> .section.type this}}
+
+        {{> .section.type}}
 
         {{#if editMode}}
 
