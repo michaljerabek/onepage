@@ -7,10 +7,11 @@
     {{#if .editMode}}
 
         <NewPageSectionSelector />
+        <GlobalPageSettings settings="{{page.settings}}" />
 
     {{/if}}
 
-    <div id="page" class="{{#if .editMode}}E{{/if}}">
+    <div id="page" class="{{#if .editMode}}E{{/if}} {{page.settings.fontType || 'P_font-type-1'}}">
 
         <div class="P_nonsortable-sections" style="overflow: hidden">
 

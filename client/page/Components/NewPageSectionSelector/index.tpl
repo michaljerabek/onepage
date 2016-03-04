@@ -1,4 +1,4 @@
-<div on-tap="toggle('open')" style="{{open ? 'top: 0': ''}}" class="E_NewPageSectionSelector">
+<div on-mousedown="toggle('open')" style="{{open ? 'top: 0': ''}}" class="E_NewPageSectionSelector">
 
     <h2>Vyberte sekci</h2>
 

@@ -13,6 +13,7 @@ router.get("/", function (req, res, next) {
             _id: req.Page._id,
             name: req.Page.name,
             sections: req.Page.sections,
+            settings: req.Page.settings,
             editMode: req.query.editMode !== undefined
         }
     };

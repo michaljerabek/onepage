@@ -569,6 +569,11 @@ module.exports = (function () {
                 .on("sortable:start", onSortableStart)
                 .on("sortable:change", onSortableChange)
                 .on("sortable:stop", onSortableStop);
+
+            page.on("PageSection.removeSection", removeSection);
+            page.on("NewPageSectionSelector.insertSection", function (event) {
+                insertSection(event.node.dataset.pageSectionType);
+            });
         },
 
         destroy = function () {
@@ -589,6 +594,9 @@ module.exports = (function () {
             }
 
             $placeholderTransitions.remove();
+
+            page.off("PageSection.removeSection");
+            page.off("NewPageSectionSelector.insertSection");
         },
 
         reset = function () {
@@ -612,11 +620,6 @@ module.exports = (function () {
 
             init();
         }
-
-        page.on("PageSection.removeSection", removeSection);
-        page.on("NewPageSectionSelector.insertSection", function (event) {
-            insertSection(event.node.dataset.pageSectionType);
-        });
 
         return {
             insertSection: insertSection,
