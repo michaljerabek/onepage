@@ -7,7 +7,7 @@ gulp.task("css.page", function () {
     var sourcemaps = require("gulp-sourcemaps");
     var concat = require("gulp-concat");
 
-    gulp.src(["./client/css/*.css", "./client/Page/**/*.css"])
+    gulp.src(["./client/css/*.css", "./client/Page/**/*.css", "!**/_*.css"])
         .pipe(concat("page.css"))
         .pipe(sourcemaps.init())
         .pipe(postcss([require("autoprefixer")({
@@ -22,7 +22,7 @@ gulp.task("css.admin", function () {
     var sourcemaps = require("gulp-sourcemaps");
     var concat = require("gulp-concat");
 
-    gulp.src(["./client/css/*.css", "./client/Admin/**/*.css", "./client/Page/**/*.css"])
+    gulp.src(["./client/css/*.css", "./client/Admin/**/*.css", "./client/Page/**/*.css", "!**/_*.css"])
         .pipe(concat("admin.css"))
         .pipe(sourcemaps.init())
         .pipe(postcss([require("autoprefixer")({
@@ -33,5 +33,5 @@ gulp.task("css.admin", function () {
 });
 
 gulp.task("watch", function () {
-    gulp.watch("client/**/*.css", ["css.page", "css.admin"]);
+    gulp.watch(["client/**/*.css", "!**/_*.css"], ["css.page", "css.admin"]);
 });
