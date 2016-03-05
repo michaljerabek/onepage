@@ -310,13 +310,12 @@ module.exports = (function () {
                     top: -itemParentOffset.top,
                     left: -itemParentOffset.left,
 
-                    height: newSectionHeight,
-                    width: newSectionWidth,
+                    height: cloneHeight,
+                    width: cloneWidth,
 
                     opacity: 1,
 
-                    transformOrigin: "top left",
-                    transform: "translate(" + cloneOffset.left + "px, " + cloneOffset.top + "px) scale(" + (cloneWidth / newSectionWidth) + ", " + (cloneHeight / newSectionHeight) + ")",
+                    transform: "translate(" + cloneOffset.left + "px, " + cloneOffset.top + "px)",
 
                     transition: "none"
                 });
@@ -328,9 +327,12 @@ module.exports = (function () {
                     //zástupce se přesune a zvětší, podle nové sekce
                     ui.item
                         .css({
+                            height: newSectionHeight,
+                            width: newSectionWidth,
+
                             opacity: 0,
 
-                            transform: "translate(" + itemOffset.left + "px, " + itemOffset.top + "px) scale(1, 1)",
+                            transform: "translate(" + itemOffset.left + "px, " + itemOffset.top + "px)",
 
                             transition: "all " + OPTIONS.SECTION_SPEED + " " + OPTIONS.SECTION_EASING
                         })
