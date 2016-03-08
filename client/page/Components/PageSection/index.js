@@ -1,8 +1,17 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 /*global $*/
+var on = require("./../../../../helpers/on");
+var CLASS = require("./../../CLASSNAMES");
+
 var Ractive = require("ractive");
 
-var CLASS = require("./../../CLASSNAMES");
+
+if (on.client) {
+
+    var MediumEditor = require("medium-editor");
+
+    require("./../../Editor/mobile-support")(MediumEditor);
+}
 
 module.exports = Ractive.extend({
 
@@ -49,6 +58,12 @@ module.exports = Ractive.extend({
     },
 
     onrender: function () {
+
+        this.editor = new MediumEditor(this.findAll("[contenteditable]"), {
+            toolbar: {
+                buttons: ["bold", "italic", "h6", "anchor", "fontsize"]
+            }
+        });
     },
 
     regenerateId: function (newName) {

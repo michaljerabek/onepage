@@ -1,0 +1,775 @@
+.medium-editor-anchor-preview,
+.medium-editor-toolbar {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+
+    z-index: 2000;
+
+    transition:
+        transform 0.2s ease-out 0.15s,
+        z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s ease-in-out 0s;
+
+    will-change: opacity, top, left, transform;
+}
+
+@keyframes medium-editor-image-loading {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+}
+
+.medium-editor-anchor-preview {
+    left: 0;
+    line-height: 1.4;
+    max-width: 280px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    word-break: break-all;
+    word-wrap: break-word;
+    visibility: hidden
+}
+
+.medium-editor-anchor-preview a {
+    color: #fff;
+    display: inline-block;
+    margin: 5px 5px 10px
+}
+
+.medium-editor-anchor-preview-active {
+    visibility: visible;
+}
+
+.medium-editor-dragover {
+    background: #ddd;
+}
+
+.medium-editor-image-loading {
+    height: 40px;
+    width: 40px;
+
+    background-color: #333;
+    border-radius: 100%;
+
+    animation: medium-editor-image-loading 1s infinite ease-in-out;
+
+    display: inline-block;
+}
+
+.medium-editor-placeholder {
+    position: relative;
+}
+
+.medium-editor-placeholder:after {
+    content: attr(data-placeholder) !important;
+    font-style: italic;
+    left: 0;
+    position: absolute;
+    top: 0;
+    white-space: pre;
+    padding: inherit;
+    margin: inherit;
+}
+
+.medium-editor-toolbar {
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    height: 160px;
+    width: 240px;
+
+    opacity: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.medium-editor-toolbar * {
+    pointer-events: all;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar {
+    margin-top: 6px;
+
+    align-items: flex-start;
+}
+
+.medium-editor-toolbar ul {
+    text-align: center;
+
+    position: relative;
+    margin: 0;
+
+    padding: 0;
+    min-width: 120px;
+    height: 43px;
+
+    background-color: #f5f5f5;
+    border-top: 3px solid #000;
+    border-bottom: 0px solid #000;
+    border-radius: 4px;
+    box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+
+    will-change: width, height, transform;
+}
+
+.medium-toolbar-arrow-under.medium-editor-toolbar ul {
+    border-top-width: 0px;
+    border-bottom-width: 3px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.medium-editor-toolbar .medium-editor-default-actions-hidden {
+    min-width: 100%;
+    height: 100%;
+
+    transition:
+        border 0.2s ease-in-out 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        height 0.2s linear 0.4s;
+}
+
+.medium-editor-toolbar .medium-editor-default-actions-displayed {
+    min-width: 120px;
+    height: 43px;
+
+    transition:
+        min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height 0.2s linear 0s;
+}
+
+.medium-editor-toolbar .medium-editor-before-fill,
+.medium-editor-toolbar .medium-editor-after-fill {
+    flex-grow: 1;
+
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.medium-editor-left-edge .medium-editor-before-fill,
+.medium-editor-right-edge .medium-editor-after-fill {
+    flex-grow: 0;
+}
+
+.medium-editor-toolbar.medium-editor-first-show .medium-editor-before-fill,
+.medium-editor-toolbar.medium-editor-first-show .medium-editor-after-fill {
+    transition: none;
+}
+
+.medium-editor-left-edge ul {
+    text-align: left;
+}
+
+.medium-editor-right-edge ul {
+    text-align: right;
+}
+
+/*---------------------------- ARROW ----------------------------*/
+
+.medium-toolbar-arrow-over ul:before,
+.medium-toolbar-arrow-under ul:after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+
+    height: 0;
+    width: 0;
+
+    border-style: solid;
+    border-width: 8px;
+}
+
+.medium-toolbar-arrow-under ul:after {
+    bottom: -19px;
+
+    border-color: black transparent transparent transparent;
+}
+
+.medium-toolbar-arrow-over ul:before {
+    top: -19px;
+
+    border-color: transparent transparent black transparent;
+}
+
+/*//////////////////////////// ARROW ////////////////////////////*/
+
+/*---------------------------- BUTTONS ----------------------------*/
+
+.medium-editor-toolbar ul li {
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+
+    overflow: hidden;
+    display: inline-flex;
+}
+
+.medium-editor-toolbar li:first-of-type {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.medium-editor-toolbar li:last-of-type {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.medium-editor-toolbar li button {
+    cursor: pointer;
+
+    font-size: 14px;
+    line-height: 40px;
+
+    padding: 0;
+    width: 40px;
+    height: 40px;
+
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    opacity: 1;
+
+    will-change: opacity;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-hidden li button {
+    opacity: 0;
+
+    transition: all 0.2s linear 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button {
+    opacity: 1;
+
+    transition: all 0.2s linear 0.6s;
+}
+
+.medium-editor-toolbar li button:focus {
+    outline: 0;
+}
+
+.medium-editor-toolbar li .medium-editor-action-underline {
+    text-decoration: underline;
+}
+
+.medium-editor-toolbar li .medium-editor-action-pre {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 12px;
+    font-weight: 100;
+
+    padding: 15px 0;
+}
+
+/*//////////////////////////// BUTTONS ////////////////////////////*/
+
+
+.medium-editor-toolbar-active {
+    opacity: 1;
+    z-index: 11000;
+
+    visibility: visible;
+    transition:
+        top 0.2s ease-in-out 0s,
+        left 0.2s ease-in-out 0s,
+        bottom 0.2s ease-in-out 0s,
+        right 0.2s ease-in-out 0s,
+        z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s;
+}
+
+.medium-editor-toolbar-active.medium-editor-first-show {
+    transition:
+        z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s;
+}
+
+.medium-editor-toolbar.medium-editor-stalker-toolbar {
+    animation: medium-editor-move-toolbar-up 0.2s ease-in-out forwards;
+}
+
+.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    animation: medium-editor-move-toolbar-down 0.2s ease-in-out forwards;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar.medium-editor-stalker-toolbar {
+    animation: medium-editor-move-toolbar-down 0.2s ease-in-out forwards;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    animation: medium-editor-move-toolbar-up 0.2s ease-in-out forwards;
+}
+
+.medium-editor-sticky-toolbar {
+    position: fixed;
+    top: 1px;
+}
+
+.medium-editor-relative-toolbar {
+    position: relative;
+}
+
+.medium-editor-action-bold {
+    font-weight: bolder;
+}
+
+.medium-editor-action-italic {
+    font-style: italic;
+}
+
+/*---------------------------- FORM ----------------------------*/
+
+.medium-editor-toolbar-form {
+    z-index: -1;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    width: 100%;
+    height: 40px;
+
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    border-bottom: 3px solid #000;
+    border-top: 0px solid #000;
+    opacity: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    transition:
+        z-index 0s linear 0.4s,
+        visibility 0s linear 0.4s,
+        opacity 0.2s linear 0.2s,
+        height 0.2s linear 0s;
+
+    will-change: opacity, width, height;
+}
+
+.medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+    z-index: 1;
+
+    height: 100%;
+
+    opacity: 1;
+
+    pointer-events: all;
+    overflow: hidden;
+
+    transition:
+        z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s linear 0.2s,
+        height 0.2s linear 0.4s;
+}
+
+.medium-toolbar-arrow-over .medium-editor-toolbar-form {
+    bottom: auto;
+    top: 0;
+
+    border-top-width: 3px;
+    border-bottom-width: 0;
+}
+
+.medium-editor-toolbar-form a,
+.medium-editor-toolbar-form input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-form-row {
+    line-height: 14px;
+
+    margin-left: 5px;
+
+    padding-bottom: 5px;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input,
+.medium-editor-toolbar-form label {
+    font-size: 14px;
+
+    margin: 0;
+
+    padding: 6px;
+    width: 100%;
+
+    border: none;
+
+    display: inline-block;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input:focus,
+.medium-editor-toolbar-form label:focus {
+    border: none;
+    box-shadow: none;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.medium-editor-toolbar-form a {
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bolder;
+
+    margin: 0 10px;
+
+    display: inline-block;
+}
+
+[data-medium-editor-element] img {
+    max-width: 100%
+}
+
+[data-medium-editor-element] sub {
+    vertical-align: sub
+}
+
+[data-medium-editor-element] sup {
+    vertical-align: super
+}
+
+.medium-editor-hidden {
+    display: none;
+}
+
+.medium-editor-toolbar *:not(input)  {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+    html, body {
+        position: relative;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active {
+        position: absolute;
+        top: 7%;
+        left: 0;
+
+        width: 240px;
+        height: 376px;
+        padding: 20px 20px 20px 0;
+
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        overflow: hidden;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar {
+        left: auto;
+        right: 0;
+
+        padding: 20px 0px 20px 20px;
+
+        justify-content: flex-end;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-stalker-toolbar,
+    .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-stalker-toolbar,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-stalker-toolbar,
+    .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+        animation: none;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar {
+        animation: medium-editor-force-top 0.2s ease-in-out backwards;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar {
+        top: auto;
+        bottom: 7%;
+
+        align-items: flex-end;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar {
+        animation: medium-editor-force-bottom 0.2s ease-in-out backwards;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul {
+        animation: medium-editor-move-toolbar-right 0.2s ease-in-out;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar-active ul {
+        animation: medium-editor-move-toolbar-right-active 0.2s ease-in-out;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul {
+        animation: medium-editor-move-toolbar-left 0.2s ease-in-out;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar-active ul {
+        animation: medium-editor-move-toolbar-left-active 0.2s ease-in-out;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-under ul,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+        min-width: 0;
+        width: 56px;
+        min-height: 168px;
+        height: auto;
+        max-height: 100%;
+
+        border: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.5);
+
+        display: flex !important;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-content: flex-start;
+
+        overflow: hidden;
+    }
+    .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar ul,
+    .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar.medium-toolbar-arrow-under ul,
+    .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+        justify-content: flex-end;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul,
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-under ul,
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        box-shadow: -4px 0px 15px rgba(0, 0, 0, 0.5);
+
+        align-content: flex-end;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-hidden {
+        min-height: 168px;
+        max-height: 168px;
+        width: 100%;
+
+        transition:
+            max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+            min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+            width 0.2s linear 0.4s;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed {
+        min-width: 0;
+        min-height: 168px;
+        width: 56px;
+
+        transition:
+            min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+            max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+            width 0.2s linear 0s;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar .medium-editor-before-fill,
+    .medium-editor-use-touch.medium-editor-toolbar .medium-editor-after-fill {
+        display: none;
+    }
+
+    .medium-editor-use-touch ul:before,
+    .medium-editor-use-touch ul:after,
+    .medium-editor-use-touch.medium-toolbar-arrow-over ul:before,
+    .medium-editor-use-touch.medium-toolbar-arrow-under ul:after {
+        display: none;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul li {
+        width: 56px;
+        height: 56px;
+        min-height: 56px;
+    }
+
+     .medium-editor-use-touch.medium-editor-toolbar ul li button {
+        line-height: 56px;
+
+        width: 56px;
+        height: 56px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar li:first-of-type {
+        border-bottom-left-radius: 0px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 3px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar li:last-of-type {
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 0px;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:first-of-type {
+        border-top-left-radius: 3px;
+        border-top-right-radius: 0px;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:last-of-type {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 3px;
+    }
+
+    .medium-editor-use-touch .medium-editor-toolbar-form,
+    .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-toolbar-form,
+    .medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+        bottom: auto;
+        top: 20px;
+        left: 0;
+        right: auto;
+
+        height: 168px;
+        height: 168px;
+        width: 56px;
+
+        border: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        transition:
+            visibility 0s linear 0.4s,
+            opacity 0.2s linear 0.2s,
+            width 0.2s linear 0s;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-bottom .medium-editor-toolbar-form,
+    .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-over .medium-editor-toolbar-form,
+    .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+        bottom: 20px;
+        top: auto;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form,
+    .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-over .medium-editor-toolbar-form,
+    .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+        left: auto;
+        right: 0;
+
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .medium-editor-use-touch .medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+        height: 168px;
+        width: calc(100% - 20px);
+
+        transition:
+            visibility 0s linear 0.2s,
+            opacity 0.2s linear 0.2s,
+            width 0.2s linear 0.4s;
+    }
+
+@keyframes medium-editor-move-toolbar-up {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes medium-editor-move-toolbar-down {
+    from {
+        transform: translateY(-6px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes medium-editor-move-toolbar-left {
+    from {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-right {
+    from {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-left-active {
+    from {
+        transform: translateX(6px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-right-active {
+    from {
+        transform: translateX(-6px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-force-bottom {
+    from {
+        bottom: calc(10% + 6px);
+        opacity: 0;
+    }
+    to {
+        bottom: 10%;
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-force-top {
+    from {
+        top: calc(10% + 6px);
+        opacity: 0;
+    }
+    to {
+        top: 10%;
+        opacity: 1;
+    }
+}

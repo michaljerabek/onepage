@@ -19,6 +19,7 @@
     "express-validator": "^2.19.1",
     "express-vhost": "^0.2.0",
     "extend": "^3.0.0",
+    "medium-editor": "^5.14.4",
     "mongoose": "^4.4.4",
     "morgan": "~1.6.1",
     "multer": "^1.1.0",
