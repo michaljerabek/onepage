@@ -1,5 +1,6 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 /*global $*/
+var U = require("./../../libs/U");
 var CLASS = require("./../CLASSNAMES");
 
 var SuperEditor = require("./SuperEditor");
@@ -9,7 +10,7 @@ var ContentEditor = function ContentEditor() {
     SuperEditor.apply(this, arguments);
 };
 
-ContentEditor.prototype = new SuperEditor("__inherit");
+U.extend(ContentEditor, SuperEditor);
 
 ContentEditor.prototype.configure = function () {
 
@@ -25,7 +26,7 @@ ContentEditor.prototype.configure = function () {
         buttonLabels: "fontawesome",
 
         toolbar: {
-            buttons: ["h2", "bold", "italic", "anchor", "orderedlist", "unorderedlist"]
+            buttons: ["h2", "bold", "italic", "anchor", "orderedlist", "unorderedlist", "subscript"]
         }
     };
 };

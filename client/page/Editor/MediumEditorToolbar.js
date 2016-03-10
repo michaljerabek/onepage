@@ -54,7 +54,11 @@
 
                 var actionClass = buttons[b].className.match(/(^medium-editor-action-|\ medium-editor-action-)[^ ]*/)[0];
                 buttons[b].parentNode.className = actionClass.replace("editor-action", "editor-has-action");
+
+                actionElement.classList.add("medium-editor-has-more-then-" + b + "-actions");
             }
+
+            actionElement.classList.add("medium-editor-has-" + buttons.length + "-actions");
 
             return actionElement;
         };
@@ -213,7 +217,7 @@
                 toolbarElement.classList.remove("medium-editor-force-bottom");
                 toolbarElement.classList.remove("medium-editor-force-top");
 
-                if (this.base.events.touchSupport.forceDirectionX !== "right") {
+                if (MediumEditor.TouchSupport.forceDirectionX !== "right") {
 
                     toolbarElement.classList.add("medium-editor-force-left");
 
@@ -222,7 +226,7 @@
                     toolbarElement.classList.add("medium-editor-force-right");
                 }
 
-                if (this.base.events.touchSupport.forceDirectionY !== "bottom") {
+                if (MediumEditor.TouchSupport.forceDirectionY !== "bottom") {
 
                     toolbarElement.classList.add("medium-editor-force-top");
 
@@ -233,14 +237,14 @@
 
                 this.fixedElement = this.fixedElement || new FixedElement(this.toolbar);
 
-                if ((this.base.events.touchSupport.forceDirectionY !== this.base.events.touchSupport.lastForceDirectionY) ||
-                    (this.base.events.touchSupport.forceDirectionX !== this.base.events.touchSupport.lastForceDirectionX)) {
+                if ((MediumEditor.TouchSupport.forceDirectionY !== MediumEditor.TouchSupport.lastForceDirectionY) ||
+                    (MediumEditor.TouchSupport.forceDirectionX !== MediumEditor.TouchSupport.lastForceDirectionX)) {
 
-                    this.fixedElement.fix(true, this.base.events.touchSupport.forceDirectionY !== this.base.events.touchSupport.lastForceDirectionY);
+                    this.fixedElement.fix(true, MediumEditor.TouchSupport.forceDirectionY !== MediumEditor.TouchSupport.lastForceDirectionY);
                 }
 
-                this.base.events.touchSupport.lastForceDirectionX = this.base.events.touchSupport.forceDirectionX;
-                this.base.events.touchSupport.lastForceDirectionY = this.base.events.touchSupport.forceDirectionY;
+                MediumEditor.TouchSupport.lastForceDirectionX = MediumEditor.TouchSupport.forceDirectionX;
+                MediumEditor.TouchSupport.lastForceDirectionY = MediumEditor.TouchSupport.forceDirectionY;
             }
         };
 

@@ -11,18 +11,13 @@ require("./MediumEditorAnchor")(MediumEditor);
 
 var SuperEditor = function SuperEditor(getSections) {
 
-    if (arguments[0] !== "__inherit") {
+    MediumEditor.extensions.anchor.prototype.getSections =
+        MediumEditor.extensions.anchor.prototype.getSections || getSections || function () { return []; };
 
-        MediumEditor.extensions.anchor.prototype.getSections =
-            MediumEditor.extensions.anchor.prototype.getSections || getSections || function () { return []; };
+    this.configure();
 
-        this.configure();
-
-        this.init();
-    }
+    this.init();
 };
-
-SuperEditor.abstract = true;
 
 SuperEditor.prototype.configure = function () {
 

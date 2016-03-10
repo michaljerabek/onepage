@@ -18,13 +18,17 @@
 
         var $win = $(window),
 
+            counter = 1,
+
+            isMobile = /Mobi/.test(navigator.userAgent),
+
             constructor = function FixedElement($selectable, throttle) {
 
-                this.id = "fixedElement" + (+new Date());
+                this.id = "fixedElement-" + (counter++);
 
                 this.$fixedElement = $($selectable);
 
-                this.throttle = throttle || 100;
+                this.throttle = throttle || 250;
 
                 this.init();
             };
@@ -80,7 +84,7 @@
 
             var throttle = null;
 
-            $win.on("scroll." + this.id + " resize." + this.id, function () {
+            $win.on("scroll." + this.id + " resize." + this.id + " orientationchange." + this.id, function () {
 
                 clearTimeout(throttle);
 
@@ -101,15 +105,15 @@
 
         constructor.prototype.destroy = function () {
 
-            $win.off("scroll." + this.id + " resize." + this.id);
+            $win.off("scroll." + this.id + " resize." + this.id + " orientationchange." + this.id);
         };
 
         constructor.prototype.calculatePosition = function () {
 
             var scrollWidth = document.documentElement.offsetWidth,
                 scrollHeight = document.documentElement.offsetHeight,
-                viewWidth = document.documentElement.clientWidth > window.innerWidth ? window.innerWidth : document.documentElement.clientWidth,
-                viewHeight = document.documentElement.clientHeight > window.innerHeight ? window.innerHeight : document.documentElement.clientHeight,
+                viewWidth = document.documentElement.clientWidth > window.innerWidth || isMobile ? window.innerWidth : document.documentElement.clientWidth,
+                viewHeight = document.documentElement.clientHeight > window.innerHeight || isMobile ? window.innerHeight : document.documentElement.clientHeight,
 
                 scrollLeft = Math.max(0, $win.scrollLeft()),
                 scrollTop = Math.max(0, $win.scrollTop());

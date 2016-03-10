@@ -16,6 +16,8 @@
 
     return function (MediumEditor) {
 
+        MediumEditor.TouchSupport = {};
+
         MediumEditor.Events.prototype._handleBodyMousedown = MediumEditor.Events.prototype.handleBodyMousedown;
 
         MediumEditor.Events.prototype.handleBodyMousedown = function () {
@@ -88,7 +90,7 @@
 
                     var directionChanged = false;
 
-                    if (!this.touchSupport.toolbarSwitched && e.touches[2] && this.base.getFocusedElement()) {
+                    if (!MediumEditor.TouchSupport.toolbarSwitched && e.touches[2] && this.base.getFocusedElement()) {
 
                         if (this.base.toolbar.toolbar.classList.contains("medium-editor-toolbar-active")) {
 
@@ -98,11 +100,11 @@
 
                                 if (this.touchSupport.startY - e.touches[2].clientY > 0) {
 
-                                    this.base.events.touchSupport.forceDirectionY = "top";
+                                    MediumEditor.TouchSupport.forceDirectionY = "top";
 
                                 } else {
 
-                                    this.base.events.touchSupport.forceDirectionY = "bottom";
+                                    MediumEditor.TouchSupport.forceDirectionY = "bottom";
                                 }
 
                                 directionChanged = true;
@@ -110,7 +112,7 @@
                         }
                     }
 
-                    if (!this.touchSupport.toolbarSwitched && e.touches[2] && this.base.getFocusedElement()) {
+                    if (!MediumEditor.TouchSupport.toolbarSwitched && e.touches[2] && this.base.getFocusedElement()) {
 
                         if (this.base.toolbar.toolbar.classList.contains("medium-editor-toolbar-active")) {
 
@@ -120,11 +122,11 @@
 
                                 if (this.touchSupport.startX - e.touches[2].clientX > 0) {
 
-                                    this.base.events.touchSupport.forceDirectionX = "left";
+                                    MediumEditor.TouchSupport.forceDirectionX = "left";
 
                                 } else {
 
-                                    this.base.events.touchSupport.forceDirectionX = "right";
+                                    MediumEditor.TouchSupport.forceDirectionX = "right";
                                 }
 
                                 directionChanged = true;
@@ -134,7 +136,7 @@
 
                     if (directionChanged) {
 
-                        this.touchSupport.toolbarSwitched = true;
+                        MediumEditor.TouchSupport.toolbarSwitched = true;
 
                         this.base.toolbar.setToolbarPosition();
                     }
@@ -148,7 +150,7 @@
                     this.touchSupport.touchesTimeout = setTimeout(function () {
 
                         this.touchSupport.touches = 0;
-                        this.touchSupport.toolbarSwitched = false;
+                        MediumEditor.TouchSupport.toolbarSwitched = false;
 
                     }.bind(this), 75);
 
@@ -175,7 +177,7 @@
 
                         if (!this.touchSupport.bodyTouchmove && focusedEditor && !$closestToolbar.length && !$closestEditor.length) {
 
-                            this.base.events.touchSupport.forceDirectionY = "top";
+                            MediumEditor.TouchSupport.forceDirectionY = MediumEditor.TouchSupport.forceDirectionY || "top";
 
                             $(focusedEditor).blur();
                         }
@@ -185,7 +187,7 @@
                             this.handleBodyClick.apply(this, arguments);
                         }
 
-                        this.touchSupport.toolbarSwitched = false;
+                        MediumEditor.TouchSupport.toolbarSwitched = false;
                         this.touchSupport.bodyTouchstart = false;
                         this.touchSupport.bodyTouchmove = false;
                         this.touchSupport.bodyTouchend = true;

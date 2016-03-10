@@ -21,6 +21,7 @@
                 '<input type="text" class="medium-editor-toolbar-input" placeholder="', this.placeholderText, '">'
             ];
 
+            //získání sekcí stránky
             var options = this.getSections ? this.getSections() : [],
                 optionsTemplate = [
                     '<option value="">nevybráno...</option>'
@@ -33,6 +34,7 @@
                 );
             });
 
+            //přidání výběru sekcí do templatu
             template.push(
                 '<label for="medium-editor-section-select-' + this.base.id + '">Vyberte sekci:</label>',
                 '<select style="width: 100%" name="medium-editor-section-select" class="medium-editor-section-select" id="medium-editor-section-select-' + this.base.id + '">',
