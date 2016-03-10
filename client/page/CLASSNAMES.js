@@ -16,8 +16,11 @@ module.exports = {
         removedSection: "P_PageSection__removed",
 
         placeholderTransitions: "P_PageSection--placeholder__transitions",
-        placeholder: "P_PageSection--placeholder"
+        placeholder: "P_PageSection--placeholder",
 
+        //Editace
+        titleEditor: "E_Editor__title",
+        contentEditor: "E_Editor__content"
     },
 
     PageSectionSettings: {

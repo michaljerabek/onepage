@@ -2,10 +2,14 @@
 html, body {
     margin: 0;
 
+    max-width: 100%;
+    min-height: 100%;
     padding: 0;
 }
 
 body {
+    position: relative;
+
     will-change: scroll-position;
 }
 
@@ -21,271 +25,91 @@ body {
             box-sizing: inherit;
 }
 
-.medium-editor-anchor-preview, .medium-editor-toolbar {
+/*====================================================================*/
+/*------------------------- RESET + CLEARFIX -------------------------*/
+/*====================================================================*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+:focus {
+    outline: 0;
+}
+body {
+    line-height: 1;
+    color: black;
+    background: white;
+}
+ol, ul {
+    list-style: none;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+}
+blockquote, q {
+    quotes: " ";
+}
+
+.cf:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+.cf { display: inline-table; }
+* html .cf { height: 1%; }
+.cf { display: block; }
+
+.medium-editor-toolbar *:not(input)  {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.medium-editor-toolbar * {
+    pointer-events: all;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------- TOOLBAR WRAPPER --------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-hidden {
+    display: none;
+}
+
+.medium-editor-toolbar {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
 
-    z-index: 2000;
-
-    -webkit-transition: 0.2s ease-in-out 0s;
-
-    -moz-transition: 0.2s ease-in-out 0s;
-
-    -o-transition: 0.2s ease-in-out 0s;
-
-    transition: 0.2s ease-in-out 0s;
-    -webkit-transition-property: top, left, bottom, right;
-    -moz-transition-property: top, left, bottom, right;
-    -o-transition-property: top, left, bottom, right;
-    transition-property: top, left, bottom, right;
-}
-
-@-webkit-keyframes medium-editor-image-loading {
-    0% {
-        -webkit-transform: scale(0);
-        transform: scale(0)
-    }
-    100% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-}
-
-@-moz-keyframes medium-editor-image-loading {
-    0% {
-        -webkit-transform: scale(0);
-        -moz-transform: scale(0);
-             transform: scale(0)
-    }
-    100% {
-        -webkit-transform: scale(1);
-        -moz-transform: scale(1);
-             transform: scale(1)
-    }
-}
-
-@-o-keyframes medium-editor-image-loading {
-    0% {
-        -webkit-transform: scale(0);
-        -o-transform: scale(0);
-           transform: scale(0)
-    }
-    100% {
-        -webkit-transform: scale(1);
-        -o-transform: scale(1);
-           transform: scale(1)
-    }
-}
-
-@keyframes medium-editor-image-loading {
-    0% {
-        -webkit-transform: scale(0);
-        -moz-transform: scale(0);
-          -o-transform: scale(0);
-             transform: scale(0)
-    }
-    100% {
-        -webkit-transform: scale(1);
-        -moz-transform: scale(1);
-          -o-transform: scale(1);
-             transform: scale(1)
-    }
-}
-
-@-webkit-keyframes medium-editor-pop-upwards {
-    0% {
-        opacity: 0;
-        -webkit-transform: matrix(.97, 0, 0, 1, 0, 12);
-        transform: matrix(.97, 0, 0, 1, 0, 12)
-    }
-    20% {
-        opacity: .7;
-        -webkit-transform: matrix(.99, 0, 0, 1, 0, 2);
-        transform: matrix(.99, 0, 0, 1, 0, 2)
-    }
-    40% {
-        opacity: 1;
-        -webkit-transform: matrix(1, 0, 0, 1, 0, -1);
-        transform: matrix(1, 0, 0, 1, 0, -1)
-    }
-    100% {
-        -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
-        transform: matrix(1, 0, 0, 1, 0, 0)
-    }
-}
-
-@-moz-keyframes medium-editor-pop-upwards {
-    0% {
-        opacity: 0;
-        -webkit-transform: matrix(.97, 0, 0, 1, 0, 12);
-        -moz-transform: matrix(.97, 0, 0, 1, 0, 12);
-             transform: matrix(.97, 0, 0, 1, 0, 12)
-    }
-    20% {
-        opacity: .7;
-        -webkit-transform: matrix(.99, 0, 0, 1, 0, 2);
-        -moz-transform: matrix(.99, 0, 0, 1, 0, 2);
-             transform: matrix(.99, 0, 0, 1, 0, 2)
-    }
-    40% {
-        opacity: 1;
-        -webkit-transform: matrix(1, 0, 0, 1, 0, -1);
-        -moz-transform: matrix(1, 0, 0, 1, 0, -1);
-             transform: matrix(1, 0, 0, 1, 0, -1)
-    }
-    100% {
-        -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
-        -moz-transform: matrix(1, 0, 0, 1, 0, 0);
-             transform: matrix(1, 0, 0, 1, 0, 0)
-    }
-}
-
-@-o-keyframes medium-editor-pop-upwards {
-    0% {
-        opacity: 0;
-        -webkit-transform: matrix(.97, 0, 0, 1, 0, 12);
-        -o-transform: matrix(.97, 0, 0, 1, 0, 12);
-           transform: matrix(.97, 0, 0, 1, 0, 12)
-    }
-    20% {
-        opacity: .7;
-        -webkit-transform: matrix(.99, 0, 0, 1, 0, 2);
-        -o-transform: matrix(.99, 0, 0, 1, 0, 2);
-           transform: matrix(.99, 0, 0, 1, 0, 2)
-    }
-    40% {
-        opacity: 1;
-        -webkit-transform: matrix(1, 0, 0, 1, 0, -1);
-        -o-transform: matrix(1, 0, 0, 1, 0, -1);
-           transform: matrix(1, 0, 0, 1, 0, -1)
-    }
-    100% {
-        -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
-        -o-transform: matrix(1, 0, 0, 1, 0, 0);
-           transform: matrix(1, 0, 0, 1, 0, 0)
-    }
-}
-
-@keyframes medium-editor-pop-upwards {
-    0% {
-        opacity: 0;
-        -webkit-transform: matrix(.97, 0, 0, 1, 0, 12);
-        -moz-transform: matrix(.97, 0, 0, 1, 0, 12);
-          -o-transform: matrix(.97, 0, 0, 1, 0, 12);
-             transform: matrix(.97, 0, 0, 1, 0, 12)
-    }
-    20% {
-        opacity: .7;
-        -webkit-transform: matrix(.99, 0, 0, 1, 0, 2);
-        -moz-transform: matrix(.99, 0, 0, 1, 0, 2);
-          -o-transform: matrix(.99, 0, 0, 1, 0, 2);
-             transform: matrix(.99, 0, 0, 1, 0, 2)
-    }
-    40% {
-        opacity: 1;
-        -webkit-transform: matrix(1, 0, 0, 1, 0, -1);
-        -moz-transform: matrix(1, 0, 0, 1, 0, -1);
-          -o-transform: matrix(1, 0, 0, 1, 0, -1);
-             transform: matrix(1, 0, 0, 1, 0, -1)
-    }
-    100% {
-        -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
-        -moz-transform: matrix(1, 0, 0, 1, 0, 0);
-          -o-transform: matrix(1, 0, 0, 1, 0, 0);
-             transform: matrix(1, 0, 0, 1, 0, 0)
-    }
-}
-
-.medium-editor-anchor-preview {
-    left: 0;
-    line-height: 1.4;
-    max-width: 280px;
-    position: absolute;
-    text-align: center;
-    top: 0;
-    word-break: break-all;
-    word-wrap: break-word;
-    visibility: hidden
-}
-
-.medium-editor-anchor-preview a {
-    color: #fff;
-    display: inline-block;
-    margin: 5px 5px 10px
-}
-
-.medium-editor-anchor-preview-active {
-    visibility: visible;
-}
-
-.medium-editor-dragover {
-    background: #ddd;
-}
-
-.medium-editor-image-loading {
-    height: 40px;
-    width: 40px;
-
-    background-color: #333;
-    -webkit-border-radius: 100%;
-       -moz-border-radius: 100%;
-            border-radius: 100%;
-
-    -webkit-animation: medium-editor-image-loading 1s infinite ease-in-out;
-
-       -moz-animation: medium-editor-image-loading 1s infinite ease-in-out;
-
-         -o-animation: medium-editor-image-loading 1s infinite ease-in-out;
-
-            animation: medium-editor-image-loading 1s infinite ease-in-out;
-
-    display: inline-block;
-}
-
-.medium-editor-placeholder {
-    position: relative;
-}
-
-.medium-editor-placeholder:after {
-    content: attr(data-placeholder)!important;
-    font-style: italic;
-    left: 0;
-    position: absolute;
-    top: 0;
-    white-space: pre;
-    padding: inherit;
-    margin: inherit;
-}
-
-.medium-toolbar-arrow-over:before, .medium-toolbar-arrow-under:after {
-    border-style: solid;
-    content: '';
-    display: block;
-    height: 0;
-    left: 50%;
-    margin-left: -8px;
-    position: absolute;
-    width: 0;
-}
-
-.medium-toolbar-arrow-under:after {
-    border-width: 8px;
-    bottom: -16px;
-    border-color: black transparent transparent transparent;
-}
-
-.medium-toolbar-arrow-over:before {
-    border-width: 8px;
-    border-color: transparent transparent black transparent;
-    top: -16px;
-}
-.medium-editor-toolbar {
+    z-index: -1;
     position: absolute;
     left: 0;
     top: 0;
 
     height: 160px;
-    width: 260px;
+    width: 240px;
+
+    opacity: 0;
 
     display: -webkit-box;
 
@@ -307,12 +131,44 @@ body {
         -ms-flex-align: end;
             align-items: flex-end;
 
-    pointer-events: visible;
+    pointer-events: none;
     visibility: hidden;
+
+    will-change: opacity, top, left, transform;
+    -webkit-transition: z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s ease-in-out 0s,
+        -webkit-transform 0.2s ease-out 0.15s;
+    transition: z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s ease-in-out 0s,
+        -webkit-transform 0.2s ease-out 0.15s;
+    -moz-transition: transform 0.2s ease-out 0.15s,
+        z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s ease-in-out 0s,
+        -moz-transform 0.2s ease-out 0.15s;
+    -o-transition: transform 0.2s ease-out 0.15s,
+        z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s ease-in-out 0s,
+        -o-transform 0.2s ease-out 0.15s;
+    transition: transform 0.2s ease-out 0.15s,
+        z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s ease-in-out 0s;
+    transition:
+        transform 0.2s ease-out 0.15s,
+        z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s ease-in-out 0s,
+        -webkit-transform 0.2s ease-out 0.15s,
+        -moz-transform 0.2s ease-out 0.15s,
+        -o-transform 0.2s ease-out 0.15s;
 }
 
 .medium-toolbar-arrow-over.medium-editor-toolbar {
-    margin-top: 120px;
+    margin-top: -6px;
 
     -webkit-box-align: start;
 
@@ -327,27 +183,163 @@ body {
             align-items: flex-start;
 }
 
+.medium-editor-toolbar-active {
+    opacity: 1;
+    z-index: 11000;
+
+    visibility: visible;
+    -webkit-transition: top 0.2s ease-in-out 0s,
+        left 0.2s ease-in-out 0s,
+        bottom 0.2s ease-in-out 0s,
+        right 0.2s ease-in-out 0s,
+        z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        opacity 0.2s ease-in-out 0s,
+        -webkit-transform 0.2s ease-out 0.15s;
+    transition: top 0.2s ease-in-out 0s,
+        left 0.2s ease-in-out 0s,
+        bottom 0.2s ease-in-out 0s,
+        right 0.2s ease-in-out 0s,
+        z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        opacity 0.2s ease-in-out 0s,
+        -webkit-transform 0.2s ease-out 0.15s;
+    -moz-transition: top 0.2s ease-in-out 0s,
+        left 0.2s ease-in-out 0s,
+        bottom 0.2s ease-in-out 0s,
+        right 0.2s ease-in-out 0s,
+        z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s,
+        -moz-transform 0.2s ease-out 0.15s;
+    -o-transition: top 0.2s ease-in-out 0s,
+        left 0.2s ease-in-out 0s,
+        bottom 0.2s ease-in-out 0s,
+        right 0.2s ease-in-out 0s,
+        z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s,
+        -o-transform 0.2s ease-out 0.15s;
+    transition: top 0.2s ease-in-out 0s,
+        left 0.2s ease-in-out 0s,
+        bottom 0.2s ease-in-out 0s,
+        right 0.2s ease-in-out 0s,
+        z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s;
+    transition:
+        top 0.2s ease-in-out 0s,
+        left 0.2s ease-in-out 0s,
+        bottom 0.2s ease-in-out 0s,
+        right 0.2s ease-in-out 0s,
+        z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s,
+        -webkit-transform 0.2s ease-out 0.15s,
+        -moz-transform 0.2s ease-out 0.15s,
+        -o-transform 0.2s ease-out 0.15s;
+}
+
+.medium-editor-toolbar-active.medium-editor-first-show {
+    -webkit-transition: z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        opacity 0.2s ease-in-out 0s,
+        -webkit-transform 0.2s ease-out 0.15s;
+    transition: z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        opacity 0.2s ease-in-out 0s,
+        -webkit-transform 0.2s ease-out 0.15s;
+    -moz-transition: z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s,
+        -moz-transform 0.2s ease-out 0.15s;
+    -o-transition: z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s,
+        -o-transform 0.2s ease-out 0.15s;
+    transition: z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s;
+    transition:
+        z-index 0s linear 0s,
+        visibility 0s linear 0s,
+        transform 0.2s ease-out 0.15s,
+        opacity 0.2s ease-in-out 0s,
+        -webkit-transform 0.2s ease-out 0.15s,
+        -moz-transform 0.2s ease-out 0.15s,
+        -o-transform 0.2s ease-out 0.15s;
+}
+
+.medium-editor-toolbar.medium-editor-stalker-toolbar {
+    -webkit-animation-name: medium-editor-move-toolbar-down;
+       -moz-animation-name: medium-editor-move-toolbar-down;
+         -o-animation-name: medium-editor-move-toolbar-down;
+            animation-name: medium-editor-move-toolbar-down;
+    -webkit-animation-duration: 0.2s;
+       -moz-animation-duration: 0.2s;
+         -o-animation-duration: 0.2s;
+            animation-duration: 0.2s;
+    -webkit-animation-fill-mode: forwards;
+       -moz-animation-fill-mode: forwards;
+         -o-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease-in-out;
+       -moz-animation-timing-function: ease-in-out;
+         -o-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+}
+
+.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    -webkit-animation-name: medium-editor-move-toolbar-up;
+       -moz-animation-name: medium-editor-move-toolbar-up;
+         -o-animation-name: medium-editor-move-toolbar-up;
+            animation-name: medium-editor-move-toolbar-up;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar.medium-editor-stalker-toolbar {
+    -webkit-animation-name: medium-editor-move-toolbar-up;
+       -moz-animation-name: medium-editor-move-toolbar-up;
+         -o-animation-name: medium-editor-move-toolbar-up;
+            animation-name: medium-editor-move-toolbar-up;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    -webkit-animation-name: medium-editor-move-toolbar-down;
+       -moz-animation-name: medium-editor-move-toolbar-down;
+         -o-animation-name: medium-editor-move-toolbar-down;
+            animation-name: medium-editor-move-toolbar-down;
+}
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR ACTIONS -------------------------*/
+/*--------------------------------------------------------------------*/
+
 .medium-editor-toolbar ul {
+    text-align: center;
+
+    position: relative;
     margin: 0;
 
+    min-width: 120px;
+    height: 43px;
     padding: 0;
-    min-width: 100%;
-    height: 100%;
 
     background-color: #f5f5f5;
+    border-top: 3px solid #000;
+    border-bottom: 0px solid #000;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
     -webkit-box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.5);
        -moz-box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.5);
             box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.5);
-
-    -webkit-box-flex: 0;
-
-    -webkit-flex-grow: 0;
-
-       -moz-box-flex: 0;
-
-        -ms-flex-positive: 0;
-
-            flex-grow: 0;
 
     display: -webkit-box;
 
@@ -358,74 +350,177 @@ body {
     display: -ms-flexbox;
 
     display: flex;
-    text-align: center;
-    white-space: nowrap;
 
-
-    -webkit-transition: all 0.2s cubic-bezier(0, 1, 1, 1) 0s;
-
-
-    -moz-transition: all 0.2s cubic-bezier(0, 1, 1, 1) 0s;
-
-
-    -o-transition: all 0.2s cubic-bezier(0, 1, 1, 1) 0s;
-
-
-    transition: all 0.2s cubic-bezier(0, 1, 1, 1) 0s;
-}
-
-.medium-editor-toolbar .medium-editor-default-actions-displayed {
-    min-width: 80px;
-    height: 40px;
-
-    -webkit-transition: all 0.2s cubic-bezier(0, 0, 1, 0) 0.4s;
-
-    -moz-transition: all 0.2s cubic-bezier(0, 0, 1, 0) 0.4s;
-
-    -o-transition: all 0.2s cubic-bezier(0, 0, 1, 0) 0.4s;
-
-    transition: all 0.2s cubic-bezier(0, 0, 1, 0) 0.4s;
+    will-change: width, height, transform;
 }
 
 .medium-toolbar-arrow-under.medium-editor-toolbar ul {
+    border-top-width: 0px;
+    border-bottom-width: 3px;
     -webkit-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
        -moz-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
 }
 
+.medium-editor-toolbar .medium-editor-default-actions-hidden {
+    min-width: 100%;
+    height: 100%;
+
+    -webkit-transition: border 0.2s ease-in-out 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        height 0.2s linear 0.4s;
+
+    -moz-transition: border 0.2s ease-in-out 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        height 0.2s linear 0.4s;
+
+    -o-transition: border 0.2s ease-in-out 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        height 0.2s linear 0.4s;
+
+    transition:
+        border 0.2s ease-in-out 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        height 0.2s linear 0.4s;
+}
+
+.medium-editor-left-edge ul {
+    text-align: left;
+}
+
+.medium-editor-right-edge ul {
+    text-align: right;
+}
+
+.medium-editor-toolbar .medium-editor-default-actions-displayed {
+    min-width: 120px;
+    height: 43px;
+
+    -webkit-transition: min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height 0.2s linear 0s;
+
+    -moz-transition: min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height 0.2s linear 0s;
+
+    -o-transition: min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height 0.2s linear 0s;
+
+    transition:
+        min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height 0.2s linear 0s;
+}
+
+.medium-editor-toolbar .medium-editor-before-fill, .medium-editor-toolbar .medium-editor-after-fill {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+
+    -webkit-transition: all 0.2s ease-in-out 0s;
+
+    -moz-transition: all 0.2s ease-in-out 0s;
+
+    -o-transition: all 0.2s ease-in-out 0s;
+
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.medium-editor-left-edge .medium-editor-before-fill, .medium-editor-right-edge .medium-editor-after-fill {
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+       -moz-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+}
+
+.medium-editor-toolbar.medium-editor-first-show .medium-editor-before-fill, .medium-editor-toolbar.medium-editor-first-show .medium-editor-after-fill {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+/*---------------------------- ARROW ----------------------------*/
+
+.medium-toolbar-arrow-over ul:before, .medium-toolbar-arrow-under ul:after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+
+    height: 0;
+    width: 0;
+
+    border-style: solid;
+    border-width: 8px;
+}
+
+.medium-toolbar-arrow-under ul:after {
+    bottom: -19px;
+
+    border-color: black transparent transparent transparent;
+}
+
+.medium-toolbar-arrow-over ul:before {
+    top: -19px;
+
+    border-color: transparent transparent black transparent;
+}
+
+/*---------------------------- BUTTONS ----------------------------*/
+
 .medium-editor-toolbar ul li {
     margin: 0;
 
+    width: 40px;
+    height: 40px;
     padding: 0;
 
     list-style: none;
-    opacity: 0;
 
+    overflow: hidden;
     display: -webkit-inline-box;
-
     display: -webkit-inline-flex;
-
     display: -moz-inline-box;
-
     display: -ms-inline-flexbox;
-
     display: inline-flex;
-    -webkit-transition: all 0.2s linear 0s;
-    -moz-transition: all 0.2s linear 0s;
-    -o-transition: all 0.2s linear 0s;
-    transition: all 0.2s linear 0s;
+
+    -webkit-transition: border 0.2s ease-in-out 0s,
+        width 0.2s ease-in-out 0s,
+        height 0.2s ease-in-out 0s;
+
+    -moz-transition: border 0.2s ease-in-out 0s,
+        width 0.2s ease-in-out 0s,
+        height 0.2s ease-in-out 0s;
+
+    -o-transition: border 0.2s ease-in-out 0s,
+        width 0.2s ease-in-out 0s,
+        height 0.2s ease-in-out 0s;
+
+    transition:
+        border 0.2s ease-in-out 0s,
+        width 0.2s ease-in-out 0s,
+        height 0.2s ease-in-out 0s;
 }
 
-.medium-editor-toolbar .medium-editor-default-actions-displayed li {
-    opacity: 1;
+.medium-editor-toolbar li:first-of-type {
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+}
 
-    -webkit-transition: all 0.2s linear 0.4s;
-
-    -moz-transition: all 0.2s linear 0.4s;
-
-    -o-transition: all 0.2s linear 0.4s;
-
-    transition: all 0.2s linear 0.4s;
+.medium-editor-toolbar li:last-of-type  {
+    -webkit-border-bottom-right-radius: 4px;
+       -moz-border-radius-bottomright: 4px;
+            border-bottom-right-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+       -moz-border-radius-topright: 4px;
+            border-top-right-radius: 4px;
 }
 
 .medium-editor-toolbar li button {
@@ -436,19 +531,151 @@ body {
 
     padding: 0;
     width: 40px;
+    min-width: 40px;
     height: 40px;
 
-    background-color: transparent;
+    background-color: #f5f5f5;
     -webkit-border-radius: 0;
        -moz-border-radius: 0;
             border-radius: 0;
     border: none;
+    opacity: 1;
+
+    will-change: opacity;
+}
+
+.medium-editor-toolbar li:first-of-type button {
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+}
+
+/*.medium-editor-toolbar li:nth-last-of-type(2) button,*/
+.medium-editor-toolbar li:last-of-type button {
+    -webkit-border-top-right-radius: 4px;
+       -moz-border-radius-topright: 4px;
+            border-top-right-radius: 4px;
+}
+
+.medium-editor-toolbar.medium-toolbar-arrow-over li:first-of-type button {
+    -webkit-border-top-left-radius: 0px;
+       -moz-border-radius-topleft: 0px;
+            border-top-left-radius: 0px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+}
+
+.medium-editor-toolbar.medium-toolbar-arrow-over li:last-of-type button {
+    -webkit-border-top-right-radius: 0px;
+       -moz-border-radius-topright: 0px;
+            border-top-right-radius: 0px;
+    -webkit-border-bottom-right-radius: 4px;
+       -moz-border-radius-bottomright: 4px;
+            border-bottom-right-radius: 4px;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-hidden li button {
+    opacity: 0;
+
+    -webkit-transition: opacity 0.2s linear 0s,
+        color 0.2s ease-in-out 0s,
+        background 0.2s ease-in-out 0s;
+
+    -moz-transition: opacity 0.2s linear 0s,
+        color 0.2s ease-in-out 0s,
+        background 0.2s ease-in-out 0s;
+
+    -o-transition: opacity 0.2s linear 0s,
+        color 0.2s ease-in-out 0s,
+        background 0.2s ease-in-out 0s;
+
+    transition:
+        opacity 0.2s linear 0s,
+        color 0.2s ease-in-out 0s,
+        background 0.2s ease-in-out 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button {
+    opacity: 1;
+
+    -webkit-transition: opacity 0.2s linear 0.6s,
+        color 0.2s ease-in-out 0s,
+        background 0.2s ease-in-out 0s;
+
+    -moz-transition: opacity 0.2s linear 0.6s,
+        color 0.2s ease-in-out 0s,
+        background 0.2s ease-in-out 0s;
+
+    -o-transition: opacity 0.2s linear 0.6s,
+        color 0.2s ease-in-out 0s,
+        background 0.2s ease-in-out 0s;
+
+    transition:
+        opacity 0.2s linear 0.6s,
+        color 0.2s ease-in-out 0s,
+        background 0.2s ease-in-out 0s;
 }
 
 .medium-editor-toolbar li button:focus {
     outline: 0;
 }
 
+.medium-editor-toolbar ul li .medium-editor-button-active {
+    color: #fff;
+    background-color: #fba742;
+}
+
+.medium-editor-action-bold {
+    font-weight: bolder;
+}
+
+.medium-editor-action-italic {
+    font-style: italic;
+}
+
+/*MULTISTATE BTNS*/
+
+/*
+.medium-editor-toolbar .medium-editor-has-action-unorderedlist {
+}
+
+.medium-editor-toolbar .medium-editor-has-action-orderedlist {
+    z-index: -1;
+    position: relative;
+
+    max-width: 0;
+
+
+    opacity: 0;
+
+    transform: translateX(-40px);
+
+    overflow: visible;
+
+    will-change: z-index, opacity;
+    transition:
+        z-index 0s linear 0.2s,
+        opacity 0.2s ease-in-out 0s;
+}
+
+.medium-editor-toolbar .medium-editor-has-action-unorderedlist.medium-editor-has-button-active ~ .medium-editor-has-action-orderedlist {
+    z-index: 1;
+
+    transition:
+        z-index 0s linear 0s;
+}
+
+.medium-editor-toolbar .medium-editor-has-action-orderedlist.medium-editor-has-button-active {
+    z-index: 1;
+
+    opacity: 1;
+
+    transition:
+        z-index 0s linear 0s,
+        opacity 0.2s ease-in-out 0s;
+}
+*/
 .medium-editor-toolbar li .medium-editor-action-underline {
     text-decoration: underline;
 }
@@ -461,111 +688,90 @@ body {
     padding: 15px 0;
 }
 
-.medium-editor-toolbar-active {
-    visibility: visible;
-}
-
-.medium-editor-sticky-toolbar {
-    position: fixed;
-    top: 1px;
-}
-
-.medium-editor-relative-toolbar {
-    position: relative;
-}
-
-.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
-    -webkit-animation: medium-editor-pop-upwards 160ms forwards linear;
-       -moz-animation: medium-editor-pop-upwards 160ms forwards linear;
-         -o-animation: medium-editor-pop-upwards 160ms forwards linear;
-            animation: medium-editor-pop-upwards 160ms forwards linear;
-}
-
-.medium-editor-action-bold {
-    font-weight: bolder
-}
-
-.medium-editor-action-italic {
-    font-style: italic
-}
+/*--------------------------------------------------------------------*/
+/*------------------------------- FORM -------------------------------*/
+/*--------------------------------------------------------------------*/
 
 .medium-editor-toolbar-form {
-    position:absolute;
-    margin: auto;
+    z-index: -1;
+    position: absolute;
     bottom: 0px;
     left: 0;
     right: 0;
+    margin: auto;
 
     width: 100%;
     height: 40px;
 
-    opacity: 0;
     background-color: #f5f5f5;
-    -webkit-box-shadow: 0px -4px 15px rgba(0, 0, 0, 0);
-       -moz-box-shadow: 0px -4px 15px rgba(0, 0, 0, 0);
-            box-shadow: 0px -4px 15px rgba(0, 0, 0, 0);
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    border-bottom: 3px solid #000;
+    border-top: 0px solid #000;
+    opacity: 0;
 
-    visibility: hidden;
+    pointer-events: none;
     overflow: hidden;
-    -webkit-transition: visibility 0s linear 0.4s,
+
+    will-change: opacity, width, height;
+    -webkit-transition: z-index 0s linear 0.4s,
+        visibility 0s linear 0.4s,
         opacity 0.2s linear 0.2s,
         height 0.2s linear 0s;
-    -moz-transition: visibility 0s linear 0.4s,
+    -moz-transition: z-index 0s linear 0.4s,
+        visibility 0s linear 0.4s,
         opacity 0.2s linear 0.2s,
         height 0.2s linear 0s;
-    -o-transition: visibility 0s linear 0.4s,
+    -o-transition: z-index 0s linear 0.4s,
+        visibility 0s linear 0.4s,
         opacity 0.2s linear 0.2s,
         height 0.2s linear 0s;
     transition:
+        z-index 0s linear 0.4s,
         visibility 0s linear 0.4s,
         opacity 0.2s linear 0.2s,
         height 0.2s linear 0s;
 }
 
-.medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
-    height: 100%;
-
-    -webkit-box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.5);
-
-       -moz-box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.5);
-
-            box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.5);
-    opacity: 1;
-
-    -webkit-animation: medium-editor-show-form 0.4s forwards linear;
-
-       -moz-animation: medium-editor-show-form 0.4s forwards linear;
-
-         -o-animation: medium-editor-show-form 0.4s forwards linear;
-
-            animation: medium-editor-show-form 0.4s forwards linear;
-
-    visibility: visible;
-    overflow: hidden;
-    -webkit-transition: visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.2s,
-        height 0.2s linear 0.4s;
-    -moz-transition: visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.2s,
-        height 0.2s linear 0.4s;
-    -o-transition: visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.2s,
-        height 0.2s linear 0.4s;
-    transition:
-        visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.2s,
-        height 0.2s linear 0.4s;
-}
-
 .medium-toolbar-arrow-over .medium-editor-toolbar-form {
     bottom: auto;
     top: 0;
+
+    border-top-width: 3px;
+    border-bottom-width: 0;
 }
 
-.medium-toolbar-arrow-under .medium-editor-toolbar-form {
-    -webkit-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-       -moz-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+.medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+    z-index: 1;
+
+    height: 100%;
+
+    opacity: 1;
+
+    pointer-events: all;
+    overflow: hidden;
+
+    -webkit-transition: z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s linear 0.2s,
+        height 0.2s linear 0.4s;
+
+    -moz-transition: z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s linear 0.2s,
+        height 0.2s linear 0.4s;
+
+    -o-transition: z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s linear 0.2s,
+        height 0.2s linear 0.4s;
+
+    transition:
+        z-index 0s linear 0.2s,
+        visibility 0s linear 0.2s,
+        opacity 0.2s linear 0.2s,
+        height 0.2s linear 0.4s;
 }
 
 .medium-editor-toolbar-form a, .medium-editor-toolbar-form input {
@@ -574,50 +780,49 @@ body {
 
 .medium-editor-toolbar-form .medium-editor-toolbar-form-row {
     line-height: 14px;
+
     margin-left: 5px;
-    padding-bottom: 5px
+
+    padding-bottom: 5px;
 }
 
 .medium-editor-toolbar-form .medium-editor-toolbar-input, .medium-editor-toolbar-form label {
-    border: none;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
     font-size: 14px;
+
     margin: 0;
+
     padding: 6px;
     width: 100%;
+
+    border: none;
+
     display: inline-block;
 }
 
 .medium-editor-toolbar-form .medium-editor-toolbar-input:focus, .medium-editor-toolbar-form label:focus {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
     border: none;
     -webkit-box-shadow: none;
        -moz-box-shadow: none;
             box-shadow: none;
     outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .medium-editor-toolbar-form a {
-    display: inline-block;
     font-size: 24px;
-    font-weight: bolder;
-    margin: 0 10px;
     text-decoration: none;
+    font-weight: bolder;
+
+    margin: 0 10px;
+
+    display: inline-block;
 }
 
-.medium-editor-toolbar-actions:after {
-    clear: both;
-    content: "";
-    display: table
-}
-
-[data-medium-editor-element] img {
-    max-width: 100%
-}
+/*--------------------------------------------------------------------*/
+/*----------------------------- CONTENT ------------------------------*/
+/*--------------------------------------------------------------------*/
 
 [data-medium-editor-element] sub {
     vertical-align: sub
@@ -627,10 +832,1056 @@ body {
     vertical-align: super
 }
 
-.medium-editor-hidden {
+/*--------------------------------------------------------------------*/
+/*-------------------------- ANCHOR PREVIEW --------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-anchor-preview {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+
+    text-align: center;
+    line-height: 1.4;
+    word-break: break-all;
+    word-wrap: break-word;
+
+    z-index: 2000;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    max-width: 280px;
+
+    visibility: hidden;
+}
+
+.medium-editor-anchor-preview a {
+    margin: 5px 5px 10px;
+
+    color: #fff;
+
+    display: inline-block;
+}
+
+.medium-editor-anchor-preview-active {
+    visibility: visible;
+}
+
+/*--------------------------------------------------------------------*/
+/*---------------------------- PLACEHOLDER ---------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-placeholder {
+    position: relative;
+}
+
+.medium-editor-placeholder:after {
+    content: attr(data-placeholder) !important;
+
+    font-style: italic;
+    white-space: pre;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: inherit;
+
+    padding: inherit;
+}
+
+/*====================================================================*/
+/*--------------------------- TOUCH VERSION --------------------------*/
+/*====================================================================*/
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR WRAPPER -------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active {
+    position: absolute;
+    top: auto;
+    left: auto;
+
+    width: 240px;
+    height: 376px;
+    padding: 20px 20px 20px 0;
+
+    -webkit-box-pack: start;
+
+    -webkit-justify-content: flex-start;
+
+       -moz-box-pack: start;
+
+        -ms-flex-pack: start;
+
+            justify-content: flex-start;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+       -moz-box-align: start;
+        -ms-flex-align: start;
+                -ms-grid-row-align: flex-start;
+            align-items: flex-start;
+
+    overflow: hidden;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar.medium-editor-toolbar-active {
+    top: 7vh;
+}
+
+.medium-editor-use-touch.medium-editor-force-left.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-force-left.medium-editor-toolbar.medium-editor-toolbar-active {
+    left: 0px;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-editor-toolbar-active {
+    right: 0px;
+
+    padding: 20px 0px 20px 20px;
+
+    -webkit-box-pack: end;
+
+    -webkit-justify-content: flex-end;
+
+       -moz-box-pack: end;
+
+        -ms-flex-pack: end;
+
+            justify-content: flex-end;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-force-bottom.medium-editor-toolbar {
+    bottom: 7vh;
+
+    -webkit-box-align: end;
+
+    -webkit-align-items: flex-end;
+
+       -moz-box-align: end;
+
+        -ms-flex-align: end;
+
+                -ms-grid-row-align: flex-end;
+
+            align-items: flex-end;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar.medium-editor-stalker-toolbar, .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-stalker-toolbar, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-stalker-toolbar, .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    -webkit-animation: none;
+       -moz-animation: none;
+         -o-animation: none;
+            animation: none;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar ul {
+    -webkit-animation-duration: 0.2s;
+       -moz-animation-duration: 0.2s;
+         -o-animation-duration: 0.2s;
+            animation-duration: 0.2s;
+    -webkit-animation-fill-mode: forwards;
+       -moz-animation-fill-mode: forwards;
+         -o-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease-in-out;
+       -moz-animation-timing-function: ease-in-out;
+         -o-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar ul {
+    -webkit-animation-name: medium-editor-move-toolbar-top-right;
+       -moz-animation-name: medium-editor-move-toolbar-top-right;
+         -o-animation-name: medium-editor-move-toolbar-top-right;
+            animation-name: medium-editor-move-toolbar-top-right;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar-active ul {
+    -webkit-animation-name: medium-editor-move-toolbar-top-right-active;
+       -moz-animation-name: medium-editor-move-toolbar-top-right-active;
+         -o-animation-name: medium-editor-move-toolbar-top-right-active;
+            animation-name: medium-editor-move-toolbar-top-right-active;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar ul {
+    -webkit-animation-name: medium-editor-move-toolbar-bottom-right;
+       -moz-animation-name: medium-editor-move-toolbar-bottom-right;
+         -o-animation-name: medium-editor-move-toolbar-bottom-right;
+            animation-name: medium-editor-move-toolbar-bottom-right;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar-active ul {
+    -webkit-animation-name: medium-editor-move-toolbar-bottom-right-active;
+       -moz-animation-name: medium-editor-move-toolbar-bottom-right-active;
+         -o-animation-name: medium-editor-move-toolbar-bottom-right-active;
+            animation-name: medium-editor-move-toolbar-bottom-right-active;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-force-right.medium-editor-toolbar ul {
+    -webkit-animation-name: medium-editor-move-toolbar-top-left;
+       -moz-animation-name: medium-editor-move-toolbar-top-left;
+         -o-animation-name: medium-editor-move-toolbar-top-left;
+            animation-name: medium-editor-move-toolbar-top-left;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-force-right.medium-editor-toolbar-active ul {
+    -webkit-animation-name: medium-editor-move-toolbar-top-left-active;
+       -moz-animation-name: medium-editor-move-toolbar-top-left-active;
+         -o-animation-name: medium-editor-move-toolbar-top-left-active;
+            animation-name: medium-editor-move-toolbar-top-left-active;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-force-right.medium-editor-toolbar ul {
+    -webkit-animation-name: medium-editor-move-toolbar-bottom-left;
+       -moz-animation-name: medium-editor-move-toolbar-bottom-left;
+         -o-animation-name: medium-editor-move-toolbar-bottom-left;
+            animation-name: medium-editor-move-toolbar-bottom-left;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-force-right.medium-editor-toolbar-active ul {
+    -webkit-animation-name: medium-editor-move-toolbar-bottom-left-active;
+       -moz-animation-name: medium-editor-move-toolbar-bottom-left-active;
+         -o-animation-name: medium-editor-move-toolbar-bottom-left-active;
+            animation-name: medium-editor-move-toolbar-bottom-left-active;
+}
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR ACTIONS -------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch.medium-editor-toolbar ul, .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-under ul, .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+    min-width: 0;
+    width: 56px;
+    min-height: 168px;
+    height: auto;
+    max-height: 100%;
+
+    border: none;
+    -webkit-border-top-left-radius: 0;
+       -moz-border-radius-topleft: 0;
+            border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+       -moz-border-radius-bottomleft: 0;
+            border-bottom-left-radius: 0;
+    -webkit-box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.5);
+       -moz-box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.5);
+
+    display: -webkit-box !important;
+
+    display: -webkit-flex !important;
+
+    display: -moz-box !important;
+
+    display: -ms-flexbox !important;
+
+    display: flex !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+       -moz-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-align-content: flex-start;
+        -ms-flex-line-pack: start;
+            align-content: flex-start;
+
+    overflow: hidden;
+}
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar ul, .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar.medium-toolbar-arrow-under ul, .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+       -moz-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-under ul, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+    -webkit-border-top-right-radius: 0px;
+       -moz-border-radius-topright: 0px;
+            border-top-right-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+       -moz-border-radius-bottomright: 0px;
+            border-bottom-right-radius: 0px;
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+    -webkit-box-shadow: -4px 0px 15px rgba(0, 0, 0, 0.5);
+       -moz-box-shadow: -4px 0px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: -4px 0px 15px rgba(0, 0, 0, 0.5);
+
+    -webkit-align-content: flex-end;
+
+        -ms-flex-line-pack: end;
+
+            align-content: flex-end;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-hidden {
+    min-height: 168px;
+    max-height: 168px;
+    width: 100%;
+
+    -webkit-transition: max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        width 0.2s linear 0.4s;
+
+    -moz-transition: max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        width 0.2s linear 0.4s;
+
+    -o-transition: max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        width 0.2s linear 0.4s;
+
+    transition:
+        max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        width 0.2s linear 0.4s;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed {
+    min-width: 0;
+    min-height: 168px;
+    width: 56px;
+
+    -webkit-transition: min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        width 0.2s linear 0s;
+
+    -moz-transition: min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        width 0.2s linear 0s;
+
+    -o-transition: min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        width 0.2s linear 0s;
+
+    transition:
+        min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        width 0.2s linear 0s;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar .medium-editor-before-fill, .medium-editor-use-touch.medium-editor-toolbar .medium-editor-after-fill {
     display: none;
 }
 
+/*---------------------------- ARROWS ----------------------------*/
+
+.medium-editor-use-touch ul:before, .medium-editor-use-touch ul:after, .medium-editor-use-touch.medium-toolbar-arrow-over ul:before, .medium-editor-use-touch.medium-toolbar-arrow-under ul:after {
+    display: none;
+}
+
+/*---------------------------- BUTTONS ----------------------------*/
+
+.medium-editor-use-touch.medium-editor-toolbar ul li {
+    width: 56px;
+    height: 56px;
+    min-height: 56px;
+}
+
+ .medium-editor-use-touch.medium-editor-toolbar ul li button {
+    line-height: 56px;
+
+    width: 56px;
+    height: 56px;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li:first-of-type button, .medium-editor-use-touch.medium-editor-toolbar li:first-of-type {
+    -webkit-border-bottom-left-radius: 0px;
+       -moz-border-radius-bottomleft: 0px;
+            border-bottom-left-radius: 0px;
+    -webkit-border-top-left-radius: 0px;
+       -moz-border-radius-topleft: 0px;
+            border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 4px;
+       -moz-border-radius-topright: 4px;
+            border-top-right-radius: 4px;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li:last-of-type button, .medium-editor-use-touch.medium-editor-toolbar li:last-of-type {
+    -webkit-border-bottom-right-radius: 4px;
+       -moz-border-radius-bottomright: 4px;
+            border-bottom-right-radius: 4px;
+    -webkit-border-top-right-radius: 0px;
+       -moz-border-radius-topright: 0px;
+            border-top-right-radius: 0px;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:first-of-type button, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:first-of-type {
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 0px;
+       -moz-border-radius-topright: 0px;
+            border-top-right-radius: 0px;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:last-of-type button, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:last-of-type {
+    -webkit-border-bottom-right-radius: 0px;
+       -moz-border-radius-bottomright: 0px;
+            border-bottom-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- FORM -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    bottom: auto;
+    top: 20px;
+    left: 0;
+    right: auto;
+
+    height: 168px;
+    height: 168px;
+    width: 56px;
+
+    border: none;
+    -webkit-border-top-left-radius: 0;
+       -moz-border-radius-topleft: 0;
+            border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+       -moz-border-radius-bottomleft: 0;
+            border-bottom-left-radius: 0;
+
+    -webkit-transition: visibility 0s linear 0.4s,
+        opacity 0.2s linear 0.2s,
+        width 0.2s linear 0s;
+
+    -moz-transition: visibility 0s linear 0.4s,
+        opacity 0.2s linear 0.2s,
+        width 0.2s linear 0s;
+
+    -o-transition: visibility 0s linear 0.4s,
+        opacity 0.2s linear 0.2s,
+        width 0.2s linear 0s;
+
+    transition:
+        visibility 0s linear 0.4s,
+        opacity 0.2s linear 0.2s,
+        width 0.2s linear 0s;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    bottom: 20px;
+    top: auto;
+}
+
+.medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    left: auto;
+    right: 0;
+
+    -webkit-border-top-left-radius: 4px;
+
+       -moz-border-radius-topleft: 4px;
+
+            border-top-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+    -webkit-border-top-right-radius: 0;
+       -moz-border-radius-topright: 0;
+            border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+       -moz-border-radius-bottomright: 0;
+            border-bottom-right-radius: 0;
+}
+
+.medium-editor-use-touch .medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+    height: 168px;
+    width: -webkit-calc(100% - 20px);
+    width: -moz-calc(100% - 20px);
+    width: calc(100% - 20px);
+
+    -webkit-transition: visibility 0s linear 0.2s,
+        opacity 0.2s linear 0.2s,
+        width 0.2s linear 0.4s;
+
+    -moz-transition: visibility 0s linear 0.2s,
+        opacity 0.2s linear 0.2s,
+        width 0.2s linear 0.4s;
+
+    -o-transition: visibility 0s linear 0.2s,
+        opacity 0.2s linear 0.2s,
+        width 0.2s linear 0.4s;
+
+    transition:
+        visibility 0s linear 0.2s,
+        opacity 0.2s linear 0.2s,
+        width 0.2s linear 0.4s;
+}
+
+/*====================================================================*/
+/*---------------------------- ANIMATIONS ----------------------------*/
+/*====================================================================*/
+
+
+@-webkit-keyframes medium-editor-move-toolbar-up {
+    from {
+        -webkit-transform: translateY(6px);
+                transform: translateY(6px);
+    }
+    to {
+        -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+    }
+}
+
+
+@-moz-keyframes medium-editor-move-toolbar-up {
+    from {
+        -moz-transform: translateY(6px);
+             transform: translateY(6px);
+    }
+    to {
+        -moz-transform: translateY(0px);
+             transform: translateY(0px);
+    }
+}
+
+
+@-o-keyframes medium-editor-move-toolbar-up {
+    from {
+        -o-transform: translateY(6px);
+           transform: translateY(6px);
+    }
+    to {
+        -o-transform: translateY(0px);
+           transform: translateY(0px);
+    }
+}
+
+
+@keyframes medium-editor-move-toolbar-up {
+    from {
+        -webkit-transform: translateY(6px);
+           -moz-transform: translateY(6px);
+             -o-transform: translateY(6px);
+                transform: translateY(6px);
+    }
+    to {
+        -webkit-transform: translateY(0px);
+           -moz-transform: translateY(0px);
+             -o-transform: translateY(0px);
+                transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-down {
+    from {
+        -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+    }
+    to {
+        -webkit-transform: translateY(6px);
+                transform: translateY(6px);
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-down {
+    from {
+        -moz-transform: translateY(0px);
+             transform: translateY(0px);
+    }
+    to {
+        -moz-transform: translateY(6px);
+             transform: translateY(6px);
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-down {
+    from {
+        -o-transform: translateY(0px);
+           transform: translateY(0px);
+    }
+    to {
+        -o-transform: translateY(6px);
+           transform: translateY(6px);
+    }
+}
+
+@keyframes medium-editor-move-toolbar-down {
+    from {
+        -webkit-transform: translateY(0px);
+           -moz-transform: translateY(0px);
+             -o-transform: translateY(0px);
+                transform: translateY(0px);
+    }
+    to {
+        -webkit-transform: translateY(6px);
+           -moz-transform: translateY(6px);
+             -o-transform: translateY(6px);
+                transform: translateY(6px);
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-top-left {
+    from {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(6px, 6px);
+                transform: translate(6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-top-left {
+    from {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(6px, 6px);
+             transform: translate(6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-top-left {
+    from {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(6px, 6px);
+           transform: translate(6px, 6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-top-left {
+    from {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(6px, 6px);
+           -moz-transform: translate(6px, 6px);
+             -o-transform: translate(6px, 6px);
+                transform: translate(6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-top-left-active {
+    from {
+        -webkit-transform: translate(6px, 6px);
+                transform: translate(6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-top-left-active {
+    from {
+        -moz-transform: translate(6px, 6px);
+             transform: translate(6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-top-left-active {
+    from {
+        -o-transform: translate(6px, 6px);
+           transform: translate(6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-top-left-active {
+    from {
+        -webkit-transform: translate(6px, 6px);
+           -moz-transform: translate(6px, 6px);
+             -o-transform: translate(6px, 6px);
+                transform: translate(6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-bottom-left {
+    from {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(6px, -6px);
+                transform: translate(6px, -6px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-bottom-left {
+    from {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(6px, -6px);
+             transform: translate(6px, -6px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-bottom-left {
+    from {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(6px, -6px);
+           transform: translate(6px, -6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-bottom-left {
+    from {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(6px, -6px);
+           -moz-transform: translate(6px, -6px);
+             -o-transform: translate(6px, -6px);
+                transform: translate(6px, -6px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-bottom-left-active {
+    from {
+        -webkit-transform: translate(6px, -6px);
+                transform: translate(6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-bottom-left-active {
+    from {
+        -moz-transform: translate(6px, -6px);
+             transform: translate(6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-bottom-left-active {
+    from {
+        -o-transform: translate(6px, -6px);
+           transform: translate(6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-bottom-left-active {
+    from {
+        -webkit-transform: translate(6px, -6px);
+           -moz-transform: translate(6px, -6px);
+             -o-transform: translate(6px, -6px);
+                transform: translate(6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-top-right {
+    from {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(-6px, 6px);
+                transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-top-right {
+    from {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(-6px, 6px);
+             transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-top-right {
+    from {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(-6px, 6px);
+           transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-top-right {
+    from {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(-6px, 6px);
+           -moz-transform: translate(-6px, 6px);
+             -o-transform: translate(-6px, 6px);
+                transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+}
+
+
+@-webkit-keyframes medium-editor-move-toolbar-top-right-active {
+    from {
+        -webkit-transform: translate(-6px, 6px);
+                transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@-moz-keyframes medium-editor-move-toolbar-top-right-active {
+    from {
+        -moz-transform: translate(-6px, 6px);
+             transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@-o-keyframes medium-editor-move-toolbar-top-right-active {
+    from {
+        -o-transform: translate(-6px, 6px);
+           transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@keyframes medium-editor-move-toolbar-top-right-active {
+    from {
+        -webkit-transform: translate(-6px, 6px);
+           -moz-transform: translate(-6px, 6px);
+             -o-transform: translate(-6px, 6px);
+                transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-bottom-right {
+    from {
+        -webkit-transform: translate(0px, 6px);
+                transform: translate(0px, 6px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(-6px, 0px);
+                transform: translate(-6px, 0px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-bottom-right {
+    from {
+        -moz-transform: translate(0px, 6px);
+             transform: translate(0px, 6px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(-6px, 0px);
+             transform: translate(-6px, 0px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-bottom-right {
+    from {
+        -o-transform: translate(0px, 6px);
+           transform: translate(0px, 6px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(-6px, 0px);
+           transform: translate(-6px, 0px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-bottom-right {
+    from {
+        -webkit-transform: translate(0px, 6px);
+           -moz-transform: translate(0px, 6px);
+             -o-transform: translate(0px, 6px);
+                transform: translate(0px, 6px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(-6px, 0px);
+           -moz-transform: translate(-6px, 0px);
+             -o-transform: translate(-6px, 0px);
+                transform: translate(-6px, 0px);
+        opacity: 0;
+    }
+}
+
+
+@-webkit-keyframes medium-editor-move-toolbar-bottom-right-active {
+    from {
+        -webkit-transform: translate(-6px, -6px);
+                transform: translate(-6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@-moz-keyframes medium-editor-move-toolbar-bottom-right-active {
+    from {
+        -moz-transform: translate(-6px, -6px);
+             transform: translate(-6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@-o-keyframes medium-editor-move-toolbar-bottom-right-active {
+    from {
+        -o-transform: translate(-6px, -6px);
+           transform: translate(-6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@keyframes medium-editor-move-toolbar-bottom-right-active {
+    from {
+        -webkit-transform: translate(-6px, -6px);
+           -moz-transform: translate(-6px, -6px);
+             -o-transform: translate(-6px, -6px);
+                transform: translate(-6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
 .E .P_sortable-sections {
     position: relative;
 

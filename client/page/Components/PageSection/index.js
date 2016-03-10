@@ -5,14 +5,6 @@ var CLASS = require("./../../CLASSNAMES");
 
 var Ractive = require("ractive");
 
-
-if (on.client) {
-
-    var MediumEditor = require("medium-editor");
-
-    require("./../../Editor/mobile-support")(MediumEditor);
-}
-
 module.exports = Ractive.extend({
 
     template: require("./index.tpl"),
@@ -58,12 +50,6 @@ module.exports = Ractive.extend({
     },
 
     onrender: function () {
-
-        this.editor = new MediumEditor(this.findAll("[contenteditable]"), {
-            toolbar: {
-                buttons: ["bold", "italic", "h6", "anchor", "fontsize"]
-            }
-        });
     },
 
     regenerateId: function (newName) {
@@ -76,6 +62,13 @@ module.exports = Ractive.extend({
         var builder = this.findParent("Page").pageSectionBuilder;
 
         this.set("section.id", builder.generateId(newName));
+
+        this.rewriteNameReferences(newName);
+    },
+
+    rewriteNameReferences: function (name) {
+
+        $("[value='#" + this.get("section.internalId") + "']").text(name);
     },
 
     //Když se otevírá nastavení sekce, je potřeba zavřít již otevřené nastavení

@@ -113,6 +113,13 @@ module.exports = (function () {
                     });
             }
 
+            page.fire("sectionInserted", pageSection);
+
+            pageSection.once("complete", function () {
+
+                page.fire("sectionInserted.complete", pageSection);
+            });
+
             return pageSection;
         },
 

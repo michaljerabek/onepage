@@ -1,5 +1,9 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 
+var on = require("./../../helpers/on");
+var CLASS = require("./CLASSNAMES");
+var EventEmitter = require("./../libs/EventEmitter")();
+
 var Ractive = require("ractive");
 
 module.exports = Ractive.extend({
@@ -27,12 +31,20 @@ module.exports = Ractive.extend({
             this.pageSectionsManager = require("./PageSectionsManager")(
                 this, this.pageSectionBuilder, !this.get("page._id")
             );
+
+            this.initEditors();
         }
     },
 
     onteardown: function () {
 
-        this.pageSectionsManager.destroy();
+        if (this.get("editMode")) {
+
+            this.contentEditor.destroy();
+            this.titleEditor.destroy();
+
+            this.pageSectionsManager.destroy();
+        }
     },
 
     onconfig: function () {
@@ -50,6 +62,23 @@ module.exports = Ractive.extend({
 
             this.loadPage(pageId);
         }
+    },
+
+    initEditors: function () {
+
+        var TitleEditor = require("./Editor/TitleEditor");
+        var ContentEditor = require("./Editor/ContentEditor");
+
+        this.titleEditor = new TitleEditor(this.get.bind(this, "page.sections"));
+        this.contentEditor = new ContentEditor(this.get.bind(this, "page.sections"));
+
+        this.off("sectionInserted.complete").on("sectionInserted.complete", this.refreshEditors);
+    },
+
+    refreshEditors: function () {
+
+        this.titleEditor.refresh();
+        this.contentEditor.refresh();
     },
 
     isCurrentPage: function (pageId) {
