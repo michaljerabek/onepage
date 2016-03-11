@@ -105,6 +105,10 @@
 
                 this.toolbar.classList.add("medium-editor-first-show");
 
+                if (this.fixedElement) {
+
+                    this.fixedElement.wake();
+                }
             }
 
             return MediumEditor.extensions.toolbar.prototype._showToolbar.apply(this, arguments);
@@ -123,6 +127,11 @@
 
                 this.hideExtensionForms();
                 this.showToolbarDefaultActions(true);
+
+                if (this.fixedElement) {
+
+                    this.fixedElement.sleep();
+                }
             }
 
            return MediumEditor.extensions.toolbar.prototype._hideToolbar.apply(this, arguments);

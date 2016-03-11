@@ -8,6 +8,7 @@ var MediumEditor = require("medium-editor");
 require("./MediumEditorTouchSupport")(MediumEditor);
 require("./MediumEditorToolbar")(MediumEditor, FixedElement);
 require("./MediumEditorAnchor")(MediumEditor);
+require("./MediumEditorEnhence")(MediumEditor);
 
 var SuperEditor = function SuperEditor(getSections) {
 

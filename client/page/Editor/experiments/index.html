@@ -56,17 +56,21 @@
     <script src="../MediumEditorTouchSupport.js"></script>
     <script src="../MediumEditorToolbar.js"></script>
     <script src="../MediumEditorAnchor.js"></script>
+    <script src="../MediumEditorEnhence.js"></script>
 
-    <script>
+    <script>/*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 
-        MediumEditorTouchSupport(MediumEditor);
-        MediumEditorToolbar(MediumEditor, FixedElement);
-        MediumEditorAnchor(MediumEditor);
+        /*global $, MediumEditor, FixedElement*/
+
+        window.MediumEditorTouchSupport(MediumEditor);
+        window.MediumEditorToolbar(MediumEditor, FixedElement);
+        window.MediumEditorAnchor(MediumEditor);
+        window.MediumEditorEnhence(MediumEditor);
 
         var editor = new MediumEditor(".edit", {
             toolbar: {
-//                buttons: ["h2", "unorderedlist", "orderedlist", "bold", "italic", "anchor"]
-                                buttons: ["bold", "italic", "anchor", "h2"]
+                buttons: ["h2", "unorderedlist", "orderedlist", "bold", "italic", "anchor", "superscript", "subscript"]
+//                                buttons: ["bold", "italic", "anchor"]
             }
         });
 

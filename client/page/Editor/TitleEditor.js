@@ -25,7 +25,7 @@ TitleEditor.prototype.configure = function () {
         buttonLabels: "fontawesome",
 
         toolbar: {
-            buttons: ["bold", "italic", "anchor"]
+            buttons: ["bold", "italic", "anchor", "subscript", "superscript"]
         }
     };
 };

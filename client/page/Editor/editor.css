@@ -28,7 +28,7 @@
     top: 0;
 
     height: 160px;
-    width: 240px;
+    width: 320px;
 
     color: #404040;
     opacity: 0;
@@ -107,7 +107,8 @@
     position: relative;
     margin: 0;
 
-    min-width: 120px;
+    min-width: 200px;
+    max-width: 320px;
     height: 43px;
     padding: 0;
 
@@ -119,7 +120,7 @@
         inset 0px 0px 12px rgba(34, 34, 34, 0.05),
         0px -4px 16px rgba(34, 34, 34, 0.5);
 
-    display: flex;
+    display: flex !important;
 
     will-change: width, height, transform;
 }
@@ -138,20 +139,20 @@
     margin: auto;
     z-index: 2;
     position: absolute;
-    top: 0px;
+    top: -1px;
     left: 0px;
     bottom: 0;
 
     width: 100%;
-    height: 100%;
+    height: calc(100% + 1px);
 
     border-radius: 4px;
-    border-top-left-radius: 1px;
-    border-top-right-radius: 1px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
     border-width: 0;
     box-shadow:
-        inset 1px 1px 0px rgba(34, 34, 34, 0.05),
-        inset -1px -1px 0px rgba(34, 34, 34, 0.1);
+        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px 1px rgba(34, 34, 34, 0.15);
 
     pointer-events: none;
 
@@ -159,21 +160,24 @@
 }
 
 .csspointerevents .medium-toolbar-arrow-under.medium-editor-toolbar ul:before {
+    top: 1px;
+
     border-radius: 4px;
-    border-bottom-left-radius: 1px;
-    border-bottom-right-radius: 1px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
     box-shadow:
-        inset -1px -1px 0px rgba(34, 34, 34, 0.05),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+        inset -1px -1px 1px rgba(34, 34, 34, 0.1),
+        inset 1px 1px 1px rgba(34, 34, 34, 0.15);
 }
 
 .medium-editor-toolbar .medium-editor-default-actions-hidden {
-    min-width: 100%;
+    max-width: 240px;
     height: 100%;
 
     transition:
         border 0.2s ease-in-out 0s,
-        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
         height 0.2s linear 0.4s;
 }
 
@@ -186,12 +190,13 @@
 }
 
 .medium-editor-toolbar .medium-editor-default-actions-displayed {
-    min-width: 120px;
+    min-width: 200px;
     height: 43px;
 
     transition:
         min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        height 0.2s linear 0s;
+        max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height 0.2s linear 0.2s;
 }
 
 .medium-editor-toolbar .medium-editor-before-fill,
@@ -253,7 +258,7 @@
     list-style: none;
 
     overflow: hidden;
-    display: inline-flex;
+    display: flex;
 
     transition:
         border 0.2s ease-in-out 0s,
@@ -301,6 +306,7 @@
     width: 100%;
     height: 100%;
 
+    border-radius: inherit;
     box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.05);
     opacity: 1;
 
@@ -376,13 +382,13 @@
     font-style: italic;
 }
 
-/*MULTISTATE BTNS*/
-/*
 .medium-editor-toolbar .medium-editor-has-action-subscript,
 .medium-editor-toolbar .medium-editor-has-action-superscript {
     vertical-align: top;
 }
 
+/*MULTISTATE BTNS*/
+/*
 .medium-editor-toolbar .medium-editor-has-action-subscript,
 .medium-editor-toolbar .medium-editor-has-action-orderedlist {
     z-index: -1;
@@ -438,6 +444,8 @@
 /*--------------------------------------------------------------------*/
 
 .medium-editor-toolbar-form {
+    text-align: center;
+
     z-index: -1;
     position: absolute;
     bottom: 0px;
@@ -445,7 +453,7 @@
     right: 0;
     margin: auto;
 
-    width: 100%;
+    width: 240px;
     height: 40px;
     padding: 8px;
 
@@ -453,8 +461,7 @@
     border-radius: 4px;
     border-bottom: 3px solid currentColor;
     border-top: 0px solid currentColor;
-    box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05);
+    box-shadow: inset 0px 0px 12px rgba(34, 34, 34, 0.05);
     opacity: 0;
 
     pointer-events: none;
@@ -464,8 +471,8 @@
     transition:
         z-index 0s linear 0.4s,
         visibility 0s linear 0.4s,
-        opacity 0.2s linear 0.2s,
-        height 0.2s linear 0s;
+        opacity 0.2s linear 0s,
+        height 0.2s linear 0.2s;
 }
 
 .medium-toolbar-arrow-over .medium-editor-toolbar-form {
@@ -489,40 +496,38 @@
     transition:
         z-index 0s linear 0.2s,
         visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.2s,
+        opacity 0.2s linear 0.6s,
         height 0.2s linear 0.4s;
 }
 
-.medium-editor-toolbar-form a,
-.medium-editor-toolbar-form input {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.medium-editor-toolbar-form .medium-editor-toolbar-form-row {
-    line-height: 14px;
-
-    margin-left: 5px;
-
-    padding-bottom: 5px;
-}
-
 .medium-editor-toolbar-form .medium-editor-toolbar-input,
+.medium-editor-toolbar-form .medium-editor-section-select {
+    font-size: 14px;
+    line-height: 34px;
+
+    margin-bottom: 12px;
+
+    height: 34px;
+    width: 100%;
+    padding: 0 12px;
+
+    border-radius: 4px;
+    border: 1px solid #d7d7d7;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 .medium-editor-toolbar-form label {
     font-size: 14px;
+    text-align: left;
 
-    margin: 0;
+    margin-bottom: 4px;
 
-    padding: 6px;
-    width: 100%;
-
-    border: none;
-
-    display: inline-block;
+    display: block;
 }
 
 .medium-editor-toolbar-form .medium-editor-toolbar-input:focus,
 .medium-editor-toolbar-form label:focus {
-    border: none;
     box-shadow: none;
     outline: 0;
     -webkit-appearance: none;
@@ -532,12 +537,24 @@
 
 .medium-editor-toolbar-form a {
     font-size: 24px;
+    text-align: center;
     text-decoration: none;
     font-weight: bolder;
+    line-height: 40px;
 
-    margin: 0 10px;
+    margin-top: -7px;
+    float: right;
+
+    height: 40px;
+    width: 40px;
+
+    color: inherit;
 
     display: inline-block;
+}
+
+.medium-editor-toolbar-form a:last-of-type {
+    padding-top: 1px;
 }
 
 /*--------------------------------------------------------------------*/
@@ -623,8 +640,8 @@
     top: auto;
     left: auto;
 
-    width: 240px;
-    height: 376px;
+    width: 320px;
+    height: 488px;
     padding: 20px 20px 20px 0;
 
     justify-content: flex-start;
@@ -638,7 +655,7 @@
     top: 7vh;
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
 
     .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar,
     .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar.medium-editor-toolbar-active {
@@ -667,7 +684,7 @@
     align-items: flex-end;
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
 
     .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar,
     .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-force-bottom.medium-editor-toolbar {
@@ -681,6 +698,10 @@
 .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
     animation: none;
 }
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR ACTIONS -------------------------*/
+/*--------------------------------------------------------------------*/
 
 .medium-editor-use-touch.medium-editor-toolbar ul {
     animation-duration: 0.2s;
@@ -720,10 +741,6 @@
     animation-name: medium-editor-move-toolbar-bottom-left-active;
 }
 
-/*--------------------------------------------------------------------*/
-/*-------------------------- TOOLBAR ACTIONS -------------------------*/
-/*--------------------------------------------------------------------*/
-
 .medium-editor-use-touch.medium-editor-toolbar ul,
 .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-under ul,
 .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-over ul {
@@ -731,7 +748,7 @@
     bottom: 0px;
     right: 0%;
 
-    min-width: 0;
+    min-width: 56px;
     width: 56px;
     min-height: 168px;
     height: auto;
@@ -759,18 +776,18 @@
     border-radius: inherit;
     box-shadow:
         inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.05),
-        inset -1px -1px 0px rgba(34, 34, 34, 0.1);
+        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px 1px rgba(34, 34, 34, 0.15);
 }
 
 .csspointerevents .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul:before {
     box-shadow:
         inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.1),
-        inset -1px -1px 0px rgba(34, 34, 34, 0.05);
+        inset 1px 1px 1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 1px rgba(34, 34, 34, 0.1);
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
 
     .medium-editor-use-touch.medium-editor-toolbar ul,
     .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-under ul,
@@ -825,9 +842,10 @@
 }
 
 .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-hidden {
-    min-height: 168px;
-    max-height: 168px;
+    min-height: 224px;
+    max-height: 224px;
     width: 100%;
+    max-width: 100%;
 
     transition:
         max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
@@ -835,7 +853,7 @@
         width 0.2s linear 0.4s;
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
 
     .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-has-more-then-4-actions.medium-editor-default-actions-hidden,
     .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-has-more-then-4-actions .medium-editor-default-actions-hidden {
@@ -844,14 +862,14 @@
 }
 
 .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed {
-    min-width: 0;
+    min-width: 56px;
     min-height: 168px;
     width: 56px;
 
     transition:
         min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
         max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        width 0.2s linear 0s;
+        width 0.2s linear 0.2s;
 }
 
 .medium-editor-use-touch.medium-editor-toolbar .medium-editor-before-fill,
@@ -914,7 +932,7 @@
     border-bottom-left-radius: 4px;
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
 
     .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(1n),
     .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(1n) button {
@@ -957,8 +975,8 @@
     left: 0;
     right: auto;
 
-    height: 168px;
-    max-height: 168px;
+    height: 224px;
+    max-height: 224px;
     width: 56px;
 
     border: none;
@@ -967,11 +985,11 @@
 
     transition:
         visibility 0s linear 0.4s,
-        opacity 0.2s linear 0.2s,
-        width 0.2s linear 0s;
+        opacity 0.2s linear 0s,
+        width 0.2s linear 0.2s;
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
 
     .medium-editor-use-touch .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form,
     .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form,
@@ -1000,12 +1018,12 @@
 }
 
 .medium-editor-use-touch .medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
-    height: 168px;
+    height: 224px;
     width: calc(100% - 20px);
 
     transition:
         visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.2s,
+        opacity 0.2s linear 0.6s,
         width 0.2s linear 0.4s;
 }
 

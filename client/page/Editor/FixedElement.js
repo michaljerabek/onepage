@@ -30,6 +30,8 @@
 
                 this.throttle = throttle || 250;
 
+                this.isSleeping = true;
+
                 this.init();
             };
 
@@ -69,11 +71,15 @@
 
                 }.bind(this), 0);
             }
+
+            return this;
         };
 
         constructor.prototype.fixOnNext = function(noTransitions, hardFix) {
 
             setTimeout(this.fix.bind(this, noTransitions, hardFix), 0);
+
+            return this;
         };
 
         constructor.prototype.init = function () {
@@ -82,15 +88,7 @@
                 transition: "none"
             });
 
-            var throttle = null;
-
-            $win.on("scroll." + this.id + " resize." + this.id + " orientationchange." + this.id, function () {
-
-                clearTimeout(throttle);
-
-                throttle = setTimeout(this.fix.bind(this), this.throttle);
-
-            }.bind(this));
+            this.wake();
 
             this.fix();
 
@@ -101,11 +99,51 @@
                 });
 
             }.bind(this), 0);
+
+            return this;
         };
 
         constructor.prototype.destroy = function () {
 
+            this.sleep();
+
+            return this;
+        };
+
+        constructor.prototype.sleep = function () {
+
+            if (this.isSleeping) {
+
+                return true;
+            }
+
+            clearTimeout(this.eventThrottle);
+
             $win.off("scroll." + this.id + " resize." + this.id + " orientationchange." + this.id);
+
+            this.isSleeping = true;
+
+            return true;
+        };
+
+        constructor.prototype.wake = function () {
+
+            if (this.isSleeping) {
+
+                this.eventThrottle = null;
+
+                $win.on("scroll." + this.id + " resize." + this.id + " orientationchange." + this.id, function () {
+
+                    clearTimeout(this.eventThrottle);
+
+                    this.eventThrottle = setTimeout(this.fix.bind(this), this.throttle);
+
+                }.bind(this));
+
+                this.isSleeping = false;
+            }
+
+            return true;
         };
 
         constructor.prototype.calculatePosition = function () {
@@ -142,6 +180,8 @@
             this.$fixedElement.css({
                 transform: "translate(" + left + "px, " + top + "px)"
             });
+
+            return this;
         };
 
         constructor.prototype.isFixedToRight = function () {

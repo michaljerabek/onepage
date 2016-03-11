@@ -26,7 +26,7 @@ ContentEditor.prototype.configure = function () {
         buttonLabels: "fontawesome",
 
         toolbar: {
-            buttons: ["h2", "bold", "italic", "anchor", "orderedlist", "unorderedlist", "subscript"]
+            buttons: ["h2", "bold", "italic", "anchor", "orderedlist", "unorderedlist", "subscript", "superscript"]
         }
     };
 };
