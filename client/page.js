@@ -1,5 +1,5 @@
 /*jslint browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true, node: true*/
-/*global ractiveData*/
+/*global ractiveData, $*/
 
 var Ractive = require("ractive");
 var config = require("./../config");
@@ -30,8 +30,12 @@ var ractive = function (settings) {
         data: settings.data,
 
         onconfig: function () {
-        }
+        },
 
+        oncomplete: function () {
+
+
+        }
     });
 
 };

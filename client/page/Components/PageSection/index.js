@@ -1,8 +1,9 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 /*global $*/
-var Ractive = require("ractive");
-
+var on = require("./../../../../helpers/on");
 var CLASS = require("./../../CLASSNAMES");
+
+var Ractive = require("ractive");
 
 module.exports = Ractive.extend({
 
@@ -61,6 +62,14 @@ module.exports = Ractive.extend({
         var builder = this.findParent("Page").pageSectionBuilder;
 
         this.set("section.id", builder.generateId(newName));
+
+        this.rewriteNameReferences(newName);
+    },
+
+    rewriteNameReferences: function (name) {
+
+        $("[value='#" + this.get("section.internalId") + "'], [data-value='#" + this.get("section.internalId") + "']")
+            .text($("<span>").html(name).text());
     },
 
     //Když se otevírá nastavení sekce, je potřeba zavřít již otevřené nastavení

@@ -1,11 +1,67 @@
+/*====================================================================*/
+/*------------------------- RESET + CLEARFIX -------------------------*/
+/*====================================================================*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+:focus {
+    outline: 0;
+}
+body {
+    line-height: 1;
+    color: black;
+    background: white;
+}
+ol, ul {
+    list-style: none;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+}
+blockquote, q {
+    quotes: " ";
+}
+
+.cf:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+.cf { display: inline-table; }
+* html .cf { height: 1%; }
+.cf { display: block; }
+
 
 html, body {
     margin: 0;
 
+    max-width: 100%;
+    min-height: 100%;
     padding: 0;
 }
 
 body {
+    position: relative;
+
     will-change: scroll-position;
 }
 
@@ -19,6 +75,3137 @@ body {
     -webkit-box-sizing: inherit;
        -moz-box-sizing: inherit;
             box-sizing: inherit;
+}
+
+/* perfect-scrollbar v0.6.10 */
+
+.ps-container {
+    -ms-touch-action: none;
+    touch-action: none;
+    overflow: hidden !important;
+    -ms-overflow-style: none;
+}
+
+@supports (-ms-overflow-style: none) {
+    .ps-container {
+        overflow: auto !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+    .ps-container {
+        overflow: auto !important;
+    }
+}
+
+.ps-container.ps-active-x > .ps-scrollbar-x-rail, .ps-container.ps-active-y > .ps-scrollbar-y-rail {
+    display: block;
+}
+
+.ps-container.ps-in-scrolling {
+    pointer-events: none;
+}
+
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail, .ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+    opacity: 1;
+}
+
+.ps-container > .ps-scrollbar-x-rail, .ps-container > .ps-scrollbar-y-rail {
+    position: absolute;
+    right: 4px;
+
+    width: 6px;
+
+    -webkit-border-radius: 3px;
+
+       -moz-border-radius: 3px;
+
+            border-radius: 3px;
+    opacity: 0;
+
+    display: none;
+
+    -webkit-transition: opacity 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: opacity 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: opacity 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: opacity 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.ps-container > .ps-scrollbar-x-rail {
+    bottom: 4px;
+    right: auto;
+
+    width: auto;
+    height: 6px;
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x, .ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+    position: absolute;
+    right: 0;
+
+    width: 100%;
+
+    -webkit-border-radius: 3px;
+
+       -moz-border-radius: 3px;
+
+            border-radius: 3px;
+
+    -webkit-transition: background 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: background 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: background 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: background 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+    right: auto;
+    bottom: 0;
+
+    width: auto;
+    height: 100%;
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x:after, .ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y:after {
+    content: "";
+
+    position:absolute;
+    top: 4px;
+    right: 0px;
+
+    width: 100%;
+    height: -webkit-calc(100% - 8px);
+    height: -moz-calc(100% - 8px);
+    height: calc(100% - 8px);
+
+    background-color: rgba(0, 0, 0, 0.35);
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    -webkit-transition: inherit;
+
+    -moz-transition: inherit;
+
+    -o-transition: inherit;
+
+    transition: inherit;
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x:after {
+    top: auto;
+    bottom: 0px;
+    left: 4px;
+
+    width: -webkit-calc(100% - 8px);
+
+    width: -moz-calc(100% - 8px);
+
+    width: calc(100% - 8px);
+    height: 100%;
+}
+
+.ps-container:hover.ps-in-scrolling {
+    pointer-events: none;
+}
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x, .ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y, .ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x, .ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y {
+    -webkit-transition: background 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: background 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: background 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: background 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x:after, .ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y:after, .ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y:after, .ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x:after {
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail, .ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail, .ps-container:hover > .ps-scrollbar-x-rail, .ps-container:hover > .ps-scrollbar-y-rail, .ps-container:hover > .ps-scrollbar-x-rail:hover, .ps-container:hover > .ps-scrollbar-y-rail:hover {
+    opacity: 1;
+
+    -webkit-transition: opacity 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: opacity 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: opacity 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: opacity 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar *:not(input)  {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.medium-editor-toolbar * {
+    pointer-events: all;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------- TOOLBAR WRAPPER --------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-hidden {
+    display: none;
+}
+
+.medium-editor-toolbar {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    height: 180px;
+    width: 320px;
+
+    color: #404040;
+    opacity: 0;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+       -moz-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+
+    pointer-events: none;
+    visibility: hidden;
+
+    will-change: opacity, top, left, transform;
+    -webkit-transition: z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition:
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar {
+    margin-top: -6px;
+
+    -webkit-box-align: start;
+
+    -webkit-align-items: flex-start;
+
+       -moz-box-align: start;
+
+        -ms-flex-align: start;
+
+                -ms-grid-row-align: flex-start;
+
+            align-items: flex-start;
+}
+
+.medium-editor-toolbar-active {
+    z-index: 11000;
+
+    opacity: 1;
+
+    visibility: visible;
+    -webkit-transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition:
+        top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar-active.medium-editor-first-show {
+    -webkit-transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s;
+    transition:
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar.medium-editor-stalker-toolbar {
+    -webkit-animation-name: medium-editor-move-toolbar-down;
+       -moz-animation-name: medium-editor-move-toolbar-down;
+         -o-animation-name: medium-editor-move-toolbar-down;
+            animation-name: medium-editor-move-toolbar-down;
+    -webkit-animation-duration: 0.3s;
+       -moz-animation-duration: 0.3s;
+         -o-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+    -webkit-animation-fill-mode: forwards;
+       -moz-animation-fill-mode: forwards;
+         -o-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    -webkit-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+       -moz-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+         -o-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+            animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+}
+
+.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    -webkit-animation-name: medium-editor-move-toolbar-up;
+       -moz-animation-name: medium-editor-move-toolbar-up;
+         -o-animation-name: medium-editor-move-toolbar-up;
+            animation-name: medium-editor-move-toolbar-up;
+    -webkit-animation-duration: 0.1s;
+       -moz-animation-duration: 0.1s;
+         -o-animation-duration: 0.1s;
+            animation-duration: 0.1s;
+    -webkit-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+       -moz-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+         -o-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+            animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+}
+
+.medium-editor-toolbar-active.medium-editor-first-show.medium-editor-stalker-toolbar {
+    -webkit-animation-delay: 0.1s;
+       -moz-animation-delay: 0.1s;
+         -o-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar.medium-editor-stalker-toolbar {
+    -webkit-animation-name: medium-editor-move-toolbar-up;
+       -moz-animation-name: medium-editor-move-toolbar-up;
+         -o-animation-name: medium-editor-move-toolbar-up;
+            animation-name: medium-editor-move-toolbar-up;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    -webkit-animation-name: medium-editor-move-toolbar-down;
+       -moz-animation-name: medium-editor-move-toolbar-down;
+         -o-animation-name: medium-editor-move-toolbar-down;
+            animation-name: medium-editor-move-toolbar-down;
+}
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR ACTIONS -------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-toolbar ul {
+    text-align: center;
+
+    position: relative;
+    margin: 0;
+
+    min-width: 200px;
+    max-width: 320px;
+    height: 43px;
+    padding: 0;
+
+    background-color: #f9f9f9;
+    border-top: 3px solid currentColor;
+    border-bottom: 0px solid currentColor;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow:
+        inset 0px  0px 12px rgba(34, 34, 34, 0.05),
+              0px -4px 16px rgba(34, 34, 34, 0.5);
+       -moz-box-shadow:
+        inset 0px  0px 12px rgba(34, 34, 34, 0.05),
+              0px -4px 16px rgba(34, 34, 34, 0.5);
+            box-shadow:
+        inset 0px  0px 12px rgba(34, 34, 34, 0.05),
+              0px -4px 16px rgba(34, 34, 34, 0.5);
+
+    display: -webkit-box !important;
+
+    display: -webkit-flex !important;
+
+    display: -moz-box !important;
+
+    display: -ms-flexbox !important;
+
+    display: flex !important;
+
+    will-change: width, height, transform;
+}
+
+.medium-toolbar-arrow-under.medium-editor-toolbar ul {
+    border-top-width: 0px;
+    border-bottom-width: 3px;
+    -webkit-box-shadow:
+        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
+              0px 4px 16px rgba(34, 34, 34, 0.5);
+       -moz-box-shadow:
+        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
+              0px 4px 16px rgba(34, 34, 34, 0.5);
+            box-shadow:
+        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
+              0px 4px 16px rgba(34, 34, 34, 0.5);
+}
+
+.csspointerevents .medium-editor-toolbar ul:before {
+    content: "";
+
+    margin: auto;
+    z-index: 2;
+    position: absolute;
+    top: -1px;
+    left: 0px;
+    bottom: 0;
+
+    width: 100%;
+    height: -webkit-calc(100% + 1px);
+    height: -moz-calc(100% + 1px);
+    height: calc(100% + 1px);
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+    -webkit-border-top-left-radius: 2px;
+       -moz-border-radius-topleft: 2px;
+            border-top-left-radius: 2px;
+    -webkit-border-top-right-radius: 2px;
+       -moz-border-radius-topright: 2px;
+            border-top-right-radius: 2px;
+    border-width: 0;
+    -webkit-box-shadow:
+        inset  1px  1px 1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px 1px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset  1px  1px 1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px 1px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset  1px  1px 1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px 1px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+
+    -webkit-transition: inherit;
+
+    -moz-transition: inherit;
+
+    -o-transition: inherit;
+
+    transition: inherit;
+}
+
+.csspointerevents .medium-toolbar-arrow-under.medium-editor-toolbar ul:before {
+    top: 1px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+    -webkit-border-bottom-left-radius: 2px;
+       -moz-border-radius-bottomleft: 2px;
+            border-bottom-left-radius: 2px;
+    -webkit-border-bottom-right-radius: 2px;
+       -moz-border-radius-bottomright: 2px;
+            border-bottom-right-radius: 2px;
+    -webkit-box-shadow:
+        inset -1px -1px 1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px 1px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset -1px -1px 1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px 1px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset -1px -1px 1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px 1px rgba(34, 34, 34, 0.15);
+}
+
+.medium-editor-toolbar .medium-editor-default-actions-hidden {
+    max-width: 280px;
+    min-width: 280px;
+    height: 100%;
+
+    -webkit-transition: border    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        height    0.2s linear                       0.4s;
+
+    -moz-transition: border    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        height    0.2s linear                       0.4s;
+
+    -o-transition: border    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        height    0.2s linear                       0.4s;
+
+    transition:
+        border    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        height    0.2s linear                       0.4s;
+}
+
+.medium-editor-toolbar.medium-editor-left-edge {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+       -moz-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+}
+
+.medium-editor-toolbar.medium-editor-right-edge {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+       -moz-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+
+.medium-editor-toolbar .medium-editor-default-actions-displayed {
+    min-width: 200px;
+    height: 43px;
+
+    -webkit-transition: min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height    0.2s linear                    0.2s;
+
+    -moz-transition: min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height    0.2s linear                    0.2s;
+
+    -o-transition: min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height    0.2s linear                    0.2s;
+
+    transition:
+        min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height    0.2s linear                    0.2s;
+}
+
+.medium-editor-toolbar .medium-editor-before-fill, .medium-editor-toolbar .medium-editor-after-fill {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+
+    -webkit-transition: all 0.1s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: all 0.1s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: all 0.1s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: all 0.1s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-left-edge .medium-editor-before-fill, .medium-editor-right-edge .medium-editor-after-fill {
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+       -moz-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+}
+
+.medium-editor-toolbar.medium-editor-first-show .medium-editor-before-fill, .medium-editor-toolbar.medium-editor-first-show .medium-editor-after-fill {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+/*---------------------------- ARROW ----------------------------*/
+
+.medium-editor-toolbar ul:after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+
+    height: 0;
+    width: 0;
+
+    border-style: solid;
+    border-width: 8px;
+}
+
+.medium-editor-toolbar ul:after {
+    top: -19px;
+
+    border-color: transparent transparent currentColor transparent;
+}
+
+.medium-toolbar-arrow-under ul:after {
+    top: auto;
+    bottom: -19px;
+
+    border-color: currentColor transparent transparent transparent;
+}
+
+/*---------------------------- BUTTONS ----------------------------*/
+
+.medium-editor-toolbar li {
+    position: relative;
+    margin: 0;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    list-style: none;
+
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.medium-editor-toolbar li:first-of-type {
+    -webkit-border-bottom-left-radius: 2px;
+       -moz-border-radius-bottomleft: 2px;
+            border-bottom-left-radius: 2px;
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+}
+
+.medium-editor-toolbar li:last-of-type  {
+    -webkit-border-bottom-right-radius: 2px;
+       -moz-border-radius-bottomright: 2px;
+            border-bottom-right-radius: 2px;
+    -webkit-border-top-right-radius: 4px;
+       -moz-border-radius-topright: 4px;
+            border-top-right-radius: 4px;
+}
+
+.medium-editor-toolbar.medium-toolbar-arrow-over li:first-of-type {
+    -webkit-border-top-left-radius: 2px;
+       -moz-border-radius-topleft: 2px;
+            border-top-left-radius: 2px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+}
+
+.medium-editor-toolbar.medium-toolbar-arrow-over li:last-of-type {
+    -webkit-border-top-right-radius: 2px;
+       -moz-border-radius-topright: 2px;
+            border-top-right-radius: 2px;
+    -webkit-border-bottom-right-radius: 4px;
+       -moz-border-radius-bottomright: 4px;
+            border-bottom-right-radius: 4px;
+}
+
+.medium-editor-toolbar li button {
+    font-size: 14px;
+    line-height: 40px;
+    vertical-align: middle;
+
+    padding: 0;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+
+    color: #404040;
+    background-color: transparent;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+    border: none;
+    opacity: 1;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: column-reverse;
+       -moz-box-orient: vertical;
+       -moz-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+       -moz-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    outline: none;
+    cursor: pointer;
+
+    will-change: opacity, box-shadow, background-color, color;
+    -webkit-transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    -moz-transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    -o-transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition:
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-toolbar li button:hover {
+    -webkit-transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    -moz-transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8),
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    -o-transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    transition:
+        color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8),
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8),
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+}
+
+.medium-editor-toolbar li button ::first-line {
+    line-height: 40px;
+
+    color: inherit;
+}
+
+.csspointerevents .medium-editor-toolbar li button:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+    -webkit-box-shadow: inset 1px 1px 0px rgba(34, 34, 34, 0.04);
+       -moz-box-shadow: inset 1px 1px 0px rgba(34, 34, 34, 0.04);
+            box-shadow: inset 1px 1px 0px rgba(34, 34, 34, 0.04);
+    opacity: 1;
+
+    pointer-events: none;
+
+    -webkit-transition: inherit;
+
+    -moz-transition: inherit;
+
+    -o-transition: inherit;
+
+    transition: inherit;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-hidden li button:after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-hidden li button {
+    opacity: 0;
+
+    -webkit-transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition:
+        opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button {
+    opacity: 1;
+
+    -webkit-transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition:
+        opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-toolbar li button:not(:disabled):hover {
+    background-color: #fef4e7;
+}
+
+.medium-editor-toolbar li button:not(:disabled):hover:after {
+    -webkit-box-shadow: inset 1px 1px 0px rgba(251, 167, 66, 0.08);
+       -moz-box-shadow: inset 1px 1px 0px rgba(251, 167, 66, 0.08);
+            box-shadow: inset 1px 1px 0px rgba(251, 167, 66, 0.08);
+}
+
+.medium-editor-toolbar li button.medium-editor-button-active:hover, .medium-editor-toolbar li button.medium-editor-button-active {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #fba742;
+    -webkit-box-shadow:
+        inset 2px 2px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+}
+
+.csspointerevents .medium-editor-toolbar li .medium-editor-button-active:after {
+    -webkit-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
+       -moz-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
+            box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
+}
+
+.medium-editor-toolbar.medium-editor-toolbar-active li button .medium-editor-button-active:active, .medium-editor-toolbar.medium-editor-toolbar-active li button:not(:disabled):active {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #f09629;
+    -webkit-box-shadow:
+        inset 3px 3px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 3px 3px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 3px 3px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:hover:after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:hover {
+    -webkit-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition:
+        opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:active:after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:active {
+    -webkit-transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -webkit-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -webkit-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    -moz-transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -moz-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    -o-transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    transition:
+        opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -webkit-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -moz-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+.medium-editor-toolbar li button:disabled {
+    color: rgba(64, 64, 64, 0.25);
+    background-color: #f2f2f2;
+
+    cursor: default;
+}
+
+ium-editor-toolbar li button:disabled:not(:hover) {
+    -webkit-transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition:
+        opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:disabled:not(:hover):after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:disabled:not(:hover) {
+    -webkit-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition:
+        opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar li button:disabled:hover:active, .medium-editor-toolbar li button:disabled:active {
+    background-color: #d7d7d7;
+}
+
+.medium-editor-toolbar .medium-editor-has-action-subscript, .medium-editor-toolbar .medium-editor-has-action-superscript {
+    vertical-align: top;
+}
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- ANCHOR PREVIEW --------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-anchor-preview {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+
+    text-align: center;
+    line-height: 1.4;
+    word-break: break-all;
+    word-wrap: break-word;
+
+    z-index: 2000;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    max-width: 280px;
+
+    visibility: hidden;
+}
+
+.medium-editor-anchor-preview a {
+    margin: 5px 5px 10px;
+
+    color: #fff;
+
+    display: inline-block;
+}
+
+.medium-editor-anchor-preview-active {
+    visibility: visible;
+}
+
+/*--------------------------------------------------------------------*/
+/*---------------------------- PLACEHOLDER ---------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-placeholder {
+    position: relative;
+}
+
+.medium-editor-placeholder:after {
+    content: attr(data-placeholder) !important;
+
+    font-style: italic;
+    white-space: pre;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: inherit;
+
+    padding: inherit;
+}
+
+/*====================================================================*/
+/*--------------------------- TOUCH VERSION --------------------------*/
+/*====================================================================*/
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR WRAPPER -------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active {
+    position: absolute;
+    top: auto;
+    left: auto;
+
+    width: 320px;
+    height: 488px;
+    padding: 20px 20px 20px 0;
+
+    -webkit-box-pack: start;
+
+    -webkit-justify-content: flex-start;
+
+       -moz-box-pack: start;
+
+        -ms-flex-pack: start;
+
+            justify-content: flex-start;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+       -moz-box-align: start;
+        -ms-flex-align: start;
+                -ms-grid-row-align: flex-start;
+            align-items: flex-start;
+
+    overflow: hidden;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar.medium-editor-toolbar-active {
+    top: 4vh;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar.medium-editor-toolbar-active {
+        top: 2vh;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-force-left.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-force-left.medium-editor-toolbar.medium-editor-toolbar-active {
+    left: 0px;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-editor-toolbar-active {
+    right: 0px;
+
+    padding: 20px 0px 20px 20px;
+
+    -webkit-box-pack: end;
+
+    -webkit-justify-content: flex-end;
+
+       -moz-box-pack: end;
+
+        -ms-flex-pack: end;
+
+            justify-content: flex-end;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-force-bottom.medium-editor-toolbar {
+    bottom: 4vh;
+
+    -webkit-box-align: end;
+
+    -webkit-align-items: flex-end;
+
+       -moz-box-align: end;
+
+        -ms-flex-align: end;
+
+                -ms-grid-row-align: flex-end;
+
+            align-items: flex-end;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-force-bottom.medium-editor-toolbar {
+        bottom: 2vh;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-toolbar.medium-editor-stalker-toolbar, .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-stalker-toolbar, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-stalker-toolbar, .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    -webkit-animation: none;
+       -moz-animation: none;
+         -o-animation: none;
+            animation: none;
+}
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR ACTIONS -------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch.medium-editor-toolbar ul {
+    -webkit-animation-duration: 0.3s;
+       -moz-animation-duration: 0.3s;
+         -o-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+    -webkit-animation-fill-mode: forwards;
+       -moz-animation-fill-mode: forwards;
+         -o-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    -webkit-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+       -moz-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+         -o-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+            animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+}
+
+.medium-editor-use-touch.medium-editor-toolbar-active ul {
+    -webkit-animation-duration: 0.1s;
+       -moz-animation-duration: 0.1s;
+         -o-animation-duration: 0.1s;
+            animation-duration: 0.1s;
+    -webkit-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+       -moz-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+         -o-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+            animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar ul {
+    -webkit-animation-name: medium-editor-move-toolbar-top-right;
+       -moz-animation-name: medium-editor-move-toolbar-top-right;
+         -o-animation-name: medium-editor-move-toolbar-top-right;
+            animation-name: medium-editor-move-toolbar-top-right;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar-active ul {
+    -webkit-animation-name: medium-editor-move-toolbar-top-right-active;
+       -moz-animation-name: medium-editor-move-toolbar-top-right-active;
+         -o-animation-name: medium-editor-move-toolbar-top-right-active;
+            animation-name: medium-editor-move-toolbar-top-right-active;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar ul {
+    -webkit-animation-name: medium-editor-move-toolbar-bottom-right;
+       -moz-animation-name: medium-editor-move-toolbar-bottom-right;
+         -o-animation-name: medium-editor-move-toolbar-bottom-right;
+            animation-name: medium-editor-move-toolbar-bottom-right;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar-active ul {
+    -webkit-animation-name: medium-editor-move-toolbar-bottom-right-active;
+       -moz-animation-name: medium-editor-move-toolbar-bottom-right-active;
+         -o-animation-name: medium-editor-move-toolbar-bottom-right-active;
+            animation-name: medium-editor-move-toolbar-bottom-right-active;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-force-right.medium-editor-toolbar ul {
+    -webkit-animation-name: medium-editor-move-toolbar-top-left;
+       -moz-animation-name: medium-editor-move-toolbar-top-left;
+         -o-animation-name: medium-editor-move-toolbar-top-left;
+            animation-name: medium-editor-move-toolbar-top-left;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-force-right.medium-editor-toolbar-active ul {
+    -webkit-animation-name: medium-editor-move-toolbar-top-left-active;
+       -moz-animation-name: medium-editor-move-toolbar-top-left-active;
+         -o-animation-name: medium-editor-move-toolbar-top-left-active;
+            animation-name: medium-editor-move-toolbar-top-left-active;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-force-right.medium-editor-toolbar ul {
+    -webkit-animation-name: medium-editor-move-toolbar-bottom-left;
+       -moz-animation-name: medium-editor-move-toolbar-bottom-left;
+         -o-animation-name: medium-editor-move-toolbar-bottom-left;
+            animation-name: medium-editor-move-toolbar-bottom-left;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-force-right.medium-editor-toolbar-active ul {
+    -webkit-animation-name: medium-editor-move-toolbar-bottom-left-active;
+       -moz-animation-name: medium-editor-move-toolbar-bottom-left-active;
+         -o-animation-name: medium-editor-move-toolbar-bottom-left-active;
+            animation-name: medium-editor-move-toolbar-bottom-left-active;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar ul, .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-under ul, .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+    /*iOS fix*/
+    bottom: 0px;
+    right: 0%;
+
+    min-width: 56px;
+    width: 56px;
+    min-height: 168px;
+    height: auto;
+    max-height: 100%;
+
+    border: none;
+    -webkit-border-top-left-radius: 0;
+       -moz-border-radius-topleft: 0;
+            border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+       -moz-border-radius-bottomleft: 0;
+            border-bottom-left-radius: 0;
+    -webkit-box-shadow: 4px 0px 16px rgba(34, 34, 34, 0.5);
+       -moz-box-shadow: 4px 0px 16px rgba(34, 34, 34, 0.5);
+            box-shadow: 4px 0px 16px rgba(34, 34, 34, 0.5);
+
+    display: -webkit-box !important;
+
+    display: -webkit-flex !important;
+
+    display: -moz-box !important;
+
+    display: -ms-flexbox !important;
+
+    display: flex !important; /*nutné přepsat style attr*/
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+       -moz-box-orient: horizontal;
+       -moz-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+       -moz-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-align-content: flex-start;
+        -ms-flex-line-pack: start;
+            align-content: flex-start;
+
+    overflow: hidden;
+}
+
+.csspointerevents .medium-editor-use-touch.medium-editor-toolbar ul:before {
+    top: 0px;
+
+    height: 100%;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+    -webkit-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+}
+
+.csspointerevents .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul:before {
+    -webkit-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+            box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-toolbar ul, .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-under ul, .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+           -moz-box-orient: horizontal;
+           -moz-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul.medium-editor-has-more-then-4-actions, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-under ul.medium-editor-has-more-then-4-actions, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-over ul.medium-editor-has-more-then-4-actions {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -webkit-flex-direction: row-reverse;
+           -moz-box-orient: horizontal;
+           -moz-box-direction: reverse;
+            -ms-flex-direction: row-reverse;
+                flex-direction: row-reverse;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-has-more-then-4-actions, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-has-more-then-4-actions {
+        /*iOS fix*/
+        top: 0px;
+        left: 0%;
+
+        min-width: 112px;
+
+        -webkit-flex-wrap: wrap;
+
+            -ms-flex-wrap: wrap;
+
+                flex-wrap: wrap;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-4-actions, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-4-actions{
+        min-height: 168px;
+        max-height: 168px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-6-actions, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-6-actions {
+        min-height: 224px;
+        max-height: 224px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-8-actions, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-8-actions {
+        min-height: 280px;
+        max-height: 280px;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-under ul, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+    -webkit-border-top-right-radius: 0px;
+       -moz-border-radius-topright: 0px;
+            border-top-right-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+       -moz-border-radius-bottomright: 0px;
+            border-bottom-right-radius: 0px;
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+    -webkit-box-shadow: -4px 0px 16px rgba(34, 34, 34, 0.5);
+       -moz-box-shadow: -4px 0px 16px rgba(34, 34, 34, 0.5);
+            box-shadow: -4px 0px 16px rgba(34, 34, 34, 0.5);
+}
+
+.medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-hidden {
+    min-height: 224px;
+    max-height: 224px;
+    width: 100%;
+    max-width: 100%;
+
+    -webkit-transition: max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        width      0.2s linear                     0.4s;
+
+    -moz-transition: max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        width      0.2s linear                     0.4s;
+
+    -o-transition: max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        width      0.2s linear                     0.4s;
+
+    transition:
+        max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        width      0.2s linear                     0.4s;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-has-more-then-4-actions.medium-editor-default-actions-hidden, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-has-more-then-4-actions .medium-editor-default-actions-hidden {
+        max-height: 168px;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed {
+    min-width: 56px;
+    min-height: 168px;
+    width: 56px;
+
+    -webkit-transition: min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        width      0.2s linear                    0.2s;
+
+    -moz-transition: min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        width      0.2s linear                    0.2s;
+
+    -o-transition: min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        width      0.2s linear                    0.2s;
+
+    transition:
+        min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        width      0.2s linear                    0.2s;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar .medium-editor-before-fill, .medium-editor-use-touch.medium-editor-toolbar .medium-editor-after-fill {
+    display: none;
+}
+
+/*---------------------------- ARROWS ----------------------------*/
+
+.medium-editor-use-touch ul:after, .medium-editor-use-touch.medium-toolbar-arrow-under ul:after {
+    display: none;
+}
+
+/*---------------------------- BUTTONS ----------------------------*/
+
+.medium-editor-use-touch.medium-editor-toolbar li {
+    width: 56px;
+    height: 56px;
+    min-height: 56px;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li button {
+    line-height: 56px;
+
+    width: 56px;
+    height: 56px;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li button ::first-line {
+    line-height: 56px;
+}
+
+.csspointerevents .medium-editor-toolbar li button:after {
+    -webkit-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
+       -moz-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
+            box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
+}
+
+.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:after {
+    -webkit-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
+       -moz-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
+            box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
+}
+
+.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:not(:disabled):hover:after {
+    -webkit-box-shadow: inset 1px -1px 0px rgba(251, 167, 66, 0.08);
+       -moz-box-shadow: inset 1px -1px 0px rgba(251, 167, 66, 0.08);
+            box-shadow: inset 1px -1px 0px rgba(251, 167, 66, 0.08);
+}
+
+.csspointerevents .medium-editor-toolbar li button.medium-editor-button-active:after {
+    -webkit-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
+       -moz-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
+            box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li:first-of-type button, .medium-editor-use-touch.medium-editor-toolbar li:first-of-type {
+    -webkit-border-bottom-left-radius: 0px;
+       -moz-border-radius-bottomleft: 0px;
+            border-bottom-left-radius: 0px;
+    -webkit-border-top-left-radius: 0px;
+       -moz-border-radius-topleft: 0px;
+            border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 4px;
+       -moz-border-radius-topright: 4px;
+            border-top-right-radius: 4px;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li:last-of-type button, .medium-editor-use-touch.medium-editor-toolbar li:last-of-type {
+    -webkit-border-bottom-right-radius: 4px;
+       -moz-border-radius-bottomright: 4px;
+            border-bottom-right-radius: 4px;
+    -webkit-border-top-right-radius: 0px;
+       -moz-border-radius-topright: 0px;
+            border-top-right-radius: 0px;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:first-of-type button, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:first-of-type {
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 0px;
+       -moz-border-radius-topright: 0px;
+            border-top-right-radius: 0px;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:last-of-type button, .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:last-of-type {
+    -webkit-border-bottom-right-radius: 0px;
+       -moz-border-radius-bottomright: 0px;
+            border-bottom-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(1n), .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(1n) button {
+        -webkit-border-radius: 0;
+           -moz-border-radius: 0;
+                border-radius: 0;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(2) button, .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(2) {
+        -webkit-border-top-right-radius: 4px;
+           -moz-border-radius-topright: 4px;
+                border-top-right-radius: 4px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar li:last-of-type:nth-of-type(even) button, .medium-editor-use-touch.medium-editor-toolbar li:last-of-type:nth-of-type(even) {
+        -webkit-border-bottom-right-radius: 4px;
+           -moz-border-radius-bottomright: 4px;
+                border-bottom-right-radius: 4px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-force-right .medium-editor-has-more-then-4-actions li:nth-of-type(2) button, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-force-right .medium-editor-has-more-then-4-actions li:nth-of-type(2) {
+        -webkit-border-top-right-radius: 0px;
+           -moz-border-radius-topright: 0px;
+                border-top-right-radius: 0px;
+        -webkit-border-top-left-radius: 4px;
+           -moz-border-radius-topleft: 4px;
+                border-top-left-radius: 4px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-force-right li:last-of-type:nth-of-type(even) button, .medium-editor-use-touch.medium-editor-toolbar.medium-editor-force-right li:last-of-type:nth-of-type(even) {
+        -webkit-border-bottom-right-radius: 0px;
+           -moz-border-radius-bottomright: 0px;
+                border-bottom-right-radius: 0px;
+        -webkit-border-bottom-left-radius: 4px;
+           -moz-border-radius-bottomleft: 4px;
+                border-bottom-left-radius: 4px;
+    }
+}
+
+/*====================================================================*/
+/*---------------------------- ANIMATIONS ----------------------------*/
+/*====================================================================*/
+
+@-webkit-keyframes medium-editor-move-toolbar-up {
+    from {
+        -webkit-transform: translateY(6px);
+                transform: translateY(6px);
+    }
+    to {
+        -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-up {
+    from {
+        -moz-transform: translateY(6px);
+             transform: translateY(6px);
+    }
+    to {
+        -moz-transform: translateY(0px);
+             transform: translateY(0px);
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-up {
+    from {
+        -o-transform: translateY(6px);
+           transform: translateY(6px);
+    }
+    to {
+        -o-transform: translateY(0px);
+           transform: translateY(0px);
+    }
+}
+
+@keyframes medium-editor-move-toolbar-up {
+    from {
+        -webkit-transform: translateY(6px);
+           -moz-transform: translateY(6px);
+             -o-transform: translateY(6px);
+                transform: translateY(6px);
+    }
+    to {
+        -webkit-transform: translateY(0px);
+           -moz-transform: translateY(0px);
+             -o-transform: translateY(0px);
+                transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-down {
+    from {
+        -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+    }
+    to {
+        -webkit-transform: translateY(6px);
+                transform: translateY(6px);
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-down {
+    from {
+        -moz-transform: translateY(0px);
+             transform: translateY(0px);
+    }
+    to {
+        -moz-transform: translateY(6px);
+             transform: translateY(6px);
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-down {
+    from {
+        -o-transform: translateY(0px);
+           transform: translateY(0px);
+    }
+    to {
+        -o-transform: translateY(6px);
+           transform: translateY(6px);
+    }
+}
+
+@keyframes medium-editor-move-toolbar-down {
+    from {
+        -webkit-transform: translateY(0px);
+           -moz-transform: translateY(0px);
+             -o-transform: translateY(0px);
+                transform: translateY(0px);
+    }
+    to {
+        -webkit-transform: translateY(6px);
+           -moz-transform: translateY(6px);
+             -o-transform: translateY(6px);
+                transform: translateY(6px);
+    }
+}
+
+/*====================================================================*/
+/*------------------------------ ME-FORM -----------------------------*/
+/*====================================================================*/
+
+.medium-editor-toolbar-form {
+    z-index: -1;
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
+
+    width: 280px;
+    height: 40px;
+
+    background-color: #f9f9f9;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    border-bottom: 3px solid currentColor;
+    border-top: 0px solid currentColor;
+    opacity: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    will-change: opacity, width, height, left;
+    -webkit-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.4s,
+        visibility 0s   linear                       0.4s,
+        opacity    0.2s linear                       0s,
+        height     0.2s linear                       0.2s;
+    -moz-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.4s,
+        visibility 0s   linear                       0.4s,
+        opacity    0.2s linear                       0s,
+        height     0.2s linear                       0.2s;
+    -o-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.4s,
+        visibility 0s   linear                       0.4s,
+        opacity    0.2s linear                       0s,
+        height     0.2s linear                       0.2s;
+    transition:
+        left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.4s,
+        visibility 0s   linear                       0.4s,
+        opacity    0.2s linear                       0s,
+        height     0.2s linear                       0.2s;
+}
+
+.csspointerevents .medium-editor-toolbar-form:after {
+    content: "";
+
+    z-index: 5;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow:
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+
+       -moz-box-shadow:
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+
+            box-shadow:
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+
+    pointer-events: none;
+}
+
+.csspointerevents .medium-toolbar-arrow-under .medium-editor-toolbar-form:after {
+    -webkit-box-shadow:
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+       -moz-box-shadow:
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+            box-shadow:
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+}
+
+.medium-toolbar-arrow-over .medium-editor-toolbar-form {
+    bottom: auto;
+    top: 0;
+
+    border-top-width: 3px;
+    border-bottom-width: 0;
+}
+
+.medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+    z-index: 1;
+
+    height: 100%;
+
+    opacity: 1;
+
+    pointer-events: all;
+    overflow: hidden;
+
+    -webkit-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.2s,
+        visibility 0s   linear                       0.2s,
+        opacity    0.2s linear                       0.6s,
+        height     0.2s linear                       0.4s;
+
+    -moz-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.2s,
+        visibility 0s   linear                       0.2s,
+        opacity    0.2s linear                       0.6s,
+        height     0.2s linear                       0.4s;
+
+    -o-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.2s,
+        visibility 0s   linear                       0.2s,
+        opacity    0.2s linear                       0.6s,
+        height     0.2s linear                       0.4s;
+
+    transition:
+        left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.2s,
+        visibility 0s   linear                       0.2s,
+        opacity    0.2s linear                       0.6s,
+        height     0.2s linear                       0.4s;
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- FORM NAV -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-form-nav {
+    z-index: 4;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 40px;
+    width: 100%;
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+       -moz-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+}
+
+.medium-editor-form-nav-close {
+    font-size: 23px;
+    line-height: 1;
+    text-decoration: none;
+
+    z-index: 10;
+    position:absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    color: #404040;
+    opacity: 0.5;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-form-nav-close:hover {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-form-nav-close:active {
+    -webkit-transform: scale(0.95);
+       -moz-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+         -o-transform: scale(0.95);
+            transform: scale(0.95);
+
+    -webkit-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+[id*="medium-editor-open-tab"]:last-of-type:not(:checked) ~ .medium-editor-form-nav .medium-editor-form-open-tab:last-of-type:hover ~ .medium-editor-form-nav-close {
+    color: #fff;
+
+    -webkit-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.csspointerevents .medium-editor-form-nav:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px -1px 0px rgba(34, 34, 34, 0.15);
+
+       -moz-box-shadow: inset 0px -1px 0px rgba(34, 34, 34, 0.15);
+
+            box-shadow: inset 0px -1px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab {
+    font-size: 14px;
+
+    -webkit-flex-basis: 50%;
+
+        -ms-flex-preferred-size: 50%;
+
+            flex-basis: 50%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    cursor: pointer;
+
+    -webkit-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:hover {
+    font-weight: bold;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+
+    -webkit-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:nth-of-type(2):hover {
+    font-weight: bold;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:nth-of-type(1n):active {
+    color: #fff;
+    background-color: #f09629;
+    -webkit-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+
+    -webkit-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:nth-of-type(2):active {
+    -webkit-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+}
+
+[id*="medium-editor-open-tab-2"]:checked ~ .medium-editor-form-nav [for*="medium-editor-open-tab-2"], [id*="medium-editor-open-tab-1"]:checked ~ .medium-editor-form-nav [for*="medium-editor-open-tab-1"] {
+    font-weight: bold;
+
+    color: #fff;
+    background-color: #fba742;
+    -webkit-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+}
+
+[id*="medium-editor-open-tab-2"]:checked ~ .medium-editor-form-nav [for*="medium-editor-open-tab-2"] {
+    -webkit-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.15);
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- TABS -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-form-tab {
+    z-index: 0;
+    position: absolute;
+    top: 40px;
+    left: -8px;
+
+    width: -webkit-calc(100% + 16px);
+
+    width: -moz-calc(100% + 16px);
+
+    width: calc(100% + 16px);
+    width: calc(100% + 16px);
+    height: 137px;
+    padding: 0 8px;
+
+    background-color: #f7f7f7;
+    opacity: 0;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+
+    overflow: hidden;
+    visibility: hidden;
+
+    -webkit-transition: opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s;
+
+    -moz-transition: opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s;
+
+    -o-transition: opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s;
+
+    transition:
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s;
+}
+
+.csspointerevents .medium-editor-form-tab:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px 1px 4px rgba(34, 34, 34, 0.15);
+
+       -moz-box-shadow: inset 0px 1px 4px rgba(34, 34, 34, 0.15);
+
+            box-shadow: inset 0px 1px 4px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.csspointerevents .medium-toolbar-arrow-over .medium-editor-form-tab:after {
+    -webkit-box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
+            box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
+}
+
+/*---------------------------- ANCHOR TAB ----------------------------*/
+
+.medium-editor-form-tab-anchor {
+    padding: 6px 20px;
+}
+
+[id*="medium-editor-open-tab-2"]:checked ~ .medium-editor-form-tabs .medium-editor-form-tab:nth-of-type(2), [id*="medium-editor-open-tab-1"]:checked ~ .medium-editor-form-tabs .medium-editor-form-tab:nth-of-type(1) {
+    z-index: 1;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    -webkit-transition: opacity    0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s     linear                       0s,
+        visibility 0s     linear                       0s;
+
+    -moz-transition: opacity    0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s     linear                       0s,
+        visibility 0s     linear                       0s;
+
+    -o-transition: opacity    0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s     linear                       0s,
+        visibility 0s     linear                       0s;
+
+    transition:
+        opacity    0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s     linear                       0s,
+        visibility 0s     linear                       0s;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input {
+    font-size: 14px;
+    line-height: 34px;
+
+    margin-bottom: 8px;
+
+    height: 34px;
+    width: 100%;
+    padding: 0 12px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+    border: 1px solid #d7d7d7;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.medium-editor-form-tab-anchor label {
+    font-size: 14px;
+    line-height: 17px;
+    text-indent: 1px;
+    font-weight: bold;
+
+    margin-top: 4px;
+    margin-bottom: 6px;
+
+    display: block;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input:focus, .medium-editor-toolbar-form label:focus {
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.medium-editor-form-btns {
+    margin-top: auto;
+
+    height: 42px;
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+       -moz-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+
+.medium-editor-use-touch .medium-editor-form-btns {
+    height: 56px;
+}
+
+.medium-editor-toolbar-form .medium-editor-form-btns a {
+    font-size: 23px;
+    text-decoration: none;
+
+    margin-left: 12px;
+
+    -webkit-flex-basis: 42px;
+
+        -ms-flex-preferred-size: 42px;
+
+            flex-basis: 42px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    color: inherit;
+}
+
+/*---------------------------- SECTION TAB ----------------------------*/
+
+.medium-editor-form-selector {
+    position: relative;
+
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.medium-editor-form-selector-option {
+    font-size: 14px;
+    line-height: 34px;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+
+    padding: 0 12px;
+
+    cursor: pointer;
+    overflow: hidden;
+
+    -webkit-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-form-selector-option:not(:last-child) {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.medium-editor-form-selector-option:focus, .medium-editor-form-selector-option:hover {
+    color: #fff;
+    background-color: #404040;
+    border-color: #303030;
+
+    -webkit-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-form-selector-option:active {
+    color: #fff;
+    background-color: #fba742;
+    border-color: #e49639;
+
+    -webkit-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+/*====================================================================*/
+/*--------------------------- TOUCH VERSION --------------------------*/
+/*====================================================================*/
+
+.medium-editor-use-touch .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    bottom: auto;
+    top: 20px;
+    left: 0;
+    right: auto;
+
+    height: 224px;
+    max-height: 224px;
+    width: 56px;
+
+    border: none;
+    -webkit-border-top-left-radius: 0;
+       -moz-border-radius-topleft: 0;
+            border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+       -moz-border-radius-bottomleft: 0;
+            border-bottom-left-radius: 0;
+
+    -webkit-transition: z-index    0s   linear 0.4s,
+        visibility 0s   linear 0.4s,
+        opacity    0.2s linear 0s,
+        width      0.2s linear 0.2s;
+
+    -moz-transition: z-index    0s   linear 0.4s,
+        visibility 0s   linear 0.4s,
+        opacity    0.2s linear 0s,
+        width      0.2s linear 0.2s;
+
+    -o-transition: z-index    0s   linear 0.4s,
+        visibility 0s   linear 0.4s,
+        opacity    0.2s linear 0s,
+        width      0.2s linear 0.2s;
+
+    transition:
+        z-index    0s   linear 0.4s,
+        visibility 0s   linear 0.4s,
+        opacity    0.2s linear 0s,
+        width      0.2s linear 0.2s;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form {
+        width: 112px;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    bottom: 20px;
+    top: auto;
+}
+
+.medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    left: auto;
+    right: 0;
+
+    -webkit-border-top-left-radius: 4px;
+
+       -moz-border-radius-topleft: 4px;
+
+            border-top-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+    -webkit-border-top-right-radius: 0;
+       -moz-border-radius-topright: 0;
+            border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+       -moz-border-radius-bottomright: 0;
+            border-bottom-right-radius: 0;
+}
+
+.medium-editor-use-touch .medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+    height: 224px;
+    width: -webkit-calc(100% - 20px);
+    width: -moz-calc(100% - 20px);
+    width: calc(100% - 20px);
+
+    -webkit-transition: visibility 0s   linear 0.2s,
+        opacity    0.2s linear 0.6s,
+        width      0.2s linear 0.4s;
+
+    -moz-transition: visibility 0s   linear 0.2s,
+        opacity    0.2s linear 0.6s,
+        width      0.2s linear 0.4s;
+
+    -o-transition: visibility 0s   linear 0.2s,
+        opacity    0.2s linear 0.6s,
+        width      0.2s linear 0.4s;
+
+    transition:
+        visibility 0s   linear 0.2s,
+        opacity    0.2s linear 0.6s,
+        width      0.2s linear 0.4s;
+}
+
+.csspointerevents .medium-editor-use-touch .medium-editor-toolbar-form:before {
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    -webkit-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+
+       -moz-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+
+            box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+}
+
+.csspointerevents .medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form:before {
+    -webkit-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+            box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- FORM NAV -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-nav {
+    height: 48px;
+}
+
+.medium-editor-use-touch .medium-editor-form-nav-close {
+    vertical-align: middle;
+    font-size: 25px;
+
+    width: 32px;
+    height: 32px;
+    padding-right: 5px;
+
+    -webkit-box-align: start;
+
+    -webkit-align-items: flex-start;
+
+       -moz-box-align: start;
+
+        -ms-flex-align: start;
+
+                -ms-grid-row-align: flex-start;
+
+            align-items: flex-start;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+       -moz-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- TABS -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-tab {
+    top: 48px;
+
+    height: -webkit-calc(100% - 48px);
+
+    height: -moz-calc(100% - 48px);
+
+    height: calc(100% - 48px);
+}
+
+/*---------------------------- ANCHOR TAB ----------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-btns a {
+    -webkit-flex-basis: 56px;
+        -ms-flex-preferred-size: 56px;
+            flex-basis: 56px;
+}
+
+/*---------------------------- SECTION TAB ----------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-selector-option {
+    padding: 0 16px;
+}
+
+.medium-editor-use-touch .medium-editor-form-selector-option {
+    line-height: 41px;
+}
+
+/*====================================================================*/
+/*---------------------------- ANIMATIONS ----------------------------*/
+/*====================================================================*/
+
+@-webkit-keyframes medium-editor-move-toolbar-top-left {
+    from {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(6px, 6px);
+                transform: translate(6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-top-left {
+    from {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(6px, 6px);
+             transform: translate(6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-top-left {
+    from {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(6px, 6px);
+           transform: translate(6px, 6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-top-left {
+    from {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(6px, 6px);
+           -moz-transform: translate(6px, 6px);
+             -o-transform: translate(6px, 6px);
+                transform: translate(6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-top-left-active {
+    from {
+        -webkit-transform: translate(6px, 6px);
+                transform: translate(6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-top-left-active {
+    from {
+        -moz-transform: translate(6px, 6px);
+             transform: translate(6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-top-left-active {
+    from {
+        -o-transform: translate(6px, 6px);
+           transform: translate(6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-top-left-active {
+    from {
+        -webkit-transform: translate(6px, 6px);
+           -moz-transform: translate(6px, 6px);
+             -o-transform: translate(6px, 6px);
+                transform: translate(6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-bottom-left {
+    from {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(6px, -6px);
+                transform: translate(6px, -6px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-bottom-left {
+    from {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(6px, -6px);
+             transform: translate(6px, -6px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-bottom-left {
+    from {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(6px, -6px);
+           transform: translate(6px, -6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-bottom-left {
+    from {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(6px, -6px);
+           -moz-transform: translate(6px, -6px);
+             -o-transform: translate(6px, -6px);
+                transform: translate(6px, -6px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-bottom-left-active {
+    from {
+        -webkit-transform: translate(6px, -6px);
+                transform: translate(6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-bottom-left-active {
+    from {
+        -moz-transform: translate(6px, -6px);
+             transform: translate(6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-bottom-left-active {
+    from {
+        -o-transform: translate(6px, -6px);
+           transform: translate(6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-bottom-left-active {
+    from {
+        -webkit-transform: translate(6px, -6px);
+           -moz-transform: translate(6px, -6px);
+             -o-transform: translate(6px, -6px);
+                transform: translate(6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-top-right {
+    from {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(-6px, 6px);
+                transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-top-right {
+    from {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(-6px, 6px);
+             transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-top-right {
+    from {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(-6px, 6px);
+           transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-top-right {
+    from {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(-6px, 6px);
+           -moz-transform: translate(-6px, 6px);
+             -o-transform: translate(-6px, 6px);
+                transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+}
+
+
+@-webkit-keyframes medium-editor-move-toolbar-top-right-active {
+    from {
+        -webkit-transform: translate(-6px, 6px);
+                transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@-moz-keyframes medium-editor-move-toolbar-top-right-active {
+    from {
+        -moz-transform: translate(-6px, 6px);
+             transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@-o-keyframes medium-editor-move-toolbar-top-right-active {
+    from {
+        -o-transform: translate(-6px, 6px);
+           transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@keyframes medium-editor-move-toolbar-top-right-active {
+    from {
+        -webkit-transform: translate(-6px, 6px);
+           -moz-transform: translate(-6px, 6px);
+             -o-transform: translate(-6px, 6px);
+                transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes medium-editor-move-toolbar-bottom-right {
+    from {
+        -webkit-transform: translate(0px, 6px);
+                transform: translate(0px, 6px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(-6px, 0px);
+                transform: translate(-6px, 0px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes medium-editor-move-toolbar-bottom-right {
+    from {
+        -moz-transform: translate(0px, 6px);
+             transform: translate(0px, 6px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(-6px, 0px);
+             transform: translate(-6px, 0px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes medium-editor-move-toolbar-bottom-right {
+    from {
+        -o-transform: translate(0px, 6px);
+           transform: translate(0px, 6px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(-6px, 0px);
+           transform: translate(-6px, 0px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-bottom-right {
+    from {
+        -webkit-transform: translate(0px, 6px);
+           -moz-transform: translate(0px, 6px);
+             -o-transform: translate(0px, 6px);
+                transform: translate(0px, 6px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(-6px, 0px);
+           -moz-transform: translate(-6px, 0px);
+             -o-transform: translate(-6px, 0px);
+                transform: translate(-6px, 0px);
+        opacity: 0;
+    }
+}
+
+
+@-webkit-keyframes medium-editor-move-toolbar-bottom-right-active {
+    from {
+        -webkit-transform: translate(-6px, -6px);
+                transform: translate(-6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@-moz-keyframes medium-editor-move-toolbar-bottom-right-active {
+    from {
+        -moz-transform: translate(-6px, -6px);
+             transform: translate(-6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@-o-keyframes medium-editor-move-toolbar-bottom-right-active {
+    from {
+        -o-transform: translate(-6px, -6px);
+           transform: translate(-6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+
+@keyframes medium-editor-move-toolbar-bottom-right-active {
+    from {
+        -webkit-transform: translate(-6px, -6px);
+           -moz-transform: translate(-6px, -6px);
+             -o-transform: translate(-6px, -6px);
+                transform: translate(-6px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
 }
 
 .E .P_sortable-sections {
@@ -409,6 +3596,16 @@ body {
 
 .P_font-type-2 .P_PageSection--content {
     font-family: sans-serif;
+}
+
+.P_PageSection--content sup {
+    font-size: 70%;
+    vertical-align: super;
+}
+
+.P_PageSection--content sub {
+    font-size: 70%;
+    vertical-align: sub;
 }
 
 /*# sourceMappingURL=admin.css.map */

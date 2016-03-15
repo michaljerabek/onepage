@@ -1,0 +1,889 @@
+.medium-editor-toolbar *:not(input)  {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.medium-editor-toolbar * {
+    pointer-events: all;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------- TOOLBAR WRAPPER --------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-hidden {
+    display: none;
+}
+
+.medium-editor-toolbar {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    height: 180px;
+    width: 320px;
+
+    color: #404040;
+    opacity: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    pointer-events: none;
+    visibility: hidden;
+
+    will-change: opacity, top, left, transform;
+    transition:
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar {
+    margin-top: -6px;
+
+    align-items: flex-start;
+}
+
+.medium-editor-toolbar-active {
+    z-index: 11000;
+
+    opacity: 1;
+
+    visibility: visible;
+    transition:
+        top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar-active.medium-editor-first-show {
+    transition:
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s;
+}
+
+.medium-editor-toolbar.medium-editor-stalker-toolbar {
+    animation-name: medium-editor-move-toolbar-down;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+}
+
+.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    animation-name: medium-editor-move-toolbar-up;
+    animation-duration: 0.1s;
+    animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+}
+
+.medium-editor-toolbar-active.medium-editor-first-show.medium-editor-stalker-toolbar {
+    animation-delay: 0.1s;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar.medium-editor-stalker-toolbar {
+    animation-name: medium-editor-move-toolbar-up;
+}
+
+.medium-toolbar-arrow-over.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    animation-name: medium-editor-move-toolbar-down;
+}
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR ACTIONS -------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-toolbar ul {
+    text-align: center;
+
+    position: relative;
+    margin: 0;
+
+    min-width: 200px;
+    max-width: 320px;
+    height: 43px;
+    padding: 0;
+
+    background-color: #f9f9f9;
+    border-top: 3px solid currentColor;
+    border-bottom: 0px solid currentColor;
+    border-radius: 4px;
+    box-shadow:
+        inset 0px  0px 12px rgba(34, 34, 34, 0.05),
+              0px -4px 16px rgba(34, 34, 34, 0.5);
+
+    display: flex !important;
+
+    will-change: width, height, transform;
+}
+
+.medium-toolbar-arrow-under.medium-editor-toolbar ul {
+    border-top-width: 0px;
+    border-bottom-width: 3px;
+    box-shadow:
+        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
+              0px 4px 16px rgba(34, 34, 34, 0.5);
+}
+
+.csspointerevents .medium-editor-toolbar ul:before {
+    content: "";
+
+    margin: auto;
+    z-index: 2;
+    position: absolute;
+    top: -1px;
+    left: 0px;
+    bottom: 0;
+
+    width: 100%;
+    height: calc(100% + 1px);
+
+    border-radius: 4px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-width: 0;
+    box-shadow:
+        inset  1px  1px 1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px 1px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+
+    transition: inherit;
+}
+
+.csspointerevents .medium-toolbar-arrow-under.medium-editor-toolbar ul:before {
+    top: 1px;
+
+    border-radius: 4px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    box-shadow:
+        inset -1px -1px 1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px 1px rgba(34, 34, 34, 0.15);
+}
+
+.medium-editor-toolbar .medium-editor-default-actions-hidden {
+    max-width: 280px;
+    min-width: 280px;
+    height: 100%;
+
+    transition:
+        border    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        height    0.2s linear                       0.4s;
+}
+
+.medium-editor-toolbar.medium-editor-left-edge {
+    justify-content: flex-start;
+}
+
+.medium-editor-toolbar.medium-editor-right-edge {
+    justify-content: flex-end;
+}
+
+.medium-editor-toolbar .medium-editor-default-actions-displayed {
+    min-width: 200px;
+    height: 43px;
+
+    transition:
+        min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        height    0.2s linear                    0.2s;
+}
+
+.medium-editor-toolbar .medium-editor-before-fill,
+.medium-editor-toolbar .medium-editor-after-fill {
+    flex-grow: 1;
+
+    transition: all 0.1s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-left-edge .medium-editor-before-fill,
+.medium-editor-right-edge .medium-editor-after-fill {
+    flex-grow: 0;
+}
+
+.medium-editor-toolbar.medium-editor-first-show .medium-editor-before-fill,
+.medium-editor-toolbar.medium-editor-first-show .medium-editor-after-fill {
+    transition: none;
+}
+
+/*---------------------------- ARROW ----------------------------*/
+
+.medium-editor-toolbar ul:after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+
+    height: 0;
+    width: 0;
+
+    border-style: solid;
+    border-width: 8px;
+}
+
+.medium-editor-toolbar ul:after {
+    top: -19px;
+
+    border-color: transparent transparent currentColor transparent;
+}
+
+.medium-toolbar-arrow-under ul:after {
+    top: auto;
+    bottom: -19px;
+
+    border-color: currentColor transparent transparent transparent;
+}
+
+/*---------------------------- BUTTONS ----------------------------*/
+
+.medium-editor-toolbar li {
+    position: relative;
+    margin: 0;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    list-style: none;
+
+    overflow: hidden;
+    display: flex;
+}
+
+.medium-editor-toolbar li:first-of-type {
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 4px;
+}
+
+.medium-editor-toolbar li:last-of-type  {
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 4px;
+}
+
+.medium-editor-toolbar.medium-toolbar-arrow-over li:first-of-type {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 4px;
+}
+
+.medium-editor-toolbar.medium-toolbar-arrow-over li:last-of-type {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 4px;
+}
+
+.medium-editor-toolbar li button {
+    font-size: 14px;
+    line-height: 40px;
+    vertical-align: middle;
+
+    padding: 0;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+
+    color: #404040;
+    background-color: transparent;
+    border-radius: inherit;
+    border: none;
+    opacity: 1;
+
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    justify-content: center;
+
+    outline: none;
+    cursor: pointer;
+
+    will-change: opacity, box-shadow, background-color, color;
+    transition:
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-toolbar li button:hover {
+    transition:
+        color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+}
+
+.medium-editor-toolbar li button ::first-line {
+    line-height: 40px;
+
+    color: inherit;
+}
+
+.csspointerevents .medium-editor-toolbar li button:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: inherit;
+    box-shadow: inset 1px 1px 0px rgba(34, 34, 34, 0.04);
+    opacity: 1;
+
+    pointer-events: none;
+
+    transition: inherit;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-hidden li button:after,
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-hidden li button {
+    opacity: 0;
+
+    transition:
+        opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:after,
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button {
+    opacity: 1;
+
+    transition:
+        opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-toolbar li button:not(:disabled):hover {
+    background-color: #fef4e7;
+}
+
+.medium-editor-toolbar li button:not(:disabled):hover:after {
+    box-shadow: inset 1px 1px 0px rgba(251, 167, 66, 0.08);
+}
+
+.medium-editor-toolbar li button.medium-editor-button-active:hover,
+.medium-editor-toolbar li button.medium-editor-button-active {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #fba742;
+    box-shadow:
+        inset 2px 2px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+}
+
+.csspointerevents .medium-editor-toolbar li .medium-editor-button-active:after {
+    box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
+}
+
+.medium-editor-toolbar.medium-editor-toolbar-active li button .medium-editor-button-active:active,
+.medium-editor-toolbar.medium-editor-toolbar-active li button:not(:disabled):active {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #f09629;
+    box-shadow:
+        inset 3px 3px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:hover:after,
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:hover {
+    transition:
+        opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:active:after,
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:active {
+    transition:
+        opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+.medium-editor-toolbar li button:disabled {
+    color: rgba(64, 64, 64, 0.25);
+    background-color: #f2f2f2;
+
+    cursor: default;
+}
+
+ium-editor-toolbar li button:disabled:not(:hover) {
+    transition:
+        opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:disabled:not(:hover):after,
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:disabled:not(:hover) {
+    transition:
+        opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar li button:disabled:hover:active,
+.medium-editor-toolbar li button:disabled:active {
+    background-color: #d7d7d7;
+}
+
+.medium-editor-toolbar .medium-editor-has-action-subscript,
+.medium-editor-toolbar .medium-editor-has-action-superscript {
+    vertical-align: top;
+}
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- ANCHOR PREVIEW --------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-anchor-preview {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+
+    text-align: center;
+    line-height: 1.4;
+    word-break: break-all;
+    word-wrap: break-word;
+
+    z-index: 2000;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    max-width: 280px;
+
+    visibility: hidden;
+}
+
+.medium-editor-anchor-preview a {
+    margin: 5px 5px 10px;
+
+    color: #fff;
+
+    display: inline-block;
+}
+
+.medium-editor-anchor-preview-active {
+    visibility: visible;
+}
+
+/*--------------------------------------------------------------------*/
+/*---------------------------- PLACEHOLDER ---------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-placeholder {
+    position: relative;
+}
+
+.medium-editor-placeholder:after {
+    content: attr(data-placeholder) !important;
+
+    font-style: italic;
+    white-space: pre;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: inherit;
+
+    padding: inherit;
+}
+
+/*====================================================================*/
+/*--------------------------- TOUCH VERSION --------------------------*/
+/*====================================================================*/
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR WRAPPER -------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch.medium-editor-toolbar,
+.medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active {
+    position: absolute;
+    top: auto;
+    left: auto;
+
+    width: 320px;
+    height: 488px;
+    padding: 20px 20px 20px 0;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    overflow: hidden;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar,
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar.medium-editor-toolbar-active {
+    top: 4vh;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar,
+    .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar.medium-editor-toolbar-active {
+        top: 2vh;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-force-left.medium-editor-toolbar,
+.medium-editor-use-touch.medium-editor-force-left.medium-editor-toolbar.medium-editor-toolbar-active {
+    left: 0px;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar,
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-editor-toolbar-active {
+    right: 0px;
+
+    padding: 20px 0px 20px 20px;
+
+    justify-content: flex-end;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar,
+.medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-force-bottom.medium-editor-toolbar {
+    bottom: 4vh;
+
+    align-items: flex-end;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar,
+    .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-force-bottom.medium-editor-toolbar {
+        bottom: 2vh;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-toolbar.medium-editor-stalker-toolbar,
+.medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-stalker-toolbar,
+.medium-editor-use-touch.medium-editor-toolbar.medium-editor-stalker-toolbar,
+.medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-stalker-toolbar {
+    animation: none;
+}
+
+/*--------------------------------------------------------------------*/
+/*-------------------------- TOOLBAR ACTIONS -------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch.medium-editor-toolbar ul {
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+}
+
+.medium-editor-use-touch.medium-editor-toolbar-active ul {
+    animation-duration: 0.1s;
+    animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar ul {
+    animation-name: medium-editor-move-toolbar-top-right;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar-active ul {
+    animation-name: medium-editor-move-toolbar-top-right-active;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar ul {
+    animation-name: medium-editor-move-toolbar-bottom-right;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar-active ul {
+    animation-name: medium-editor-move-toolbar-bottom-right-active;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-force-right.medium-editor-toolbar ul {
+    animation-name: medium-editor-move-toolbar-top-left;
+}
+
+.medium-editor-use-touch.medium-editor-force-top.medium-editor-force-right.medium-editor-toolbar-active ul {
+    animation-name: medium-editor-move-toolbar-top-left-active;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-force-right.medium-editor-toolbar ul {
+    animation-name: medium-editor-move-toolbar-bottom-left;
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom.medium-editor-force-right.medium-editor-toolbar-active ul {
+    animation-name: medium-editor-move-toolbar-bottom-left-active;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar ul,
+.medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-under ul,
+.medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+    /*iOS fix*/
+    bottom: 0px;
+    right: 0%;
+
+    min-width: 56px;
+    width: 56px;
+    min-height: 168px;
+    height: auto;
+    max-height: 100%;
+
+    border: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: 4px 0px 16px rgba(34, 34, 34, 0.5);
+
+    display: flex !important; /*nutné přepsat style attr*/
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+
+    overflow: hidden;
+}
+
+.csspointerevents .medium-editor-use-touch.medium-editor-toolbar ul:before {
+    top: 0px;
+
+    height: 100%;
+
+    border-radius: inherit;
+    box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+}
+
+.csspointerevents .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul:before {
+    box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-toolbar ul,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-under ul,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+        flex-direction: row;
+    }
+
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul.medium-editor-has-more-then-4-actions,
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-under ul.medium-editor-has-more-then-4-actions,
+    .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-over ul.medium-editor-has-more-then-4-actions {
+        flex-direction: row-reverse;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-has-more-then-4-actions,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-has-more-then-4-actions {
+        /*iOS fix*/
+        top: 0px;
+        left: 0%;
+
+        min-width: 112px;
+
+        flex-wrap: wrap;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-4-actions,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-4-actions{
+        min-height: 168px;
+        max-height: 168px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-6-actions,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-6-actions {
+        min-height: 224px;
+        max-height: 224px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-8-actions,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-default-actions-displayed.medium-editor-has-more-then-8-actions {
+        min-height: 280px;
+        max-height: 280px;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul,
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-under ul,
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar.medium-toolbar-arrow-over ul {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    box-shadow: -4px 0px 16px rgba(34, 34, 34, 0.5);
+}
+
+.medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-hidden {
+    min-height: 224px;
+    max-height: 224px;
+    width: 100%;
+    max-width: 100%;
+
+    transition:
+        max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
+        width      0.2s linear                     0.4s;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-has-more-then-4-actions.medium-editor-default-actions-hidden,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-toolbar-active ul.medium-editor-has-more-then-4-actions .medium-editor-default-actions-hidden {
+        max-height: 168px;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-toolbar ul.medium-editor-default-actions-displayed {
+    min-width: 56px;
+    min-height: 168px;
+    width: 56px;
+
+    transition:
+        min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
+        width      0.2s linear                    0.2s;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar .medium-editor-before-fill,
+.medium-editor-use-touch.medium-editor-toolbar .medium-editor-after-fill {
+    display: none;
+}
+
+/*---------------------------- ARROWS ----------------------------*/
+
+.medium-editor-use-touch ul:after,
+.medium-editor-use-touch.medium-toolbar-arrow-under ul:after {
+    display: none;
+}
+
+/*---------------------------- BUTTONS ----------------------------*/
+
+.medium-editor-use-touch.medium-editor-toolbar li {
+    width: 56px;
+    height: 56px;
+    min-height: 56px;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li button {
+    line-height: 56px;
+
+    width: 56px;
+    height: 56px;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li button ::first-line {
+    line-height: 56px;
+}
+
+.csspointerevents .medium-editor-toolbar li button:after {
+    box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
+}
+
+.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:after {
+    box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
+}
+
+.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:not(:disabled):hover:after {
+    box-shadow: inset 1px -1px 0px rgba(251, 167, 66, 0.08);
+}
+
+.csspointerevents .medium-editor-toolbar li button.medium-editor-button-active:after {
+    box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li:first-of-type button,
+.medium-editor-use-touch.medium-editor-toolbar li:first-of-type {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 4px;
+}
+
+.medium-editor-use-touch.medium-editor-toolbar li:last-of-type button,
+.medium-editor-use-touch.medium-editor-toolbar li:last-of-type {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 0px;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:first-of-type button,
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:first-of-type {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 0px;
+}
+
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:last-of-type button,
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar li:last-of-type {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 4px;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(1n),
+    .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(1n) button {
+        border-radius: 0;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(2) button,
+    .medium-editor-use-touch.medium-editor-toolbar .medium-editor-has-more-then-4-actions li:nth-of-type(2) {
+        border-top-right-radius: 4px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar li:last-of-type:nth-of-type(even) button,
+    .medium-editor-use-touch.medium-editor-toolbar li:last-of-type:nth-of-type(even) {
+        border-bottom-right-radius: 4px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-force-right .medium-editor-has-more-then-4-actions li:nth-of-type(2) button,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-force-right .medium-editor-has-more-then-4-actions li:nth-of-type(2) {
+        border-top-right-radius: 0px;
+        border-top-left-radius: 4px;
+    }
+
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-force-right li:last-of-type:nth-of-type(even) button,
+    .medium-editor-use-touch.medium-editor-toolbar.medium-editor-force-right li:last-of-type:nth-of-type(even) {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 4px;
+    }
+}
+
+/*====================================================================*/
+/*---------------------------- ANIMATIONS ----------------------------*/
+/*====================================================================*/
+
+@keyframes medium-editor-move-toolbar-up {
+    from {
+        transform: translateY(6px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes medium-editor-move-toolbar-down {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(6px);
+    }
+}

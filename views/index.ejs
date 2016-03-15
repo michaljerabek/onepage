@@ -4,6 +4,11 @@
 <head>
     <title><%= title %></title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--FONTS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
     <!--STYLES-->
     <% if (typeof isAdmin !== "undefined") { %>
         <link rel="stylesheet" href="css/admin.css">
@@ -19,6 +24,8 @@
         <script>var env = "<%= env %>";</script>
     <% } %>
 
+    <script src="js/modernizr-custom.js"></script>
+
 </head>
 
 <body>
@@ -26,8 +33,9 @@
     <div id="app"><%- ractiveHtml %></div>
 
 <!--    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>-->
-    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
     <% if (typeof isAdmin !== "undefined") { %>
         <script src="js/admin.bundle.js"></script>
     <% } else { %>

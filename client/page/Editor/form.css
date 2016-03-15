@@ -1,0 +1,614 @@
+/*====================================================================*/
+/*------------------------------ ME-FORM -----------------------------*/
+/*====================================================================*/
+
+.medium-editor-toolbar-form {
+    z-index: -1;
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
+
+    width: 280px;
+    height: 40px;
+
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border-bottom: 3px solid currentColor;
+    border-top: 0px solid currentColor;
+    opacity: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    will-change: opacity, width, height, left;
+    transition:
+        left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.4s,
+        visibility 0s   linear                       0.4s,
+        opacity    0.2s linear                       0s,
+        height     0.2s linear                       0.2s;
+}
+
+.csspointerevents .medium-editor-toolbar-form:after {
+    content: "";
+
+    z-index: 5;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    box-shadow:
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+
+    pointer-events: none;
+}
+
+.csspointerevents .medium-toolbar-arrow-under .medium-editor-toolbar-form:after {
+    box-shadow:
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+}
+
+.medium-toolbar-arrow-over .medium-editor-toolbar-form {
+    bottom: auto;
+    top: 0;
+
+    border-top-width: 3px;
+    border-bottom-width: 0;
+}
+
+.medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+    z-index: 1;
+
+    height: 100%;
+
+    opacity: 1;
+
+    pointer-events: all;
+    overflow: hidden;
+
+    transition:
+        left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.2s,
+        visibility 0s   linear                       0.2s,
+        opacity    0.2s linear                       0.6s,
+        height     0.2s linear                       0.4s;
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- FORM NAV -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-form-nav {
+    z-index: 4;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 40px;
+    width: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.medium-editor-form-nav-close {
+    font-size: 23px;
+    line-height: 1;
+    text-decoration: none;
+
+    z-index: 10;
+    position:absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    color: #404040;
+    opacity: 0.5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-form-nav-close:hover {
+    opacity: 1;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-form-nav-close:active {
+    transform: scale(0.95);
+
+    transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+[id*="medium-editor-open-tab"]:last-of-type:not(:checked) ~ .medium-editor-form-nav .medium-editor-form-open-tab:last-of-type:hover ~ .medium-editor-form-nav-close {
+    color: #fff;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.csspointerevents .medium-editor-form-nav:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    box-shadow: inset 0px -1px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab {
+    font-size: 14px;
+
+    flex-basis: 50%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:hover {
+    font-weight: bold;
+
+    color: #fff;
+    background-color: #404040;
+    box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:nth-of-type(2):hover {
+    font-weight: bold;
+
+    color: #fff;
+    background-color: #404040;
+    box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:nth-of-type(1n):active {
+    color: #fff;
+    background-color: #f09629;
+    box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+
+    transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:nth-of-type(2):active {
+    box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+}
+
+[id*="medium-editor-open-tab-2"]:checked ~ .medium-editor-form-nav [for*="medium-editor-open-tab-2"],
+[id*="medium-editor-open-tab-1"]:checked ~ .medium-editor-form-nav [for*="medium-editor-open-tab-1"] {
+    font-weight: bold;
+
+    color: #fff;
+    background-color: #fba742;
+    box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+}
+
+[id*="medium-editor-open-tab-2"]:checked ~ .medium-editor-form-nav [for*="medium-editor-open-tab-2"] {
+    box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.15);
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- TABS -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-form-tab {
+    z-index: 0;
+    position: absolute;
+    top: 40px;
+    left: -8px;
+
+    width: calc(100% + 16px);
+    width: calc(100% + 16px);
+    height: 137px;
+    padding: 0 8px;
+
+    background-color: #f7f7f7;
+    opacity: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    visibility: hidden;
+
+    transition:
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s;
+}
+
+.csspointerevents .medium-editor-form-tab:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    box-shadow: inset 0px 1px 4px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.csspointerevents .medium-toolbar-arrow-over .medium-editor-form-tab:after {
+    box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
+}
+
+/*---------------------------- ANCHOR TAB ----------------------------*/
+
+.medium-editor-form-tab-anchor {
+    padding: 6px 20px;
+}
+
+[id*="medium-editor-open-tab-2"]:checked ~ .medium-editor-form-tabs .medium-editor-form-tab:nth-of-type(2) ,
+[id*="medium-editor-open-tab-1"]:checked ~ .medium-editor-form-tabs .medium-editor-form-tab:nth-of-type(1) {
+    z-index: 1;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+        opacity    0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s     linear                       0s,
+        visibility 0s     linear                       0s;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input {
+    font-size: 14px;
+    line-height: 34px;
+
+    margin-bottom: 8px;
+
+    height: 34px;
+    width: 100%;
+    padding: 0 12px;
+
+    border-radius: 4px;
+    border: 1px solid #d7d7d7;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.medium-editor-form-tab-anchor label {
+    font-size: 14px;
+    line-height: 17px;
+    text-indent: 1px;
+    font-weight: bold;
+
+    margin-top: 4px;
+    margin-bottom: 6px;
+
+    display: block;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input:focus,
+.medium-editor-toolbar-form label:focus {
+    box-shadow: none;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.medium-editor-form-btns {
+    margin-top: auto;
+
+    height: 42px;
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.medium-editor-use-touch .medium-editor-form-btns {
+    height: 56px;
+}
+
+.medium-editor-toolbar-form .medium-editor-form-btns a {
+    font-size: 23px;
+    text-decoration: none;
+
+    margin-left: 12px;
+
+    flex-basis: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: inherit;
+}
+
+/*---------------------------- SECTION TAB ----------------------------*/
+
+.medium-editor-form-selector {
+    position: relative;
+
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.medium-editor-form-selector-option {
+    font-size: 14px;
+    line-height: 34px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    padding: 0 12px;
+
+    cursor: pointer;
+    overflow: hidden;
+
+    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-form-selector-option:not(:last-child) {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.medium-editor-form-selector-option:focus,
+.medium-editor-form-selector-option:hover {
+    color: #fff;
+    background-color: #404040;
+    border-color: #303030;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-form-selector-option:active {
+    color: #fff;
+    background-color: #fba742;
+    border-color: #e49639;
+
+    transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+/*====================================================================*/
+/*--------------------------- TOUCH VERSION --------------------------*/
+/*====================================================================*/
+
+.medium-editor-use-touch .medium-editor-toolbar-form,
+.medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-toolbar-form,
+.medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    bottom: auto;
+    top: 20px;
+    left: 0;
+    right: auto;
+
+    height: 224px;
+    max-height: 224px;
+    width: 56px;
+
+    border: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    transition:
+        z-index    0s   linear 0.4s,
+        visibility 0s   linear 0.4s,
+        opacity    0.2s linear 0s,
+        width      0.2s linear 0.2s;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form,
+    .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form,
+    .medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form {
+        width: 112px;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom .medium-editor-toolbar-form,
+.medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-over .medium-editor-toolbar-form,
+.medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    bottom: 20px;
+    top: auto;
+}
+
+.medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form,
+.medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-over .medium-editor-toolbar-form,
+.medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    left: auto;
+    right: 0;
+
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.medium-editor-use-touch .medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+    height: 224px;
+    width: calc(100% - 20px);
+
+    transition:
+        visibility 0s   linear 0.2s,
+        opacity    0.2s linear 0.6s,
+        width      0.2s linear 0.4s;
+}
+
+.csspointerevents .medium-editor-use-touch .medium-editor-toolbar-form:before {
+    border-radius: inherit;
+
+    box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+}
+
+.csspointerevents .medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form:before {
+    box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- FORM NAV -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-nav {
+    height: 48px;
+}
+
+.medium-editor-use-touch .medium-editor-form-nav-close {
+    vertical-align: middle;
+    font-size: 25px;
+
+    width: 32px;
+    height: 32px;
+    padding-right: 5px;
+
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- TABS -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-tab {
+    top: 48px;
+
+    height: calc(100% - 48px);
+}
+
+/*---------------------------- ANCHOR TAB ----------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-btns a {
+    flex-basis: 56px;
+}
+
+/*---------------------------- SECTION TAB ----------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-selector-option {
+    padding: 0 16px;
+}
+
+.medium-editor-use-touch .medium-editor-form-selector-option {
+    line-height: 41px;
+}
+
+/*====================================================================*/
+/*---------------------------- ANIMATIONS ----------------------------*/
+/*====================================================================*/
+
+@keyframes medium-editor-move-toolbar-top-left {
+    from {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        transform: translate(6px, 6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-top-left-active {
+    from {
+        transform: translate(6px, 6px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-bottom-left {
+    from {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        transform: translate(6px, -6px);
+        opacity: 0;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-bottom-left-active {
+    from {
+        transform: translate(6px, -6px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-top-right {
+    from {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+}
+
+
+@keyframes medium-editor-move-toolbar-top-right-active {
+    from {
+        transform: translate(-6px, 6px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes medium-editor-move-toolbar-bottom-right {
+    from {
+        transform: translate(0px, 6px);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-6px, 0px);
+        opacity: 0;
+    }
+}
+
+
+@keyframes medium-editor-move-toolbar-bottom-right-active {
+    from {
+        transform: translate(-6px, -6px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}

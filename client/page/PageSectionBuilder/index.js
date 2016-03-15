@@ -4,10 +4,13 @@
 var slug = require("slugg");
 
 var DEF_SECTION_NAME = "sekce";
+var DEF_SECTION_INT_ID_PREFIX = "section-";
 
 module.exports = (function () {
 
     var page,
+
+        counter = 0,
 
         generateId = function (name, counter) {
 
@@ -31,12 +34,18 @@ module.exports = (function () {
             return id;
         },
 
+        generateInternalId = function () {
+
+            return DEF_SECTION_INT_ID_PREFIX + Date.now() + (counter++);
+        },
+
         create = function (type, rewriteData) {
 
             var dataTemplate = require("./../Components/PageSection/Types/" + type + "/dataTemplate.js")();
 
             var base = {
-                id: generateId(dataTemplate.name)
+                id: generateId(dataTemplate.name),
+                internalId: generateInternalId()
             };
 
             return $.extend(true, base, dataTemplate, rewriteData);
