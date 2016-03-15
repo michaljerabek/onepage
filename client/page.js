@@ -34,25 +34,6 @@ var ractive = function (settings) {
 
         oncomplete: function () {
 
-            var ractive = this;
-
-            $("body").on("click", "a[href^='#section-']", function (e) {
-
-                if (ractive.findComponent("Page").get("editMode") && !e.ctrlKey) {
-
-                    return true;
-                }
-
-                window.location.hash = "";
-
-                var sectionInternalId = this.href.split("#")[1],
-                    sectionId = $("[data-page-section-internal-id='" + sectionInternalId + "']").attr("id");
-
-                window.location.hash = "#" + sectionId;
-
-                e.preventDefault();
-                return false;
-            });
 
         }
     });

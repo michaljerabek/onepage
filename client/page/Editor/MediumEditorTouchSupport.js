@@ -205,6 +205,12 @@
 
                         return;
                     }
+
+                    if (!this.touchSupport.onToolbarTouchend) {
+
+                        this.base.toolbar.checkState();
+                    }
+
                     var args = arguments;
 
                     clearTimeout(this.touchSupport.selectionTimeout);

@@ -1,30 +1,3 @@
-
-html, body {
-    margin: 0;
-
-    max-width: 100%;
-    min-height: 100%;
-    padding: 0;
-}
-
-body {
-    position: relative;
-
-    will-change: scroll-position;
-}
-
-* {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-}
-
-*:after, *:before {
-    -webkit-box-sizing: inherit;
-       -moz-box-sizing: inherit;
-            box-sizing: inherit;
-}
-
 /*====================================================================*/
 /*------------------------- RESET + CLEARFIX -------------------------*/
 /*====================================================================*/
@@ -77,6 +50,194 @@ blockquote, q {
 * html .cf { height: 1%; }
 .cf { display: block; }
 
+
+html, body {
+    margin: 0;
+
+    max-width: 100%;
+    min-height: 100%;
+    padding: 0;
+}
+
+body {
+    position: relative;
+
+    will-change: scroll-position;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+*:after, *:before {
+    -webkit-box-sizing: inherit;
+       -moz-box-sizing: inherit;
+            box-sizing: inherit;
+}
+
+/* perfect-scrollbar v0.6.10 */
+
+.ps-container {
+    -ms-touch-action: none;
+    touch-action: none;
+    overflow: hidden !important;
+    -ms-overflow-style: none;
+}
+
+@supports (-ms-overflow-style: none) {
+    .ps-container {
+        overflow: auto !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+    .ps-container {
+        overflow: auto !important;
+    }
+}
+
+.ps-container.ps-active-x > .ps-scrollbar-x-rail, .ps-container.ps-active-y > .ps-scrollbar-y-rail {
+    display: block;
+}
+
+.ps-container.ps-in-scrolling {
+    pointer-events: none;
+}
+
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail, .ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+    opacity: 1;
+}
+
+.ps-container > .ps-scrollbar-x-rail, .ps-container > .ps-scrollbar-y-rail {
+    position: absolute;
+    right: 4px;
+
+    width: 6px;
+
+    -webkit-border-radius: 3px;
+
+       -moz-border-radius: 3px;
+
+            border-radius: 3px;
+    opacity: 0;
+
+    display: none;
+
+    -webkit-transition: opacity 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: opacity 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: opacity 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: opacity 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.ps-container > .ps-scrollbar-x-rail {
+    bottom: 4px;
+    right: auto;
+
+    width: auto;
+    height: 6px;
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x, .ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+    position: absolute;
+    right: 0;
+
+    width: 100%;
+
+    -webkit-border-radius: 3px;
+
+       -moz-border-radius: 3px;
+
+            border-radius: 3px;
+
+    -webkit-transition: background 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: background 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: background 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: background 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+    right: auto;
+    bottom: 0;
+
+    width: auto;
+    height: 100%;
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x:after, .ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y:after {
+    content: "";
+
+    position:absolute;
+    top: 4px;
+    right: 0px;
+
+    width: 100%;
+    height: -webkit-calc(100% - 8px);
+    height: -moz-calc(100% - 8px);
+    height: calc(100% - 8px);
+
+    background-color: rgba(0, 0, 0, 0.35);
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    -webkit-transition: inherit;
+
+    -moz-transition: inherit;
+
+    -o-transition: inherit;
+
+    transition: inherit;
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x:after {
+    top: auto;
+    bottom: 0px;
+    left: 4px;
+
+    width: -webkit-calc(100% - 8px);
+
+    width: -moz-calc(100% - 8px);
+
+    width: calc(100% - 8px);
+    height: 100%;
+}
+
+.ps-container:hover.ps-in-scrolling {
+    pointer-events: none;
+}
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x, .ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y, .ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x, .ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y {
+    -webkit-transition: background 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: background 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: background 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: background 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x:after, .ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y:after, .ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y:after, .ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x:after {
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail, .ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail, .ps-container:hover > .ps-scrollbar-x-rail, .ps-container:hover > .ps-scrollbar-y-rail, .ps-container:hover > .ps-scrollbar-x-rail:hover, .ps-container:hover > .ps-scrollbar-y-rail:hover {
+    opacity: 1;
+
+    -webkit-transition: opacity 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: opacity 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: opacity 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: opacity 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
 .medium-editor-toolbar *:not(input)  {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -106,7 +267,7 @@ blockquote, q {
     left: 0;
     top: 0;
 
-    height: 160px;
+    height: 180px;
     width: 320px;
 
     color: #404040;
@@ -136,36 +297,36 @@ blockquote, q {
     visibility: hidden;
 
     will-change: opacity, top, left, transform;
-    -webkit-transition: z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s ease-in-out 0s,
-        -webkit-transform 0.2s ease-out 0s;
-    transition: z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s ease-in-out 0s,
-        -webkit-transform 0.2s ease-out 0s;
-    -moz-transition: transform 0.2s ease-out 0s,
-        z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s ease-in-out 0s,
-        -moz-transform 0.2s ease-out 0s;
-    -o-transition: transform 0.2s ease-out 0s,
-        z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s ease-in-out 0s,
-        -o-transform 0.2s ease-out 0s;
-    transition: transform 0.2s ease-out 0s,
-        z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s ease-in-out 0s;
+    -webkit-transition: z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s;
     transition:
-        transform 0.2s ease-out 0s,
-        z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s ease-in-out 0s,
-        -webkit-transform 0.2s ease-out 0s,
-        -moz-transform 0.2s ease-out 0s,
-        -o-transform 0.2s ease-out 0s;
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s,
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
 }
 
 .medium-toolbar-arrow-over.medium-editor-toolbar {
@@ -185,97 +346,98 @@ blockquote, q {
 }
 
 .medium-editor-toolbar-active {
-    opacity: 1;
     z-index: 11000;
 
+    opacity: 1;
+
     visibility: visible;
-    -webkit-transition: top 0.2s ease-in-out 0s,
-        left 0.2s ease-in-out 0s,
-        bottom 0.2s ease-in-out 0s,
-        right 0.2s ease-in-out 0s,
-        z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        opacity 0.2s ease-in-out 0s,
-        -webkit-transform 0.2s ease-out 0s;
-    transition: top 0.2s ease-in-out 0s,
-        left 0.2s ease-in-out 0s,
-        bottom 0.2s ease-in-out 0s,
-        right 0.2s ease-in-out 0s,
-        z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        opacity 0.2s ease-in-out 0s,
-        -webkit-transform 0.2s ease-out 0s;
-    -moz-transition: top 0.2s ease-in-out 0s,
-        left 0.2s ease-in-out 0s,
-        bottom 0.2s ease-in-out 0s,
-        right 0.2s ease-in-out 0s,
-        z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        transform 0.2s ease-out 0s,
-        opacity 0.2s ease-in-out 0s,
-        -moz-transform 0.2s ease-out 0s;
-    -o-transition: top 0.2s ease-in-out 0s,
-        left 0.2s ease-in-out 0s,
-        bottom 0.2s ease-in-out 0s,
-        right 0.2s ease-in-out 0s,
-        z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        transform 0.2s ease-out 0s,
-        opacity 0.2s ease-in-out 0s,
-        -o-transform 0.2s ease-out 0s;
-    transition: top 0.2s ease-in-out 0s,
-        left 0.2s ease-in-out 0s,
-        bottom 0.2s ease-in-out 0s,
-        right 0.2s ease-in-out 0s,
-        z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        transform 0.2s ease-out 0s,
-        opacity 0.2s ease-in-out 0s;
+    -webkit-transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s;
     transition:
-        top 0.2s ease-in-out 0s,
-        left 0.2s ease-in-out 0s,
-        bottom 0.2s ease-in-out 0s,
-        right 0.2s ease-in-out 0s,
-        z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        transform 0.2s ease-out 0s,
-        opacity 0.2s ease-in-out 0s,
-        -webkit-transform 0.2s ease-out 0s,
-        -moz-transform 0.2s ease-out 0s,
-        -o-transform 0.2s ease-out 0s;
+        top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
 }
 
 .medium-editor-toolbar-active.medium-editor-first-show {
-    -webkit-transition: z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        opacity 0.2s ease-in-out 0s,
-        -webkit-transform 0.2s ease-out 0s;
-    transition: z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        opacity 0.2s ease-in-out 0s,
-        -webkit-transform 0.2s ease-out 0s;
-    -moz-transition: z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        transform 0.2s ease-out 0s,
-        opacity 0.2s ease-in-out 0s,
-        -moz-transform 0.2s ease-out 0s;
-    -o-transition: z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        transform 0.2s ease-out 0s,
-        opacity 0.2s ease-in-out 0s,
-        -o-transform 0.2s ease-out 0s;
-    transition: z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        transform 0.2s ease-out 0s,
-        opacity 0.2s ease-in-out 0s;
+    -webkit-transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s;
     transition:
-        z-index 0s linear 0s,
-        visibility 0s linear 0s,
-        transform 0.2s ease-out 0s,
-        opacity 0.2s ease-in-out 0s,
-        -webkit-transform 0.2s ease-out 0s,
-        -moz-transform 0.2s ease-out 0s,
-        -o-transform 0.2s ease-out 0s;
+        z-index    0s   linear                       0s,
+        visibility 0s   linear                       0s,
+        transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0.1s,
+        -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
+        -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
 }
 
 .medium-editor-toolbar.medium-editor-stalker-toolbar {
@@ -283,18 +445,18 @@ blockquote, q {
        -moz-animation-name: medium-editor-move-toolbar-down;
          -o-animation-name: medium-editor-move-toolbar-down;
             animation-name: medium-editor-move-toolbar-down;
-    -webkit-animation-duration: 0.2s;
-       -moz-animation-duration: 0.2s;
-         -o-animation-duration: 0.2s;
-            animation-duration: 0.2s;
+    -webkit-animation-duration: 0.3s;
+       -moz-animation-duration: 0.3s;
+         -o-animation-duration: 0.3s;
+            animation-duration: 0.3s;
     -webkit-animation-fill-mode: forwards;
        -moz-animation-fill-mode: forwards;
          -o-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
-    -webkit-animation-timing-function: ease-in-out;
-       -moz-animation-timing-function: ease-in-out;
-         -o-animation-timing-function: ease-in-out;
-            animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+       -moz-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+         -o-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+            animation-timing-function: cubic-bezier(.05, .4, .4, 1);
 }
 
 .medium-editor-toolbar-active.medium-editor-stalker-toolbar {
@@ -302,6 +464,21 @@ blockquote, q {
        -moz-animation-name: medium-editor-move-toolbar-up;
          -o-animation-name: medium-editor-move-toolbar-up;
             animation-name: medium-editor-move-toolbar-up;
+    -webkit-animation-duration: 0.1s;
+       -moz-animation-duration: 0.1s;
+         -o-animation-duration: 0.1s;
+            animation-duration: 0.1s;
+    -webkit-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+       -moz-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+         -o-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+            animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+}
+
+.medium-editor-toolbar-active.medium-editor-first-show.medium-editor-stalker-toolbar {
+    -webkit-animation-delay: 0.1s;
+       -moz-animation-delay: 0.1s;
+         -o-animation-delay: 0.1s;
+            animation-delay: 0.1s;
 }
 
 .medium-toolbar-arrow-over.medium-editor-toolbar.medium-editor-stalker-toolbar {
@@ -340,14 +517,14 @@ blockquote, q {
        -moz-border-radius: 4px;
             border-radius: 4px;
     -webkit-box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        0px -4px 16px rgba(34, 34, 34, 0.5);
+        inset 0px  0px 12px rgba(34, 34, 34, 0.05),
+              0px -4px 16px rgba(34, 34, 34, 0.5);
        -moz-box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        0px -4px 16px rgba(34, 34, 34, 0.5);
+        inset 0px  0px 12px rgba(34, 34, 34, 0.05),
+              0px -4px 16px rgba(34, 34, 34, 0.5);
             box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        0px -4px 16px rgba(34, 34, 34, 0.5);
+        inset 0px  0px 12px rgba(34, 34, 34, 0.05),
+              0px -4px 16px rgba(34, 34, 34, 0.5);
 
     display: -webkit-box !important;
 
@@ -367,13 +544,13 @@ blockquote, q {
     border-bottom-width: 3px;
     -webkit-box-shadow:
         inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        0px 4px 16px rgba(34, 34, 34, 0.5);
+              0px 4px 16px rgba(34, 34, 34, 0.5);
        -moz-box-shadow:
         inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        0px 4px 16px rgba(34, 34, 34, 0.5);
+              0px 4px 16px rgba(34, 34, 34, 0.5);
             box-shadow:
         inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        0px 4px 16px rgba(34, 34, 34, 0.5);
+              0px 4px 16px rgba(34, 34, 34, 0.5);
 }
 
 .csspointerevents .medium-editor-toolbar ul:before {
@@ -404,13 +581,13 @@ blockquote, q {
             border-top-right-radius: 2px;
     border-width: 0;
     -webkit-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px 1px rgba(34, 34, 34, 0.1),
         inset -1px -1px 1px rgba(34, 34, 34, 0.15);
        -moz-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px 1px rgba(34, 34, 34, 0.1),
         inset -1px -1px 1px rgba(34, 34, 34, 0.15);
             box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px 1px rgba(34, 34, 34, 0.1),
         inset -1px -1px 1px rgba(34, 34, 34, 0.15);
 
     pointer-events: none;
@@ -440,47 +617,56 @@ blockquote, q {
             border-bottom-right-radius: 2px;
     -webkit-box-shadow:
         inset -1px -1px 1px rgba(34, 34, 34, 0.1),
-        inset 1px 1px 1px rgba(34, 34, 34, 0.15);
+        inset  1px  1px 1px rgba(34, 34, 34, 0.15);
        -moz-box-shadow:
         inset -1px -1px 1px rgba(34, 34, 34, 0.1),
-        inset 1px 1px 1px rgba(34, 34, 34, 0.15);
+        inset  1px  1px 1px rgba(34, 34, 34, 0.15);
             box-shadow:
         inset -1px -1px 1px rgba(34, 34, 34, 0.1),
-        inset 1px 1px 1px rgba(34, 34, 34, 0.15);
+        inset  1px  1px 1px rgba(34, 34, 34, 0.15);
 }
 
 .medium-editor-toolbar .medium-editor-default-actions-hidden {
-    max-width: 240px;
+    max-width: 280px;
+    min-width: 280px;
     height: 100%;
 
-    -webkit-transition: border 0.2s ease-in-out 0s,
-        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        max-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        height 0.2s linear 0.4s;
+    -webkit-transition: border    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        height    0.2s linear                       0.4s;
 
-    -moz-transition: border 0.2s ease-in-out 0s,
-        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        max-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        height 0.2s linear 0.4s;
+    -moz-transition: border    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        height    0.2s linear                       0.4s;
 
-    -o-transition: border 0.2s ease-in-out 0s,
-        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        max-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        height 0.2s linear 0.4s;
+    -o-transition: border    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        height    0.2s linear                       0.4s;
 
     transition:
-        border 0.2s ease-in-out 0s,
-        min-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        max-width 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        height 0.2s linear 0.4s;
+        border    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        min-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        max-width 0.2s cubic-bezier(0.5, 1, 1, 1)   0.2s,
+        height    0.2s linear                       0.4s;
 }
 
-.medium-editor-left-edge ul {
-    text-align: left;
+.medium-editor-toolbar.medium-editor-left-edge {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+       -moz-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
 }
 
-.medium-editor-right-edge ul {
-    text-align: right;
+.medium-editor-toolbar.medium-editor-right-edge {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+       -moz-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
 }
 
 .medium-editor-toolbar .medium-editor-default-actions-displayed {
@@ -489,20 +675,20 @@ blockquote, q {
 
     -webkit-transition: min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
         max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        height 0.2s linear 0.2s;
+        height    0.2s linear                    0.2s;
 
     -moz-transition: min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
         max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        height 0.2s linear 0.2s;
+        height    0.2s linear                    0.2s;
 
     -o-transition: min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
         max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        height 0.2s linear 0.2s;
+        height    0.2s linear                    0.2s;
 
     transition:
         min-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
         max-width 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        height 0.2s linear 0.2s;
+        height    0.2s linear                    0.2s;
 }
 
 .medium-editor-toolbar .medium-editor-before-fill, .medium-editor-toolbar .medium-editor-after-fill {
@@ -512,13 +698,13 @@ blockquote, q {
         -ms-flex-positive: 1;
             flex-grow: 1;
 
-    -webkit-transition: all 0.2s ease-in-out 0s;
+    -webkit-transition: all 0.1s cubic-bezier(.8, .4, .2, .8) 0s;
 
-    -moz-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.1s cubic-bezier(.8, .4, .2, .8) 0s;
 
-    -o-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.1s cubic-bezier(.8, .4, .2, .8) 0s;
 
-    transition: all 0.2s ease-in-out 0s;
+    transition: all 0.1s cubic-bezier(.8, .4, .2, .8) 0s;
 }
 
 .medium-editor-left-edge .medium-editor-before-fill, .medium-editor-right-edge .medium-editor-after-fill {
@@ -567,7 +753,7 @@ blockquote, q {
 
 /*---------------------------- BUTTONS ----------------------------*/
 
-.medium-editor-toolbar ul li {
+.medium-editor-toolbar li {
     position: relative;
     margin: 0;
 
@@ -583,46 +769,48 @@ blockquote, q {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-
-    -webkit-transition: border 0.2s ease-in-out 0s,
-        width 0.2s ease-in-out 0s,
-        height 0.2s ease-in-out 0s;
-
-    -moz-transition: border 0.2s ease-in-out 0s,
-        width 0.2s ease-in-out 0s,
-        height 0.2s ease-in-out 0s;
-
-    -o-transition: border 0.2s ease-in-out 0s,
-        width 0.2s ease-in-out 0s,
-        height 0.2s ease-in-out 0s;
-
-    transition:
-        border 0.2s ease-in-out 0s,
-        width 0.2s ease-in-out 0s,
-        height 0.2s ease-in-out 0s;
 }
 
 .medium-editor-toolbar li:first-of-type {
-    -webkit-border-bottom-left-radius: 4px;
-       -moz-border-radius-bottomleft: 4px;
-            border-bottom-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 2px;
+       -moz-border-radius-bottomleft: 2px;
+            border-bottom-left-radius: 2px;
     -webkit-border-top-left-radius: 4px;
        -moz-border-radius-topleft: 4px;
             border-top-left-radius: 4px;
 }
 
 .medium-editor-toolbar li:last-of-type  {
-    -webkit-border-bottom-right-radius: 4px;
-       -moz-border-radius-bottomright: 4px;
-            border-bottom-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 2px;
+       -moz-border-radius-bottomright: 2px;
+            border-bottom-right-radius: 2px;
     -webkit-border-top-right-radius: 4px;
        -moz-border-radius-topright: 4px;
             border-top-right-radius: 4px;
 }
 
+.medium-editor-toolbar.medium-toolbar-arrow-over li:first-of-type {
+    -webkit-border-top-left-radius: 2px;
+       -moz-border-radius-topleft: 2px;
+            border-top-left-radius: 2px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+}
+
+.medium-editor-toolbar.medium-toolbar-arrow-over li:last-of-type {
+    -webkit-border-top-right-radius: 2px;
+       -moz-border-radius-topright: 2px;
+            border-top-right-radius: 2px;
+    -webkit-border-bottom-right-radius: 4px;
+       -moz-border-radius-bottomright: 4px;
+            border-bottom-right-radius: 4px;
+}
+
 .medium-editor-toolbar li button {
     font-size: 14px;
     line-height: 40px;
+    vertical-align: middle;
 
     padding: 0;
     width: 40px;
@@ -631,18 +819,99 @@ blockquote, q {
 
     color: #404040;
     background-color: transparent;
-    -webkit-border-radius: 0;
-       -moz-border-radius: 0;
-            border-radius: 0;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
     border: none;
     opacity: 1;
 
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: column-reverse;
+       -moz-box-orient: vertical;
+       -moz-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+       -moz-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    outline: none;
     cursor: pointer;
 
-    will-change: opacity, box-shadow;
+    will-change: opacity, box-shadow, background-color, color;
+    -webkit-transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    -moz-transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    -o-transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition:
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 }
 
-.csspointerevents .medium-editor-toolbar ul li button:after {
+.medium-editor-toolbar li button:hover {
+    -webkit-transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    -moz-transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8),
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    -o-transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    transition: color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+    transition:
+        color            0.125s cubic-bezier(.8, .4, .2, .8),
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8),
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8),
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8),
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8);
+}
+
+.medium-editor-toolbar li button ::first-line {
+    line-height: 40px;
+
+    color: inherit;
+}
+
+.csspointerevents .medium-editor-toolbar li button:after {
     content: "";
 
     position: absolute;
@@ -657,9 +926,9 @@ blockquote, q {
        -moz-border-radius: inherit;
 
             border-radius: inherit;
-    -webkit-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.05);
-       -moz-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.05);
-            box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.05);
+    -webkit-box-shadow: inset 1px 1px 0px rgba(34, 34, 34, 0.04);
+       -moz-box-shadow: inset 1px 1px 0px rgba(34, 34, 34, 0.04);
+            box-shadow: inset 1px 1px 0px rgba(34, 34, 34, 0.04);
     opacity: 1;
 
     pointer-events: none;
@@ -673,124 +942,93 @@ blockquote, q {
     transition: inherit;
 }
 
-.medium-editor-toolbar li:first-of-type button {
-    -webkit-border-top-left-radius: 4px;
-       -moz-border-radius-topleft: 4px;
-            border-top-left-radius: 4px;
-    -webkit-border-bottom-left-radius: 0px;
-       -moz-border-radius-bottomleft: 0px;
-            border-bottom-left-radius: 0px;
-}
-
-/*.medium-editor-toolbar li:nth-last-of-type(2) button,*/
-.medium-editor-toolbar li:last-of-type button {
-    -webkit-border-top-right-radius: 4px;
-       -moz-border-radius-topright: 4px;
-            border-top-right-radius: 4px;
-    -webkit-border-bottom-right-radius: 0px;
-       -moz-border-radius-bottomright: 0px;
-            border-bottom-right-radius: 0px;
-}
-
-.medium-editor-toolbar.medium-toolbar-arrow-over li:first-of-type button {
-    -webkit-border-top-left-radius: 0px;
-       -moz-border-radius-topleft: 0px;
-            border-top-left-radius: 0px;
-    -webkit-border-bottom-left-radius: 4px;
-       -moz-border-radius-bottomleft: 4px;
-            border-bottom-left-radius: 4px;
-}
-
-.medium-editor-toolbar.medium-toolbar-arrow-over li:last-of-type button {
-    -webkit-border-top-right-radius: 0px;
-       -moz-border-radius-topright: 0px;
-            border-top-right-radius: 0px;
-    -webkit-border-bottom-right-radius: 4px;
-       -moz-border-radius-bottomright: 4px;
-            border-bottom-right-radius: 4px;
-}
-
 .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-hidden li button:after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-hidden li button {
     opacity: 0;
 
-    -webkit-transition: opacity 0.2s linear 0s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        -webkit-box-shadow 0.2s ease-in-out 0s;
+    -webkit-transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
-    transition: opacity 0.2s linear 0s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        -webkit-box-shadow 0.2s ease-in-out 0s;
+    transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
-    -moz-transition: opacity 0.2s linear 0s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        box-shadow 0.2s ease-in-out 0s,
-        -moz-box-shadow 0.2s ease-in-out 0s;
+    -moz-transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
-    -o-transition: opacity 0.2s linear 0s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        box-shadow 0.2s ease-in-out 0s;
+    -o-transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
-    transition: opacity 0.2s linear 0s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        box-shadow 0.2s ease-in-out 0s;
+    transition: opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
     transition:
-        opacity 0.2s linear 0s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        box-shadow 0.2s ease-in-out 0s,
-        -webkit-box-shadow 0.2s ease-in-out 0s,
-        -moz-box-shadow 0.2s ease-in-out 0s;
+        opacity          0.2s linear                       0s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 }
 
 .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button {
     opacity: 1;
 
-    -webkit-transition: opacity 0.2s linear 0.6s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        -webkit-box-shadow 0.2s ease-in-out 0s;
+    -webkit-transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
-    transition: opacity 0.2s linear 0.6s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        -webkit-box-shadow 0.2s ease-in-out 0s;
+    transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
-    -moz-transition: opacity 0.2s linear 0.6s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        box-shadow 0.2s ease-in-out 0s,
-        -moz-box-shadow 0.2s ease-in-out 0s;
+    -moz-transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
-    -o-transition: opacity 0.2s linear 0.6s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        box-shadow 0.2s ease-in-out 0s;
+    -o-transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
-    transition: opacity 0.2s linear 0.6s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        box-shadow 0.2s ease-in-out 0s;
+    transition: opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 
     transition:
-        opacity 0.2s linear 0.6s,
-        color 0.2s ease-in-out 0s,
-        background-color 0.2s ease-in-out 0s,
-        box-shadow 0.2s ease-in-out 0s,
-        -webkit-box-shadow 0.2s ease-in-out 0s,
-        -moz-box-shadow 0.2s ease-in-out 0s;
+        opacity          0.2s linear                       0.6s,
+        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 }
 
-.medium-editor-toolbar li button:focus {
-    outline: 0;
+.medium-editor-toolbar li button:not(:disabled):hover {
+    background-color: #fef4e7;
 }
 
-.medium-editor-toolbar ul li .medium-editor-button-active {
+.medium-editor-toolbar li button:not(:disabled):hover:after {
+    -webkit-box-shadow: inset 1px 1px 0px rgba(251, 167, 66, 0.08);
+       -moz-box-shadow: inset 1px 1px 0px rgba(251, 167, 66, 0.08);
+            box-shadow: inset 1px 1px 0px rgba(251, 167, 66, 0.08);
+}
+
+.medium-editor-toolbar li button.medium-editor-button-active:hover, .medium-editor-toolbar li button.medium-editor-button-active {
     color: rgba(255, 255, 255, 0.9);
     background-color: #fba742;
     -webkit-box-shadow:
@@ -804,239 +1042,163 @@ blockquote, q {
         inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
 }
 
-.csspointerevents .medium-editor-toolbar ul li .medium-editor-button-active:after {
+.csspointerevents .medium-editor-toolbar li .medium-editor-button-active:after {
     -webkit-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
        -moz-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
             box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
 }
 
-.medium-editor-action-bold {
-    font-weight: bolder;
+.medium-editor-toolbar.medium-editor-toolbar-active li button .medium-editor-button-active:active, .medium-editor-toolbar.medium-editor-toolbar-active li button:not(:disabled):active {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #f09629;
+    -webkit-box-shadow:
+        inset 3px 3px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 3px 3px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 3px 3px 3px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
 }
 
-.medium-editor-action-italic {
-    font-style: italic;
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:hover:after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:hover {
+    -webkit-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition:
+        opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:active:after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:active {
+    -webkit-transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -webkit-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -webkit-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    -moz-transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -moz-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    -o-transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+    transition:
+        opacity          0.2s   linear                       0.6s,
+        color            0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        background-color 0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -webkit-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s,
+        -moz-box-shadow       0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+.medium-editor-toolbar li button:disabled {
+    color: rgba(64, 64, 64, 0.25);
+    background-color: #f2f2f2;
+
+    cursor: default;
+}
+
+ium-editor-toolbar li button:disabled:not(:hover) {
+    -webkit-transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition:
+        opacity          0.2s   linear                       0s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:disabled:not(:hover):after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:disabled:not(:hover) {
+    -webkit-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -moz-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    -o-transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition: opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+    transition:
+        opacity          0.2s   linear                       0.6s,
+        color            0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        background-color 0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -webkit-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-toolbar li button:disabled:hover:active, .medium-editor-toolbar li button:disabled:active {
+    background-color: #d7d7d7;
 }
 
 .medium-editor-toolbar .medium-editor-has-action-subscript, .medium-editor-toolbar .medium-editor-has-action-superscript {
     vertical-align: top;
-}
-
-/*MULTISTATE BTNS*/
-/*
-.medium-editor-toolbar .medium-editor-has-action-subscript,
-.medium-editor-toolbar .medium-editor-has-action-orderedlist {
-    z-index: -1;
-    position: relative;
-
-    max-width: 0;
-
-    opacity: 0;
-
-    transform: translateX(-40px);
-
-    overflow: visible;
-
-    will-change: z-index, opacity;
-    transition:
-        z-index 0s linear 0.2s,
-        opacity 0.2s ease-in-out 0s;
-}
-
-.medium-editor-toolbar .medium-editor-has-action-superscript.medium-editor-has-button-active ~ .medium-editor-has-action-subscript,
-.medium-editor-toolbar .medium-editor-has-action-unorderedlist.medium-editor-has-button-active ~ .medium-editor-has-action-orderedlist {
-    z-index: 1;
-
-    transition:
-        z-index 0s linear 0s;
-}
-
-.medium-editor-toolbar .medium-editor-has-action-subscript.medium-editor-has-button-active,
-.medium-editor-toolbar .medium-editor-has-action-orderedlist.medium-editor-has-button-active {
-    z-index: 1;
-
-    opacity: 1;
-
-    transition:
-        z-index 0s linear 0s,
-        opacity 0.2s ease-in-out 0s;
-}
-*/
-.medium-editor-toolbar li .medium-editor-action-underline {
-    text-decoration: underline;
-}
-
-.medium-editor-toolbar li .medium-editor-action-pre {
-    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: 12px;
-    font-weight: 100;
-
-    padding: 15px 0;
-}
-
-/*--------------------------------------------------------------------*/
-/*------------------------------- FORM -------------------------------*/
-/*--------------------------------------------------------------------*/
-
-.medium-editor-toolbar-form {
-    text-align: center;
-
-    z-index: -1;
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    right: 0;
-    margin: auto;
-
-    width: 240px;
-    height: 40px;
-    padding: 8px;
-
-    background-color: #f9f9f9;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    border-bottom: 3px solid currentColor;
-    border-top: 0px solid currentColor;
-    -webkit-box-shadow: inset 0px 0px 12px rgba(34, 34, 34, 0.05);
-       -moz-box-shadow: inset 0px 0px 12px rgba(34, 34, 34, 0.05);
-            box-shadow: inset 0px 0px 12px rgba(34, 34, 34, 0.05);
-    opacity: 0;
-
-    pointer-events: none;
-    overflow: hidden;
-
-    will-change: opacity, width, height;
-    -webkit-transition: z-index 0s linear 0.4s,
-        visibility 0s linear 0.4s,
-        opacity 0.2s linear 0s,
-        height 0.2s linear 0.2s;
-    -moz-transition: z-index 0s linear 0.4s,
-        visibility 0s linear 0.4s,
-        opacity 0.2s linear 0s,
-        height 0.2s linear 0.2s;
-    -o-transition: z-index 0s linear 0.4s,
-        visibility 0s linear 0.4s,
-        opacity 0.2s linear 0s,
-        height 0.2s linear 0.2s;
-    transition:
-        z-index 0s linear 0.4s,
-        visibility 0s linear 0.4s,
-        opacity 0.2s linear 0s,
-        height 0.2s linear 0.2s;
-}
-
-.medium-toolbar-arrow-over .medium-editor-toolbar-form {
-    bottom: auto;
-    top: 0;
-
-    border-top-width: 3px;
-    border-bottom-width: 0;
-}
-
-.medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
-    z-index: 1;
-
-    height: 100%;
-
-    opacity: 1;
-
-    pointer-events: all;
-    overflow: hidden;
-
-    -webkit-transition: z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.6s,
-        height 0.2s linear 0.4s;
-
-    -moz-transition: z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.6s,
-        height 0.2s linear 0.4s;
-
-    -o-transition: z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.6s,
-        height 0.2s linear 0.4s;
-
-    transition:
-        z-index 0s linear 0.2s,
-        visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.6s,
-        height 0.2s linear 0.4s;
-}
-
-.medium-editor-toolbar-form .medium-editor-toolbar-input, .medium-editor-toolbar-form .medium-editor-section-select {
-    font-size: 14px;
-    line-height: 34px;
-
-    margin-bottom: 12px;
-
-    height: 34px;
-    width: 100%;
-    padding: 0 12px;
-
-    -webkit-border-radius: 4px;
-
-       -moz-border-radius: 4px;
-
-            border-radius: 4px;
-    border: 1px solid #d7d7d7;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-.medium-editor-toolbar-form label {
-    font-size: 14px;
-    text-align: left;
-
-    margin-bottom: 4px;
-
-    display: block;
-}
-
-.medium-editor-toolbar-form .medium-editor-toolbar-input:focus, .medium-editor-toolbar-form label:focus {
-    -webkit-box-shadow: none;
-       -moz-box-shadow: none;
-            box-shadow: none;
-    outline: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.medium-editor-toolbar-form a {
-    font-size: 24px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bolder;
-    line-height: 40px;
-
-    margin-top: -7px;
-    float: right;
-
-    height: 40px;
-    width: 40px;
-
-    color: inherit;
-
-    display: inline-block;
-}
-
-.medium-editor-toolbar-form a:last-of-type {
-    padding-top: 1px;
-}
-
-/*--------------------------------------------------------------------*/
-/*----------------------------- CONTENT ------------------------------*/
-/*--------------------------------------------------------------------*/
-
-[data-medium-editor-element] sub {
-    vertical-align: sub;
-}
-
-[data-medium-editor-element] sup {
-    vertical-align: super;
 }
 
 /*--------------------------------------------------------------------*/
@@ -1133,7 +1295,7 @@ blockquote, q {
 }
 
 .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar.medium-editor-toolbar-active {
-    top: 7vh;
+    top: 4vh;
 }
 
 @media screen and (orientation: landscape), screen and (max-height: 900px) {
@@ -1164,7 +1326,7 @@ blockquote, q {
 }
 
 .medium-editor-use-touch.medium-editor-force-bottom.medium-editor-toolbar, .medium-editor-use-touch.medium-editor-toolbar-active.medium-editor-force-bottom.medium-editor-toolbar {
-    bottom: 7vh;
+    bottom: 4vh;
 
     -webkit-box-align: end;
 
@@ -1198,18 +1360,29 @@ blockquote, q {
 /*--------------------------------------------------------------------*/
 
 .medium-editor-use-touch.medium-editor-toolbar ul {
-    -webkit-animation-duration: 0.2s;
-       -moz-animation-duration: 0.2s;
-         -o-animation-duration: 0.2s;
-            animation-duration: 0.2s;
+    -webkit-animation-duration: 0.3s;
+       -moz-animation-duration: 0.3s;
+         -o-animation-duration: 0.3s;
+            animation-duration: 0.3s;
     -webkit-animation-fill-mode: forwards;
        -moz-animation-fill-mode: forwards;
          -o-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
-    -webkit-animation-timing-function: ease-in-out;
-       -moz-animation-timing-function: ease-in-out;
-         -o-animation-timing-function: ease-in-out;
-            animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+       -moz-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+         -o-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+            animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+}
+
+.medium-editor-use-touch.medium-editor-toolbar-active ul {
+    -webkit-animation-duration: 0.1s;
+       -moz-animation-duration: 0.1s;
+         -o-animation-duration: 0.1s;
+            animation-duration: 0.1s;
+    -webkit-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+       -moz-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+         -o-animation-timing-function: cubic-bezier(.8, .4, .2, .8);
+            animation-timing-function: cubic-bezier(.8, .4, .2, .8);
 }
 
 .medium-editor-use-touch.medium-editor-force-top.medium-editor-toolbar ul {
@@ -1298,7 +1471,7 @@ blockquote, q {
 
     display: -ms-flexbox !important;
 
-    display: flex !important;
+    display: flex !important; /*nutné přepsat style attr*/
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
@@ -1332,32 +1505,32 @@ blockquote, q {
 
             border-radius: inherit;
     -webkit-box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
-        inset -1px -1px 1px rgba(34, 34, 34, 0.15);
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
        -moz-box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
-        inset -1px -1px 1px rgba(34, 34, 34, 0.15);
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
             box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
-        inset -1px -1px 1px rgba(34, 34, 34, 0.15);
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
 }
 
 .csspointerevents .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul:before {
     -webkit-box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        inset 1px 1px 1px rgba(34, 34, 34, 0.15),
-        inset -1px -1px 1px rgba(34, 34, 34, 0.1);
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
        -moz-box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        inset 1px 1px 1px rgba(34, 34, 34, 0.15),
-        inset -1px -1px 1px rgba(34, 34, 34, 0.1);
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
             box-shadow:
-        inset 0px 0px 12px rgba(34, 34, 34, 0.05),
-        inset 1px 1px 1px rgba(34, 34, 34, 0.15),
-        inset -1px -1px 1px rgba(34, 34, 34, 0.1);
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
 }
 
 @media screen and (orientation: landscape), screen and (max-height: 900px) {
@@ -1438,20 +1611,20 @@ blockquote, q {
 
     -webkit-transition: max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
         min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        width 0.2s linear 0.4s;
+        width      0.2s linear                     0.4s;
 
     -moz-transition: max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
         min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        width 0.2s linear 0.4s;
+        width      0.2s linear                     0.4s;
 
     -o-transition: max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
         min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        width 0.2s linear 0.4s;
+        width      0.2s linear                     0.4s;
 
     transition:
         max-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
         min-height 0.2s cubic-bezier(0.5, 1, 1, 1) 0.2s,
-        width 0.2s linear 0.4s;
+        width      0.2s linear                     0.4s;
 }
 
 @media screen and (orientation: landscape), screen and (max-height: 900px) {
@@ -1468,20 +1641,20 @@ blockquote, q {
 
     -webkit-transition: min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
         max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        width 0.2s linear 0.2s;
+        width      0.2s linear                    0.2s;
 
     -moz-transition: min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
         max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        width 0.2s linear 0.2s;
+        width      0.2s linear                    0.2s;
 
     -o-transition: min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
         max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        width 0.2s linear 0.2s;
+        width      0.2s linear                    0.2s;
 
     transition:
         min-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
         max-height 0.2s cubic-bezier(0, 0, .5, 0) 0.4s,
-        width 0.2s linear 0.2s;
+        width      0.2s linear                    0.2s;
 }
 
 .medium-editor-use-touch.medium-editor-toolbar .medium-editor-before-fill, .medium-editor-use-touch.medium-editor-toolbar .medium-editor-after-fill {
@@ -1496,26 +1669,42 @@ blockquote, q {
 
 /*---------------------------- BUTTONS ----------------------------*/
 
-.medium-editor-use-touch.medium-editor-toolbar ul li {
+.medium-editor-use-touch.medium-editor-toolbar li {
     width: 56px;
     height: 56px;
     min-height: 56px;
 }
 
-.medium-editor-use-touch.medium-editor-toolbar ul li button {
+.medium-editor-use-touch.medium-editor-toolbar li button {
     line-height: 56px;
 
     width: 56px;
     height: 56px;
 }
 
-.csspointerevents .medium-editor-toolbar.medium-editor-force-right ul li button:after {
-    -webkit-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.05);
-       -moz-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.05);
-            box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.05);
+.medium-editor-use-touch.medium-editor-toolbar li button ::first-line {
+    line-height: 56px;
 }
 
-.csspointerevents .medium-editor-toolbar ul li .medium-editor-button-active:after {
+.csspointerevents .medium-editor-toolbar li button:after {
+    -webkit-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
+       -moz-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
+            box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
+}
+
+.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:after {
+    -webkit-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
+       -moz-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
+            box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
+}
+
+.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:not(:disabled):hover:after {
+    -webkit-box-shadow: inset 1px -1px 0px rgba(251, 167, 66, 0.08);
+       -moz-box-shadow: inset 1px -1px 0px rgba(251, 167, 66, 0.08);
+            box-shadow: inset 1px -1px 0px rgba(251, 167, 66, 0.08);
+}
+
+.csspointerevents .medium-editor-toolbar li button.medium-editor-button-active:after {
     -webkit-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
        -moz-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
             box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
@@ -1597,109 +1786,11 @@ blockquote, q {
            -moz-border-radius-bottomleft: 4px;
                 border-bottom-left-radius: 4px;
     }
-
-}
-
-/*--------------------------------------------------------------------*/
-/*------------------------------- FORM -------------------------------*/
-/*--------------------------------------------------------------------*/
-
-.medium-editor-use-touch .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-toolbar-form {
-    bottom: auto;
-    top: 20px;
-    left: 0;
-    right: auto;
-
-    height: 224px;
-    max-height: 224px;
-    width: 56px;
-
-    border: none;
-    -webkit-border-top-left-radius: 0;
-       -moz-border-radius-topleft: 0;
-            border-top-left-radius: 0;
-    -webkit-border-bottom-left-radius: 0;
-       -moz-border-radius-bottomleft: 0;
-            border-bottom-left-radius: 0;
-
-    -webkit-transition: visibility 0s linear 0.4s,
-        opacity 0.2s linear 0s,
-        width 0.2s linear 0.2s;
-
-    -moz-transition: visibility 0s linear 0.4s,
-        opacity 0.2s linear 0s,
-        width 0.2s linear 0.2s;
-
-    -o-transition: visibility 0s linear 0.4s,
-        opacity 0.2s linear 0s,
-        width 0.2s linear 0.2s;
-
-    transition:
-        visibility 0s linear 0.4s,
-        opacity 0.2s linear 0s,
-        width 0.2s linear 0.2s;
-}
-
-@media screen and (orientation: landscape), screen and (max-height: 900px) {
-
-    .medium-editor-use-touch .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form {
-        width: 112px;
-    }
-}
-
-.medium-editor-use-touch.medium-editor-force-bottom .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-under .medium-editor-toolbar-form {
-    bottom: 20px;
-    top: auto;
-}
-
-.medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-under .medium-editor-toolbar-form {
-    left: auto;
-    right: 0;
-
-    -webkit-border-top-left-radius: 4px;
-
-       -moz-border-radius-topleft: 4px;
-
-            border-top-left-radius: 4px;
-    -webkit-border-bottom-left-radius: 4px;
-       -moz-border-radius-bottomleft: 4px;
-            border-bottom-left-radius: 4px;
-    -webkit-border-top-right-radius: 0;
-       -moz-border-radius-topright: 0;
-            border-top-right-radius: 0;
-    -webkit-border-bottom-right-radius: 0;
-       -moz-border-radius-bottomright: 0;
-            border-bottom-right-radius: 0;
-}
-
-.medium-editor-use-touch .medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
-    height: 224px;
-    width: -webkit-calc(100% - 20px);
-    width: -moz-calc(100% - 20px);
-    width: calc(100% - 20px);
-
-    -webkit-transition: visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.6s,
-        width 0.2s linear 0.4s;
-
-    -moz-transition: visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.6s,
-        width 0.2s linear 0.4s;
-
-    -o-transition: visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.6s,
-        width 0.2s linear 0.4s;
-
-    transition:
-        visibility 0s linear 0.2s,
-        opacity 0.2s linear 0.6s,
-        width 0.2s linear 0.4s;
 }
 
 /*====================================================================*/
 /*---------------------------- ANIMATIONS ----------------------------*/
 /*====================================================================*/
-
 
 @-webkit-keyframes medium-editor-move-toolbar-up {
     from {
@@ -1712,7 +1803,6 @@ blockquote, q {
     }
 }
 
-
 @-moz-keyframes medium-editor-move-toolbar-up {
     from {
         -moz-transform: translateY(6px);
@@ -1724,7 +1814,6 @@ blockquote, q {
     }
 }
 
-
 @-o-keyframes medium-editor-move-toolbar-up {
     from {
         -o-transform: translateY(6px);
@@ -1735,7 +1824,6 @@ blockquote, q {
            transform: translateY(0px);
     }
 }
-
 
 @keyframes medium-editor-move-toolbar-up {
     from {
@@ -1799,6 +1887,870 @@ blockquote, q {
                 transform: translateY(6px);
     }
 }
+
+/*====================================================================*/
+/*------------------------------ ME-FORM -----------------------------*/
+/*====================================================================*/
+
+.medium-editor-toolbar-form {
+    z-index: -1;
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
+
+    width: 280px;
+    height: 40px;
+
+    background-color: #f9f9f9;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    border-bottom: 3px solid currentColor;
+    border-top: 0px solid currentColor;
+    opacity: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    will-change: opacity, width, height, left;
+    -webkit-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.4s,
+        visibility 0s   linear                       0.4s,
+        opacity    0.2s linear                       0s,
+        height     0.2s linear                       0.2s;
+    -moz-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.4s,
+        visibility 0s   linear                       0.4s,
+        opacity    0.2s linear                       0s,
+        height     0.2s linear                       0.2s;
+    -o-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.4s,
+        visibility 0s   linear                       0.4s,
+        opacity    0.2s linear                       0s,
+        height     0.2s linear                       0.2s;
+    transition:
+        left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.4s,
+        visibility 0s   linear                       0.4s,
+        opacity    0.2s linear                       0s,
+        height     0.2s linear                       0.2s;
+}
+
+.csspointerevents .medium-editor-toolbar-form:after {
+    content: "";
+
+    z-index: 5;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow:
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+
+       -moz-box-shadow:
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+
+            box-shadow:
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+
+    pointer-events: none;
+}
+
+.csspointerevents .medium-toolbar-arrow-under .medium-editor-toolbar-form:after {
+    -webkit-box-shadow:
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+       -moz-box-shadow:
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+            box-shadow:
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05);
+}
+
+.medium-toolbar-arrow-over .medium-editor-toolbar-form {
+    bottom: auto;
+    top: 0;
+
+    border-top-width: 3px;
+    border-bottom-width: 0;
+}
+
+.medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+    z-index: 1;
+
+    height: 100%;
+
+    opacity: 1;
+
+    pointer-events: all;
+    overflow: hidden;
+
+    -webkit-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.2s,
+        visibility 0s   linear                       0.2s,
+        opacity    0.2s linear                       0.6s,
+        height     0.2s linear                       0.4s;
+
+    -moz-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.2s,
+        visibility 0s   linear                       0.2s,
+        opacity    0.2s linear                       0.6s,
+        height     0.2s linear                       0.4s;
+
+    -o-transition: left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.2s,
+        visibility 0s   linear                       0.2s,
+        opacity    0.2s linear                       0.6s,
+        height     0.2s linear                       0.4s;
+
+    transition:
+        left       0.1s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s   linear                       0.2s,
+        visibility 0s   linear                       0.2s,
+        opacity    0.2s linear                       0.6s,
+        height     0.2s linear                       0.4s;
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- FORM NAV -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-form-nav {
+    z-index: 4;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 40px;
+    width: 100%;
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+       -moz-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+}
+
+.medium-editor-form-nav-close {
+    font-size: 23px;
+    line-height: 1;
+    text-decoration: none;
+
+    z-index: 10;
+    position:absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    color: #404040;
+    opacity: 0.5;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-form-nav-close:hover {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-form-nav-close:active {
+    -webkit-transform: scale(0.95);
+       -moz-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+         -o-transform: scale(0.95);
+            transform: scale(0.95);
+
+    -webkit-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+[id*="medium-editor-open-tab"]:last-of-type:not(:checked) ~ .medium-editor-form-nav .medium-editor-form-open-tab:last-of-type:hover ~ .medium-editor-form-nav-close {
+    color: #fff;
+
+    -webkit-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.csspointerevents .medium-editor-form-nav:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px -1px 0px rgba(34, 34, 34, 0.15);
+
+       -moz-box-shadow: inset 0px -1px 0px rgba(34, 34, 34, 0.15);
+
+            box-shadow: inset 0px -1px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab {
+    font-size: 14px;
+
+    -webkit-flex-basis: 50%;
+
+        -ms-flex-preferred-size: 50%;
+
+            flex-basis: 50%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    cursor: pointer;
+
+    -webkit-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:hover {
+    font-weight: bold;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+
+    -webkit-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:nth-of-type(2):hover {
+    font-weight: bold;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:nth-of-type(1n):active {
+    color: #fff;
+    background-color: #f09629;
+    -webkit-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+
+    -webkit-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+.medium-editor-form-nav .medium-editor-form-open-tab:nth-of-type(2):active {
+    -webkit-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.1);
+}
+
+[id*="medium-editor-open-tab-2"]:checked ~ .medium-editor-form-nav [for*="medium-editor-open-tab-2"], [id*="medium-editor-open-tab-1"]:checked ~ .medium-editor-form-nav [for*="medium-editor-open-tab-1"] {
+    font-weight: bold;
+
+    color: #fff;
+    background-color: #fba742;
+    -webkit-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+            box-shadow: inset -1px 0px 0px rgba(34, 34, 34, 0.1);
+}
+
+[id*="medium-editor-open-tab-2"]:checked ~ .medium-editor-form-nav [for*="medium-editor-open-tab-2"] {
+    -webkit-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: inset 1px 0px 0px rgba(34, 34, 34, 0.15);
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- TABS -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-form-tab {
+    z-index: 0;
+    position: absolute;
+    top: 40px;
+    left: -8px;
+
+    width: -webkit-calc(100% + 16px);
+
+    width: -moz-calc(100% + 16px);
+
+    width: calc(100% + 16px);
+    width: calc(100% + 16px);
+    height: 137px;
+    padding: 0 8px;
+
+    background-color: #f7f7f7;
+    opacity: 0;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+
+    overflow: hidden;
+    visibility: hidden;
+
+    -webkit-transition: opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s;
+
+    -moz-transition: opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s;
+
+    -o-transition: opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s;
+
+    transition:
+        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        z-index    0s   linear                       0.3s,
+        visibility 0s   linear                       0.3s;
+}
+
+.csspointerevents .medium-editor-form-tab:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px 1px 4px rgba(34, 34, 34, 0.15);
+
+       -moz-box-shadow: inset 0px 1px 4px rgba(34, 34, 34, 0.15);
+
+            box-shadow: inset 0px 1px 4px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.csspointerevents .medium-toolbar-arrow-over .medium-editor-form-tab:after {
+    -webkit-box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
+            box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
+}
+
+/*---------------------------- ANCHOR TAB ----------------------------*/
+
+.medium-editor-form-tab-anchor {
+    padding: 6px 20px;
+}
+
+[id*="medium-editor-open-tab-2"]:checked ~ .medium-editor-form-tabs .medium-editor-form-tab:nth-of-type(2), [id*="medium-editor-open-tab-1"]:checked ~ .medium-editor-form-tabs .medium-editor-form-tab:nth-of-type(1) {
+    z-index: 1;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    -webkit-transition: opacity    0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s     linear                       0s,
+        visibility 0s     linear                       0s;
+
+    -moz-transition: opacity    0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s     linear                       0s,
+        visibility 0s     linear                       0s;
+
+    -o-transition: opacity    0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s     linear                       0s,
+        visibility 0s     linear                       0s;
+
+    transition:
+        opacity    0.125s cubic-bezier(.8, .4, .2, .8) 0s,
+        z-index    0s     linear                       0s,
+        visibility 0s     linear                       0s;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input {
+    font-size: 14px;
+    line-height: 34px;
+
+    margin-bottom: 8px;
+
+    height: 34px;
+    width: 100%;
+    padding: 0 12px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+    border: 1px solid #d7d7d7;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.medium-editor-form-tab-anchor label {
+    font-size: 14px;
+    line-height: 17px;
+    text-indent: 1px;
+    font-weight: bold;
+
+    margin-top: 4px;
+    margin-bottom: 6px;
+
+    display: block;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input:focus, .medium-editor-toolbar-form label:focus {
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.medium-editor-form-btns {
+    margin-top: auto;
+
+    height: 42px;
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+       -moz-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+
+.medium-editor-use-touch .medium-editor-form-btns {
+    height: 56px;
+}
+
+.medium-editor-toolbar-form .medium-editor-form-btns a {
+    font-size: 23px;
+    text-decoration: none;
+
+    margin-left: 12px;
+
+    -webkit-flex-basis: 42px;
+
+        -ms-flex-preferred-size: 42px;
+
+            flex-basis: 42px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    color: inherit;
+}
+
+/*---------------------------- SECTION TAB ----------------------------*/
+
+.medium-editor-form-selector {
+    position: relative;
+
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.medium-editor-form-selector-option {
+    font-size: 14px;
+    line-height: 34px;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+
+    padding: 0 12px;
+
+    cursor: pointer;
+    overflow: hidden;
+
+    -webkit-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -moz-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    -o-transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+
+    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+}
+
+.medium-editor-form-selector-option:not(:last-child) {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.medium-editor-form-selector-option:focus, .medium-editor-form-selector-option:hover {
+    color: #fff;
+    background-color: #404040;
+    border-color: #303030;
+
+    -webkit-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+
+    transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
+}
+
+.medium-editor-form-selector-option:active {
+    color: #fff;
+    background-color: #fba742;
+    border-color: #e49639;
+
+    -webkit-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(.5, .3, .2, 1) 0s;
+}
+
+/*====================================================================*/
+/*--------------------------- TOUCH VERSION --------------------------*/
+/*====================================================================*/
+
+.medium-editor-use-touch .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    bottom: auto;
+    top: 20px;
+    left: 0;
+    right: auto;
+
+    height: 224px;
+    max-height: 224px;
+    width: 56px;
+
+    border: none;
+    -webkit-border-top-left-radius: 0;
+       -moz-border-radius-topleft: 0;
+            border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+       -moz-border-radius-bottomleft: 0;
+            border-bottom-left-radius: 0;
+
+    -webkit-transition: z-index    0s   linear 0.4s,
+        visibility 0s   linear 0.4s,
+        opacity    0.2s linear 0s,
+        width      0.2s linear 0.2s;
+
+    -moz-transition: z-index    0s   linear 0.4s,
+        visibility 0s   linear 0.4s,
+        opacity    0.2s linear 0s,
+        width      0.2s linear 0.2s;
+
+    -o-transition: z-index    0s   linear 0.4s,
+        visibility 0s   linear 0.4s,
+        opacity    0.2s linear 0s,
+        width      0.2s linear 0.2s;
+
+    transition:
+        z-index    0s   linear 0.4s,
+        visibility 0s   linear 0.4s,
+        opacity    0.2s linear 0s,
+        width      0.2s linear 0.2s;
+}
+
+@media screen and (orientation: landscape), screen and (max-height: 900px) {
+
+    .medium-editor-use-touch .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-over .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form, .medium-editor-use-touch.medium-toolbar-arrow-under .medium-editor-has-more-then-4-actions ~ .medium-editor-toolbar-form {
+        width: 112px;
+    }
+}
+
+.medium-editor-use-touch.medium-editor-force-bottom .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-bottom.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    bottom: 20px;
+    top: auto;
+}
+
+.medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-over .medium-editor-toolbar-form, .medium-editor-use-touch.medium-editor-force-right.medium-toolbar-arrow-under .medium-editor-toolbar-form {
+    left: auto;
+    right: 0;
+
+    -webkit-border-top-left-radius: 4px;
+
+       -moz-border-radius-topleft: 4px;
+
+            border-top-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+       -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+    -webkit-border-top-right-radius: 0;
+       -moz-border-radius-topright: 0;
+            border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+       -moz-border-radius-bottomright: 0;
+            border-bottom-right-radius: 0;
+}
+
+.medium-editor-use-touch .medium-editor-action-createLink-displayed.medium-editor-toolbar-form {
+    height: 224px;
+    width: -webkit-calc(100% - 20px);
+    width: -moz-calc(100% - 20px);
+    width: calc(100% - 20px);
+
+    -webkit-transition: visibility 0s   linear 0.2s,
+        opacity    0.2s linear 0.6s,
+        width      0.2s linear 0.4s;
+
+    -moz-transition: visibility 0s   linear 0.2s,
+        opacity    0.2s linear 0.6s,
+        width      0.2s linear 0.4s;
+
+    -o-transition: visibility 0s   linear 0.2s,
+        opacity    0.2s linear 0.6s,
+        width      0.2s linear 0.4s;
+
+    transition:
+        visibility 0s   linear 0.2s,
+        opacity    0.2s linear 0.6s,
+        width      0.2s linear 0.4s;
+}
+
+.csspointerevents .medium-editor-use-touch .medium-editor-toolbar-form:before {
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    -webkit-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+
+       -moz-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+
+            box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.1),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.15);
+}
+
+.csspointerevents .medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form:before {
+    -webkit-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+       -moz-box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+            box-shadow:
+        inset  0px  0px 12px rgba(34, 34, 34, 0.05),
+        inset  1px  1px  1px rgba(34, 34, 34, 0.15),
+        inset -1px -1px  1px rgba(34, 34, 34, 0.1);
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- FORM NAV -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-nav {
+    height: 48px;
+}
+
+.medium-editor-use-touch .medium-editor-form-nav-close {
+    vertical-align: middle;
+    font-size: 25px;
+
+    width: 32px;
+    height: 32px;
+    padding-right: 5px;
+
+    -webkit-box-align: start;
+
+    -webkit-align-items: flex-start;
+
+       -moz-box-align: start;
+
+        -ms-flex-align: start;
+
+                -ms-grid-row-align: flex-start;
+
+            align-items: flex-start;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+       -moz-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- TABS -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-tab {
+    top: 48px;
+
+    height: -webkit-calc(100% - 48px);
+
+    height: -moz-calc(100% - 48px);
+
+    height: calc(100% - 48px);
+}
+
+/*---------------------------- ANCHOR TAB ----------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-btns a {
+    -webkit-flex-basis: 56px;
+        -ms-flex-preferred-size: 56px;
+            flex-basis: 56px;
+}
+
+/*---------------------------- SECTION TAB ----------------------------*/
+
+.medium-editor-use-touch .medium-editor-form-selector-option {
+    padding: 0 16px;
+}
+
+.medium-editor-use-touch .medium-editor-form-selector-option {
+    line-height: 41px;
+}
+
+/*====================================================================*/
+/*---------------------------- ANIMATIONS ----------------------------*/
+/*====================================================================*/
 
 @-webkit-keyframes medium-editor-move-toolbar-top-left {
     from {
@@ -2644,6 +3596,16 @@ blockquote, q {
 
 .P_font-type-2 .P_PageSection--content {
     font-family: sans-serif;
+}
+
+.P_PageSection--content sup {
+    font-size: 70%;
+    vertical-align: super;
+}
+
+.P_PageSection--content sub {
+    font-size: 70%;
+    vertical-align: sub;
 }
 
 /*# sourceMappingURL=page.css.map */

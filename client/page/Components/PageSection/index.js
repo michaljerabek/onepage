@@ -68,7 +68,8 @@ module.exports = Ractive.extend({
 
     rewriteNameReferences: function (name) {
 
-        $("[value='#" + this.get("section.internalId") + "']").text(name);
+        $("[value='#" + this.get("section.internalId") + "'], [data-value='#" + this.get("section.internalId") + "']")
+            .text($("<span>").html(name).text());
     },
 
     //Když se otevírá nastavení sekce, je potřeba zavřít již otevřené nastavení

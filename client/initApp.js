@@ -1,4 +1,5 @@
 /*jslint browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true, node: true*/
+/*global jQuery*/
 
 var Ractive = require("ractive");
 var io = require("socket.io-client");
@@ -17,6 +18,11 @@ Ractive.defaults.findSiblingComponents = function (name) {
     }
 
     return components;
+};
+
+var loadLibs = function () {
+
+    require("perfect-scrollbar/jquery.js")(jQuery);
 };
 
 var initPolyfills = function () {
@@ -54,6 +60,8 @@ module.exports = function (ractive, ractiveData, config) {
     (function (ns) {
 
         initPolyfills();
+
+        loadLibs();
 
         connectToSocketIO(config, ractiveData.databaseName);
 

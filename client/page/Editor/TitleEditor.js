@@ -17,7 +17,14 @@ TitleEditor.prototype.configure = function () {
 
     this.options = {
 
+        anchor: {
+            linkValidation: true
+        },
         anchorPreview: false,
+
+        disableReturn: true,
+        disableExtraSpaces: true,
+
         imageDragging: false,
         placeholder: false,
         keyboardCommands: false,
@@ -25,7 +32,13 @@ TitleEditor.prototype.configure = function () {
         buttonLabels: "fontawesome",
 
         toolbar: {
-            buttons: ["bold", "italic", "anchor", "subscript", "superscript"]
+            buttons: [
+                SuperEditor.BUTTONS.B,
+                SuperEditor.BUTTONS.I,
+                SuperEditor.BUTTONS.A,
+                SuperEditor.BUTTONS.SUB,
+                SuperEditor.BUTTONS.SUP
+            ]
         }
     };
 };

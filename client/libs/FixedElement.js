@@ -212,7 +212,6 @@
             return !isNaN(parseFloat(css));
         };
 
-
         return constructor;
 
     }(jQuery));

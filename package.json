@@ -26,6 +26,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-remember-me": "0.0.1",
+    "perfect-scrollbar": "^0.6.10",
     "polyfill-function-prototype-bind": "0.0.1",
     "ractive": "git://github.com/ractivejs/ractive.git#edge",
     "ractive-events-tap": "^0.3.0",

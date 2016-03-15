@@ -18,54 +18,9 @@
 
         MediumEditor.prototype._execAction = MediumEditor.prototype.execAction;
 
-        MediumEditor.prototype.execAction = function (action, skipNestedBlockCheck) {
-
-            var $parentElement,
-                selectNewBlock;
-
-            if (!skipNestedBlockCheck && (action === "insertunorderedlist" || action === "insertorderedlist" || "append-h2")) {
-
-                $parentElement = $(this.getSelectedParentElement());
-            }
-
-            if (!skipNestedBlockCheck && (action === "insertunorderedlist" || action === "insertorderedlist")) {
-
-                var h2 = $parentElement.is("h2") || $parentElement.parentsUntil(this.origElements, "h2").length;
-
-                if (h2) {
-
-                    this.execAction("append-h2", true);
-                }
-
-                selectNewBlock = true;
-
-            } else if (!skipNestedBlockCheck && action === "append-h2") {
-
-                var ol =  $parentElement.is("ol") || $parentElement.parentsUntil(this.origElements, "ol").length;
-
-                if (ol) {
-
-                    this.execAction("insertorderedlist", true);
-
-                } else {
-
-                    var ul =  $parentElement.is("ul") || $parentElement.parentsUntil(this.origElements, "ul").length;
-
-                    if (ul) {
-
-                        this.execAction("insertunorderedlist", true);
-                    }
-                }
-            }
+        MediumEditor.prototype.execAction = function () {
 
             var original = MediumEditor.prototype._execAction.apply(this, arguments);
-
-            if (!skipNestedBlockCheck && selectNewBlock) {
-
-                this.selectElement(this.getSelectedParentElement());
-
-                this.checkSelection();
-            }
 
             return original;
         };

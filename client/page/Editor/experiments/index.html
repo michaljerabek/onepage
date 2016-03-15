@@ -8,13 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
 
     <link rel="stylesheet" href="../editor.css">
+    <link rel="stylesheet" href="../form.css">
+
+      <link rel="stylesheet" href="../../../css/PerfectScrollbar.css">
 
     <style>
+.cf:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+.cf { display: inline-table; }
+* html .cf { height: 1%; }
+.cf { display: block; }
 
         html, body {
             will-change: scroll-position;
             position: relative;
             min-height: 100%;
+            line-height: 1.5;
         }
 
         body {
@@ -29,7 +44,20 @@
         }
 
         body > .edit {
-            padding-bottom: 80px;
+            margin-bottom: 80px;
+            overflow: hidden;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
         }
 
     </style>
@@ -39,24 +67,28 @@
 <body>
 
 
-    <div class="edit">Lorem ipsum dolor sit amet.</div>
-    <div class="edit">Lorem ipsum dolor sit amet. ipsum dolor sit amet.</div>
-    <div class="edit">Lorem ipsum dolor sit amet.</div>
-    <div class="edit">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt dignissimos id veniam at culpa minima modi neque consequatur expedita, delectus? ipsum dolor sit amet.</div>
-    <div class="edit">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt incidunt autem corporis et consectetur qui delectus cupiditate fugit tenetur iusto tempore voluptas sapiente distinctio quas vitae dolorum, sit, eum voluptatem quasi unde minima id quos. Fugiat quaerat nihil unde amet vitae, atque ipsa reiciendis mollitia voluptatum dolorum, facere assumenda eaque porro. Omnis quia officia odio quis fugit nemo qui illo accusamus ipsam, sint ab asperiores doloremque eaque architecto, voluptatibus voluptate temporibus fuga, ratione quasi necessitatibus libero quos ea suscipit. Ex nemo numquam nam quos, culpa qui recusandae quaerat quo? Eos perspiciatis harum aspernatur nam doloremque accusamus beatae, odit labore tempore pariatur earum, sapiente soluta quia vitae odio fuga qui! Ad voluptatibus eius sunt voluptas, deleniti laborum dolores facere quia! Maiores vitae perferendis iste, temporibus pariatur. Dignissimos nihil odio eos minima tenetur, explicabo iure eum possimus hic vitae cumque consequatur quas porro iste sunt distinctio sequi modi culpa ullam libero ab qui laboriosam. Nihil reiciendis ullam commodi, amet in qui numquam dolor voluptatibus officia at aliquam error nisi non nobis saepe quidem, et magnam dolorum nam? Quisquam ut pariatur accusamus qui, officia cum, soluta quaerat dolore aliquam quae vel rerum itaque suscipit consectetur distinctio nesciunt ad possimus. Dolore ex eveniet facilis unde assumenda iste reiciendis consequuntur illo iusto natus neque dolor, laboriosam accusantium, dolorum adipisci modi labore tempore explicabo voluptas numquam molestiae doloribus distinctio ipsum. Accusamus expedita officiis aliquid, explicabo suscipit iure ad mollitia doloremque ullam repudiandae, inventore fugit voluptatum. Ex explicabo illum officiis perferendis magnam rem officia sed culpa esse harum blanditiis, ipsam ipsum quaerat cupiditate sit modi enim non voluptas maiores sequi laboriosam, quia animi ad. Porro accusamus, sequi rerum tenetur possimus natus libero. Aliquid nisi placeat maxime explicabo animi laudantium accusantium aspernatur dicta dolore delectus esse necessitatibus consectetur doloremque commodi dolorum vero suscipit velit, veniam nulla! Distinctio, maxime. ipsum dolor sit amet.</div>
+    <div class="edit cf">Lorem ipsum dolor sit amet.</div>
+    <div class="edit cf">Lorem ipsum dolor sit amet. ipsum dolor sit amet.</div>
+    <div class="edit cf">Lorem ipsum dolor sit amet.</div>
+    <div class="edit cf">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt dignissimos id veniam at culpa minima modi neque consequatur expedita, delectus? ipsum dolor sit amet.</div>
+    <div class="edit cf">
+        Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.
+    </div>
 
     <script src="jquery-1.12.1.min.js"></script>
     <script src="../../../../public/js/modernizr-custom.js"></script>
     <script src="http://mjerabek.wz.cz/onScreenLog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/perfect-scrollbar.jquery.js"></script>
 
     <script src="editor.js"></script>
 
 
-    <script src="../FixedElement.js"></script>
+    <script src="../../../libs/FixedElement.js"></script>
     <script src="../MediumEditorTouchSupport.js"></script>
     <script src="../MediumEditorToolbar.js"></script>
     <script src="../MediumEditorAnchor.js"></script>
     <script src="../MediumEditorEnhence.js"></script>
+
 
     <script>/*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 
@@ -67,38 +99,169 @@
         window.MediumEditorAnchor(MediumEditor);
         window.MediumEditorEnhence(MediumEditor);
 
+        MediumEditor.extensions.anchor.prototype.getSections = function () {
+            return [
+                {
+                    name: "lsdjdlkgjs",
+                    internalId: "sddsf"
+                },
+                {
+                    name: "lsdjdlkgjs",
+                    internalId: "sddsf"
+                },
+                {
+                    name: "lsdjdlkgjs",
+                    internalId: "sddsf"
+                },
+                {
+                    name: "lsdjdlkgjs",
+                    internalId: "sddsf"
+                },
+                {
+                    name: "lsdjdlkgjs",
+                    internalId: "sddsf"
+                },
+                {
+                    name: "lsdjdlkgjs",
+                    internalId: "sddsf"
+                },
+                {
+                    name: "lsdjdlkgjs",
+                    internalId: "sddsf"
+                },
+                {
+                    name: "lsdjdlkgjs",
+                    internalId: "sddsf"
+                }
+            ];
+        };
+
         var editor = new MediumEditor(".edit", {
             toolbar: {
-                buttons: ["h2", "unorderedlist", "orderedlist", "bold", "italic", "anchor", "superscript", "subscript"]
+                buttons: [{
+                    name: "h2",
+                    aria: "Nadpis"
+                }, "unorderedlist", "orderedlist", "bold", "italic", "anchor", "superscript", "subscript"]
 //                                buttons: ["bold", "italic", "anchor"]
             }
         });
 
+        var enter = false;
+
+        editor.subscribe("editableKeydownEnter", function (e, editable) {
+            enter = true;
+        });
+
         editor.subscribe("editableInput", function (e, editable) {
 
-            var $editable = $(editable);
-            var $pInH2 = $editable.find("h2 p");
-            var $h2InP = $editable.find("p h2");
-
-            if ($pInH2.length) {
-
-                $pInH2.unwrap();
-
-                editor.selectElement($pInH2[0]);
+            if (!enter) {
 
                 return;
             }
 
-            if ($h2InP.length) {
+            enter = false;
 
+            var anchor = document.getSelection().anchorNode;
+
+            anchor = MediumEditor.util.getClosestBlockContainer(anchor);
+
+            var testedElement,
+                removeNext;
+
+            //Chrome fix - někdy se může text nacházet v divu
+            if (anchor && anchor !== editor.getFocusedElement() && anchor.querySelector("div")) {
+
+                anchor =  anchor.querySelector("div");
+
+                testedElement = "self";
+
+                removeNext = true;
+
+            } else if (anchor === editor.getFocusedElement() && anchor.children[0] && !anchor.children[0].tagName.match(/h2/i) && !anchor.children[0].querySelector("h2")) {
+
+                testedElement = "self";
+
+            } else if (anchor.previousElementSibling && !anchor.previousElementSibling.tagName.match(/li|h2/i) && !anchor.previousElementSibling.querySelector("li, h2")) {
+
+                testedElement = "prev";
+            }
+
+            if (testedElement) {
+
+
+                var testedText = (testedElement === "self" ? anchor : anchor.previousElementSibling).innerText.trim(),
+
+                    matchesUl = testedText.match(/^-/),
+                    matchesOl = testedText.match(/^[0-9]+\./);
+
+                if (matchesOl || matchesUl) {
+
+                editor.toolbar.toolbar.style.animationDuration = "0s";
+                    //označit předchozí text
+                    editor.selectElement((testedElement === "self" ? anchor : anchor.previousElementSibling));
+
+                    //vložit seznam
+                    editor.execAction(matchesUl ? "insertunorderedlist" : "insertorderedlist");
+
+                    //najít vytvořený li
+                    var li = (testedElement === "self" ? anchor : anchor.previousElementSibling || editable).querySelector("li:last-child");
+
+                    //odstranit znak určiující, že jde o seznam
+                    li.innerText = li.innerText.replace(matchesUl ? /^\s*-\s*/ : /^\s*[0-9]+\.\s*/, "");
+
+                    //přidat nový li
+                    if ((testedElement === "self" ? anchor : anchor.previousElementSibling || editable).querySelectorAll("li").length === 1) {
+
+                        li.outerHTML += "<li></li>";
+                    }
+
+                    //vybrat poslední li
+                    editor.selectElement((testedElement === "self" ? anchor : anchor.previousElementSibling || editable).querySelector("li:last-child"));
+
+                    var selected = editor.getSelectedParentElement();
+
+                    //přesunout kurzor na konec posledního li
+                    document.getSelection().collapse(selected, selected.innerText.length ? 1 : 0);
+
+                    //smazat polední enter
+                    if (anchor !== editor.getFocusedElement()) {
+
+                        (testedElement === "self" ? anchor : anchor.previousElementSibling || editable).parentNode.removeChild(removeNext ? anchor.nextElementSibling : anchor);
+                    }
+
+
+                        editor.toolbar.toolbar.style.animationDuration = "";
+
+                }
+            }
+
+            var $editable = $(editable);
+            var $pInH2 = $editable.find("h2 p");
+            var $ulInH2 = $editable.find("h2 ul");
+            var $olInH2 = $editable.find("h2 ol");
+            var $h2InOl = $editable.find("ul h2");
+            var $h2InUl = $editable.find("ol h2");
+            var $h2InP = $editable.find("p h2");
+            var $h2InH2 = $editable.find("h2 h2");
+
+            if ($h2InP.length) {
                 $h2InP.unwrap();
 
+                console.log(1);
                 editor.selectElement($h2InP[0]);
+                return;
+            }
 
+            if ($pInH2.length) {
+                $pInH2.unwrap();
+
+                console.log(2);
+                editor.selectElement($pInH2[0]);
                 return;
             }
 
         });
+
 
     </script>
 

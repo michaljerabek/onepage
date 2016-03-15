@@ -1,7 +1,7 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 /*global $*/
 
-var FixedElement = require("./FixedElement");
+var FixedElement = require("./../../libs/FixedElement");
 
 var MediumEditor = require("medium-editor");
 
@@ -29,6 +29,9 @@ SuperEditor.prototype.configure = function () {
 SuperEditor.prototype.init = function () {
 
     this.editor = new MediumEditor($(this.$editableSelector), this.options);
+
+    this.$toolbar = $(this.editor.toolbar.toolbar);
+
 };
 
 SuperEditor.prototype.destroy = function () {
@@ -45,5 +48,42 @@ SuperEditor.prototype.refresh = function () {
 
     this.init();
 };
+
+SuperEditor.BUTTONS = {
+    H2: {
+        name: "h2",
+        aria: "Nadpis"
+    },
+    I: {
+        name: "italic",
+        aria: "Kurzíva"
+    },
+    B: {
+        name: "bold",
+        aria: "Tučné"
+    },
+    UL: {
+        name: "unorderedlist",
+        aria: "Odrážkový seznam"
+    },
+    OL: {
+        name: "orderedlist",
+        aria: "Číslovaný seznam"
+    },
+    SUP: {
+        name: "superscript",
+        aria: "Horní index"
+    },
+    SUB: {
+        name: "subscript",
+        aria: "Dolní index"
+    },
+    A: {
+        name: "anchor",
+        aria: "Odkaz"
+    }
+};
+
+SuperEditor.MediumEditor = MediumEditor;
 
 module.exports = SuperEditor;

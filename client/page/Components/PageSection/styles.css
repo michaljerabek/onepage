@@ -72,3 +72,13 @@
 .P_font-type-2 .P_PageSection--content {
     font-family: sans-serif;
 }
+
+.P_PageSection--content sup {
+    font-size: 70%;
+    vertical-align: super;
+}
+
+.P_PageSection--content sub {
+    font-size: 70%;
+    vertical-align: sub;
+}

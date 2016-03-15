@@ -22,17 +22,15 @@ module.exports = Ractive.extend({
 
     oncomplete: function () {
 
-        if (this.get("editMode")) {
+        if (this.get("editMode") && !this.get("isAdmin")) {
 
-            var PageSectionBuilder = require("./PageSectionBuilder");
+            this.initPage();
+        }
 
-            this.pageSectionBuilder = new PageSectionBuilder(this);
 
-            this.pageSectionsManager = require("./PageSectionsManager")(
-                this, this.pageSectionBuilder, !this.get("page._id")
-            );
+        if (!this.get("editMode") && !this.get("isAdmin")) {
 
-            this.initEditors();
+            this.initScrollToSection();
         }
     },
 
@@ -44,6 +42,8 @@ module.exports = Ractive.extend({
             this.titleEditor.destroy();
 
             this.pageSectionsManager.destroy();
+
+            this.scrollToSection.destroy();
         }
     },
 
@@ -73,6 +73,18 @@ module.exports = Ractive.extend({
         this.contentEditor = new ContentEditor(this.get.bind(this, "page.sections"));
 
         this.off("sectionInserted.complete").on("sectionInserted.complete", this.refreshEditors);
+
+        this.editorsLoaded = true;
+    },
+
+    initScrollToSection: function () {
+
+
+            var ScrollToSection = require("./ScrollToSection"),
+
+            mode = this.get("editMode") ? ScrollToSection.MODES.EDIT : ScrollToSection.MODES.PAGE;
+
+            this.scrollToSection = new ScrollToSection(mode, "section-");
     },
 
     refreshEditors: function () {
@@ -84,6 +96,31 @@ module.exports = Ractive.extend({
     isCurrentPage: function (pageId) {
 
         return pageId === this.root.get("page._id");
+    },
+
+    initPage: function () {
+
+        if (!this.pageSectionsManager) {
+
+            var PageSectionBuilder = require("./PageSectionBuilder");
+
+            this.pageSectionBuilder = new PageSectionBuilder(this);
+
+            this.pageSectionsManager = require("./PageSectionsManager")(
+                this, this.pageSectionBuilder, !this.get("page._id")
+            );
+
+        } else {
+
+            this.pageSectionsManager.reset();
+        }
+
+        this[this.editorsLoaded ? "refreshEditors" : "initEditors"]();
+
+        if (!this.scrollToSection) {
+
+            this.initScrollToSection();
+        }
     },
 
     loadPage: function (pageId) {
@@ -99,11 +136,7 @@ module.exports = Ractive.extend({
 
         }.bind(this));
 
-        loadReq.then(function () {
-
-            this.pageSectionsManager.reset();
-
-        }.bind(this));
+        loadReq.then(this.initPage.bind(this));
     },
 
     savePage: function () {
