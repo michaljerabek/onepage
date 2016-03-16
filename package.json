@@ -19,6 +19,7 @@
     "express-validator": "^2.19.2",
     "express-vhost": "^0.2.0",
     "extend": "^3.0.0",
+    "hammerjs": "^2.0.6",
     "medium-editor": "^5.14.4",
     "mongoose": "^4.4.4",
     "morgan": "~1.6.1",
@@ -32,12 +33,14 @@
     "ractive-events-tap": "^0.3.0",
     "ractive-loader": "^0.5.6",
     "ractive-require-templates": "^1.0.2",
+    "ractive-touch": "^0.4.0",
     "ractive-transitions-fade": "^0.3.1",
     "ractive-transitions-slide": "^0.4.0",
     "request-frame": "^1.4.1",
     "serve-favicon": "~2.3.0",
     "slugg": "^1.0.0",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
+    "spectra": "^0.2.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.3",

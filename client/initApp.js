@@ -22,6 +22,8 @@ Ractive.defaults.findSiblingComponents = function (name) {
 
 var loadLibs = function () {
 
+    require("ractive-touch");
+
     require("perfect-scrollbar/jquery.js")(jQuery);
 };
 
@@ -71,9 +73,9 @@ module.exports = function (ractive, ractiveData, config) {
 
             data: ractiveData,
 
-            events: {
-                tap: require("ractive-events-tap")
-            },
+//            events: {
+//                tap: require("ractive-events-tap")
+//            },
 
             transitions: {
                 slide: require("ractive-transitions-slide"),
