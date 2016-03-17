@@ -177,14 +177,17 @@
 
         <ColorPicker output="{{.bg}}">
             <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
+            <ColorPickerPalette title="Obrázek" image="img2.jpg" />
         </ColorPicker>
 
-        <ColorPicker output="{{.color}}" input="rgb(12, 35, 90)">
+        <ColorPicker output="{{.color}}" input="{{#if .color}}[[.color]]{{else}}rgb(12, 35, 90){{/if}}">
             <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
+            <ColorPickerPalette title="Obrázek" image="img2.jpg" />
         </ColorPicker>
 
-        <div class="selected" style="display: inline-block; margin-top: 24px; height: 50px; background: {{.bg}};">
+        <div class="selected" style="display: inline-block; margin-top: 24px; height: 50px; background: {{.bg}}; border: 1px solid {{.border}};">
             <h1 style="margin: 0; line-height: 50px; color: {{.color}}">Text Text Text</h1>
+            <img style="width: 100%; float: left" src="img2.jpg" alt="">
         </div>
 
     </script>
@@ -262,13 +265,70 @@
     <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
     <script src="ractive-touch.js"></script>
     <script src="spectra.js"></script>
-
+    <script src="Vibrant.js"></script>
 
     <script>/*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
-    /*global Ractive, Spectra, $, U*/
+    /*global Ractive, Spectra, $, U, Vibrant*/
 
         var ColorPickerPalette = Ractive.extend({
-            template: "#ColorPickerPalette"
+            template: "#ColorPickerPalette",
+
+            onconfig: function () {
+
+                if (this.get("image")) {
+
+                    setTimeout(function() {
+
+                        this.getPaletteFromImage();
+
+                    }.bind(this), 0);
+                }
+            },
+
+            getPaletteFromImage: function () {
+
+                this.image = new Image();
+
+                this.image.onload = function (e) {
+
+                    var vibrant = new Vibrant(e.target, 48, 8),
+
+                        palette = vibrant.swatches(),
+
+                        rgbs = [];
+
+                    $.each(palette, function (i, color) {
+
+                        if (color) {
+
+                            rgbs.push("rgb(" + color.getRgb().join(",") + ")");
+                        }
+                    }.bind(this));
+
+                    this.set("colors", rgbs);
+
+//                    var vibrant = new Vibrant(e.target, 48, 8, function (vibrant) {
+//
+//                        var palette = vibrant.swatches(),
+//
+//                            rgbs = [];
+//
+//                        $.each(palette, function (i, color) {
+//
+//                            if (color) {
+//
+//                                rgbs.push("rgb(" + color.rgb.join(",") + ")");
+//                            }
+//                        }.bind(this));
+//
+//                        this.set("colors", rgbs);
+//                    }.bind(this));
+//
+
+                }.bind(this);
+
+                this.image.src = this.get("image");
+            }
         });
 
         var ColorPicker = Ractive.extend({
@@ -340,15 +400,25 @@
                 this.set("hue", 360 - this.currentColor.hue() || 360);
                 this.set("saturation", this.currentColor.saturationv());
                 this.set("value", this.currentColor.value());
+
+                this.set("output", this.getCurrentRGB());
             },
 
             onconfig: function () {
+
+                this.observe("input", function () {
+
+                    this.initializeColors();
+
+                    this.moveSelectorsToCurrentColorPosition(true);
+
+                }, {init: false});
 
                 this.initializeColors();
 
                 this.observe("hue", function (hue) {
 
-                    if (this.skiptUpdateObserver) {
+                    if (this.skiptHueObserver) {
 
                         return;
                     }
@@ -388,11 +458,11 @@
                     //pokud se saturace změní na 0, pak si barva nezachová odstín
                     if (!this.preserveHue) {
 
-                        this.skiptUpdateObserver = this.skipUpdateColor;
+                        this.skiptHueObserver = this.skipUpdateColor;
 
                         this.set("hue", this.currentColor.hue() || 360);
 
-                        this.skiptUpdateObserver = false;
+                        this.skiptHueObserver = false;
                     }
 
                     //pokud si barva nezachovala odstín je potřeba ho vrátit, jakmile barva získá saturaci
@@ -404,12 +474,11 @@
                     this.set("output", this.getCurrentRGB());
 
                     this.set("inputTextHEX", this.currentColor.hex());
-                    this.set("inputTextR", this.currentColor.red());
-                    this.set("inputTextG", this.currentColor.green());
-                    this.set("inputTextB", this.currentColor.blue());
+                    this.set("inputTextR",   this.currentColor.red());
+                    this.set("inputTextG",   this.currentColor.green());
+                    this.set("inputTextB",   this.currentColor.blue());
 
                 }, {init: false});
-
 
                 this.observe("HSelector.y", function () {
 
@@ -443,9 +512,9 @@
                 });
 
                 this.set("inputTextHEX", this.currentColor.hex());
-                this.set("inputTextR", this.currentColor.red());
-                this.set("inputTextG", this.currentColor.green());
-                this.set("inputTextB", this.currentColor.blue());
+                this.set("inputTextR",   this.currentColor.red());
+                this.set("inputTextG",   this.currentColor.green());
+                this.set("inputTextB",   this.currentColor.blue());
             },
 
             onrender: function () {
@@ -456,9 +525,9 @@
                 this.HBox = this.find(".ColorPicker--H-box");
                 this.HSelector = this.find(".ColorPicker--H-selector");
 
-                //nastav selektory na úvodní pozici
-                this.moveHSelector(this.getHSelectorPosition());
-                this.moveSVSelector(this.getSSelectorPosition(), this.getVSelectorPosition());
+                this.moveSelectorsToCurrentColorPosition();
+
+                this.fire("output", this.getCurrentRGB());
             },
 
             getCurrentRGB: function () {
@@ -501,6 +570,12 @@
                 this.set("hue", hue || 360);
 
                 this.preserveHue = false;
+            },
+
+            moveSelectorsToCurrentColorPosition: function (animate) {
+
+                this.moveHSelector(this.getHSelectorPosition(), animate);
+                this.moveSVSelector(this.getSSelectorPosition(), this.getVSelectorPosition(), animate);
             },
 
             moveSVSelector: function (x, y, animate) {
@@ -736,10 +811,22 @@
 
             },
             data: {
-                color: "rgb(255, 255, 0)"
+//                color: "rgb(255, 255, 0)"
+            },
+
+            onconfig: function () {
+
+                this.on("changeColor", this.changeColor);
+
+            },
+
+            changeColor: function (type, color) {
+                console.log(arguments);
+                this.set(type, color);
             }
         });
 
+        var picker = app.findComponent("ColorPicker")
     </script>
 
 
