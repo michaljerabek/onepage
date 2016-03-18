@@ -11,162 +11,13 @@
             box-sizing: border-box;
         }
 
-        .ColorPicker {
-            width: 100%;
-
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .ColorPicker *:not(input) {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            -o-user-select: none;
-            user-select: none;
-            cursor: default;
-        }
-
-        .ColorPicker--widget-wrapper {
-            margin-bottom: 24px;
-            margin-right: 24px;
-
-            flex-basis: 222px;
-            flex-shrink: 0;
-
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .ColorPicker--HSV-wrapper {
-            display: flex;
-        }
-
-        .ColorPicker--SV-box {
-            position: relative;
-            margin-bottom: 10px;
-
-            width: 200px;
-            height: 200px;
-
-            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000), linear-gradient(to right, #fff, rgb(255, 0, 0));
-            outline: 1px solid black;
-
-            flex-shrink: 0;
-
-            will-change: background-image;
-        }
-
-        .ColorPicker--H-box {
-            position: relative;
-            margin-left: 10px;
-
-            height: 200px;
-            width: 14px;
-
-            background-image: linear-gradient(to top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
-            border: 1px solid black;
-
-            flex-shrink: 0;
-        }
-
-        .ColorPicker--SV-selector {
-            position:absolute;
-            top: -6px;
-            left: -6px;
-            transform: translate(0px, 0px);
-
-            width: 12px;
-            height: 12px;
-
-            border-radius: 50%;
-            border: 1px solid red;
-
-            will-change: transform;
-            transition: transform 0.25s cubic-bezier(.1, 1, .6, 1) 0s;
-        }
-
-        .ColorPicker--H-selector {
-            position:absolute;
-            top: -5px;
-            left: -2px;
-            transform: translateY(0px);
-
-            width: 16px;
-            height: 8px;
-
-            border: 1px solid red;
-
-            will-change: transform;
-            transition: transform 0.25s cubic-bezier(.1, 1, .6, 1) 0s;
-        }
-
-        .ColorPicker--input {
-            width: 100%;
-
-            display: flex;
-        }
-
-        .ColorPicker--type-selector {
-            line-height: 32px;
-
-            margin-right: 8px;
-
-            width: 64px;
-            height: 32px;
-            padding: 0 4px;
-            flex-shrink: 0;
-        }
-
-        .ColorPicker--input-text {
-            line-height: 32px;
-
-            padding: 0 8px;
-            width: 100%;
-            height: 32px;
-        }
-
-        .ColorPicker--palettes {
-            margin-bottom: auto;
-
-            min-width: 204px;
-            flex-basis: 50%;
-
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .ColorPickerPalette {
-            margin-right: 48px;
-            margin-bottom: 24px;
-
-            display: flex;
-            flex-direction: column;
-        }
-
-        .ColorPickerPalette--title {
-            font-size: 14px;
-            white-space: nowrap;
-
-            margin: 0;
-            margin-bottom: 8px;
-        }
-
-        .ColorPickerPalette--colors {
-            display: flex;
-        }
-
-        .ColorPickerPalette--color {
-            margin-right: 4px;
-
-            width: 32px;
-            height: 32px;
-
-            border: 1px solid black;
-            transition: background-color 0.25s cubic-bezier(.1, 1, .6, 1) 0s;
+        .wrapper {
+            width: 240px;
         }
 
     </style>
+
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
@@ -175,26 +26,30 @@
 
     <script id="App" type="text/html">
 
-        <ColorPicker output="{{.bg}}">
-            <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
-            <ColorPickerPalette title="Obrázek" image="img2.jpg" />
+        <ColorPicker output="{{.bg}}" >
+            <ColorPickerPalette title="RGB" colors="['red', '#0f0', 'blue']" />
+            <ColorPickerPalette title="CMYK" colors="['rgb(0, 255, 255)', 'rgb(255, 0, 255)', 'rgb(255, 255, 0)', 'rgb(0, 0, 0)']" />
+            <ColorPickerPalette title="Obrázek" image="img21.jpg" />
         </ColorPicker>
 
-        <ColorPicker output="{{.color}}" input="{{#if .color}}[[.color]]{{else}}rgb(12, 35, 90){{/if}}">
-            <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
-            <ColorPickerPalette title="Obrázek" image="img2.jpg" />
-        </ColorPicker>
+        <div class="wrapper">
+<!--            <ColorPicker defer="true" on-output="changeColor:{{.switchToBorder ? 'border' : 'color'}}" input="{{#if .switchToBorder}}{{#if .border !== undefined}}[[.border]]{{else}}rgb(250, 35, 0){{/if}}{{else}}{{#if .color !== undefined}}[[.color]]{{else}}rgb(12, 35, 90){{/if}}{{/if}}" vertical="true">-->
+            <ColorPicker output="{{.color}}" input="[[#if .color]][[.color]][[else]]rgb(12, 35, 90)[[/if]]" vertical="true">
+                <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
+                <ColorPickerPalette title="Obrázek" image="img21.jpg" />
+            </ColorPicker>
+        </div>
 
         <div class="selected" style="display: inline-block; margin-top: 24px; height: 50px; background: {{.bg}}; border: 1px solid {{.border}};">
             <h1 style="margin: 0; line-height: 50px; color: {{.color}}">Text Text Text</h1>
-            <img style="width: 100%; float: left" src="img2.jpg" alt="">
+            <img style="width: 100%; float: left" src="img21.jpg" alt="">
         </div>
 
     </script>
 
     <script id="ColorPicker" type="text/html">
 
-        <div class="ColorPicker">
+        <div class="ColorPicker {{#if vertical}}ColorPicker__vertical{{/if}}">
 
             <div class="ColorPicker--widget-wrapper">
 
@@ -212,22 +67,32 @@
 
                 <div class="ColorPicker--input">
 
-                    <select class="ColorPicker--type-selector" value="{{.inputType}}">
-                        <option value="RGB">RGB</option>
-                        <option value="HEX">HEX</option>
-                    </select>
+                    <div class="ColorPicker--input-wrapper-1">
+                        <div class="ColorPicker--input-wrapper-2">
 
-                    {{#if .inputType === "HEX"}}
+                            <div class="ColorPicker--type-selector-wrapper">
 
-                        <input placeholder="RRGGBB" class="ColorPicker--input-text ColorPicker--input-text__hex" type="text" on-keyup="inputTextHEXChanged(event)" value="{{.inputTextHEX}}">
+                                <select class="ColorPicker--type-selector" value="{{.inputType}}">
+                                    <option value="RGB">RGB</option>
+                                    <option value="HEX">HEX</option>
+                                </select>
 
-                    {{else}}
+                            </div>
 
-                        <input placeholder="R" title="Červená [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextR}}">
-                        <input placeholder="G" title="Zelená [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextG}}">
-                        <input placeholder="B" title="Modrá [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextB}}">
+                            <div class="ColorPicker--input-text-wrapper">
 
-                    {{/if}}
+                                {{#if .inputType === "HEX"}}
+                                    <input placeholder="RRGGBB" class="ColorPicker--input-text ColorPicker--input-text__hex" type="text" on-keyup="inputTextHEXChanged(event)" value="{{.inputTextHEX}}">
+                                {{else}}
+                                    <input placeholder="R" title="Červená [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextR}}">
+                                    <input placeholder="G" title="Zelená [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextG}}">
+                                    <input placeholder="B" title="Modrá [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextB}}">
+                                {{/if}}
+
+                            </div>
+
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -246,16 +111,20 @@
 
     <script id="ColorPickerPalette" type="text/html">
 
-        <div class="ColorPickerPalette ColorPickerPalette">
+        {{#if .colors && .colors.length}}
+
+        <div intro="fade" class="ColorPickerPalette ColorPickerPalette">
 
             <h6 class="ColorPickerPalette--title">{{.title}}</h6>
 
             <div class="ColorPickerPalette--colors">
             {{#each .colors}}
-                <div style="background-color: {{this}}; transition: {{animate ? '' : 'none'}}" on-click-touchend="setColor:{{this}},{{true}}" class="ColorPickerPalette--color"></div>
+                <div intro="fade" style="background-color: {{this}}; transition: {{animate ? '' : 'none'}}" on-click-touchend="setColor:{{this}},{{true}}" class="ColorPickerPalette--color"></div>
             {{/each}}
             </div>
         </div>
+
+        {{/if}}
 
     </script>
 
@@ -265,10 +134,12 @@
     <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
     <script src="ractive-touch.js"></script>
     <script src="spectra.js"></script>
-    <script src="Vibrant.js"></script>
-
+    <script src="VibrantForWorker.js"></script>
+    <script src="ractive-transitions-fade.umd.js"></script>
     <script>/*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
     /*global Ractive, Spectra, $, U, Vibrant*/
+
+        window.Promise = window.Promise || Ractive.Promise;
 
         var ColorPickerPalette = Ractive.extend({
             template: "#ColorPickerPalette",
@@ -290,40 +161,111 @@
                 this.image = new Image();
 
                 this.image.onload = function (e) {
+                    var id = Math.round(Math.random() * 100);
+                    var img = e.target;
+                    console.time("1: " + id);
 
-                    var vibrant = new Vibrant(e.target, 48, 8),
+                    var vibrant = new Vibrant(e.target, 32, 7);
 
-                        palette = vibrant.swatches(),
+                    vibrant.then(function (vibrant) {
 
-                        rgbs = [];
+                        var palette = vibrant.swatches(),
 
-                    $.each(palette, function (i, color) {
+                            rgbs = [];
 
-                        if (color) {
+                        $.each(palette, function (i, color) {
 
-                            rgbs.push("rgb(" + color.getRgb().join(",") + ")");
+                            if (color) {
+
+                                color.rgb[0] = Math.round(color.rgb[0]);
+                                color.rgb[1] = Math.round(color.rgb[1]);
+                                color.rgb[2] = Math.round(color.rgb[2]);
+
+                                var rgbString = "rgb(" + color.rgb.join(",") + ")";
+
+                                if (!~rgbs.indexOf(rgbString)) {
+
+                                    rgbs.push(rgbString);
+                                }
+                            }
+                        });
+
+                        if (rgbs.length < 5) {
+                            console.time("2: " + id);
+
+                            var vibrant2 = new Vibrant(img, 5, 10, true);
+
+                            vibrant2.then(function (colors) {
+
+                                var rgbs2 = [];
+
+                                $.each(colors, function (i, color) {
+
+                                    if (color) {
+
+                                        color[0] = Math.round(color[0]);
+                                        color[1] = Math.round(color[1]);
+                                        color[2] = Math.round(color[2]);
+
+                                        var rgbString = "rgb(" + color.join(",") + ")";
+
+                                        if (!~rgbs2.indexOf(rgbString)) {
+
+                                            rgbs2.push(rgbString);
+                                        }
+                                    }
+                                });
+
+                                var similarity = {};
+
+                                $.each(rgbs2, function (i, color) {
+
+                                    var spectra = Spectra(color);
+
+                                    similarity[color] = 0;
+
+                                    $.each(rgbs, function (i, color2) {
+
+                                        var spectra2 = Spectra(color2);
+
+                                        if (spectra.near(spectra2, 10)) {
+
+                                            similarity[color] += 3;
+
+                                        } else if (spectra.near(spectra2, 20)) {
+
+                                            similarity[color] += 2;
+
+                                        } else if (spectra.near(spectra2, 30)) {
+
+                                            similarity[color] += 1;
+                                        }
+
+                                    });
+
+                                });
+
+                                var sorted = Object.keys(similarity).sort(function (a, b) {
+                                    return similarity[b] - similarity[a]
+                                }).reverse();
+
+                                var cut = sorted.splice(0, 5 - rgbs.length);
+
+                                this.merge("colors", this.get("colors").concat(cut));
+
+                                console.timeEnd("2: " + id);
+                                console.timeEnd("1: " + id);
+                                console.log(cut.length);
+
+                            }.bind(this));
+
+                        } else {
+                            console.timeEnd("1: " + id);
                         }
+
+                        this.set("colors", rgbs);
+
                     }.bind(this));
-
-                    this.set("colors", rgbs);
-
-//                    var vibrant = new Vibrant(e.target, 48, 8, function (vibrant) {
-//
-//                        var palette = vibrant.swatches(),
-//
-//                            rgbs = [];
-//
-//                        $.each(palette, function (i, color) {
-//
-//                            if (color) {
-//
-//                                rgbs.push("rgb(" + color.rgb.join(",") + ")");
-//                            }
-//                        }.bind(this));
-//
-//                        this.set("colors", rgbs);
-//                    }.bind(this));
-//
 
                 }.bind(this);
 
@@ -376,6 +318,10 @@
 
             onconstruct: function () {
 
+                ColorPicker.instanceCounter = !ColorPicker.instanceCounter ? 1 : ++ColorPicker.instanceCounter;
+
+                this.EVENT_NS = "ColorPicker-" + ColorPicker.instanceCounter;
+
                 this.$win = $(window);
             },
 
@@ -397,28 +343,22 @@
                 this.HBoxColor = Spectra({ h: 0, s: 1, v: 1 });
 
                 //počáteční hodnoty barvy
-                this.set("hue", 360 - this.currentColor.hue() || 360);
+                this.skipUdateCurrent = true;
+                this.set("hue", this.currentColor.hue());
                 this.set("saturation", this.currentColor.saturationv());
+                this.skipUdateCurrent = false;
                 this.set("value", this.currentColor.value());
-
-                this.set("output", this.getCurrentRGB());
             },
 
             onconfig: function () {
 
-                this.observe("input", function () {
-
-                    this.initializeColors();
-
-                    this.moveSelectorsToCurrentColorPosition(true);
-
-                }, {init: false});
+                this.waitForUserInteraction = !!this.get("defer");
 
                 this.initializeColors();
 
                 this.observe("hue", function (hue) {
 
-                    if (this.skiptHueObserver) {
+                    if (this.skipHueObserver) {
 
                         return;
                     }
@@ -455,14 +395,19 @@
 
                 this.observe("current", function (color) {
 
+                    if (this.skipUpdateCurrent)  {
+
+                        return;
+                    }
+
                     //pokud se saturace změní na 0, pak si barva nezachová odstín
                     if (!this.preserveHue) {
 
-                        this.skiptHueObserver = this.skipUpdateColor;
+                        this.skipHueObserver = this.skipUpdateColor;
 
-                        this.set("hue", this.currentColor.hue() || 360);
+                        this.set("hue", this.currentColor.hue());
 
-                        this.skiptHueObserver = false;
+                        this.skipHueObserver = false;
                     }
 
                     //pokud si barva nezachovala odstín je potřeba ho vrátit, jakmile barva získá saturaci
@@ -471,7 +416,11 @@
                         this.currentColor.hue(this.get("hue"));
                     }
 
-                    this.set("output", this.getCurrentRGB());
+                    if (!this.waitForUserInteraction) {
+
+                        this.set("output", this.getCurrentRGB());
+                        this.fire("output", this.getCurrentRGB());
+                    }
 
                     this.set("inputTextHEX", this.currentColor.hex());
                     this.set("inputTextR",   this.currentColor.red());
@@ -515,6 +464,19 @@
                 this.set("inputTextR",   this.currentColor.red());
                 this.set("inputTextG",   this.currentColor.green());
                 this.set("inputTextB",   this.currentColor.blue());
+
+                this.observe("input", function (value) {
+
+//                                        this.waitForUserInteraction = this.get("defer");
+//
+//                    this.initializeColors();
+//
+//                    this.moveSelectorsToCurrentColorPosition(true);
+//
+//                    this.waitForUserInteraction = false;
+
+                }, {init: false});
+
             },
 
             onrender: function () {
@@ -527,7 +489,30 @@
 
                 this.moveSelectorsToCurrentColorPosition();
 
-                this.fire("output", this.getCurrentRGB());
+                if (!this.waitForUserInteraction) {
+
+                    this.fire("output", this.getCurrentRGB());
+                }
+
+                this.$win.on("resize", this.windowResizeHandler.bind(this));
+
+                this.waitForUserInteraction = false;
+            },
+
+            onteardown: function () {
+
+                this.$win.off("." + this.EVENT_NS);
+            },
+
+            windowResizeHandler: function () {
+
+                clearTimeout(this.windowResizeThrottle);
+
+                this.windowResizeThrottle = setTimeout(function() {
+
+                    this.moveSelectorsToCurrentColorPosition();
+
+                }.bind(this), 100);
             },
 
             getCurrentRGB: function () {
@@ -567,14 +552,16 @@
 
                 this.preserveHue = true;
 
-                this.set("hue", hue || 360);
+                this.set("hue", hue);
 
                 this.preserveHue = false;
             },
 
             moveSelectorsToCurrentColorPosition: function (animate) {
 
+                this.skipUpdateCurrent = true;
                 this.moveHSelector(this.getHSelectorPosition(), animate);
+                this.skipUpdateCurrent = false;
                 this.moveSVSelector(this.getSSelectorPosition(), this.getVSelectorPosition(), animate);
             },
 
@@ -590,7 +577,9 @@
 
                     this.set("animate", !!animate);
 
+                    this.skipUpdateCurrent = true;
                     this.set("SVSelector.x", x);
+                    this.skipUpdateCurrent = false;
                     this.set("SVSelector.y", y);
                 }
             },
@@ -627,7 +616,7 @@
 
             getHSelectorPosition: function () {
 
-                return this.HBox.offsetHeight - ((this.HBox.offsetHeight * (this.currentColor.hue() / 360) || this.HBox.offsetHeight));
+                return this.HBox.offsetHeight - ((this.HBox.offsetHeight * (this.HBoxColor.hue() / 360) || this.HBox.offsetHeight));
             },
 
             getSSelectorPosition: function () {
@@ -645,6 +634,10 @@
                 var eventData = U.eventData(e);
 
                 if (eventData.pointers > 1) {
+
+                    this.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS)
+
+                    clearTimeout(this[type === "SV" ? "moveSVToPositionTimeout"   : "moveHToPositionTimeout"]);
 
                     return;
                 }
@@ -687,7 +680,7 @@
 
                 var moveToStartEventPosition = function (animate, byEndEvent) {
 
-                        var args = [initPositions.startOffsetY, animate];
+                    var args = [initPositions.startOffsetY, animate];
 
                         if (type === "SV") {
 
@@ -719,10 +712,19 @@
                 this[moveToPositionTimeout] = setTimeout(moveToStartEventPosition.bind(this, true), eventData.isTouchEvent ? 200 : 100);
 
                 this.$win
-                    .off(".ColorPicker")
-                    .on("mousemove.ColorPicker touchmove.ColorPicker", function (e) {
+                    .off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS)
+                    .on("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS, function (e) {
 
                         var eventData = U.eventData(e);
+
+                        if (eventData.pointers > 1) {
+
+                            clearTimeout(this[moveToPositionTimeout]);
+
+                            this.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS)
+
+                            return;
+                        }
 
                         if (!movedToPosition) {
 
@@ -747,7 +749,7 @@
                         return false;
 
                     }.bind(this))
-                    .one("mouseup.ColorPicker touchend.ColorPicker", function (e) {
+                    .one("mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS, function (e) {
 
                         if (!movedToPosition) {
 
@@ -756,7 +758,7 @@
                             moveToStartEventPosition(true, true);
                         }
 
-                        this.$win.off(".ColorPicker");
+                        this.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
 
                         e.preventDefault();
                         return false;
@@ -811,7 +813,8 @@
 
             },
             data: {
-//                color: "rgb(255, 255, 0)"
+//                color: "rgb(255, 255, 0)",
+//                border: "rgb(0, 0, 250)"
             },
 
             onconfig: function () {
