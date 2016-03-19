@@ -26,23 +26,23 @@
 
     <script id="App" type="text/html">
 
-        <ColorPicker output="{{.bg}}" >
+        <ColorPicker output="{{.bg}}" noColor="true">
             <ColorPickerPalette title="RGB" colors="['red', '#0f0', 'blue']" />
             <ColorPickerPalette title="CMYK" colors="['rgb(0, 255, 255)', 'rgb(255, 0, 255)', 'rgb(255, 255, 0)', 'rgb(0, 0, 0)']" />
-            <ColorPickerPalette title="Obrázek" image="img21.jpg" />
+            <ColorPickerPalette title="Obrázek" image="img18.jpg" />
         </ColorPicker>
 
         <div class="wrapper">
 <!--            <ColorPicker defer="true" on-output="changeColor:{{.switchToBorder ? 'border' : 'color'}}" input="{{#if .switchToBorder}}{{#if .border !== undefined}}[[.border]]{{else}}rgb(250, 35, 0){{/if}}{{else}}{{#if .color !== undefined}}[[.color]]{{else}}rgb(12, 35, 90){{/if}}{{/if}}">-->
             <ColorPicker output="{{.color}}" input="[[#if .color]][[.color]][[else]]rgb(12, 35, 90)[[/if]]">
                 <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
-                <ColorPickerPalette title="Obrázek" image="img21.jpg" />
+                <ColorPickerPalette title="Obrázek" image="img18.jpg" />
             </ColorPicker>
         </div>
 
         <div class="selected" style="display: inline-block; margin-top: 24px; height: 50px; background: {{.bg}}; border: 1px solid {{.border}};">
             <h1 style="margin: 0; line-height: 50px; color: {{.color}}">Text Text Text</h1>
-            <img style="width: 100%; float: left" src="img21.jpg" alt="">
+            <img style="width: 100%; float: left" src="img18.jpg" alt="">
         </div>
 
     </script>
@@ -58,12 +58,38 @@
 
                         <div class="ColorPicker--HSV-wrapper">
 
-                            <div on-mousedown-touchstart="activateSelector(event, 'SV')" class="ColorPicker--SV-box" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000), linear-gradient(to right, #fff, {{.SVBoxHue}});">
-                                <div on-mousedown-touchstart="activateSelector(event, 'SV')" style="transform: translate({{SVSelector.x}}px, {{SVSelector.y}}px); transition: {{.animate ? '' : 'none'}}" class="ColorPicker--SV-selector"></div>
+                            <div
+                                class="ColorPicker--SV-box"
+                                on-mousedown-touchstart="activateSelector(event, 'SV')"
+                                style="
+                                    background-image:
+                                        linear-gradient(to bottom, rgba(0, 0, 0, 0), #000),
+                                        linear-gradient(to right, #fff, {{.SVBoxHue}}
+                                    );
+                                "
+                            >
+                                <div
+                                    class="ColorPicker--SV-selector"
+                                    on-mousedown-touchstart="activateSelector(event, 'SV')"
+                                    style="
+                                        transform: translate({{SVSelector.x}}px, {{SVSelector.y}}px);
+                                        transition: {{.animate ? '' : 'none'}};
+                                    "
+                                ></div>
                             </div>
 
-                            <div on-mousedown-touchstart="activateSelector(event, 'H')" class="ColorPicker--H-box">
-                                <div on-mousedown-touchstart="activateSelector(event, 'H')" style="transform: translateY({{HSelector.y}}px); transition: {{.animate ? '' : 'none'}}" class="ColorPicker--H-selector"></div>
+                            <div
+                                class="ColorPicker--H-box"
+                                on-mousedown-touchstart="activateSelector(event, 'H')"
+                            >
+                                <div
+                                    class="ColorPicker--H-selector"
+                                    on-mousedown-touchstart="activateSelector(event, 'H')"
+                                    style="
+                                        transform: translateY({{HSelector.y}}px);
+                                        transition: {{.animate ? '' : 'none'}};
+                                    "
+                                ></div>
                             </div>
 
                         </div>
@@ -102,7 +128,7 @@
 
                     <div class="ColorPicker--palettes">
 
-                        <ColorPickerPalette title="Vybraná / Původní" colors="[{{current}}, {{initial}}]" />
+                        <ColorPickerPalette title="Vybraná / Původní" colors="[{{current}}, {{initial}}]" addNoColor="{{.noColor}}" isCurrentInitial="true" />
 
                         {{> content}}
 
@@ -124,9 +150,33 @@
             <h6 class="ColorPickerPalette--title">{{.title}}</h6>
 
             <div class="ColorPickerPalette--colors">
-            {{#each .colors}}
-                <div intro="fade" style="background-color: {{this}}; transition: {{animate ? '' : 'none'}}" on-click-touchend="setColor:{{this}},{{true}}" class="ColorPickerPalette--color"></div>
+
+            {{#each .colors:i}}
+                <div
+                    intro="fade"
+                    style="
+                        background-color: {{this}};
+                        transition: {{animate ? '' : 'none'}};
+                    "
+                    on-click-touchend="setColor:{{this}},{{true}}"
+                    class="
+                        ColorPickerPalette--color
+
+                        {{#if ~/isCurrentInitial && i === 0 && output === ''}}
+                            ColorPickerPalette--color__remove{{#if ~/nearToBlack}}-black{{/if}}
+                        {{/if}}
+                    "
+                ></div>
             {{/each}}
+
+            {{#if .addNoColor}}
+                <div
+                    intro="fade"
+                    on-click-touchend="setColor:{{NO_COLOR}}"
+                    class="ColorPickerPalette--color ColorPickerPalette--color__remove"
+                    title="Odstranit / Výchozí"
+                ></div>
+            {{/if}}
             </div>
         </div>
 
@@ -164,6 +214,9 @@
 
             onteardown: function () {
 
+                clearTimeout(this.stopVibrantTimeout);
+                clearTimeout(this.stopVibrant2Timeout);
+
                 if (this.stopVibrant) {
 
                     this.stopVibrant();
@@ -173,7 +226,16 @@
 
                     this.stopVibrant2();
                 }
+            },
 
+            computed: {
+
+                nearToBlack: function () {
+
+                    var color = Spectra(this.parent.get("current"));
+
+                    return color.near(Spectra("black"), 50);
+                }
             },
 
             getUniqueRgbs: function (vibrantPalette) {
@@ -243,7 +305,8 @@
                 }
 
                 var sorted = Object.keys(similarity).sort(function (a, b) {
-                    return similarity[a] - similarity[b]
+
+                    return similarity[a] - similarity[b];
                 });
 
                 return sorted.splice(0, count);
@@ -254,15 +317,18 @@
                 this.image = new Image();
 
                 this.image.onload = function (e) {
-                    var id = Math.round(Math.random() * 100);
-                    var img = e.target;
-                    console.time("1: " + id);
 
-                    var vibrant = new Vibrant(e.target, 32, 7);
+                    var img = e.target,
+
+                        vibrant = new Vibrant(e.target, 32, 7);
 
                     this.stopVibrant = vibrant.stop;
 
+                    this.stopVibrantTimeout = setTimeout(vibrant.stop, 3000);
+
                     vibrant.promise.then(function (vibrant) {
+
+                        clearTimeout(this.stopVibrantTimeout);
 
                         var palette = vibrant.swatches(),
 
@@ -270,13 +336,16 @@
 
 
                         if (rgbs.length < 5) {
-                            console.time("2: " + id);
 
                             var vibrant2 = new Vibrant(img, 5, 10, true);
 
                             this.stopVibrant2 = vibrant2.stop;
 
+                            this.stopVibrant2Timeout = setTimeout(vibrant2.stop, 3000);
+
                             vibrant2.promise.then(function (palette) {
+
+                                clearTimeout(this.stopVibrant2Timeout);
 
                                 var rgbs2 = this.getUniqueRgbs(palette),
 
@@ -284,13 +353,7 @@
 
                                 this.merge("colors", this.get("colors").concat(leastSimilar));
 
-                                console.timeEnd("2: " + id);
-                                console.timeEnd("1: " + id);
-
                             }.bind(this));
-
-                        } else {
-                            console.timeEnd("1: " + id);
                         }
 
                         this.set("colors", rgbs);
@@ -342,7 +405,9 @@
                     inputTextHEX: "",
                     inputTextR: "",
                     inputTextG: "",
-                    inputTextB: ""
+                    inputTextB: "",
+
+                    NO_COLOR: "noColor"
                 };
             },
 
@@ -632,6 +697,14 @@
             },
 
             setColor: function (color, animate) {
+
+                if (color === this.get("NO_COLOR")) {
+
+                    this.set("output", "");
+                    this.fire("output", "");
+
+                    return;
+                }
 
                 this.currentColor = Spectra(color);
 
