@@ -33,8 +33,8 @@
         </ColorPicker>
 
         <div class="wrapper">
-<!--            <ColorPicker defer="true" on-output="changeColor:{{.switchToBorder ? 'border' : 'color'}}" input="{{#if .switchToBorder}}{{#if .border !== undefined}}[[.border]]{{else}}rgb(250, 35, 0){{/if}}{{else}}{{#if .color !== undefined}}[[.color]]{{else}}rgb(12, 35, 90){{/if}}{{/if}}" vertical="true">-->
-            <ColorPicker output="{{.color}}" input="[[#if .color]][[.color]][[else]]rgb(12, 35, 90)[[/if]]" vertical="true">
+<!--            <ColorPicker defer="true" on-output="changeColor:{{.switchToBorder ? 'border' : 'color'}}" input="{{#if .switchToBorder}}{{#if .border !== undefined}}[[.border]]{{else}}rgb(250, 35, 0){{/if}}{{else}}{{#if .color !== undefined}}[[.color]]{{else}}rgb(12, 35, 90){{/if}}{{/if}}">-->
+            <ColorPicker output="{{.color}}" input="[[#if .color]][[.color]][[else]]rgb(12, 35, 90)[[/if]]">
                 <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
                 <ColorPickerPalette title="Obrázek" image="img21.jpg" />
             </ColorPicker>
@@ -49,60 +49,66 @@
 
     <script id="ColorPicker" type="text/html">
 
-        <div class="ColorPicker {{#if vertical}}ColorPicker__vertical{{/if}}">
+        <div class="ColorPicker">
 
-            <div class="ColorPicker--widget-wrapper">
+            <div class="ColorPicker--wrapper-1">
+                <div class="ColorPicker--wrapper-2">
 
-                <div class="ColorPicker--HSV-wrapper">
+                    <div class="ColorPicker--widget-wrapper">
 
-                    <div on-mousedown-touchstart="activateSelector(event, 'SV')" class="ColorPicker--SV-box" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000), linear-gradient(to right, #fff, {{.SVBoxHue}});">
-                        <div on-mousedown-touchstart="activateSelector(event, 'SV')" style="transform: translate({{SVSelector.x}}px, {{SVSelector.y}}px); transition: {{.animate ? '' : 'none'}}" class="ColorPicker--SV-selector"></div>
-                    </div>
+                        <div class="ColorPicker--HSV-wrapper">
 
-                    <div on-mousedown-touchstart="activateSelector(event, 'H')" class="ColorPicker--H-box">
-                        <div on-mousedown-touchstart="activateSelector(event, 'H')" style="transform: translateY({{HSelector.y}}px); transition: {{.animate ? '' : 'none'}}" class="ColorPicker--H-selector"></div>
-                    </div>
-
-                </div>
-
-                <div class="ColorPicker--input">
-
-                    <div class="ColorPicker--input-wrapper-1">
-                        <div class="ColorPicker--input-wrapper-2">
-
-                            <div class="ColorPicker--type-selector-wrapper">
-
-                                <select class="ColorPicker--type-selector" value="{{.inputType}}">
-                                    <option value="RGB">RGB</option>
-                                    <option value="HEX">HEX</option>
-                                </select>
-
+                            <div on-mousedown-touchstart="activateSelector(event, 'SV')" class="ColorPicker--SV-box" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000), linear-gradient(to right, #fff, {{.SVBoxHue}});">
+                                <div on-mousedown-touchstart="activateSelector(event, 'SV')" style="transform: translate({{SVSelector.x}}px, {{SVSelector.y}}px); transition: {{.animate ? '' : 'none'}}" class="ColorPicker--SV-selector"></div>
                             </div>
 
-                            <div class="ColorPicker--input-text-wrapper">
+                            <div on-mousedown-touchstart="activateSelector(event, 'H')" class="ColorPicker--H-box">
+                                <div on-mousedown-touchstart="activateSelector(event, 'H')" style="transform: translateY({{HSelector.y}}px); transition: {{.animate ? '' : 'none'}}" class="ColorPicker--H-selector"></div>
+                            </div>
 
-                                {{#if .inputType === "HEX"}}
-                                    <input placeholder="RRGGBB" class="ColorPicker--input-text ColorPicker--input-text__hex" type="text" on-keyup="inputTextHEXChanged(event)" value="{{.inputTextHEX}}">
-                                {{else}}
-                                    <input placeholder="R" title="Červená [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextR}}">
-                                    <input placeholder="G" title="Zelená [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextG}}">
-                                    <input placeholder="B" title="Modrá [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextB}}">
-                                {{/if}}
+                        </div>
 
+                        <div class="ColorPicker--input">
+
+                            <div class="ColorPicker--input-wrapper-1">
+                                <div class="ColorPicker--input-wrapper-2">
+
+                                    <div class="ColorPicker--type-selector-wrapper">
+
+                                        <select class="ColorPicker--type-selector" value="{{.inputType}}">
+                                            <option value="RGB">RGB</option>
+                                            <option value="HEX">HEX</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="ColorPicker--input-text-wrapper">
+
+                                        {{#if .inputType === "HEX"}}
+                                            <input placeholder="RRGGBB" class="ColorPicker--input-text ColorPicker--input-text__hex" type="text" on-keyup="inputTextHEXChanged(event)" value="{{.inputTextHEX}}">
+                                        {{else}}
+                                            <input placeholder="R" title="Červená [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextR}}">
+                                            <input placeholder="G" title="Zelená [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextG}}">
+                                            <input placeholder="B" title="Modrá [0–255]" class="ColorPicker--input-text ColorPicker--input-text-rgb" type="text" on-keyup="inputTextRGBChanged(event)" value="{{.inputTextB}}">
+                                        {{/if}}
+
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>
                     </div>
 
+                    <div class="ColorPicker--palettes">
+
+                        <ColorPickerPalette title="Vybraná / Původní" colors="[{{current}}, {{initial}}]" />
+
+                        {{> content}}
+
+                    </div>
+
                 </div>
-            </div>
-
-            <div class="ColorPicker--palettes">
-
-                <ColorPickerPalette title="Vybraná / Původní" colors="[{{current}}, {{initial}}]" />
-
-                {{> content}}
-
             </div>
 
         </div>
@@ -156,6 +162,93 @@
                 }
             },
 
+            onteardown: function () {
+
+                if (this.stopVibrant) {
+
+                    this.stopVibrant();
+                }
+
+                if (this.stopVibrant2) {
+
+                    this.stopVibrant2();
+                }
+
+            },
+
+            getUniqueRgbs: function (vibrantPalette) {
+
+                var keys = Object.keys(vibrantPalette),
+                    c = keys.length - 1,
+                    rgbs = [];
+
+                for (c; c >= 0; c--) {
+
+                    if (vibrantPalette[keys[c]]) {
+
+                        vibrantPalette[keys[c]].rgb[0] = Math.round(vibrantPalette[keys[c]].rgb[0]);
+                        vibrantPalette[keys[c]].rgb[1] = Math.round(vibrantPalette[keys[c]].rgb[1]);
+                        vibrantPalette[keys[c]].rgb[2] = Math.round(vibrantPalette[keys[c]].rgb[2]);
+
+                        var rgbString = "rgb(" + vibrantPalette[keys[c]].rgb.join(",") + ")";
+
+                        if (!~rgbs.indexOf(rgbString)) {
+
+                            rgbs.push(rgbString);
+                        }
+                    }
+                }
+
+                return rgbs;
+            },
+
+            findTheLeastSimilarColors: function (rgbs, compareWithRgbs, count) {
+
+                var similarity = {},
+                    spectraCache = {},
+
+                    r = rgbs.length - 1,
+                    c = compareWithRgbs.length - 1;
+
+                for (r; r >= 0; r--) {
+
+                    var spectra = Spectra(rgbs[r]);
+
+                    similarity[rgbs[r]] = 0;
+
+                    for (c; c >= 0; c--) {
+
+                        var spectra2 = spectraCache[compareWithRgbs[c]] || Spectra(compareWithRgbs[c]);
+
+                        if (!spectraCache[compareWithRgbs[c]]) {
+
+                            spectraCache[compareWithRgbs[c]] = spectra2;
+                        }
+
+                        if (spectra.near(spectra2, 10)) {
+
+                            similarity[rgbs[r]] += 3;
+
+                        } else if (spectra.near(spectra2, 20)) {
+
+                            similarity[rgbs[r]] += 2;
+
+                        } else if (spectra.near(spectra2, 30)) {
+
+                            similarity[rgbs[r]] += 1;
+                        }
+                    }
+
+                    c = compareWithRgbs.length - 1;
+                }
+
+                var sorted = Object.keys(similarity).sort(function (a, b) {
+                    return similarity[a] - similarity[b]
+                });
+
+                return sorted.splice(0, count);
+            },
+
             getPaletteFromImage: function () {
 
                 this.image = new Image();
@@ -167,95 +260,32 @@
 
                     var vibrant = new Vibrant(e.target, 32, 7);
 
-                    vibrant.then(function (vibrant) {
+                    this.stopVibrant = vibrant.stop;
+
+                    vibrant.promise.then(function (vibrant) {
 
                         var palette = vibrant.swatches(),
 
-                            rgbs = [];
+                            rgbs = this.getUniqueRgbs(palette);
 
-                        $.each(palette, function (i, color) {
-
-                            if (color) {
-
-                                color.rgb[0] = Math.round(color.rgb[0]);
-                                color.rgb[1] = Math.round(color.rgb[1]);
-                                color.rgb[2] = Math.round(color.rgb[2]);
-
-                                var rgbString = "rgb(" + color.rgb.join(",") + ")";
-
-                                if (!~rgbs.indexOf(rgbString)) {
-
-                                    rgbs.push(rgbString);
-                                }
-                            }
-                        });
 
                         if (rgbs.length < 5) {
                             console.time("2: " + id);
 
                             var vibrant2 = new Vibrant(img, 5, 10, true);
 
-                            vibrant2.then(function (colors) {
+                            this.stopVibrant2 = vibrant2.stop;
 
-                                var rgbs2 = [];
+                            vibrant2.promise.then(function (palette) {
 
-                                $.each(colors, function (i, color) {
+                                var rgbs2 = this.getUniqueRgbs(palette),
 
-                                    if (color) {
+                                    leastSimilar = this.findTheLeastSimilarColors(rgbs2, rgbs, 5 - rgbs.length);
 
-                                        color[0] = Math.round(color[0]);
-                                        color[1] = Math.round(color[1]);
-                                        color[2] = Math.round(color[2]);
-
-                                        var rgbString = "rgb(" + color.join(",") + ")";
-
-                                        if (!~rgbs2.indexOf(rgbString)) {
-
-                                            rgbs2.push(rgbString);
-                                        }
-                                    }
-                                });
-
-                                var similarity = {};
-
-                                $.each(rgbs2, function (i, color) {
-
-                                    var spectra = Spectra(color);
-
-                                    similarity[color] = 0;
-
-                                    $.each(rgbs, function (i, color2) {
-
-                                        var spectra2 = Spectra(color2);
-
-                                        if (spectra.near(spectra2, 10)) {
-
-                                            similarity[color] += 3;
-
-                                        } else if (spectra.near(spectra2, 20)) {
-
-                                            similarity[color] += 2;
-
-                                        } else if (spectra.near(spectra2, 30)) {
-
-                                            similarity[color] += 1;
-                                        }
-
-                                    });
-
-                                });
-
-                                var sorted = Object.keys(similarity).sort(function (a, b) {
-                                    return similarity[b] - similarity[a]
-                                }).reverse();
-
-                                var cut = sorted.splice(0, 5 - rgbs.length);
-
-                                this.merge("colors", this.get("colors").concat(cut));
+                                this.merge("colors", this.get("colors").concat(leastSimilar));
 
                                 console.timeEnd("2: " + id);
                                 console.timeEnd("1: " + id);
-                                console.log(cut.length);
 
                             }.bind(this));
 
@@ -410,10 +440,17 @@
                         this.skipHueObserver = false;
                     }
 
-                    //pokud si barva nezachovala odstín je potřeba ho vrátit, jakmile barva získá saturaci
-                    if (this.currentColor.hue() !== this.get("hue") && this.currentColor.saturationv()) {
+                    //pokud si barva nezachovala odstín (černá / bílá) je potřeba ho vrátit, jakmile barva není bílá nebo černá
+                    if (!this.skipUpdateColor && this.currentColor.hue() !== this.HBoxColor.hue() && (this.currentColor.saturationv() || this.currentColor.value())) {
 
-                        this.currentColor.hue(this.get("hue"));
+                        var saturation = this.get("saturation");
+
+                        if (saturation && saturation !== this.currentColor.saturationv()) {
+
+                            this.currentColor.saturationv(saturation);
+                        }
+
+                        this.currentColor.hue(this.HBoxColor.hue());
                     }
 
                     if (!this.waitForUserInteraction) {
@@ -559,9 +596,7 @@
 
             moveSelectorsToCurrentColorPosition: function (animate) {
 
-                this.skipUpdateCurrent = true;
                 this.moveHSelector(this.getHSelectorPosition(), animate);
-                this.skipUpdateCurrent = false;
                 this.moveSVSelector(this.getSSelectorPosition(), this.getVSelectorPosition(), animate);
             },
 
@@ -577,9 +612,7 @@
 
                     this.set("animate", !!animate);
 
-                    this.skipUpdateCurrent = true;
                     this.set("SVSelector.x", x);
-                    this.skipUpdateCurrent = false;
                     this.set("SVSelector.y", y);
                 }
             },
@@ -606,10 +639,13 @@
                 //proto je potřeba zabránit její změně
                 this.skipUpdateColor = true;
 
+                this.preserveHue = !this.currentColor.saturationv() && !this.currentColor.saturationv();
+
                 this.update("current");
 
-                this.moveHSelector(this.getHSelectorPosition(), animate);
-                this.moveSVSelector(this.getSSelectorPosition(), this.getVSelectorPosition(), animate);
+                this.preserveHue = false;
+
+                this.moveSelectorsToCurrentColorPosition(animate);
 
                 this.skipUpdateColor = false;
             },

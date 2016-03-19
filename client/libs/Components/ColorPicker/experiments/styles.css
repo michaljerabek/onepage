@@ -1,11 +1,11 @@
-body > canvas {
+.VibrantCanvas {
     z-index: -1;
     position:absolute;
     top: -99999px;
     left: -99999px;
 
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 0px;
+    max-height: 0px;
 
     opacity: 0;
 
@@ -14,15 +14,18 @@ body > canvas {
 
 .ColorPicker {
     width: 100%;
+    padding: 0 40px;
+}
+
+.ColorPicker--wrapper-2 {
+    margin-left: -40px;
+    margin-right: -80px;
+
+    min-width: 100%;
 
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-}
-
-.ColorPicker__vertical {
-    flex-direction: column;
-    flex-wrap: nowrap;
 }
 
 .ColorPicker *:not(input) {
@@ -44,15 +47,6 @@ body > canvas {
 
     display: flex;
     flex-wrap: wrap;
-}
-
-.ColorPicker__vertical .ColorPicker--widget-wrapper {
-    margin-right: 0px;
-
-    width: 100%;
-
-    flex-basis: auto;
-    align-content: flex-start;
 }
 
 .ColorPicker--HSV-wrapper {
@@ -110,10 +104,6 @@ body > canvas {
 
 .ColorPicker--H-box:after {
     left: 10px;
-}
-
-.ColorPicker__vertical .ColorPicker--H-box:after {
-    display: none;
 }
 
 .ColorPicker--SV-selector,
@@ -225,14 +215,13 @@ body > canvas {
     column-gap: 40px;
 }
 
-.ColorPicker__vertical .ColorPicker--palettes {
-    width: 100%;
-
-    flex-basis: auto;
+.ColorPicker .ColorPicker--palettes {
+    margin-right: 40px;
 }
 
 .ColorPickerPalette {
     min-width: 176px;
+    padding-bottom: 20px;
 
     display: flex;
     flex-direction: column;
@@ -240,14 +229,6 @@ body > canvas {
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid;
-}
-
-.ColorPickerPalette {
-    padding-bottom: 20px;
-}
-
-.ColorPicker__vertical .ColorPickerPalette:last-child {
-    padding-bottom: 0px;
 }
 
 .ColorPickerPalette--title {

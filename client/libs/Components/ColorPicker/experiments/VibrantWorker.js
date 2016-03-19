@@ -476,12 +476,6 @@ onmessage = function (message) {
 
     var cmap = MMCQ.quantize(allPixels, data.colorCount);
 
-    if (data.unprocessed) {
-
-        postMessage(cmap.palette());
-
-        return;
-    }
     var _swatches = cmap.vboxes.map((function(_this) {
         return function(vbox) {
             return {

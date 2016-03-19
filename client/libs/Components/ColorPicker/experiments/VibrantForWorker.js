@@ -147,44 +147,61 @@
           pixelCount: pixelCount,
           quality: quality,
           pixels: pixels,
-          colorCount: colorCount,
-          unprocessed: !!unprocessed
+          colorCount: colorCount
       });
 
       if (unprocessed) {
+        return {
+          promise: new Promise(function (resolve) {
 
-        return new Promise(function (resolve) {
+            worker.onmessage = function (message) {
+
+              this._swatches = [];
+
+              for (var s = message.data.length - 1; s >= 0; s--) {
+
+                this._swatches.push(new Swatch(message.data[s].rgb, message.data[s].population));
+              }
+
+              image.removeCanvas();
+
+              resolve(this._swatches);
+
+            }.bind(this);
+
+          }.bind(this)),
+
+          stop: function () {
+
+            worker.terminate();
+          }
+        };
+      }
+
+      return {
+        promise: new Promise(function (resolve) {
 
           worker.onmessage = function (message) {
 
             this._swatches = message.data;
 
+            this.maxPopulation = this.findMaxPopulation;
+            this.generateVarationColors();
+            this.generateEmptySwatches();
+
             image.removeCanvas();
 
-            resolve(this._swatches);
+            resolve(this);
 
           }.bind(this);
 
-        }.bind(this));
-      }
+        }.bind(this)),
 
-      return new Promise(function (resolve) {
+        stop: function () {
 
-          worker.onmessage = function (message) {
-
-              this._swatches = message.data;
-
-              this.maxPopulation = this.findMaxPopulation;
-              this.generateVarationColors();
-              this.generateEmptySwatches();
-
-              image.removeCanvas();
-
-              resolve(this);
-
-          }.bind(this);
-
-      }.bind(this));
+          worker.terminate();
+        }
+      };
 
     }
 
@@ -231,6 +248,7 @@
       max = void 0;
       maxValue = 0;
       ref = this._swatches;
+
       for (j = 0, len = ref.length; j < len; j++) {
         swatch = ref[j];
           sat = Swatch.prototype.getHsl.call(swatch)[1];
@@ -373,9 +391,18 @@
 
   window.CanvasImage = CanvasImage = (function() {
     function CanvasImage(image) {
-      this.canvas = document.createElement('canvas');
+      this.iframe = document.createElement('iframe');
+      this.iframe.className = 'VibrantCanvas';
+      document.body.appendChild(this.iframe);
+
+      var doc = this.iframe.contentWindow.document;
+
+
+//      this.canvas = document.createElement('canvas');
+      this.canvas = doc.createElement('canvas');
       this.context = this.canvas.getContext('2d');
-      document.body.appendChild(this.canvas);
+      doc.body.appendChild(this.canvas);
+//      document.body.appendChild(this.canvas);
       this.width = this.canvas.width = image.width;
       this.height = this.canvas.height = image.height;
       this.context.drawImage(image, 0, 0, this.width, this.height);
@@ -398,6 +425,7 @@
     };
 
     CanvasImage.prototype.removeCanvas = function() {
+      this.iframe.parentNode.removeChild(this.iframe);
       return this.canvas.parentNode.removeChild(this.canvas);
     };
 
