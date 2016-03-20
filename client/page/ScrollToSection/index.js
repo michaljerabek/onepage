@@ -116,7 +116,7 @@ var ScrollToSection = function ScrollToSection(mode, internalSectionPrefix, dura
     this.duration = duration || 300;
     this.easing = easing || $.easing.easeOutSine ? "easeOutSine" : "swing";
 
-    $scrollElement = $("html, body");
+    $scrollElement = $(document.scrollingElement || "html, body");
     $eventElement = $("body");
 
     init.call(this);

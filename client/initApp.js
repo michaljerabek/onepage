@@ -20,6 +20,8 @@ Ractive.defaults.findSiblingComponents = function (name) {
     return components;
 };
 
+Ractive.$win = Ractive.$win || $(window);
+
 var loadLibs = function () {
 
     require("ractive-touch");
