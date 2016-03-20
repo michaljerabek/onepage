@@ -67,8 +67,7 @@
                                         linear-gradient(to right, #fff, {{.SVBoxHue}});
                                 "
                             >
-                                <div
-                                    class="ColorPicker--SV-selector"
+                                <div class="ColorPicker--SV-selector"
                                     on-mousedown-touchstart="activateSelector(event, 'SV')"
                                     style="
                                         transform: translate({{SVSelector.x}}px, {{SVSelector.y}}px);
@@ -126,7 +125,7 @@
 
                     <div class="ColorPicker--palettes">
 
-                        <ColorPickerPalette title="Vybraná / Původní" colors="[{{current}}, {{initial}}]" addNoColor="{{.noColor}}" isCurrentInitial="true" />
+                        <ColorPickerPalette title="Vybraná / Původní" colors="[{{current}}, {{initial}}]" addNoColor="{{.noColor}}" type="default" />
 
                         {{> content}}
 
@@ -152,7 +151,7 @@
             {{#each .colors:i}}
                 <div class="ColorPickerPalette--color
 
-                        {{#if ~/isCurrentInitial && i === 0 && output === ''}}
+                        {{#if ~/type === ~/TYPE_DEFAULT && i === 0 && output === ''}}
                             ColorPickerPalette--color__remove{{#if ~/nearToBlack}}-black{{/if}}
                         {{/if}}
                     "
@@ -163,11 +162,11 @@
                     "
                     on-click-touchend="setColor:{{this}},{{true}}"
                     title="
-                        {{#if ~/isCurrentInitial}}
+                        {{#if ~/type === ~/TYPE_DEFAULT}}
                             {{#if i === 0}}
-                                Vybraná
+                               Vybraná: {{formatColor(this, inputType)}}
                             {{else}}
-                                Původní
+                               Původní: {{formatColor(this, inputType)}}
                             {{/if}}
                         {{else}}
                             {{formatColor(this, inputType)}}
@@ -177,11 +176,11 @@
             {{/each}}
 
             {{#if .addNoColor}}
-                <a href="#" class="ColorPickerPalette--color ColorPickerPalette--color__remove"
+                <div class="ColorPickerPalette--color ColorPickerPalette--color__remove"
                     intro="fade"
                     on-click-touchend="setColor:{{NO_COLOR}}"
                     title="Odstranit / Výchozí"
-                ></a>
+                ></div>
             {{/if}}
             </div>
         </div><!--/ColorPickerPalette-->
@@ -211,6 +210,8 @@
             data: function () {
 
                 return {
+                    TYPE_DEFAULT: "default",
+
                     formatColor: function (color, format) {
 
                         if (format === this.parent.get("TYPE_HEX")) {
