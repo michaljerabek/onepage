@@ -30,7 +30,7 @@ SuperEditor.prototype.init = function () {
 
     this.editor = new MediumEditor($(this.$editableSelector), this.options);
 
-    this.$toolbar = $(this.editor.toolbar.toolbar);
+    this.$toolbar = $(this.editor.toolbar && this.editor.toolbar.toolbar);
 
 };
 

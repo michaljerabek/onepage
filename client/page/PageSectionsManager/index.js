@@ -614,7 +614,7 @@ module.exports = (function () {
             init();
         };
 
-    return function (pageComponent, _pageSectionBuilder, deferInit) {
+    return function PageSectionManager(pageComponent, _pageSectionBuilder, deferInit) {
 
         page = pageComponent;
 
