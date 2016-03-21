@@ -3276,7 +3276,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     position: relative;
 
     min-height: 0px;
-    height: 40px;
+    height: 48px;
     width: 100%;
 
     color: #888;
@@ -3338,7 +3338,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .P_PageSection--placeholder__transitions {
-    height: 40px;
+    height: 48px;
     width: 100%;
 
     background-color: #fff;
@@ -3522,8 +3522,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .P_PageSection__dragged {
-    height: 40px;
-    min-height: 40px;
+    height: 48px;
+    min-height: 48px;
 }
 
 .E [class*='P_PageSection'], .E [class*='P_PageSection']:after {
