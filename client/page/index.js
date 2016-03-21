@@ -16,16 +16,31 @@ module.exports = Ractive.extend({
         GlobalPageSettings: require("./Components/GlobalPageSettings")
     },
 
-    onrender: function () {
+    onconfig: function () {
+
+        if (this.get("isAdmin")) {
+
+            this.Admin = this.root.findComponent("Admin");
+
+            var pageId = this.get("pageId");
+
+            if (this.isCurrentPage(pageId)) {
+
+                this.alreadyLoaded = true;
+
+                return;
+            }
+
+            this.loadPage(pageId);
+        }
     },
 
     oncomplete: function () {
 
-        if (this.get("editMode") && !this.get("isAdmin")) {
+        if (this.get("editMode") && (!this.get("isAdmin") || this.alreadyLoaded)) {
 
             this.initPage();
         }
-
 
         if (!this.get("editMode") && !this.get("isAdmin")) {
 
@@ -46,23 +61,6 @@ module.exports = Ractive.extend({
         }
     },
 
-    onconfig: function () {
-
-        if (this.get("isAdmin")) {
-
-            this.Admin = this.root.findComponent("Admin");
-
-            var pageId = this.get("pageId");
-
-            if (this.isCurrentPage(pageId)) {
-
-                return;
-            }
-
-            this.loadPage(pageId);
-        }
-    },
-
     initEditors: function () {
 
         var TitleEditor = require("./Editor/TitleEditor");
@@ -78,12 +76,11 @@ module.exports = Ractive.extend({
 
     initScrollToSection: function () {
 
+        var ScrollToSection = require("./ScrollToSection"),
 
-            var ScrollToSection = require("./ScrollToSection"),
+        mode = this.get("editMode") ? ScrollToSection.MODES.EDIT : ScrollToSection.MODES.PAGE;
 
-            mode = this.get("editMode") ? ScrollToSection.MODES.EDIT : ScrollToSection.MODES.PAGE;
-
-            this.scrollToSection = new ScrollToSection(mode, "section-");
+        this.scrollToSection = new ScrollToSection(mode, "section-");
     },
 
     refreshEditors: function () {
