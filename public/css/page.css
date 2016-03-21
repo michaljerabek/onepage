@@ -3608,4 +3608,620 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     vertical-align: sub;
 }
 
+/*====================================================================*/
+/*--------------------------- COLOR PICKER ---------------------------*/
+/*====================================================================*/
+
+.ColorPicker {
+    width: 100%;
+    padding: 0 40px;
+}
+
+.ColorPicker--wrapper-2 {
+    margin-left: -40px;
+    margin-right: -80px;
+
+    min-width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+       -moz-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+}
+
+.ColorPicker *:not(input) {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+/*Iframe používaný pro nalezení barev z obrázku.*/
+.VibrantCanvas {
+    z-index: -1;
+    position: absolute;
+    top: -99999px;
+    left: -99999px;
+
+    max-width: 0px;
+    max-height: 0px;
+
+    border: none;
+    opacity: 0;
+
+    visibility: hidden;
+}
+
+/*--------------------------------------------------------------------*/
+/*---------------------------- COLOR BOXES ---------------------------*/
+/*--------------------------------------------------------------------*/
+
+.ColorPicker--widget-wrapper {
+    margin-bottom: 8px;
+    margin-right: 40px;
+
+    -webkit-flex-basis: 240px;
+
+        -ms-flex-preferred-size: 240px;
+
+            flex-basis: 240px;
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+       -moz-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+.ColorPicker--HSV-wrapper {
+    font-size: 0;
+
+    width: 100%;
+}
+
+/*---------------------------- BOXES ----------------------------*/
+
+.ColorPicker--SV-box {
+    vertical-align: top;
+
+    position: relative;
+    margin-bottom: 8px;
+
+    width: -webkit-calc(100% - 14px - 8px);
+
+    width: -moz-calc(100% - 14px - 8px);
+
+    width: calc(100% - 14px - 8px);
+    height: 0px;
+    padding-bottom: -webkit-calc(100% - 8px - 14px - 1px - 1px);
+    padding-bottom: -moz-calc(100% - 8px - 14px - 1px - 1px);
+    padding-bottom: calc(100% - 8px - 14px - 1px - 1px);
+
+    background-image:
+        -webkit-gradient(
+            linear,
+            left top, left bottom,
+            from(rgba(0, 0, 0, 0)),
+            to(rgba(0, 0, 0, 1))
+        ),
+        -webkit-gradient(
+            linear,
+            left top, right top,
+            from(rgb(255, 255, 255)),
+            to(rgb(255,   0,   0))
+        );
+
+    background-image:
+        -webkit-linear-gradient(
+            top,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        -webkit-linear-gradient(
+            left,
+            rgb(255, 255, 255),
+            rgb(255,   0,   0)
+        );
+
+    background-image:
+        -moz-linear-gradient(
+            top,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        -moz-linear-gradient(
+            left,
+            rgb(255, 255, 255),
+            rgb(255,   0,   0)
+        );
+
+    background-image:
+        -o-linear-gradient(
+            top,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        -o-linear-gradient(
+            left,
+            rgb(255, 255, 255),
+            rgb(255,   0,   0)
+        );
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        linear-gradient(
+            to right,
+            rgb(255, 255, 255),
+            rgb(255,   0,   0)
+        );
+    border: 1px solid black;
+
+    display: inline-block;
+    will-change: background-image;
+}
+
+.ColorPicker--H-box {
+    position: relative;
+    margin-left: 8px;
+
+    width: 14px;
+    min-width: 14px;
+    height: 0;
+    padding-bottom: -webkit-calc(100% - 8px - 14px - 1px - 1px);
+    padding-bottom: -moz-calc(100% - 8px - 14px - 1px - 1px);
+    padding-bottom: calc(100% - 8px - 14px - 1px - 1px);
+
+    background-image:
+        -webkit-gradient(
+            linear,
+            left bottom, left top,
+            color-stop(0.00%, #ff0000),
+            color-stop(16.67%, #ffff00),
+            color-stop(33.33%, #00ff00),
+            color-stop(50.00%, #00ffff),
+            color-stop(66.67%, #0000ff),
+            color-stop(83.33%, #ff00ff),
+            color-stop(100.00%, #ff0000)
+        );
+
+    background-image:
+        -webkit-linear-gradient(
+            bottom,
+            #ff0000   0.00%,
+            #ffff00  16.67%,
+            #00ff00  33.33%,
+            #00ffff  50.00%,
+            #0000ff  66.67%,
+            #ff00ff  83.33%,
+            #ff0000 100.00%
+        );
+
+    background-image:
+        -moz-linear-gradient(
+            bottom,
+            #ff0000   0.00%,
+            #ffff00  16.67%,
+            #00ff00  33.33%,
+            #00ffff  50.00%,
+            #0000ff  66.67%,
+            #ff00ff  83.33%,
+            #ff0000 100.00%
+        );
+
+    background-image:
+        -o-linear-gradient(
+            bottom,
+            #ff0000   0.00%,
+            #ffff00  16.67%,
+            #00ff00  33.33%,
+            #00ffff  50.00%,
+            #0000ff  66.67%,
+            #ff00ff  83.33%,
+            #ff0000 100.00%
+        );
+
+    background-image:
+        linear-gradient(
+            to top,
+            #ff0000   0.00%,
+            #ffff00  16.67%,
+            #00ff00  33.33%,
+            #00ffff  50.00%,
+            #0000ff  66.67%,
+            #ff00ff  83.33%,
+            #ff0000 100.00%
+        );
+    border: 1px solid black;
+
+    display: inline-block;
+}
+
+.ColorPicker--H-box:before, .ColorPicker--H-box:after {
+    content: "";
+
+    position: absolute;
+    top: -1px;
+
+    width: 9px;
+    height: -webkit-calc(100% + 2px);
+    height: -moz-calc(100% + 2px);
+    height: calc(100% + 2px);
+}
+
+.ColorPicker--H-box:before {
+    left: -9px;
+}
+
+.ColorPicker--H-box:after {
+    left: 12px;
+}
+
+/*---------------------------- SELECTORS ----------------------------*/
+
+.ColorPicker--SV-selector, .ColorPicker--H-selector {
+    position: absolute;
+
+    will-change: transform;
+    -webkit-transition: -webkit-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: -webkit-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    -moz-transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s, -moz-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    -o-transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s, -o-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s, -webkit-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s, -moz-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s, -o-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+}
+
+.ColorPicker--SV-selector {
+    top: -6px;
+    left: -6px;
+    -webkit-transform: translate(0px, 0px);
+       -moz-transform: translate(0px, 0px);
+        -ms-transform: translate(0px, 0px);
+         -o-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+
+    width: 12px;
+    height: 12px;
+
+    -webkit-border-radius: 50%;
+
+       -moz-border-radius: 50%;
+
+            border-radius: 50%;
+    border: 1px solid red;
+}
+
+.ColorPicker--H-selector {
+    top: -5px;
+    left: -2px;
+    -webkit-transform: translateY(0px);
+       -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+         -o-transform: translateY(0px);
+            transform: translateY(0px);
+
+    width: 16px;
+    height: 8px;
+
+    border: 1px solid red;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ INPUTS ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.ColorPicker--input {
+    width: 100%;
+    padding: 0 8px;
+}
+
+.ColorPicker--input-wrapper-2 {
+    margin-right: -16px;
+    margin-left: -8px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+/*---------------------------- TYPE ----------------------------*/
+
+.ColorPicker--type-selector-wrapper {
+    margin-bottom: 4px;
+    margin-right: 8px;
+
+    width: 64px;
+    min-width: 64px;
+
+    -webkit-box-flex: 1;
+
+    -webkit-flex-grow: 1;
+
+       -moz-box-flex: 1;
+
+        -ms-flex-positive: 1;
+
+            flex-grow: 1;
+    -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.ColorPicker--type-selector {
+    line-height: 32px;
+
+    height: 32px;
+    padding: 0 4px;
+
+    -webkit-box-flex: 1;
+
+    -webkit-flex-grow: 1;
+
+       -moz-box-flex: 1;
+
+        -ms-flex-positive: 1;
+
+            flex-grow: 1;
+}
+
+/*---------------------------- TEXT ----------------------------*/
+
+.ColorPicker--input-text-wrapper {
+    margin-right: 8px;
+
+    -webkit-flex-basis: -webkit-calc(100% - 64px - 8px - 8px);
+
+        -ms-flex-preferred-size: calc(100% - 64px - 8px - 8px);
+
+            flex-basis: -moz-calc(100% - 64px - 8px - 8px);
+
+            flex-basis: calc(100% - 64px - 8px - 8px);
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.ColorPicker--input-text {
+    line-height: 32px;
+
+    margin-bottom: 8px;
+
+    min-width: 48px;
+    width: -webkit-calc(100% - 4px);
+    width: -moz-calc(100% - 4px);
+    width: calc(100% - 4px);
+
+    height: 32px;
+    padding: 0 8px;
+
+    -webkit-flex-basis: -webkit-calc(100% - 4px);
+
+        -ms-flex-preferred-size: calc(100% - 4px);
+
+            flex-basis: -moz-calc(100% - 4px);
+
+            flex-basis: calc(100% - 4px);
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+}
+
+.ColorPicker--input-text:not(:first-child) {
+    margin-left: 4px;
+}
+
+/*====================================================================*/
+/*----------------------------- PALETTES -----------------------------*/
+/*====================================================================*/
+
+.ColorPicker--palettes {
+    margin-bottom: auto;
+    margin-right: 40px;
+
+    min-width: 176px;
+    max-width: 100%;
+
+    -webkit-flex-basis: 176px;
+
+        -ms-flex-preferred-size: 176px;
+
+            flex-basis: 176px;
+    -webkit-box-flex: 50;
+    -webkit-flex-grow: 50;
+       -moz-box-flex: 50;
+        -ms-flex-positive: 50;
+            flex-grow: 50;
+
+    -webkit-column-width: 176px;
+    -webkit-column-gap: 40px;
+    -moz-column-width: 176px;
+    -moz-column-gap: 40px;
+    -webkit-column-width: 176px;
+       -moz-column-width: 176px;
+            column-width: 176px;
+    -webkit-column-gap: 40px;
+       -moz-column-gap: 40px;
+            column-gap: 40px;
+}
+
+.ColorPickerPalette {
+    min-width: 176px;
+    padding-bottom: 20px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.ColorPickerPalette--title {
+    font-size: 14px;
+    white-space: nowrap;
+
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+/*---------------------------- COLORS ----------------------------*/
+
+.ColorPickerPalette--colors {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+.ColorPickerPalette--color {
+    position: relative;
+    margin-right: 4px;
+    margin-bottom: 4px;
+
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid black;
+
+    -webkit-flex-shrink: 0;
+
+        -ms-flex-negative: 0;
+
+            flex-shrink: 0;
+
+    overflow: hidden;
+
+    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    -moz-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    -o-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+}
+
+.ColorPickerPalette--color:last-of-type {
+    margin-right: 0;
+}
+
+.ColorPickerPalette--color__remove {
+    background-color: white;
+}
+
+.ColorPickerPalette--color:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: transparent;
+
+    -webkit-transform: rotate(45deg) scale(0.0663, 1.4141);
+
+       -moz-transform: rotate(45deg) scale(0.0663, 1.4141);
+
+        -ms-transform: rotate(45deg) scale(0.0663, 1.4141);
+
+         -o-transform: rotate(45deg) scale(0.0663, 1.4141);
+
+            transform: rotate(45deg) scale(0.0663, 1.4141);
+
+    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    -moz-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    -o-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+}
+
+.ColorPickerPalette--color__remove:after {
+    background-color: black;
+}
+
+.ColorPickerPalette--color__remove-black:after {
+    background-color: red;
+}
+
 /*# sourceMappingURL=page.css.map */

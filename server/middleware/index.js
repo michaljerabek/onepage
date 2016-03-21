@@ -9,6 +9,7 @@ var bodyParser = require("body-parser");
 var session = require("express-session");
 var MongoStore = require("connect-mongo")(session);
 var flash = require("express-flash");
+var cors = require("cors");
 
 module.exports = function (app, express) {
 
@@ -17,6 +18,8 @@ module.exports = function (app, express) {
 
         require("./dev")(app);
     }
+
+    app.use(cors());
 
     /*Přiřazení adresy k requestu.*/
     app.use(function (req, res, next) {
@@ -36,11 +39,11 @@ module.exports = function (app, express) {
     app.use(flash());
 
     app.use(session({
-        secret: "--__X_-_X-_-X-_-X_-_X__--",
+        secret: "mDFgGDxehMOgfdEWdzuSKopFjdEWsdUTfsEReMzt",
         resave: false,
         saveUninitialized: false,
         store: new MongoStore({
-            secret: "--__X_-_X-_-X-_-X_-_X__--",
+            secret: "mDFgxehgfMOddzEWuopSKjdFsdEWGDUTfsEReMzt",
             url: "mongodb://localhost/" + config.Db.global.name
         })
     }));

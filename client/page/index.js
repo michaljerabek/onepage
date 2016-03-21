@@ -17,7 +17,6 @@ module.exports = Ractive.extend({
     },
 
     onrender: function () {
-
     },
 
     oncomplete: function () {

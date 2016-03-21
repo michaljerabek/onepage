@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            width: 240px;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../Components/ColorPickerPalette/styles.css">
+
+</head>
+<body>
+
+    <div id="app"></div>
+
+    <script id="App" type="text/html">
+
+        <ColorPicker output="{{.bg}}" noColor="true">
+            <ColorPickerPalette title="RGB" colors="['red', '#0f0', 'blue']" />
+            <ColorPickerPalette title="CMYK" colors="['rgb(0, 255, 255)', 'rgb(255, 0, 255)', 'rgb(255, 255, 0)', 'rgb(0, 0, 0)']" />
+            <ColorPickerPalette title="Obrázek" image="img18.jpg" />
+        </ColorPicker>
+
+        <div class="wrapper">
+<!--            <ColorPicker defer="true" on-output="changeColor:{{.switchToBorder ? 'border' : 'color'}}" input="{{#if .switchToBorder}}{{#if .border !== undefined}}[[.border]]{{else}}rgb(250, 35, 0){{/if}}{{else}}{{#if .color !== undefined}}[[.color]]{{else}}rgb(12, 35, 90){{/if}}{{/if}}">-->
+            <ColorPicker output="{{.color}}" input="[[#if .color]][[.color]][[else]]rgb(12, 35, 90)[[/if]]">
+                <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
+                <ColorPickerPalette title="Obrázek" image="img18.jpg" />
+            </ColorPicker>
+        </div>
+
+        <div class="selected" style="display: inline-block; margin-top: 24px; height: 50px; background: {{.bg}}; border: 1px solid {{.border}};">
+            <h1 style="margin: 0; line-height: 50px; color: {{.color}}">Text Text Text</h1>
+            <img style="width: 100%; float: left" src="img18.jpg" alt="">
+        </div>
+
+    </script>
+
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
+
+    <script src="../../../U.js"></script>
+    <script src="spectra.js"></script>
+    <script src="../../../VibrantWW/VibrantWW.js"></script>
+    <script src="ractive-transitions-fade.umd.js"></script>
+    <script src="../Components/ColorPickerPalette/index.js"></script>
+    <script src="../index.js"></script>
+
+    <script>/*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+/*global Ractive, Spectra, $, U, Vibrant, ColorPickerPalette, ColorPicker*/
+
+        Vibrant.workerPath = "VibrantWorker.js";
+
+        $.when.apply($, [$.get("../index.tpl"), $.get("../Components/ColorPickerPalette/index.tpl")]).then(function (picker, palette) {
+
+            var app = new Ractive({
+                el: "#app",
+                template: "#App",
+
+                components: {
+                    ColorPicker: ColorPicker.extend({
+                        template: picker[0],
+                        components: {
+                            ColorPickerPalette: ColorPickerPalette.extend({
+                                template: palette[0]
+                            })
+                        }
+                    })
+                },
+
+                partials: {
+
+                },
+                data: {
+    //                color: "rgb(255, 255, 0)",
+    //                border: "rgb(0, 0, 250)"
+                },
+
+                onconfig: function () {
+
+                    this.on("changeColor", this.changeColor);
+
+                },
+
+                changeColor: function (type, color) {
+                    console.log(arguments);
+                    this.set(type, color);
+                }
+            });
+
+            var picker = app.findComponent("ColorPicker");
+            var picker2 = app.findAllComponents("ColorPicker")[1];
+        });
+
+    </script>
+
+
+
+</body>
+</html>
