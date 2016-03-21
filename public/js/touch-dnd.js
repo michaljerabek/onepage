@@ -325,7 +325,7 @@
         if (!(e.view && e.view.frameElement)) {
 
             var bottom = (pageY - (window.scrollY || window.pageYOffset) - window.innerHeight) * -1
-            var bottomReached = document.documentElement.offsetHeight < (window.scrollY || window.pageYOffset) + window.innerHeight
+            var bottomReached = document.documentElement.scrollHeight < (window.scrollY || window.pageYOffset) + window.innerHeight
             var top = (pageY - (window.scrollY || window.pageYOffset))
             var topReached = (window.scrollY || window.pageYOffset) <= 0
 
