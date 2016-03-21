@@ -7,7 +7,7 @@ var SUPPORT = require("./../../SUPPORT");
 module.exports = (function () {
 
     var OPTIONS = {
-            DRAGGED_SECTION_HEIGHT: 40,
+            DRAGGED_SECTION_HEIGHT: 48,
             SECTION_SPEED: "0.35s",
             SECTION_SPEED_JQ: 350,
             SECTION_EASING: "ease-out",
