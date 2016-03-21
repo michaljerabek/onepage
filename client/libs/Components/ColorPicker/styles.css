@@ -218,7 +218,7 @@
 
     flex-basis: calc(100% - 64px - 8px - 8px);
     flex-grow: 1;
-	display: flex;
+    display: flex;
 }
 
 .ColorPicker--input-text {
@@ -239,103 +239,4 @@
 
 .ColorPicker--input-text:not(:first-child) {
     margin-left: 4px;
-}
-
-/*--------------------------------------------------------------------*/
-/*----------------------------- PALETTES -----------------------------*/
-/*--------------------------------------------------------------------*/
-
-.ColorPicker--palettes {
-    margin-bottom: auto;
-    margin-right: 40px;
-
-    min-width: 176px;
-    max-width: 100%;
-
-    flex-basis: 176px;
-    flex-grow: 50;
-
-    -webkit-column-width: 176px;
-    -webkit-column-gap: 40px;
-    -moz-column-width: 176px;
-    -moz-column-gap: 40px;
-    column-width: 176px;
-    column-gap: 40px;
-}
-
-.ColorPickerPalette {
-    min-width: 176px;
-    padding-bottom: 20px;
-
-    display: flex;
-    flex-direction: column;
-
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
-}
-
-.ColorPickerPalette--title {
-    font-size: 14px;
-    white-space: nowrap;
-
-    margin: 0;
-    margin-bottom: 8px;
-}
-
-/*---------------------------- COLORS ----------------------------*/
-
-.ColorPickerPalette--colors {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.ColorPickerPalette--color {
-    position: relative;
-    margin-right: 4px;
-    margin-bottom: 4px;
-
-    width: 32px;
-    height: 32px;
-
-    border: 1px solid black;
-
-    flex-shrink: 0;
-
-    overflow: hidden;
-
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-}
-
-.ColorPickerPalette--color:last-of-type {
-    margin-right: 0;
-}
-
-.ColorPickerPalette--color__remove {
-    background-color: white;
-}
-
-.ColorPickerPalette--color:after {
-    content: "";
-
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: transparent;
-
-    transform: rotate(45deg) scale(0.0663, 1.4141);
-
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-}
-
-.ColorPickerPalette--color__remove:after {
-    background-color: black;
-}
-
-.ColorPickerPalette--color__remove-black:after {
-    background-color: red;
 }

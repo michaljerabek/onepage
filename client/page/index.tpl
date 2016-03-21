@@ -7,7 +7,7 @@
     {{#if .editMode}}
 
         <NewPageSectionSelector />
-        <GlobalPageSettings settings="{{page.settings}}" />
+        <GlobalPageSettings settings="{{page.settings}}" pageTitleColorTest="{{pageTitleColorTest}}" />
 
     {{/if}}
 
@@ -15,7 +15,7 @@
 
         <div class="P_nonsortable-sections" style="overflow: hidden">
 
-            <h1 style="float: left; font-size: 36px; padding: 20px">{{page.name}}</h1>
+            <h1 style="float: left; font-size: 36px; padding: 20px; color: {{pageTitleColorTest}}">{{page.name}}</h1>
 
             {{#if .isAdmin}}
                 <button style="float: left; margin-top: 28px; margin-left: 10px" on-tap="closePage()">Zavřít</button>

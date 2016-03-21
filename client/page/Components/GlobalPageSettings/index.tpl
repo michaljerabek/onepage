@@ -9,4 +9,11 @@
         {{/each}}
     </select>
 
+    <ColorPicker noColor="true" output="{{pageTitleColorTest}}" input="[[#if pageTitleColorTest]][[pageTitleColorTest]][[else]]rgb(12, 35, 90)[[/if]]">
+        <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
+        <ColorPickerPalette title="Obrázek" image="img/img18.jpg" />
+    </ColorPicker>
+
+    <img style="width: 100%;" src="img/img18.jpg" alt="">
+
 </div>
