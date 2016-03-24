@@ -1,0 +1,117 @@
+.E_PageSectionSettings {
+    line-height: 1;
+
+    position: relative;
+}
+
+.E_PageSectionSettings--wrapper {
+    margin: 0px auto;
+
+    max-width: var(--P_PageSection__max-width);
+    min-height: 32px;
+
+    overflow: hidden;
+
+    will-change: height, max-height;
+}
+
+/*---------------------------- CLOSE ----------------------------*/
+
+.E_PageSectionSettings--close {
+    font-size: 23px;
+    text-align: center;
+    line-height: 24px;
+
+    z-index: 110;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    color: #404040;
+    background-color: transparent;
+    border: none;
+    opacity: 0.5;
+
+    transition: var(--default-transition);
+}
+
+@media (pointer: coarse) {
+
+    .E_PageSectionSettings--close {
+        font-size: 25px;
+        text-indent: 4px;
+
+        width: 32px;
+        height: 32px;
+        padding-bottom: 8px;
+    }
+}
+
+.E_PageSectionSettings--close:hover {
+    opacity: 1;
+
+    transition: var(--default-transition-hover);
+
+}
+
+.E_PageSectionSettings--close:active {
+    transform: scale(0.95);
+
+    transition: var(--default-transition-active);
+}
+
+/*---------------------------- RESIZER ----------------------------*/
+
+.E_PageSectionSettings--resizer {
+    z-index: 100;
+    position: absolute;
+    bottom: -7px;
+    left: 0px;
+
+    width: 100%;
+    height: 12px;
+
+    cursor: ns-resize;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageSectionSettings--resizer {
+        bottom: -13px;
+
+        height: 24px;
+    }
+}
+
+.E_PageSectionSettings--resizer:after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: -2px;
+
+    width: calc(100% + 8px);
+    height: 0px;
+
+    box-shadow: 0px 0px 0px 0px transparent;
+
+    cursor: ns-resize;
+
+    transition: var(--default-transition);
+}
+
+.E_PageSectionSettings--resizer__active:after,
+.E_PageSectionSettings--resizer:hover:after {
+    box-shadow: 0px 0px 0px 1px red;
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageSectionSettings--resizer:active:after {
+    box-shadow: 0px 0px 2px 1px red;
+
+    transition: var(--default-transition-active);
+}

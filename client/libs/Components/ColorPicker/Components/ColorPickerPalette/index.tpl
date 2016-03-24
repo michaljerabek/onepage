@@ -8,7 +8,7 @@
 
         {{#each .colors:i}}
 
-            {{>Color}}
+            {{>Color {output: output, color: this}}}
 
         {{/each}}
 
@@ -27,25 +27,25 @@
 {{#partial Color}}
 <div class="ColorPickerPalette--color
 
-            {{#if ~/type === ~/TYPE_DEFAULT && i === 0 && output === ''}}
+            {{#if ~/type === ~/TYPE_DEFAULT && i === 0 && .output === ''}}
                 ColorPickerPalette--color__remove{{#if ~/nearToBlack}}-black{{/if}}
             {{/if}}
             "
      intro="fade"
      style="
-            background-color: {{this}};
+            background-color: {{.color}};
             transition: {{animate ? '' : 'none'}};
             "
-     on-click-touchend="setColor:{{this}},{{true}}"
+     on-click-touchend="setColor:{{.color}},{{true}}"
      title="
             {{#if ~/type === ~/TYPE_DEFAULT}}
                 {{#if i === 0}}
-                    Vybraná: {{formatColor(this, inputType)}}
+                    Vybraná: {{formatColor(.color, inputType)}}
                 {{else}}
-                    Původní: {{formatColor(this, inputType)}}
+                    Původní: {{formatColor(.color, inputType)}}
                 {{/if}}
             {{else}}
-                {{formatColor(this, inputType)}}
+                {{formatColor(.color, inputType)}}
             {{/if}}
         "
 ></div><!--/ColorPickerPalette--color-->

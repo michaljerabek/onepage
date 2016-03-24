@@ -243,8 +243,12 @@ body {
 /*====================================================================*/
 
 .ColorPicker {
+    line-height: 1;
+
     width: 100%;
     padding: 0 40px;
+
+    overflow: hidden;
 }
 
 .ColorPicker--wrapper-2 {
@@ -761,6 +765,8 @@ body {
 
 .ColorPickerPalette--title {
     font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
     white-space: nowrap;
 
     margin: 0;
@@ -778,6 +784,11 @@ body {
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
+
+    /*iOS-fix*/
+    -webkit-transform: translateZ(0);
+       -moz-transform: translateZ(0);
+            transform: translateZ(0);
 }
 
 .ColorPickerPalette--color {
@@ -852,6 +863,39 @@ body {
 
 .ColorPickerPalette--color__remove-black:after {
     background-color: red;
+}
+
+.E_ColorSettings {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+
+.E_ColorSettings--menu {
+    -webkit-flex-basis: 300px;
+        -ms-flex-preferred-size: 300px;
+            flex-basis: 300px;
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+}
+
+.E_ColorSettings--ColorPicker {
+    max-height: 320px;
+
+    -webkit-flex-shrink: 1;
+
+        -ms-flex-negative: 1;
+
+            flex-shrink: 1;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
 }
 
 .medium-editor-toolbar *:not(input)  {
@@ -3113,8 +3157,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     font-size: 14px;
     line-height: 34px;
     white-space: nowrap;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
 
     padding: 0 12px;
 
@@ -4120,6 +4163,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
             transition-timing-function: ease-out;
 }
 
+.P_PageSection__has-settings {
+    z-index: 2;
+}
+
 .P_PageSection--section {
     position: relative;
 }
@@ -4224,4 +4271,172 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     vertical-align: sub;
 }
 
+.E_PageSectionSettings {
+    line-height: 1;
+
+    position: relative;
+}
+
+.E_PageSectionSettings--wrapper {
+    margin: 0px auto;
+
+    max-width: 1440px;
+    min-height: 32px;
+
+    overflow: hidden;
+
+    will-change: height, max-height;
+}
+
+/*---------------------------- CLOSE ----------------------------*/
+
+.E_PageSectionSettings--close {
+    font-size: 23px;
+    text-align: center;
+    line-height: 24px;
+
+    z-index: 110;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    color: #404040;
+    background-color: transparent;
+    border: none;
+    opacity: 0.5;
+
+    -webkit-transition: all 0.3s   cubic-bezier(0.05, 0.4, 0.4, 1)   0s;
+
+    -moz-transition: all 0.3s   cubic-bezier(0.05, 0.4, 0.4, 1)   0s;
+
+    -o-transition: all 0.3s   cubic-bezier(0.05, 0.4, 0.4, 1)   0s;
+
+    transition: all 0.3s   cubic-bezier(0.05, 0.4, 0.4, 1)   0s;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageSectionSettings--close {
+        font-size: 25px;
+        text-indent: 4px;
+
+        width: 32px;
+        height: 32px;
+        padding-bottom: 8px;
+    }
+}
+
+.E_PageSectionSettings--close:hover {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    transition: all 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+}
+
+.E_PageSectionSettings--close:active {
+    -webkit-transform: scale(0.95);
+       -moz-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+         -o-transform: scale(0.95);
+            transform: scale(0.95);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1)   0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1)   0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1)   0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1)   0s;
+}
+
+/*---------------------------- RESIZER ----------------------------*/
+
+.E_PageSectionSettings--resizer {
+    z-index: 100;
+    position: absolute;
+    bottom: -7px;
+    left: 0px;
+
+    width: 100%;
+    height: 12px;
+
+    cursor: ns-resize;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageSectionSettings--resizer {
+        bottom: -13px;
+
+        height: 24px;
+    }
+}
+
+.E_PageSectionSettings--resizer:after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: -2px;
+
+    width: -webkit-calc(100% + 8px);
+
+    width: -moz-calc(100% + 8px);
+
+    width: calc(100% + 8px);
+    height: 0px;
+
+    -webkit-box-shadow: 0px 0px 0px 0px transparent;
+
+       -moz-box-shadow: 0px 0px 0px 0px transparent;
+
+            box-shadow: 0px 0px 0px 0px transparent;
+
+    cursor: ns-resize;
+
+    -webkit-transition: all 0.3s   cubic-bezier(0.05, 0.4, 0.4, 1)   0s;
+
+    -moz-transition: all 0.3s   cubic-bezier(0.05, 0.4, 0.4, 1)   0s;
+
+    -o-transition: all 0.3s   cubic-bezier(0.05, 0.4, 0.4, 1)   0s;
+
+    transition: all 0.3s   cubic-bezier(0.05, 0.4, 0.4, 1)   0s;
+}
+
+.E_PageSectionSettings--resizer__active:after, .E_PageSectionSettings--resizer:hover:after {
+    -webkit-box-shadow: 0px 0px 0px 1px red;
+       -moz-box-shadow: 0px 0px 0px 1px red;
+            box-shadow: 0px 0px 0px 1px red;
+
+    -webkit-transition: all 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    -moz-transition: all 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    -o-transition: all 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    transition: all 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+}
+
+.E_PageSectionSettings--resizer:active:after {
+    -webkit-box-shadow: 0px 0px 2px 1px red;
+       -moz-box-shadow: 0px 0px 2px 1px red;
+            box-shadow: 0px 0px 2px 1px red;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1)   0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1)   0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1)   0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1)   0s;
+}
 /*# sourceMappingURL=admin.css.map */

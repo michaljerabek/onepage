@@ -4,7 +4,10 @@ var SuperPageSectionType = require("./../SuperPageSectionType");
 module.exports = SuperPageSectionType.extend({
 
 //    template: require("./index.tpl"),
-    template: "<span class='E_Editor__title' contenteditable='{{!!editMode}}' value='{{.section.name}}'></span>",
+    template: "<div class='E_Editor__title' style='background: {{.section.background}}; color: {{.section.color}};' contenteditable='{{!!editMode}}' value='{{.section.name}}'></div>",
+
+    partials: {
+    },
 
     components: {
     },

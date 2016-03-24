@@ -1,7 +1,6 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/clearInterval
 /*global $, requestAnimationFrame*/
 
-var CLASS = require("./../CLASSNAMES");
 var SUPPORT = require("./../../SUPPORT");
 
 module.exports = (function () {
@@ -13,6 +12,8 @@ module.exports = (function () {
             SECTION_EASING: "ease-out",
             SECTION_EASING_JQ: "easeOutSine"
         },
+
+        CLASS = {},
 
         page,
         pageSectionBuilder,
@@ -125,7 +126,8 @@ module.exports = (function () {
 
         removeSection = function (e) {
 
-            var $sectionElement = $(e.component.getSectionElement());
+            var pageSection = e.component.findParent("PageSection"),
+                $sectionElement = pageSection.get$SectionElement();
 
             $sectionElement
                 .addClass(CLASS.PageSection.removedSection)
@@ -136,7 +138,7 @@ module.exports = (function () {
 
                     for (s; s >= 0; s--) {
 
-                        if (sections[s] === e.component) {
+                        if (sections[s] === pageSection) {
 
                             page.splice("page.sections", s, 1);
 
@@ -165,6 +167,7 @@ module.exports = (function () {
                 .data("height", sectionHeight)
                 .css({
                     position: "absolute",
+                    top: 0,
 
                     height: sectionHeight,
 
@@ -417,6 +420,10 @@ module.exports = (function () {
                 transition: "none"
             });
 
+            ui.item.css({
+                top: "auto"
+            });
+
             requestAnimationFrame(function() {
 
                 //Placeholder pro transitions se zmenší na nulu a vrátí se zpět transition.
@@ -440,6 +447,7 @@ module.exports = (function () {
                         ui.item
                             //odstraní se přiřazená velikost pro transition
                             .css({
+                                top: "",
                                 height: "",
                                 transition: "none"
                             })
@@ -579,7 +587,7 @@ module.exports = (function () {
                 .on("sortable:change", onSortableChange)
                 .on("sortable:stop", onSortableStop);
 
-            page.on("PageSection.removeSection", removeSection);
+            page.on("PageSectionEditUI.removeSection", removeSection);
             page.on("NewPageSectionSelector.insertSection", function (event) {
                 insertSection(event.node.dataset.pageSectionType);
             });
@@ -617,6 +625,9 @@ module.exports = (function () {
     return function PageSectionManager(pageComponent, _pageSectionBuilder, deferInit) {
 
         page = pageComponent;
+
+        CLASS.PageSection = page.components.PageSection.prototype.CLASS;
+        CLASS.NewPageSectionSelector = page.components.NewPageSectionSelector.prototype.CLASS;
 
         pageSectionBuilder = _pageSectionBuilder;
 

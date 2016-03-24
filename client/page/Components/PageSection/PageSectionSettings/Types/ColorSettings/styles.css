@@ -1,0 +1,16 @@
+.E_ColorSettings {
+    display: flex;
+    width: 100%;
+}
+
+.E_ColorSettings--menu {
+    flex-basis: 300px;
+    flex-shrink: 1;
+}
+
+.E_ColorSettings--ColorPicker {
+    max-height: var(--E_PageSectionSettings--init-max-height);
+
+    flex-shrink: 1;
+    flex-grow: 1;
+}

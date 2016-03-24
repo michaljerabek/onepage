@@ -10,6 +10,11 @@ module.exports = Ractive.extend({
 
     template: require("./index.tpl"),
 
+    CLASS: {
+        titleEditor: "E_Editor__title",
+        contentEditor: "E_Editor__content"
+    },
+
     components: {
         PageSection: require("./Components/PageSection"),
         NewPageSectionSelector: require("./Components/NewPageSectionSelector"),
@@ -66,8 +71,14 @@ module.exports = Ractive.extend({
         var TitleEditor = require("./Editor/TitleEditor");
         var ContentEditor = require("./Editor/ContentEditor");
 
-        this.titleEditor = new TitleEditor(this.get.bind(this, "page.sections"));
-        this.contentEditor = new ContentEditor(this.get.bind(this, "page.sections"));
+        this.titleEditor = new TitleEditor(
+            "." + this.CLASS.titleEditor,
+            this.get.bind(this, "page.sections")
+        );
+        this.contentEditor = new ContentEditor(
+            "." + this.CLASS.contentEditor,
+            this.get.bind(this, "page.sections")
+        );
 
         this.off("sectionInserted.complete").on("sectionInserted.complete", this.refreshEditors);
 

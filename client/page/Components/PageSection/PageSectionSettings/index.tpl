@@ -1,4 +1,7 @@
-<section class="E_PageSectionSettings" intro="slide:{delay: {{.delayOpening ? 300 : 0}}}" outro="slide" style="background: #ddd; height: 200px; text-align: center; line-height: 100px; font-size: 32px;">
-    <div contenteditable="true" value="{{.data.name}}"></div>
-    <button on-tap="closeThisSettings">Zavřít</button>
- </section>
+<section class="E_PageSectionSettings" intro="slide:{delay: {{.delayOpening ? 300 : 0}}}" outro="slide">
+    <div class="E_PageSectionSettings--wrapper">
+        {{> content}}
+        <button class="E_PageSectionSettings--close" on-tap="closeThisSettings">&times;</button>
+    </div>
+    <div on-mousedown-touchstart="activateResizer(event)" class="E_PageSectionSettings--resizer"></div>
+</section>

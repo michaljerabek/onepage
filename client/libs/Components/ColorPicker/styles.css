@@ -3,8 +3,12 @@
 /*====================================================================*/
 
 .ColorPicker {
+    line-height: 1;
+
     width: 100%;
     padding: 0 40px;
+
+    overflow: hidden;
 }
 
 .ColorPicker--wrapper-2 {

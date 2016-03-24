@@ -5,6 +5,14 @@ module.exports = Ractive.extend({
 
     template: require("./index.tpl"),
 
+    CLASS: {
+        self: "E_NewPageSectionSelector",
+
+        sectionType: "E_NewPageSectionSelector--page-section-type",
+        clone: "E_NewPageSectionSelector--clone",
+        inserted: "E_NewPageSectionSelector__inserted"
+    },
+
     components: {
     },
 

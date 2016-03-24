@@ -41,14 +41,15 @@ module.exports = (function () {
 
         create = function (type, rewriteData) {
 
-            var dataTemplate = require("./../Components/PageSection/Types/" + type + "/dataTemplate.js")();
+            var superDataTemplate = require("./../Components/PageSection/Types/SuperPageSectionType/dataTemplate.js")(),
+                dataTemplate = require("./../Components/PageSection/Types/" + type + "/dataTemplate.js")();
 
             var base = {
                 id: generateId(dataTemplate.name),
                 internalId: generateInternalId()
             };
 
-            return $.extend(true, base, dataTemplate, rewriteData);
+            return $.extend(true, base, superDataTemplate, dataTemplate, rewriteData);
         };
 
     return function PageSectionBuilder(_page) {

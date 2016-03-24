@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../../../../../../public/css/page.css">
+    <link rel="stylesheet" href="../../../../../css/settings.css">
+    <link rel="stylesheet" href="../../../../../css/colors.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../Types/ColorSettings/styles.css">
+</head>
+<body>
+
+    <div id="app"></div>
+
+    <script id="App" type="text/html">
+        <PageSectionSettings data="{{section}}">
+            <ColorSettings
+                color1-title="Text"   color1="{{.data.color}}"      color1-input-default="black"
+                color2-title="Pozadí" color2="{{.data.background}}"
+                color3-title="Test1"  color3="{{.data.test1}}"      color3-input-default="yellow"
+                color4-title="Test2"  color4="{{.data.test2}}"
+            />
+        </PageSectionSettings>
+    </script>
+
+    <script src="../../../../../libs/U.js"></script>
+    <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/perfect-scrollbar.jquery.js"></script>
+    <script src="../index.js"></script>
+    <script src="../Types/SuperPageSectionSettingsType/index.js"></script>
+    <script src="../Types/ColorSettings/index.js"></script>
+
+    <script src="../../../../../libs/Components/ColorPicker/experiments/spectra.js"></script>
+    <script src="../../../../../libs/VibrantWW/VibrantWW.js"></script>
+    <script src="../../../../../libs/ractive-transitions-fade.umd.js"></script>
+    <script src="../../../../../libs/ractive-transitions-slide.js"></script>
+    <script src="../../../../../libs/ractive-events-tap.umd.js"></script>
+    <script src="../../../../../libs/Components/ColorPicker/Components/ColorPickerPalette/index.js"></script>
+    <script src="../../../../../libs/Components/ColorPicker/index.js"></script>
+
+    <script>Vibrant.workerPath = "../../../../../libs/VibrantWW/VibrantWorker.js";</script>
+
+    <script>
+
+    var App;
+
+    $.when.apply($, [
+        $.get("../../../../../libs/Components/ColorPicker/index.tpl"),
+        $.get("../../../../../libs/Components/ColorPicker/Components/ColorPickerPalette/index.tpl"),
+        $.get("../index.tpl"),
+        $.get("../Types/ColorSettings/index.tpl")
+    ]).then(function (picker, palette, settings, colorSettings) {
+
+        App = new Ractive({
+            el: "#app",
+            template: "#App",
+
+            components: {
+                PageSectionSettings: PageSectionSettings.extend({
+                    template: settings[0],
+                    components: {
+                        ColorSettings: ColorSettings.extend({
+                            template: colorSettings[0],
+                            components: {
+                                ColorPicker: ColorPicker.extend({
+                                    template: picker[0],
+                                    components: {
+                                        ColorPickerPalette: ColorPickerPalette.extend({
+                                            template: palette[0]
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            },
+
+            data: {
+                section: {
+                    color: "red",
+                    background: "green"
+                }
+            }
+        });
+
+});
+
+
+    </script>
+
+</body>
+</html>

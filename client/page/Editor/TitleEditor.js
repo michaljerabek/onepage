@@ -13,8 +13,6 @@ U.extend(TitleEditor, SuperEditor);
 
 TitleEditor.prototype.configure = function () {
 
-    this.$editableSelector = "." + CLASS.PageSection.titleEditor;
-
     this.options = {
 
         anchor: {

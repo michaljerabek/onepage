@@ -34,6 +34,8 @@
 
 .ColorPickerPalette--title {
     font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
     white-space: nowrap;
 
     margin: 0;
@@ -45,6 +47,9 @@
 .ColorPickerPalette--colors {
     display: flex;
     flex-wrap: wrap;
+
+    /*iOS-fix*/
+    transform: translateZ(0);
 }
 
 .ColorPickerPalette--color {
