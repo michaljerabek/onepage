@@ -90,28 +90,28 @@
     content: "";
 
     position: absolute;
-    top: 50%;
-    left: -2px;
+    top: calc(50% - 1px);
+    left: 0px;
 
-    width: calc(100% + 8px);
+    width: 100%;
     height: 0px;
 
-    box-shadow: 0px 0px 0px 0px transparent;
+    border-bottom: 1px solid transparent;
 
     cursor: ns-resize;
 
     transition: var(--default-transition);
 }
 
-.E_PageSectionSettings--resizer__active:after,
 .E_PageSectionSettings--resizer:hover:after {
-    box-shadow: 0px 0px 0px 1px red;
+    border-bottom-color: red;
 
     transition: var(--default-transition-hover);
 }
 
+.E_PageSectionSettings--resizer__active:after,
 .E_PageSectionSettings--resizer:active:after {
-    box-shadow: 0px 0px 2px 1px red;
+    border-bottom-color: orange;
 
     transition: var(--default-transition-active);
 }

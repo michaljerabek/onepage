@@ -23,6 +23,15 @@
 
 }(this, function (Ractive, template, partials) {
 
+    /*
+     * Základní typ ovládacích prvků sekce. Každý další typ by měl rozšiřovat tento typ.
+     * Komponent obsahuje "partials" s ovládacími prvky pro každý roh. Podtypy mohou tyto partialy
+     * přepsat nebo je možné je vypnout přidáním dat:
+     * { EditUIControlsTopLeft: false }
+     * Nebo je možné vypnout jen některá tlačítka:
+     * { removeSectionButton: false }
+     */
+
     var BasicEditUI = {
 
         components: {

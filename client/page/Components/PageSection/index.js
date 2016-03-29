@@ -4,6 +4,24 @@ var on = require("./../../../../helpers/on");
 
 var Ractive = require("ractive");
 
+/*
+ * Obalovací komponent pro každou sekci.
+ *
+ * Typový komponent každé sekce se musí zaregistrovat zde v "components", podle jejího "type" v datech.
+ * Aby bylo možné vybírat typ komponentu, je potřeba typ sekce zaregistrovat i jako "partial",
+ * který bude obsahovat element komponentu s atributem "section", do kterého se vloží data sekce:
+ * "<PageSectionA section='{{.section}}' />"
+ *
+ * Každé sekci se přidají komponenty "PageSectionSettings" (nastavení sekce) pomocí "partialu", který se zaregistruje
+ * jako "type" sekce + "Settings" (string). "Partial" musí obsahovat podmínku, podle které se zjistí, zda má být dané
+ * nastaveni ("PageSectionSettings") otevřeno. ("Partial" by měl být uložení uvnitř složky dané sekce jako "page-section-settings.tpl")
+ * Zde je také možné zaregistrovat jednotlivé "partials" s elementy "PageSectionSettings".
+ * Tyto "partials" jsou pak použité v "partials" pro nastavení jednotlivých sekcí ("type" sekce + "Settings").
+ *
+ * Každá sekce má také komponent "PageSectionEditUI" (ovládácí prvky sekce). Jejich obsah se určuje podle typu
+ * sekce - nalezení sprvného typu zajišťuje komponent sám.
+ **/
+
 module.exports = Ractive.extend({
 
     template: require("./index.tpl"),
@@ -58,7 +76,7 @@ module.exports = Ractive.extend({
         //Pokud se otevírá nastavení sekce a jiné nastavení té samé sekce je už otevřené, nastavení se otevře až po zavření již otevřeného.
         this.observe("openPageSectionSettings", function (now, before) {
 
-            this.getSectionElement().classList[now ? "add" : "remove"](this.CLASS.hasSettings);
+            this.fire("sectionHasSettings", now);
 
             this.set("anotherSettingsOpened", !!before);
 
@@ -77,6 +95,12 @@ module.exports = Ractive.extend({
         this.on("PageSectionSettings.closeThisSettings", function () {
 
             this.set("openPageSectionSettings", false);
+        });
+
+        //označení sekce, pokud je v sekci otevřeno nastavení -> kvůli z-indexu
+        this.on("*.sectionHasSettings sectionHasSettings", function (state) {
+
+            this.getSectionElement().classList[state ? "add" : "remove"](this.CLASS.hasSettings);
         });
     },
 
@@ -131,6 +155,7 @@ module.exports = Ractive.extend({
 
     //Vrátí současnou pozici sekce na stránce.
     getCurrentIndex: function () {
+
         return this.get$SectionElement().index();
     },
 

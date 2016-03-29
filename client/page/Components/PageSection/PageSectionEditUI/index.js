@@ -16,6 +16,11 @@
 
 }(this, function (Ractive, template) {
 
+    /*
+     * Komponent s ovládacími prvky sekce. Jednotlivé typy ovládacích prvků se zaregistrují zde
+     * v "components" a správný typ pro danou sekci se použije pomocí "partialu", který se zaregistruje jako "type" sekce + "EditUI" (string).
+     * (Komponenty se nachází ve složce "/Types".) Každý komponent by měl rozšiřovat (extend) komponent "BasicEditUI".
+     */
     return Ractive.extend({
 
         template: template,

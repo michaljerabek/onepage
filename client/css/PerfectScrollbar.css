@@ -37,11 +37,11 @@
 .ps-container > .ps-scrollbar-x-rail,
 .ps-container > .ps-scrollbar-y-rail {
     position: absolute;
-    right: 4px;
+    right: 2px;
 
-    width: 6px;
+    width: 4px;
 
-    border-radius: 3px;
+    border-radius: 2px;
     opacity: 0;
 
     display: none;
@@ -50,11 +50,11 @@
 }
 
 .ps-container > .ps-scrollbar-x-rail {
-    bottom: 4px;
+    bottom: 2px;
     right: auto;
 
     width: auto;
-    height: 6px;
+    height: 4px;
 }
 
 .ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x,
@@ -64,7 +64,7 @@
 
     width: 100%;
 
-    border-radius: 3px;
+    border-radius: 2px;
 
     transition: background 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
 }
@@ -82,11 +82,11 @@
     content: "";
 
     position:absolute;
-    top: 4px;
+    top: 2px;
     right: 0px;
 
     width: 100%;
-    height: calc(100% - 8px);
+    height: calc(100% - 4px);
 
     background-color: rgba(0, 0, 0, 0.35);
     border-radius: inherit;
@@ -97,9 +97,9 @@
 .ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x:after {
     top: auto;
     bottom: 0px;
-    left: 4px;
+    left: 2px;
 
-    width: calc(100% - 8px);
+    width: calc(100% - 4px);
     height: 100%;
 }
 

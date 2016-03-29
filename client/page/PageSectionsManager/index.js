@@ -1,7 +1,8 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/clearInterval
 /*global $, requestAnimationFrame*/
 
-var SUPPORT = require("./../../SUPPORT");
+var SUPPORT = require("./../../SUPPORT"),
+    EventEmitter = require("./../../libs/EventEmitter")();
 
 module.exports = (function () {
 
@@ -177,6 +178,7 @@ module.exports = (function () {
                 .addClass(CLASS.PageSection.draggedSection)
                 .after($placeholderTransitions);
 
+            EventEmitter.trigger("sortPageSection.PageSectionManager");
         },
 
         onSortableStart = function (e, ui) {

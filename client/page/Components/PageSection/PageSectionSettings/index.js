@@ -37,6 +37,14 @@
 
     var instanceCounter = 0;
 
+    /*
+     * Komponent nastavení sekce. Komponent by měl obsahovat konkrétní komponenty (jako "partial" - "content")
+     * s nastavením. Tyto komponenty se registrují zde (a nachází se ve složce "/Types").
+     *
+     * Komponenty uvnitř "PageSectionSettings" by měli být element s dekorátorem "PageSectionSettingsBox",
+     * který zajistí správné zvětšovaní/zmenšování nastavení a přidá posuvníky.
+     */
+
     return Ractive.extend({
 
         template: template,
@@ -62,9 +70,21 @@
 
             PageSectionSettingsBox: function (node) {
 
-                var $node = $(node);
+                var $node = $(node),
 
-                this.minHeight = parseFloat(this.parent.$element.css("min-height")) || 0;
+                    refreshThrottle = null,
+                    refreshScrollbars = function () {
+
+                        clearTimeout(refreshThrottle);
+
+                        refreshThrottle = setTimeout(function() {
+
+                            $node.perfectScrollbar("update");
+
+                        }, 100);
+                    };
+
+                this.minHeight = parseFloat(this.parent.$resizableElement.css("min-height")) || 0;
 
                 $node
                     .css({
@@ -83,10 +103,15 @@
 
                     node.style.maxHeight = height + "px";
 
+                    refreshScrollbars();
+
                 }, {init: false, context: this});
 
                 return {
                     teardown: function () {
+
+                        clearTimeout(refreshThrottle);
+
                         $node
                             .css({
                                 position: ""
@@ -116,6 +141,7 @@
                 Ractive.$scrollElement = Ractive.$scrollElement || $("html, body");
             }
 
+            //Počkat až se zavře jiné nastavení ve stejné sekci?
             this.set("delayOpening", this.parent.get("anotherSettingsOpened"));
         },
 
@@ -123,10 +149,11 @@
 
             if (on.client) {
 
-                this.wrapperElement = this.find("." + this.CLASS.wrapper);
-                this.$element = $(this.wrapperElement);
+                this.self = this.find("." + this.CLASS.self);
+                this.$self = $(this.self);
 
-                this.$resizer = $(this.find("." + this.CLASS.resizer));
+                this.resizableElement = this.find("." + this.CLASS.wrapper);
+                this.$resizableElement = $(this.resizableElement);
 
                 this.scrollToView();
             }
@@ -156,7 +183,7 @@
                 return;
             }
 
-            this.$resizer.addClass(this.CLASS.resizerActive);
+            eventData.target.classList.add(this.CLASS.resizerActive);
 
             Ractive.$win
                 .off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS)
@@ -178,7 +205,7 @@
                 }.bind(this))
                 .one("mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS, function (e) {
 
-                    this.$resizer.removeClass(this.CLASS.resizerActive);
+                    eventData.target.classList.remove(this.CLASS.resizerActive);
 
                     this.set("elementHeight", this.getSettingsHeight());
 
@@ -194,23 +221,25 @@
 
         getSettingsHeight: function () {
 
-            return this.wrapperElement.getBoundingClientRect().height;
+            return this.resizableElement.getBoundingClientRect().height;
         },
 
         scrollToView: function () {
 
-            var height = parseFloat(this.$element.css("height")),
+            var height = parseFloat(this.$resizableElement.css("height")),
                 prevSettingsHeight = 0,
 
-                top = this.$element[0].getBoundingClientRect().top,
+                top = this.$self[0].getBoundingClientRect().top,
 
                 pageSection = this.findParent("PageSection"),
 
-                $prevSettings = this.$element.parent().prevAll("." + this.CLASS.self),
+                $prevSettings = this.$self.prevAll("." + this.CLASS.self),
                 $prevSections = pageSection && pageSection.get$SectionElement().prevAll("." + pageSection.CLASS.self);
 
             var $temp = $([null]);
 
+            //pokud je otevřeno nastavení v předchozí sekci, pak bude zavřeno,
+            //takže je potřeba jeho výšku odečíst
             if ($prevSections && $prevSections.length) {
 
                 var instance = this;
@@ -228,6 +257,8 @@
                 });
             }
 
+            //pokud je otevřeno jiné nastavení ve stejné sekci, pak bude zavřeno,
+            //takže je potřeba jeho výšku odečíst
             if ($prevSettings.length) {
 
                 $prevSettings.each(function () {
@@ -238,12 +269,14 @@
                 });
             }
 
+            //pokud by bylo nastavení pod dolním okrajem okna -> seskrolovat dolu
             if (top + height - prevSettingsHeight > window.innerHeight) {
 
-                var scrollTop = this.$element.offset().top + height - prevSettingsHeight - window.innerHeight;
+                var scrollTop = this.$self.offset().top + height - prevSettingsHeight - window.innerHeight;
 
                 Ractive.$scrollElement
                     .stop()
+                    //zdržet, pokud je potřeba počkat na zavření jiného nastavení
                     .delay(this.get("delayOpening") ? 300 : 0)
                     .animate({
                         scrollTop: scrollTop

@@ -251,25 +251,32 @@
 
         onrender: function () {
 
-            this.SVBox = this.find(".ColorPicker--SV-box");
-            this.SVSelector = this.find(".ColorPicker--SV-selector");
-
-            this.HBox = this.find(".ColorPicker--H-box");
-            this.HSelector = this.find(".ColorPicker--H-selector");
-
-            this.moveSelectorsToCurrentColorPosition();
-
-            if (!this.waitForUserInteraction) {
-
-                this.fire("output", this.getCurrentRGB());
-            }
-
             if (on.client) {
 
-                Ractive.$win.on("resize", this.windowResizeHandler.bind(this));
-            }
+                this.SVBox = this.find(".ColorPicker--SV-box");
+                this.SVSelector = this.find(".ColorPicker--SV-selector");
 
-            this.waitForUserInteraction = false;
+                this.HBox = this.find(".ColorPicker--H-box");
+                this.HSelector = this.find(".ColorPicker--H-selector");
+
+                this.moveSelectorsToCurrentColorPosition();
+
+                if (!this.waitForUserInteraction) {
+
+                    this.fire("output", this.getCurrentRGB());
+                }
+
+                Ractive.$win.on("resize", this.windowResizeHandler.bind(this));
+
+                var pageElementSettings = this.findParent("PageElementSettings");
+
+                if (pageElementSettings) {
+
+                    pageElementSettings.observe("elementWidth elementHeight", this.windowResizeHandler.bind(this), {init: false});
+                }
+
+                this.waitForUserInteraction = false;
+            }
         },
 
         onteardown: function () {
@@ -610,9 +617,14 @@
 
             var red = this.get("inputTextR"),
                 green = this.get("inputTextG"),
-                blue = this.get("inputTextB"),
+                blue = this.get("inputTextB");
 
-                currentRGB = "rgb(" + red + ", " + green + ", " + blue + ")";
+            if (red === "" || green === "" || blue === "") {
+
+                return;
+            }
+
+            var currentRGB = "rgb(" + red + ", " + green + ", " + blue + ")";
 
             if (this.validateRGB(currentRGB)) {
 
