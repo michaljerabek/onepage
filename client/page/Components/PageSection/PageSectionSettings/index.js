@@ -231,7 +231,7 @@
 
                 top = this.$self[0].getBoundingClientRect().top,
 
-                pageSection = this.findParent("PageSection"),
+                pageSection = this.getPageSection(),
 
                 $prevSettings = this.$self.prevAll("." + this.CLASS.self),
                 $prevSections = pageSection && pageSection.get$SectionElement().prevAll("." + pageSection.CLASS.self);

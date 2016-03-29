@@ -127,7 +127,7 @@ module.exports = (function () {
 
         removeSection = function (e) {
 
-            var pageSection = e.component.findParent("PageSection"),
+            var pageSection = e.component.getPageSection(),
                 $sectionElement = pageSection.get$SectionElement();
 
             $sectionElement
@@ -589,7 +589,7 @@ module.exports = (function () {
                 .on("sortable:change", onSortableChange)
                 .on("sortable:stop", onSortableStop);
 
-            page.on("PageSectionEditUI.removeSection", removeSection);
+            page.on("*.removeSection", removeSection);
             page.on("NewPageSectionSelector.insertSection", function (event) {
                 insertSection(event.node.dataset.pageSectionType);
             });
@@ -614,7 +614,7 @@ module.exports = (function () {
 
             $placeholderTransitions.remove();
 
-            page.off("PageSection.removeSection");
+            page.off("*.removeSection");
             page.off("NewPageSectionSelector.insertSection");
         },
 

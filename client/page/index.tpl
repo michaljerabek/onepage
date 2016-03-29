@@ -40,7 +40,8 @@
             {{#each page.sections:sectionIndex}}
 
                 {{#if this.type !== "PageSectionHeader" && this.type !== "PageSectionFooter"}}
-                    <PageSection section="{{this}}" sectionIndex="{{sectionIndex}}" />
+                    {{> this.type}}
+<!--                    <PageSection section="{{this}}" sectionIndex="{{sectionIndex}}" />-->
                 {{/if}}
 
             {{/each}}

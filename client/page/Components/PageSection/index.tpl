@@ -5,17 +5,17 @@
         <div class="P_PageSection--section">
 
             <div class="P_PageSection--content">
-                {{> .section.type}}
+                {{> pageSectionContent}}
             </div>
 
             {{#if editMode}}
-                <PageSectionEditUI section="{{.section}}" />
+                {{> pageSectionEditUI}}
             {{/if}}
 
         </div>
 
         {{#if editMode}}
-            {{>.section.type + "Settings"}}
+            {{> pageSectionSettings}}
         {{/if}}
     </div>
 

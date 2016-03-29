@@ -5,56 +5,74 @@
 
         var Ractive = require("ractive"),
 
-            template = require("./index.tpl");
+            template = require("./index.tpl"),
 
-        module.exports = factory(Ractive, template);
+            partials = {
+                pageSectionEditUIContent: require("./partials/content.tpl"),
+                EditUIControlsTopLeft: require("./partials/top-left.tpl"),
+                EditUIControlsTopRight: require("./partials/top-right.tpl"),
+                EditUIControlsBottomLeft: require("./partials/bottom-left.tpl"),
+                EditUIControlsBottomRight: require("./partials/bottom-right.tpl")
+            };
+
+        module.exports = factory(Ractive, template, partials);
 
     } else {
 
-        root.PageSectionEditUI = factory(root.Ractive, "");
+        root.BasicEditUI = factory(root.Ractive, "");
     }
 
-}(this, function (Ractive, template) {
+}(this, function (Ractive, template, partials) {
 
     /*
-     * Komponent s ovládacími prvky sekce. Jednotlivé typy ovládacích prvků se zaregistrují zde
-     * v "components" a správný typ pro danou sekci se použije pomocí "partialu", který se zaregistruje jako "type" sekce + "EditUI" (string).
-     * (Komponenty se nachází ve složce "/Types".) Každý komponent by měl rozšiřovat (extend) komponent "BasicEditUI".
+     * Základní typ ovládacích prvků sekce. Každý další typ by měl rozšiřovat tento typ.
+     * Komponent obsahuje "partials" s ovládacími prvky pro každý roh. Podtypy mohou tyto partialy
+     * přepsat nebo je možné je vypnout přidáním dat:
+     * { EditUIControlsTopLeft: false }
+     * Nebo je možné vypnout jen některá tlačítka:
+     * { removeSectionButton: false }
      */
+
     return Ractive.extend({
 
         template: template,
 
         components: {
-            BasicEditUI: require("./Types/BasicEditUI")
         },
 
-        partials: {
-            PageSectionAEditUI: "<BasicEditUI section='{{.section}}' />",
-            PageSectionBEditUI: "<BasicEditUI section='{{.section}}' />",
-            PageSectionCEditUI: "<BasicEditUI section='{{.section}}' />"
-        },
+        partials: partials || {},
 
         onrender: function () {
-
+            this.superOnrender();
         },
 
         onconfig: function () {
-
-            this.on("*.removeSection", function (event) {
-                this.fire("removeSection", event);
-            });
-
-            this.on("*.openPageSectionSettings", function (event, settingsType) {
-
-                this.fire("openPageSectionSettings", settingsType);
-            });
+            this.superOnconfig();
         },
 
         oncomplete: function () {
+            this.superOncomplete();
+        },
+
+        onteardown: function () {
+            this.superOnteardown();
+        },
+
+        superOnrender: function () {
+
+        },
+
+        superOnconfig: function () {
+
+        },
+
+        superOncomplete: function () {
+
+        },
+
+        superOnteardown: function () {
 
         }
-
     });
 
 }));
