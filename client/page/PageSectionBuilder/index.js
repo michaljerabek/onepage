@@ -41,7 +41,7 @@ module.exports = (function () {
 
         create = function (type, rewriteData) {
 
-            var superDataTemplate = require("./../Components/PageSection/Types/SuperPageSectionType/dataTemplate.js")(),
+            var superDataTemplate = require("./../Components/PageSection/dataTemplate.js")(),
                 dataTemplate = require("./../Components/PageSection/Types/" + type + "/dataTemplate.js")();
 
             var base = {

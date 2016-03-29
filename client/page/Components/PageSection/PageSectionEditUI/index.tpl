@@ -1,3 +1,3 @@
 <div class="E_PageSectionEditUI">
-    {{> .section.type + "EditUI"}}
+    {{> pageSectionEditUIContent}}
 </div>

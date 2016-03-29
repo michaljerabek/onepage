@@ -1,10 +1,24 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 
 var on = require("./../../helpers/on");
-var CLASS = require("./CLASSNAMES");
 var EventEmitter = require("./../libs/EventEmitter")();
 
 var Ractive = require("ractive");
+
+Ractive.defaults.getPageSection = function () {
+
+    if (this.PAGE_SECTION) {
+
+        return this;
+    }
+
+    if (this.parent) {
+
+        return Ractive.defaults.getPageSection.apply(this.parent, arguments);
+    }
+
+    return null;
+};
 
 module.exports = Ractive.extend({
 
@@ -17,8 +31,19 @@ module.exports = Ractive.extend({
 
     components: {
         PageSection: require("./Components/PageSection"),
+
+        PageSectionA: require("./Components/PageSection/Types/PageSectionA"),
+        PageSectionB: require("./Components/PageSection/Types/PageSectionB"),
+        PageSectionC: require("./Components/PageSection/Types/PageSectionC"),
+
         NewPageSectionSelector: require("./Components/NewPageSectionSelector"),
         GlobalPageSettings: require("./Components/GlobalPageSettings")
+    },
+
+    partials: {
+        PageSectionA: "<PageSectionA section='{{this}}' />",
+        PageSectionB: "<PageSectionB section='{{this}}' />",
+        PageSectionC: "<PageSectionC section='{{this}}' />"
     },
 
     onconfig: function () {
@@ -174,9 +199,40 @@ module.exports = Ractive.extend({
         this.Admin.set("editPage", null);
     },
 
+    findSiblingSections: function (section) {
+
+        var allSections = this.findAllPageSections(),
+            s = allSections.length - 1,
+
+            siblings = [];
+
+        for (s; s >= 0; s--) {
+
+            if (allSections[s] !== section) {
+
+                siblings.unshift(allSections[s]);
+            }
+        }
+
+        return siblings;
+    },
+
     findAllPageSections: function () {
 
-        return this.findAllComponents("PageSection");
+        var components = this.findAllComponents(),
+            c = components.length - 1,
+
+            pageSections = [];
+
+        for (c; c >= 0; c--) {
+
+            if (components[c].PAGE_SECTION) {
+
+                pageSections.unshift(components[c]);
+            }
+        }
+
+        return pageSections;
     }
 
 });

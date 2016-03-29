@@ -1,6 +1,7 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 /*global $*/
 var on = require("./../../../../helpers/on");
+var EventEmitter = require("./../../../libs/EventEmitter")();
 
 var Ractive = require("ractive");
 
@@ -24,6 +25,8 @@ var Ractive = require("ractive");
 
 module.exports = Ractive.extend({
 
+    PAGE_SECTION: true,
+
     template: require("./index.tpl"),
 
     CLASS: {
@@ -45,74 +48,132 @@ module.exports = Ractive.extend({
     },
 
     components: {
-        PageSectionA: require("./Types/PageSectionA"),
-        PageSectionB: require("./Types/PageSectionB"),
-        PageSectionC: require("./Types/PageSectionC"),
-
         PageSectionSettings: require("./PageSectionSettings"),
-        PageSectionEditUI: require("./PageSectionEditUI"),
+
+        PageElementSettings: require("./../PageElement/PageElementSettings"),
 
         PageElementTitle: require("./../PageElement/Types/PageElementTitle")
     },
 
     partials: {
-        PageSectionA: "<PageSectionA section='{{.section}}' />",
-        PageSectionB: "<PageSectionB section='{{.section}}' />",
-        PageSectionC: "<PageSectionC section='{{.section}}' />",
+        pageSectionEditUI: "",
+        pageSectionContent: "",
+        pageSectionSettings: "",
 
-        PageSectionASettings: require("./Types/PageSectionA/page-section-settings.tpl"),
-        PageSectionBSettings: require("./Types/PageSectionB/page-section-settings.tpl"),
-        PageSectionCSettings: require("./Types/PageSectionC/page-section-settings.tpl"),
-
-        ColorSettings: require("./Types/SuperPageSectionType/partials/color-settings.tpl")
+        ColorSettings: require("./partials/settings/color-settings.tpl")
     },
 
-    onconfig: function () {
+    superOnconfig: function () {
 
         this.observe("section.name", this.regenerateId, {init: false, defer: true});
 
-        //Když se otevírá nastavení sekce, je potřeba zavřít již otevřené nastavení
-        this.observe("openPageSectionSettings", this.closeOtherOpenedSettings, {init: false});
+        this.initPageElementSettings();
+        this.initPageSectionSettings();
+    },
+
+    initPageElementSettings: function () {
+
+        if (on.client) {
+
+            //otevírá se nastavení elementu v sekci -> zavřít nastavení v ostatních sekcích
+            EventEmitter.on("openPageElementSettings.PageSection sortPageSection.PageSectionManager", function (e, pageSectionType) {
+
+                if (pageSectionType !== this) {
+
+                    this.togglePageElementSettings(false);
+                }
+            }.bind(this));
+        }
+
+        //uživatel otevírá nastavení elementu v sekci
+        this.on("openPageElementSettings", function (event, type) {
+
+            this.set("pageElementSettingsPositionElement", event.node);
+
+            type = type === this.get("openPageElementSettings") ? false : type;
+
+            this.togglePageElementSettings(type);
+
+            if (type) {
+
+                EventEmitter.trigger("openPageElementSettings.PageSection", this);
+            }
+        });
+
+        //Uživatel kliknul na "zavřít" v nastavení.
+        this.on("PageElementSettings.closeThisSettings", this.togglePageElementSettings.bind(this, false));
+    },
+
+    initPageSectionSettings: function () {
+
+        if (on.client) {
+
+            //otevírá se nastavení sekce -> zavřít ostatní sekce
+            EventEmitter.on("openPageSectionSettings.PageSection", function (e, pageSectionType) {
+
+                if (pageSectionType !== this) {
+
+                    this.togglePageSectionSettings(false);
+                }
+            }.bind(this));
+        }
 
         //Zjišťuje, jestli je jiné nastavení této sekce otevřené.
         //Pokud se otevírá nastavení sekce a jiné nastavení té samé sekce je už otevřené, nastavení se otevře až po zavření již otevřeného.
         this.observe("openPageSectionSettings", function (now, before) {
-
-            this.fire("sectionHasSettings", now);
 
             this.set("anotherSettingsOpened", !!before);
 
         }, {init: false});
 
         //uživatel chce otevřít nastavení sekce
-        this.on("PageSectionEditUI.openPageSectionSettings", function (type) {
+        this.on("*.openPageSectionSettings", function (event, type) {
 
-            this.set(
-                "openPageSectionSettings",
-                type === this.get("openPageSectionSettings") ? false : type
-            );
+            type = type === this.get("openPageSectionSettings") ? false : type;
+
+            this.togglePageSectionSettings(type);
+
+            if (type) {
+
+                EventEmitter.trigger("openPageSectionSettings.PageSection", this);
+            }
         });
 
         //Uživatel kliknul na "zavřít" v nastavení.
-        this.on("PageSectionSettings.closeThisSettings", function () {
-
-            this.set("openPageSectionSettings", false);
-        });
-
-        //označení sekce, pokud je v sekci otevřeno nastavení -> kvůli z-indexu
-        this.on("*.sectionHasSettings sectionHasSettings", function (state) {
-
-            this.getSectionElement().classList[state ? "add" : "remove"](this.CLASS.hasSettings);
-        });
+        this.on("PageSectionSettings.closeThisSettings", this.togglePageSectionSettings.bind(this, false));
     },
 
-    onteardown: function () {
+    superOnteardown: function () {
 
         this.off("PageSectionSettings.closeThisSettings");
         this.off("PageSectionEditUI.openPageSectionSettings");
     },
 
-    onrender: function () {
+    superOnrender: function () {
+    },
+
+    superOncomplete: function () {
+    },
+
+    updateHasSettingsState: function () {
+
+        var state  = this.get("openPageElementSettings") || this.get("openPageSectionSettings");
+
+        this.getSectionElement().classList[state ? "add" : "remove"](this.CLASS.hasSettings);
+    },
+
+    togglePageElementSettings: function (state) {
+
+        this.set("openPageElementSettings", state);
+
+        this.updateHasSettingsState();
+    },
+
+    togglePageSectionSettings: function (state) {
+
+        this.set("openPageSectionSettings", state);
+
+        this.updateHasSettingsState();
     },
 
     regenerateId: function (newName) {
@@ -135,24 +196,6 @@ module.exports = Ractive.extend({
 
         $("[value='#" + id + "'], [data-value='#" + id + "']")
             .text($("<span>").html(name).text());
-    },
-
-    //Když se otevírá nastavení sekce, je potřeba zavřít již otevřené nastavení
-    //(observer) openThis -> má se nastevení této sekce otevřít?
-    closeOtherOpenedSettings: function (openThis) {
-
-        if (!openThis) {
-
-            return;
-        }
-
-        var siblingSections = this.findSiblingComponents("PageSection"),
-            s = siblingSections.length - 1;
-
-        for (s; s > -1; s--) {
-
-            siblingSections[s].set("openPageSectionSettings", false);
-        }
     },
 
     //Vrátí současnou pozici sekce na stránce.

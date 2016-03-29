@@ -6,11 +6,14 @@
 
         var Ractive = require("ractive"),
 
+            PageElementSettings = require("./PageElementSettings"),
+
             U = require("./../../../libs/U"),
             on = require("./../../../../helpers/on");
 
         module.exports = factory(
             Ractive,
+            PageElementSettings,
             U,
             require("./index.tpl"),
             on
@@ -18,15 +21,16 @@
 
     } else {
 
-        root.PageSectionSettings = factory(
+        root.PageElement = factory(
             root.Ractive,
+            root.PageElementSettings,
             root.U,
             "",
             {client: true}
         );
     }
 
-}(this, function (Ractive, U, template, on) {
+}(this, function (Ractive, PageElementSettings, U, template, on) {
 
     var instanceCounter = 0;
 
@@ -39,6 +43,7 @@
         },
 
         components: {
+            PageElementSettings: PageElementSettings
         },
 
         partials: {
