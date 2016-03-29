@@ -8,8 +8,12 @@
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 }
 
-.P_PageSection__has-settings {
+.P_PageSection:hover {
     z-index: 2;
+}
+
+.P_PageSection__has-settings {
+    z-index: 3;
 }
 
 .P_PageSection--section {
