@@ -3,8 +3,7 @@ var SuperPageSectionType = require("./../SuperPageSectionType");
 
 module.exports = SuperPageSectionType.extend({
 
-    //    template: require("./index.tpl"),
-    template: "<span class='E_Editor__content' contenteditable='{{!!editMode}}' value='{{.section.name}}'></span>",
+    template: require("./index.tpl"),
 
     components: {
     },
@@ -13,7 +12,7 @@ module.exports = SuperPageSectionType.extend({
     },
 
     onconfig: function () {
-
+        this.superOnconfig();
     }
 
 });

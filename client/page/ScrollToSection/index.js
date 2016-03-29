@@ -175,7 +175,7 @@ ScrollToSection.prototype.scrollToSection = function ($section, cb) {
          $section.attr("id", "");
 
          $scrollElement.stop().animate({
-             scrollTop: $section.offset().top
+             scrollTop: Math.min(document.documentElement.scrollHeight - window.innerHeight, $section.offset().top)
          }, this.duration, this.easing, cb);
 
          window.location.href = "#" + id;

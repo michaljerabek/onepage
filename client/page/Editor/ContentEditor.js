@@ -14,8 +14,6 @@ U.extend(ContentEditor, SuperEditor);
 
 ContentEditor.prototype.configure = function () {
 
-    this.$editableSelector = "." + CLASS.PageSection.contentEditor;
-
     this.options = {
 
         anchor: {

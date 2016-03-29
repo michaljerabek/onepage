@@ -1,5 +1,5 @@
 /*jslint browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true, node: true*/
-/*global jQuery*/
+/*global jQuery, $*/
 
 var Ractive = require("ractive");
 var io = require("socket.io-client");
@@ -21,6 +21,7 @@ Ractive.defaults.findSiblingComponents = function (name) {
 };
 
 Ractive.$win = Ractive.$win || $(window);
+Ractive.$scrollingElement = Ractive.$scrollingElement || $("html, body");
 
 var loadLibs = function () {
 

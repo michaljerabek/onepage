@@ -10,10 +10,12 @@ require("./MediumEditorToolbar")(MediumEditor, FixedElement);
 require("./MediumEditorAnchor")(MediumEditor);
 require("./MediumEditorEnhence")(MediumEditor);
 
-var SuperEditor = function SuperEditor(getSections) {
+var SuperEditor = function SuperEditor($editableSelector, getSections) {
 
     MediumEditor.extensions.anchor.prototype.getSections =
         MediumEditor.extensions.anchor.prototype.getSections || getSections || function () { return []; };
+
+    this.$editableSelector = $editableSelector || "[contenteditable='true']";
 
     this.configure();
 
@@ -22,7 +24,6 @@ var SuperEditor = function SuperEditor(getSections) {
 
 SuperEditor.prototype.configure = function () {
 
-    this.$editableSelector = "[contenteditable='true']";
     this.options = {};
 };
 

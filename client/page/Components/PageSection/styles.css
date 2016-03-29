@@ -8,6 +8,10 @@
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 }
 
+.P_PageSection__has-settings {
+    z-index: 2;
+}
+
 .P_PageSection--section {
     position: relative;
 }
@@ -30,7 +34,7 @@
 }
 
 .E [class*='P_PageSection'], .E [class*='P_PageSection']:after {
-    will-change: transform, opacity, width, height, margin, margin-bottom;
+    will-change: transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
 }
 
 .E .P_PageSection:after {

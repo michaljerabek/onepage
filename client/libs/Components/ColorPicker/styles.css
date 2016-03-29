@@ -3,13 +3,17 @@
 /*====================================================================*/
 
 .ColorPicker {
+    line-height: 1;
+
     width: 100%;
-    padding: 0 40px;
+    padding: 8px 32px;
+
+    overflow: hidden;
 }
 
 .ColorPicker--wrapper-2 {
-    margin-left: -40px;
-    margin-right: -80px;
+    margin-left: -24px;
+    margin-right: -48px;
 
     min-width: 100%;
 
@@ -49,7 +53,7 @@
 
 .ColorPicker--widget-wrapper {
     margin-bottom: 8px;
-    margin-right: 40px;
+    margin-right: 24px;
 
     flex-basis: 240px;
     flex-shrink: 1;

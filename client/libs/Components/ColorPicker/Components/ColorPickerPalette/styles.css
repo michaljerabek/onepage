@@ -10,7 +10,6 @@
     max-width: 100%;
 
     flex-basis: 176px;
-    flex-grow: 50;
 
     -webkit-column-width: 176px;
     -webkit-column-gap: 40px;
@@ -34,6 +33,8 @@
 
 .ColorPickerPalette--title {
     font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
     white-space: nowrap;
 
     margin: 0;
@@ -45,6 +46,9 @@
 .ColorPickerPalette--colors {
     display: flex;
     flex-wrap: wrap;
+
+    /*iOS-fix*/
+    transform: translateZ(0);
 }
 
 .ColorPickerPalette--color {

@@ -22,12 +22,22 @@
             if (staticM) { for (var i in superO) { subO[i] = superO[i]; }}
         },
 
+        viewportWidth: function () {
+
+            return document.documentElement.clientWidth > window.innerWidth || navigator.userAgent.match(/Mobi/) ? window.innerWidth : document.documentElement.clientWidth;
+        },
+
+        viewportHeight: function () {
+
+            return document.documentElement.clientHeight > window.innerHeight || navigator.userAgent.match(/Mobi/) ? window.innerHeight : document.documentElement.clientHeight;
+        },
+
         offset: function (elem) {
 
             var rect = elem.getBoundingClientRect();
 
             return {
-                top: rect.top  + (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop  || 0),
+                top:  rect.top  + (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop  || 0),
                 left: rect.left + (window.pageXOffset || document.documentElement.scrollLeft) - (document.documentElement.clientLeft || 0)
             };
         },
@@ -47,7 +57,10 @@
                 offsetY = hasOffset ? event.offsetY : (isTouchEvent ? event.touches[0].pageY : event.pageY) - offset.top,
 
                 clientX = isTouchEvent ? event.touches[0].clientX : event.clientX,
-                clientY = isTouchEvent ? event.touches[0].clientY : event.clientY;
+                clientY = isTouchEvent ? event.touches[0].clientY : event.clientY,
+
+                pageX = isTouchEvent ? event.touches[0].pageX : event.pageX,
+                pageY = isTouchEvent ? event.touches[0].pageY : event.pageY;
 
             return {
                 type          : event.type,
@@ -61,6 +74,8 @@
                 offsetY       : offsetY,
                 clientX       : clientX,
                 clientY       : clientY,
+                pageX         : pageX,
+                pageY         : pageY,
 
                 preventDefault: function () {
                     event.preventDefault();
