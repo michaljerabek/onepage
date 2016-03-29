@@ -50,7 +50,9 @@ module.exports = Ractive.extend({
         PageSectionC: require("./Types/PageSectionC"),
 
         PageSectionSettings: require("./PageSectionSettings"),
-        PageSectionEditUI: require("./PageSectionEditUI")
+        PageSectionEditUI: require("./PageSectionEditUI"),
+
+        PageElementTitle: require("./../PageElement/Types/PageElementTitle")
     },
 
     partials: {

@@ -1,0 +1,44 @@
+.P_PageElement {
+    position: relative;
+
+    outline-offset: 8px;
+    outline: 1px solid transparent;
+}
+
+.E .P_PageElement:focus,
+.E .P_PageElement:hover {
+    outline-color: red;
+}
+
+.csspointerevents .E .P_PageElement:after {
+    content: "";
+
+    position: absolute;
+    top: -8px;
+    left: -8px;
+
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+
+    pointer-events: none;
+    box-shadow: 0px 0px 0px 0px red;
+}
+
+.csspointerevents .E .P_PageElement:focus:after,
+.csspointerevents .E .P_PageElement:hover:after {
+    box-shadow: 0px 0px 8px 0px red;
+}
+
+.E_PageElementEditUI button {
+    position:absolute;
+    top: -8px;
+    right: -8px;
+}
+
+.E_PageElementEditUI {
+    display: none;
+}
+
+.E .P_PageElement:hover .E_PageElementEditUI {
+    display: block;
+}
