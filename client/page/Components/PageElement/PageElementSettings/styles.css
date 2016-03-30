@@ -36,13 +36,13 @@
 .E_PageElementSettings--resizer__top-left,
 .E_PageElementSettings--resizer__top-right,
 .E_PageElementSettings--resizer__top {
-    top: -4px;
+    top: -6px;
 }
 
 .E_PageElementSettings--resizer__bottom-left,
 .E_PageElementSettings--resizer__bottom-right,
 .E_PageElementSettings--resizer__bottom {
-    bottom: -4px;
+    bottom: -6px;
 }
 
 .E_PageElementSettings--resizer__left,
@@ -58,13 +58,13 @@
 .E_PageElementSettings--resizer__top-left,
 .E_PageElementSettings--resizer__bottom-left,
 .E_PageElementSettings--resizer__left {
-    left: -4px;
+    left: -6px;
 }
 
 .E_PageElementSettings--resizer__top-right,
 .E_PageElementSettings--resizer__bottom-right,
 .E_PageElementSettings--resizer__right {
-    right: -4px;
+    right: -6px;
 }
 
 .E_PageElementSettings--resizer__top-left,
@@ -112,7 +112,6 @@
 }
 
 .csspointerevents .E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
-    transition: var(--default-transition-hover);
     transition:
         border-color var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s;
 }

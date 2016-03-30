@@ -76,9 +76,10 @@ module.exports = function (ractive, ractiveData, config) {
 
             data: ractiveData,
 
-//            events: {
+            events: {
 //                tap: require("ractive-events-tap")
-//            },
+                hover: require("ractive-events-hover")
+            },
 
             transitions: {
                 slide: require("ractive-transitions-slide"),

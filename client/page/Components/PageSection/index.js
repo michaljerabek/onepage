@@ -52,7 +52,8 @@ module.exports = Ractive.extend({
 
         PageElementSettings: require("./../PageElement/PageElementSettings"),
 
-        PageElementTitle: require("./../PageElement/Types/PageElementTitle")
+        PageElementTitle: require("./../PageElement/Types/PageElementTitle"),
+        PageElementTextContent: require("./../PageElement/Types/PageElementTextContent")
     },
 
     partials: {
@@ -75,33 +76,13 @@ module.exports = Ractive.extend({
 
         if (on.client) {
 
-            //otevírá se nastavení elementu v sekci -> zavřít nastavení v ostatních sekcích
-            EventEmitter.on("openPageElementSettings.PageSection sortPageSection.PageSectionManager", function (e, pageSectionType) {
+            //otevírá se nastavení elementu v sekci
+            EventEmitter.on("openPageElementSettings.PageElement sortPageSection.PageSectionManager", function (e, pageElement) {
 
-                if (pageSectionType !== this) {
+                this.updateHasSettingsState(pageElement);
 
-                    this.togglePageElementSettings(false);
-                }
             }.bind(this));
         }
-
-        //uživatel otevírá nastavení elementu v sekci
-        this.on("openPageElementSettings", function (event, type) {
-
-            this.set("pageElementSettingsPositionElement", event.node);
-
-            type = type === this.get("openPageElementSettings") ? false : type;
-
-            this.togglePageElementSettings(type);
-
-            if (type) {
-
-                EventEmitter.trigger("openPageElementSettings.PageSection", this);
-            }
-        });
-
-        //Uživatel kliknul na "zavřít" v nastavení.
-        this.on("PageElementSettings.closeThisSettings", this.togglePageElementSettings.bind(this, false));
     },
 
     initPageSectionSettings: function () {
@@ -155,18 +136,11 @@ module.exports = Ractive.extend({
     superOncomplete: function () {
     },
 
-    updateHasSettingsState: function () {
+    updateHasSettingsState: function (pageElement) {
 
-        var state  = this.get("openPageElementSettings") || this.get("openPageSectionSettings");
+        var state  = this.get("openPageSectionSettings") || (pageElement && pageElement.get("openPageElementSettings"));
 
         this.getSectionElement().classList[state ? "add" : "remove"](this.CLASS.hasSettings);
-    },
-
-    togglePageElementSettings: function (state) {
-
-        this.set("openPageElementSettings", state);
-
-        this.updateHasSettingsState();
     },
 
     togglePageSectionSettings: function (state) {
