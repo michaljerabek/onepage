@@ -77,6 +77,10 @@ body {
             box-sizing: inherit;
 }
 
+#page {
+    overflow: hidden;
+}
+
 /* perfect-scrollbar v0.6.10 */
 
 .ps-container {
@@ -3389,59 +3393,6 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     bottom: 0%;
 }
 
-.P_PageElement {
-    position: relative;
-
-    outline-offset: 8px;
-    outline: 1px solid transparent;
-}
-
-.E .P_PageElement:focus, .E .P_PageElement:hover {
-    outline-color: red;
-}
-
-.csspointerevents .E .P_PageElement:after {
-    content: "";
-
-    position: absolute;
-    top: -8px;
-    left: -8px;
-
-    width: -webkit-calc(100% + 16px);
-
-    width: -moz-calc(100% + 16px);
-
-    width: calc(100% + 16px);
-    height: -webkit-calc(100% + 16px);
-    height: -moz-calc(100% + 16px);
-    height: calc(100% + 16px);
-
-    pointer-events: none;
-    -webkit-box-shadow: 0px 0px 0px 0px red;
-       -moz-box-shadow: 0px 0px 0px 0px red;
-            box-shadow: 0px 0px 0px 0px red;
-}
-
-.csspointerevents .E .P_PageElement:focus:after, .csspointerevents .E .P_PageElement:hover:after {
-    -webkit-box-shadow: 0px 0px 8px 0px red;
-       -moz-box-shadow: 0px 0px 8px 0px red;
-            box-shadow: 0px 0px 8px 0px red;
-}
-
-.E_PageElementEditUI button {
-    position:absolute;
-    top: -8px;
-    right: -8px;
-}
-
-.E_PageElementEditUI {
-    display: none;
-}
-
-.E .P_PageElement:hover .E_PageElementEditUI {
-    display: block;
-}
-
 .E_NewPageSectionSelector {
     z-index: 110;
     position: fixed;
@@ -3534,33 +3485,209 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     z-index: 120;
 }
 
+.P_PageElement {
+    z-index: 1;
+    position: relative;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+}
+
+.csspointerevents .E_PageElement--outline {
+    z-index: 1;
+    position: absolute;
+    top: -12px;
+    left: -12px;
+
+    width: -webkit-calc(100% + 24px);
+
+    width: -moz-calc(100% + 24px);
+
+    width: calc(100% + 24px);
+    height: -webkit-calc(100% + 24px);
+    height: -moz-calc(100% + 24px);
+    height: calc(100% + 24px);
+
+    border: 1px solid transparent;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+}
+
+.csspointerevents .E_PageElement--outline__active {
+    border-color: red;
+
+    pointer-events: none;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.csspointerevents .E_PageElement--outline:after {
+    content: "";
+
+    position: absolute;
+    top: -1px;
+    left: -1px;
+
+    width: -webkit-calc(100% + 2px);
+
+    width: -moz-calc(100% + 2px);
+
+    width: calc(100% + 2px);
+    height: -webkit-calc(100% + 2px);
+    height: -moz-calc(100% + 2px);
+    height: calc(100% + 2px);
+
+    -webkit-box-shadow: 0px 0px 8px 0px transparent;
+
+       -moz-box-shadow: 0px 0px 8px 0px transparent;
+
+            box-shadow: 0px 0px 8px 0px transparent;
+
+    pointer-events: none;
+
+    -webkit-transition: inherit;
+
+    -moz-transition: inherit;
+
+    -o-transition: inherit;
+
+    transition: inherit;
+}
+
+.csspointerevents .E_PageElement--outline__active:after {
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(255, 0, 0, 0.75);
+       -moz-box-shadow: 0px 0px 8px 0px rgba(255, 0, 0, 0.75);
+            box-shadow: 0px 0px 8px 0px rgba(255, 0, 0, 0.75);
+}
+
+.csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline {
+    top: -6px;
+    left: -6px;
+
+    width: -webkit-calc(100% + 12px);
+
+    width: -moz-calc(100% + 12px);
+
+    width: calc(100% + 12px);
+    height: -webkit-calc(100% + 12px);
+    height: -moz-calc(100% + 12px);
+    height: calc(100% + 12px);
+}
+
+.csspointerevents .P_PageElement .P_PageElement .P_PageElement .E_PageElement--outline {
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ EDIT UI -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.E_PageElementEditUI {
+    line-height: 0;
+    font-size: 0;
+
+    position: absolute;
+    top: -12px;
+    right: -12px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.P_PageElement .P_PageElement .E_PageElementEditUI {
+    top: -6px;
+    right: -6px;
+}
+
+.P_PageElement .P_PageElement .P_PageElement .E_PageElementEditUI {
+    top: 0px;
+    right: 0px;
+}
+
+.E_PageElementEditUI {
+    opacity: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+}
+
+.E_PageElement--outline__active ~ .E_PageElementEditUI {
+    z-index: 2;
+
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
 .P_PageSection {
     position: relative;
 
     width: 100%;
 
-    -webkit-transition-property: height;
+    -webkit-transition: height 0.35s ease-out 0s,
+        z-index 0s linear 0.3s;
 
-    -moz-transition-property: height;
+    -moz-transition: height 0.35s ease-out 0s,
+        z-index 0s linear 0.3s;
 
-    -o-transition-property: height;
+    -o-transition: height 0.35s ease-out 0s,
+        z-index 0s linear 0.3s;
 
-    transition-property: height;
-    -webkit-transition-duration: 0.35s;
-       -moz-transition-duration: 0.35s;
-         -o-transition-duration: 0.35s;
-            transition-duration: 0.35s;
-    -webkit-transition-timing-function: ease-out;
-       -moz-transition-timing-function: ease-out;
-         -o-transition-timing-function: ease-out;
-            transition-timing-function: ease-out;
+    transition: height 0.35s ease-out 0s,
+        z-index 0s linear 0.3s;
+}
+
+.P_PageSection:hover, .P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
+    -webkit-transition: height 0.35s ease-out 0s;
+    -moz-transition: height 0.35s ease-out 0s;
+    -o-transition: height 0.35s ease-out 0s;
+    transition: height 0.35s ease-out 0s;
 }
 
 .P_PageSection:hover {
     z-index: 2;
 }
 
-.P_PageSection__has-settings {
+.P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
     z-index: 3;
 }
 
@@ -3574,7 +3701,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     overflow: hidden;
 }
 
-.P_PageSection__removed {
+.P_PageSection__removed:hover, .P_PageSection__removed {
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
@@ -3586,7 +3713,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     min-height: 48px;
 }
 
-.E [class*='P_PageSection'], .E [class*='P_PageSection']:after {
+.E .P_PageSection, .E .P_PageSection:after {
     will-change: transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
 }
 
@@ -3668,12 +3795,20 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     vertical-align: sub;
 }
 
+.P_PageSection--content a {
+    color: inherit;
+}
+
+.E_PageElementSettings--transition-wrapper {
+    z-index: 120;
+	position: relative;
+}
+
 .E_PageElementSettings {
     z-index: 120;
     position: absolute;
 
     background-color: #f5f5f5;
-    border: 1px solid #ddd;
     -webkit-border-radius: 4px;
        -moz-border-radius: 4px;
             border-radius: 4px;
@@ -3682,11 +3817,20 @@ ium-editor-toolbar li button:disabled:not(:hover) {
             box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
 
     will-change: top, left, opacity;
+    -webkit-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: top, left;
+    -moz-transition-property: top, left;
+    -o-transition-property: top, left;
+    transition-property: top, left;
 }
 
 .E_PageElementSettings--wrapper {
-    min-width: 200px;
-    min-height: 200px;
+    position: relative;
+
+    padding-top: 24px;
 
     -webkit-border-radius: 4px;
 
@@ -3697,7 +3841,31 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     overflow: hidden;
 }
 
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--wrapper {
+        padding-top: 32px;
+    }
+}
+
+.E_PageElementSettings--content {
+    min-width: 200px;
+    min-height: 200px;
+}
+
+.E_PageElementSettings--resizable-box {
+    -webkit-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.05, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: width, height;
+    -moz-transition-property: width, height;
+    -o-transition-property: width, height;
+    transition-property: width, height;
+}
+
 .E_PageElementSettings--resizer {
+    z-index: 100;
     position: absolute;
 }
 
@@ -3711,11 +3879,11 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
-    top: -4px;
+    top: -6px;
 }
 
 .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
-    bottom: -4px;
+    bottom: -6px;
 }
 
 .E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
@@ -3728,15 +3896,15 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
-    left: -4px;
+    left: -6px;
 }
 
 .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
-    right: -4px;
+    right: -6px;
 }
 
 .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
-    z-index: 2;
+    z-index: 110;
 
     width: 8px;
     height: 8px;
@@ -3759,18 +3927,13 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .csspointerevents .E_PageElementSettings--resizer-hover {
+    z-index: 200;
     position: absolute;
-    top: -1px;
-    left: -1px;
+    top: 0px;
+    left: 0px;
 
-    width: -webkit-calc(100% + 2px);
-
-    width: -moz-calc(100% + 2px);
-
-    width: calc(100% + 2px);
-    height: -webkit-calc(100% + 2px);
-    height: -moz-calc(100% + 2px);
-    height: calc(100% + 2px);
+    width: 100%;
+    height: 100%;
 
     border: 0px solid transparent;
     -webkit-border-radius: inherit;
@@ -3793,10 +3956,6 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .csspointerevents .E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     -webkit-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
     -moz-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
     -o-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
@@ -3933,11 +4092,53 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     }
 }
 
-.E_PageElementSettings--close, .E_PageElementSettings--move {
+.E_PageElementSettings--title-bar {
+    font-size: 12px;
+    line-height: 24px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 24px;
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 56px;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-border-top-right-radius: 4px;
+       -moz-border-radius-topright: 4px;
+            border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+
+    cursor: move;
+
+    overflow: hidden;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--title-bar {
+        font-size: 14px;
+        line-height: 32px;
+
+        height: 32px;
+        padding-left: 12px;
+        padding-right: 76px;
+    }
+}
+
+.E_PageElementSettings--min-max, .E_PageElementSettings--close {
     line-height: 24px;
     text-align: center;
 
-    z-index: 100;
+    z-index: 10;
     position:absolute;
     top: 0px;
     right: 0px;
@@ -3963,10 +4164,31 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     display: block;
 }
 
-.E_PageElementSettings--move {
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max, .E_PageElementSettings--close {
+        min-height: 32px;
+        max-height: 32px;
+        min-width: 32px;
+        max-width: 32px;
+    }
+}
+
+.E_PageElementSettings--min-max {
     right: 24px;
 
-    cursor: move;
+    cursor: default;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max {
+        right: 32px;
+    }
+}
+
+.E_PageElementSettings--min-max__max {
+    background-color: orange;
 }
 
 .test {
@@ -4141,6 +4363,12 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 
     transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.P_PageElement__text-content {
+    line-height: 1.4;
+
+    display: inline-block;
 }
 
 .P_PageElement__title {
@@ -4619,9 +4847,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     margin-bottom: 8px;
 
     min-width: 48px;
-    width: -webkit-calc(100% - 4px);
-    width: -moz-calc(100% - 4px);
-    width: calc(100% - 4px);
+    width: 48px;
 
     height: 32px;
     padding: 0 8px;
@@ -4668,12 +4894,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     -webkit-column-gap: 40px;
     -moz-column-width: 176px;
     -moz-column-gap: 40px;
-    -webkit-column-width: 176px;
-       -moz-column-width: 176px;
-            column-width: 176px;
-    -webkit-column-gap: 40px;
-       -moz-column-gap: 40px;
-            column-gap: 40px;
+    column-width: 176px;
+    column-gap: 40px;
 }
 
 .ColorPickerPalette {

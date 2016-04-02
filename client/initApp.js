@@ -70,15 +70,18 @@ module.exports = function (ractive, ractiveData, config) {
 
         connectToSocketIO(config, ractiveData.databaseName);
 
+        console.time("pageLoaded");
+
         App = ractive({
 
             el: "#app",
 
             data: ractiveData,
 
-//            events: {
+            events: {
 //                tap: require("ractive-events-tap")
-//            },
+                hover: require("ractive-events-hover")
+            },
 
             transitions: {
                 slide: require("ractive-transitions-slide"),

@@ -4,7 +4,7 @@ var PageSection = require("./../../");
 module.exports = PageSection.extend({
 
     partials: {
-        pageSectionContent: "<div class='E_Editor__title' style='background: {{.section.background}}; color: {{.section.color}};' contenteditable='{{!!editMode}}' value='{{.section.name}}'></div>",
+        pageSectionContent: "<PageElementTitle element='{{.section}}' />",
         pageSectionSettings: require("./page-section-settings.tpl"),
         pageSectionEditUI: "<BasicEditUI section='{{.section}}' />"
     },

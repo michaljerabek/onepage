@@ -7,6 +7,8 @@ var on = require("./../helpers/on");
 
 var ractive = function (settings) {
 
+    Ractive.EDIT_MODE = !settings.data.page || settings.data.page.editMode;
+
     return new Ractive({
 
         enhance: true,
@@ -31,6 +33,9 @@ var ractive = function (settings) {
         data: settings.data,
 
         onconfig: function () {
+        },
+
+        onrender: function () {
         }
 
     });

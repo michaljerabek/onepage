@@ -19,3 +19,7 @@ body {
 *:after, *:before {
     box-sizing: inherit;
 }
+
+#page {
+    overflow: hidden;
+}

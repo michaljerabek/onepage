@@ -32,6 +32,7 @@ module.exports = Ractive.extend({
     CLASS: {
         self: "P_PageSection",
         hasSettings: "P_PageSection__has-settings",
+        hasOutline: "P_PageSection__has-outline",
 
         innerWrapper: "P_PageSection--inner-wrapper",
 
@@ -48,11 +49,13 @@ module.exports = Ractive.extend({
     },
 
     components: {
-        PageSectionSettings: require("./PageSectionSettings"),
+        PageSectionSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings") : null,
 
-        PageElementSettings: require("./../PageElement/PageElementSettings"),
+        PageElementSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings") : null,
 
-        PageElementTitle: require("./../PageElement/Types/PageElementTitle")
+        PageElement: require("./../PageElement"),
+        PageElementTitle: require("./../PageElement/Types/PageElementTitle"),
+        PageElementTextContent: require("./../PageElement/Types/PageElementTextContent")
     },
 
     partials: {
@@ -60,48 +63,40 @@ module.exports = Ractive.extend({
         pageSectionContent: "",
         pageSectionSettings: "",
 
-        ColorSettings: require("./partials/settings/color-settings.tpl")
+        ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null
+    },
+
+    data: function () {
+
+        return {
+            editMode: Ractive.EDIT_MODE
+        };
     },
 
     superOnconfig: function () {
 
-        this.observe("section.name", this.regenerateId, {init: false, defer: true});
+        if (Ractive.EDIT_MODE) {
 
-        this.initPageElementSettings();
-        this.initPageSectionSettings();
+            this.observe("section.name", this.regenerateId, {init: false, defer: true});
+
+            this.initPageElementSettings();
+            this.initPageSectionSettings();
+        }
     },
 
     initPageElementSettings: function () {
 
         if (on.client) {
 
-            //otevírá se nastavení elementu v sekci -> zavřít nastavení v ostatních sekcích
-            EventEmitter.on("openPageElementSettings.PageSection sortPageSection.PageSectionManager", function (e, pageSectionType) {
+            //otevírá se nastavení elementu v sekci
+            EventEmitter.on("openPageElementSettings.PageElement sortPageSection.PageSectionManager", function (e, pageElement) {
 
-                if (pageSectionType !== this) {
+                this.updateHasSettingsState(pageElement);
 
-                    this.togglePageElementSettings(false);
-                }
             }.bind(this));
         }
 
-        //uživatel otevírá nastavení elementu v sekci
-        this.on("openPageElementSettings", function (event, type) {
-
-            this.set("pageElementSettingsPositionElement", event.node);
-
-            type = type === this.get("openPageElementSettings") ? false : type;
-
-            this.togglePageElementSettings(type);
-
-            if (type) {
-
-                EventEmitter.trigger("openPageElementSettings.PageSection", this);
-            }
-        });
-
-        //Uživatel kliknul na "zavřít" v nastavení.
-        this.on("PageElementSettings.closeThisSettings", this.togglePageElementSettings.bind(this, false));
+        this.on("*.sectionHasOutline", this.updateHasOutlineState.bind(this), {context: this});
     },
 
     initPageSectionSettings: function () {
@@ -147,6 +142,7 @@ module.exports = Ractive.extend({
 
         this.off("PageSectionSettings.closeThisSettings");
         this.off("PageSectionEditUI.openPageSectionSettings");
+        this.off("*.sectionHasOutline");
     },
 
     superOnrender: function () {
@@ -155,18 +151,23 @@ module.exports = Ractive.extend({
     superOncomplete: function () {
     },
 
-    updateHasSettingsState: function () {
+    updateHasSettingsState: function (pageElement) {
 
-        var state  = this.get("openPageElementSettings") || this.get("openPageSectionSettings");
+        var state  = this.get("openPageSectionSettings") || (pageElement && pageElement.get("openPageElementSettings"));
 
         this.getSectionElement().classList[state ? "add" : "remove"](this.CLASS.hasSettings);
     },
 
-    togglePageElementSettings: function (state) {
+    updateHasOutlineState: function (state) {
 
-        this.set("openPageElementSettings", state);
+        if (this.currentOutlineState == state) {
 
-        this.updateHasSettingsState();
+            return;
+        }
+
+        this.currentOutlineState = this.find("." + this.components.PageElement.prototype.CLASS.outlineActive);
+
+        this.getSectionElement().classList[this.currentOutlineState ? "add" : "remove"](this.CLASS.hasOutline);
     },
 
     togglePageSectionSettings: function (state) {

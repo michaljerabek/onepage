@@ -274,7 +274,7 @@
 
                 if (pageElementSettings) {
 
-                    pageElementSettings.observe("elementWidth elementHeight", this.windowResizeHandler.bind(this), {init: false});
+                    pageElementSettings.observe("resizableElementWidth resizableElementHeight", this.windowResizeHandler.bind(this), {init: false});
                 }
 
                 this.waitForUserInteraction = false;
@@ -590,7 +590,7 @@
                     ch = currentHEX.length;
 
                 //zkrátit příliš dlouhou hodnotu
-                if (ch > 6 && !~hash || ch > 7 && ~hash) {
+                if ((ch > 6 && !~hash) || (ch > 7 && ~hash)) {
 
                     currentHEX = currentHEX.substr(0, 7 + currentHEX.indexOf("#"));
 
