@@ -43,8 +43,9 @@
         data: function () {
 
             return {
-                type: "title",
-                hasEditUI: true
+                type: "text-content",
+                hasEditUI: true,
+                settingsTitle: "Nastavení textu"
             };
         },
 

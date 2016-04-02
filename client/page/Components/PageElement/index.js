@@ -35,25 +35,79 @@
 
 }(this, function (Ractive, PageElementSettings, U, template, EventEmitter, on) {
 
+    /*
+     * Abstraktní (!) component pro vytváření editovatelných prvků na stránce.
+     * Přídá outline a nastavovací tlačítka -> řízeno konkrétními komponenty.
+     */
+
     var instanceCounter = 0,
 
         hasMouseTouchStyles = false,
 
-        hoverByTouchend = false,
+        //nastaví chování outlinu
+        //Outline se zobrazuje nad obsahem, proto je potřeba mu přidat pointer-events: none.
+        //Na dotykových zařízeních se nastaví po touchstart na konkrétním elementu (v styles.css),
+        //při použití myši se nastaví pro všechny.
+        setMouseTouchStyles = function (isMouseUsed) {
 
-        hoverByTouchendTimeout = null,
+            if (isMouseUsed) {
 
-        throttleHoverByTouchend = function () {
+                if (hasMouseTouchStyles) {
 
-            hoverByTouchend = true;
+                    return;
+                }
 
-            clearTimeout(hoverByTouchendTimeout);
+                var cssText = [
+                    ".csspointerevents .E_PageElement--outline { ",
+                        "pointer-events: none;",
+                    "}"
+                ].join("");
 
-            hoverByTouchendTimeout = setTimeout(function() {
+                $("<style />")
+                    .attr("id", "PageElement--mouse-touch")
+                    .html(cssText)
+                    .appendTo("head");
 
-//                hoverByTouchend = false;
+                hasMouseTouchStyles = true;
 
-            }, 100);
+                return;
+            }
+
+            if (hasMouseTouchStyles) {
+
+                $("#PageElement--mouse-touch").remove();
+
+                hasMouseTouchStyles = false;
+            }
+        },
+
+        hoverByTouch = false,
+        hoverByTouchTimeout = null,
+
+        throttleHoverByTouch = function () {
+
+            hoverByTouch = true;
+
+            clearTimeout(hoverByTouchTimeout);
+
+            hoverByTouchTimeout = setTimeout(function() {
+
+                hoverByTouch = false;
+
+                setMouseTouchStyles(false);
+
+                //Pokud se opět použije touchstart -> použít stylování pro dotyk. z.
+                Ractive.$win
+                    .off("touchstart.PageElement")
+                    .one("touchstart.PageElement", function () {
+
+                    setMouseTouchStyles(false);
+
+                    hoverByTouch = true;
+
+                }.bind(this));
+
+            }, 5000);
         };
 
     return Ractive.extend({
@@ -65,12 +119,12 @@
         CLASS: {
             self: "P_PageElement",
 
-            outline: "E_PageElement--outline",
+            outline: "E_PageElement--outline", //při změně změnit i výše v "setMouseTouchStyles()"
             outlineActive: "E_PageElement--outline__active"
         },
 
         components: {
-            PageElementSettings: PageElementSettings
+            PageElementSettings: Ractive.EDIT_MODE ? PageElementSettings : null
         },
 
         partials: {
@@ -81,7 +135,8 @@
         data: function () {
 
             return {
-                hover: false
+                hover: false,
+                editMode: Ractive.EDIT_MODE
             };
         },
 
@@ -96,7 +151,11 @@
                 this.$temp = $([null]);
             }
 
-            this.initPageElementSettings();
+            if (Ractive.EDIT_MODE) {
+
+                //umožnit otevřít nastavení elementu
+                this.initPageElementSettings();
+            }
         },
 
         initPageElementSettings: function () {
@@ -116,6 +175,7 @@
             //uživatel otevírá nastavení elementu v sekci
             this.on("openPageElementSettings", function (event, type) {
 
+                //element pro určení pozice nastavení
                 this.set("pageElementSettingsPositionElement", event.node);
 
                 type = type === this.get("openPageElementSettings") ? false : type;
@@ -139,29 +199,46 @@
                 this.self = this.find("." + this.CLASS.self);
                 this.$self = $(this.self);
 
-                this.initOutline();
+                if (Ractive.EDIT_MODE) {
+
+                    this.initOutline();
+                }
             }
         },
 
+        //spustí zobrazování ui při najetí myší
         initOutline: function () {
 
             this.outlineElement = this.find("." + this.CLASS.outline);
 
-            //pokud uživatel přestane editovat text, je nutné zjistit, jestli má outline zmizet
-            this.$self.on("focusout." + this.EVENT_NS, function () {
+            this.$self
+                //pokud uživatel přestane editovat text, je nutné zjistit, jestli má outline zmizet
+                .on("focusout." + this.EVENT_NS, function () {
 
-                clearTimeout(this.focusoutTimeout);
+                    this.set("hover", false);
 
-                this.focusoutTimeout = setTimeout(this.updateOutlineState.bind(this), 100);
+                    clearTimeout(this.focusoutTimeout);
 
-            }.bind(this));
+                    this.focusoutTimeout = setTimeout(this.updateOutlineState.bind(this), 100);
+
+                }.bind(this))
+                //zobrazit outline např při tabu nebo označení
+                .on("focusin." + this.EVENT_NS, function (e) {
+
+                    this.set("hover", true);
+
+                    //pouze nejvnitřnější elmenet
+                    e.stopPropagation();
+
+                }.bind(this));
 
             //při najetí myší zbrazit outline
             this.observe("hover", function (state) {
 
-                if (!hoverByTouchend) {
+                if (!hoverByTouch) {
 
-                    this.fire("pageElementHover", this, state);
+                    //pro případné odstranění vnějších hover stavů
+                    this.fire("pageElementHover", state);
                 }
 
                 this.updateOutlineState();
@@ -169,17 +246,16 @@
                 if (!state) {
 
                     this.set("restoreHover", false);
-                }
 
+                    if (hoverByTouch) {
+
+                        Ractive.$win.off("touchstart.hover-" + this.EVENT_NS);
+                    }
+                }
             }, {init: false});
 
             //při najetí na vnitřní outline je potřeba ostatní odstranit
-            this.on("*.pageElementHover", function (element, state) {
-
-                if (element === this) {
-
-                    return;
-                }
+            this.on("*.pageElementHover", function (state) {
 
                 if (state) {
 
@@ -190,7 +266,10 @@
 
                 } else {
 
-                    this.set("hover", this.get("restoreHover"));
+                    if (!this.hasChildPageElementHoverState()) {
+
+                        this.set("hover", this.get("restoreHover"));
+                    }
                 }
             });
         },
@@ -204,58 +283,75 @@
             clearTimeout(this.focusoutTimeout);
 
             this.$self.off("." + this.EVENT_NS);
+
+            Ractive.$win
+                .off("touchstart.hover-" + this.EVENT_NS)
+                .off("touchstart.PageElement");
         },
 
-        handleTouchend: function (e) {
+        handleTouchstart: function (e) {
 
-            if (this.get("hover")) {
+            if (e.original.touches.length > 1 || this.get("hover")) {
 
                 return;
             }
 
-            throttleHoverByTouchend();
+            throttleHoverByTouch();
 
             this.set("hover", true);
 
-            this.setMouseTouchStyles(false);
+            var startTime = +new Date();
 
             Ractive.$win
-                .off("touchend.hover-" + this.EVENT_NS)
-                .on( "touchend.hover-" + this.EVENT_NS, function (e) {
+                .off("touchstart.hover-" + this.EVENT_NS)
+                .one("touchend.hover-" + this.EVENT_NS, function (e) {
 
-                    throttleHoverByTouchend();
+                    var endTime = +new Date();
+
+                    //pokud uživatel drží prst na elmentu méně než 500ms, needitovat text - pouze zobrazit ui
+                    if (endTime - startTime < 500) {
+
+                        e.preventDefault();
+                    }
+                })
+                .on( "touchstart.hover-" + this.EVENT_NS, function (e) {
+
+                    throttleHoverByTouch();
 
                     this.$temp[0] = e.target;
 
+                    //uživatel tapnul na jiný vnitřní/vnější element (nebo úplně jinam)
                     if (this.$temp.closest("." + this.CLASS.self)[0] !== this.self) {
 
                         this.set("hover", false);
 
-                        Ractive.$win.off("touchend.hover-" + this.EVENT_NS);
+                        Ractive.$win.off("touchstart.hover-" + this.EVENT_NS);
                     }
 
                 }.bind(this));
-
-            e.original.preventDefault();
         },
 
         handleHover: function (event) {
 
-            if (hoverByTouchend) {
+            if (hoverByTouch) {
 
                 return;
             }
 
-            this.setMouseTouchStyles(true);
+            setMouseTouchStyles(true);
 
             this.set('hover', event.hover);
         },
 
+        //zobrazí ui, pokud je stav "hover" nebo je otevřeno nastavení nebo má Editor focus,
+        //jinak ui skryje
         updateOutlineState: function () {
 
             var state = (this.get("hover") || this.get("openPageElementSettings") || this.hasFocusedEditor());
 
-            this.outlineElement.classList[state ? "add" : "remove"](this.CLASS.outlineActive);
+            this.set("showOutline", state);
+
+            this.fire("sectionHasOutline", state);
         },
 
         hasFocusedEditor: function () {
@@ -276,36 +372,21 @@
             return false;
         },
 
-        setMouseTouchStyles: function (isMouseUsed) {
+        hasChildPageElementHoverState: function () {
 
-            if (isMouseUsed) {
+            var components = this.findAllComponents(),
+                c = components.length - 1;
 
-                if (hasMouseTouchStyles) {
+            for (c; c >= 0; c--) {
 
-                    return;
+                if (components[c].PAGE_ELEMENT && components[c].get("hover")) {
+
+                    return true;
                 }
-
-                var cssText = [
-                    ".csspointerevents ." + this.CLASS.outline + "{ ",
-                        "pointer-events: none;",
-                    "}"
-                ].join("");
-
-                $("<style />")
-                    .attr("id", "PageElement--mouse-touch")
-                    .html(cssText)
-                    .appendTo("head");
-
-                hasMouseTouchStyles = true;
-
-                return;
             }
 
-            $("#PageElement--mouse-touch").remove();
-
-            hasMouseTouchStyles = false;
+            return false;
         },
-
 
         togglePageElementSettings: function (state) {
 
@@ -313,7 +394,6 @@
 
             this.updateOutlineState();
         }
-
     });
 
 }));

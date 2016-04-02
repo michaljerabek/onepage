@@ -32,6 +32,7 @@ module.exports = Ractive.extend({
     CLASS: {
         self: "P_PageSection",
         hasSettings: "P_PageSection__has-settings",
+        hasOutline: "P_PageSection__has-outline",
 
         innerWrapper: "P_PageSection--inner-wrapper",
 
@@ -48,10 +49,11 @@ module.exports = Ractive.extend({
     },
 
     components: {
-        PageSectionSettings: require("./PageSectionSettings"),
+        PageSectionSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings") : null,
 
-        PageElementSettings: require("./../PageElement/PageElementSettings"),
+        PageElementSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings") : null,
 
+        PageElement: require("./../PageElement"),
         PageElementTitle: require("./../PageElement/Types/PageElementTitle"),
         PageElementTextContent: require("./../PageElement/Types/PageElementTextContent")
     },
@@ -61,15 +63,25 @@ module.exports = Ractive.extend({
         pageSectionContent: "",
         pageSectionSettings: "",
 
-        ColorSettings: require("./partials/settings/color-settings.tpl")
+        ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null
+    },
+
+    data: function () {
+
+        return {
+            editMode: Ractive.EDIT_MODE
+        };
     },
 
     superOnconfig: function () {
 
-        this.observe("section.name", this.regenerateId, {init: false, defer: true});
+        if (Ractive.EDIT_MODE) {
 
-        this.initPageElementSettings();
-        this.initPageSectionSettings();
+            this.observe("section.name", this.regenerateId, {init: false, defer: true});
+
+            this.initPageElementSettings();
+            this.initPageSectionSettings();
+        }
     },
 
     initPageElementSettings: function () {
@@ -83,6 +95,8 @@ module.exports = Ractive.extend({
 
             }.bind(this));
         }
+
+        this.on("*.sectionHasOutline", this.updateHasOutlineState.bind(this), {context: this});
     },
 
     initPageSectionSettings: function () {
@@ -128,6 +142,7 @@ module.exports = Ractive.extend({
 
         this.off("PageSectionSettings.closeThisSettings");
         this.off("PageSectionEditUI.openPageSectionSettings");
+        this.off("*.sectionHasOutline");
     },
 
     superOnrender: function () {
@@ -141,6 +156,18 @@ module.exports = Ractive.extend({
         var state  = this.get("openPageSectionSettings") || (pageElement && pageElement.get("openPageElementSettings"));
 
         this.getSectionElement().classList[state ? "add" : "remove"](this.CLASS.hasSettings);
+    },
+
+    updateHasOutlineState: function (state) {
+
+        if (this.currentOutlineState == state) {
+
+            return;
+        }
+
+        this.currentOutlineState = this.find("." + this.components.PageElement.prototype.CLASS.outlineActive);
+
+        this.getSectionElement().classList[this.currentOutlineState ? "add" : "remove"](this.CLASS.hasOutline);
     },
 
     togglePageSectionSettings: function (state) {

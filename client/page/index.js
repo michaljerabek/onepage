@@ -36,8 +36,8 @@ module.exports = Ractive.extend({
         PageSectionB: require("./Components/PageSection/Types/PageSectionB"),
         PageSectionC: require("./Components/PageSection/Types/PageSectionC"),
 
-        NewPageSectionSelector: require("./Components/NewPageSectionSelector"),
-        GlobalPageSettings: require("./Components/GlobalPageSettings")
+        NewPageSectionSelector: Ractive.EDIT_MODE ? require("./Components/NewPageSectionSelector") : null,
+        GlobalPageSettings: Ractive.EDIT_MODE ? require("./Components/GlobalPageSettings") : null
     },
 
     partials: {
@@ -65,22 +65,34 @@ module.exports = Ractive.extend({
         }
     },
 
+    onrender: function () {
+
+        if (this.Admin) {
+
+            var $el = $("#pageWrapper");
+
+            $el.css("margin-top", -$el.offset().top);
+        }
+    },
+
     oncomplete: function () {
 
-        if (this.get("editMode") && (!this.get("isAdmin") || this.alreadyLoaded)) {
+        if (Ractive.EDIT_MODE && (!this.Admin || this.alreadyLoaded)) {
 
             this.initPage();
         }
 
-        if (!this.get("editMode") && !this.get("isAdmin")) {
+        if (!Ractive.EDIT_MODE && !this.Admin) {
 
             this.initScrollToSection();
         }
+
+        console.timeEnd("pageLoaded");
     },
 
     onteardown: function () {
 
-        if (this.get("editMode")) {
+        if (Ractive.EDIT_MODE) {
 
             this.contentEditor.destroy();
             this.titleEditor.destroy();

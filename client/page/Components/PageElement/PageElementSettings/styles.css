@@ -1,25 +1,50 @@
+.E_PageElementSettings--transition-wrapper {
+    z-index: 120;
+	position: relative;
+}
+
 .E_PageElementSettings {
     z-index: 120;
     position: absolute;
 
     background-color: #f5f5f5;
-    border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
 
     will-change: top, left, opacity;
+    transition: var(--default-transition);
+    transition-property: top, left;
 }
 
 .E_PageElementSettings--wrapper {
-    min-width: 200px;
-    min-height: 200px;
+    position: relative;
+
+    padding-top: 24px;
 
     border-radius: 4px;
 
     overflow: hidden;
 }
 
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--wrapper {
+        padding-top: 32px;
+    }
+}
+
+.E_PageElementSettings--content {
+    min-width: 200px;
+    min-height: 200px;
+}
+
+.E_PageElementSettings--resizable-box {
+    transition: var(--default-transition);
+    transition-property: width, height;
+}
+
 .E_PageElementSettings--resizer {
+    z-index: 100;
     position: absolute;
 }
 
@@ -71,7 +96,7 @@
 .E_PageElementSettings--resizer__top-right,
 .E_PageElementSettings--resizer__bottom-left,
 .E_PageElementSettings--resizer__bottom-right {
-    z-index: 2;
+    z-index: 110;
 
     width: 8px;
     height: 8px;
@@ -94,12 +119,13 @@
 }
 
 .csspointerevents .E_PageElementSettings--resizer-hover {
+    z-index: 200;
     position: absolute;
-    top: -1px;
-    left: -1px;
+    top: 0px;
+    left: 0px;
 
-    width: calc(100% + 2px);
-    height: calc(100% + 2px);
+    width: 100%;
+    height: 100%;
 
     border: 0px solid transparent;
     border-radius: inherit;
@@ -312,12 +338,50 @@
     }
 }
 
-.E_PageElementSettings--close,
-.E_PageElementSettings--move {
+.E_PageElementSettings--title-bar {
+    font-size: 12px;
+    line-height: 24px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 24px;
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 56px;
+
+    color: #fff;
+    background-color: #404040;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+
+    cursor: move;
+
+    overflow: hidden;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--title-bar {
+        font-size: 14px;
+        line-height: 32px;
+
+        height: 32px;
+        padding-left: 12px;
+        padding-right: 76px;
+    }
+}
+
+.E_PageElementSettings--min-max,
+.E_PageElementSettings--close {
     line-height: 24px;
     text-align: center;
 
-    z-index: 100;
+    z-index: 10;
     position:absolute;
     top: 0px;
     right: 0px;
@@ -341,10 +405,32 @@
     display: block;
 }
 
-.E_PageElementSettings--move {
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max,
+    .E_PageElementSettings--close {
+        min-height: 32px;
+        max-height: 32px;
+        min-width: 32px;
+        max-width: 32px;
+    }
+}
+
+.E_PageElementSettings--min-max {
     right: 24px;
 
-    cursor: move;
+    cursor: default;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max {
+        right: 32px;
+    }
+}
+
+.E_PageElementSettings--min-max__max {
+    background-color: orange;
 }
 
 .test {

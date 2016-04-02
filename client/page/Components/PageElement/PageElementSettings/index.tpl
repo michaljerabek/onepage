@@ -1,16 +1,28 @@
-<div intro-outro="fade" class="E_PageElementSettings">
-    <div class="E_PageElementSettings--wrapper">
-        <button class="E_PageElementSettings--close" on-tap="closeThisSettings">&times;</button>
-        <button class="E_PageElementSettings--move" on-mousedown-touchstart="activateMover(event)">M</button>
-        {{> content}}
+<div class="E_PageElementSettings--transition-wrapper"
+    intro-outro="fade:{
+        duration: 200,
+        easing: 'linear'
+    }"
+>
+    <div class="E_PageElementSettings">
+        <div class="E_PageElementSettings--wrapper">
+            <div class="E_PageElementSettings--title-bar" on-mousedown-touchstart="activateMover(event)">
+                {{(settingsTitle ? settingsTitle + ' — ' : '') + section.name}}
+                <button class="E_PageElementSettings--close"   on-tap="closeThisSettings">&times;</button>
+                <button class="E_PageElementSettings--min-max" on-mousedown-touchstart="minmax(event)">M</button>
+            </div>
+            <div class="E_PageElementSettings--content">
+                {{> content}}
+            </div>
+        </div>
+        <div class="E_PageElementSettings--resizer E_PageElementSettings--resizer__top-left"     on-mousedown-touchstart="activateResizer(event, 'top-left')"></div>
+        <div class="E_PageElementSettings--resizer E_PageElementSettings--resizer__top-right"    on-mousedown-touchstart="activateResizer(event, 'top-right')"></div>
+        <div class="E_PageElementSettings--resizer E_PageElementSettings--resizer__bottom-left"  on-mousedown-touchstart="activateResizer(event, 'bottom-left')"></div>
+        <div class="E_PageElementSettings--resizer E_PageElementSettings--resizer__bottom-right" on-mousedown-touchstart="activateResizer(event, 'bottom-right')"></div>
+        <div class="E_PageElementSettings--resizer E_PageElementSettings--resizer__top"          on-mousedown-touchstart="activateResizer(event, 'top')"></div>
+        <div class="E_PageElementSettings--resizer E_PageElementSettings--resizer__bottom"       on-mousedown-touchstart="activateResizer(event, 'bottom')"></div>
+        <div class="E_PageElementSettings--resizer E_PageElementSettings--resizer__left"         on-mousedown-touchstart="activateResizer(event, 'left')"></div>
+        <div class="E_PageElementSettings--resizer E_PageElementSettings--resizer__right"        on-mousedown-touchstart="activateResizer(event, 'right')"></div>
+        <div class="E_PageElementSettings--resizer-hover"></div>
     </div>
-    <div on-mousedown-touchstart="activateResizer(event, 'top-left')" class="E_PageElementSettings--resizer E_PageElementSettings--resizer__top-left"></div>
-    <div on-mousedown-touchstart="activateResizer(event, 'top-right')" class="E_PageElementSettings--resizer E_PageElementSettings--resizer__top-right"></div>
-    <div on-mousedown-touchstart="activateResizer(event, 'bottom-left')" class="E_PageElementSettings--resizer E_PageElementSettings--resizer__bottom-left"></div>
-    <div on-mousedown-touchstart="activateResizer(event, 'bottom-right')" class="E_PageElementSettings--resizer E_PageElementSettings--resizer__bottom-right"></div>
-    <div on-mousedown-touchstart="activateResizer(event, 'top')" class="E_PageElementSettings--resizer E_PageElementSettings--resizer__top"></div>
-    <div on-mousedown-touchstart="activateResizer(event, 'bottom')" class="E_PageElementSettings--resizer E_PageElementSettings--resizer__bottom"></div>
-    <div on-mousedown-touchstart="activateResizer(event, 'left')" class="E_PageElementSettings--resizer E_PageElementSettings--resizer__left"></div>
-    <div on-mousedown-touchstart="activateResizer(event, 'right')" class="E_PageElementSettings--resizer E_PageElementSettings--resizer__right"></div>
-    <div class="E_PageElementSettings--resizer-hover"></div>
 </div>

@@ -1,11 +1,12 @@
 /*jslint browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true, node: true*/
-/*global ractiveData, $*/
 
 var Ractive = require("ractive");
 var config = require("./../config");
 var on = require("./../helpers/on");
 
 var ractive = function (settings) {
+
+    Ractive.EDIT_MODE = !settings.data.page || settings.data.page.editMode;
 
     return new Ractive({
 
@@ -30,6 +31,7 @@ var ractive = function (settings) {
         data: settings.data,
 
         onconfig: function () {
+
         },
 
         oncomplete: function () {

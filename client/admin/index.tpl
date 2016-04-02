@@ -1,25 +1,29 @@
-<h1>Admin: {{user}}</h1>
+<div>
+   <h1>Admin: {{user}}</h1>
 
-<p>
-    <a href="/users/logout">odhlásit se</a>
-</p>
+    <p>
+        <a href="/users/logout">odhlásit se</a>
+    </p>
 
-{{#each pages}}
+    {{#each pages}}
 
-    <button style="{{#if selectedPage._id === this._id}}background: red; border: 1px solid;{{/if}}" on-tap="set('selectedPage', this)">{{this.name}}</button>
-{{/each}}
+        <button style="{{#if selectedPage._id === this._id}}background: red; border: 1px solid;{{/if}}" on-tap="set('selectedPage', this)">{{this.name}}</button>
+    {{/each}}
 
-{{#if .selectedPage}}
+    {{#if .selectedPage}}
 
-    <br>
-    <button on-tap="set('selectedPage', null)">Zrušit výběr</button>
-    <button on-tap="set('editPage', .selectedPage._id)">Upravit: {{.pageId}}</button>
+        <br>
+        <button on-tap="set('selectedPage', null)">Zrušit výběr</button>
+        <button on-tap="set('editPage', .selectedPage._id)">Upravit: {{.pageId}}</button>
 
-{{/if}}
+    {{/if}}
+</div>
 
 {{#if .editPage}}
-    <div intro-outro="fade" style="position:absolute;top:0;left:0;width:100%;height:100%;background:white;">
-        <Page editMode="true" isAdmin="true" pageId={{.editPage}} />
+    <div id="pageWrapper" style="position:relative;z-index: 2000;">
+        <div intro-outro="fade" style="background:white;">
+            <Page editMode="true" isAdmin="true" pageId={{.editPage}} />
+        </div>
     </div>
 {{/if}}
 

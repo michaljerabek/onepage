@@ -70,6 +70,8 @@ module.exports = function (ractive, ractiveData, config) {
 
         connectToSocketIO(config, ractiveData.databaseName);
 
+        console.time("pageLoaded");
+
         App = ractive({
 
             el: "#app",

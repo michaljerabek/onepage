@@ -1,4 +1,8 @@
-<section id="{{.section.id}}" data-page-section-internal-id="{{.section.internalId}}" class="P_PageSection" data-page-section-name="{{.section.name}}" style="background: white;position: relative; text-align: center; line-height: 200px; font-size: 32px; border: 1px solid #ddd;">
+<section class="P_PageSection"
+    id="{{.section.id}}"
+    data-page-section-internal-id="{{.section.internalId}}"
+    data-page-section-name="{{.section.name}}"
+    style="background: white;position: relative; text-align: center; line-height: 200px; font-size: 32px;">
 
     <div class="P_PageSection--inner-wrapper">
 
@@ -8,13 +12,13 @@
                 {{> pageSectionContent}}
             </div>
 
-            {{#if editMode}}
+            {{#if .editMode}}
                 {{> pageSectionEditUI}}
             {{/if}}
 
         </div>
 
-        {{#if editMode}}
+        {{#if .editMode}}
             {{> pageSectionSettings}}
         {{/if}}
     </div>

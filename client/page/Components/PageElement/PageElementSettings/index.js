@@ -54,9 +54,19 @@
             self: "E_PageElementSettings",
 
             wrapper: "E_PageElementSettings--wrapper",
+            content: "E_PageElementSettings--content",
 
             resizer: "E_PageElementSettings--resizer",
-            resizerActive: "E_PageElementSettings--resizer__active"
+            resizerActive: "E_PageElementSettings--resizer__active",
+            resizableBox: "E_PageElementSettings--resizable-box",
+
+            minmax: "E_PageElementSettings--min-max",
+            minmaxMax: "E_PageElementSettings--min-max__max",
+            minmaxMin: "E_PageElementSettings--min-max__min"
+        },
+
+        OPTIONS: {
+            SETTINGS_OFFSET: -10
         },
 
         components: components || {
@@ -86,8 +96,169 @@
                         }, 100);
                     };
 
-                this.minHeight = parseFloat(this.$resizableElement.css("min-height")) || 0;
-                this.minWidth  = parseFloat(this.$resizableElement.css("min-width"))  || 0;
+                this.$resizableBox = $node;
+                this.resizableBox  = node;
+
+                this.minmaxButton = this.find("." + this.CLASS.minmax);
+
+                this.resizableBox.classList.add(this.CLASS.resizableBox);
+
+                this.initWidth       = this.getSettingsWidth();
+                this.initHeight      = this.getSettingsHeight();
+                this.beforeWidth     = this.initWidth;
+                this.beforeHeight    = this.initHeight;
+
+                this.minHeight       = parseFloat(this.$resizableElement.css("min-height")) || 0;
+                this.minWidth        = parseFloat(this.$resizableElement.css("min-width"))  || 0;
+
+                this.minResizeHeight = parseFloat($node.attr("data-min-resize-height"))     || 0;
+                this.minResizeWidth  = parseFloat($node.attr("data-min-resize-width"))      || 0;
+
+                this.maxResizeHeight = parseFloat($node.attr("data-max-resize-height"))     || 0;
+                this.maxResizeWidth  = parseFloat($node.attr("data-max-resize-width"))      || 0;
+
+                this.minmax = this.minmax || function (event) {
+
+                    event.original.stopPropagation();
+                    event.original.preventDefault();
+
+                    //posuvníky je potřeba aktualizovat až na konci
+                    this.doNotUpdateScrollbars = true;
+
+                    this.$resizableBox
+                        .off("transitionend.resize-" + this.EVENT_NS)
+                        .css({
+                            transition: "none"
+                        });
+
+                    var currentHeight = this.get("resizableElementHeight"),
+                        currentWidth  = this.get("resizableElementWidth");
+
+                    //zmenšit na výchozí velikost
+                    if (this.minmaxButton.classList.contains(this.CLASS.minmaxMax)) {
+
+                        this.set("resizableElementHeight", this.beforeHeight === currentHeight ? this.initHeight : this.beforeHeight);
+                        this.set("resizableElementWidth" , this.beforeWidth  === currentWidth  ? this.initWidth  : this.beforeWidth);
+
+                        this.minmaxButton.classList.remove(this.CLASS.minmaxMax);
+                        this.minmaxButton.classList.add(this.CLASS.minmaxMin);
+
+                    //zvětšit na maximální velikost
+                    } else {
+
+                        this.beforeHeight = this.get("resizableElementHeight");
+                        this.beforeWidth = this.get("resizableElementWidth" );
+
+                        if (this.maxResizeHeight) {
+
+                            this.set("resizableElementHeight", this.maxResizeHeight);
+                        }
+
+                        if (this.maxResizeWidth) {
+
+                            this.set("resizableElementWidth" , this.maxResizeWidth);
+                        }
+
+                        this.minmaxButton.classList.add(this.CLASS.minmaxMax);
+                        this.minmaxButton.classList.remove(this.CLASS.minmaxMin);
+                    }
+
+                    var offset   = this.$self.offset(),
+                        selfRect = this.self.getBoundingClientRect(),
+
+                        //zjistit konečné rozměry boxu
+                        resizableBoxRect = this.resizableBox.getBoundingClientRect();
+
+                    //po zjištění rozměrů po změně velikosti, je potřeba vrátit původní hodnoty kvůli animaci
+                    this.set("resizableElementHeight", currentHeight);
+                    this.set("resizableElementWidth" , currentWidth);
+
+                    //pokud se velikost nezmění může se funkce ukončit
+                    if (resizableBoxRect.width === currentWidth && resizableBoxRect.height === currentHeight) {
+
+                        this.doNotUpdateScrollbars = false;
+
+                        this.$resizableBox.css({
+                            transition: ""
+                        });
+
+                        return;
+                    }
+
+                    //začátek animace: zafixování současné velikosti
+                    this.resizableBox.style.width  = this.getSettingsWidth()  + "px";
+                    this.resizableBox.style.height = this.getSettingsHeight() + "px";
+
+                    if (this.maxResizeWidth) {
+
+                        this.resizableBox.style.maxWidth  = this.maxResizeWidth  + "px";
+                    }
+
+                    if (this.maxResizeHeight) {
+
+                        this.resizableBox.style.maxHeight = this.maxResizeHeight + "px";
+                    }
+
+                    this.resizableBox.style.minWidth  = this.minWidth  + "px";
+                    this.resizableBox.style.minHeight = this.minHeight + "px";
+
+                    setTimeout(function() {
+
+                        //spuštění animace: konečná velikost
+                        this.resizableBox.style.width  = resizableBoxRect.width  + "px";
+                        this.resizableBox.style.height = resizableBoxRect.height + "px";
+
+                        var eventId = +new Date();
+
+                        this.$resizableBox
+                            .css({
+                                transition: ""
+                            })
+                            .on("transitionend.resize-" + this.EVENT_NS + "." + eventId, function (e) {
+
+                                if (e.originalEvent.propertyName === "height" || e.originalEvent.propertyName === "width") {
+
+                                    //iOS fix
+                                    this.$resizableBox.css({
+                                        transition: "none"
+                                    });
+
+                                    this.$resizableBox.off("transitionend.resize-" + this.EVENT_NS + "." + eventId);
+
+                                    //přiřadit aktuální vekost do max-rozměrů pro správnou funkčnost roztahování
+                                    this.set("resizableElementHeight", this.getSettingsHeight());
+                                    this.set("resizableElementWidth" , this.getSettingsWidth());
+
+                                    this.resizableBox.style.width  = "";
+                                    this.resizableBox.style.height = "";
+
+                                    $scrollingElement.perfectScrollbar("update");
+
+                                    //iOS fix
+                                    setTimeout(function() {
+
+                                        this.$resizableBox.css({
+                                            transition: ""
+                                        });
+
+                                    }.bind(this), 0);
+                                }
+                            }.bind(this));
+
+                        //upravení pozice, pokud se element nevešel na stránku
+                        offset = this.minmaxSettingsPosition(offset, 0, 0, offset, selfRect);
+
+                        offset.bottom = offset.top  + selfRect.height;
+                        offset.right  = offset.left + selfRect.width;
+
+                        this.$self
+                            .offset(offset)
+                            .data("lastOffset.PageElementSettings", offset);
+
+                        this.doNotUpdateScrollbars = false;
+
+                    }.bind(this), 0);
+                };
 
                 $scrollingElement
                     .css({
@@ -104,9 +275,24 @@
                         this.set("resizableElementHeight", this.minHeight);
                     }
 
-                    node.style.maxHeight = height + "px";
+                    if (this.maxResizeHeight && height > this.maxResizeHeight) {
 
-                    refreshScrollbars();
+                        height = this.maxResizeHeight;
+
+                        this.set("resizableElementHeight", this.maxResizeHeight);
+                    }
+
+                    this.resizableBox.style.maxHeight = height + "px";
+
+                    if (this.minResizeHeight) {
+
+                        this.resizableBox.style.minHeight = height >= this.minResizeHeight ? this.minResizeHeight + "px" : height + "px";
+                    }
+
+                    if (!this.doNotUpdateScrollbars) {
+
+                        refreshScrollbars();
+                    }
 
                 }, {init: false, context: this});
 
@@ -119,9 +305,24 @@
                         this.set("resizableElementWidth", this.minWidth);
                     }
 
-                    node.style.maxWidth = width + "px";
+                    if (this.maxResizeWidth && width > this.maxResizeWidth) {
 
-                    refreshScrollbars();
+                        width = this.maxResizeWidth;
+
+                        this.set("resizableElementWidth", this.maxResizeWidth);
+                    }
+
+                    this.resizableBox.style.maxWidth = width + "px";
+
+                    if (this.minResizeWidth) {
+
+                        this.resizableBox.style.minWidth = width >= this.minResizeWidth ? this.minResizeWidth + "px" : width + "px";
+                    }
+
+                    if (!this.doNotUpdateScrollbars) {
+
+                        refreshScrollbars();
+                    }
 
                 }, {init: false, context: this});
 
@@ -135,6 +336,8 @@
                                 position: ""
                             })
                             .perfectScrollbar("destroy");
+
+                        $node.off("transitionend.resize-" + this.EVENT_NS);
 
                         $scrollingElement = null;
                     }
@@ -165,12 +368,17 @@
                 this.self  = this.find("." + this.CLASS.self);
                 this.$self = $(this.self);
 
-                //přesunout element do <body/> kvůli správnému z-indexu
-                this.$self.appendTo("body");
+                this.$self.css({
+                    transition: "none"
+                });
 
-                this.resizableElement  = this.find("." + this.CLASS.wrapper);
+                //přesunout element do #page kvůli správnému z-indexu
+                //parent === obalovací element pro transition
+                this.$self.parent().appendTo("#page");
+
+                this.resizableElement  = this.find("." + this.CLASS.content);
                 this.$resizableElement = $(this.resizableElement);
-
+                console.log(this.resizableElement);
                 //element, podle kterého se nastaví pozice nastavení (aktivační tlačítko)
                 this.positionElement  = this.get("positionElement");
                 this.$positionElement = $(this.positionElement);
@@ -185,10 +393,12 @@
 
             if (on.client) {
 
-                this.setPosition();
-
                 this.set("resizableElementHeight", this.getSettingsHeight());
-                this.set("resizableElementWidth", this.getSettingsWidth());
+                this.set("resizableElementWidth" , this.getSettingsWidth());
+
+                this.$self.css({
+                    transition: ""
+                });
             }
         },
 
@@ -209,6 +419,10 @@
                 return;
             }
 
+            this.$self.css({
+                transition: "none"
+            });
+
             Ractive.$win
                 .off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS)
                 .on( "mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS, function (e) {
@@ -220,35 +434,13 @@
                         return;
                     }
 
-                    var selfRect = this.self.getBoundingClientRect(),
-                        offset = this.$self.offset(),
-
+                    var offset = this.$self.offset(),
                         newOffset = {};
 
                         newOffset.top  = offset.top  + (eventData.pageY - lastY);
                         newOffset.left = offset.left + (eventData.pageX - lastX);
 
-                    //element by přesahoval pravý okraj stránky
-                    if (offset.left + selfRect.width + (eventData.pageX - lastX) >= document.documentElement.offsetWidth) {
-
-                        newOffset.left = document.documentElement.offsetWidth - selfRect.width;
-
-                    //element by přesahoval levý okraj stránky
-                    } else if (offset.left + (eventData.pageX - lastX) < 0) {
-
-                        newOffset.left = 0;
-                    }
-
-                    //element by přesahoval dolní okraj stránky
-                    if (offset.top + selfRect.height + (eventData.pageY - lastY) >= document.documentElement.offsetHeight) {
-
-                        newOffset.top = document.documentElement.offsetHeight - selfRect.height;
-
-                    //element by přesahoval horní okraj stránky
-                    } else if (offset.top + (eventData.pageY - lastY) < 0) {
-
-                        newOffset.top = 0;
-                    }
+                    newOffset = this.minmaxSettingsPosition(newOffset, eventData.pageX - lastX, eventData.pageY - lastY, offset);
 
                     this.$self.offset(newOffset);
 
@@ -263,14 +455,18 @@
                     Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
 
                     var currentOffset = this.$self.offset(),
-                        selfRect = this.self.getBoundingClientRect();
+                        selfRect      = this.self.getBoundingClientRect();
 
                     currentOffset.right  = currentOffset.left + selfRect.width;
                     currentOffset.bottom = currentOffset.top  + selfRect.height;
                     currentOffset.changedByUser = true;
 
                     //uložení aktuálního offsetu pro použití v setPosition
-                    this.$self.data("lastOffset.PageElementSettings", currentOffset);
+                    this.$self
+                        .data("lastOffset.PageElementSettings", currentOffset)
+                        .css({
+                            transition: ""
+                        });
 
                     e.preventDefault();
                     return false;
@@ -278,6 +474,36 @@
 
             eventData.preventDefault();
             return false;
+        },
+
+        minmaxSettingsPosition: function (newOffset, changeX, changeY, currentOffset, currentSelfRect) {
+
+            var offset   = currentOffset   || this.$self.offset(),
+                selfRect = currentSelfRect || this.self.getBoundingClientRect();
+
+            //element by přesahoval pravý okraj stránky
+            if (offset.left + selfRect.width + changeX >= document.documentElement.offsetWidth) {
+
+                newOffset.left = document.documentElement.offsetWidth - selfRect.width;
+
+                //element by přesahoval levý okraj stránky
+            } else if (offset.left + changeX < 0) {
+
+                newOffset.left = 0;
+            }
+
+            //element by přesahoval dolní okraj stránky
+            if (offset.top + selfRect.height + changeY >= document.documentElement.offsetHeight) {
+
+                newOffset.top = document.documentElement.offsetHeight - selfRect.height;
+
+                //element by přesahoval horní okraj stránky
+            } else if (offset.top + changeY < 0) {
+
+                newOffset.top = 0;
+            }
+
+            return newOffset;
         },
 
         activateResizer: function (e, position) {
@@ -292,6 +518,10 @@
                 return;
             }
 
+            this.$self.css({
+                transition: "none"
+            });
+
             eventData.target.classList.add(this.CLASS.resizerActive);
 
             Ractive.$win
@@ -305,6 +535,13 @@
                         return;
                     }
 
+                    this.minmaxButton.classList.remove(this.CLASS.minmaxMax);
+                    this.minmaxButton.classList.remove(this.CLASS.minmaxMin);
+
+                    this.$resizableBox.css({
+                        transition: "none"
+                    });
+
                     if (position.match(/bottom|top/)) {
 
                         var diffY = position.match(/bottom/) ? eventData.clientY - lastY : lastY - eventData.clientY;
@@ -316,7 +553,7 @@
 
                         var diffX = position.match(/right/) ? eventData.clientX - lastX : lastX - eventData.clientX;
 
-                        this.set("resizableElementWidth", this.getSettingsWidth() + diffX);
+                        this.set("resizableElementWidth" , this.getSettingsWidth()  + diffX);
                     }
 
                     this.setPosition(true, position);
@@ -343,6 +580,14 @@
 
                     this.setPosition(true, position);
 
+                    this.$resizableBox.css({
+                        transition: ""
+                    });
+
+                    this.$self.css({
+                        transition: ""
+                    });
+
                     Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
 
                     e.preventDefault();
@@ -367,18 +612,18 @@
 
             this.savedPosition = this.savedPosition || {};
 
-            var selfRect = this.self.getBoundingClientRect(),
+            var selfRect   = this.self.getBoundingClientRect(),
                 lastOffset = this.$self.data("lastOffset.PageElementSettings") || {},
 
                 buttonOffset = this.$positionElement.offset(),
-                buttonRect = this.positionElement.getBoundingClientRect(),
+                buttonRect   = this.positionElement.getBoundingClientRect(),
 
                 finalOffset = buttonOffset,
 
-                right       = buttonRect.right  + selfRect.width,
-                left        = buttonRect.left   - selfRect.width,
-                top         = buttonRect.top    - selfRect.height,
-                bottom      = buttonRect.bottom + selfRect.height,
+                right       = buttonRect.right  + selfRect.width  + this.OPTIONS.SETTINGS_OFFSET,
+                left        = buttonRect.left   - selfRect.width  - this.OPTIONS.SETTINGS_OFFSET,
+                top         = buttonRect.top    - selfRect.height - this.OPTIONS.SETTINGS_OFFSET,
+                bottom      = buttonRect.bottom + selfRect.height + this.OPTIONS.SETTINGS_OFFSET,
                 centerLeft  = buttonRect.left   + (buttonRect.width / 2) - (selfRect.width / 2),
                 centerRight = buttonRect.left   + (buttonRect.width / 2) + (selfRect.width / 2),
 
@@ -400,13 +645,13 @@
             //protože by jinak při zvětšování mohlo dojít k přeskočení elementu
             if ((!savedPosition && top >= 0) || (savedPosition && this.savedPosition.v === "top")) {
 
-                finalOffset.top -= selfRect.height;
+                finalOffset.top -= selfRect.height + this.OPTIONS.SETTINGS_OFFSET;
 
                 this.savedPosition.v = "top";
 
             } else {
 
-                finalOffset.top += buttonRect.height;
+                finalOffset.top += buttonRect.height + this.OPTIONS.SETTINGS_OFFSET;
 
                 this.savedPosition.v = "bottom";
             }
@@ -416,19 +661,21 @@
 
                 finalOffset.left -= (selfRect.width / 2) - (buttonRect.width / 2);
 
+                finalOffset.top += this.savedPosition.v === "top" ? this.OPTIONS.SETTINGS_OFFSET : this.OPTIONS.SETTINGS_OFFSET * -1;
+
                 this.savedPosition.h = "center";
 
             //element bude po změně pozice před pravým okrajem okna nebo byl při inicializaci takto nastaven,
             //protože by jinak při zvětšování mohlo dojít k přeskočení elementu
             } else if ((!savedPosition && (right <= viewportWidth || left < 0)) || (savedPosition && this.savedPosition.h === "right")) {
 
-                finalOffset.left += buttonRect.width;
+                finalOffset.left += buttonRect.width + this.OPTIONS.SETTINGS_OFFSET;
 
                 this.savedPosition.h = "right";
 
             } else {
 
-                finalOffset.left -= selfRect.width;
+                finalOffset.left -= selfRect.width + this.OPTIONS.SETTINGS_OFFSET;
 
                 this.savedPosition.h = "left";
             }
@@ -439,7 +686,7 @@
                 var diffX,
                     diffY;
 
-                if (resizerPosition.match(/right/)) {
+                if (resizerPosition.match(/right/) || !resizerPosition.match(/left/)) {
 
                     diffX = lastOffset.left - finalOffset.left;
 
@@ -452,7 +699,7 @@
                     finalOffset.left += diffX;
                 }
 
-                if (resizerPosition.match(/bottom/)) {
+                if (resizerPosition.match(/bottom/) || !resizerPosition.match(/top/)) {
 
                     diffY = lastOffset.top - finalOffset.top;
 

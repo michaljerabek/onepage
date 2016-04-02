@@ -28,6 +28,13 @@ module.exports = Ractive.extend({
         }, {init: false});
     },
 
+    oncomplete: function () {
+        this.observe("editPage", function (state) {
+
+            state && console.time("pageLoaded");
+        }, {init: false})
+    },
+
     loadPage: function (pageId) {
 
         var pageReq = this.req("page", { _id: pageId });
