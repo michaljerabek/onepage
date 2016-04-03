@@ -495,6 +495,7 @@
 
                     //uložení aktuálního offsetu pro použití v setPosition
                     this.$self
+                        .offset(currentOffset)
                         .data("lastOffset.PageElementSettings", currentOffset)
                         .css({
                             transition: ""

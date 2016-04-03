@@ -6,10 +6,10 @@
 >
     <div class="E_PageElementSettings">
         <div class="E_PageElementSettings--wrapper">
-            <div class="E_PageElementSettings--title-bar" on-mousedown-touchstart="activateMover(event)">
-                {{(settingsTitle ? settingsTitle + ' — ' : '') + section.name}}
+            <div class="E_PageElementSettings--title-bar">
+                <div class="E_PageElementSettings--title" on-mousedown-touchstart="activateMover(event)">{{(settingsTitle ? settingsTitle + ' — ' : '') + section.name}}</div>
                 <button class="E_PageElementSettings--close"   on-tap="closeThisSettings">&times;</button>
-                <button class="E_PageElementSettings--min-max" on-tap="minmax(event)">M</button>
+                <button class="E_PageElementSettings--min-max" on-tap="minmax(event)"    >M</button>
             </div>
             <div class="E_PageElementSettings--content">
                 {{> content}}
