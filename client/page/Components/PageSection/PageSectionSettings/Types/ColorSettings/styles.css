@@ -9,7 +9,7 @@
 }
 
 .E_ColorSettings--ColorPicker {
-    max-height: var(--E_PageSectionSettings--init-max-height);
+/*    max-height: var(--E_PageSectionSettings--init-max-height);*/
 
     flex-shrink: 1;
     flex-grow: 1;

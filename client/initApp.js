@@ -27,6 +27,8 @@ var loadLibs = function () {
 
     require("ractive-touch");
 
+    require("jquery-bez");
+
     require("perfect-scrollbar/jquery.js")(jQuery);
 };
 
