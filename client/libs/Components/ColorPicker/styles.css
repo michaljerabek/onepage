@@ -14,6 +14,7 @@
 .ColorPicker--wrapper-2 {
     margin-left: -24px;
     margin-right: -48px;
+    margin-bottom: -16px;
 
     min-width: 100%;
 
@@ -221,7 +222,6 @@
     margin-right: 8px;
 
     flex-basis: calc(100% - 64px - 8px - 8px);
-    flex-grow: 1;
     display: flex;
 }
 
@@ -231,7 +231,7 @@
     margin-bottom: 8px;
 
     min-width: 48px;
-    width: 48px;
+    width: 100%;
 
     height: 32px;
     padding: 0 8px;

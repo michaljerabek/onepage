@@ -64,7 +64,7 @@
         },
 
         OPTIONS: {
-            SCROLL_EASING: $.bez([0.1, 0.4, 0.4, 1]),
+            SCROLL_EASING: on.client ? $.bez([0.1, 0.4, 0.4, 1]) : "",
             SCROLL_DURATION: 300
         },
 
