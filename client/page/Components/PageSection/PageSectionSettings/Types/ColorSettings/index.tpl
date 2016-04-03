@@ -1,16 +1,20 @@
-<section class="E_ColorSettings">
+<div class="E_ColorSettings"
+    decorator="PageSectionSettingsBox:.PageSectionSetitngs--scrollable"
+    data-max-resize-height="768"
+    style="max-height: 320px"
+>
 
-    <nav decorator="PageSectionSettingsBox" class="E_ColorSettings--menu">
+    <nav class="E_ColorSettings--menu PageSectionSetitngs--scrollable">
         <ul class="E_ColorSettings--menu-list">
             {{>ColorSettingsNavItem {index: 1, settings: this}}}
         </ul>
     </nav>
 
-    <section decorator="PageSectionSettingsBox" class="E_ColorSettings--ColorPicker">
+    <div class="E_ColorSettings--ColorPicker PageSectionSetitngs--scrollable">
         {{>ColorSettingsTab}}
-    </section>
+    </div>
 
-</section>
+</div>
 
 {{#partial ColorSettingsNavItem}}
 

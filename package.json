@@ -6,7 +6,7 @@
     "start": "SET DEBUG=onepage:* & SET PORT=80 & node ./bin/www"
   },
   "dependencies": {
-    "autoprefixer": "^6.3.4",
+    "autoprefixer": "^6.3.6",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.13.2",
     "connect-mongo": "^1.1.0",
@@ -21,6 +21,7 @@
     "express-vhost": "^0.2.0",
     "extend": "^3.0.0",
     "hammerjs": "^2.0.6",
+    "jquery-bez": "^1.0.11",
     "medium-editor": "^5.14.4",
     "mongoose": "^4.4.8",
     "morgan": "~1.6.1",

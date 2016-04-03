@@ -117,10 +117,30 @@
                 this.maxResizeHeight = parseFloat($node.attr("data-max-resize-height"))     || 0;
                 this.maxResizeWidth  = parseFloat($node.attr("data-max-resize-width"))      || 0;
 
-                this.minmax = this.minmax || function (event) {
+                this.observe("openTab", function () {
 
-                    event.original.stopPropagation();
-                    event.original.preventDefault();
+                    if (this.minmaxButton.classList.contains(this.CLASS.minmaxMax)) {
+
+                        this.set("resizableElementHeight", this.getSettingsHeight());
+                        this.set("resizableElementWidth" , this.getSettingsWidth());
+                    }
+                }, {init: false});
+
+                this.observe("openTab", function () {
+
+                    if (this.minmaxButton.classList.contains(this.CLASS.minmaxMax)) {
+
+                        this.minmax(null, true);
+                    }
+                }, {init: false, defer: true});
+
+                this.minmax = this.minmax || function (event, forceMax) {
+
+                    if (event) {
+
+                        event.original.srcEvent.stopPropagation();
+                        event.original.srcEvent.preventDefault();
+                    }
 
                     //posuvníky je potřeba aktualizovat až na konci
                     this.doNotUpdateScrollbars = true;
@@ -135,7 +155,7 @@
                         currentWidth  = this.get("resizableElementWidth");
 
                     //zmenšit na výchozí velikost
-                    if (this.minmaxButton.classList.contains(this.CLASS.minmaxMax)) {
+                    if (!forceMax && this.minmaxButton.classList.contains(this.CLASS.minmaxMax)) {
 
                         this.set("resizableElementHeight", this.beforeHeight === currentHeight ? this.initHeight : this.beforeHeight);
                         this.set("resizableElementWidth" , this.beforeWidth  === currentWidth  ? this.initWidth  : this.beforeWidth);
@@ -202,13 +222,24 @@
                     this.resizableBox.style.minWidth  = this.minWidth  + "px";
                     this.resizableBox.style.minHeight = this.minHeight + "px";
 
+                    this.$self.css({
+                        transition: ""
+                    });
+
                     setTimeout(function() {
 
                         //spuštění animace: konečná velikost
                         this.resizableBox.style.width  = resizableBoxRect.width  + "px";
                         this.resizableBox.style.height = resizableBoxRect.height + "px";
 
-                        var eventId = +new Date();
+                        var eventId = +new Date(),
+
+                            clearAnimStyles = setTimeout(function () {
+
+                                this.resizableBox.style.height = "";
+                                this.resizableBox.style.width = "";
+
+                            }.bind(this), 1000);
 
                         this.$resizableBox
                             .css({
@@ -229,6 +260,7 @@
                                     this.set("resizableElementHeight", this.getSettingsHeight());
                                     this.set("resizableElementWidth" , this.getSettingsWidth());
 
+                                    clearTimeout(clearAnimStyles);
                                     this.resizableBox.style.width  = "";
                                     this.resizableBox.style.height = "";
 
@@ -378,7 +410,7 @@
 
                 this.resizableElement  = this.find("." + this.CLASS.content);
                 this.$resizableElement = $(this.resizableElement);
-                console.log(this.resizableElement);
+
                 //element, podle kterého se nastaví pozice nastavení (aktivační tlačítko)
                 this.positionElement  = this.get("positionElement");
                 this.$positionElement = $(this.positionElement);

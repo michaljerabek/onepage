@@ -15,8 +15,14 @@
     will-change: height, max-height;
 }
 
-/*---------------------------- CLOSE ----------------------------*/
+.E_PageSectionSettings--resizable-box {
+    transition: var(--default-transition);
+    transition-property: height;
+}
 
+/*---------------------------- CLOSE | MINMAX ----------------------------*/
+
+.E_PageSectionSettings--min-max,
 .E_PageSectionSettings--close {
     font-size: 23px;
     text-align: center;
@@ -38,6 +44,12 @@
     transition: var(--default-transition);
 }
 
+.E_PageSectionSettings--min-max {
+    font-size: 14px;
+
+    right: 24px;
+}
+
 @media (pointer: coarse) {
 
     .E_PageSectionSettings--close {
@@ -48,15 +60,30 @@
         height: 32px;
         padding-bottom: 8px;
     }
+
+    .E_PageSectionSettings--min-max {
+        font-size: 17px;
+
+        right: 32px;
+
+        width: 32px;
+        height: 32px;
+    }
 }
 
+.E_PageSectionSettings--min-max__max {
+    color: orange;
+    opacity: 1;
+}
+
+.E_PageSectionSettings--min-max:hover,
 .E_PageSectionSettings--close:hover {
     opacity: 1;
 
     transition: var(--default-transition-hover);
-
 }
 
+.E_PageSectionSettings--min-max:active,
 .E_PageSectionSettings--close:active {
     transform: scale(0.95);
 
