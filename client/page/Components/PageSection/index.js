@@ -42,6 +42,7 @@ module.exports = Ractive.extend({
         sortHandle: "P_PageSection--sort-handle",
         draggedSection: "P_PageSection__dragged",
         placedSection: "P_PageSection__placed",
+        newSection: "P_PageSection__new",
         removedSection: "P_PageSection__removed",
 
         placeholderTransitions: "P_PageSection--placeholder__transitions",
@@ -84,12 +85,43 @@ module.exports = Ractive.extend({
         }
     },
 
+    superOnrender: function () {
+
+        if (Ractive.EDIT_MODE) {
+
+            this.initEditUI();
+        }
+    },
+
+    superOncomplete: function () {
+    },
+
+    initEditUI: function () {
+
+        var EditUI,
+
+            components = this.findAllComponents(),
+            c = components.length - 1;
+
+        for (c; c >= 0; c--) {
+
+            if (components[c].EDIT_UI) {
+
+                EditUI = components[c];
+
+                break;
+            }
+        }
+
+        this.EditUI = EditUI;
+    },
+
     initPageElementSettings: function () {
 
         if (on.client) {
 
             //otevírá se nastavení elementu v sekci
-            EventEmitter.on("openPageElementSettings.PageElement sortPageSection.PageSectionManager", function (e, pageElement) {
+            EventEmitter.on("openPageElementSettings.PageElement sortPageSection.PageSectionManager", function (e, state, pageElement) {
 
                 this.updateHasSettingsState(pageElement);
 
@@ -145,27 +177,27 @@ module.exports = Ractive.extend({
         this.off("*.sectionHasOutline");
     },
 
-    superOnrender: function () {
-    },
-
-    superOncomplete: function () {
-    },
-
     updateHasSettingsState: function (pageElement) {
 
-        var state  = this.get("openPageSectionSettings") || (pageElement && pageElement.get("openPageElementSettings"));
+        var state  = this.get("openPageSectionSettings") || (pageElement && pageElement.get("openPageElementSettings") && pageElement.getPageSection() === this);
+
+        this.set("hasSettings", state);
 
         this.getSectionElement().classList[state ? "add" : "remove"](this.CLASS.hasSettings);
     },
 
     updateHasOutlineState: function (state) {
 
-        if (this.currentOutlineState == state) {
+        if (Boolean(this.currentOutlineState) === Boolean(state)) {
 
             return;
         }
 
         this.currentOutlineState = this.find("." + this.components.PageElement.prototype.CLASS.outlineActive);
+
+        this.set("hasOutline", this.currentOutlineState);
+
+        EventEmitter.trigger("hasOutline.PageSection", [state, this.EditUI]);
 
         this.getSectionElement().classList[this.currentOutlineState ? "add" : "remove"](this.CLASS.hasOutline);
     },
@@ -199,6 +231,53 @@ module.exports = Ractive.extend({
             .text($("<span>").html(name).text());
     },
 
+    handleHover: function (event) {
+
+        if (this.EditUI) {
+
+            this.EditUI.fire("hover", event, this);
+        }
+    },
+
+    handleTouchstart: function (event) {
+
+        if (event.original.touches.length > 1) {
+
+            return;
+        }
+
+        this.cancelTouchend = false;
+
+        this.wasTouchstart = true;
+
+        var initX = event.original.touches[0].pageX,
+            initY = event.original.touches[0].pageY;
+
+        Ractive.$win.on("touchmove.hover-PageSection", function (event) {
+
+            this.cancelTouchend = Math.abs(initX - event.originalEvent.touches[0].pageX) > 5 ||
+                Math.abs(initY - event.originalEvent.touches[0].pageY) > 5;
+
+        }.bind(this));
+    },
+
+    handleTouchend: function (event) {
+
+        if (event.original.touches.length > 1) {
+
+            return;
+        }
+
+        Ractive.$win.off("touchmove.hover-PageSection");
+
+        if (this.wasTouchstart && this.EditUI) {
+
+            this.EditUI.fire("pageSectionTouchend", event, this, this.cancelTouchend);
+        }
+
+        this.wasTouchstart = false;
+    },
+
     //Vrátí současnou pozici sekce na stránce.
     getCurrentIndex: function () {
 
@@ -217,6 +296,46 @@ module.exports = Ractive.extend({
         this.$sectionElement = this.$sectionElement || $(this.getSectionElement());
 
         return this.$sectionElement;
+    },
+
+    findPageElements: function () {
+
+        var elements = [],
+
+            components = this.findAllComponents(),
+            c = components.length - 1;
+
+        for (c; c >= 0; c--) {
+
+            if (components[c].PAGE_ELEMENT) {
+
+                elements.unshift(components[c]);
+            }
+        }
+
+        return elements;
+    },
+
+    forEachPageElement: function (fn/*, args...*/) {
+
+        var elements = this.findPageElements(),
+            e = elements.length - 1,
+
+            args = Array.prototype.slice.call(arguments);
+
+        args.shift();
+
+        for (e; e >= 0; e--) {
+
+            if (typeof fn === "string" && elements[e][fn]) {
+
+                elements[e][fn].apply(elements[e], args);
+
+            } else if (typeof fn === "function") {
+
+                fn(elements[e]);
+            }
+        }
     }
 
 });

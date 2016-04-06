@@ -33,7 +33,9 @@
 {{#partial ColorSettingsTab}}
 
     {{#if .toggleTab}}
-        <ColorPicker defer="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}"/>
+        <ColorPicker defer="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}">
+            <ColorPickerPalette title="Barvy" colors="['red', 'green', 'blue']" />
+        </ColorPicker>
     {{/if}}
 
     {{#if !.toggleTab}}

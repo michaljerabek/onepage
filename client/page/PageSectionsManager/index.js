@@ -151,6 +151,8 @@ module.exports = (function () {
 
         onSortableActivate = function (e, ui) {
 
+            page.set("sortableActive", CLASS.Page.sortableActive);
+
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
 
                 return;
@@ -251,6 +253,8 @@ module.exports = (function () {
 
         onSortableStop = function (e, ui) {
 
+            page.set("sortableActive", "");
+
             //Placeholder pro transitions je potřeba vložit za "umisťovací" placehloder,
             //protože ho bude potřeba na chvíli zobrazit při umístění sekce
             if (ui.item.data("positionChanged.PageSectionsManager")) {
@@ -301,6 +305,7 @@ module.exports = (function () {
 
                 $newPageSection
                     .addClass(CLASS.PageSection.placedSection)
+                    .addClass(CLASS.PageSection.newSection)
                     .css({
                         //zástupce, podle kterého se nastaví i velikost sekce, je větší než DRAGGED_SECTION_HEIGHT,
                         //proto je potřeba použit negativní margin, aby následující sekce neskočily dolů.
@@ -389,6 +394,7 @@ module.exports = (function () {
 
                             $newPageSection
                                 .removeClass(CLASS.PageSection.placedSection)
+                                .removeClass(CLASS.PageSection.newSection)
                                 .css({
                                     marginBottom: "",
 
@@ -475,6 +481,8 @@ module.exports = (function () {
 
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
 
+                page.set("sortableActive", CLASS.Page.sortableActive);
+
                 //přesunutí klonu do "<body />", protože pozice klonu není přesně na klonovaném elemenu
                 //a je posunut daleko od šipky
                 var $clone = ui.item.siblings("." + CLASS.NewPageSectionSelector.clone);
@@ -531,6 +539,8 @@ module.exports = (function () {
         },
 
         onDroppableDrop = function (e, ui) {
+
+            page.set("sortableActive", "");
 
             //vytvoření klonu kůvli animaci, protože přetahovaný element zmizí
             var $clone = ui.helper.clone();
@@ -628,6 +638,7 @@ module.exports = (function () {
 
         page = pageComponent;
 
+        CLASS.Page = page.CLASS;
         CLASS.PageSection = page.components.PageSection.prototype.CLASS;
         CLASS.NewPageSectionSelector = page.components.NewPageSectionSelector.prototype.CLASS;
 

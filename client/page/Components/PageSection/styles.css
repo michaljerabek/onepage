@@ -28,8 +28,17 @@
     z-index: 3;
 }
 
-.P_PageSection--section {
+.P_PageSection--section,
+.P_PageSection--content {
     position: relative;
+}
+
+.P_PageSection:hover .P_PageSection--content,
+.P_PageSection__has-outline:hover .P_PageSection--content,
+.P_PageSection__has-settings:hover .P_PageSection--content,
+.P_PageSection__has-outline .P_PageSection--content,
+.P_PageSection__has-settings .P_PageSection--content {
+    z-index: 1;
 }
 
 .P_PageSection__dragged,

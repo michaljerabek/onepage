@@ -1,4 +1,5 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+/*global $*/
 
 var on = require("./../../helpers/on");
 var EventEmitter = require("./../libs/EventEmitter")();
@@ -26,7 +27,9 @@ module.exports = Ractive.extend({
 
     CLASS: {
         titleEditor: "E_Editor__title",
-        contentEditor: "E_Editor__content"
+        contentEditor: "E_Editor__content",
+
+        sortableActive: "E_Page__sortable-active"
     },
 
     components: {
@@ -44,6 +47,14 @@ module.exports = Ractive.extend({
         PageSectionA: "<PageSectionA section='{{this}}' />",
         PageSectionB: "<PageSectionB section='{{this}}' />",
         PageSectionC: "<PageSectionC section='{{this}}' />"
+    },
+
+    data: function () {
+
+        return {
+            sortableActive: ""
+        };
+
     },
 
     onconfig: function () {
@@ -126,7 +137,7 @@ module.exports = Ractive.extend({
 
         var ScrollToSection = require("./ScrollToSection"),
 
-        mode = this.get("editMode") ? ScrollToSection.MODES.EDIT : ScrollToSection.MODES.PAGE;
+            mode = Ractive.EDIT_MODE ? ScrollToSection.MODES.EDIT : ScrollToSection.MODES.PAGE;
 
         this.scrollToSection = new ScrollToSection(mode, "section-");
     },
@@ -169,7 +180,9 @@ module.exports = Ractive.extend({
 
     loadPage: function (pageId) {
 
-        var loadReq = this.req("page", { _id: pageId });
+        var loadReq = this.req("page", {
+            _id: pageId
+        });
 
         loadReq.then(function (page) {
 
@@ -211,6 +224,20 @@ module.exports = Ractive.extend({
         this.Admin.set("editPage", null);
     },
 
+    getPageElement: function () {
+
+        this.self = this.self || this.find("#page");
+
+        return this.self;
+    },
+
+    get$PageElement: function () {
+
+        this.$self = this.$self || $(this.self);
+
+        return this.$self;
+    },
+
     findSiblingSections: function (section) {
 
         var allSections = this.findAllPageSections(),
@@ -245,6 +272,57 @@ module.exports = Ractive.extend({
         }
 
         return pageSections;
+    },
+
+
+    findPageSections: function () {
+
+        return this.findAllPageSections();
+    },
+
+    forEachPageSection: function (fn/*, args...*/) {
+
+        var sections = this.findPageSections(),
+            s = sections.length - 1,
+
+            args = Array.prototype.slice.call(arguments);
+
+        args.shift();
+
+        for (s; s >= 0; s--) {
+
+            if (typeof fn === "string" && sections[s][fn]) {
+
+                sections[s][fn].apply(sections[s], args);
+
+            } else if (typeof fn === "function") {
+
+                fn(sections[s]);
+            }
+        }
+    },
+
+    forEachEditor: function (fn/*, args*/) {
+
+        var editors = ["titleEditor", "contentEditor"],
+            e = editors.length - 1,
+
+            args = Array.prototype.slice.call(arguments);
+
+        args.shift();
+
+        for (e; e >= 0; e--) {
+
+            if (typeof fn === "string" && this[editors[e]].editor && this[editors[e]].editor[fn]) {
+
+                this[editors[e]].editor[fn].apply(this[editors[e]].editor, args);
+
+            } else if (typeof fn === "function" && this[editors[e]].editor) {
+
+                fn(this[editors[e]].editor);
+            }
+        }
+
     }
 
 });

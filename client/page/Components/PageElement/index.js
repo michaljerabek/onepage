@@ -163,7 +163,7 @@
             if (on.client) {
 
                 //otevírá se nastavení elementu v sekci -> zavřít nastavení v ostatních sekcích
-                EventEmitter.on("openPageElementSettings.PageElement sortPageSection.PageSectionManager", function (e, pageSectionType) {
+                EventEmitter.on("openPageElementSettings.PageElement sortPageSection.PageSectionManager", function (e, state, pageSectionType) {
 
                     if (pageSectionType !== this) {
 
@@ -182,14 +182,17 @@
 
                 this.togglePageElementSettings(type);
 
-                if (type) {
-
-                    EventEmitter.trigger("openPageElementSettings.PageElement", this);
-                }
+                EventEmitter.trigger("openPageElementSettings.PageElement", [type, this]);
             });
 
             //Uživatel kliknul na "zavřít" v nastavení.
-            this.on("PageElementSettings.closeThisSettings", this.togglePageElementSettings.bind(this, false));
+            this.on("PageElementSettings.closeThisSettings", function () {
+
+                this.togglePageElementSettings(false);
+
+                EventEmitter.trigger("openPageElementSettings.PageElement", [false, this]);
+
+            }.bind(this));
         },
 
         superOnrender: function () {
@@ -289,46 +292,82 @@
                 .off("touchstart.PageElement");
         },
 
-        handleTouchstart: function (e) {
+        handleTouchstart: function (event) {
 
-            if (e.original.touches.length > 1 || this.get("hover")) {
+            throttleHoverByTouch();
+
+            if (event.original.touches.length > 1 || this.get("hover")) {
 
                 return;
             }
 
-            throttleHoverByTouch();
+            this.touchstartTime = +new Date();
+            this.cancelTouchend = false;
 
-            this.set("hover", true);
-
-            var startTime = +new Date();
+            var initX = event.original.touches[0].pageX,
+                initY = event.original.touches[0].pageY;
 
             Ractive.$win
                 .off("touchstart.hover-" + this.EVENT_NS)
-                .one("touchend.hover-" + this.EVENT_NS, function (e) {
+                .on( "touchmove.hover-" + this.EVENT_NS, function (event) {
 
-                    var endTime = +new Date();
+                    this.cancelTouchend = Math.abs(initX - event.originalEvent.touches[0].pageX) > 5 ||
+                        Math.abs(initY - event.originalEvent.touches[0].pageY) > 5;
 
-                    //pokud uživatel drží prst na elmentu méně než 500ms, needitovat text - pouze zobrazit ui
-                    if (endTime - startTime < 500) {
-
-                        e.preventDefault();
-                    }
-                })
-                .on( "touchstart.hover-" + this.EVENT_NS, function (e) {
+                }.bind(this))
+                .on( "touchstart.hover-" + this.EVENT_NS, function (event) {
 
                     throttleHoverByTouch();
 
-                    this.$temp[0] = e.target;
+                    this.hideOutlineTouches = event.originalEvent.touches.length;
 
-                    //uživatel tapnul na jiný vnitřní/vnější element (nebo úplně jinam)
-                    if (this.$temp.closest("." + this.CLASS.self)[0] !== this.self) {
+                    clearTimeout(this.hideOutlineTimeout);
 
-                        this.set("hover", false);
+                    this.hideOutlineTimeout = setTimeout(function() {
 
-                        Ractive.$win.off("touchstart.hover-" + this.EVENT_NS);
-                    }
+                        if (this.hideOutlineTouches > 1) {
+
+                            return;
+                        }
+
+                        this.$temp[0] = event.target;
+
+                        //uživatel tapnul na jiný vnitřní/vnější element (nebo úplně jinam)
+                        if (this.$temp.closest("." + this.CLASS.self)[0] !== this.self) {
+
+                            this.set("hover", false);
+
+                            Ractive.$win.off("touchstart.hover-" + this.EVENT_NS);
+                        }
+
+                    }.bind(this), 50);
 
                 }.bind(this));
+        },
+
+        handleTouchend: function (event) {
+
+            throttleHoverByTouch();
+
+            Ractive.$win
+                .off("touchmove.hover-" + this.EVENT_NS);
+
+            if (this.cancelTouchend || !this.touchstartTime || event.original.touches.length > 1 || this.get("hover")) {
+
+                return;
+            }
+
+            this.set("hover", true);
+
+            var touchendTime = +new Date();
+
+            //pokud uživatel drží prst na elmentu méně než 500ms, needitovat text - pouze zobrazit ui
+            if (touchendTime - this.touchstartTime < 500) {
+
+                event.original.preventDefault();
+            }
+
+            this.touchstartTime = 0;
         },
 
         handleHover: function (event) {
