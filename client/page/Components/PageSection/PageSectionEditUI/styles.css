@@ -61,6 +61,10 @@
 
 .E_PageSectionEditUI--controls {
     position: absolute;
+
+    opacity: 1;
+
+    transition: opacity var(--P_PageSection_sorting-transition-duration) var(--P_PageSection_sorting-transition-easing) 0s;
 }
 
 .E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user),
@@ -220,6 +224,10 @@
     cursor: grab;
 
     transform: translateZ(0);
+}
+
+.P_PageSection__dragged .E_PageSectionEditUI--controls__top-left {
+    opacity: 0;
 }
 
 .P_PageSection__dragged,

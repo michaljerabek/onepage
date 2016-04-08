@@ -200,9 +200,12 @@
 
                 this.observe("openTab", function (tab) {
 
+                    //při změně tabu je potřeba zablokovat MutationObserver, protože je potřeba změnu veliosti zajistit jiným způsobem.
                     lastTab = tab;
 
-                    var isMax = this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMax) && !this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMin),
+                    var saveBeforeHeight = this.beforeHeight,
+
+                        isMax = this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMax) && !this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMin),
                         isMin = !isMax;
 
                     if (isMin) {
@@ -211,6 +214,8 @@
                     }
 
                     this.parent.minmax(null, isMax, isMin);
+
+                    this.beforeHeight = saveBeforeHeight;
 
                 }, {init: false, defer: true, context: this});
 
@@ -235,6 +240,7 @@
 
                     clearTimeout(this.clearAnimStyles);
 
+                    //použije se, pokud nenastane transitionend
                     this.clearAnimStyles = setTimeout(function () {
 
                         this.parent.resizableBox.style.height = "";
@@ -355,6 +361,7 @@
                         this.doNotUpdateScrollbars = false;
 
                     }.bind(this), 0);
+
                 }.bind(this);
 
                 $scrollingElement
@@ -490,11 +497,14 @@
 
                     lastY = eventData.clientY;
 
-                    this.minmaxButton.classList.remove(this.CLASS.minmaxMax);
+                    if (this.$resizableBox) {
 
-                    this.$resizableBox.css({
-                        transition: "none"
-                    });
+                        this.minmaxButton.classList.remove(this.CLASS.minmaxMax);
+
+                        this.$resizableBox.css({
+                            transition: "none"
+                        });
+                    }
 
                     e.preventDefault();
                     return false;
@@ -510,9 +520,12 @@
 
                     Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
 
-                    this.$resizableBox.css({
-                        transition: ""
-                    });
+                    if (this.$resizableBox) {
+
+                        this.$resizableBox.css({
+                            transition: ""
+                        });
+                    }
 
                     setTimeout(function() {
 

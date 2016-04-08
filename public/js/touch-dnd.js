@@ -158,7 +158,8 @@
     Dragging.prototype.stop = function (e) {
         var dropEvent = null
         var revert = true
-        if (this.last) {
+
+        if (this.last || this.mouseFromBottom < 0 || this.mouseFromTop < 0 || this.mouseFromLeft < 0 || this.mouseFromRight < 0) {
             var last = this.last
             this.last = null
 
@@ -325,13 +326,17 @@
         if (!(e.view && e.view.frameElement)) {
 
             var bottom = (pageY - (window.scrollY || window.pageYOffset) - window.innerHeight) * -1
+            var right = (pageX - (window.scrollX || window.pageXOffset) - window.innerWidth) * -1
             var bottomReached = document.documentElement.scrollHeight < (window.scrollY || window.pageYOffset) + window.innerHeight
             var top = (pageY - (window.scrollY || window.pageYOffset))
+            var left = (pageX - (window.scrollX || window.pageXOffset))
             var topReached = (window.scrollY || window.pageYOffset) <= 0
 
             this.activationArea = e.type === "touchmove" ? 100 : 50;
             this.mouseFromBottom = bottom;
             this.mouseFromTop = top;
+            this.mouseFromLeft = left;
+            this.mouseFromRight = right;
 
             if ((bottom > this.activationArea || bottomReached) && this.scrollBottomActivated) {
 

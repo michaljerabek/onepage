@@ -36,17 +36,13 @@
 
         </div>
 
-        <div class="P_sortable-sections">
-
-            {{#each .page.sections}}
+        <div class="P_sortable-sections">{{#each .page.sections}}
 
                 {{#if this.type !== "PageSectionHeader" && this.type !== "PageSectionFooter"}}
                     {{> this.type}}
                 {{/if}}
 
-            {{/each}}
-
-        </div>
+        {{/each}}</div>
 
         <div class="P_nonsortable-sections">
 

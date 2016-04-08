@@ -38,6 +38,10 @@
     /*
      * Abstraktní (!) component pro vytváření editovatelných prvků na stránce.
      * Přídá outline a nastavovací tlačítka -> řízeno konkrétními komponenty.
+     *
+     * Konkrétní typ musí obsahovat data "type" označující typ PageElementu,
+     * data "hasEditUI" označující, jestli má ovládací prvky a může obsahovat
+     * "settingsTitle" nastavující titulek PageElementSettings.
      */
 
     var instanceCounter = 0,
@@ -149,12 +153,12 @@
                 Ractive.$win = Ractive.$win || $(window);
 
                 this.$temp = $([null]);
-            }
 
-            if (Ractive.EDIT_MODE) {
+                if (Ractive.EDIT_MODE) {
 
-                //umožnit otevřít nastavení elementu
-                this.initPageElementSettings();
+                    //umožnit otevřít nastavení elementu
+                    this.initPageElementSettings();
+                }
             }
         },
 
@@ -390,6 +394,8 @@
 
             this.set("showOutline", state);
 
+            this.checkOutlineSize(state);
+
             this.fire("sectionHasOutline", state);
         },
 
@@ -432,6 +438,25 @@
             this.set("openPageElementSettings", state);
 
             this.updateOutlineState();
+        },
+
+        //pokud outline přesahuje velikost okna, je ptřeba ho změnšit
+        checkOutlineSize: function (state) {
+
+            if (!state) {
+
+                this.set("limitSize", false);
+            }
+
+            var rect = this.outlineElement.getBoundingClientRect(),
+
+                viewportWidth = U.viewportWidth();
+
+
+            if (rect.left < 0 || rect.right > viewportWidth) {
+
+                this.set("limitSize", true);
+            }
         }
     });
 

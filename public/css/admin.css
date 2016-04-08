@@ -56,6 +56,7 @@ html, body {
 
     max-width: 100%;
     min-height: 100%;
+    height: 100%;
     padding: 0;
 }
 
@@ -75,6 +76,14 @@ body {
     -webkit-box-sizing: inherit;
        -moz-box-sizing: inherit;
             box-sizing: inherit;
+}
+
+#app {
+    height: 100%;
+}
+
+#app, #page {
+    min-height: 100%;
 }
 
 #page {
@@ -3931,17 +3940,26 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     transition: all 0.35s ease-out 0s;
 }
 
-.P_PageSection--placeholder {
+.P_PageSection--fake-placeholder, .P_PageSection--placeholder {
     position: relative;
 
-    min-height: 0px;
-    height: 48px;
     width: 100%;
 
     color: #888;
-    background-color: #fff;
-    outline: 2px dashed currentColor;
-    outline-offset: -4px;
+    background-color: #f7f7f7;
+
+    -webkit-transform: translateZ(0px);
+
+       -moz-transform: translateZ(0px);
+
+            transform: translateZ(0px);
+
+    will-change: height;
+}
+
+.P_PageSection--placeholder {
+    height: 48px;
+    min-height: 0px;
 
     -webkit-transition-property: height, min-height;
 
@@ -3959,21 +3977,27 @@ ium-editor-toolbar li button:disabled:not(:hover) {
          -o-transition-timing-function: ease-out;
             transition-timing-function: ease-out;
 
-    will-change: height;
     overflow: hidden;
 }
 
-.P_PageSection--placeholder:after {
+.P_PageSection--fake-placeholder:after, .P_PageSection--placeholder:after {
     content: "Umístit sekci zde...";
 
     font-size: 17px;
 
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: -1px;
 
-    width: 100%;
+    width: -webkit-calc(100% + 2px);
+
+    width: -moz-calc(100% + 2px);
+
+    width: calc(100% + 2px);
     height: 100%;
+
+    outline: 2px dashed rgba(64, 64, 64, 0.25);
+    outline-offset: -6px;
 
     display: -webkit-box;
 
@@ -3996,11 +4020,91 @@ ium-editor-toolbar li button:disabled:not(:hover) {
             align-items: center;
 }
 
+.P_PageSection--fake-placeholder:after {
+    -webkit-animation: P_PageSection--fake-placeholder-outline-text 0.35s ease-out forwards;
+       -moz-animation: P_PageSection--fake-placeholder-outline-text 0.35s ease-out forwards;
+         -o-animation: P_PageSection--fake-placeholder-outline-text 0.35s ease-out forwards;
+            animation: P_PageSection--fake-placeholder-outline-text 0.35s ease-out forwards;
+}
+
+@-webkit-keyframes P_PageSection--fake-placeholder-outline-text {
+    to {
+        color: rgba(136, 136, 136, 0);
+        outline: 2px dashed rgba(64, 64, 64, 0);
+    }
+}
+
+@-moz-keyframes P_PageSection--fake-placeholder-outline-text {
+    to {
+        color: rgba(136, 136, 136, 0);
+        outline: 2px dashed rgba(64, 64, 64, 0);
+    }
+}
+
+@-o-keyframes P_PageSection--fake-placeholder-outline-text {
+    to {
+        color: rgba(136, 136, 136, 0);
+        outline: 2px dashed rgba(64, 64, 64, 0);
+    }
+}
+
+@keyframes P_PageSection--fake-placeholder-outline-text {
+    to {
+        color: rgba(136, 136, 136, 0);
+        outline: 2px dashed rgba(64, 64, 64, 0);
+    }
+}
+
+.P_PageSection--fake-placeholder:before, .P_PageSection--placeholder:before {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: -8px;
+
+    width: -webkit-calc(100% + 16px);
+
+    width: -moz-calc(100% + 16px);
+
+    width: calc(100% + 16px);
+    height: 100%;
+
+    -webkit-box-shadow: inset 0 0 8px 0px rgba(0, 0, 0, 0.25);
+
+       -moz-box-shadow: inset 0 0 8px 0px rgba(0, 0, 0, 0.25);
+
+            box-shadow: inset 0 0 8px 0px rgba(0, 0, 0, 0.25);
+}
+
 .P_PageSection--placeholder__transitions {
     height: 48px;
     width: 100%;
 
     background-color: #fff;
+
+    will-change: height;
+    -webkit-transition-property: height;
+    -moz-transition-property: height;
+    -o-transition-property: height;
+    transition-property: height;
+    -webkit-transition-duration: 0.35s;
+       -moz-transition-duration: 0.35s;
+         -o-transition-duration: 0.35s;
+            transition-duration: 0.35s;
+    -webkit-transition-timing-function: ease-out;
+       -moz-transition-timing-function: ease-out;
+         -o-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+}
+
+.P_PageSection--fake-placeholder:after, .P_PageSection--fake-placeholder:before, .P_PageSection--fake-placeholder {
+    will-change: height, box-shadow;
+}
+
+.P_PageSection--fake-placeholder {
+    position: absolute;
+    top: 0px;
+    left: 0px;
 
     -webkit-transition-property: height;
 
@@ -4018,10 +4122,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
          -o-transition-timing-function: ease-out;
             transition-timing-function: ease-out;
 
-    will-change: height;
+    overflow: hidden;
 }
-
-
 .E_GlobalPageSettings {
     z-index: 110;
     position: fixed;
@@ -4139,6 +4241,36 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 .E_NewPageSectionSelector--clone {
     z-index: 120;
+
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+       -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+    -webkit-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+
+       -moz-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+
+         -o-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+
+            animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+}
+
+@-webkit-keyframes E_NewPageSectionSelector--clone-shadow {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+@-moz-keyframes E_NewPageSectionSelector--clone-shadow {
+    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+@-o-keyframes E_NewPageSectionSelector--clone-shadow {
+    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+@keyframes E_NewPageSectionSelector--clone-shadow {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
 }
 
 .P_PageElement {
@@ -4182,6 +4314,45 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    -moz-transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    -o-transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s;
+    transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s;
+    transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
 }
 
 .csspointerevents .E_PageElement--outline__active {
@@ -4196,6 +4367,12 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -webkit-transition-property: border, -webkit-box-shadow;
+    transition-property: border, -webkit-box-shadow;
+    -moz-transition-property: border, box-shadow, -moz-box-shadow;
+    -o-transition-property: border, box-shadow;
+    transition-property: border, box-shadow;
+    transition-property: border, box-shadow, -webkit-box-shadow, -moz-box-shadow;
 }
 
 .csspointerevents .E_PageElement--outline:after {
@@ -4259,6 +4436,21 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     height: 100%;
 }
 
+
+.csspointerevents .P_PageElement .E_PageElement--outline__limited, .csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline__limited, .csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline__limited {
+    top: 0px;
+    left: 0px;
+
+    width: -webkit-calc(100% + 0px);
+
+    width: -moz-calc(100% + 0px);
+
+    width: calc(100% + 0px);
+    height: -webkit-calc(100% + 0px);
+    height: -moz-calc(100% + 0px);
+    height: calc(100% + 0px);
+}
+
 /*--------------------------------------------------------------------*/
 /*------------------------------ EDIT UI -----------------------------*/
 /*--------------------------------------------------------------------*/
@@ -4286,6 +4478,11 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     overflow: hidden;
     pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .E_PageElementEditUI * {
@@ -4302,16 +4499,29 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     right: 1px;
 }
 
+.P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI, .P_PageElement .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI, .P_PageElement .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI {
+    top: 1px;
+    right: 1px;
+}
+
 .E_PageElementEditUI {
     opacity: 0;
 
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        top 0s linear 0.3s,
+        right 0s linear 0.3s;
 
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        top 0s linear 0.3s,
+        right 0s linear 0.3s;
 
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        top 0s linear 0.3s,
+        right 0s linear 0.3s;
 
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        top 0s linear 0.3s,
+        right 0s linear 0.3s;
 }
 
 .E_PageElement--outline__active ~ .E_PageElementEditUI {
@@ -4326,6 +4536,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
 }
 
 .E_PageElementEditUI > * {
@@ -4365,6 +4579,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     overflow: hidden;
 
     cursor: default;
+    -ms-touch-action: manipulation;
+        touch-action: manipulation;
 }
 
 .P_PageSection {
@@ -4421,13 +4637,119 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     transition: none;
 }
 
+.P_PageSection__placed:not(.P_PageSection__new), .P_PageSection__removed, .P_PageSection__dragged {
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+
+    -webkit-animation: PageSection--sort-shadow__removed 0.35s ease-out forwards;
+
+       -moz-animation: PageSection--sort-shadow__removed 0.35s ease-out forwards;
+
+         -o-animation: PageSection--sort-shadow__removed 0.35s ease-out forwards;
+
+            animation: PageSection--sort-shadow__removed 0.35s ease-out forwards;
+}
+
+.P_PageSection__dragged {
+    -webkit-animation: PageSection--sort-shadow__dragged 0.35s ease-out forwards;
+       -moz-animation: PageSection--sort-shadow__dragged 0.35s ease-out forwards;
+         -o-animation: PageSection--sort-shadow__dragged 0.35s ease-out forwards;
+            animation: PageSection--sort-shadow__dragged 0.35s ease-out forwards;
+}
+
+.P_PageSection__placed:not(.P_PageSection__new) {
+    -webkit-animation: PageSection--sort-shadow__placed 0.35s ease-out forwards reverse;
+       -moz-animation: PageSection--sort-shadow__placed 0.35s ease-out forwards reverse;
+         -o-animation: PageSection--sort-shadow__placed 0.35s ease-out forwards reverse;
+            animation: PageSection--sort-shadow__placed 0.35s ease-out forwards reverse;
+}
+
+.P_PageSection__new:not(.P_PageSection__inserted-by-tap) {
+    -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+
+    -webkit-animation: PageSection--sort-shadow__new 0.35s ease-out forwards;
+
+       -moz-animation: PageSection--sort-shadow__new 0.35s ease-out forwards;
+
+         -o-animation: PageSection--sort-shadow__new 0.35s ease-out forwards;
+
+            animation: PageSection--sort-shadow__new 0.35s ease-out forwards;
+}
+
+@-webkit-keyframes PageSection--sort-shadow__dragged {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__dragged {
+    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-o-keyframes PageSection--sort-shadow__dragged {
+    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__dragged {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-webkit-keyframes PageSection--sort-shadow__placed {
+    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__placed {
+    to { -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-o-keyframes PageSection--sort-shadow__placed {
+    to { box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__placed {
+    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-webkit-keyframes PageSection--sort-shadow__removed {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__removed {
+    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-o-keyframes PageSection--sort-shadow__removed {
+    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__removed {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-webkit-keyframes PageSection--sort-shadow__new {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__new {
+    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+@-o-keyframes PageSection--sort-shadow__new {
+    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+@keyframes PageSection--sort-shadow__new {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
 .P_PageSection__dragged {
     height: 48px;
     min-height: 48px;
 }
 
-.E .P_PageSection, .E .P_PageSection:after {
-    will-change: transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
+.E .P_PageSection, .E .P_PageSection:after, .E .P_PageSection:before {
+    will-change: box-shadow, transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
 }
 
 .E .P_PageSection:after {
@@ -5024,6 +5346,16 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 .E_PageSectionEditUI--controls {
     position: absolute;
+
+    opacity: 1;
+
+    -webkit-transition: opacity 0.35s ease-out 0s;
+
+    -moz-transition: opacity 0.35s ease-out 0s;
+
+    -o-transition: opacity 0.35s ease-out 0s;
+
+    transition: opacity 0.35s ease-out 0s;
 }
 
 .E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user), .E .P_PageSection__dragged .E_PageSectionEditUI, .E .P_PageSection__removed .E_PageSectionEditUI, .E .P_PageSection__placed:not(.P_PageSection__new) .E_PageSectionEditUI, .E_PageSectionEditUI__hover, .E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user) ~ .P_PageSection--content:before, .E .P_PageSection__dragged .P_PageSection--content:before, .E .P_PageSection__removed .P_PageSection--content:before, .E .P_PageSection__placed:not(.P_PageSection__new) .P_PageSection--content:before, .E_PageSectionEditUI__hover ~ .P_PageSection--content:before {
@@ -5246,6 +5578,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-transform: translateZ(0);
 
             transform: translateZ(0);
+}
+
+.P_PageSection__dragged .E_PageSectionEditUI--controls__top-left {
+    opacity: 0;
 }
 
 .P_PageSection__dragged, .P_PageSection__dragged:after, .E_Page__sortable-active * {

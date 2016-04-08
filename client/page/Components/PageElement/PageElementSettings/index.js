@@ -210,7 +210,10 @@
 
                     lastTab = tab;
 
-                    var isMax = this.minmaxButton.classList.contains(this.CLASS.minmaxMax) && !this.minmaxButton.classList.contains(this.CLASS.minmaxMin),
+                    var saveBeforeHeight = this.beforeHeight,
+                        saveBeforeWidth  = this.beforeWidth,
+
+                        isMax = this.minmaxButton.classList.contains(this.CLASS.minmaxMax) && !this.minmaxButton.classList.contains(this.CLASS.minmaxMin),
                         isMin = !isMax;
 
                     if (isMin) {
@@ -221,8 +224,10 @@
 
                     this.minmax(null, isMax, isMin);
 
-                }, {init: false, defer: true});
+                    this.beforeWidth  = saveBeforeWidth;
+                    this.beforeHeight = saveBeforeHeight;
 
+                }, {init: false, defer: true});
 
                 this.minmax = this.minmax || function (event, forceMax, forceMin) {
 

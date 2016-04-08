@@ -6,21 +6,11 @@ var EventEmitter = require("./../../../libs/EventEmitter")();
 var Ractive = require("ractive");
 
 /*
- * Obalovací komponent pro každou sekci.
+ * Abstraktní komponent pro vytváření sekcí.
  *
- * Typový komponent každé sekce se musí zaregistrovat zde v "components", podle jejího "type" v datech.
- * Aby bylo možné vybírat typ komponentu, je potřeba typ sekce zaregistrovat i jako "partial",
- * který bude obsahovat element komponentu s atributem "section", do kterého se vloží data sekce:
- * "<PageSectionA section='{{.section}}' />"
- *
- * Každé sekci se přidají komponenty "PageSectionSettings" (nastavení sekce) pomocí "partialu", který se zaregistruje
- * jako "type" sekce + "Settings" (string). "Partial" musí obsahovat podmínku, podle které se zjistí, zda má být dané
- * nastaveni ("PageSectionSettings") otevřeno. ("Partial" by měl být uložení uvnitř složky dané sekce jako "page-section-settings.tpl")
- * Zde je také možné zaregistrovat jednotlivé "partials" s elementy "PageSectionSettings".
- * Tyto "partials" jsou pak použité v "partials" pro nastavení jednotlivých sekcí ("type" sekce + "Settings").
- *
- * Každá sekce má také komponent "PageSectionEditUI" (ovládácí prvky sekce). Jejich obsah se určuje podle typu
- * sekce - nalezení sprvného typu zajišťuje komponent sám.
+ * Konkrétný typ sekce musí v partials zaregistrovat v "pageSectionContent" obsah sekce,
+ * v "pageSectionEditUI" ovládací prvky sekce (komponent rozšiřující PageSectionEditUI - registruje
+ * se u konkrtétní sekce) a v "pageSectionSettings" šablona obsahující všechny PageSectionSettings.
  **/
 
 module.exports = Ractive.extend({
@@ -43,9 +33,11 @@ module.exports = Ractive.extend({
         draggedSection: "P_PageSection__dragged",
         placedSection: "P_PageSection__placed",
         newSection: "P_PageSection__new",
+        insertedByTap: "P_PageSection__inserted-by-tap",
         removedSection: "P_PageSection__removed",
 
         placeholderTransitions: "P_PageSection--placeholder__transitions",
+        placeholderFake: "P_PageSection--fake-placeholder",
         placeholder: "P_PageSection--placeholder"
     },
 
@@ -78,6 +70,7 @@ module.exports = Ractive.extend({
 
         if (Ractive.EDIT_MODE) {
 
+            //při změně jména sekce změnit id
             this.observe("section.name", this.regenerateId, {init: false, defer: true});
 
             this.initPageElementSettings();
@@ -239,9 +232,10 @@ module.exports = Ractive.extend({
         }
     },
 
+    //uživatel se dotknul sekce -> zobrazit EditUI? -> handleTouchend
     handleTouchstart: function (event) {
 
-        if (event.original.touches.length > 1) {
+        if (event.original.touches.length > 1 || this.EditUI.get("hover")) {
 
             return;
         }
@@ -261,14 +255,15 @@ module.exports = Ractive.extend({
         }.bind(this));
     },
 
+    //předává informaci EditUI, že uživatel chce zobrazit UI
     handleTouchend: function (event) {
+
+        Ractive.$win.off("touchmove.hover-PageSection");
 
         if (event.original.touches.length > 1) {
 
             return;
         }
-
-        Ractive.$win.off("touchmove.hover-PageSection");
 
         if (this.wasTouchstart && this.EditUI) {
 
@@ -333,7 +328,7 @@ module.exports = Ractive.extend({
 
             } else if (typeof fn === "function") {
 
-                fn(elements[e]);
+                fn.apply(elements[e], elements[e]);
             }
         }
     }

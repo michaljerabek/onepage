@@ -57,13 +57,51 @@
     transition: none;
 }
 
+.P_PageSection__placed:not(.P_PageSection__new),
+.P_PageSection__removed,
+.P_PageSection__dragged {
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+
+    animation: PageSection--sort-shadow__removed var(--P_PageSection_sorting-transition-duration) var(--P_PageSection_sorting-transition-easing) forwards;
+}
+
+.P_PageSection__dragged {
+    animation: PageSection--sort-shadow__dragged var(--P_PageSection_sorting-transition-duration) var(--P_PageSection_sorting-transition-easing) forwards;
+}
+
+.P_PageSection__placed:not(.P_PageSection__new) {
+    animation: PageSection--sort-shadow__placed var(--P_PageSection_sorting-transition-duration) var(--P_PageSection_sorting-transition-easing) forwards reverse;
+}
+
+.P_PageSection__new:not(.P_PageSection__inserted-by-tap) {
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+
+    animation: PageSection--sort-shadow__new var(--P_PageSection_sorting-transition-duration) var(--P_PageSection_sorting-transition-easing) forwards;
+}
+
+@keyframes PageSection--sort-shadow__dragged {
+    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__placed {
+    to { box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__removed {
+    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__new {
+    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
 .P_PageSection__dragged {
     height: var(--P_PageSection__dragged_height);
     min-height: var(--P_PageSection__dragged_height);
 }
 
-.E .P_PageSection, .E .P_PageSection:after {
-    will-change: transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
+.E .P_PageSection, .E .P_PageSection:after, .E .P_PageSection:before {
+    will-change: box-shadow, transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
 }
 
 .E .P_PageSection:after {

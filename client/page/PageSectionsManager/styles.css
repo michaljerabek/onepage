@@ -34,26 +34,32 @@
     transition: all 0.35s ease-out 0s;
 }
 
+.P_PageSection--fake-placeholder,
 .P_PageSection--placeholder {
     position: relative;
 
-    min-height: 0px;
-    height: var(--P_PageSection__dragged_height);
     width: 100%;
 
     color: #888;
-    background-color: #fff;
-    outline: 2px dashed currentColor;
-    outline-offset: -4px;
+    background-color: #f7f7f7;
+
+    transform: translateZ(0px);
+
+    will-change: height;
+}
+
+.P_PageSection--placeholder {
+    height: var(--P_PageSection__dragged_height);
+    min-height: 0px;
 
     transition-property: height, min-height;
     transition-duration: 0.1s;
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 
-    will-change: height;
     overflow: hidden;
 }
 
+.P_PageSection--fake-placeholder:after,
 .P_PageSection--placeholder:after {
     content: var(--P_PageSection--placeholder_text);
 
@@ -61,14 +67,42 @@
 
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: -1px;
 
-    width: 100%;
+    width: calc(100% + 2px);
     height: 100%;
+
+    outline: 2px dashed rgba(64, 64, 64, 0.25);
+    outline-offset: -6px;
 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.P_PageSection--fake-placeholder:after {
+    animation: P_PageSection--fake-placeholder-outline-text var(--P_PageSection_sorting-transition-duration) var(--P_PageSection_sorting-transition-easing) forwards;
+}
+
+@keyframes P_PageSection--fake-placeholder-outline-text {
+    to {
+        color: rgba(136, 136, 136, 0);
+        outline: 2px dashed rgba(64, 64, 64, 0);
+    }
+}
+
+.P_PageSection--fake-placeholder:before,
+.P_PageSection--placeholder:before {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: -8px;
+
+    width: calc(100% + 16px);
+    height: 100%;
+
+    box-shadow: inset 0 0 8px 0px rgba(0, 0, 0, 0.25);
 }
 
 .P_PageSection--placeholder__transitions {
@@ -77,10 +111,26 @@
 
     background-color: #fff;
 
+    will-change: height;
+    transition-property: height;
+    transition-duration: var(--P_PageSection_sorting-transition-duration);
+    transition-timing-function: var(--P_PageSection_sorting-transition-easing);
+}
+
+.P_PageSection--fake-placeholder:after,
+.P_PageSection--fake-placeholder:before,
+.P_PageSection--fake-placeholder {
+    will-change: height, box-shadow;
+}
+
+.P_PageSection--fake-placeholder {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
     transition-property: height;
     transition-duration: var(--P_PageSection_sorting-transition-duration);
     transition-timing-function: var(--P_PageSection_sorting-transition-easing);
 
-    will-change: height;
+    overflow: hidden;
 }
-

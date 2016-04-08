@@ -9,6 +9,7 @@
         <div class="
                 E_PageElement--outline
                 {{#if .showOutline}}E_PageElement--outline__active{{/if}}
+                {{#if .limitSize}}E_PageElement--outline__limited{{/if}}
             "
             on-touchstart="handleTouchstart(event)"
             on-touchend="handleTouchend(event)"

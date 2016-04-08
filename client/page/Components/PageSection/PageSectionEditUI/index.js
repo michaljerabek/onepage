@@ -71,6 +71,7 @@
         superOnconfig: function () {
 
             this.Page = this.findParent("Page");
+            this.PageSection = this.getPageSection();
 
             if (!on.client) {
 
@@ -82,7 +83,13 @@
                 if (state && editUI !== this) {
 
                     this.blockTouchend = false;
-                    this.setHiddenByUser(false);
+
+                    if (this.hiddenByUser) {
+
+                        //zrušit this.hiddenByUser === true, pokud sekce nemá outline ani settings
+                        this.setHiddenByUser(!(!this.PageSection.get("hasOutline") && !this.PageSection.get("hasSettings")));
+                    }
+
                     this.blockHover = false;
 
                     this.set("hover", false);
@@ -104,6 +111,7 @@
 
             }, {init: false});
 
+            //událost je spuštěna v příslušné PageSection
             this.on("hover", function (event/*, pageSection*/) {
 
                 if (this.blockHover && event.hover) {
@@ -111,11 +119,13 @@
                     return;
                 }
 
+                //přejetí z PageElementSetitngs -> neměnit stav UI
                 if (event.hover && $(event.original.fromElement).closest("." + this.parent.components.PageElementSettings.prototype.CLASS.self).length) {
 
                     return;
                 }
 
+                //přejetí do PageElementSettings -> neměnit stav UI
                 if (!event.hover && $(event.original.toElement).closest("." + this.parent.components.PageElementSettings.prototype.CLASS.self).length) {
 
                     return;
@@ -191,6 +201,7 @@
 
         },
 
+        //uživatel tapnul na zavření UI
         hideEditUI: function (event) {
 
             this.set("hover", false);
@@ -206,6 +217,7 @@
             this.$lastFocused = this.parent.get$SectionElement().find(":focus");
         },
 
+        //po zavření UI je potřeba vrátit původní :focus a označení textu
         resetFocus: function () {
 
             if (this.$lastFocused) {
