@@ -6,21 +6,11 @@ var EventEmitter = require("./../../../libs/EventEmitter")();
 var Ractive = require("ractive");
 
 /*
- * Obalovací komponent pro každou sekci.
+ * Abstraktní komponent pro vytváření sekcí.
  *
- * Typový komponent každé sekce se musí zaregistrovat zde v "components", podle jejího "type" v datech.
- * Aby bylo možné vybírat typ komponentu, je potřeba typ sekce zaregistrovat i jako "partial",
- * který bude obsahovat element komponentu s atributem "section", do kterého se vloží data sekce:
- * "<PageSectionA section='{{.section}}' />"
- *
- * Každé sekci se přidají komponenty "PageSectionSettings" (nastavení sekce) pomocí "partialu", který se zaregistruje
- * jako "type" sekce + "Settings" (string). "Partial" musí obsahovat podmínku, podle které se zjistí, zda má být dané
- * nastaveni ("PageSectionSettings") otevřeno. ("Partial" by měl být uložení uvnitř složky dané sekce jako "page-section-settings.tpl")
- * Zde je také možné zaregistrovat jednotlivé "partials" s elementy "PageSectionSettings".
- * Tyto "partials" jsou pak použité v "partials" pro nastavení jednotlivých sekcí ("type" sekce + "Settings").
- *
- * Každá sekce má také komponent "PageSectionEditUI" (ovládácí prvky sekce). Jejich obsah se určuje podle typu
- * sekce - nalezení sprvného typu zajišťuje komponent sám.
+ * Konkrétný typ sekce musí v partials zaregistrovat v "pageSectionContent" obsah sekce,
+ * v "pageSectionEditUI" ovládací prvky sekce (komponent rozšiřující PageSectionEditUI - registruje
+ * se u konkrtétní sekce) a v "pageSectionSettings" šablona obsahující všechny PageSectionSettings.
  **/
 
 module.exports = Ractive.extend({
@@ -42,9 +32,12 @@ module.exports = Ractive.extend({
         sortHandle: "P_PageSection--sort-handle",
         draggedSection: "P_PageSection__dragged",
         placedSection: "P_PageSection__placed",
+        newSection: "P_PageSection__new",
+        insertedByTap: "P_PageSection__inserted-by-tap",
         removedSection: "P_PageSection__removed",
 
         placeholderTransitions: "P_PageSection--placeholder__transitions",
+        placeholderFake: "P_PageSection--fake-placeholder",
         placeholder: "P_PageSection--placeholder"
     },
 
@@ -77,6 +70,7 @@ module.exports = Ractive.extend({
 
         if (Ractive.EDIT_MODE) {
 
+            //při změně jména sekce změnit id
             this.observe("section.name", this.regenerateId, {init: false, defer: true});
 
             this.initPageElementSettings();
@@ -84,12 +78,43 @@ module.exports = Ractive.extend({
         }
     },
 
+    superOnrender: function () {
+
+        if (Ractive.EDIT_MODE) {
+
+            this.initEditUI();
+        }
+    },
+
+    superOncomplete: function () {
+    },
+
+    initEditUI: function () {
+
+        var EditUI,
+
+            components = this.findAllComponents(),
+            c = components.length - 1;
+
+        for (c; c >= 0; c--) {
+
+            if (components[c].EDIT_UI) {
+
+                EditUI = components[c];
+
+                break;
+            }
+        }
+
+        this.EditUI = EditUI;
+    },
+
     initPageElementSettings: function () {
 
         if (on.client) {
 
             //otevírá se nastavení elementu v sekci
-            EventEmitter.on("openPageElementSettings.PageElement sortPageSection.PageSectionManager", function (e, pageElement) {
+            EventEmitter.on("openPageElementSettings.PageElement sortPageSection.PageSectionManager", function (e, state, pageElement) {
 
                 this.updateHasSettingsState(pageElement);
 
@@ -145,27 +170,27 @@ module.exports = Ractive.extend({
         this.off("*.sectionHasOutline");
     },
 
-    superOnrender: function () {
-    },
-
-    superOncomplete: function () {
-    },
-
     updateHasSettingsState: function (pageElement) {
 
-        var state  = this.get("openPageSectionSettings") || (pageElement && pageElement.get("openPageElementSettings"));
+        var state  = this.get("openPageSectionSettings") || (pageElement && pageElement.get("openPageElementSettings") && pageElement.getPageSection() === this);
+
+        this.set("hasSettings", state);
 
         this.getSectionElement().classList[state ? "add" : "remove"](this.CLASS.hasSettings);
     },
 
     updateHasOutlineState: function (state) {
 
-        if (this.currentOutlineState == state) {
+        if (Boolean(this.currentOutlineState) === Boolean(state)) {
 
             return;
         }
 
         this.currentOutlineState = this.find("." + this.components.PageElement.prototype.CLASS.outlineActive);
+
+        this.set("hasOutline", this.currentOutlineState);
+
+        EventEmitter.trigger("hasOutline.PageSection", [state, this.EditUI]);
 
         this.getSectionElement().classList[this.currentOutlineState ? "add" : "remove"](this.CLASS.hasOutline);
     },
@@ -199,6 +224,55 @@ module.exports = Ractive.extend({
             .text($("<span>").html(name).text());
     },
 
+    handleHover: function (event) {
+
+        if (this.EditUI) {
+
+            this.EditUI.fire("hover", event, this);
+        }
+    },
+
+    //uživatel se dotknul sekce -> zobrazit EditUI? -> handleTouchend
+    handleTouchstart: function (event) {
+
+        if (event.original.touches.length > 1 || this.EditUI.get("hover")) {
+
+            return;
+        }
+
+        this.cancelTouchend = false;
+
+        this.wasTouchstart = true;
+
+        var initX = event.original.touches[0].pageX,
+            initY = event.original.touches[0].pageY;
+
+        Ractive.$win.on("touchmove.hover-PageSection", function (event) {
+
+            this.cancelTouchend = Math.abs(initX - event.originalEvent.touches[0].pageX) > 5 ||
+                Math.abs(initY - event.originalEvent.touches[0].pageY) > 5;
+
+        }.bind(this));
+    },
+
+    //předává informaci EditUI, že uživatel chce zobrazit UI
+    handleTouchend: function (event) {
+
+        Ractive.$win.off("touchmove.hover-PageSection");
+
+        if (event.original.touches.length > 1) {
+
+            return;
+        }
+
+        if (this.wasTouchstart && this.EditUI) {
+
+            this.EditUI.fire("pageSectionTouchend", event, this, this.cancelTouchend);
+        }
+
+        this.wasTouchstart = false;
+    },
+
     //Vrátí současnou pozici sekce na stránce.
     getCurrentIndex: function () {
 
@@ -217,6 +291,46 @@ module.exports = Ractive.extend({
         this.$sectionElement = this.$sectionElement || $(this.getSectionElement());
 
         return this.$sectionElement;
+    },
+
+    findPageElements: function () {
+
+        var elements = [],
+
+            components = this.findAllComponents(),
+            c = components.length - 1;
+
+        for (c; c >= 0; c--) {
+
+            if (components[c].PAGE_ELEMENT) {
+
+                elements.unshift(components[c]);
+            }
+        }
+
+        return elements;
+    },
+
+    forEachPageElement: function (fn/*, args...*/) {
+
+        var elements = this.findPageElements(),
+            e = elements.length - 1,
+
+            args = Array.prototype.slice.call(arguments);
+
+        args.shift();
+
+        for (e; e >= 0; e--) {
+
+            if (typeof fn === "string" && elements[e][fn]) {
+
+                elements[e][fn].apply(elements[e], args);
+
+            } else if (typeof fn === "function") {
+
+                fn.apply(elements[e], elements[e]);
+            }
+        }
     }
 
 });

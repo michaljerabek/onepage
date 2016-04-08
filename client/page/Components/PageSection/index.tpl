@@ -6,21 +6,26 @@
 
     <div class="P_PageSection--inner-wrapper">
 
-        <div class="P_PageSection--section">
-
-            <div class="P_PageSection--content">
-                {{> pageSectionContent}}
-            </div>
+        <div class="P_PageSection--section"
+            on-hover="handleHover(event)"
+            on-touchend="handleTouchend(event)"
+            on-touchstart="handleTouchstart(event)"
+        >
 
             {{#if .editMode}}
                 {{> pageSectionEditUI}}
             {{/if}}
+
+            <div class="P_PageSection--content">
+                {{> pageSectionContent}}
+            </div>
 
         </div>
 
         {{#if .editMode}}
             {{> pageSectionSettings}}
         {{/if}}
+
     </div>
 
 </section>

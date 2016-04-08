@@ -11,7 +11,7 @@
 
     {{/if}}
 
-    <div id="page" class="{{#if .editMode}}E{{/if}} {{.page.settings.fontType || 'P_font-type-1'}}">
+    <div id="page" class="{{#if .editMode}}E{{/if}} {{.page.settings.fontType || 'P_font-type-1'}} {{.sortableActive}}">
 
         <div class="P_nonsortable-sections" style="overflow: hidden">
 
@@ -36,17 +36,13 @@
 
         </div>
 
-        <div class="P_sortable-sections">
-
-            {{#each .page.sections}}
+        <div class="P_sortable-sections">{{#each .page.sections}}
 
                 {{#if this.type !== "PageSectionHeader" && this.type !== "PageSectionFooter"}}
                     {{> this.type}}
                 {{/if}}
 
-            {{/each}}
-
-        </div>
+        {{/each}}</div>
 
         <div class="P_nonsortable-sections">
 

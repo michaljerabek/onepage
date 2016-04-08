@@ -8,7 +8,8 @@
     }"
 >
     <div class="E_PageSectionSettings--wrapper">
-        {{> content}}
+        <div class="E_PageSectionSettings--shadow"></div>
+        <div class="E_PageSectionSettings--wrapper-2">{{> content}}</div>
         <button class="E_PageSectionSettings--close"   on-tap="closeThisSettings">&times;</button>
         <button class="E_PageSectionSettings--min-max" on-tap="minmax(event)">M</button>
     </div>

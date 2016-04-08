@@ -5,6 +5,11 @@
     touch-action: manipulation;
 }
 
+.E_Page__sortable-active .P_PageElement,
+.E_Page__sortable-active .P_PageElement * {
+    pointer-events: none;
+}
+
 .csspointerevents .E_PageElement--outline {
     z-index: 1;
     position: absolute;
@@ -19,6 +24,13 @@
     touch-action: manipulation;
 
     transition: var(--default-transition);
+    transition:
+        border var(--default-transition-duration) var(--default-transition-easing) 0s,
+        box-shadow var(--default-transition-duration) var(--default-transition-easing) 0s,
+        width 0s linear var(--default-transition-duration),
+        height 0s linear var(--default-transition-duration),
+        top 0s linear var(--default-transition-duration),
+        left 0s linear var(--default-transition-duration);
 }
 
 .csspointerevents .E_PageElement--outline__active {
@@ -27,6 +39,7 @@
     pointer-events: none;
 
     transition: var(--default-transition-hover);
+    transition-property: border, box-shadow;
 }
 
 .csspointerevents .E_PageElement--outline:after {
@@ -66,6 +79,17 @@
     height: 100%;
 }
 
+
+.csspointerevents .P_PageElement .E_PageElement--outline__limited,
+.csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline__limited,
+.csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline__limited {
+    top: 0px;
+    left: 0px;
+
+    width: calc(100% + 0px);
+    height: calc(100% + 0px);
+}
+
 /*--------------------------------------------------------------------*/
 /*------------------------------ EDIT UI -----------------------------*/
 /*--------------------------------------------------------------------*/
@@ -75,26 +99,51 @@
     font-size: 0;
 
     position: absolute;
-    top: -12px;
-    right: -12px;
+    top: -11px;
+    right: -11px;
+
+    padding-bottom: 6px;
+    padding-left: 6px;
 
     display: flex;
+
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_PageElementEditUI * {
+	pointer-events: all;
 }
 
 .P_PageElement .P_PageElement .E_PageElementEditUI {
-    top: -6px;
-    right: -6px;
+    top: -5px;
+    right: -5px;
 }
 
 .P_PageElement .P_PageElement .P_PageElement .E_PageElementEditUI {
-    top: 0px;
-    right: 0px;
+    top: 1px;
+    right: 1px;
+}
+
+.P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI,
+.P_PageElement .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI,
+.P_PageElement .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI {
+    top: 1px;
+    right: 1px;
 }
 
 .E_PageElementEditUI {
     opacity: 0;
 
-    transition: var(--default-transition);
+    transition:
+        opacity var(--default-transition-duration) var(--default-transition-easing) 0s,
+        top 0s linear var(--default-transition-duration),
+        right 0s linear var(--default-transition-duration);
 }
 
 .E_PageElement--outline__active ~ .E_PageElementEditUI {
@@ -103,4 +152,27 @@
     opacity: 1;
 
     transition: var(--default-transition-hover);
+    transition-property: opacity;
+}
+
+.E_PageElementEditUI > * {
+    font-size: 12px;
+    line-height: 1;
+    word-break: break-all;
+
+    width: 32px;
+    height: 32px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+    border: none;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    cursor: default;
+    touch-action: manipulation;
 }

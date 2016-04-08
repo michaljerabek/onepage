@@ -14,7 +14,9 @@ module.exports = (function () {
             SECTION_EASING_JQ: "easeOutSine"
         },
 
-        CLASS = {},
+        CLASS = {
+            fakePlaceholder: "P_PageSection--fake-placeholder"
+        },
 
         page,
         pageSectionBuilder,
@@ -28,6 +30,7 @@ module.exports = (function () {
 
         $placeholder,
         $placeholderTransitions = $("<div></div>"),
+        $fakePlaceholder = $("<div></div>"),
 
         getSectionsSortedByIndex = function () {
 
@@ -97,13 +100,23 @@ module.exports = (function () {
 
                 $pageSection
                     .hide()
-                    .addClass(CLASS.PageSection.placedSection)
+                    .addClass([
+                        CLASS.PageSection.placedSection,
+                        CLASS.PageSection.newSection,
+                        CLASS.PageSection.insertedByTap
+                    ].join(" "))
                     .css({
                         transition: "none"
                     })
                     .slideDown(OPTIONS.SECTION_SPEED_JQ, OPTIONS.SECTION_EASING_JQ, function () {
 
-                        $pageSection.removeClass(CLASS.PageSection.placedSection);
+                        $pageSection.removeClass([
+                            CLASS.PageSection.placedSection,
+                            CLASS.PageSection.newSection,
+                            CLASS.PageSection.insertedByTap
+                        ].join(" "));
+
+                        page.set("sortableActive", "");
 
                         //spoždění zapnutí transition kvůli iOS
                         requestAnimationFrame(function () {
@@ -146,10 +159,14 @@ module.exports = (function () {
                             break;
                         }
                     }
+
+                    $placeholderTransitions.remove();
                 });
         },
 
         onSortableActivate = function (e, ui) {
+
+            page.set("sortableActive", CLASS.Page.sortableActive);
 
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
 
@@ -178,6 +195,8 @@ module.exports = (function () {
                 .addClass(CLASS.PageSection.draggedSection)
                 .after($placeholderTransitions);
 
+            $fakePlaceholder.remove();
+
             EventEmitter.trigger("sortPageSection.PageSectionManager");
         },
 
@@ -202,11 +221,40 @@ module.exports = (function () {
             });
 
             $placeholder = $placeholder && $placeholder.length ? $placeholder : $sortable.find("." + CLASS.PageSection.placeholder);
+
+            //nastavit výchozí stav placeholderu (<- nemusí být nastaven, pokud uživatel předtím vrátil sekce zpět)
+            $placeholder.css({
+                height: OPTIONS.DRAGGED_SECTION_HEIGHT,
+
+                display: "block",
+                transition: "none"
+            });
+
+            ui.item.data("inSortable.PageSectionsManager", true);
         },
 
         onSortableChange = function (e, ui) {
 
             $placeholder = $placeholder && $placeholder.length ? $placeholder : $sortable.find("." + CLASS.PageSection.placeholder);
+
+            //nová sekce (zástupce) přetažena zpět do stránky -> zvětšit placeholder
+            if (!ui.item.data("inSortable.PageSectionsManager")) {
+
+                $placeholder.css({
+                    height: 0,
+
+                    display: "block",
+                    transition: "none"
+                });
+
+                requestAnimationFrame(function () {
+                    $placeholder.css({
+                        height: OPTIONS.DRAGGED_SECTION_HEIGHT,
+
+                        transition: ""
+                    });
+                });
+            }
 
             //označení, že sekce se nachází uvnit stránky - důležité pro přidávání nových sekcí,
             //aby se zjistilo, jestli je sekce ve stránce nebo ve výběru sekcí (pro odsranění)
@@ -250,6 +298,8 @@ module.exports = (function () {
         },
 
         onSortableStop = function (e, ui) {
+
+            page.set("sortableActive", "");
 
             //Placeholder pro transitions je potřeba vložit za "umisťovací" placehloder,
             //protože ho bude potřeba na chvíli zobrazit při umístění sekce
@@ -301,6 +351,7 @@ module.exports = (function () {
 
                 $newPageSection
                     .addClass(CLASS.PageSection.placedSection)
+                    .addClass(CLASS.PageSection.newSection)
                     .css({
                         //zástupce, podle kterého se nastaví i velikost sekce, je větší než DRAGGED_SECTION_HEIGHT,
                         //proto je potřeba použit negativní margin, aby následující sekce neskočily dolů.
@@ -332,9 +383,27 @@ module.exports = (function () {
                     transition: "none"
                 });
 
+                //Zobrazit fake-placeholder
+                $fakePlaceholder
+                    .css({
+                        height: OPTIONS.DRAGGED_SECTION_HEIGHT,
+
+                        transition: "none"
+                    })
+                    .appendTo("#page")
+                    .offset(itemOffset);
+
                 //spuštění animace
                 //pokud se použije rAF, Webkit dělá chyby
                 setTimeout(function() {
+
+                    //fake-placeholder se zvětší na velikost nové sekce
+                    $fakePlaceholder
+                        .css({
+                            height: newSectionHeight,
+
+                            transition: ""
+                        });
 
                     //zástupce se přesune a zvětší, podle nové sekce
                     ui.item
@@ -383,12 +452,15 @@ module.exports = (function () {
                         })
                         .one(SUPPORT.TRANSITIONEND, function () {
 
+                            $fakePlaceholder.remove();
+
                             $inner.css({
                                 width: ""
                             });
 
                             $newPageSection
                                 .removeClass(CLASS.PageSection.placedSection)
+                                .removeClass(CLASS.PageSection.newSection)
                                 .css({
                                     marginBottom: "",
 
@@ -413,6 +485,8 @@ module.exports = (function () {
                 return;
             }
 
+            var placeholderOffset = $placeholder.offset();
+
             $placeholder.remove();
 
             //Zobrazí se placeholder pro transitions, protože umisťovací je odstraněn
@@ -426,15 +500,34 @@ module.exports = (function () {
                 top: "auto"
             });
 
+            //Zobrazit fake-placeholder
+            $fakePlaceholder
+                .css({
+                    height: OPTIONS.DRAGGED_SECTION_HEIGHT,
+
+                    transition: "none"
+                })
+                .appendTo("#page")
+                .offset(placeholderOffset);
+
             requestAnimationFrame(function() {
 
                 //Placeholder pro transitions se zmenší na nulu a vrátí se zpět transition.
                 //Protože sekce je již vložena a má velikost jako placeholder.
                 requestAnimationFrame(function() {
+
                     $placeholderTransitions.css({
                         transition: ""
                     });
                 });
+
+                //fake-placehoder se zvětší na původní velkost sekce
+                $fakePlaceholder
+                    .css({
+                        height: ui.item.data("height"),
+
+                        transition: ""
+                    });
 
                 $placeholderTransitions
                     .css({
@@ -446,6 +539,9 @@ module.exports = (function () {
 
                 ui.item
                     .one(SUPPORT.TRANSITIONEND, function () {
+
+                        $fakePlaceholder.remove();
+
                         ui.item
                             //odstraní se přiřazená velikost pro transition
                             .css({
@@ -457,7 +553,7 @@ module.exports = (function () {
 
                         requestAnimationFrame(function() {
                             ui.item.css({
-                               transition: ""
+                                transition: ""
                             });
                         });
                     })
@@ -475,6 +571,8 @@ module.exports = (function () {
 
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
 
+                page.set("sortableActive", CLASS.Page.sortableActive);
+
                 //přesunutí klonu do "<body />", protože pozice klonu není přesně na klonovaném elemenu
                 //a je posunut daleko od šipky
                 var $clone = ui.item.siblings("." + CLASS.NewPageSectionSelector.clone);
@@ -487,28 +585,6 @@ module.exports = (function () {
                     top: offset.top,
                     left: offset.left,
                     transform: "translate(0px, 0px)"
-                });
-            }
-        },
-
-        onDroppableOut = function (e, ui) {
-
-            //zvětší placeholder, když uživatel přetáhne sekci zpět do stránky
-            if ($placeholder && !ui.item.data("inSortable.PageSectionsManager")) {
-
-                $placeholder.css({
-                    height: 0,
-
-                    display: "block",
-                    transition: "none"
-                });
-
-                requestAnimationFrame(function () {
-                    $placeholder.css({
-                        height: OPTIONS.DRAGGED_SECTION_HEIGHT,
-
-                        transition: ""
-                    });
                 });
             }
         },
@@ -532,7 +608,9 @@ module.exports = (function () {
 
         onDroppableDrop = function (e, ui) {
 
-            //vytvoření klonu kůvli animaci, protože přetahovaný element zmizí
+            page.set("sortableActive", "");
+
+            //vytvoření klonu kvůli animaci, protože přetahovaný element zmizí
             var $clone = ui.helper.clone();
 
             $body.append($clone);
@@ -556,7 +634,6 @@ module.exports = (function () {
             });
 
             $droppable
-                .on("droppable:out", onDroppableOut)
                 .on("droppable:over", onDroppableOver)
                 .on("droppable:drop", onDroppableDrop);
 
@@ -577,7 +654,10 @@ module.exports = (function () {
                 handle: "." + CLASS.PageSection.sortHandle,
                 placeholder: CLASS.PageSection.placeholder,
 
-                transition: "all " + OPTIONS.SECTION_SPEED + " " + OPTIONS.SECTION_EASING,
+                transition: [
+                    "height " + OPTIONS.SECTION_SPEED + " " + OPTIONS.SECTION_EASING,
+                    "transform " + OPTIONS.SECTION_SPEED + " " + OPTIONS.SECTION_EASING
+                ].join(","),
 
                 onlyYDir: true,
                 fixedX: true
@@ -628,12 +708,14 @@ module.exports = (function () {
 
         page = pageComponent;
 
+        CLASS.Page = page.CLASS;
         CLASS.PageSection = page.components.PageSection.prototype.CLASS;
         CLASS.NewPageSectionSelector = page.components.NewPageSectionSelector.prototype.CLASS;
 
         pageSectionBuilder = _pageSectionBuilder;
 
         $placeholderTransitions.addClass(CLASS.PageSection.placeholderTransitions);
+        $fakePlaceholder.addClass(CLASS.fakePlaceholder);
 
         $body = $("body");
         $scrollWin = $("html, body");

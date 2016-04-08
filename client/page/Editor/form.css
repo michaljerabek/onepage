@@ -120,7 +120,7 @@
     justify-content: center;
     align-items: center;
 
-    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition: all 0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 }
 
 .medium-editor-form-nav-close:hover {
@@ -167,7 +167,7 @@
 
     cursor: pointer;
 
-    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition: all 0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 }
 
 .medium-editor-form-nav .medium-editor-form-open-tab:hover {
@@ -238,7 +238,7 @@
     visibility: hidden;
 
     transition:
-        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        opacity    0.3s cubic-bezier(.1, .4, .4, 1) 0s,
         z-index    0s   linear                       0.3s,
         visibility 0s   linear                       0.3s;
 }
@@ -368,7 +368,7 @@
     cursor: pointer;
     overflow: hidden;
 
-    transition: all 0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    transition: all 0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 }
 
 .medium-editor-form-selector-option:not(:last-child) {

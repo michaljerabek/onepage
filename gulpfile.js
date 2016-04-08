@@ -33,5 +33,5 @@ gulp.task("css.admin", function () {
 });
 
 gulp.task("watch", function () {
-    gulp.watch(["client/**/*.css", "!**/_*.css"], ["css.page", "css.admin"]);
+    gulp.watch(["client/**/*.css", "!client/**/_*.css"], ["css.page", "css.admin"]);
 });

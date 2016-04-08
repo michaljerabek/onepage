@@ -1,0 +1,237 @@
+.E_PageSectionEditUI {
+    line-height: 1;
+
+    z-index: 121;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    transform-origin: center center;
+    transform: translateY(-12px);
+
+    visibility: hidden;
+
+    will-change: transform, box-shadow, opacity, visibility;
+    transition: var(--default-transition);
+
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_Page__sortable-active .E_PageSectionEditUI,
+.E_Page__sortable-active .E_PageSectionEditUI * {
+    pointer-events: none;
+}
+
+.P_PageSection--content:before {
+    content: "";
+
+    z-index: -1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    border: 4px solid #fcfcfc;
+    box-shadow:
+        inset 0px 0px 6px 0px rgba(0, 0, 0, 0.3),
+              0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+
+    transform: translateY(-12px);
+
+    visibility: hidden;
+
+    will-change: transform, box-shadow, opacity, visibility;
+    transition: var(--default-transition);
+
+    pointer-events: none;
+}
+
+.E_PageSectionEditUI--controls {
+    position: absolute;
+
+    opacity: 1;
+
+    transition: opacity var(--P_PageSection_sorting-transition-duration) var(--P_PageSection_sorting-transition-easing) 0s;
+}
+
+.E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user),
+.E .P_PageSection__dragged .E_PageSectionEditUI,
+.E .P_PageSection__removed .E_PageSectionEditUI,
+.E .P_PageSection__placed:not(.P_PageSection__new) .E_PageSectionEditUI,
+.E_PageSectionEditUI__hover,
+.E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user) ~ .P_PageSection--content:before,
+.E .P_PageSection__dragged .P_PageSection--content:before,
+.E .P_PageSection__removed .P_PageSection--content:before,
+.E .P_PageSection__placed:not(.P_PageSection__new) .P_PageSection--content:before,
+.E_PageSectionEditUI__hover ~ .P_PageSection--content:before {
+    opacity: 1;
+
+    transform: translateY(0px);
+
+    visibility: visible;
+
+    transition-delay: 0.1s;
+    transition-duration: 0.4s;
+}
+
+.E_PageSectionEditUI--controls-wrapper {
+    position: relative;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    display: flex;
+}
+
+.E_PageSectionEditUI--controls-wrapper * {
+    pointer-events: all;
+}
+
+.E_PageSectionEditUI--controls-shadow {
+    z-index: -1;
+    position: absolute;
+
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+
+    overflow: hidden;
+}
+
+    .E_PageSectionEditUI--controls-shadow:after {
+        content: "";
+
+        position: absolute;
+
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+
+        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+    }
+
+.E_PageSectionEditUI--controls-wrapper > button,
+.E_PageSectionEditUI--controls-wrapper > span {
+    font-size: 12px;
+    line-height: 48px;
+    white-space: nowrap;
+
+    z-index: 1;
+    position: relative;
+
+    width: 48px;
+    height: 48px;
+    padding: 0;
+
+    color: rgba(64, 64, 64, 0.9);
+    background-color: #fcfcfc;
+    border: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    touch-action: manipulation;
+}
+
+.E_PageSectionEditUI--controls-wrapper > * ::first-line {
+    line-height: 48px;
+}
+
+.E_PageSectionEditUI--controls__top-left {
+    top: 0px;
+    left: 0px;
+}
+
+.E_PageSectionEditUI--controls__top-right {
+    top: 0px;
+    right: 0px;
+}
+
+.E_PageSectionEditUI--controls__bottom-left {
+    bottom: 0px;
+    left: 0px;
+}
+
+.E_PageSectionEditUI--controls__bottom-right {
+    bottom: 0px;
+    right: 0px;
+}
+
+    [class*='E_PageSectionEditUI--controls__top'] .E_PageSectionEditUI--controls-wrapper {
+        padding-bottom: 6px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__bottom'] .E_PageSectionEditUI--controls-wrapper {
+        padding-top: 6px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-left'] .E_PageSectionEditUI--controls-wrapper {
+        padding-right: 6px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-right'] .E_PageSectionEditUI--controls-wrapper {
+        padding-left: 6px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__top'] .E_PageSectionEditUI--controls-shadow {
+        top: 4px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__bottom'] .E_PageSectionEditUI--controls-shadow {
+        bottom: 4px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-left'] .E_PageSectionEditUI--controls-shadow {
+        left: 4px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-right'] .E_PageSectionEditUI--controls-shadow {
+        right: 4px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__top'] .E_PageSectionEditUI--controls-shadow:after {
+        top: 0px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__bottom'] .E_PageSectionEditUI--controls-shadow:after {
+        bottom: 0px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-left'] .E_PageSectionEditUI--controls-shadow:after {
+        left: 0px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-right'] .E_PageSectionEditUI--controls-shadow:after {
+        right: 0px;
+    }
+
+.E_PageSectionEditUI--controls .P_PageSection--sort-handle {
+    z-index: 180;
+
+    cursor: grab;
+
+    transform: translateZ(0);
+}
+
+.P_PageSection__dragged .E_PageSectionEditUI--controls__top-left {
+    opacity: 0;
+}
+
+.P_PageSection__dragged,
+.P_PageSection__dragged:after,
+.E_Page__sortable-active * {
+    cursor: grabbing;
+}
