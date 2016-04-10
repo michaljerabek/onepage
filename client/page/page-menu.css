@@ -1,0 +1,598 @@
+/*====================================================================*/
+/*----------------------------- PAGE MENU ----------------------------*/
+/*====================================================================*/
+
+.E_PageMenu {
+    z-index: 300;
+    position: fixed;
+    top: 14.48vh;
+
+    will-change: transform;
+    transition:
+        transform var(--default-transition-duration) var(--default-transition-easing) 0s;
+}
+
+.E_PageMenu__hidden {
+    pointer-events: none;
+}
+
+.E_PageMenu__fixed-top {
+    top: 14.48vh;
+}
+
+.E_PageMenu__fixed-bottom {
+    top: auto;
+    bottom: 14.48vh;
+}
+
+.E_PageMenu__left {
+    z-index: 301;
+    left: 0;
+}
+
+.E_PageMenu__right {
+    right: 0;
+}
+
+@media screen and (max-width: 479px) {
+
+    .E_PageMenu__right {
+        right: auto;
+        left: 0;
+    }
+
+    .E_PageMenu__fixed-top.E_PageMenu__right {
+        top: calc(14.48vh + 160px);
+    }
+
+    .E_PageMenu__fixed-bottom.E_PageMenu__left {
+        bottom: calc(14.48vh + 160px);
+    }
+}
+
+.E_PageMenu--items {
+    z-index: 2;
+    position: relative;
+
+    width: 64px;
+    height: 128px;
+
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+
+    animation-duration: var(--default-transition-duration);
+    animation-timing-function: var(--default-transition-easing);
+    animation-fill-mode: forwards;
+}
+
+.E_PageMenu__visible.E_PageMenu__fixed-top .E_PageMenu--items,
+.E_PageMenu__fixed-top .E_PageMenu--items {
+    /*iOS fix*/
+    top: 0;
+    left: 0;
+
+    animation-name: PageMenu__top-active;
+}
+
+.E_PageMenu__visible.E_PageMenu__fixed-bottom .E_PageMenu--items,
+.E_PageMenu__fixed-bottom .E_PageMenu--items {
+    /*iOS fix*/
+    bottom: 0;
+    right: 0;
+
+    animation-name: PageMenu__bottom-active;
+}
+
+.E_PageMenu__hidden.E_PageMenu__fixed-top .E_PageMenu--items {
+    /*iOS fix*/
+    bottom: 0;
+    right: 0;
+
+    animation-name: PageMenu__bottom;
+}
+
+.E_PageMenu__hidden.E_PageMenu__fixed-bottom .E_PageMenu--items {
+    /*iOS fix*/
+    top: 0;
+    left: 0;
+
+    animation-name: PageMenu__top;
+}
+
+.E_PageMenu--item {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    max-width: 64px;
+    min-width: 64px;
+    width: 64px;
+    height: 64px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+
+    will-change: box-shadow, width, height, min-width, transform, z-index, min-height, max-width, max-height;
+    transition:
+        transform     0.3s linear 0.3s,
+        height        0.3s linear 0.3s,
+        min-width     0.3s linear 0.3s,
+        max-width     0.3s linear 0.3s,
+        width         0.3s linear 0.3s,
+        box-shadow    0.3s linear 0.3s,
+        z-index       0s   linear 0.6s;
+}
+
+.E_PageMenu__fixed-bottom .E_PageMenu--item {
+    top: auto;
+    bottom: 0;
+}
+
+.E_PageMenu--item:nth-of-type(1) {
+    transform: translateY(0px) translateX(0px);
+}
+
+.E_PageMenu--item:nth-of-type(2) {
+    transform: translateY(64px) translateX(0px);
+}
+
+.E_PageMenu__fixed-bottom .E_PageMenu--item:nth-of-type(1) {
+    transform: translateY(-64px) translateX(0px);
+}
+
+.E_PageMenu__fixed-bottom .E_PageMenu--item:nth-of-type(2) {
+    transform: translateY(0px) translateX(0px);
+}
+
+.E_PageMenu--item.E_PageMenu--item__show-content {
+    z-index: 5;
+
+    height: 100vh;
+    min-width: 320px;
+    max-width: 480px;
+    width: calc((61.88vw / 21) * 8);
+
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+
+    transform: translateX(0) translateY(-14.48vh);
+
+    transition:
+        transform  0.3s linear 0.15s,
+        height     0.3s linear 0.15s,
+        min-width  0.3s linear 0.15s,
+        max-width  0.3s linear 0.15s,
+        width      0.3s linear 0.15s,
+        box-shadow 0.3s linear 0.15s,
+        z-index    0s   linear 0.15s;
+}
+
+.E_PageMenu--item .E_PageMenu--content-wrapper {
+    height: 100vh;
+    min-width: 320px;
+    max-width: 480px;
+    width: calc((61.88vw / 21) * 8);
+    padding: 24px;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--item .E_PageMenu--content-wrapper {
+        padding-right: 32px;
+    }
+}
+
+.E_PageMenu__fixed-bottom .E_PageMenu--item.E_PageMenu--item__show-content {
+    transform: translateY(14.48vh);
+}
+
+/*---------------------------- BUTTON ----------------------------*/
+
+.E_PageMenu--button {
+    font-size: 12px;
+    line-height: 64px;
+    text-align: center;
+
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 64px;
+    height: 64px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+    border: none;
+    visibility: visible;
+    opacity: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition:
+        color      var(--default-transition-duration) var(--default-transition-easing) 0s,
+        background var(--default-transition-duration) var(--default-transition-easing) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+
+    cursor: default;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_PageMenu--button:hover {
+    color: #f5f5f5;
+    background-color: #404040;
+}
+
+.E_PageMenu--item__has-content .E_PageMenu--button:hover {
+    transition:
+        color      var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        background var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+}
+
+.E_PageMenu--item.E_PageMenu--item__show-content .E_PageMenu--button {
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        color      0.15s linear 0s,
+        background 0.15s linear 0s,
+        opacity    0.15s linear 0s,
+        visibility 0s    linear 0.15s;
+}
+
+.E_PageMenu--add-section__add,
+.E_PageMenu--add-section__cancel {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.E_PageMenu--add-section__cancel {
+    z-index: -1;
+
+    color: #fff;
+    background-color: #404040;
+    opacity: 0;
+
+    transition: var(--default-transition);
+}
+
+.E_PageMenu--add-section__active-cancel {
+    background-color: red;
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageMenu--item__adding-section .E_PageMenu--add-section__cancel {
+    z-index: 2;
+
+    opacity: 1;
+}
+
+/*---------------------------- CONTENT ----------------------------*/
+
+.E_PageMenu--content {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #fcfcfc;
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity    0.3s linear 0s,
+        visibility 0s   linear 0.3s;
+
+    overflow: hidden;
+}
+
+.E_PageMenu--item__show-content .E_PageMenu--content {
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity    0.3s linear 0.45s,
+        visibility 0s   linear 0.15s;
+}
+
+/*---------------------------- HIDE CONTENT ----------------------------*/
+
+.E_PageMenu--hide-content {
+    font-size: 23px;
+    text-align: center;
+    line-height: 24px;
+
+    z-index: 110;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    color: #404040;
+    background-color: transparent;
+    border: none;
+    opacity: 0.5;
+
+    transition: var(--default-transition);
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--hide-content {
+        font-size: 25px;
+        text-indent: 4px;
+
+        width: 32px;
+        height: 32px;
+        padding-bottom: 8px;
+    }
+}
+.E_PageMenu--hide-content:hover {
+    opacity: 1;
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageMenu--hide-content:active {
+    transform: scale(0.95);
+
+    transition: var(--default-transition-active);
+}
+
+/*---------------------------- RESIZER ----------------------------*/
+
+.E_PageMenu--resizer {
+    z-index: 100;
+    position: absolute;
+    top: 0px;
+    left: calc(100% - 2px);
+
+    width: 10px;
+    height: 100%;
+    min-height: 100%;
+
+    cursor: ew-resize;
+
+    display: none;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--resizer {
+        left: calc(100% - 8px);
+
+        width: 24px;
+    }
+}
+
+.E_PageMenu--resizer:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 2px;
+
+    width: 0px;
+    height: 100%;
+
+    border-right: 1px solid transparent;
+
+    cursor: ew-resize;
+
+    transition: var(--default-transition);
+
+    transform: translateZ(0);
+}
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--resizer:after {
+        left: 8px;
+    }
+}
+
+.E_PageMenu--resizer:hover:after {
+    border-right-color: red;
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageMenu--resizer__active:after,
+.E_PageMenu--resizer:active:after {
+    border-right-color: orange;
+
+    transition: var(--default-transition-active);
+}
+
+.E_PageMenu--item__show-content .E_PageMenu--resizer {
+    display: block;
+}
+
+/*---------------------------- POSITION SWITCHER ----------------------------*/
+
+.E_PageMenu--position-switcher {
+    position: absolute;
+
+    width: 64px;
+    height: 64px;
+
+    opacity: 0;
+
+    transition: var(--default-transition);
+
+    cursor: default;
+    pointer-events: none;
+
+	display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation-duration: var(--default-transition-duration);
+    animation-timing-function: var(--default-transition-easing);
+    animation-fill-mode: forwards;
+}
+
+.E_PageMenu--position-switcher__top {
+    top: -64px;
+    transform: translateY(6px);
+}
+
+.E_PageMenu--position-switcher__bottom {
+    bottom: -64px;
+    transform: translateY(-6px);
+}
+
+@media screen and (max-width: 479px) {
+
+    .E_PageMenu__left .E_PageMenu--position-switcher__bottom,
+    .E_PageMenu__right .E_PageMenu--position-switcher__top {
+        display: none;
+    }
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-bottom:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__top,
+.E_PageMenu__left.E_PageMenu__fixed-top:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__bottom,
+.E_PageMenu__fixed-bottom.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher__top,
+.E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher__bottom {
+    transform: translateY(0px);
+
+    opacity: 1;
+
+    pointer-events: all;
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-bottom:not(.E_PageMenu__css-fixed) .E_PageMenu--position-switcher__top {
+    animation-name: PageMenu__bottom;
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-top:not(.E_PageMenu__css-fixed) .E_PageMenu--position-switcher__bottom {
+    animation-name: PageMenu__top;
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-bottom:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__top {
+    animation-name: PageMenu__bottom-active;
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-top:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__bottom {
+    animation-name: PageMenu__top-active;
+}
+
+.E_PageMenu--position-switcher .icon {
+    text-align: center;
+    line-height: 32px;
+
+    width: 32px;
+    height: 32px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: inherit;
+}
+
+.E_PageMenu--position-switcher .icon:hover {
+    color: #fff;
+    background-color: #404040;
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageMenu.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher .icon {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.E_PageMenu__left:not(.E_PageMenu__css-fixed) .E_PageMenu--position-switcher .icon {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- CONTENT ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.E_PageMenu h2 {
+    font-size: 23px;
+
+    margin-bottom: 20px;
+}
+
+/*====================================================================*/
+/*---------------------------- ANIMATIONS ----------------------------*/
+/*====================================================================*/
+
+@keyframes PageMenu__top {
+    from {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        transform: translate(0px, 6px);
+        opacity: 0;
+    }
+}
+
+@keyframes PageMenu__top-active {
+    from {
+        transform: translate(0px, 6px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes PageMenu__bottom {
+    from {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        transform: translate(0px, -6px);
+        opacity: 0;
+    }
+}
+
+@keyframes PageMenu__bottom-active {
+    from {
+        transform: translate(0px, -6px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}

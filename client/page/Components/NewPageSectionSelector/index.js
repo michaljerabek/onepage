@@ -10,6 +10,7 @@ module.exports = Ractive.extend({
 
         sectionType: "E_NewPageSectionSelector--page-section-type",
         clone: "E_NewPageSectionSelector--clone",
+        cloneRemoved: "E_NewPageSectionSelector--clone__removed",
         inserted: "E_NewPageSectionSelector__inserted"
     },
 

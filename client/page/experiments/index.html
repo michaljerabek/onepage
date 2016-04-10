@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../../../public/css/page.css">
+    <link rel="stylesheet" href="../../css/settings.css">
+    <link rel="stylesheet" href="../page-menu.css">
+
+</head>
+<body>
+
+
+
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+
+    <script>
+
+        $.get("../page-menu.tpl", function (template) {
+
+            $("body").prepend(template);
+
+        });
+
+
+            $(document).on("click touchend", ".E_PageMenu--item__has-content:not([class*='show'])", function (e) {
+                e.preventDefault();
+                $(this).addClass("E_PageMenu--item__show-content");
+            });
+
+            $(document).on("click touchend", ".E_PageMenu--hide-content", function (e) {
+                e.preventDefault();
+                $(".E_PageMenu--item__show-content").removeClass("E_PageMenu--item__show-content");
+            });
+    </script>
+
+
+</body>
+</html>

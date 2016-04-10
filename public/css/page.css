@@ -56,7 +56,6 @@ html, body {
 
     max-width: 100%;
     min-height: 100%;
-    height: 100%;
     padding: 0;
 }
 
@@ -251,6 +250,1200 @@ body {
     transition: opacity 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
 }
 
+:root { /*ease-out*/
+}
+
+/*====================================================================*/
+/*----------------------------- PAGE MENU ----------------------------*/
+/*====================================================================*/
+
+.E_PageMenu {
+    z-index: 300;
+    position: fixed;
+    top: 14.48vh;
+
+    will-change: transform;
+    -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: -webkit-transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    -moz-transition: transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s, -moz-transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    -o-transition: transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s, -o-transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s, -webkit-transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s, -moz-transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s, -o-transform 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+}
+
+.E_PageMenu__hidden {
+    pointer-events: none;
+}
+
+.E_PageMenu__fixed-top {
+    top: 14.48vh;
+}
+
+.E_PageMenu__fixed-bottom {
+    top: auto;
+    bottom: 14.48vh;
+}
+
+.E_PageMenu__left {
+    z-index: 301;
+    left: 0;
+}
+
+.E_PageMenu__right {
+    right: 0;
+}
+
+@media screen and (max-width: 479px) {
+
+    .E_PageMenu__right {
+        right: auto;
+        left: 0;
+    }
+
+    .E_PageMenu__fixed-top.E_PageMenu__right {
+        top: -webkit-calc(14.48vh + 160px);
+        top: -moz-calc(14.48vh + 160px);
+        top: calc(14.48vh + 160px);
+    }
+
+    .E_PageMenu__fixed-bottom.E_PageMenu__left {
+        bottom: -webkit-calc(14.48vh + 160px);
+        bottom: -moz-calc(14.48vh + 160px);
+        bottom: calc(14.48vh + 160px);
+    }
+}
+
+.E_PageMenu--items {
+    z-index: 2;
+    position: relative;
+
+    width: 64px;
+    height: 128px;
+
+    -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+
+       -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+
+    -webkit-animation-duration: 0.3s;
+
+       -moz-animation-duration: 0.3s;
+
+         -o-animation-duration: 0.3s;
+
+            animation-duration: 0.3s;
+    -webkit-animation-timing-function: cubic-bezier(0.1, 0.4, 0.4, 1);
+       -moz-animation-timing-function: cubic-bezier(0.1, 0.4, 0.4, 1);
+         -o-animation-timing-function: cubic-bezier(0.1, 0.4, 0.4, 1);
+            animation-timing-function: cubic-bezier(0.1, 0.4, 0.4, 1);
+    -webkit-animation-fill-mode: forwards;
+       -moz-animation-fill-mode: forwards;
+         -o-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+
+.E_PageMenu__visible.E_PageMenu__fixed-top .E_PageMenu--items, .E_PageMenu__fixed-top .E_PageMenu--items {
+    /*iOS fix*/
+    top: 0;
+    left: 0;
+
+    -webkit-animation-name: PageMenu__top-active;
+
+       -moz-animation-name: PageMenu__top-active;
+
+         -o-animation-name: PageMenu__top-active;
+
+            animation-name: PageMenu__top-active;
+}
+
+.E_PageMenu__visible.E_PageMenu__fixed-bottom .E_PageMenu--items, .E_PageMenu__fixed-bottom .E_PageMenu--items {
+    /*iOS fix*/
+    bottom: 0;
+    right: 0;
+
+    -webkit-animation-name: PageMenu__bottom-active;
+
+       -moz-animation-name: PageMenu__bottom-active;
+
+         -o-animation-name: PageMenu__bottom-active;
+
+            animation-name: PageMenu__bottom-active;
+}
+
+.E_PageMenu__hidden.E_PageMenu__fixed-top .E_PageMenu--items {
+    /*iOS fix*/
+    bottom: 0;
+    right: 0;
+
+    -webkit-animation-name: PageMenu__bottom;
+
+       -moz-animation-name: PageMenu__bottom;
+
+         -o-animation-name: PageMenu__bottom;
+
+            animation-name: PageMenu__bottom;
+}
+
+.E_PageMenu__hidden.E_PageMenu__fixed-bottom .E_PageMenu--items {
+    /*iOS fix*/
+    top: 0;
+    left: 0;
+
+    -webkit-animation-name: PageMenu__top;
+
+       -moz-animation-name: PageMenu__top;
+
+         -o-animation-name: PageMenu__top;
+
+            animation-name: PageMenu__top;
+}
+
+.E_PageMenu--item {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    max-width: 64px;
+    min-width: 64px;
+    width: 64px;
+    height: 64px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+
+    will-change: box-shadow, width, height, min-width, transform, z-index, min-height, max-width, max-height;
+    -webkit-transition: height        0.3s linear 0.3s,
+        min-width     0.3s linear 0.3s,
+        max-width     0.3s linear 0.3s,
+        width         0.3s linear 0.3s,
+        z-index       0s   linear 0.6s,
+        -webkit-transform     0.3s linear 0.3s,
+        -webkit-box-shadow    0.3s linear 0.3s;
+    transition: height        0.3s linear 0.3s,
+        min-width     0.3s linear 0.3s,
+        max-width     0.3s linear 0.3s,
+        width         0.3s linear 0.3s,
+        z-index       0s   linear 0.6s,
+        -webkit-transform     0.3s linear 0.3s,
+        -webkit-box-shadow    0.3s linear 0.3s;
+    -moz-transition: transform     0.3s linear 0.3s,
+        height        0.3s linear 0.3s,
+        min-width     0.3s linear 0.3s,
+        max-width     0.3s linear 0.3s,
+        width         0.3s linear 0.3s,
+        box-shadow    0.3s linear 0.3s,
+        z-index       0s   linear 0.6s,
+        -moz-transform     0.3s linear 0.3s,
+        -moz-box-shadow    0.3s linear 0.3s;
+    -o-transition: transform     0.3s linear 0.3s,
+        height        0.3s linear 0.3s,
+        min-width     0.3s linear 0.3s,
+        max-width     0.3s linear 0.3s,
+        width         0.3s linear 0.3s,
+        box-shadow    0.3s linear 0.3s,
+        z-index       0s   linear 0.6s,
+        -o-transform     0.3s linear 0.3s;
+    transition: transform     0.3s linear 0.3s,
+        height        0.3s linear 0.3s,
+        min-width     0.3s linear 0.3s,
+        max-width     0.3s linear 0.3s,
+        width         0.3s linear 0.3s,
+        box-shadow    0.3s linear 0.3s,
+        z-index       0s   linear 0.6s;
+    transition:
+        transform     0.3s linear 0.3s,
+        height        0.3s linear 0.3s,
+        min-width     0.3s linear 0.3s,
+        max-width     0.3s linear 0.3s,
+        width         0.3s linear 0.3s,
+        box-shadow    0.3s linear 0.3s,
+        z-index       0s   linear 0.6s,
+        -webkit-transform     0.3s linear 0.3s,
+        -moz-transform     0.3s linear 0.3s,
+        -o-transform     0.3s linear 0.3s,
+        -webkit-box-shadow    0.3s linear 0.3s,
+        -moz-box-shadow    0.3s linear 0.3s;
+}
+
+.E_PageMenu__fixed-bottom .E_PageMenu--item {
+    top: auto;
+    bottom: 0;
+}
+
+.E_PageMenu--item:nth-of-type(1) {
+    -webkit-transform: translateY(0px) translateX(0px);
+       -moz-transform: translateY(0px) translateX(0px);
+        -ms-transform: translateY(0px) translateX(0px);
+         -o-transform: translateY(0px) translateX(0px);
+            transform: translateY(0px) translateX(0px);
+}
+
+.E_PageMenu--item:nth-of-type(2) {
+    -webkit-transform: translateY(64px) translateX(0px);
+       -moz-transform: translateY(64px) translateX(0px);
+        -ms-transform: translateY(64px) translateX(0px);
+         -o-transform: translateY(64px) translateX(0px);
+            transform: translateY(64px) translateX(0px);
+}
+
+.E_PageMenu__fixed-bottom .E_PageMenu--item:nth-of-type(1) {
+    -webkit-transform: translateY(-64px) translateX(0px);
+       -moz-transform: translateY(-64px) translateX(0px);
+        -ms-transform: translateY(-64px) translateX(0px);
+         -o-transform: translateY(-64px) translateX(0px);
+            transform: translateY(-64px) translateX(0px);
+}
+
+.E_PageMenu__fixed-bottom .E_PageMenu--item:nth-of-type(2) {
+    -webkit-transform: translateY(0px) translateX(0px);
+       -moz-transform: translateY(0px) translateX(0px);
+        -ms-transform: translateY(0px) translateX(0px);
+         -o-transform: translateY(0px) translateX(0px);
+            transform: translateY(0px) translateX(0px);
+}
+
+.E_PageMenu--item.E_PageMenu--item__show-content {
+    z-index: 5;
+
+    height: 100vh;
+    min-width: 320px;
+    max-width: 480px;
+    width: -webkit-calc((61.88vw / 21) * 8);
+    width: -moz-calc((61.88vw / 21) * 8);
+    width: calc((61.88vw / 21) * 8);
+
+    -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+
+       -moz-box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+
+    -webkit-transform: translateX(0) translateY(-14.48vh);
+
+       -moz-transform: translateX(0) translateY(-14.48vh);
+
+        -ms-transform: translateX(0) translateY(-14.48vh);
+
+         -o-transform: translateX(0) translateY(-14.48vh);
+
+            transform: translateX(0) translateY(-14.48vh);
+
+    -webkit-transition: height     0.3s linear 0.15s,
+        min-width  0.3s linear 0.15s,
+        max-width  0.3s linear 0.15s,
+        width      0.3s linear 0.15s,
+        z-index    0s   linear 0.15s,
+        -webkit-transform  0.3s linear 0.15s,
+        -webkit-box-shadow 0.3s linear 0.15s;
+
+    transition: height     0.3s linear 0.15s,
+        min-width  0.3s linear 0.15s,
+        max-width  0.3s linear 0.15s,
+        width      0.3s linear 0.15s,
+        z-index    0s   linear 0.15s,
+        -webkit-transform  0.3s linear 0.15s,
+        -webkit-box-shadow 0.3s linear 0.15s;
+
+    -moz-transition: transform  0.3s linear 0.15s,
+        height     0.3s linear 0.15s,
+        min-width  0.3s linear 0.15s,
+        max-width  0.3s linear 0.15s,
+        width      0.3s linear 0.15s,
+        box-shadow 0.3s linear 0.15s,
+        z-index    0s   linear 0.15s,
+        -moz-transform  0.3s linear 0.15s,
+        -moz-box-shadow 0.3s linear 0.15s;
+
+    -o-transition: transform  0.3s linear 0.15s,
+        height     0.3s linear 0.15s,
+        min-width  0.3s linear 0.15s,
+        max-width  0.3s linear 0.15s,
+        width      0.3s linear 0.15s,
+        box-shadow 0.3s linear 0.15s,
+        z-index    0s   linear 0.15s,
+        -o-transform  0.3s linear 0.15s;
+
+    transition: transform  0.3s linear 0.15s,
+        height     0.3s linear 0.15s,
+        min-width  0.3s linear 0.15s,
+        max-width  0.3s linear 0.15s,
+        width      0.3s linear 0.15s,
+        box-shadow 0.3s linear 0.15s,
+        z-index    0s   linear 0.15s;
+
+    transition:
+        transform  0.3s linear 0.15s,
+        height     0.3s linear 0.15s,
+        min-width  0.3s linear 0.15s,
+        max-width  0.3s linear 0.15s,
+        width      0.3s linear 0.15s,
+        box-shadow 0.3s linear 0.15s,
+        z-index    0s   linear 0.15s,
+        -webkit-transform  0.3s linear 0.15s,
+        -moz-transform  0.3s linear 0.15s,
+        -o-transform  0.3s linear 0.15s,
+        -webkit-box-shadow 0.3s linear 0.15s,
+        -moz-box-shadow 0.3s linear 0.15s;
+}
+
+.E_PageMenu--item .E_PageMenu--content-wrapper {
+    height: 100vh;
+    min-width: 320px;
+    max-width: 480px;
+    width: -webkit-calc((61.88vw / 21) * 8);
+    width: -moz-calc((61.88vw / 21) * 8);
+    width: calc((61.88vw / 21) * 8);
+    padding: 24px;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--item .E_PageMenu--content-wrapper {
+        padding-right: 32px;
+    }
+}
+
+.E_PageMenu__fixed-bottom .E_PageMenu--item.E_PageMenu--item__show-content {
+    -webkit-transform: translateY(14.48vh);
+       -moz-transform: translateY(14.48vh);
+        -ms-transform: translateY(14.48vh);
+         -o-transform: translateY(14.48vh);
+            transform: translateY(14.48vh);
+}
+
+/*---------------------------- BUTTON ----------------------------*/
+
+.E_PageMenu--button {
+    font-size: 12px;
+    line-height: 64px;
+    text-align: center;
+
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 64px;
+    height: 64px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+    border: none;
+    visibility: visible;
+    opacity: 1;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-transition: color      0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        background 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+
+    -moz-transition: color      0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        background 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+
+    -o-transition: color      0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        background 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+
+    transition: color      0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        background 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+
+    cursor: default;
+    -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_PageMenu--button:hover {
+    color: #f5f5f5;
+    background-color: #404040;
+}
+
+.E_PageMenu--item__has-content .E_PageMenu--button:hover {
+    -webkit-transition: color      0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+    -moz-transition: color      0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+    -o-transition: color      0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+    transition: color      0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s   linear 0.6s,
+        opacity    0.3s linear 0.6s;
+}
+
+.E_PageMenu--item.E_PageMenu--item__show-content .E_PageMenu--button {
+    opacity: 0;
+    visibility: hidden;
+
+    -webkit-transition: color      0.15s linear 0s,
+        background 0.15s linear 0s,
+        opacity    0.15s linear 0s,
+        visibility 0s    linear 0.15s;
+
+    -moz-transition: color      0.15s linear 0s,
+        background 0.15s linear 0s,
+        opacity    0.15s linear 0s,
+        visibility 0s    linear 0.15s;
+
+    -o-transition: color      0.15s linear 0s,
+        background 0.15s linear 0s,
+        opacity    0.15s linear 0s,
+        visibility 0s    linear 0.15s;
+
+    transition:
+        color      0.15s linear 0s,
+        background 0.15s linear 0s,
+        opacity    0.15s linear 0s,
+        visibility 0s    linear 0.15s;
+}
+
+.E_PageMenu--add-section__add, .E_PageMenu--add-section__cancel {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.E_PageMenu--add-section__cancel {
+    z-index: -1;
+
+    color: #fff;
+    background-color: #404040;
+    opacity: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.E_PageMenu--add-section__active-cancel {
+    background-color: red;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_PageMenu--item__adding-section .E_PageMenu--add-section__cancel {
+    z-index: 2;
+
+    opacity: 1;
+}
+
+/*---------------------------- CONTENT ----------------------------*/
+
+.E_PageMenu--content {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #fcfcfc;
+    opacity: 0;
+    visibility: hidden;
+
+    -webkit-transition: opacity    0.3s linear 0s,
+        visibility 0s   linear 0.3s;
+
+    -moz-transition: opacity    0.3s linear 0s,
+        visibility 0s   linear 0.3s;
+
+    -o-transition: opacity    0.3s linear 0s,
+        visibility 0s   linear 0.3s;
+
+    transition:
+        opacity    0.3s linear 0s,
+        visibility 0s   linear 0.3s;
+
+    overflow: hidden;
+}
+
+.E_PageMenu--item__show-content .E_PageMenu--content {
+    opacity: 1;
+    visibility: visible;
+
+    -webkit-transition: opacity    0.3s linear 0.45s,
+        visibility 0s   linear 0.15s;
+
+    -moz-transition: opacity    0.3s linear 0.45s,
+        visibility 0s   linear 0.15s;
+
+    -o-transition: opacity    0.3s linear 0.45s,
+        visibility 0s   linear 0.15s;
+
+    transition:
+        opacity    0.3s linear 0.45s,
+        visibility 0s   linear 0.15s;
+}
+
+/*---------------------------- HIDE CONTENT ----------------------------*/
+
+.E_PageMenu--hide-content {
+    font-size: 23px;
+    text-align: center;
+    line-height: 24px;
+
+    z-index: 110;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    color: #404040;
+    background-color: transparent;
+    border: none;
+    opacity: 0.5;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--hide-content {
+        font-size: 25px;
+        text-indent: 4px;
+
+        width: 32px;
+        height: 32px;
+        padding-bottom: 8px;
+    }
+}
+.E_PageMenu--hide-content:hover {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_PageMenu--hide-content:active {
+    -webkit-transform: scale(0.95);
+       -moz-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+         -o-transform: scale(0.95);
+            transform: scale(0.95);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+/*---------------------------- RESIZER ----------------------------*/
+
+.E_PageMenu--resizer {
+    z-index: 100;
+    position: absolute;
+    top: 0px;
+    left: -webkit-calc(100% - 2px);
+    left: -moz-calc(100% - 2px);
+    left: calc(100% - 2px);
+
+    width: 10px;
+    height: 100%;
+    min-height: 100%;
+
+    cursor: ew-resize;
+
+    display: none;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--resizer {
+        left: -webkit-calc(100% - 8px);
+        left: -moz-calc(100% - 8px);
+        left: calc(100% - 8px);
+
+        width: 24px;
+    }
+}
+
+.E_PageMenu--resizer:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 2px;
+
+    width: 0px;
+    height: 100%;
+
+    border-right: 1px solid transparent;
+
+    cursor: ew-resize;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+}
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--resizer:after {
+        left: 8px;
+    }
+}
+
+.E_PageMenu--resizer:hover:after {
+    border-right-color: red;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_PageMenu--resizer__active:after, .E_PageMenu--resizer:active:after {
+    border-right-color: orange;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.E_PageMenu--item__show-content .E_PageMenu--resizer {
+    display: block;
+}
+
+/*---------------------------- POSITION SWITCHER ----------------------------*/
+
+.E_PageMenu--position-switcher {
+    position: absolute;
+
+    width: 64px;
+    height: 64px;
+
+    opacity: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    cursor: default;
+    pointer-events: none;
+
+	display: -webkit-box;
+
+	display: -webkit-flex;
+
+	display: -moz-box;
+
+	display: -ms-flexbox;
+
+	display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-animation-duration: 0.3s;
+
+       -moz-animation-duration: 0.3s;
+
+         -o-animation-duration: 0.3s;
+
+            animation-duration: 0.3s;
+    -webkit-animation-timing-function: cubic-bezier(0.1, 0.4, 0.4, 1);
+       -moz-animation-timing-function: cubic-bezier(0.1, 0.4, 0.4, 1);
+         -o-animation-timing-function: cubic-bezier(0.1, 0.4, 0.4, 1);
+            animation-timing-function: cubic-bezier(0.1, 0.4, 0.4, 1);
+    -webkit-animation-fill-mode: forwards;
+       -moz-animation-fill-mode: forwards;
+         -o-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+
+.E_PageMenu--position-switcher__top {
+    top: -64px;
+    -webkit-transform: translateY(6px);
+       -moz-transform: translateY(6px);
+        -ms-transform: translateY(6px);
+         -o-transform: translateY(6px);
+            transform: translateY(6px);
+}
+
+.E_PageMenu--position-switcher__bottom {
+    bottom: -64px;
+    -webkit-transform: translateY(-6px);
+       -moz-transform: translateY(-6px);
+        -ms-transform: translateY(-6px);
+         -o-transform: translateY(-6px);
+            transform: translateY(-6px);
+}
+
+@media screen and (max-width: 479px) {
+
+    .E_PageMenu__left .E_PageMenu--position-switcher__bottom, .E_PageMenu__right .E_PageMenu--position-switcher__top {
+        display: none;
+    }
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-bottom:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__top, .E_PageMenu__left.E_PageMenu__fixed-top:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__bottom, .E_PageMenu__fixed-bottom.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher__top, .E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher__bottom {
+    -webkit-transform: translateY(0px);
+       -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+         -o-transform: translateY(0px);
+            transform: translateY(0px);
+
+    opacity: 1;
+
+    pointer-events: all;
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-bottom:not(.E_PageMenu__css-fixed) .E_PageMenu--position-switcher__top {
+    -webkit-animation-name: PageMenu__bottom;
+       -moz-animation-name: PageMenu__bottom;
+         -o-animation-name: PageMenu__bottom;
+            animation-name: PageMenu__bottom;
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-top:not(.E_PageMenu__css-fixed) .E_PageMenu--position-switcher__bottom {
+    -webkit-animation-name: PageMenu__top;
+       -moz-animation-name: PageMenu__top;
+         -o-animation-name: PageMenu__top;
+            animation-name: PageMenu__top;
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-bottom:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__top {
+    -webkit-animation-name: PageMenu__bottom-active;
+       -moz-animation-name: PageMenu__bottom-active;
+         -o-animation-name: PageMenu__bottom-active;
+            animation-name: PageMenu__bottom-active;
+}
+
+.E_PageMenu__left.E_PageMenu__fixed-top:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__bottom {
+    -webkit-animation-name: PageMenu__top-active;
+       -moz-animation-name: PageMenu__top-active;
+         -o-animation-name: PageMenu__top-active;
+            animation-name: PageMenu__top-active;
+}
+
+.E_PageMenu--position-switcher .icon {
+    text-align: center;
+    line-height: 32px;
+
+    width: 32px;
+    height: 32px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-transition: inherit;
+
+    -moz-transition: inherit;
+
+    -o-transition: inherit;
+
+    transition: inherit;
+}
+
+.E_PageMenu--position-switcher .icon:hover {
+    color: #fff;
+    background-color: #404040;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_PageMenu.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher .icon {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.E_PageMenu__left:not(.E_PageMenu__css-fixed) .E_PageMenu--position-switcher .icon {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- CONTENT ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.E_PageMenu h2 {
+    font-size: 23px;
+
+    margin-bottom: 20px;
+}
+
+/*====================================================================*/
+/*---------------------------- ANIMATIONS ----------------------------*/
+/*====================================================================*/
+
+@-webkit-keyframes PageMenu__top {
+    from {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(0px, 6px);
+                transform: translate(0px, 6px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes PageMenu__top {
+    from {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(0px, 6px);
+             transform: translate(0px, 6px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes PageMenu__top {
+    from {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(0px, 6px);
+           transform: translate(0px, 6px);
+        opacity: 0;
+    }
+}
+
+@keyframes PageMenu__top {
+    from {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(0px, 6px);
+           -moz-transform: translate(0px, 6px);
+             -o-transform: translate(0px, 6px);
+                transform: translate(0px, 6px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes PageMenu__top-active {
+    from {
+        -webkit-transform: translate(0px, 6px);
+                transform: translate(0px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes PageMenu__top-active {
+    from {
+        -moz-transform: translate(0px, 6px);
+             transform: translate(0px, 6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-o-keyframes PageMenu__top-active {
+    from {
+        -o-transform: translate(0px, 6px);
+           transform: translate(0px, 6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes PageMenu__top-active {
+    from {
+        -webkit-transform: translate(0px, 6px);
+           -moz-transform: translate(0px, 6px);
+             -o-transform: translate(0px, 6px);
+                transform: translate(0px, 6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes PageMenu__bottom {
+    from {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(0px, -6px);
+                transform: translate(0px, -6px);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes PageMenu__bottom {
+    from {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -moz-transform: translate(0px, -6px);
+             transform: translate(0px, -6px);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes PageMenu__bottom {
+    from {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -o-transform: translate(0px, -6px);
+           transform: translate(0px, -6px);
+        opacity: 0;
+    }
+}
+
+@keyframes PageMenu__bottom {
+    from {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: translate(0px, -6px);
+           -moz-transform: translate(0px, -6px);
+             -o-transform: translate(0px, -6px);
+                transform: translate(0px, -6px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes PageMenu__bottom-active {
+    from {
+        -webkit-transform: translate(0px, -6px);
+                transform: translate(0px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes PageMenu__bottom-active {
+    from {
+        -moz-transform: translate(0px, -6px);
+             transform: translate(0px, -6px);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(0px, 0px);
+             transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-o-keyframes PageMenu__bottom-active {
+    from {
+        -o-transform: translate(0px, -6px);
+           transform: translate(0px, -6px);
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(0px, 0px);
+           transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes PageMenu__bottom-active {
+    from {
+        -webkit-transform: translate(0px, -6px);
+           -moz-transform: translate(0px, -6px);
+             -o-transform: translate(0px, -6px);
+                transform: translate(0px, -6px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+           -moz-transform: translate(0px, 0px);
+             -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
 .medium-editor-toolbar *:not(input)  {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -312,31 +1505,31 @@ body {
     will-change: opacity, top, left, transform;
     -webkit-transition: z-index    0s   linear                       0.3s,
         visibility 0s   linear                       0.3s,
-        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        opacity    0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
     transition: z-index    0s   linear                       0.3s,
         visibility 0s   linear                       0.3s,
-        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        opacity    0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
     -moz-transition: transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         z-index    0s   linear                       0.3s,
         visibility 0s   linear                       0.3s,
-        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        opacity    0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
     -o-transition: transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         z-index    0s   linear                       0.3s,
         visibility 0s   linear                       0.3s,
-        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        opacity    0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
     transition: transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         z-index    0s   linear                       0.3s,
         visibility 0s   linear                       0.3s,
-        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        opacity    0.3s cubic-bezier(.1, .4, .4, 1)  0s;
     transition:
         transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         z-index    0s   linear                       0.3s,
         visibility 0s   linear                       0.3s,
-        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        opacity    0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
@@ -364,53 +1557,53 @@ body {
     opacity: 1;
 
     visibility: visible;
-    -webkit-transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+    -webkit-transition: top        0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        left       0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        bottom     0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        right      0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         z-index    0s   linear                       0s,
         visibility 0s   linear                       0s,
         opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
         -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
-    transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+    transition: top        0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        left       0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        bottom     0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        right      0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         z-index    0s   linear                       0s,
         visibility 0s   linear                       0s,
         opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
         -webkit-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
-    -moz-transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+    -moz-transition: top        0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        left       0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        bottom     0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        right      0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         z-index    0s   linear                       0s,
         visibility 0s   linear                       0s,
         transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
         -moz-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
-    -o-transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+    -o-transition: top        0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        left       0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        bottom     0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        right      0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         z-index    0s   linear                       0s,
         visibility 0s   linear                       0s,
         transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s,
         -o-transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s;
-    transition: top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+    transition: top        0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        left       0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        bottom     0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        right      0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         z-index    0s   linear                       0s,
         visibility 0s   linear                       0s,
         transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         opacity    0.1s cubic-bezier(.8, .4, .2, .8) 0s;
     transition:
-        top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        top        0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        left       0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        bottom     0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        right      0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         z-index    0s   linear                       0s,
         visibility 0s   linear                       0s,
         transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
@@ -466,10 +1659,10 @@ body {
        -moz-animation-fill-mode: forwards;
          -o-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
-    -webkit-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
-       -moz-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
-         -o-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
-            animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+    -webkit-animation-timing-function: cubic-bezier(.1, .4, .4, 1);
+       -moz-animation-timing-function: cubic-bezier(.1, .4, .4, 1);
+         -o-animation-timing-function: cubic-bezier(.1, .4, .4, 1);
+            animation-timing-function: cubic-bezier(.1, .4, .4, 1);
 }
 
 .medium-editor-toolbar-active.medium-editor-stalker-toolbar {
@@ -869,28 +2062,28 @@ body {
     cursor: pointer;
 
     will-change: opacity, box-shadow, background-color, color;
-    -webkit-transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
-    transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
-    -moz-transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
-    -o-transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
-    transition: color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+    -webkit-transition: color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
+    transition: color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
+    -moz-transition: color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
+    -o-transition: color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
+    transition: color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
     transition:
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 }
 
 .medium-editor-toolbar li button:hover {
@@ -959,76 +2152,76 @@ body {
     opacity: 0;
 
     -webkit-transition: opacity          0.2s linear                       0s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     transition: opacity          0.2s linear                       0s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     -moz-transition: opacity          0.2s linear                       0s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     -o-transition: opacity          0.2s linear                       0s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     transition: opacity          0.2s linear                       0s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     transition:
         opacity          0.2s linear                       0s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 }
 
 .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:after, .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button {
     opacity: 1;
 
     -webkit-transition: opacity          0.2s linear                       0.6s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     transition: opacity          0.2s linear                       0.6s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     -moz-transition: opacity          0.2s linear                       0.6s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     -o-transition: opacity          0.2s linear                       0.6s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     transition: opacity          0.2s linear                       0.6s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 
     transition:
         opacity          0.2s linear                       0.6s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -webkit-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        -moz-box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -webkit-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 }
 
 .medium-editor-toolbar li button:not(:disabled):hover {
@@ -1381,10 +2574,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-animation-fill-mode: forwards;
          -o-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
-    -webkit-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
-       -moz-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
-         -o-animation-timing-function: cubic-bezier(.05, .4, .4, 1);
-            animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+    -webkit-animation-timing-function: cubic-bezier(.1, .4, .4, 1);
+       -moz-animation-timing-function: cubic-bezier(.1, .4, .4, 1);
+         -o-animation-timing-function: cubic-bezier(.1, .4, .4, 1);
+            animation-timing-function: cubic-bezier(.1, .4, .4, 1);
 }
 
 .medium-editor-use-touch.medium-editor-toolbar-active ul {
@@ -3317,10 +4510,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-transition-duration: 0.1s;
          -o-transition-duration: 0.1s;
             transition-duration: 0.1s;
-    -webkit-transition-timing-function: ease-out;
-       -moz-transition-timing-function: ease-out;
-         -o-transition-timing-function: ease-out;
-            transition-timing-function: ease-out;
+    -webkit-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+       -moz-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+         -o-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+            transition-timing-function: cubic-bezier(0, 0, .58, 1);
 
     overflow: hidden;
 }
@@ -3366,10 +4559,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .P_PageSection--fake-placeholder:after {
-    -webkit-animation: P_PageSection--fake-placeholder-outline-text 0.35s ease-out forwards;
-       -moz-animation: P_PageSection--fake-placeholder-outline-text 0.35s ease-out forwards;
-         -o-animation: P_PageSection--fake-placeholder-outline-text 0.35s ease-out forwards;
-            animation: P_PageSection--fake-placeholder-outline-text 0.35s ease-out forwards;
+    -webkit-animation: P_PageSection--fake-placeholder-outline-text 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+       -moz-animation: P_PageSection--fake-placeholder-outline-text 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+         -o-animation: P_PageSection--fake-placeholder-outline-text 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+            animation: P_PageSection--fake-placeholder-outline-text 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 }
 
 @-webkit-keyframes P_PageSection--fake-placeholder-outline-text {
@@ -3436,10 +4629,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-transition-duration: 0.35s;
          -o-transition-duration: 0.35s;
             transition-duration: 0.35s;
-    -webkit-transition-timing-function: ease-out;
-       -moz-transition-timing-function: ease-out;
-         -o-transition-timing-function: ease-out;
-            transition-timing-function: ease-out;
+    -webkit-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+       -moz-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+         -o-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+            transition-timing-function: cubic-bezier(0, 0, .58, 1);
 }
 
 .P_PageSection--fake-placeholder:after, .P_PageSection--fake-placeholder:before, .P_PageSection--fake-placeholder {
@@ -3462,69 +4655,17 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-transition-duration: 0.35s;
          -o-transition-duration: 0.35s;
             transition-duration: 0.35s;
-    -webkit-transition-timing-function: ease-out;
-       -moz-transition-timing-function: ease-out;
-         -o-transition-timing-function: ease-out;
-            transition-timing-function: ease-out;
+    -webkit-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+       -moz-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+         -o-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+            transition-timing-function: cubic-bezier(0, 0, .58, 1);
 
     overflow: hidden;
 }
+
 .E_GlobalPageSettings {
-    z-index: 110;
-    position: fixed;
-    bottom: -webkit-calc(-100% + 20px);
-    bottom: -moz-calc(-100% + 20px);
-    bottom: calc(-100% + 20px);
-    left: 0px;
-
-    padding: 20px;
-    width: 300px;
-    height: 100%;
-
-    background-color: #ddd;
-
-    -webkit-transition: all 0.3s ease-in-out 0s;
-
-    -moz-transition: all 0.3s ease-in-out 0s;
-
-    -o-transition: all 0.3s ease-in-out 0s;
-
-    transition: all 0.3s ease-in-out 0s;
 }
-
-.E_GlobalPageSettings:hover {
-    bottom: 0%;
-}
-
 .E_NewPageSectionSelector {
-    z-index: 110;
-    position: fixed;
-    top: -webkit-calc(-100% + 20px);
-    top: -moz-calc(-100% + 20px);
-    top: calc(-100% + 20px);
-    left: 0px;
-
-    padding: 20px;
-    width: 300px;
-    height: 100%;
-
-    background-color: #ddd;
-
-    -webkit-transition: all 0.3s ease-in-out 0s;
-
-    -moz-transition: all 0.3s ease-in-out 0s;
-
-    -o-transition: all 0.3s ease-in-out 0s;
-
-    transition: all 0.3s ease-in-out 0s;
-}
-
-[class*='E_NewPageSection'] {
-    will-change: transform, opacity, width, height;
-}
-
-.E_NewPageSectionSelector:hover {
-    top: 0%;
 }
 
 .E_NewPageSectionSelector--page-section-types {
@@ -3552,16 +4693,45 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     font-size: 23px;
 
     margin-bottom: 20px;
+    position: relative;
 
-	width: -webkit-calc(50% - 10px);
+    -webkit-flex-shrink: 1;
 
-	width: -moz-calc(50% - 10px);
+        -ms-flex-negative: 1;
 
-	width: calc(50% - 10px);
-    height: 105px;
+            flex-shrink: 1;
+	-webkit-flex-basis: -webkit-calc(50% - 10px);
+	    -ms-flex-preferred-size: calc(50% - 10px);
+	        flex-basis: -moz-calc(50% - 10px);
+	        flex-basis: calc(50% - 10px);
+}
+
+.E_NewPageSectionSelector--page-section-type .type {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+
+    background-color: #404040;
+}
+
+.P_sortable-sections .E_NewPageSectionSelector--page-section-type {
+    margin-bottom: 0;
+}
+
+.P_sortable-sections .E_NewPageSectionSelector--page-section-type .type {
+    height: 100%;
+    padding-bottom: 0;
+}
+
+.E_NewPageSectionSelector--page-section-type .text {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
 
     color: #fff;
-    background-color: #404040;
 
     display: -webkit-box;
 
@@ -3585,7 +4755,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_NewPageSectionSelector--clone {
-    z-index: 120;
+    z-index: 320;
 
     -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 
@@ -3600,6 +4770,21 @@ ium-editor-toolbar li button:disabled:not(:hover) {
          -o-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
 
             animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+}
+
+body > .E_NewPageSectionSelector--clone .type {
+    opacity: 0.75;
+}
+
+.E_NewPageSectionSelector--clone__removed {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
 }
 
 @-webkit-keyframes E_NewPageSectionSelector--clone-shadow {
@@ -3933,24 +5118,24 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     width: 100%;
 
-    -webkit-transition: height 0.35s ease-out 0s,
+    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
         z-index 0s linear 0.3s;
 
-    -moz-transition: height 0.35s ease-out 0s,
+    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
         z-index 0s linear 0.3s;
 
-    -o-transition: height 0.35s ease-out 0s,
+    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
         z-index 0s linear 0.3s;
 
-    transition: height 0.35s ease-out 0s,
+    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
         z-index 0s linear 0.3s;
 }
 
 .P_PageSection:hover, .P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
-    -webkit-transition: height 0.35s ease-out 0s;
-    -moz-transition: height 0.35s ease-out 0s;
-    -o-transition: height 0.35s ease-out 0s;
-    transition: height 0.35s ease-out 0s;
+    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
 }
 
 .P_PageSection:hover {
@@ -3987,27 +5172,27 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
 
-    -webkit-animation: PageSection--sort-shadow__removed 0.35s ease-out forwards;
+    -webkit-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 
-       -moz-animation: PageSection--sort-shadow__removed 0.35s ease-out forwards;
+       -moz-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 
-         -o-animation: PageSection--sort-shadow__removed 0.35s ease-out forwards;
+         -o-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 
-            animation: PageSection--sort-shadow__removed 0.35s ease-out forwards;
+            animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 }
 
 .P_PageSection__dragged {
-    -webkit-animation: PageSection--sort-shadow__dragged 0.35s ease-out forwards;
-       -moz-animation: PageSection--sort-shadow__dragged 0.35s ease-out forwards;
-         -o-animation: PageSection--sort-shadow__dragged 0.35s ease-out forwards;
-            animation: PageSection--sort-shadow__dragged 0.35s ease-out forwards;
+    -webkit-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+       -moz-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+         -o-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+            animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 }
 
 .P_PageSection__placed:not(.P_PageSection__new) {
-    -webkit-animation: PageSection--sort-shadow__placed 0.35s ease-out forwards reverse;
-       -moz-animation: PageSection--sort-shadow__placed 0.35s ease-out forwards reverse;
-         -o-animation: PageSection--sort-shadow__placed 0.35s ease-out forwards reverse;
-            animation: PageSection--sort-shadow__placed 0.35s ease-out forwards reverse;
+    -webkit-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+       -moz-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+         -o-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+            animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
 }
 
 .P_PageSection__new:not(.P_PageSection__inserted-by-tap) {
@@ -4015,13 +5200,13 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
 
-    -webkit-animation: PageSection--sort-shadow__new 0.35s ease-out forwards;
+    -webkit-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 
-       -moz-animation: PageSection--sort-shadow__new 0.35s ease-out forwards;
+       -moz-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 
-         -o-animation: PageSection--sort-shadow__new 0.35s ease-out forwards;
+         -o-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 
-            animation: PageSection--sort-shadow__new 0.35s ease-out forwards;
+            animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
 }
 
 @-webkit-keyframes PageSection--sort-shadow__dragged {
@@ -4146,10 +5331,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-transition-duration: 0.35s;
          -o-transition-duration: 0.35s;
             transition-duration: 0.35s;
-    -webkit-transition-timing-function: ease-out;
-       -moz-transition-timing-function: ease-out;
-         -o-transition-timing-function: ease-out;
-            transition-timing-function: ease-out;
+    -webkit-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+       -moz-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+         -o-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+            transition-timing-function: cubic-bezier(0, 0, .58, 1);
 }
 
 .E .P_PageSection__dragged:after {
@@ -4694,13 +5879,13 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     opacity: 1;
 
-    -webkit-transition: opacity 0.35s ease-out 0s;
+    -webkit-transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
 
-    -moz-transition: opacity 0.35s ease-out 0s;
+    -moz-transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
 
-    -o-transition: opacity 0.35s ease-out 0s;
+    -o-transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
 
-    transition: opacity 0.35s ease-out 0s;
+    transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
 }
 
 .E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user), .E .P_PageSection__dragged .E_PageSectionEditUI, .E .P_PageSection__removed .E_PageSectionEditUI, .E .P_PageSection__placed:not(.P_PageSection__new) .E_PageSectionEditUI, .E_PageSectionEditUI__hover, .E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user) ~ .P_PageSection--content:before, .E .P_PageSection__dragged .P_PageSection--content:before, .E .P_PageSection__removed .P_PageSection--content:before, .E .P_PageSection__placed:not(.P_PageSection__new) .P_PageSection--content:before, .E_PageSectionEditUI__hover ~ .P_PageSection--content:before {

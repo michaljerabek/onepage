@@ -1,24 +1,4 @@
 .E_NewPageSectionSelector {
-    z-index: 110;
-    position: fixed;
-    top: calc(-100% + 20px);
-    left: 0px;
-
-    padding: 20px;
-    width: 300px;
-    height: 100%;
-
-    background-color: #ddd;
-
-    transition: all 0.3s ease-in-out 0s;
-}
-
-[class*='E_NewPageSection'] {
-    will-change: transform, opacity, width, height;
-}
-
-.E_NewPageSectionSelector:hover {
-    top: 0%;
 }
 
 .E_NewPageSectionSelector--page-section-types {
@@ -32,12 +12,38 @@
     font-size: 23px;
 
     margin-bottom: 20px;
+    position: relative;
 
-	width: calc(50% - 10px);
-    height: 105px;
+    flex-shrink: 1;
+	flex-basis: calc(50% - 10px);
+}
+
+.E_NewPageSectionSelector--page-section-type .type {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+
+    background-color: #404040;
+}
+
+.P_sortable-sections .E_NewPageSectionSelector--page-section-type {
+    margin-bottom: 0;
+}
+
+.P_sortable-sections .E_NewPageSectionSelector--page-section-type .type {
+    height: 100%;
+    padding-bottom: 0;
+}
+
+.E_NewPageSectionSelector--page-section-type .text {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
 
     color: #fff;
-    background-color: #404040;
 
     display: flex;
     justify-content: center;
@@ -45,11 +51,20 @@
 }
 
 .E_NewPageSectionSelector--clone {
-    z-index: 120;
+    z-index: 320;
 
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 
     animation: E_NewPageSectionSelector--clone-shadow var(--default-transition-duration-hover) var(--default-transition-easing-hover) forwards;
+    transition: opacity var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s;
+}
+
+body > .E_NewPageSectionSelector--clone .type {
+    opacity: 0.75;
+}
+
+.E_NewPageSectionSelector--clone__removed {
+    transition: none;
 }
 
 @keyframes E_NewPageSectionSelector--clone-shadow {

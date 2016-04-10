@@ -99,6 +99,11 @@
                 }
             });
 
+            if (this.fixedElement) {
+
+                this.fixedElement.destroy();
+            }
+
             return original;
         };
 

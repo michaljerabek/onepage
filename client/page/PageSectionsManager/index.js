@@ -10,8 +10,8 @@ module.exports = (function () {
             DRAGGED_SECTION_HEIGHT: 48,
             SECTION_SPEED: "0.35s",
             SECTION_SPEED_JQ: 350,
-            SECTION_EASING: "ease-out",
-            SECTION_EASING_JQ: "easeOutSine"
+            SECTION_EASING: "cubic-bezier(0, 0, .58, 1)",
+            SECTION_EASING_JQ: $.bez([0, 0, 0.58, 1])
         },
 
         CLASS = {
@@ -240,6 +240,8 @@ module.exports = (function () {
             //nová sekce (zástupce) přetažena zpět do stránky -> zvětšit placeholder
             if (!ui.item.data("inSortable.PageSectionsManager")) {
 
+                page.set("cancelAddSection", false);
+
                 $placeholder.css({
                     height: 0,
 
@@ -300,6 +302,7 @@ module.exports = (function () {
         onSortableStop = function (e, ui) {
 
             page.set("sortableActive", "");
+            page.set("draggableActive", false);
 
             //Placeholder pro transitions je potřeba vložit za "umisťovací" placehloder,
             //protože ho bude potřeba na chvíli zobrazit při umístění sekce
@@ -572,6 +575,7 @@ module.exports = (function () {
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
 
                 page.set("sortableActive", CLASS.Page.sortableActive);
+                page.set("draggableActive", true);
 
                 //přesunutí klonu do "<body />", protože pozice klonu není přesně na klonovaném elemenu
                 //a je posunut daleko od šipky
@@ -589,6 +593,12 @@ module.exports = (function () {
             }
         },
 
+        onDraggableStop = function () {
+
+            page.set("sortableActive", "");
+            page.set("draggableActive", false);
+        },
+
         onDroppableOver = function (e, ui) {
 
             //zmenší placeholder na nulu, když uživatel přetáhne sekci zpět do výběru ("koše")
@@ -600,6 +610,8 @@ module.exports = (function () {
                     display: "block",
                     transition: ""
                 });
+
+                page.set("cancelAddSection", true);
             }
 
             //události "out" a "over" se spouští příliš často -> zajištění, aby se vše provedlo jen jednou
@@ -609,15 +621,19 @@ module.exports = (function () {
         onDroppableDrop = function (e, ui) {
 
             page.set("sortableActive", "");
+            page.set("draggableActive", false);
+            page.set("cancelAddSection", false);
 
             //vytvoření klonu kvůli animaci, protože přetahovaný element zmizí
             var $clone = ui.helper.clone();
 
             $body.append($clone);
 
-            $clone.fadeOut(OPTIONS.SECTION_SPEED_JQ, function () {
-                $clone.remove();
-            });
+            $clone
+                .addClass(CLASS.NewPageSectionSelector.cloneRemoved)
+                .fadeOut(OPTIONS.SECTION_SPEED_JQ, function () {
+                    $clone.remove();
+                });
 
             $placeholderTransitions.remove();
 
@@ -627,7 +643,7 @@ module.exports = (function () {
 
         init = function () {
 
-            $droppable = $("." + CLASS.NewPageSectionSelector.self + ", ." + CLASS.PageSection.parentOfNonSortable).droppable({
+            $droppable = $("." + CLASS.Page.PageMenu.self + ", ." + CLASS.PageSection.parentOfNonSortable).droppable({
                 accept: ".___XXX",
 
                 alwaysShowPlaceholder: true
@@ -638,7 +654,7 @@ module.exports = (function () {
                 .on("droppable:drop", onDroppableDrop);
 
             $draggable = $("." + CLASS.NewPageSectionSelector.sectionType).draggable({
-                connectWith: "." + CLASS.PageSection.parentOfSortable + ", ." + CLASS.NewPageSectionSelector.self + ", ." + CLASS.PageSection.parentOfNonSortable,
+                connectWith: "." + CLASS.PageSection.parentOfSortable + ", ." + CLASS.Page.PageMenu.self + ", ." + CLASS.PageSection.parentOfNonSortable,
                 placeholder: CLASS.PageSection.placeholder,
                 cloneClass: CLASS.NewPageSectionSelector.clone,
 
@@ -647,7 +663,11 @@ module.exports = (function () {
             });
 
             $draggable
-                .on("draggable:start", onDraggableStart);
+                .on("draggable:start", onDraggableStart)
+                .on("draggable:stop", onDraggableStop)
+                .on("touchstart.PageSectionManager", function (e) {
+                    e.stopPropagation();
+                });
 
             $sortable = $("." + CLASS.PageSection.parentOfSortable).sortable({
                 items: "." + CLASS.PageSection.self,
@@ -684,7 +704,9 @@ module.exports = (function () {
 
             if ($draggable) {
 
-                $draggable.draggable("destroy");
+                $draggable
+                    .draggable("destroy")
+                    .off("touchstart.PageSectionManager");
             }
 
             if ($droppable) {
