@@ -10,12 +10,13 @@ module.exports = (function () {
             DRAGGED_SECTION_HEIGHT: 48,
             SECTION_SPEED: "0.35s",
             SECTION_SPEED_JQ: 350,
-            SECTION_EASING: "ease-out",
-            SECTION_EASING_JQ: "easeOutSine"
+            SECTION_EASING: "cubic-bezier(0, 0, .58, 1)",
+            SECTION_EASING_JQ: $.bez([0, 0, 0.58, 1])
         },
 
         CLASS = {
-            fakePlaceholder: "P_PageSection--fake-placeholder"
+            fakePlaceholder: "P_PageSection--fake-placeholder",
+            cursorGrabbing: "cursor-grabbing"
         },
 
         page,
@@ -164,6 +165,23 @@ module.exports = (function () {
                 });
         },
 
+        getIndexFor = function ($section) {
+            
+            var index = -1;
+            
+            $("." + CLASS.PageSection.self).each(function (i, section) {
+
+                if (section === $section[0]) {
+
+                    index = i;
+
+                    return false;
+                }
+            });
+            console.log(index);
+            return index;
+        },
+        
         onSortableActivate = function (e, ui) {
 
             page.set("sortableActive", CLASS.Page.sortableActive);
@@ -192,12 +210,15 @@ module.exports = (function () {
                     //vypnutí transition kvůli iOS
                     transition: "none"
                 })
+                .data("index.PageSectionManager", getIndexFor(ui.item))
                 .addClass(CLASS.PageSection.draggedSection)
                 .after($placeholderTransitions);
 
             $fakePlaceholder.remove();
 
             EventEmitter.trigger("sortPageSection.PageSectionManager");
+
+            $body.addClass(CLASS.cursorGrabbing);
         },
 
         onSortableStart = function (e, ui) {
@@ -239,6 +260,8 @@ module.exports = (function () {
 
             //nová sekce (zástupce) přetažena zpět do stránky -> zvětšit placeholder
             if (!ui.item.data("inSortable.PageSectionsManager")) {
+
+                page.set("cancelAddSection", false);
 
                 $placeholder.css({
                     height: 0,
@@ -294,12 +317,14 @@ module.exports = (function () {
             }
 
             ui.item.data("positionChanged.PageSectionsManager", true);
-
         },
 
         onSortableStop = function (e, ui) {
 
+            $body.removeClass(CLASS.cursorGrabbing);
+
             page.set("sortableActive", "");
+            page.set("draggableActive", false);
 
             //Placeholder pro transitions je potřeba vložit za "umisťovací" placehloder,
             //protože ho bude potřeba na chvíli zobrazit při umístění sekce
@@ -511,7 +536,15 @@ module.exports = (function () {
                 .offset(placeholderOffset);
 
             requestAnimationFrame(function() {
-
+                
+                //nastavit neuložené změny, pokud se změnila pozice (pořadí v poli se nemění -> nelze použít observer)
+                if (ui.item.data("index.PageSectionManager") !== getIndexFor(ui.item)) {
+                    
+                    page.set("unsavedChanges", true);
+                }
+                
+                ui.item.data("index.PageSectionManager", null);
+                
                 //Placeholder pro transitions se zmenší na nulu a vrátí se zpět transition.
                 //Protože sekce je již vložena a má velikost jako placeholder.
                 requestAnimationFrame(function() {
@@ -572,12 +605,15 @@ module.exports = (function () {
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
 
                 page.set("sortableActive", CLASS.Page.sortableActive);
+                page.set("draggableActive", true);
 
                 //přesunutí klonu do "<body />", protože pozice klonu není přesně na klonovaném elemenu
                 //a je posunut daleko od šipky
                 var $clone = ui.item.siblings("." + CLASS.NewPageSectionSelector.clone);
 
-                $body.append($clone);
+                $body
+                    .append($clone)
+                    .addClass(CLASS.cursorGrabbing);
 
                 var offset = ui.item.offset();
 
@@ -587,6 +623,14 @@ module.exports = (function () {
                     transform: "translate(0px, 0px)"
                 });
             }
+        },
+
+        onDraggableStop = function () {
+
+            $body.removeClass(CLASS.cursorGrabbing);
+
+            page.set("sortableActive", "");
+            page.set("draggableActive", false);
         },
 
         onDroppableOver = function (e, ui) {
@@ -600,6 +644,8 @@ module.exports = (function () {
                     display: "block",
                     transition: ""
                 });
+
+                page.set("cancelAddSection", true);
             }
 
             //události "out" a "over" se spouští příliš často -> zajištění, aby se vše provedlo jen jednou
@@ -609,15 +655,19 @@ module.exports = (function () {
         onDroppableDrop = function (e, ui) {
 
             page.set("sortableActive", "");
+            page.set("draggableActive", false);
+            page.set("cancelAddSection", false);
 
             //vytvoření klonu kvůli animaci, protože přetahovaný element zmizí
             var $clone = ui.helper.clone();
 
             $body.append($clone);
 
-            $clone.fadeOut(OPTIONS.SECTION_SPEED_JQ, function () {
-                $clone.remove();
-            });
+            $clone
+                .addClass(CLASS.NewPageSectionSelector.cloneRemoved)
+                .fadeOut(OPTIONS.SECTION_SPEED_JQ, function () {
+                    $clone.remove();
+                });
 
             $placeholderTransitions.remove();
 
@@ -627,7 +677,7 @@ module.exports = (function () {
 
         init = function () {
 
-            $droppable = $("." + CLASS.NewPageSectionSelector.self + ", ." + CLASS.PageSection.parentOfNonSortable).droppable({
+            $droppable = $("." + CLASS.Page.PageMenu.self + ", ." + CLASS.PageSection.parentOfNonSortable).droppable({
                 accept: ".___XXX",
 
                 alwaysShowPlaceholder: true
@@ -638,7 +688,7 @@ module.exports = (function () {
                 .on("droppable:drop", onDroppableDrop);
 
             $draggable = $("." + CLASS.NewPageSectionSelector.sectionType).draggable({
-                connectWith: "." + CLASS.PageSection.parentOfSortable + ", ." + CLASS.NewPageSectionSelector.self + ", ." + CLASS.PageSection.parentOfNonSortable,
+                connectWith: "." + CLASS.PageSection.parentOfSortable + ", ." + CLASS.Page.PageMenu.self + ", ." + CLASS.PageSection.parentOfNonSortable,
                 placeholder: CLASS.PageSection.placeholder,
                 cloneClass: CLASS.NewPageSectionSelector.clone,
 
@@ -647,7 +697,11 @@ module.exports = (function () {
             });
 
             $draggable
-                .on("draggable:start", onDraggableStart);
+                .on("draggable:start", onDraggableStart)
+                .on("draggable:stop", onDraggableStop)
+                .on("touchstart.PageSectionManager", function (e) {
+                    e.stopPropagation();
+                });
 
             $sortable = $("." + CLASS.PageSection.parentOfSortable).sortable({
                 items: "." + CLASS.PageSection.self,
@@ -684,7 +738,9 @@ module.exports = (function () {
 
             if ($draggable) {
 
-                $draggable.draggable("destroy");
+                $draggable
+                    .draggable("destroy")
+                    .off("touchstart.PageSectionManager");
             }
 
             if ($droppable) {

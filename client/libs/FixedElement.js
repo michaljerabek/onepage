@@ -22,17 +22,16 @@
 
             isMobile = /Mobi/.test(navigator.userAgent),
 
-            constructor = function FixedElement($selectable, throttle) {
+            constructor = function FixedElement($selectable, options) {
 
                 this.id = "fixedElement-" + (counter++);
 
-                this.$fixedElement = $($selectable);
-
-                this.throttle = throttle || 250;
+                this.throttle = options && typeof options.throttle !== "undefined" ? options.throttle : 250;
+                this.zoom = options && typeof options.zoom !== "undefined" ? options.zoom : true;
 
                 this.isSleeping = true;
 
-                this.init();
+                this.init($selectable);
             };
 
         constructor.prototype.fix = function(noTransitions, hardFix) {
@@ -50,9 +49,12 @@
                 });
             }
 
-            var position = this.calculatePosition();
+            if (this.zoom || document.documentElement.clientWidth / window.innerWidth <= 1 || hardFix) {
 
-            this.transform(position.left, position.top);
+                var position = this.calculatePosition();
+
+                this.transform(position.left, position.top);
+            }
 
             if (noTransitions || hardFix) {
 
@@ -82,7 +84,9 @@
             return this;
         };
 
-        constructor.prototype.init = function () {
+        constructor.prototype.init = function ($selectable) {
+
+            this.$fixedElement = $($selectable);
 
             this.$fixedElement.css({
                 transition: "none"
@@ -106,6 +110,8 @@
         constructor.prototype.destroy = function () {
 
             this.sleep();
+
+            this.$fixedElement = null;
 
             return this;
         };
@@ -136,7 +142,14 @@
 
                     clearTimeout(this.eventThrottle);
 
-                    this.eventThrottle = setTimeout(this.fix.bind(this), this.throttle);
+                    if (this.throttle) {
+
+                        this.eventThrottle = setTimeout(this.fix.bind(this), this.throttle);
+
+                    } else {
+
+                        this.fix();
+                    }
 
                 }.bind(this));
 

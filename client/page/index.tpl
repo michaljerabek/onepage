@@ -6,8 +6,8 @@
             <div outro="fade" style="position: fixed; z-index: 99999; top: 0; left: 0; width: 100%; height: 100%; background: black; opacity: 0.75;"></div>
         {{/if}}
 
-        <NewPageSectionSelector />
-        <GlobalPageSettings settings="{{page.settings}}" pageTitleColorTest="{{pageTitleColorTest}}" />
+
+        {{> pageMenu}}
 
     {{/if}}
 
@@ -16,15 +16,6 @@
         <div class="P_nonsortable-sections" style="overflow: hidden">
 
             <h1 style="float: left; font-size: 36px; padding: 20px; color: {{pageTitleColorTest}}">{{page.name}}</h1>
-
-            {{#if .editMode}}
-
-                {{#if .isAdmin}}
-                    <button style="float: left; margin-top: 28px; margin-left: 10px" on-tap="closePage()">Zavřít</button>
-                {{/if}}
-
-                <button style="float: left; margin-top: 28px; margin-left: 10px" on-tap="savePage()">Uložit</button>
-            {{/if}}
 
             {{#each .page.sections}}
 

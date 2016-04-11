@@ -45,7 +45,7 @@
         transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
         z-index    0s   linear                       0.3s,
         visibility 0s   linear                       0.3s,
-        opacity    0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        opacity    0.3s cubic-bezier(.1, .4, .4, 1)  0s;
 }
 
 .medium-toolbar-arrow-over.medium-editor-toolbar {
@@ -61,10 +61,10 @@
 
     visibility: visible;
     transition:
-        top        0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        left       0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        bottom     0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        right      0.3s cubic-bezier(.05, .4, .4, 1) 0s,
+        top        0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        left       0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        bottom     0.3s cubic-bezier(.1, .4, .4, 1)  0s,
+        right      0.3s cubic-bezier(.1, .4, .4, 1)  0s,
         z-index    0s   linear                       0s,
         visibility 0s   linear                       0s,
         transform  0.2s cubic-bezier(.8, .4, .2, .8) 0s,
@@ -83,7 +83,7 @@
     animation-name: medium-editor-move-toolbar-down;
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+    animation-timing-function: cubic-bezier(.1, .4, .4, 1);
 }
 
 .medium-editor-toolbar-active.medium-editor-stalker-toolbar {
@@ -315,9 +315,9 @@
 
     will-change: opacity, box-shadow, background-color, color;
     transition:
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 }
 
 .medium-editor-toolbar li button:hover {
@@ -358,9 +358,9 @@
 
     transition:
         opacity          0.2s linear                       0s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 }
 
 .medium-editor-toolbar:not(.medium-editor-first-show) .medium-editor-default-actions-displayed li button:after,
@@ -369,9 +369,9 @@
 
     transition:
         opacity          0.2s linear                       0.6s,
-        color            0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        background-color 0.3s cubic-bezier(.05, .4, .4, 1) 0s,
-        box-shadow       0.3s cubic-bezier(.05, .4, .4, 1) 0s;
+        color            0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        background-color 0.3s cubic-bezier(.1, .4, .4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(.1, .4, .4, 1) 0s;
 }
 
 .medium-editor-toolbar li button:not(:disabled):hover {
@@ -593,7 +593,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 .medium-editor-use-touch.medium-editor-toolbar ul {
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(.05, .4, .4, 1);
+    animation-timing-function: cubic-bezier(.1, .4, .4, 1);
 }
 
 .medium-editor-use-touch.medium-editor-toolbar-active ul {

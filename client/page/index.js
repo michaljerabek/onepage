@@ -2,9 +2,18 @@
 /*global $*/
 
 var on = require("./../../helpers/on");
+var Ractive = require("ractive");
+
 var EventEmitter = require("./../libs/EventEmitter")();
 
-var Ractive = require("ractive");
+var FixedElement;
+var PageMenu;
+
+if (on.client) {
+
+    FixedElement = require("./../libs/FixedElement");
+    PageMenu = require("./PageMenu");
+}
 
 Ractive.defaults.getPageSection = function () {
 
@@ -29,7 +38,11 @@ module.exports = Ractive.extend({
         titleEditor: "E_Editor__title",
         contentEditor: "E_Editor__content",
 
-        sortableActive: "E_Page__sortable-active"
+        sortableActive: "E_Page__sortable-active",
+
+        PageMenu: {
+            self: "E_PageMenu"
+        }
     },
 
     components: {
@@ -46,13 +59,19 @@ module.exports = Ractive.extend({
     partials: {
         PageSectionA: "<PageSectionA section='{{this}}' />",
         PageSectionB: "<PageSectionB section='{{this}}' />",
-        PageSectionC: "<PageSectionC section='{{this}}' />"
+        PageSectionC: "<PageSectionC section='{{this}}' />",
+
+        pageMenu: require("./page-menu.tpl")
     },
 
     data: function () {
 
         return {
-            sortableActive: ""
+            sortableActive: "",
+            draggableActive: "",
+            openPageMenu: null,
+            cancelAddSection: false,
+            unsavedChanges: false
         };
 
     },
@@ -111,6 +130,10 @@ module.exports = Ractive.extend({
             this.pageSectionsManager.destroy();
 
             this.scrollToSection.destroy();
+
+            this.pageMenu.destroy();
+
+            clearTimeout(this.unsavedChangesTimeout);
         }
     },
 
@@ -176,6 +199,27 @@ module.exports = Ractive.extend({
 
             this.initScrollToSection();
         }
+
+        this.pageMenuElements = this.findAll("." + this.CLASS.PageMenu.self);
+
+        if (!this.pageMenu) {
+
+            this.pageMenu = new PageMenu(this.pageMenuElements, this);
+
+        } else {
+
+            this.pageMenu.reset();
+        }
+
+        this.observe("page.sections page.settings", function () {
+
+            clearTimeout(this.unsavedChangesTimeout);
+
+            this.unsavedChangesTimeout = setTimeout(
+                this.set.bind(this, "unsavedChanges", true), 500
+            );
+
+        }, {init: false});
     },
 
     loadPage: function (pageId) {
@@ -214,6 +258,7 @@ module.exports = Ractive.extend({
             if (res.saved) {
 
                 this.set("pageIsSaving", false);
+                this.set("unsavedChanges", false);
                 console.log("Uloženo!");
             }
         }.bind(this));
@@ -221,7 +266,15 @@ module.exports = Ractive.extend({
 
     closePage: function () {
 
-        this.Admin.set("editPage", null);
+        if (this.get("unsavedChanges") && !confirm("Neuložené změny. Přesto zavřít?")) {
+
+            return;
+        }
+
+        if (this.Admin) {
+
+            this.Admin.set("editPage", null);
+        }
     },
 
     getPageElement: function () {
@@ -274,7 +327,6 @@ module.exports = Ractive.extend({
         return pageSections;
     },
 
-
     findPageSections: function () {
 
         return this.findAllPageSections();
@@ -297,7 +349,12 @@ module.exports = Ractive.extend({
 
             } else if (typeof fn === "function") {
 
-                fn(sections[s]);
+                var returnValue = fn.call(sections[s], sections[s]);
+
+                if (returnValue === false) {
+
+                    break;
+                }
             }
         }
     },
@@ -319,7 +376,12 @@ module.exports = Ractive.extend({
 
             } else if (typeof fn === "function" && this[editors[e]].editor) {
 
-                fn(this[editors[e]].editor);
+                var returnValue = fn.call(this[editors[e]].editor, this[editors[e]].editor);
+
+                if (returnValue === false) {
+
+                    break;
+                }
             }
         }
 

@@ -1,18 +1,2 @@
 .E_GlobalPageSettings {
-    z-index: 110;
-    position: fixed;
-    bottom: calc(-100% + 20px);
-    left: 0px;
-
-    padding: 20px;
-    width: 300px;
-    height: 100%;
-
-    background-color: #ddd;
-
-    transition: all 0.3s ease-in-out 0s;
-}
-
-.E_GlobalPageSettings:hover {
-    bottom: 0%;
 }
