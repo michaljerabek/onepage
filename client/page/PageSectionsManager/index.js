@@ -15,7 +15,8 @@ module.exports = (function () {
         },
 
         CLASS = {
-            fakePlaceholder: "P_PageSection--fake-placeholder"
+            fakePlaceholder: "P_PageSection--fake-placeholder",
+            cursorGrabbing: "cursor-grabbing"
         },
 
         page,
@@ -198,6 +199,8 @@ module.exports = (function () {
             $fakePlaceholder.remove();
 
             EventEmitter.trigger("sortPageSection.PageSectionManager");
+
+            $body.addClass(CLASS.cursorGrabbing);
         },
 
         onSortableStart = function (e, ui) {
@@ -300,6 +303,8 @@ module.exports = (function () {
         },
 
         onSortableStop = function (e, ui) {
+
+            $body.removeClass(CLASS.cursorGrabbing);
 
             page.set("sortableActive", "");
             page.set("draggableActive", false);
@@ -581,7 +586,9 @@ module.exports = (function () {
                 //a je posunut daleko od šipky
                 var $clone = ui.item.siblings("." + CLASS.NewPageSectionSelector.clone);
 
-                $body.append($clone);
+                $body
+                    .append($clone)
+                    .addClass(CLASS.cursorGrabbing);
 
                 var offset = ui.item.offset();
 
@@ -594,6 +601,8 @@ module.exports = (function () {
         },
 
         onDraggableStop = function () {
+
+            $body.removeClass(CLASS.cursorGrabbing);
 
             page.set("sortableActive", "");
             page.set("draggableActive", false);

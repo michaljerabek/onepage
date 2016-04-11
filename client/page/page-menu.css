@@ -480,8 +480,8 @@
 
 .E_PageMenu__left.E_PageMenu__fixed-bottom:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__top,
 .E_PageMenu__left.E_PageMenu__fixed-top:not(.E_PageMenu__css-fixed):not(.E_PageMenu__hidden) .E_PageMenu--position-switcher__bottom,
-.E_PageMenu__fixed-bottom.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher__top,
-.E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher__bottom {
+body:not(.cursor-grabbing) .E_PageMenu__fixed-bottom.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher__top,
+body:not(.cursor-grabbing) .E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher__bottom {
     transform: translateY(0px);
 
     opacity: 1;
@@ -531,10 +531,7 @@
     transition: var(--default-transition-hover);
 }
 
-.E_PageMenu.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher .icon {
-    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
-}
-
+.E_PageMenu.E_PageMenu__css-fixed:not(.E_PageMenu__hidden):hover .E_PageMenu--position-switcher .icon,
 .E_PageMenu__left:not(.E_PageMenu__css-fixed) .E_PageMenu--position-switcher .icon {
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
 }

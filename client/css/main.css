@@ -32,3 +32,10 @@ body {
 #page {
     overflow: hidden;
 }
+
+/*---------------------------- CURSOR ----------------------------*/
+
+.cursor-grabbing,
+.cursor-grabbing * {
+    cursor: grabbing !important;
+}
