@@ -15,7 +15,9 @@ var instaceCounter = 0,
 
         showPage: "E_PageMenu--show-page",
         showPageActive: "E_PageMenu__show-page",
+
         showContent: "E_PageMenu--item__show-content",
+        unsavedChanges: "E_PageMenu--save__unsaved",
 
         fixedTop: "E_PageMenu__fixed-top",
         fixedBottom: "E_PageMenu__fixed-bottom",

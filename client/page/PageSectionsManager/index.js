@@ -165,6 +165,23 @@ module.exports = (function () {
                 });
         },
 
+        getIndexFor = function ($section) {
+            
+            var index = -1;
+            
+            $("." + CLASS.PageSection.self).each(function (i, section) {
+
+                if (section === $section[0]) {
+
+                    index = i;
+
+                    return false;
+                }
+            });
+            console.log(index);
+            return index;
+        },
+        
         onSortableActivate = function (e, ui) {
 
             page.set("sortableActive", CLASS.Page.sortableActive);
@@ -193,6 +210,7 @@ module.exports = (function () {
                     //vypnutí transition kvůli iOS
                     transition: "none"
                 })
+                .data("index.PageSectionManager", getIndexFor(ui.item))
                 .addClass(CLASS.PageSection.draggedSection)
                 .after($placeholderTransitions);
 
@@ -299,7 +317,6 @@ module.exports = (function () {
             }
 
             ui.item.data("positionChanged.PageSectionsManager", true);
-
         },
 
         onSortableStop = function (e, ui) {
@@ -519,7 +536,15 @@ module.exports = (function () {
                 .offset(placeholderOffset);
 
             requestAnimationFrame(function() {
-
+                
+                //nastavit neuložené změny, pokud se změnila pozice (pořadí v poli se nemění -> nelze použít observer)
+                if (ui.item.data("index.PageSectionManager") !== getIndexFor(ui.item)) {
+                    
+                    page.set("unsavedChanges", true);
+                }
+                
+                ui.item.data("index.PageSectionManager", null);
+                
                 //Placeholder pro transitions se zmenší na nulu a vrátí se zpět transition.
                 //Protože sekce je již vložena a má velikost jako placeholder.
                 requestAnimationFrame(function() {

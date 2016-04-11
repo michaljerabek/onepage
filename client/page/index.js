@@ -70,7 +70,8 @@ module.exports = Ractive.extend({
             sortableActive: "",
             draggableActive: "",
             openPageMenu: null,
-            cancelAddSection: false
+            cancelAddSection: false,
+            unsavedChanges: false
         };
 
     },
@@ -131,6 +132,8 @@ module.exports = Ractive.extend({
             this.scrollToSection.destroy();
 
             this.pageMenu.destroy();
+
+            clearTimeout(this.unsavedChangesTimeout);
         }
     },
 
@@ -207,6 +210,16 @@ module.exports = Ractive.extend({
 
             this.pageMenu.reset();
         }
+
+        this.observe("page.sections page.settings", function () {
+
+            clearTimeout(this.unsavedChangesTimeout);
+
+            this.unsavedChangesTimeout = setTimeout(
+                this.set.bind(this, "unsavedChanges", true), 500
+            );
+
+        }, {init: false});
     },
 
     loadPage: function (pageId) {
@@ -245,6 +258,7 @@ module.exports = Ractive.extend({
             if (res.saved) {
 
                 this.set("pageIsSaving", false);
+                this.set("unsavedChanges", false);
                 console.log("Uloženo!");
             }
         }.bind(this));
@@ -252,7 +266,15 @@ module.exports = Ractive.extend({
 
     closePage: function () {
 
-        this.Admin.set("editPage", null);
+        if (this.get("unsavedChanges") && !confirm("Neuložené změny. Přesto zavřít?")) {
+
+            return;
+        }
+
+        if (this.Admin) {
+
+            this.Admin.set("editPage", null);
+        }
     },
 
     getPageElement: function () {
@@ -304,7 +326,6 @@ module.exports = Ractive.extend({
 
         return pageSections;
     },
-
 
     findPageSections: function () {
 

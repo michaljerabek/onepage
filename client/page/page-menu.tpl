@@ -72,7 +72,10 @@
 
         </li>
 
-        <li class="E_PageMenu--item">
+        <li class="E_PageMenu--item
+                {{#if .unsavedChanges}}E_PageMenu--save__unsaved{{/if}}
+            "
+        >
 
             <span class="E_PageMenu--button E_PageMenu--button__save" on-tap="savePage()">Uložit</span>
 
