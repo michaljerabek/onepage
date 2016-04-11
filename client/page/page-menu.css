@@ -7,7 +7,7 @@
     position: fixed;
     top: 14.48vh;
 
-    will-change: transform;
+    will-change: transform, opacity;
     transition:
         transform var(--default-transition-duration) var(--default-transition-easing) 0s;
 }
@@ -88,7 +88,7 @@
     bottom: 0;
     right: 0;
 
-    animation-name: PageMenu__bottom;
+    animation-name: PageMenu__top;
 }
 
 .E_PageMenu__hidden.E_PageMenu__fixed-bottom .E_PageMenu--items {
@@ -96,7 +96,7 @@
     top: 0;
     left: 0;
 
-    animation-name: PageMenu__top;
+    animation-name: PageMenu__bottom;
 }
 
 .E_PageMenu--item {
@@ -157,6 +157,7 @@
 
     transform: translateX(0) translateY(-14.48vh);
 
+    will-change: box-shadow, width, height, min-width, transform, z-index, min-height, max-width, max-height;
     transition:
         transform  0.3s linear 0.15s,
         height     0.3s linear 0.15s,
@@ -271,19 +272,32 @@
     background-color: #404040;
     opacity: 0;
 
-    transition: var(--default-transition);
+    transition: 
+        opacity var(--default-transition-duration) var(--default-transition-easing) 0.5s,
+        background var(--default-transition-duration) var(--default-transition-easing) 0.5s,
+        color var(--default-transition-duration) var(--default-transition-easing) 0.5s,
+        z-index 0s linear 0.8s;
 }
 
 .E_PageMenu--add-section__active-cancel {
     background-color: red;
 
-    transition: var(--default-transition-hover);
+    transition: 
+        opacity var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        color var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        background var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s;
 }
 
 .E_PageMenu--item__adding-section .E_PageMenu--add-section__cancel {
     z-index: 2;
 
     opacity: 1;
+    
+    transition: 
+        opacity var(--default-transition-duration) var(--default-transition-easing) 0s,
+        background var(--default-transition-duration) var(--default-transition-easing) 0s,
+        color var(--default-transition-duration) var(--default-transition-easing) 0s,
+        z-index 0s linear 0s;
 }
 
 /*---------------------------- CONTENT ----------------------------*/
