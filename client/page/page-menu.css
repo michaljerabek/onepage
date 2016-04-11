@@ -194,6 +194,12 @@
     transform: translateY(14.48vh);
 }
 
+@media screen and (max-width: 479px) {
+
+    .E_PageMenu__fixed-bottom .E_PageMenu--item.E_PageMenu--item__show-content {
+        transform: translateY(calc(14.48vh + 160px));
+    }
+}
 
 /*--------------------------------------------------------------------*/
 /*------------------------------ BUTTONS -----------------------------*/
