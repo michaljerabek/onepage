@@ -13,6 +13,8 @@ var instaceCounter = 0,
         hidden: "E_PageMenu__hidden",
         visible: "E_PageMenu__visible",
 
+        showPage: "E_PageMenu--show-page",
+        showPageActive: "E_PageMenu__show-page",
         showContent: "E_PageMenu--item__show-content",
 
         fixedTop: "E_PageMenu__fixed-top",
@@ -26,21 +28,25 @@ var instaceCounter = 0,
         resizerActive: "E_PageMenu--resizer__active"
     },
 
+    resizeTimeout = null,
+    ensureVisibilityTimeout = null,
+
+    //sníží (nebo vrátí zpět) opacity menu, aby bylo vidět stránku
+    toggleShowPage = function (e) {
+        
+        this.$pageMenu.toggleClass(CLASS.showPageActive, e.original.type.match(/enter|start|over/));
+        
+        e.original.preventDefault();
+        e.original.stopPropagation();
+    },
+    
+    //nastaví maximální velikost položky podle velikosti okna (položka má v CSS 100vh, ale např. na iPadu může být větší)
     setMaxHeight = function () {
 
         this.$pageMenu
             .find("." + CLASS.item + ", ." + CLASS.contentWrapper)
             .css({
                 maxHeight: window.innerHeight
-            });
-    },
-
-    resetLastResize = function () {
-
-        this.$pageMenu
-            .find("." + CLASS.item + ", ." + CLASS.contentWrapper)
-            .css({
-                width: ""
             });
     },
 
@@ -51,6 +57,7 @@ var instaceCounter = 0,
 
     handleTouchstart = function (e) {
 
+        //použít FixedElement, pokud se jedná o dotykové zařízení
         if (!this.pageMenuLeft && !this.pageMenuRight) {
 
             this.$pageMenu
@@ -71,6 +78,7 @@ var instaceCounter = 0,
         this.touch.touches = e.originalEvent.touches.length > this.touch.touches ? e.originalEvent.touches.length : this.touch.touches;
         this.touch.zoom = getZoom();
 
+        //gesto: 3 prsty nohoru/dolu -> změna pozice menu
         if (e.originalEvent.touches.length === 3) {
 
             this.touch.startX = e.originalEvent.touches[0].clientX;
@@ -106,6 +114,7 @@ var instaceCounter = 0,
 
         this.touch.touchesTimeout = setTimeout(function () {
 
+            //skrýt/zobrazit menu při zoomu
             if (this.touch.touches === 2) {
 
                 this[getZoom() > 1 ? "hide": "show"]();
@@ -117,22 +126,22 @@ var instaceCounter = 0,
         }.bind(this), 75);
     },
 
-    resizeThrottle = null,
-
     handleWinResize = function () {
 
-        clearTimeout(resizeThrottle);
+        clearTimeout(resizeTimeout);
 
+        //změnit velikost položky, pokud se změní velikost okna a stránka není přiblížena
         if (getZoom() <= 1) {
 
-            resizeThrottle = setTimeout(setMaxHeight.bind(this), 50);
+            resizeTimeout = setTimeout(setMaxHeight.bind(this), 50);
         }
 
+        //skrýt/zobrazit menu při zoomu
         this[getZoom() > 1 ? "hide": "show"]();
     },
 
-    ensureVisibilityTimeout = null,
-
+    //zajistí skrytí/zobrazení menu
+    //menu se skryje pokud uživatel přeřazuje sekce, edituje PageElement nebo má otevřené nastavení sekce
     ensureVisibility = function () {
 
         clearTimeout(ensureVisibilityTimeout);
@@ -231,6 +240,7 @@ var instaceCounter = 0,
         return false;
     },
 
+    //odstraní scrollbar při zavření a odstraní uživatelem nastavenou velikost
     resetCurrentItem = function () {
 
         var $openedItem = this.$pageMenu.find("." + CLASS.showContent),
@@ -240,6 +250,7 @@ var instaceCounter = 0,
 
         $openedItem.on("transitionend." + this.EVENT_NS, function (e) {
 
+            //odstranit velikost až poté, co se skryje obsah
             if (e.originalEvent.propertyName === "visibility" && e.target.classList.contains(CLASS.content)) {
 
                 $openedItem
@@ -260,22 +271,22 @@ var instaceCounter = 0,
         var $openedContentWrapper = this.$pageMenu.find("." + CLASS.showContent + " ." + CLASS.contentWrapper);
 
         $openedContentWrapper.perfectScrollbar({
-            swipePropagation: false
+            swipePropagation: false //Odstranit? Při přiblízení nelze posouvat stránkou.
         });
     },
 
     init = function ($selectable) {
 
+        this.touch = {};
+
         this.init$selectable = $selectable;
 
         this.$pageMenu = $($selectable);
 
-        this.touch = {};
-
-        this.changePosition("top");
-
         this.$pageMenu
             .addClass(CLASS.cssFixed + " " + CLASS.visible);
+
+        this.changePosition("top");
 
         this.$win
             .on("resize."     + this.EVENT_NS, handleWinResize.bind(this))
@@ -283,6 +294,9 @@ var instaceCounter = 0,
             .on("touchmove."  + this.EVENT_NS, handleTouchmove.bind(this))
             .on("touchend."   + this.EVENT_NS, handleTouchend.bind(this));
 
+        this.Page.on("*.showPage", toggleShowPage.bind(this));
+        
+        //skryje menu s výběrem sekcí, pokud uživatel přetáhně nějakou sekci do stránky
         this.draggableActiveObserver = this.Page.observe("draggableActive", function (state) {
 
             if (state) {
@@ -295,12 +309,15 @@ var instaceCounter = 0,
 
             if (type) {
 
+                //při otevření nasavit maximální výšku podle okna 
                 setMaxHeight.call(this);
 
             } else {
 
+                //při zavření ostranit uživatelem nastavenou velkost a odstranit scrollbar
                 resetCurrentItem.call(this);
 
+                //při přiblížení sktrýt
                 if (getZoom() > 1) {
 
                     this.hide();
@@ -309,6 +326,7 @@ var instaceCounter = 0,
 
         }, {init: false, context: this});
 
+        //přidá scrollbar při otevření položky
         this.openPageMenuObserverDefer = this.Page.observe("openPageMenu", function (type) {
 
             if (type) {
@@ -318,13 +336,14 @@ var instaceCounter = 0,
 
         }, {init: false, context: this, defer: true});
 
+        //skrýt/zobrazit při úpravě stránky
         this.sortableActiveObserver = this.Page.observe("sortableActive", ensureVisibility.bind(this), {init: false});
-
         this.Page.on("*.sectionHasOutline", ensureVisibility.bind(this));
         this.Page.on("*.openPageSectionSettings", ensureVisibility.bind(this));
 
         this.Page.on("activateResizer", activateResizer.bind(this));
 
+        //změna pozice menu (tlačítkem) - nahoře/dole
         this.Page.on("switchPosition", function (event, position) {
 
             event.original.srcEvent.stopPropagation();
@@ -366,6 +385,7 @@ PageMenu.prototype.destroy = function () {
     this.Page.off("*.openPageSectionSettings");
     this.Page.off("addingSectionCanceled");
     this.Page.off("switchPosition");
+    this.Page.off("*.showPage");
 
     this.pageMenuLeft  = null;
     this.pageMenuRight = null;
@@ -373,13 +393,13 @@ PageMenu.prototype.destroy = function () {
     this.touch = null;
 
     this.$win
-        .off("touchstart." + this.EVENT_NS)
-        .off("touchmove."  + this.EVENT_NS)
-        .off("touchend."   + this.EVENT_NS);
-
+        .off("." + this.EVENT_NS)
+        .off(".resizer-" + this.EVENT_NS);
+    
     return this;
 };
 
+//změní pozici menu -> nahoře/dole
 PageMenu.prototype.changePosition = function (position) {
 
     this.touch.lastPositionY = this.touch.positionY;
@@ -394,6 +414,7 @@ PageMenu.prototype.changePosition = function (position) {
     var $items = this.$pageMenu.find("." + CLASS.item),
         savedDisplay;
 
+    //pokud není použit FixedElement (= desktop), je potřeba zajistit spuštění animací (display: none)
     if (!this.pageMenuLeft && !this.pageMenuRight) {
 
         savedDisplay = this.$pageMenu.css("display");
@@ -415,9 +436,9 @@ PageMenu.prototype.changePosition = function (position) {
         this.pageMenuLeft.fix(true, this.touch.positionY !== this.touch.lastPositionY);
         this.pageMenuRight.fix(true, this.touch.positionY !== this.touch.lastPositionY);
 
-        return this;
+        return this; //--->
     }
-
+    
     setTimeout(function() {
 
         this.$pageMenu.css({
@@ -440,6 +461,7 @@ PageMenu.prototype.reset = function ($selectable) {
     init.call(this, $selectable || this.init$selectable);
 };
 
+//Zobrazí menu. Pokud není použito vynucení (force), menu se zobrazí pouze, pokud je zoom 1
 PageMenu.prototype.show = function (force) {
 
     if (force) {
@@ -455,6 +477,7 @@ PageMenu.prototype.show = function (force) {
     this.$pageMenu[this.hidden ? "removeClass" : "addClass"](CLASS.visible);
 };
 
+//Skryje menu. Pokud není použito vynucení (force), menu se skryje pouze, pokud není otevřená žádná položka
 PageMenu.prototype.hide = function (force) {
 
     if (force) {
@@ -463,15 +486,14 @@ PageMenu.prototype.hide = function (force) {
 
     } else {
 
-        this.hidden = !this.hasOpenedMenu();
-
+        this.hidden = !this.hasOpenedItem();
     }
 
     this.$pageMenu[this.hidden ? "addClass" : "removeClass"](CLASS.hidden);
     this.$pageMenu[this.hidden ? "removeClass" : "addClass"](CLASS.visible);
 };
 
-PageMenu.prototype.hasOpenedMenu = function () {
+PageMenu.prototype.hasOpenedItem = function () {
 
     return this.Page.get("openPageMenu");
 };

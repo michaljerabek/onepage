@@ -7,9 +7,16 @@
     position: fixed;
     top: 14.48vh;
 
+    opacity: 1;
+
     will-change: transform, opacity;
     transition:
-        transform var(--default-transition-duration) var(--default-transition-easing) 0s;
+        transform var(--default-transition-duration) var(--default-transition-easing) 0s,
+        opacity 0.2s cubic-bezier(.1, 0, .9, 1) 0s;
+}
+
+.E_PageMenu__show-page {
+    opacity: 0.05;
 }
 
 .E_PageMenu__hidden {
@@ -379,6 +386,34 @@
     transform: scale(0.95);
 
     transition: var(--default-transition-active);
+}
+
+/*---------------------------- SHOW PAGE ----------------------------*/
+
+.E_PageMenu--show-page {
+    position: relative;
+
+    display: inline-block;
+
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_PageMenu--show-page:after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 40px;
+    height: 40px;
+
+    transform: translate(-50%, -50%);
 }
 
 /*---------------------------- RESIZER ----------------------------*/
