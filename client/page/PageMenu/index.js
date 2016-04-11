@@ -32,6 +32,8 @@ var instaceCounter = 0,
 
     resizeTimeout = null,
     ensureVisibilityTimeout = null,
+    
+    shouldBeHidden = false,
 
     //sníží (nebo vrátí zpět) opacity menu, aby bylo vidět stránku
     toggleShowPage = function (e) {
@@ -150,7 +152,7 @@ var instaceCounter = 0,
 
         ensureVisibilityTimeout = setTimeout(function() {
 
-            var shouldBeHidden = this.Page.get("sortableActive") && !this.Page.get("draggableActive");
+            shouldBeHidden = this.Page.get("sortableActive") && !this.Page.get("draggableActive");
 
             if (!shouldBeHidden) {
 
@@ -463,7 +465,7 @@ PageMenu.prototype.reset = function ($selectable) {
     init.call(this, $selectable || this.init$selectable);
 };
 
-//Zobrazí menu. Pokud není použito vynucení (force), menu se zobrazí pouze, pokud je zoom 1
+//Zobrazí menu. Pokud není použito vynucení (force), menu se zobrazí pouze, pokud je zoom 1 a stránka se needituje
 PageMenu.prototype.show = function (force) {
 
     if (force) {
@@ -472,7 +474,7 @@ PageMenu.prototype.show = function (force) {
 
     } else {
 
-        this.hidden = getZoom() > 1;
+        this.hidden = getZoom() > 1 || shouldBeHidden;
     }
 
     this.$pageMenu[this.hidden ? "addClass" : "removeClass"](CLASS.hidden);
