@@ -28,9 +28,20 @@ var instaceCounter = 0,
 
     setMaxHeight = function () {
 
-        this.$pageMenu.find("." + CLASS.item + ", ." + CLASS.contentWrapper).css({
-            maxHeight: window.innerHeight
-        });
+        this.$pageMenu
+            .find("." + CLASS.item + ", ." + CLASS.contentWrapper)
+            .css({
+                maxHeight: window.innerHeight
+            });
+    },
+
+    resetLastResize = function () {
+
+        this.$pageMenu
+            .find("." + CLASS.item + ", ." + CLASS.contentWrapper)
+            .css({
+                width: ""
+            });
     },
 
     getZoom = function () {
@@ -220,18 +231,35 @@ var instaceCounter = 0,
         return false;
     },
 
-    removeScrollbar = function () {
+    resetCurrentItem = function () {
 
-        var $opened = this.$pageMenu.find("." + CLASS.showContent + " ." + CLASS.contentWrapper);
+        var $openedItem = this.$pageMenu.find("." + CLASS.showContent),
+            $openedContentWrapper = $openedItem.find("." + CLASS.contentWrapper);
 
-        $opened.perfectScrollbar("destroy");
+        $openedContentWrapper.perfectScrollbar("destroy");
+
+        $openedItem.on("transitionend." + this.EVENT_NS, function (e) {
+
+            if (e.originalEvent.propertyName === "visibility" && e.target.classList.contains(CLASS.content)) {
+
+                $openedItem
+                    .off("transitionend." + this.EVENT_NS)
+                    .css({
+                        width: ""
+                    });
+
+                $openedContentWrapper.css({
+                    width: ""
+                });
+            }
+        });
     },
 
     addScrollbar = function () {
 
-        var $opened = this.$pageMenu.find("." + CLASS.showContent + " ." + CLASS.contentWrapper);
+        var $openedContentWrapper = this.$pageMenu.find("." + CLASS.showContent + " ." + CLASS.contentWrapper);
 
-        $opened.perfectScrollbar({
+        $openedContentWrapper.perfectScrollbar({
             swipePropagation: false
         });
     },
@@ -271,7 +299,7 @@ var instaceCounter = 0,
 
             } else {
 
-                removeScrollbar.call(this);
+                resetCurrentItem.call(this);
 
                 if (getZoom() > 1) {
 
