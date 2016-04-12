@@ -8,7 +8,7 @@
 
         {{#each .colors:i}}
 
-            {{>Color {output: output, color: this}}}
+            {{>Color {output: output, color: this, inputType: inputType}}}
 
         {{/each}}
 
@@ -40,12 +40,12 @@
     title="
         {{#if ~/type === ~/TYPE_DEFAULT}}
             {{#if i === 0}}
-                Vybraná: {{formatColor(.color, inputType)}}
+                Vybraná: {{formatColor(.color, .inputType)}}
             {{else}}
-                Původní: {{formatColor(.color, inputType)}}
+                Původní: {{formatColor(.color, .inputType)}}
             {{/if}}
         {{else}}
-            {{formatColor(.color, inputType)}}
+            {{formatColor(.color, .inputType)}}
         {{/if}}
     "
 ></div><!--/ColorPickerPalette--color-->

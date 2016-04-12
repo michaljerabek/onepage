@@ -10,7 +10,8 @@
             on = require("./../../../../../helpers/on"),
 
             components = {
-                ColorPicker: require("./../../../../libs/Components/ColorPicker")
+                ColorPicker: require("./../../../../libs/Components/ColorPicker"),
+                ColorPickerPalette: require("./../../../../libs/Components/ColorPicker/Components/ColorPickerPalette")
             }/*,
 
             ColorSettings = require("./Types/ColorSettings")*/;

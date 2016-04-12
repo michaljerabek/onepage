@@ -32,18 +32,20 @@
 
                 formatColor: function (color, format) {
 
-                    if (format === this.parent.get("TYPE_HEX")) {
+                    var colorPicker = this.parent.COLOR_PICKER ? this.parent: this.container;
 
-                        if (this.parent.validateHEX(color)) {
+                    if (format === colorPicker.get("TYPE_HEX")) {
+
+                        if (colorPicker.validateHEX(color)) {
 
                             return color;
                         }
 
                         return Spectra(color).hex();
 
-                    } else if (format === this.parent.get("TYPE_RGB")) {
+                    } else if (format === colorPicker.get("TYPE_RGB")) {
 
-                        if (this.parent.validateRGB(color)) {
+                        if (colorPicker.validateRGB(color)) {
 
                             return color;
                         }
@@ -77,6 +79,15 @@
                     this.getPaletteFromImage();
 
                 }.bind(this), 0);
+            }
+
+            if (on.client) {
+
+                this[this.parent.COLOR_PICKER ? "parent" : "container"].observe("inputType", function (value) {
+
+                    this.set("inputType", value);
+
+                }.bind(this));
             }
         },
 

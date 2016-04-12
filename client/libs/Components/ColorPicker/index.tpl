@@ -15,7 +15,7 @@
 
                 <ColorPickerPalette title="Vybraná / Původní" colors="[{{current}}, {{initial}}]" addNoColor="{{.noColor}}" type="default" />
 
-                {{> content}}
+                {{yield}}
 
             </div><!--/ColorPicker--palettes-->
 

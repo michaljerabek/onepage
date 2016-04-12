@@ -35,7 +35,23 @@
         </ColorPicker>
 
         <div class="wrapper">
-<!--            <ColorPicker defer="true" on-output="changeColor:{{.switchToBorder ? 'border' : 'color'}}" input="{{#if .switchToBorder}}{{#if .border !== undefined}}[[.border]]{{else}}rgb(250, 35, 0){{/if}}{{else}}{{#if .color !== undefined}}[[.color]]{{else}}rgb(12, 35, 90){{/if}}{{/if}}">-->
+<!--
+            <ColorPicker defer="true" on-output="changeColor:{{.switchToBorder ? 'border' : 'color'}}"
+            input="
+            {{#if .switchToBorder}}
+                {{#if typeof .border !== 'undefined'}}
+                    {{.border}}
+                {{else}}
+                    {{'rgb(250, 35, 0)'}}
+                {{/if}}
+            {{else}}
+                {{#if typeof .color !== 'undefined'}}
+                    {{.color}}
+                {{else}}
+                    {{'rgb(12, 35, 90)'}}
+                {{/if}}
+            {{/if}}">
+-->
             <ColorPicker output="{{.color}}" input="[[#if .color]][[.color]][[else]]rgb(12, 35, 90)[[/if]]">
                 <ColorPickerPalette title="Barvy" colors="['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)']" />
                 <ColorPickerPalette title="Obrázek" image="img18.jpg" />
@@ -64,20 +80,20 @@
 
         Vibrant.workerPath = "VibrantWorker.js";
 
+var app;
+
         $.when.apply($, [$.get("../index.tpl"), $.get("../Components/ColorPickerPalette/index.tpl")]).then(function (picker, palette) {
 
-            var app = new Ractive({
+            app = new Ractive({
                 el: "#app",
                 template: "#App",
 
                 components: {
                     ColorPicker: ColorPicker.extend({
-                        template: picker[0],
-                        components: {
-                            ColorPickerPalette: ColorPickerPalette.extend({
-                                template: palette[0]
-                            })
-                        }
+                        template: picker[0]
+                    }),
+                    ColorPickerPalette: ColorPickerPalette.extend({
+                        template: palette[0]
                     })
                 },
 
@@ -96,7 +112,7 @@
                 },
 
                 changeColor: function (type, color) {
-                    console.log(arguments);
+//                    console.log(arguments);
                     this.set(type, color);
                 }
             });
