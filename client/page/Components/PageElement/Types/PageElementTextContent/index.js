@@ -57,6 +57,13 @@
         onrender: function () {
 
             this.superOnrender();
+
+            if (this.get("editMode")) {
+
+                this.Page = this.findParent("Page");
+
+                this.set("mostUsedColors", this.Page.findMostUsedColors());
+            }
         },
 
         oncomplete: function () {

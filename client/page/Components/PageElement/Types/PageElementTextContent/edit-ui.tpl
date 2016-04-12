@@ -4,6 +4,7 @@
     <PageElementSettings
         data="{{.element}}"
         positionElement="{{.pageElementSettingsPositionElement}}"
+        mostUsedColors="{{.mostUsedColors}}"
     >
         <div decorator="PageElementSettingsBox"
             data-min-resize-width="475"
@@ -11,7 +12,9 @@
             data-max-resize-height="475"
             style="max-width: 240px; max-height: 320px;"
         >
-            <ColorPicker output="{{.data.color}}" input="{{.data.color || 'black'}}" defer="true"></ColorPicker>
+            <ColorPicker mostUsedColors="{{.mostUsedColors}}" output="{{.data.textColor}}" input="{{.data.textColor || 'black'}}" defer="true" noColor="true">
+                <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
+            </ColorPicker>
         </div>
     </PageElementSettings>
 {{/if}}
