@@ -50,10 +50,39 @@
 
         onconfig: function () {
 
+            this.Page = this.findParent("Page");
+
+            this.set("mostUsedColors", this.findMostUsedColors());
         },
 
         oncomplete: function () {
 
+        },
+
+        findMostUsedColors: function (maxCount) {
+
+            var colorUsed = {};
+
+            this.Page.forEachPageSection(function (pageSection) {
+
+                var colors = pageSection.getColors(),
+
+                    c = colors.length - 1,
+                    colorTemp;
+
+                for (c; c >= 0; c--) {
+
+                    colorTemp = colors[c].replace(" ", "");
+
+                    colorUsed[colorTemp] = colorUsed[colorTemp] ? colorUsed[colorTemp] + 1: 1;
+                }
+            });
+
+            return Object.keys(colorUsed).sort(function (a, b) {
+
+                return colorUsed[b] - colorUsed[a];
+
+            }).splice(0, maxCount || 5);
         }
 
     });

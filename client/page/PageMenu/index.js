@@ -144,28 +144,34 @@ var instaceCounter = 0,
         this[getZoom() > 1 ? "hide": "show"]();
     },
 
+    //viz ensureVisibility
+    checkIfShoudBeHidden = function() {
+
+        shouldBeHidden = this.Page.get("sortableActive") && !this.Page.get("draggableActive");
+
+        if (!shouldBeHidden) {
+
+            this.Page.forEachPageSection(function () {
+
+                if (this.get("hasSettings") || this.get("hasOutline")) {
+
+                    shouldBeHidden = true;
+
+                    return false;
+                }
+            });
+        }
+    },
+
     //zajistí skrytí/zobrazení menu
     //menu se skryje pokud uživatel přeřazuje sekce, edituje PageElement nebo má otevřené nastavení sekce
     ensureVisibility = function () {
 
         clearTimeout(ensureVisibilityTimeout);
 
-        ensureVisibilityTimeout = setTimeout(function() {
+        ensureVisibilityTimeout = setTimeout(function () {
 
-            shouldBeHidden = this.Page.get("sortableActive") && !this.Page.get("draggableActive");
-
-            if (!shouldBeHidden) {
-
-                this.Page.forEachPageSection(function () {
-
-                    if (this.get("hasSettings") || this.get("hasOutline")) {
-
-                        shouldBeHidden = true;
-
-                        return false;
-                    }
-                });
-            }
+            checkIfShoudBeHidden.call(this);
 
             this[shouldBeHidden ? "hide": "show"]();
 
@@ -474,11 +480,24 @@ PageMenu.prototype.show = function (force) {
 
     } else {
 
+        if (shouldBeHidden) {
+
+            checkIfShoudBeHidden.call(this);
+        }
+
         this.hidden = getZoom() > 1 || shouldBeHidden;
     }
 
     this.$pageMenu[this.hidden ? "addClass" : "removeClass"](CLASS.hidden);
     this.$pageMenu[this.hidden ? "removeClass" : "addClass"](CLASS.visible);
+
+    if (this.pageMenuLeft && this.pageMenuRight) {
+
+        this.pageMenuLeft.fix();
+        this.pageMenuRight.fix();
+    }
+
+    return this;
 };
 
 //Skryje menu. Pokud není použito vynucení (force), menu se skryje pouze, pokud není otevřená žádná položka
@@ -495,6 +514,8 @@ PageMenu.prototype.hide = function (force) {
 
     this.$pageMenu[this.hidden ? "addClass" : "removeClass"](CLASS.hidden);
     this.$pageMenu[this.hidden ? "removeClass" : "addClass"](CLASS.visible);
+
+    return this;
 };
 
 PageMenu.prototype.hasOpenedItem = function () {
