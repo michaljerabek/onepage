@@ -4,6 +4,6 @@
 </PageSectionSettings>
 {{/if}}
 
-{{#if .openPageSectionSettings === 'edit2'}}
+{{#if .openPageSectionSettings === 'colors'}}
     {{> ColorSettings}}
 {{/if}}

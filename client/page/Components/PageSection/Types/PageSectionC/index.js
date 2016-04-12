@@ -4,7 +4,7 @@ var PageSection = require("./../../");
 module.exports = PageSection.extend({
 
     partials: {
-        pageSectionContent: "<PageElementTitle element='{{.section}}' />",
+        pageSectionContent: require("./index.tpl"),
         pageSectionSettings: require("./page-section-settings.tpl"),
         pageSectionEditUI: "<BasicEditUI section='{{.section}}' />"
     },

@@ -17,7 +17,13 @@
             {{/if}}
 
             <div class="P_PageSection--content">
-                {{> pageSectionContent}}
+
+                <div class="P_PageSection--background-color" style="background-color: {{.section.backgroundColor}}">
+
+                    {{> pageSectionContent}}
+
+                </div>
+
             </div>
 
         </div>

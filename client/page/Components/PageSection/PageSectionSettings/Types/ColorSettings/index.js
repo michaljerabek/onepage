@@ -50,6 +50,9 @@
 
         onconfig: function () {
 
+            this.Page = this.findParent("Page");
+
+            this.set("mostUsedColors", this.Page.findMostUsedColors());
         },
 
         oncomplete: function () {
