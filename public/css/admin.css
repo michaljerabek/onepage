@@ -5932,7 +5932,7 @@ body > .E_NewPageSectionSelector--clone .type {
     z-index: 3;
 }
 
-.P_PageSection--section, .P_PageSection--content {
+.P_PageSection--background-color, .P_PageSection--section, .P_PageSection--content {
     position: relative;
 }
 
@@ -6619,7 +6619,7 @@ body > .E_NewPageSectionSelector--clone .type {
 .P_PageSection--content:before {
     content: "";
 
-    z-index: -1;
+    z-index: 1;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -7135,16 +7135,24 @@ body > .E_NewPageSectionSelector--clone .type {
     transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
-.P_PageElement__text-content {
-    line-height: 1.4;
-
-    display: inline-block;
-}
-
 .P_PageElement__title {
     line-height: 1.4;
 
     display: inline-block;
 }
 
+.P_PageElement__text-content {
+    line-height: 1.4;
+
+    display: inline-block;
+}
+
+.P_BackgroundImage {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+}
 /*# sourceMappingURL=admin.css.map */
