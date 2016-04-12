@@ -331,6 +331,32 @@ module.exports = Ractive.extend({
                 fn.apply(elements[e], elements[e]);
             }
         }
+    },
+
+    getColorPaths: function () {
+
+        return ["backgroundColor", "textColor"];
+    },
+
+    getColors: function () {
+
+        var colorPaths = this.getColorPaths(),
+            cP = colorPaths.length - 1,
+            tempColor,
+
+            colors = [];
+
+        for (cP; cP >= 0; cP--) {
+
+            tempColor = this.get(colorPaths[cP]);
+
+            if (tempColor && !~colors.indexOf(tempColor)) {
+
+                colors.unshift(tempColor);
+            }
+        }
+
+        return colors;
     }
 
 });

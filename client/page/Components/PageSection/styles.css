@@ -28,6 +28,7 @@
     z-index: 3;
 }
 
+.P_PageSection--background-color,
 .P_PageSection--section,
 .P_PageSection--content {
     position: relative;

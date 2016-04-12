@@ -27,27 +27,27 @@
 {{#partial Color}}
 <div class="ColorPickerPalette--color
 
-            {{#if ~/type === ~/TYPE_DEFAULT && i === 0 && .output === ''}}
-                ColorPickerPalette--color__remove{{#if ~/nearToBlack}}-black{{/if}}
-            {{/if}}
-            "
-     intro="fade"
-     style="
-            background-color: {{.color}};
-            transition: {{animate ? '' : 'none'}};
-            "
-     on-click-touchend="setColor:{{.color}},{{true}}"
-     title="
-            {{#if ~/type === ~/TYPE_DEFAULT}}
-                {{#if i === 0}}
-                    Vybraná: {{formatColor(.color, inputType)}}
-                {{else}}
-                    Původní: {{formatColor(.color, inputType)}}
-                {{/if}}
+        {{#if ~/type === ~/TYPE_DEFAULT && i === 0 && .output === ''}}
+            ColorPickerPalette--color__remove{{#if ~/nearToBlack}}-black{{/if}}
+        {{/if}}
+    "
+    intro="fade"
+    style="
+        background-color: {{.color}};
+        transition: {{animate ? '' : 'none'}};
+    "
+    on-click-touchend="setColor:{{.color}},{{true}}"
+    title="
+        {{#if ~/type === ~/TYPE_DEFAULT}}
+            {{#if i === 0}}
+                Vybraná: {{formatColor(.color, inputType)}}
             {{else}}
-                {{formatColor(.color, inputType)}}
+                Původní: {{formatColor(.color, inputType)}}
             {{/if}}
-        "
+        {{else}}
+            {{formatColor(.color, inputType)}}
+        {{/if}}
+    "
 ></div><!--/ColorPickerPalette--color-->
 {{/partial}}
 
