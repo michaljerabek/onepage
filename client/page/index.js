@@ -61,7 +61,7 @@ module.exports = Ractive.extend({
         PageSectionB: "<PageSectionB section='{{this}}' />",
         PageSectionC: "<PageSectionC section='{{this}}' />",
 
-        pageMenu: require("./page-menu.tpl")
+        pageMenu: require("./PageMenu/index.tpl")
     },
 
     data: function () {
