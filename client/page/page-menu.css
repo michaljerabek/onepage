@@ -290,7 +290,7 @@
     background-color: #404040;
     opacity: 0;
 
-    transition:
+    transition: 
         opacity var(--default-transition-duration) var(--default-transition-easing) 0.5s,
         background var(--default-transition-duration) var(--default-transition-easing) 0.5s,
         color var(--default-transition-duration) var(--default-transition-easing) 0.5s,
@@ -300,7 +300,7 @@
 .E_PageMenu--add-section__active-cancel {
     background-color: red;
 
-    transition:
+    transition: 
         opacity var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         color var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         background var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s;
@@ -310,8 +310,8 @@
     z-index: 2;
 
     opacity: 1;
-
-    transition:
+    
+    transition: 
         opacity var(--default-transition-duration) var(--default-transition-easing) 0s,
         background var(--default-transition-duration) var(--default-transition-easing) 0s,
         color var(--default-transition-duration) var(--default-transition-easing) 0s,
