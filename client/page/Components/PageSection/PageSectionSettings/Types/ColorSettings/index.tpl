@@ -33,15 +33,13 @@
 {{#partial ColorSettingsTab}}
 
     {{#if .toggleTab}}
-        <ColorPicker mostUsedColors="{{.mostUsedColors}}" defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}">
-            <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
+        <ColorPicker defer="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}">
+            <ColorPickerPalette title="Barvy" colors="['red', 'green', 'blue']" />
         </ColorPicker>
     {{/if}}
 
     {{#if !.toggleTab}}
-        <ColorPicker mostUsedColors="{{.mostUsedColors}}" defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}">
-            <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
-        </ColorPicker>
+        <ColorPicker defer="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}"/>
     {{/if}}
 
 {{/partial}}
