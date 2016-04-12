@@ -45,6 +45,7 @@
     "socket.io": "^1.4.5",
     "spectra": "^0.2.3",
     "vibrant": "0.0.1",
+    "webpack": "^2.1.0-beta.5",
     "webworkify-webpack": "^1.0.6",
     "worker-loader": "^0.7.0"
   },

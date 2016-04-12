@@ -24,6 +24,8 @@
 
     return Ractive.extend({
 
+        COLOR_PICKER: true,
+
         template: template,
 
         components: {
@@ -117,13 +119,6 @@
             this.observe("current", this.currentColorObserver, {init: false});
 
             this.observeSelectors();
-
-            this.on("ColorPickerPalette.setColor", function (event, color, animate) {
-
-                this.setColor(color, animate);
-
-                event.original.preventDefault();
-            });
 
             this.updateInputFields();
 
@@ -255,6 +250,8 @@
 
             if (on.client) {
 
+                this.initPalettes();
+
                 this.SVBox = this.find(".ColorPicker--SV-box");
                 this.SVSelector = this.find(".ColorPicker--SV-selector");
 
@@ -278,6 +275,24 @@
                 }
 
                 this.waitForUserInteraction = false;
+            }
+        },
+
+        initPalettes: function () {
+
+            this.palettes = this.findAllComponents("ColorPickerPalette");
+
+            var p = this.palettes.length - 1;
+
+            for (p; p >= 0; p--) {
+
+                this.palettes[p].on("setColor", function (event, color, animate) {
+
+                    this.setColor(color, animate);
+
+                    event.original.preventDefault();
+
+                }.bind(this));
             }
         },
 
