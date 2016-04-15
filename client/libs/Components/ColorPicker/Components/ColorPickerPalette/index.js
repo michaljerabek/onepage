@@ -30,6 +30,11 @@
             return {
                 TYPE_DEFAULT: "default",
 
+                delay: 0,
+
+                colors: [],
+                image: "",
+
                 formatColor: function (color, format) {
 
                     var colorPicker = this.parent.COLOR_PICKER ? this.parent: this.container;
@@ -72,15 +77,6 @@
 
         onconfig: function () {
 
-            if (on.client && this.get("image")) {
-
-                setTimeout(function() {
-
-                    this.getPaletteFromImage();
-
-                }.bind(this), 0);
-            }
-
             if (on.client) {
 
                 this[this.parent.COLOR_PICKER ? "parent" : "container"].observe("inputType", function (value) {
@@ -91,8 +87,29 @@
             }
         },
 
+        oncomplete: function () {
+
+            var image = this.get("image");
+
+            if (on.client && image && image !== "none") {
+
+                this.loadImageTimeout = setTimeout(function() {
+
+                    //cross-origin
+                    if (image.match(/^http/) && !image.match(new RegExp("^" + window.location.origin))) {
+
+                        return;
+                    }
+
+                    this.getPaletteFromImage();
+
+                }.bind(this), this.get("delay"));
+            }
+        },
+
         onteardown: function () {
 
+            clearTimeout(this.loadImageTimeout);
             clearTimeout(this.stopVibrantTimeout);
             clearTimeout(this.stopVibrant2Timeout);
 

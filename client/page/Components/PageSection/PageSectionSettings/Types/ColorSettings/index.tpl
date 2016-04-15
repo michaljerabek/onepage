@@ -35,12 +35,22 @@
     {{#if .toggleTab}}
         <ColorPicker defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}">
             <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
+            {{#if .imageColors.background}}
+                <ColorPickerPalette title="Pozadí" colors="{{.imageColors.background.colors}}" />
+            {{else}}
+                <ColorPickerPalette id="background" title="Pozadí" image="{{.image}}" />
+            {{/if}}
         </ColorPicker>
     {{/if}}
 
     {{#if !.toggleTab}}
         <ColorPicker defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}">
             <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
+            {{#if .imageColors.background}}
+                <ColorPickerPalette title="Pozadí" colors="{{.imageColors.background.colors}}" />
+            {{else}}
+                <ColorPickerPalette id="background" title="Pozadí" image="{{.image}}" delay="[[.toggleTab === undefined ? (delayOpening ? 600 : 300) : 0]]" />
+            {{/if}}
         </ColorPicker>
     {{/if}}
 

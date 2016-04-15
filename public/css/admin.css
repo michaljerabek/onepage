@@ -5589,6 +5589,257 @@ body > .E_NewPageSectionSelector--clone .type {
     to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
 }
 
+.P_PageSection {
+    position: relative;
+
+    width: 100%;
+
+    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
+        z-index 0s linear 0.3s;
+
+    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
+        z-index 0s linear 0.3s;
+
+    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
+        z-index 0s linear 0.3s;
+
+    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
+        z-index 0s linear 0.3s;
+}
+
+.P_PageSection:hover, .P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
+    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+}
+
+.P_PageSection:hover {
+    z-index: 2;
+}
+
+.P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
+    z-index: 3;
+}
+
+.P_PageSection--background-color, .P_PageSection--section, .P_PageSection--content {
+    position: relative;
+}
+
+.P_PageSection:hover .P_PageSection--content, .P_PageSection__has-outline:hover .P_PageSection--content, .P_PageSection__has-settings:hover .P_PageSection--content, .P_PageSection__has-outline .P_PageSection--content, .P_PageSection__has-settings .P_PageSection--content {
+    z-index: 1;
+}
+
+.P_PageSection__dragged, .P_PageSection__dragged:hover, .P_PageSection__removed, .P_PageSection__removed:hover, .P_PageSection__placed, .P_PageSection__placed:hover {
+    z-index: 10;
+
+    overflow: hidden;
+}
+
+.P_PageSection__removed:hover, .P_PageSection__removed {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+.P_PageSection__placed:not(.P_PageSection__new), .P_PageSection__removed, .P_PageSection__dragged {
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+
+    -webkit-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+       -moz-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+         -o-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+            animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+}
+
+.P_PageSection__dragged {
+    -webkit-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+       -moz-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+         -o-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+            animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+}
+
+.P_PageSection__placed:not(.P_PageSection__new) {
+    -webkit-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+       -moz-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+         -o-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+            animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+}
+
+.P_PageSection__new:not(.P_PageSection__inserted-by-tap) {
+    -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+
+    -webkit-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+       -moz-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+         -o-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+            animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+}
+
+@-webkit-keyframes PageSection--sort-shadow__dragged {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__dragged {
+    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-o-keyframes PageSection--sort-shadow__dragged {
+    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__dragged {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-webkit-keyframes PageSection--sort-shadow__placed {
+    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__placed {
+    to { -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-o-keyframes PageSection--sort-shadow__placed {
+    to { box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__placed {
+    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-webkit-keyframes PageSection--sort-shadow__removed {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__removed {
+    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-o-keyframes PageSection--sort-shadow__removed {
+    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__removed {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-webkit-keyframes PageSection--sort-shadow__new {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__new {
+    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+@-o-keyframes PageSection--sort-shadow__new {
+    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+@keyframes PageSection--sort-shadow__new {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+.P_PageSection__dragged {
+    height: 48px;
+    min-height: 48px;
+}
+
+.E .P_PageSection, .E .P_PageSection:after, .E .P_PageSection:before {
+    will-change: box-shadow, transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
+}
+
+.E .P_PageSection:after {
+    content: attr(data-page-section-name);
+
+    font-size: 19px;
+
+    z-index: 120;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    color: #fff;
+    background-color: #404040;
+    opacity: 0;
+    visibility: hidden;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-transition-property: opacity, visibility;
+
+    -moz-transition-property: opacity, visibility;
+
+    -o-transition-property: opacity, visibility;
+
+    transition-property: opacity, visibility;
+    -webkit-transition-duration: 0.35s;
+       -moz-transition-duration: 0.35s;
+         -o-transition-duration: 0.35s;
+            transition-duration: 0.35s;
+    -webkit-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+       -moz-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+         -o-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+            transition-timing-function: cubic-bezier(0, 0, .58, 1);
+}
+
+.E .P_PageSection__dragged:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.P_font-type-1 .P_PageSection--content {
+    font-family: serif;
+}
+
+.P_font-type-2 .P_PageSection--content {
+    font-family: sans-serif;
+}
+
+.P_PageSection--content sup {
+    font-size: 70%;
+    vertical-align: super;
+}
+
+.P_PageSection--content sub {
+    font-size: 70%;
+    vertical-align: sub;
+}
+
+.P_PageSection--content a {
+    color: inherit;
+}
+
 .P_PageElement {
     z-index: 1;
     position: relative;
@@ -5898,675 +6149,6 @@ body > .E_NewPageSectionSelector--clone .type {
     -ms-touch-action: manipulation;
         touch-action: manipulation;
 }
-
-.P_PageSection {
-    position: relative;
-
-    width: 100%;
-
-    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
-        z-index 0s linear 0.3s;
-
-    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
-        z-index 0s linear 0.3s;
-
-    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
-        z-index 0s linear 0.3s;
-
-    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
-        z-index 0s linear 0.3s;
-}
-
-.P_PageSection:hover, .P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
-    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-}
-
-.P_PageSection:hover {
-    z-index: 2;
-}
-
-.P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
-    z-index: 3;
-}
-
-.P_PageSection--background-color, .P_PageSection--section, .P_PageSection--content {
-    position: relative;
-}
-
-.P_PageSection:hover .P_PageSection--content, .P_PageSection__has-outline:hover .P_PageSection--content, .P_PageSection__has-settings:hover .P_PageSection--content, .P_PageSection__has-outline .P_PageSection--content, .P_PageSection__has-settings .P_PageSection--content {
-    z-index: 1;
-}
-
-.P_PageSection__dragged, .P_PageSection__dragged:hover, .P_PageSection__removed, .P_PageSection__removed:hover, .P_PageSection__placed, .P_PageSection__placed:hover {
-    z-index: 10;
-
-    overflow: hidden;
-}
-
-.P_PageSection__removed:hover, .P_PageSection__removed {
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
-}
-
-.P_PageSection__placed:not(.P_PageSection__new), .P_PageSection__removed, .P_PageSection__dragged {
-    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-       -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-
-    -webkit-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-       -moz-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-         -o-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-            animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-}
-
-.P_PageSection__dragged {
-    -webkit-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-       -moz-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-         -o-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-            animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-}
-
-.P_PageSection__placed:not(.P_PageSection__new) {
-    -webkit-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
-       -moz-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
-         -o-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
-            animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
-}
-
-.P_PageSection__new:not(.P_PageSection__inserted-by-tap) {
-    -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
-       -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
-
-    -webkit-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-       -moz-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-         -o-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-            animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-}
-
-@-webkit-keyframes PageSection--sort-shadow__dragged {
-    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-moz-keyframes PageSection--sort-shadow__dragged {
-    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-o-keyframes PageSection--sort-shadow__dragged {
-    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@keyframes PageSection--sort-shadow__dragged {
-    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-webkit-keyframes PageSection--sort-shadow__placed {
-    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-moz-keyframes PageSection--sort-shadow__placed {
-    to { -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-o-keyframes PageSection--sort-shadow__placed {
-    to { box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@keyframes PageSection--sort-shadow__placed {
-    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-webkit-keyframes PageSection--sort-shadow__removed {
-    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-moz-keyframes PageSection--sort-shadow__removed {
-    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-o-keyframes PageSection--sort-shadow__removed {
-    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@keyframes PageSection--sort-shadow__removed {
-    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-webkit-keyframes PageSection--sort-shadow__new {
-    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
-}
-
-@-moz-keyframes PageSection--sort-shadow__new {
-    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
-}
-
-@-o-keyframes PageSection--sort-shadow__new {
-    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
-}
-
-@keyframes PageSection--sort-shadow__new {
-    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
-}
-
-.P_PageSection__dragged {
-    height: 48px;
-    min-height: 48px;
-}
-
-.E .P_PageSection, .E .P_PageSection:after, .E .P_PageSection:before {
-    will-change: box-shadow, transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
-}
-
-.E .P_PageSection:after {
-    content: attr(data-page-section-name);
-
-    font-size: 19px;
-
-    z-index: 120;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    color: #fff;
-    background-color: #404040;
-    opacity: 0;
-    visibility: hidden;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-
-    -webkit-transition-property: opacity, visibility;
-
-    -moz-transition-property: opacity, visibility;
-
-    -o-transition-property: opacity, visibility;
-
-    transition-property: opacity, visibility;
-    -webkit-transition-duration: 0.35s;
-       -moz-transition-duration: 0.35s;
-         -o-transition-duration: 0.35s;
-            transition-duration: 0.35s;
-    -webkit-transition-timing-function: cubic-bezier(0, 0, .58, 1);
-       -moz-transition-timing-function: cubic-bezier(0, 0, .58, 1);
-         -o-transition-timing-function: cubic-bezier(0, 0, .58, 1);
-            transition-timing-function: cubic-bezier(0, 0, .58, 1);
-}
-
-.E .P_PageSection__dragged:after {
-    opacity: 1;
-    visibility: visible;
-}
-
-.P_font-type-1 .P_PageSection--content {
-    font-family: serif;
-}
-
-.P_font-type-2 .P_PageSection--content {
-    font-family: sans-serif;
-}
-
-.P_PageSection--content sup {
-    font-size: 70%;
-    vertical-align: super;
-}
-
-.P_PageSection--content sub {
-    font-size: 70%;
-    vertical-align: sub;
-}
-
-.P_PageSection--content a {
-    color: inherit;
-}
-
-.E_PageElementSettings--transition-wrapper {
-    z-index: 120;
-	position: relative;
-}
-
-.E_PageElementSettings {
-    z-index: 120;
-    position: absolute;
-
-    background-color: #f5f5f5;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-       -moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-            box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-
-    will-change: top, left, opacity;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -webkit-transition-property: top, left;
-    -moz-transition-property: top, left;
-    -o-transition-property: top, left;
-    transition-property: top, left;
-}
-
-.E_PageElementSettings--wrapper {
-    position: relative;
-
-    padding-top: 24px;
-
-    -webkit-border-radius: 4px;
-
-       -moz-border-radius: 4px;
-
-            border-radius: 4px;
-
-    overflow: hidden;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--wrapper {
-        padding-top: 32px;
-    }
-}
-
-.E_PageElementSettings--content {
-    min-width: 200px;
-    min-height: 200px;
-}
-
-.E_PageElementSettings--resizable-box {
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -webkit-transition-property: width, height;
-    -moz-transition-property: width, height;
-    -o-transition-property: width, height;
-    transition-property: width, height;
-}
-
-.E_PageElementSettings--resizer {
-    z-index: 100;
-    position: absolute;
-}
-
-.E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
-    left: 0;
-
-    width: 100%;
-    height: 8px;
-
-    cursor: ns-resize;
-}
-
-.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
-    top: -6px;
-}
-
-.E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
-    bottom: -6px;
-}
-
-.E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
-    top: 0;
-
-    width: 8px;
-    height: 100%;
-
-    cursor: ew-resize;
-}
-
-.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
-    left: -6px;
-}
-
-.E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
-    right: -6px;
-}
-
-.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
-    z-index: 110;
-
-    width: 8px;
-    height: 8px;
-}
-
-.E_PageElementSettings--resizer__top-left {
-    cursor: nw-resize;
-}
-
-.E_PageElementSettings--resizer__top-right {
-    cursor: ne-resize;
-}
-
-.E_PageElementSettings--resizer__bottom-left {
-    cursor: sw-resize;
-}
-
-.E_PageElementSettings--resizer__bottom-right {
-    cursor: se-resize;
-}
-
-.csspointerevents .E_PageElementSettings--resizer-hover {
-    z-index: 200;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    border: 0px solid transparent;
-    -webkit-border-radius: inherit;
-       -moz-border-radius: inherit;
-            border-radius: inherit;
-
-    pointer-events: none;
-
-    -webkit-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-
-    -moz-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-
-    -o-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-
-    transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-}
-
-.csspointerevents .E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
-    -webkit-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -moz-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -o-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-}
-
-.csspointerevents .E_PageElementSettings--resizer:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    -webkit-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -moz-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -o-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top:hover ~ .E_PageElementSettings--resizer-hover {
-    border-top-color: red;
-    border-top-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom:hover ~ .E_PageElementSettings--resizer-hover {
-    border-bottom-color: red;
-    border-bottom-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left:hover ~ .E_PageElementSettings--resizer-hover {
-    border-left-color: red;
-    border-left-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right:hover ~ .E_PageElementSettings--resizer-hover {
-    border-right-color: red;
-    border-right-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-top-color: orange;
-    border-top-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-bottom-color: orange;
-    border-bottom-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-left-color: orange;
-    border-left-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-right-color: orange;
-    border-right-width: 1px;
-}
-
-.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-    content: "";
-
-    position: absolute;
-
-    width: 0px;
-    height: 0px;
-
-    width: 8px;
-    height: 8px;
-}
-
-.E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-    left: 0;
-    top: 8px;
-}
-
-.E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-    top: -8px;
-}
-
-.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before {
-    left: 8px;
-    top: 0;
-}
-
-.E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
-    left: -8px;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
-        height: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
-        top: -18px;
-    }
-
-    .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
-        bottom: -18px;
-    }
-
-    .E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
-        width: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
-        left: -18px;
-    }
-
-    .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
-        right: -18px;
-    }
-
-    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
-        width: 24px;
-        height: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-        width: 24px;
-        height: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__bottom-left:before {
-        left: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
-        left: -24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after {
-        top: 24px;
-    }
-
-    .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-        top: -24px;
-    }
-}
-
-.E_PageElementSettings--title-bar {
-    line-height: 24px;
-
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    height: 24px;
-    width: 100%;
-    padding-right: 48px;
-
-    color: #fff;
-    background-color: #404040;
-    -webkit-border-top-right-radius: 4px;
-       -moz-border-radius-topright: 4px;
-            border-top-right-radius: 4px;
-    -webkit-border-top-left-radius: 4px;
-       -moz-border-radius-topleft: 4px;
-            border-top-left-radius: 4px;
-}
-
-.E_PageElementSettings--title {
-    font-size: 12px;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
-    white-space: nowrap;
-
-    padding: 0 8px;
-
-    cursor: move;
-
-    overflow: hidden;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--title-bar {
-        line-height: 32px;
-
-        height: 32px;
-        padding-right: 64px;
-    }
-
-    .E_PageElementSettings--title {
-        font-size: 14px;
-
-        padding: 0 12px;
-    }
-}
-
-.E_PageElementSettings--min-max, .E_PageElementSettings--close {
-    line-height: 24px;
-    text-align: center;
-
-    z-index: 10;
-    position:absolute;
-    top: 0px;
-    right: 0px;
-
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 24px;
-    max-height: 24px;
-    min-width: 24px;
-    max-width: 24px;
-
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    -webkit-border-radius: 0px;
-       -moz-border-radius: 0px;
-            border-radius: 0px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    display: block;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--min-max, .E_PageElementSettings--close {
-        min-height: 32px;
-        max-height: 32px;
-        min-width: 32px;
-        max-width: 32px;
-    }
-}
-
-.E_PageElementSettings--min-max {
-    right: 24px;
-
-    cursor: default;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--min-max {
-        right: 32px;
-    }
-}
-
-.E_PageElementSettings--min-max__max {
-    background-color: orange;
-}
-
-/*
-.test {
-    max-width: 240px;
-    max-height: 280px;
-    overflow: hidden;
-}
-
-.fll {
-    float: left;
-    width: 50%;
-    min-width: 120px;
-    max-width: 200px;
-    height: 100px;
-    border: 1px solid #000;
-}
-*/
 
 .E_PageSectionEditUI {
     line-height: 1;
@@ -7135,17 +6717,423 @@ body > .E_NewPageSectionSelector--clone .type {
     transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
-.P_PageElement__text-content {
-    line-height: 1.4;
-
-    display: inline-block;
+.E_PageElementSettings--transition-wrapper {
+    z-index: 120;
+	position: relative;
 }
 
-.P_PageElement__title {
-    line-height: 1.4;
+.E_PageElementSettings {
+    z-index: 120;
+    position: absolute;
 
-    display: inline-block;
+    background-color: #f5f5f5;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+       -moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+
+    will-change: top, left, opacity;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: top, left;
+    -moz-transition-property: top, left;
+    -o-transition-property: top, left;
+    transition-property: top, left;
 }
+
+.E_PageElementSettings--wrapper {
+    position: relative;
+
+    padding-top: 24px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+
+    overflow: hidden;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--wrapper {
+        padding-top: 32px;
+    }
+}
+
+.E_PageElementSettings--content {
+    min-width: 200px;
+    min-height: 200px;
+}
+
+.E_PageElementSettings--resizable-box {
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: width, height;
+    -moz-transition-property: width, height;
+    -o-transition-property: width, height;
+    transition-property: width, height;
+}
+
+.E_PageElementSettings--resizer {
+    z-index: 100;
+    position: absolute;
+}
+
+.E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
+    left: 0;
+
+    width: 100%;
+    height: 8px;
+
+    cursor: ns-resize;
+}
+
+.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
+    top: -6px;
+}
+
+.E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
+    bottom: -6px;
+}
+
+.E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
+    top: 0;
+
+    width: 8px;
+    height: 100%;
+
+    cursor: ew-resize;
+}
+
+.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
+    left: -6px;
+}
+
+.E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
+    right: -6px;
+}
+
+.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
+    z-index: 110;
+
+    width: 8px;
+    height: 8px;
+}
+
+.E_PageElementSettings--resizer__top-left {
+    cursor: nw-resize;
+}
+
+.E_PageElementSettings--resizer__top-right {
+    cursor: ne-resize;
+}
+
+.E_PageElementSettings--resizer__bottom-left {
+    cursor: sw-resize;
+}
+
+.E_PageElementSettings--resizer__bottom-right {
+    cursor: se-resize;
+}
+
+.csspointerevents .E_PageElementSettings--resizer-hover {
+    z-index: 200;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0px solid transparent;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    pointer-events: none;
+
+    -webkit-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    -moz-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    -o-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+}
+
+.csspointerevents .E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
+    -webkit-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -moz-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -o-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+}
+
+.csspointerevents .E_PageElementSettings--resizer:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    -webkit-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top:hover ~ .E_PageElementSettings--resizer-hover {
+    border-top-color: red;
+    border-top-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom:hover ~ .E_PageElementSettings--resizer-hover {
+    border-bottom-color: red;
+    border-bottom-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left:hover ~ .E_PageElementSettings--resizer-hover {
+    border-left-color: red;
+    border-left-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right:hover ~ .E_PageElementSettings--resizer-hover {
+    border-right-color: red;
+    border-right-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-top-color: orange;
+    border-top-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-bottom-color: orange;
+    border-bottom-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-left-color: orange;
+    border-left-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-right-color: orange;
+    border-right-width: 1px;
+}
+
+.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+    content: "";
+
+    position: absolute;
+
+    width: 0px;
+    height: 0px;
+
+    width: 8px;
+    height: 8px;
+}
+
+.E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+    left: 0;
+    top: 8px;
+}
+
+.E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+    top: -8px;
+}
+
+.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before {
+    left: 8px;
+    top: 0;
+}
+
+.E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
+    left: -8px;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
+        height: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
+        top: -18px;
+    }
+
+    .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
+        bottom: -18px;
+    }
+
+    .E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
+        width: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
+        left: -18px;
+    }
+
+    .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
+        right: -18px;
+    }
+
+    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
+        width: 24px;
+        height: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+        width: 24px;
+        height: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__bottom-left:before {
+        left: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
+        left: -24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after {
+        top: 24px;
+    }
+
+    .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+        top: -24px;
+    }
+}
+
+.E_PageElementSettings--title-bar {
+    line-height: 24px;
+
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 24px;
+    width: 100%;
+    padding-right: 48px;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-border-top-right-radius: 4px;
+       -moz-border-radius-topright: 4px;
+            border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+}
+
+.E_PageElementSettings--title {
+    font-size: 12px;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+    white-space: nowrap;
+
+    padding: 0 8px;
+
+    cursor: move;
+
+    overflow: hidden;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--title-bar {
+        line-height: 32px;
+
+        height: 32px;
+        padding-right: 64px;
+    }
+
+    .E_PageElementSettings--title {
+        font-size: 14px;
+
+        padding: 0 12px;
+    }
+}
+
+.E_PageElementSettings--min-max, .E_PageElementSettings--close {
+    line-height: 24px;
+    text-align: center;
+
+    z-index: 10;
+    position:absolute;
+    top: 0px;
+    right: 0px;
+
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 24px;
+    max-height: 24px;
+    min-width: 24px;
+    max-width: 24px;
+
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    -webkit-border-radius: 0px;
+       -moz-border-radius: 0px;
+            border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    display: block;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max, .E_PageElementSettings--close {
+        min-height: 32px;
+        max-height: 32px;
+        min-width: 32px;
+        max-width: 32px;
+    }
+}
+
+.E_PageElementSettings--min-max {
+    right: 24px;
+
+    cursor: default;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max {
+        right: 32px;
+    }
+}
+
+.E_PageElementSettings--min-max__max {
+    background-color: orange;
+}
+
+/*
+.test {
+    max-width: 240px;
+    max-height: 280px;
+    overflow: hidden;
+}
+
+.fll {
+    float: left;
+    width: 50%;
+    min-width: 120px;
+    max-width: 200px;
+    height: 100px;
+    border: 1px solid #000;
+}
+*/
 
 .P_BackgroundImage {
     position:absolute;
@@ -7186,5 +7174,17 @@ body > .E_NewPageSectionSelector--clone .type {
     background-attachment: fixed;
 }
 
+
+.P_PageElement__text-content {
+    line-height: 1.4;
+
+    display: inline-block;
+}
+
+.P_PageElement__title {
+    line-height: 1.4;
+
+    display: inline-block;
+}
 
 /*# sourceMappingURL=admin.css.map */
