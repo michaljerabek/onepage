@@ -36,6 +36,13 @@
             fixed: "P_BackgroundImage__fixed"
         },
 
+        OPTIONS: {
+            PARALLAX_MAX_EXT: 320,
+            PARALLAX_MIN_EXT: 80,
+
+            EFFECTS_STRENGTH_DEF: 35
+        },
+
         components: {
         },
 
@@ -46,14 +53,106 @@
 
             return {
                 editMode: Ractive.EDIT_MODE,
-                data: {
-                    backgroundImage: "",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
 
-                    parallax: false
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+
+                parallax: false,
+                parallaxExtention: this.getParallaxExtention(this.OPTIONS.EFFECTS_STRENGTH_DEF),
+                fixed: false,
+
+                data: {
+                    src: "",
+
+                    display: "cover",
+                    effects: [],
+                    effectsStrength: this.OPTIONS.EFFECTS_STRENGTH_DEF
                 }
             };
+        },
+
+        onconfig: function () {
+
+            this.observe("data.effectsStrength", function (value) {
+
+                var insertedValue = value;
+
+                if (!parseInt(insertedValue) && +insertedValue !== 0) {
+
+                    value = this.OPTIONS.EFFECTS_STRENGTH_DEF;
+
+                } else if (insertedValue < 0) {
+
+                    value = 0;
+
+                } else if (insertedValue > 100) {
+
+                    value = 100;
+
+                }
+
+                if (value !== insertedValue) {
+
+                    this.set("data.effectsStrength", value);
+                }
+
+                this.set("parallaxExtention", this.getParallaxExtention(value));
+            });
+
+            this.observe("data.display", function (display) {
+
+                switch (display) {
+
+                    case "cover": {
+
+                        this.set("backgroundSize", "cover");
+                        this.set("backgroundRepeat", "no-repeat");
+
+                        break;
+                    }
+
+                    case "repeat": {
+
+                        this.set("backgroundSize", "auto");
+                        this.set("backgroundRepeat", "repeat");
+
+                        break;
+                    }
+                }
+            });
+
+            this.observe("data.effects", function (effects) {
+
+                if (!effects || this.skipEffectsObserver) {
+
+                    return;
+                }
+
+                var parallax = ~effects.indexOf("parallax"),
+                    fixed = ~effects.indexOf("fixed");
+
+                this.skipEffectsObserver = true;
+
+                //uživatel přepnul na parallax -> zrušit fixed, pokud byl nastaven
+                if (parallax && fixed && !this.get("parallax")) {
+
+                    fixed = false;
+
+                    this.splice("data.effects", fixed, 1);
+
+                //uživatel přepnul na fixed -> zušit parallax, pokud byl nastaven
+                } else if (parallax && fixed && !this.get("fixed")) {
+
+                    parallax = false;
+
+                    this.splice("data.effects", parallax, 1);
+                }
+
+                this.skipEffectsObserver = false;
+
+                this.set("parallax", !!parallax);
+                this.set("fixed", !!fixed);
+            });
         },
 
         onrender: function () {
@@ -68,7 +167,7 @@
 
         initParallax: function () {
 
-            this.observe("data.parallax", function () {
+            this.observe("parallax", function () {
 
                 if (this.PageSection.get("isRemoved")) {
 
@@ -84,7 +183,7 @@
                     return;
                 }
 
-                if (this.get("data.parallax")) {
+                if (this.get("parallax")) {
 
                     if (this.parallax) {
 
@@ -96,7 +195,7 @@
                     return;
                 }
 
-                if (!this.get("data.parallax") && this.parallax) {
+                if (!this.get("parallax") && this.parallax) {
 
                     this.parallax.destroy();
                 }
@@ -119,13 +218,20 @@
             }
         },
 
+        getParallaxExtention: function (strength) {
+
+            var range = this.OPTIONS.PARALLAX_MAX_EXT - this.OPTIONS.PARALLAX_MIN_EXT;
+
+            return (range * (strength / 100)) + this.OPTIONS.PARALLAX_MIN_EXT;
+        },
+
         handleSectionChange: function () {
 
             clearTimeout(this.sectionChangeThrottle);
 
             this.sectionChangeThrottle = setTimeout(function() {
 
-                if (this.parallax && this.get("data.parallax")) {
+                if (this.parallax && this.get("parallax")) {
 
                     this.parallax.refresh();
                 }

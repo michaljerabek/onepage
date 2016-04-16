@@ -198,6 +198,11 @@
 
                         stop: function () {
 
+                            if (image.iframe.parentNode) {
+
+                                image.iframe.parentNode.removeChild(image.iframe);
+                            }
+
                             worker.terminate();
                         }
                     };
@@ -223,6 +228,11 @@
                     }.bind(this)),
 
                     stop: function () {
+
+                        if (image.iframe.parentNode) {
+
+                            image.iframe.parentNode.removeChild(image.iframe);
+                        }
 
                         worker.terminate();
                     }

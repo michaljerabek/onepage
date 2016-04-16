@@ -33,7 +33,7 @@
 {{#partial ColorSettingsTab}}
 
     {{#if .toggleTab}}
-        <ColorPicker defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}">
+        <ColorPicker defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}" inputType="[[.lastInputType]]">
             <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
             {{#if .imageColors.background}}
                 <ColorPickerPalette title="Pozadí" colors="{{.imageColors.background.colors}}" />
@@ -44,7 +44,7 @@
     {{/if}}
 
     {{#if !.toggleTab}}
-        <ColorPicker defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}">
+        <ColorPicker defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}" inputType="[[.lastInputType]]">
             <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
             {{#if .imageColors.background}}
                 <ColorPickerPalette title="Pozadí" colors="{{.imageColors.background.colors}}" />

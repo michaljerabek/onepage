@@ -44,6 +44,8 @@
 
             this.observe("openTab", function () {
 
+                this.set("lastInputType", this.findComponent("ColorPicker").get("inputType"));
+
                 this.toggle("toggleTab");
 
                 this.cancelImageColorsObservers();

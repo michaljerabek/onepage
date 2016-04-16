@@ -24,8 +24,6 @@
     top: 50%;
     transform: translateY(-50%);
 
-    min-height: 180%;
-
     will-change: transform, background, top;
 }
 

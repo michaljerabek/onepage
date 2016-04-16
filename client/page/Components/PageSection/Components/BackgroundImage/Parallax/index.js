@@ -190,12 +190,12 @@ Parallax.prototype.transform = function () {
         return;
     }
 
-    var backgroundBottom = this.offsetTop + this.imageHeight,
+    var backgroundBottom = this.offsetTop + this.backgroundHeight,
 
         parallaxProgression = ((backgroundBottom - ParallaxController.getWinScrollTop()) / this.parallaxOuterRange) * 2,
         progressionFromCenter = parallaxProgression > 1 ? (parallaxProgression - 1) * -1: 1 - parallaxProgression,
 
-        transform = (this.parallaxExtention * progressionFromCenter - (this.imageHeight / 2));
+        transform = (this.parallaxExtention * progressionFromCenter) - this.parallaxExtention - (this.backgroundHeight / 2);
 
     this.$image.css({
         transform: "translateY(" + transform + "px)"
@@ -205,6 +205,11 @@ Parallax.prototype.transform = function () {
 Parallax.prototype.getBackgroundHeight = function () {
 
     return this.backgroundHeight;
+};
+
+Parallax.prototype.getImageHeight = function () {
+
+    return this.imageHeight;
 };
 
 module.exports = Parallax;
