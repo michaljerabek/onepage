@@ -35,22 +35,24 @@
     {{#if .toggleTab}}
         <ColorPicker defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}" inputType="[[.lastInputType]]">
             <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
-            {{#if .imageColors.background}}
+            [[#if .imageColors.background]]
                 <ColorPickerPalette title="Pozadí" colors="{{.imageColors.background.colors}}" />
-            {{else}}
+            [[/if]]
+            [[#if !.imageColors.background]]
                 <ColorPickerPalette id="background" title="Pozadí" image="{{.image}}" />
-            {{/if}}
+            [[/if]]
         </ColorPicker>
     {{/if}}
 
     {{#if !.toggleTab}}
         <ColorPicker defer="true" noColor="true" output="{{this['color' + .openTab]}}" input="{{this['color' + .openTab] || this['color' + .openTab + '-input-default']}}" inputType="[[.lastInputType]]">
             <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
-            {{#if .imageColors.background}}
+            [[#if .imageColors.background]]
                 <ColorPickerPalette title="Pozadí" colors="{{.imageColors.background.colors}}" />
-            {{else}}
+            [[/if]]
+            [[#if !.imageColors.background]]
                 <ColorPickerPalette id="background" title="Pozadí" image="{{.image}}" delay="[[.toggleTab === undefined ? (delayOpening ? 600 : 300) : 0]]" />
-            {{/if}}
+            [[/if]]
         </ColorPicker>
     {{/if}}
 

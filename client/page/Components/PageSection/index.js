@@ -11,6 +11,8 @@
         var Ractive = require("ractive");
 
         var components = {
+                PageSectionMessage: Ractive.EDIT_MODE ? require("./PageSectionMessage") : null,
+
                 PageSectionSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings") : null,
 
                 PageElementSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings") : null,

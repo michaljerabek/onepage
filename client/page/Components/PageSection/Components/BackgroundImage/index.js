@@ -10,18 +10,20 @@
 
         var Ractive = require("ractive"),
 
+            Dropzone = on.client ? require("dropzone") : function () { return {}; },
+
             Parallax = require("./Parallax"),
 
             template = require("./index.tpl");
 
-        module.exports = factory(Ractive, Parallax, template, on);
+        module.exports = factory(Ractive, Dropzone, Parallax, template, on);
 
     } else {
 
-        root.BackgroundImage = factory(root.Ractive, root.Parallax, null, {client: true});
+        root.BackgroundImage = factory(root.Ractive, root.Dropzone, root.Parallax, null, {client: true});
     }
 
-}(this, function (Ractive, Parallax, template, on) {
+}(this, function (Ractive, Dropzone, Parallax, template, on) {
 
     return Ractive.extend({
 
@@ -53,6 +55,9 @@
 
             return {
                 editMode: Ractive.EDIT_MODE,
+
+                imageUploadActive: false,
+                imageUploadProgress: 0,
 
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
@@ -159,10 +164,147 @@
 
             if (on.client) {
 
+                this.self = this.find("." + this.CLASS.self);
+                this.$self = $(this.self);
+
                 this.PageSection = this.getPageSection();
 
                 this.initParallax();
+
+                if (Ractive.EDIT_MODE) {
+
+                    this.initDragDropUpload();
+                }
             }
+        },
+
+        initDragDropUpload: function () {
+
+            Dropzone.autoDiscover = false;
+
+            var backgroundImage = this,
+
+                prevDisplay,
+                prevSrc;
+
+            this.$dropzonePreview = $("<div/>");
+
+            this.dropzone = this.$self.dropzone({
+                url: "/upload-background-image",
+                paramName: "background-image",
+
+                acceptedFiles: "image/jpg,image/jpeg,image/png",
+                maxFilesize: 1,
+
+                clickable: false,
+
+                previewsContainer: this.$dropzonePreview[0],
+                thumbnailWidth: null,
+                thumbnailHeight: null,
+
+                dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu jpg nebo png.",
+                dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
+                dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})",
+
+                addedfile: function () {
+
+                    prevDisplay = backgroundImage.get("data.display");
+                    prevSrc = backgroundImage.get("data.src");
+
+                    backgroundImage.set("imageUploadError", false);
+                    backgroundImage.set("imageUploadProgress", 0);
+                },
+
+                thumbnail: function (file, data) {
+
+                    if (prevSrc === backgroundImage.get("data.src")) {
+
+                        backgroundImage.set("data.src", data);
+                    }
+
+                    //je-li obrázek čtverec nebo jsou obě strany menší jak 512px nebo je jedna ze stran
+                    //menší jak 128px nebo je poměr stran menší jak 0.4 (= úzký),
+                    //pak je obrázek pravděpodobně textura -> nastavit opakování
+                    if (file.width === file.height || file.width <= 128 || file.height <= 128 || (file.width <= 512 && file.height <= 512) || file.width / file.height < 0.4) {
+
+                        backgroundImage.set("data.display", "repeat");
+
+                        return;
+                    }
+
+                    backgroundImage.set("data.display", "cover");
+                },
+
+                sending: function () {
+
+                    backgroundImage.set("imageUploadActive", true);
+                },
+
+                uploadprogress: function (file, progress) {
+
+                    backgroundImage.set("imageUploadProgress", progress);
+                },
+
+                success: function (file, res) {
+
+                    backgroundImage.set(
+                        "data.src",
+                        res.path.replace(/^public/, "").replace(/\\/g, "/")
+                    );
+
+                    backgroundImage.fire("pageSectionMessage", {
+                        title: "Nahrát obrázek",
+                        text: "Obrázek se podařilo úspěšně nahrát.",
+                        timeout: 2000,
+                        status: "success"
+                    });
+                },
+
+                error: function (file, error) {
+
+                    backgroundImage.set("imageUploadProgress", 100);
+                    backgroundImage.set("imageUploadError", true);
+
+                    setTimeout(function() {
+
+                        backgroundImage.fire("pageSectionMessage", {
+                            title: "Nahrát obrázek",
+                            text: error,
+                            timeout: 3000,
+                            status: "error"
+                        });
+
+                    }, 0);
+
+                    if (prevDisplay) {
+
+                        backgroundImage.set("data.display", prevDisplay);
+                    }
+
+                    if (prevSrc) {
+
+                        backgroundImage.set("data.src", prevSrc);
+                    }
+                },
+
+                complete: function () {
+
+                    backgroundImage.set("imageUploadActive", false);
+                }
+            });
+
+            this.dropzone.on("dragenter", function () {
+
+                backgroundImage.fire("pageSectionMessage", {
+                    title: "Nahrát obrázek",
+                    text: "Maximální velikost souboru: 1 MB. Podporované formáty: jpg, png."
+                });
+            });
+
+            this.dropzone.on("dragleave dragend drop", function () {
+
+                backgroundImage.fire("pageSectionMessage", null);
+            });
         },
 
         initParallax: function () {

@@ -1,0 +1,85 @@
+/*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+var Ractive = require("ractive");
+
+module.exports = Ractive.extend({
+
+    template: require("./index.tpl"),
+
+    CLASS: {
+        self: "E_PageSectionMessage",
+
+        message: "E_PageSectionMessage--message",
+        title: "E_PageSectionMessage--title",
+        text: "E_PageSectionMessage--text",
+
+        success: "E_PageSectionMessage--message__success",
+        error: "E_PageSectionMessage--message__error",
+        info: "E_PageSectionMessage--message__info",
+        warn: "E_PageSectionMessage--message__warn"
+    },
+
+    components: {
+    },
+
+    partials: {
+    },
+
+    data: function () {
+
+        return {
+            messageStatusClass: "",
+
+            message: null
+        };
+    },
+
+    onrender: function () {
+
+    },
+
+    onconfig: function () {
+
+        this.observe("message", function (message) {
+
+            if (!message) {
+
+                return;
+            }
+
+            clearTimeout(this.messageTimeout);
+
+            if (message.timeout) {
+
+                this.messageTimeout = setTimeout(function() {
+
+                    this.set("message", null);
+
+                }.bind(this), message.timeout);
+            }
+
+            switch (message.status) {
+                case "success": this.set("messageStatusClass", this.CLASS.success);
+                    break;
+                case "error": this.set("messageStatusClass", this.CLASS.error);
+                    break;
+                case "warn": this.set("messageStatusClass", this.CLASS.warn);
+                    break;
+                case "info": this.set("messageStatusClass", this.CLASS.info);
+                    break;
+                default: this.set("messageStatusClass", "");
+            }
+        });
+
+        this.PageSection = this.getPageSection();
+
+        this.PageSection.on("*.pageSectionMessage", function (message) {
+
+            this.set("message", message);
+
+        }.bind(this));
+    },
+
+    oncomplete: function () {
+    }
+
+});

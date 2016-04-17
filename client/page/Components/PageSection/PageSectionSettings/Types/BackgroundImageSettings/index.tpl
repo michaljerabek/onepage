@@ -18,7 +18,7 @@
             <input id="E_BackgroundImageSettings--display__repeat" type="radio" name="{{.data.backgroundImage.display}}" value="repeat">
             <label for="E_BackgroundImageSettings--display__repeat">Opakovat</label>
             <input id="E_BackgroundImageSettings--display__cover" type="radio" name="{{.data.backgroundImage.display}}" value="cover">
-            <label for="E_BackgroundImageSettings--display__cover">Pokrýt</label>
+            <label for="E_BackgroundImageSettings--display__cover">Vyplnit</label>
         </div>
 
         <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--effects">

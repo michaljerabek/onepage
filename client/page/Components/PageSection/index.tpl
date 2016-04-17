@@ -13,7 +13,11 @@
         >
 
             {{#if .editMode}}
+
+                <PageSectionMessage />
+
                 {{> pageSectionEditUI}}
+
             {{/if}}
 
             <div class="P_PageSection--content">

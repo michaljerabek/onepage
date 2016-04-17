@@ -155,16 +155,6 @@
                 pixels = imageData.data;
                 pixelCount = image.getPixelCount();
 
-                //      try {
-
-                //        var VibrantWorker = require('worker!./VibrantWorker.js');
-
-                //        worker = new VibrantWorker();
-
-                //      } catch (e) {
-
-                //      }
-
                 worker = new Worker(Vibrant.workerPath || 'js/VibrantWorker.js');
 
                 worker.postMessage({
@@ -176,6 +166,7 @@
                 });
 
                 if (unprocessed) {
+
                     return {
                         promise: new Promise(function (resolve) {
 

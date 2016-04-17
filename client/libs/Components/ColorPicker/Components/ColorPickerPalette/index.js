@@ -93,13 +93,13 @@
 
             if (on.client && image && image !== "none") {
 
+                //cross-origin
+                if (image.match(/^http/) && !image.match(new RegExp("^" + window.location.origin))) {
+
+                    return;
+                }
+
                 this.loadImageTimeout = setTimeout(function() {
-
-                    //cross-origin
-                    if (image.match(/^http/) && !image.match(new RegExp("^" + window.location.origin))) {
-
-                        return;
-                    }
 
                     this.getPaletteFromImage();
 
