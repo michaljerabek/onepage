@@ -16,6 +16,8 @@
 
                 <PageSectionMessage />
 
+                <ProgressBar />
+               
                 {{> pageSectionEditUI}}
 
             {{/if}}

@@ -6336,8 +6336,7 @@ body > .E_NewPageSectionSelector--clone .type {
 
     min-width: 256px;
     width: auto;
-    min-height: 40px;
-    height: auto;
+    max-width: 80%;
     padding: 12px 24px;
 
     color: #404040;
@@ -6690,86 +6689,6 @@ body > .E_NewPageSectionSelector--clone .type {
 
 .P_BackgroundImage__fixed .P_BackgroundImage--image {
     background-attachment: fixed;
-}
-
-/*---------------------------- UPLOAD ----------------------------*/
-
-.E_BackgroundImage--upload-progress {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-
-    opacity: 0;
-
-    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-
-    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-
-    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-
-    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-
-    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-
-    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-}
-
-.E_BackgroundImage--upload-progress__active {
-    opacity: 1;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.E_BackgroundImage--upload-progress .fill {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-
-    height: 1px;
-    width: 0%;
-
-    background-color: deepskyblue;
-    -webkit-box-shadow: 0px 0px 4px 1px deepskyblue;
-       -moz-box-shadow: 0px 0px 4px 1px deepskyblue;
-            box-shadow: 0px 0px 4px 1px deepskyblue;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.E_BackgroundImage--upload-progress__error .fill {
-    background-color: crimson;
-    -webkit-box-shadow: 0px 0px 4px 1px crimson;
-       -moz-box-shadow: 0px 0px 4px 1px crimson;
-            box-shadow: 0px 0px 4px 1px crimson;
 }
 
 
@@ -7268,6 +7187,107 @@ body > .E_NewPageSectionSelector--clone .type {
 
 .ColorPicker--input-text:not(:first-child) {
     margin-left: 4px;
+}
+
+/*====================================================================*/
+/*---------------------------- PROGRESSBAR ---------------------------*/
+/*====================================================================*/
+
+.E_ProgressBar {
+    z-index: 400;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+
+    opacity: 0;
+
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+}
+
+.E_ProgressBar__active {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_ProgressBar .E_ProgressBar--progress {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 1px;
+    width: 0%;
+
+    background-color: deepskyblue;
+    -webkit-box-shadow: 0px 0px 4px 1px deepskyblue;
+       -moz-box-shadow: 0px 0px 4px 1px deepskyblue;
+            box-shadow: 0px 0px 4px 1px deepskyblue;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-timing-function: linear;
+       -moz-transition-timing-function: linear;
+         -o-transition-timing-function: linear;
+            transition-timing-function: linear;
+}
+
+.E_ProgressBar__success .E_ProgressBar--progress {
+    background-color: lawngreen;
+    -webkit-box-shadow: 0px 0px 4px 1px lawngreen;
+       -moz-box-shadow: 0px 0px 4px 1px lawngreen;
+            box-shadow: 0px 0px 4px 1px lawngreen;
+}
+
+.E_ProgressBar__error .E_ProgressBar--progress {
+    background-color: crimson;
+    -webkit-box-shadow: 0px 0px 4px 1px crimson;
+       -moz-box-shadow: 0px 0px 4px 1px crimson;
+            box-shadow: 0px 0px 4px 1px crimson;
+}
+
+.E_ProgressBar__warn .E_ProgressBar--progress, .E_ProgressBar__error.E_ProgressBar__warn .E_ProgressBar--progress {
+    background-color: darkorange;
+    -webkit-box-shadow: 0px 0px 4px 1px darkorange;
+       -moz-box-shadow: 0px 0px 4px 1px darkorange;
+            box-shadow: 0px 0px 4px 1px darkorange;
 }
 
 /*====================================================================*/

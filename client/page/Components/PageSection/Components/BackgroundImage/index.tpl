@@ -19,15 +19,4 @@
     >
 
     </div>
-
-    {{#if .editMode}}
-
-        <div class="E_BackgroundImage--upload-progress
-            {{#if .imageUploadActive}}E_BackgroundImage--upload-progress__active{{/if}}
-            {{#if .imageUploadError}}E_BackgroundImage--upload-progress__error{{/if}}"
-        >
-            <div class="fill" style="width: {{.imageUploadProgress}}%"></div>
-        </div>
-
-    {{/if}}
 </div>

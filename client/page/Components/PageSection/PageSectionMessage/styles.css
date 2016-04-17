@@ -41,8 +41,7 @@
 
     min-width: 256px;
     width: auto;
-    min-height: 40px;
-    height: auto;
+    max-width: 80%;
     padding: 12px 24px;
 
     color: #404040;
@@ -75,7 +74,7 @@
 
 .E_PageSectionMessage--text {
     font-size: 14px;
-
+    
     margin-top: 4px;
 
     color: #606060;

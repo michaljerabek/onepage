@@ -1,0 +1,56 @@
+/*====================================================================*/
+/*---------------------------- PROGRESSBAR ---------------------------*/
+/*====================================================================*/
+
+.E_ProgressBar {
+    z-index: 400;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+
+    opacity: 0;
+
+    transition:
+        opacity var(--default-transition-duration) var(--default-transition-easing) 3s,
+        background-color var(--default-transition-duration) var(--default-transition-easing) 0s,
+        box-shadow var(--default-transition-duration) var(--default-transition-easing) 0s;
+}
+
+.E_ProgressBar__active {
+    opacity: 1;
+
+    transition: var(--default-transition-hover);
+}
+
+.E_ProgressBar .E_ProgressBar--progress {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 1px;
+    width: 0%;
+
+    background-color: deepskyblue;
+    box-shadow: 0px 0px 4px 1px deepskyblue;
+
+    transition: var(--default-transition);
+    transition-timing-function: linear;
+}
+
+.E_ProgressBar__success .E_ProgressBar--progress {
+    background-color: lawngreen;
+    box-shadow: 0px 0px 4px 1px lawngreen;
+}
+
+.E_ProgressBar__error .E_ProgressBar--progress {
+    background-color: crimson;
+    box-shadow: 0px 0px 4px 1px crimson;
+}
+
+.E_ProgressBar__warn .E_ProgressBar--progress,
+.E_ProgressBar__error.E_ProgressBar__warn .E_ProgressBar--progress {
+    background-color: darkorange;
+    box-shadow: 0px 0px 4px 1px darkorange;
+}

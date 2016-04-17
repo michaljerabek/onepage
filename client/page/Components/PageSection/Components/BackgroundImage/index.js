@@ -56,9 +56,6 @@
             return {
                 editMode: Ractive.EDIT_MODE,
 
-                imageUploadActive: false,
-                imageUploadProgress: 0,
-
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
 
@@ -183,7 +180,7 @@
             Dropzone.autoDiscover = false;
 
             var backgroundImage = this,
-
+                
                 prevDisplay,
                 prevSrc;
 
@@ -207,12 +204,9 @@
                 dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})",
 
                 addedfile: function () {
-
+                    
                     prevDisplay = backgroundImage.get("data.display");
                     prevSrc = backgroundImage.get("data.src");
-
-                    backgroundImage.set("imageUploadError", false);
-                    backgroundImage.set("imageUploadProgress", 0);
                 },
 
                 thumbnail: function (file, data) {
@@ -236,13 +230,14 @@
                 },
 
                 sending: function () {
-
-                    backgroundImage.set("imageUploadActive", true);
                 },
 
                 uploadprogress: function (file, progress) {
 
-                    backgroundImage.set("imageUploadProgress", progress);
+                    backgroundImage.fire("progressBarProgress", {
+                        id: file.name.replace(".", "_"),
+                        progress: progress
+                    });
                 },
 
                 success: function (file, res) {
@@ -254,7 +249,7 @@
 
                     backgroundImage.fire("pageSectionMessage", {
                         title: "Nahrát obrázek",
-                        text: "Obrázek se podařilo úspěšně nahrát.",
+                        text: "Obrázek (" + file.name + ") se podařilo úspěšně nahrát.",
                         timeout: 2000,
                         status: "success"
                     });
@@ -262,8 +257,9 @@
 
                 error: function (file, error) {
 
-                    backgroundImage.set("imageUploadProgress", 100);
-                    backgroundImage.set("imageUploadError", true);
+                    backgroundImage.fire("progressBarError", {
+                        id: file.name.replace(".", "_")
+                    });
 
                     setTimeout(function() {
 
@@ -288,8 +284,6 @@
                 },
 
                 complete: function () {
-
-                    backgroundImage.set("imageUploadActive", false);
                 }
             });
 

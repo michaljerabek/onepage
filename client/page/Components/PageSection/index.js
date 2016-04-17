@@ -12,6 +12,7 @@
 
         var components = {
                 PageSectionMessage: Ractive.EDIT_MODE ? require("./PageSectionMessage") : null,
+                ProgressBar: Ractive.EDIT_MODE ? require("./../../../libs/Components/ProgressBar") : null,
 
                 PageSectionSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings") : null,
 
