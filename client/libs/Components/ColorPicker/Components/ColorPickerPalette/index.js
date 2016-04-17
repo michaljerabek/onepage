@@ -173,7 +173,11 @@
                         spectraCache[compareWithRgbs[c]] = spectra2;
                     }
 
-                    if (spectra.near(spectra2, 10)) {
+                    if (spectra.near(spectra2, 5)) {
+
+                        similarity[rgbs[r]] = -100;
+
+                    } else if (spectra.near(spectra2, 10)) {
 
                         similarity[rgbs[r]] += 3;
 
@@ -190,10 +194,15 @@
                 c = compareWithRgbs.length - 1;
             }
 
-            var sorted = Object.keys(similarity).sort(function (a, b) {
+            var sorted = Object.keys(similarity)
+                .filter(function (color) {
 
-                return similarity[a] - similarity[b];
-            });
+                    return similarity[color] < 0 ? false : color;
+
+                }).sort(function (a, b) {
+
+                    return similarity[a] - similarity[b];
+                });
 
             return sorted.splice(0, count);
         },

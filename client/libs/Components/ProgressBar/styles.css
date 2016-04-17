@@ -12,6 +12,7 @@
 
     opacity: 0;
 
+    will-change: opacity;
     transition:
         opacity var(--default-transition-duration) var(--default-transition-easing) 3s,
         background-color var(--default-transition-duration) var(--default-transition-easing) 0s,
@@ -35,6 +36,7 @@
     background-color: deepskyblue;
     box-shadow: 0px 0px 4px 1px deepskyblue;
 
+    will-change: width, box-shadow;
     transition: var(--default-transition);
     transition-timing-function: linear;
 }

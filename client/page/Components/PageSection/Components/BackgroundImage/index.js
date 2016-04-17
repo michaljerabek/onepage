@@ -352,6 +352,8 @@
 
                 this.parallax = null;
             }
+
+            Dropzone.forElement(this.self).destroy();
         },
 
         getParallaxExtention: function (strength) {

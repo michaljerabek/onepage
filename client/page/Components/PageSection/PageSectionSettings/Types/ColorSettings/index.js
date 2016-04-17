@@ -92,7 +92,7 @@
 
                 if (image && image !== "none") {
 
-                    var observer = palette.observeOnce("colors", function (colors) {
+                    var observer = palette.observe("colors", function (colors) {
 
                         if (colors && colors.length) {
 
