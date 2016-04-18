@@ -23,7 +23,7 @@
 
     } else {
 
-        root.PageElementTitle = factory(
+        root.PageElementTextContent = factory(
             root.PageElement,
             root.U,
             {},

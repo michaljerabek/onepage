@@ -6,3 +6,4 @@
 .gitignore
 /**/experiments/*.jpg
 /**/experiments/*.png
+/public/uploads/*

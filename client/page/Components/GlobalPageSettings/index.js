@@ -1,14 +1,16 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 var Ractive = require("ractive"),
 
-    ColorPicker = require("./../../../libs/Components/ColorPicker");
+    ColorPicker = require("./../../../libs/Components/ColorPicker"),
+    ColorPickerPalette = require("./../../../libs/Components/ColorPicker/Components/ColorPickerPalette");
 
 module.exports = Ractive.extend({
 
     template: require("./index.tpl"),
 
     components: {
-        ColorPicker: ColorPicker
+        ColorPicker: ColorPicker,
+        ColorPickerPalette: ColorPickerPalette
     },
 
     partials: {

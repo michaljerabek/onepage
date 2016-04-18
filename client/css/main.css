@@ -39,3 +39,8 @@ body {
 .cursor-grabbing * {
     cursor: grabbing !important;
 }
+
+.cursor-no-drop,
+.cursor-no-drop * {
+	cursor: no-drop !important;
+}

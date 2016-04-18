@@ -30,6 +30,11 @@
             return {
                 TYPE_DEFAULT: "default",
 
+                delay: 0,
+
+                colors: [],
+                image: "",
+
                 formatColor: function (color, format) {
 
                     var colorPicker = this.parent.COLOR_PICKER ? this.parent: this.container;
@@ -72,15 +77,6 @@
 
         onconfig: function () {
 
-            if (on.client && this.get("image")) {
-
-                setTimeout(function() {
-
-                    this.getPaletteFromImage();
-
-                }.bind(this), 0);
-            }
-
             if (on.client) {
 
                 this[this.parent.COLOR_PICKER ? "parent" : "container"].observe("inputType", function (value) {
@@ -91,8 +87,29 @@
             }
         },
 
+        oncomplete: function () {
+
+            var image = this.get("image");
+
+            if (on.client && image && image !== "none") {
+
+                //cross-origin
+                if (image.match(/^http/) && !image.match(new RegExp("^" + window.location.origin))) {
+
+                    return;
+                }
+
+                this.loadImageTimeout = setTimeout(function() {
+
+                    this.getPaletteFromImage();
+
+                }.bind(this), this.get("delay"));
+            }
+        },
+
         onteardown: function () {
 
+            clearTimeout(this.loadImageTimeout);
             clearTimeout(this.stopVibrantTimeout);
             clearTimeout(this.stopVibrant2Timeout);
 
@@ -156,7 +173,11 @@
                         spectraCache[compareWithRgbs[c]] = spectra2;
                     }
 
-                    if (spectra.near(spectra2, 10)) {
+                    if (spectra.near(spectra2, 5)) {
+
+                        similarity[rgbs[r]] = -100;
+
+                    } else if (spectra.near(spectra2, 10)) {
 
                         similarity[rgbs[r]] += 3;
 
@@ -173,10 +194,15 @@
                 c = compareWithRgbs.length - 1;
             }
 
-            var sorted = Object.keys(similarity).sort(function (a, b) {
+            var sorted = Object.keys(similarity)
+                .filter(function (color) {
 
-                return similarity[a] - similarity[b];
-            });
+                    return similarity[color] < 0 ? false : color;
+
+                }).sort(function (a, b) {
+
+                    return similarity[a] - similarity[b];
+                });
 
             return sorted.splice(0, count);
         },

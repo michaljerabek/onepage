@@ -211,15 +211,18 @@ module.exports = Ractive.extend({
             this.pageMenu.reset();
         }
 
-        this.observe("page.sections page.settings", function () {
+        //sledovat změny stránky -> označit jako neuložené
+        this.observe("page.settings page.sections", this.handlePageChanged, {init: false});
+        this.on("*.sectionOrderChanged", this.handlePageChanged, {init: false});
+    },
 
-            clearTimeout(this.unsavedChangesTimeout);
+    handlePageChanged: function () {
 
-            this.unsavedChangesTimeout = setTimeout(
-                this.set.bind(this, "unsavedChanges", true), 500
-            );
+        clearTimeout(this.unsavedChangesTimeout);
 
-        }, {init: false});
+        this.unsavedChangesTimeout = setTimeout(
+            this.set.bind(this, "unsavedChanges", true), 500
+        );
     },
 
     loadPage: function (pageId) {
@@ -330,6 +333,25 @@ module.exports = Ractive.extend({
     findPageSections: function () {
 
         return this.findAllPageSections();
+    },
+
+    getPageSectionByElement: function (element) {
+
+        element = element.jquery ? element[0]: element;
+
+        var pageSection = null;
+
+        this.forEachPageSection(function () {
+
+            if (this.getSectionElement() === element) {
+
+                pageSection = this;
+
+                return false;
+            }
+        });
+
+        return pageSection;
     },
 
     forEachPageSection: function (fn/*, args...*/) {

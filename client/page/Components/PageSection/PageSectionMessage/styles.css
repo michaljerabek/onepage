@@ -1,0 +1,81 @@
+/*====================================================================*/
+/*------------------------------ MESSAGE -----------------------------*/
+/*====================================================================*/
+
+.E_PageSectionMessage {
+    margin: auto;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+
+    transform: translateY(-50%);
+
+    opacity: 0;
+    visibility: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+    transition:
+        opacity var(--default-transition-duration) var(--default-transition-easing) 0s,
+        visibility 0s linear var(--default-transition-duration);
+}
+
+.E_PageSectionMessage__active {
+    opacity: 0.9;
+    visibility: visible;
+
+    transition:
+        opacity var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        visibility 0s linear 0s;
+}
+
+.E_PageSectionMessage--message {
+    font-size: 17px;
+    line-height: 1.47;
+
+    min-width: 256px;
+    width: auto;
+    max-width: 80%;
+    padding: 12px 24px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+    outline: 2px solid #888;
+    outline-offset: -2px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+}
+
+.E_PageSectionMessage--message__success {
+    outline-color: limegreen;
+}
+
+.E_PageSectionMessage--message__error {
+    outline-color: #e90000;
+}
+
+.E_PageSectionMessage--message__warn {
+    outline-color: orange;
+}
+
+.E_PageSectionMessage--message__info {
+    outline-color: deepskyblue;
+}
+
+.E_PageSectionMessage--title {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.E_PageSectionMessage--text {
+    font-size: 14px;
+    
+    margin-top: 4px;
+
+    color: #707070;
+}

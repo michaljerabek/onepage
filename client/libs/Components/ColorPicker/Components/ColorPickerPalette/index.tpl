@@ -1,4 +1,4 @@
-{{#if .colors && .colors.length}}
+{{#if .colors.length}}
 
 <div intro="fade" class="ColorPickerPalette">
 
@@ -8,7 +8,7 @@
 
         {{#each .colors:i}}
 
-            {{>Color {output: output, color: this, inputType: inputType}}}
+            {{>Color {i: i, output: output, color: this, inputType: inputType}}}
 
         {{/each}}
 
@@ -27,16 +27,16 @@
 {{#partial Color}}
 <div class="ColorPickerPalette--color
 
-        {{#if ~/type === ~/TYPE_DEFAULT && i === 0 && .output === ''}}
+        {{#if ~/type === ~/TYPE_DEFAULT && .i === 0 && .output === ''}}
             ColorPickerPalette--color__remove{{#if ~/nearToBlack}}-black{{/if}}
         {{/if}}
     "
+    on-click-touchend="setColor:{{.color}},{{true}}"
     intro="fade"
     style="
         background-color: {{.color}};
         transition: {{animate ? '' : 'none'}};
     "
-    on-click-touchend="setColor:{{.color}},{{true}}"
     title="
         {{#if ~/type === ~/TYPE_DEFAULT}}
             {{#if i === 0}}

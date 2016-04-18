@@ -97,6 +97,10 @@ body {
     cursor: grabbing !important;
 }
 
+.cursor-no-drop, .cursor-no-drop * {
+	cursor: no-drop !important;
+}
+
 /* perfect-scrollbar v0.6.10 */
 
 .ps-container {
@@ -5277,7 +5281,7 @@ body > .E_NewPageSectionSelector--clone .type {
     z-index: 3;
 }
 
-.P_PageSection--section, .P_PageSection--content {
+.P_PageSection--background-color, .P_PageSection--section, .P_PageSection--content {
     position: relative;
 }
 
@@ -5494,6 +5498,7 @@ body > .E_NewPageSectionSelector--clone .type {
 .P_PageSection--content a {
     color: inherit;
 }
+
 
 .E_PageElementSettings--transition-wrapper {
     z-index: 120;
@@ -5964,7 +5969,7 @@ body > .E_NewPageSectionSelector--clone .type {
 .P_PageSection--content:before {
     content: "";
 
-    z-index: -1;
+    z-index: 1;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -6480,6 +6485,127 @@ body > .E_NewPageSectionSelector--clone .type {
     transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
+/*====================================================================*/
+/*------------------------------ MESSAGE -----------------------------*/
+/*====================================================================*/
+
+.E_PageSectionMessage {
+    margin: auto;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+
+    -webkit-transform: translateY(-50%);
+
+       -moz-transform: translateY(-50%);
+
+        -ms-transform: translateY(-50%);
+
+         -o-transform: translateY(-50%);
+
+            transform: translateY(-50%);
+
+    opacity: 0;
+    visibility: hidden;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    pointer-events: none;
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+}
+
+.E_PageSectionMessage__active {
+    opacity: 0.9;
+    visibility: visible;
+
+    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+}
+
+.E_PageSectionMessage--message {
+    font-size: 17px;
+    line-height: 1.47;
+
+    min-width: 256px;
+    width: auto;
+    max-width: 80%;
+    padding: 12px 24px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+    outline: 2px solid #888;
+    outline-offset: -2px;
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+}
+
+.E_PageSectionMessage--message__success {
+    outline-color: limegreen;
+}
+
+.E_PageSectionMessage--message__error {
+    outline-color: #e90000;
+}
+
+.E_PageSectionMessage--message__warn {
+    outline-color: orange;
+}
+
+.E_PageSectionMessage--message__info {
+    outline-color: deepskyblue;
+}
+
+.E_PageSectionMessage--title {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.E_PageSectionMessage--text {
+    font-size: 14px;
+    
+    margin-top: 4px;
+
+    color: #707070;
+}
+
 .P_PageElement__text-content {
     line-height: 1.4;
 
@@ -6491,6 +6617,80 @@ body > .E_NewPageSectionSelector--clone .type {
 
     display: inline-block;
 }
+
+.P_BackgroundImage {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.E .P_BackgroundImage:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #fff;
+    outline: 2px dashed #404040;
+    outline-offset: -18px;
+    opacity: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.E .P_BackgroundImage.dz-drag-hover:after {
+    opacity: 0.5;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.P_BackgroundImage--image {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-position: center center;
+}
+
+.P_BackgroundImage__parallax .P_BackgroundImage--image {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+       -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+         -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+
+    will-change: transform, background, top;
+}
+
+.P_BackgroundImage__fixed .P_BackgroundImage--image {
+    background-attachment: fixed;
+}
+
 
 .E_ColorSettings {
     display: -webkit-box;
@@ -6987,6 +7187,101 @@ body > .E_NewPageSectionSelector--clone .type {
 
 .ColorPicker--input-text:not(:first-child) {
     margin-left: 4px;
+}
+
+/*====================================================================*/
+/*---------------------------- PROGRESSBAR ---------------------------*/
+/*====================================================================*/
+
+.E_ProgressBar {
+    z-index: 400;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+
+    opacity: 0;
+
+    will-change: opacity;
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+}
+
+.E_ProgressBar__active {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_ProgressBar .E_ProgressBar--progress {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 1px;
+    width: 0%;
+
+    background-color: deepskyblue;
+    -webkit-box-shadow: 0px 0px 4px 1px deepskyblue;
+       -moz-box-shadow: 0px 0px 4px 1px deepskyblue;
+            box-shadow: 0px 0px 4px 1px deepskyblue;
+
+    will-change: width, box-shadow;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-timing-function: linear;
+       -moz-transition-timing-function: linear;
+         -o-transition-timing-function: linear;
+            transition-timing-function: linear;
+}
+
+.E_ProgressBar__success .E_ProgressBar--progress {
+    background-color: lawngreen;
+    -webkit-box-shadow: 0px 0px 4px 1px lawngreen;
+       -moz-box-shadow: 0px 0px 4px 1px lawngreen;
+            box-shadow: 0px 0px 4px 1px lawngreen;
+}
+
+.E_ProgressBar__error .E_ProgressBar--progress {
+    background-color: crimson;
+    -webkit-box-shadow: 0px 0px 4px 1px crimson;
+       -moz-box-shadow: 0px 0px 4px 1px crimson;
+            box-shadow: 0px 0px 4px 1px crimson;
+}
+
+.E_ProgressBar__warn .E_ProgressBar--progress, .E_ProgressBar__error.E_ProgressBar__warn .E_ProgressBar--progress {
+    background-color: darkorange;
+    -webkit-box-shadow: 0px 0px 4px 1px darkorange;
+       -moz-box-shadow: 0px 0px 4px 1px darkorange;
+            box-shadow: 0px 0px 4px 1px darkorange;
 }
 
 /*====================================================================*/

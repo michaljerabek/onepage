@@ -3,7 +3,21 @@ var express = require("express");
 var router = express.Router();
 
 require("ractive-require-templates")(".tpl");
-var Ractive = require("ractive");
+var Ractive = require("ractive"),
+
+    multer = require("multer"),
+    storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, "public/uploads");
+        },
+        filename: function (req, file, cb) {
+            cb(null, Date.now() + "-" + file.originalname);
+        }
+    }),
+
+    upload = multer({
+        storage: storage
+    });
 
 router.get("/", function (req, res, next) {
 
@@ -29,6 +43,14 @@ router.get("/", function (req, res, next) {
         ractiveData: JSON.stringify(data),
         env: "dev"
     });
+});
+
+router.post("/upload-background-image", upload.single("background-image"), function (req, res, next) {
+
+    res.json({
+        path: req.file.path
+    });
+
 });
 
 module.exports = router;

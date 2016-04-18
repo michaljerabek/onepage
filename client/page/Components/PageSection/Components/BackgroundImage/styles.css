@@ -1,0 +1,57 @@
+.P_BackgroundImage {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.E .P_BackgroundImage:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #fff;
+    outline: 2px dashed #404040;
+    outline-offset: -18px;
+    opacity: 0;
+
+    transition: var(--default-transition);
+}
+
+.E .P_BackgroundImage.dz-drag-hover:after {
+    opacity: 0.5;
+
+    transition: var(--default-transition-hover);
+}
+
+.P_BackgroundImage--image {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-position: center center;
+}
+
+.P_BackgroundImage__parallax .P_BackgroundImage--image {
+    top: 50%;
+    transform: translateY(-50%);
+
+    will-change: transform, background, top;
+}
+
+.P_BackgroundImage__fixed .P_BackgroundImage--image {
+    background-attachment: fixed;
+}
+

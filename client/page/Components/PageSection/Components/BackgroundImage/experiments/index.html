@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../../../../../../public/css/page.css">
+    <link rel="stylesheet" href="../BackgroundImage/styles.css">
+
+    <style>
+
+        .P_PageSection--content,
+        .P_PageSection--background-color {
+/*            height: 768px;*/
+            color: white;
+        }
+
+        .P_PageSection--content span {
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="App">
+
+    </div>
+
+    <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+
+    <script src="../../../index.js"></script>
+    <script src="../index.js"></script>
+    <script src="../../../../PageElement/index.js"></script>
+    <script src="../../../../PageElement/Types/PageElementTextContent/index.js"></script>
+
+    <script id="Tpl" type="text/html">
+
+        <PageSection section="{{.section1}}" />
+        <PageSection section="{{.section2}}" />
+<!--        <PageSection section="{{.section3}}" />-->
+<!--        <PageSection section="{{.section4}}" />-->
+<!--        <PageSection section="{{.section5}}" />-->
+        <PageSection section="{{.section6}}" />
+
+    </script>
+
+    <script>
+        /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+        /*global $, Ractive*/
+        var app;
+
+        $.when.apply($, [
+            $.get("../../i../ndex.tpl"),
+            $.get("../index.tpl"),
+            $.get("../../../../PageElement/index.tpl"),
+            $.get("../../../../PageElement/Types/PageElementTextContent/index.tpl")
+        ]).then(function (pageSection, backgroundImage, pageElement, pageElementTextContent) {
+
+            app = new Ractive({
+                el: "#App",
+                template: "#Tpl",
+
+                components: {
+                    PageSection: window.PageSection.extend({
+                        template: pageSection[0],
+
+                        components: {
+                            PageElement: window.PageElement.extend({
+                                template: pageElement[0]
+                            }),
+                            PageElementTextContent: window.PageElementTextContent.extend({
+                                partials: {
+                                    pageElementContent: pageElementTextContent[0]
+                                }
+                            }),
+                            BackgroundImage: window.BackgroundImage.extend({
+                                template: backgroundImage[0]
+                            })
+                        },
+
+                        partials: {
+                            pageSectionEditUI: "",
+                            pageSectionContent: "<BackgroundImage data='{{.section.backgroundImage}}' /><span style='position: relative; z-index: 10; line-height: 1.6; display: block; padding: 100px 50px; transform: translateZ(0);'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sint impedit itaque sapiente aperiam debitis laborum quos possimus magnam accusamus adipisci amet expedita, inventore voluptas repellat nemo aliquid quae maxime. Explicabo labore sequi provident eaque dolores quae suscipit ea architecto, ex similique accusantium inventore maxime rerum nam voluptates porro iure sit, minima velit consequatur aliquid non. Officia vero iusto molestias, ut suscipit odio aut sunt, eum dolor, natus voluptate eveniet animi facere nemo minima asperiores cupiditate perferendis. Sunt animi et temporibus quos accusantium ratione quo tenetur incidunt, nisi vel saepe cupiditate iste repellendus, rerum quidem aliquid dolor. Laboriosam non, autem.</span>",
+                            pageSectionSettings: ""
+                        },
+
+                        onconfig: function () {
+                            this.superOnconfig();
+                        },
+
+                        onrender: function () {
+                            this.superOnrender();
+                        },
+
+                        oncomplete: function () {
+                            this.superOncomplete();
+
+                            var _this = this;
+
+                            if (!this.get("section.backgroundImage.parallax")) {
+
+                                return;
+                            }
+
+
+                            $(function () {
+
+
+                            });
+
+
+                        }
+                    })
+                },
+
+                partials: {
+
+                },
+
+                data: {
+
+                    section1: {
+                        name: "ajsdlf sdfjaůsldkf jůasf",
+                        backgroundImage: {
+                            backgroundImage: "img1.jpg",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+
+                            parallax: true
+                        }
+                    },
+
+                    section2: {
+                        name: "ajsdlf sdfjaůsldkf jůasf",
+                        backgroundImage: {
+                            backgroundImage: "img2.jpg",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+
+                            parallax: true
+                        }
+                    },
+
+                    section3: {
+                        name: "ajsdlf sdfjaůsldkf jůasf",
+                        backgroundImage: {
+                            backgroundImage: "img3.jpg",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+
+                            parallax: false,
+                            fixed: true
+                        }
+                    },
+
+                    section4: {
+                        name: "ajsdlf sdfjaůsldkf jůasf",
+                        backgroundImage: {
+                            backgroundImage: "tex1.jpg",
+                            backgroundSize: "auto",
+                            backgroundRepeat: "repeat",
+
+                            parallax: false,
+                            fixed: true
+                        }
+                    },
+
+                    section5: {
+                        name: "ajsdlf sdfjaůsldkf jůasf",
+                        backgroundImage: {
+                            backgroundImage: "tex2.jpg",
+                            backgroundSize: "auto",
+                            backgroundRepeat: "repeat",
+
+                            parallax: false,
+                            fixed: true
+                        }
+                    },
+
+                    section6: {
+                        name: "ajsdlf sdfjaůsldkf jůasf",
+                        backgroundImage: {
+                            backgroundImage: "tex3.jpg",
+                            backgroundSize: "auto",
+                            backgroundRepeat: "repeat",
+
+                            parallax: true
+                        }
+                    }
+
+                }
+            });
+
+        });
+
+
+    </script>
+
+</body>
+</html>

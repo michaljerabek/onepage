@@ -34,7 +34,9 @@
         data: function () {
 
             return {
-                openTab: 1
+                openTab: 1,
+
+                imageColors: {}
             };
         },
 
@@ -42,10 +44,21 @@
 
             this.observe("openTab", function () {
 
+                this.set("lastInputType", this.findComponent("ColorPicker").get("inputType"));
+
                 this.toggle("toggleTab");
+
+                this.cancelImageColorsObservers();
 
             }, {init: false});
 
+            this.observe("openTab", function () {
+
+                this.saveColorsFromImage();
+
+            }, {init: false, defer: true});
+
+            this.saveColorsFromImage();
         },
 
         onconfig: function () {
@@ -53,12 +66,59 @@
             this.Page = this.findParent("Page");
 
             this.set("mostUsedColors", this.Page.findMostUsedColors());
+
+            this.imageColorsObservers = [];
         },
 
         oncomplete: function () {
 
-        }
+        },
 
+        onteardown: function () {
+
+            this.cancelImageColorsObservers();
+        },
+
+        //Uloží nalezené barvy z obrázků, aby se při každém přepnutí tabu, nehledaly znovu.
+        //ColorPickerPalette musí mít atribut id, pomocí kterého se zjistí v datech "imageColors",
+        //jestli už barvy pro danou paletu existují.
+        saveColorsFromImage: function () {
+
+            var colorSettings = this;
+
+            this.findAllComponents("ColorPickerPalette").forEach(function (palette) {
+
+                var image = palette.get("image");
+
+                if (image && image !== "none") {
+
+                    var observer = palette.observe("colors", function (colors) {
+
+                        if (colors && colors.length) {
+
+                            colorSettings.set("imageColors." + palette.get("id"), {
+                                title: palette.get("title"),
+                                colors: colors
+                            });
+                        }
+                    }, {init: false});
+
+                    colorSettings.imageColorsObservers.push(observer);
+                }
+            });
+        },
+
+        cancelImageColorsObservers: function () {
+
+            var o = this.imageColorsObservers.length - 1;
+
+            for (o; o >= 0; o--) {
+
+                this.imageColorsObservers[o].cancel();
+
+                this.imageColorsObservers.splice(o, 1);
+            }
+        }
     });
 
 }));

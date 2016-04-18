@@ -144,6 +144,8 @@ module.exports = (function () {
             var pageSection = e.component.getPageSection(),
                 $sectionElement = pageSection.get$SectionElement();
 
+            pageSection.set("isRemoved", true);
+
             $sectionElement
                 .addClass(CLASS.PageSection.removedSection)
                 .slideUp(OPTIONS.SECTION_SPEED_JQ, OPTIONS.SECTION_EASING_JQ, function () {
@@ -178,7 +180,7 @@ module.exports = (function () {
                     return false;
                 }
             });
-            console.log(index);
+
             return index;
         },
         
@@ -537,10 +539,13 @@ module.exports = (function () {
 
             requestAnimationFrame(function() {
                 
-                //nastavit neuložené změny, pokud se změnila pozice (pořadí v poli se nemění -> nelze použít observer)
-                if (ui.item.data("index.PageSectionManager") !== getIndexFor(ui.item)) {
+                var beforeIndex = ui.item.data("index.PageSectionManager"),
+                    currentIndex = getIndexFor(ui.item);
+
+                if (beforeIndex !== currentIndex) {
                     
-                    page.set("unsavedChanges", true);
+                    page.getPageSectionByElement(ui.item)
+                        .fire("sectionOrderChanged", currentIndex, beforeIndex);
                 }
                 
                 ui.item.data("index.PageSectionManager", null);
