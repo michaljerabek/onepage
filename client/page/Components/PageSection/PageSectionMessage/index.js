@@ -1,6 +1,18 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 var Ractive = require("ractive");
 
+/*
+ * PageSectionMessage zobrazí zprávu u příslušné sekce stránky,
+ * pokud nastane událost pageSectionMessage. Objekt události může obshovat:
+ * {
+ *     title: "title",
+ *     text: "text",
+ *     status: "success",
+ *     timeout: 1000 //doba za jakou zpráva zmizí (v případě neuvedení se musí zajistit
+ *                   //odstranění zprávy jinak -> odeslat událost s hodnotou null)
+ * }
+ */
+
 module.exports = Ractive.extend({
 
     template: require("./index.tpl"),
@@ -72,7 +84,7 @@ module.exports = Ractive.extend({
 
         this.PageSection = this.getPageSection();
 
-        this.PageSection.on("*.pageSectionMessage", function (message) {
+        this.PageSection.on("pageSectionMessage *.pageSectionMessage", function (message) {
 
             this.set("message", message);
 

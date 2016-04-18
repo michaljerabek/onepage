@@ -1,5 +1,15 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+/*global $*/
 var Ractive = require("ractive");
+
+/*ProgressBar se aktivuje, pokud nastane u rodičovského komponentu událost
+ * progressBarProgress nebo (idProgressBarProggress). Object události musí obsahovat
+ * unikátní id a aktuální stav:
+ * {
+ *     id: "uniqueID",
+ *     progress: 10
+ * }
+ * */
 
 module.exports = Ractive.extend({
 
@@ -31,31 +41,25 @@ module.exports = Ractive.extend({
             progress: 0,
 
             data: {},
-            errors: {}
+            errors: {},
+
+            id: +new Date()
         };
     },
 
     onconfig: function () {
 
-        this.parent.on("progressBarProgress *.progressBarProgress", function (progress) {
+        var id = this.get("id");
+
+        this.parent.on("progressBarProgress *.progressBarProgress " + id + "ProgressBarProgress *." + id + "ProgressBarProgress", function (progress) {
 
             if (!progress || !progress.id || typeof progress.progress === "undefined") {
 
                 throw "ProgressBar: Progress object must be like: {id: 'uniqueId', progress: 50};";
             }
 
-            var data = this.get("data"),
-
-                hasData = false;
-
-            $.each(data, function () {
-
-                hasData = true;
-
-                return false;
-            });
-
-            if (!hasData) {
+            //předchozí progress by dokončen -> reset
+            if (!this.hasData()) {
 
                 this.$progress.css({
                     transition: "none"
@@ -90,25 +94,21 @@ module.exports = Ractive.extend({
 
         }.bind(this));
 
-        this.parent.on("progressBarProgress *.progressBarError", function (progress) {
+        this.parent.on("progressBarError *.progressBarError " + id + "ProgressBarError *." + id + "ProgressBarError", function (progress) {
 
+            if (!progress || !progress.id) {
+
+                throw "ProgressBar: Progress object must be like: {id: 'uniqueId'};";
+            }
+
+            //pokud by nedošlo k zresetování "progress", nespustil by se observer
             if (this.get("progress") === 100) {
 
                 this.set("progress", 0);
             }
 
-            var data = this.get("data"),
-
-                hasData = false;
-
-            $.each(data, function () {
-
-                hasData = true;
-
-                return false;
-            });
-
-            if (!hasData) {
+            //předchozí progress by dokončen -> reset
+            if (!this.hasData()) {
 
                 this.$progress.css({
                     transition: "none"
@@ -147,30 +147,33 @@ module.exports = Ractive.extend({
                 return;
             }
 
-            var totalProgress = 0,
+            var errors = this.get("errors"),
 
-                items = 0,
+                totalProgress = 0,
 
-                errors = 0;
+                itemsCount = 0,
+                errorsCount = 0;
 
             $.each(data, function (id, progress) {
 
                 totalProgress += progress;
 
-                items++;
+                itemsCount++;
 
-                if (this.get("errors." + id)) {
+                if (errors[id]) {
 
-                    errors++;
+                    errorsCount++;
                 }
 
             }.bind(this));
 
-            this.set("progress", totalProgress ? totalProgress / items : 0);
+            this.set("progress", totalProgress ? totalProgress / itemsCount : 0);
 
-            if (errors) {
+            if (errorsCount) {
 
-                this.set("warn", errors < items);
+                //pokud jsou některé probíhající události chybové -> změnit stav na "warn",
+                //pokud všechny, ponechat stav "error"
+                this.set("warn", errorsCount < itemsCount);
             }
 
         }, {init: false});
@@ -205,6 +208,22 @@ module.exports = Ractive.extend({
     },
 
     oncomplete: function () {
+    },
+
+    hasData: function () {
+
+        var data = this.get("data"),
+
+            hasData = false;
+
+        $.each(data, function () {
+
+            hasData = true;
+
+            return false;
+        });
+
+        return hasData;
     }
 
 });

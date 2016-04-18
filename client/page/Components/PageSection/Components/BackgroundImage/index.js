@@ -42,7 +42,27 @@
             PARALLAX_MAX_EXT: 320,
             PARALLAX_MIN_EXT: 80,
 
-            EFFECTS_STRENGTH_DEF: 35
+            EFFECTS_STRENGTH_DEF: 35,
+
+            DROPZONE: function () {
+
+                return {
+                    url: "/upload-background-image",
+                    paramName: "background-image",
+
+                    acceptedFiles: "image/jpg,image/jpeg,image/png",
+                    maxFilesize: 1,
+
+                    clickable: false,
+
+                    thumbnailWidth: null,
+                    thumbnailHeight: null,
+
+                    dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu jpg nebo png.",
+                    dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
+                    dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})"
+                };
+            }
         },
 
         components: {
@@ -179,126 +199,136 @@
 
             Dropzone.autoDiscover = false;
 
-            var backgroundImage = this,
-                
-                prevDisplay,
-                prevSrc;
+            var options = this.OPTIONS.DROPZONE();
 
+            //element pro uložení náhledů (nelze v Dropzone zrušit)
             this.$dropzonePreview = $("<div/>");
+            options.previewsContainer = this.$dropzonePreview[0];
 
-            this.dropzone = this.$self.dropzone({
-                url: "/upload-background-image",
-                paramName: "background-image",
+            options.addedfile = this.handleAddedfile.bind(this);
+            options.thumbnail = this.handleThumbnail.bind(this);
+            options.uploadprogress = this.handleUploadProgress.bind(this);
+            options.success = this.handleUploadSuccess.bind(this);
+            options.error = this.handleUploadError.bind(this);
 
-                acceptedFiles: "image/jpg,image/jpeg,image/png",
-                maxFilesize: 1,
-
-                clickable: false,
-
-                previewsContainer: this.$dropzonePreview[0],
-                thumbnailWidth: null,
-                thumbnailHeight: null,
-
-                dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu jpg nebo png.",
-                dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
-                dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})",
-
-                addedfile: function () {
-                    
-                    prevDisplay = backgroundImage.get("data.display");
-                    prevSrc = backgroundImage.get("data.src");
-                },
-
-                thumbnail: function (file, data) {
-
-                    if (prevSrc === backgroundImage.get("data.src")) {
-
-                        backgroundImage.set("data.src", data);
-                    }
-
-                    //je-li obrázek čtverec nebo jsou obě strany menší jak 512px nebo je jedna ze stran
-                    //menší jak 128px nebo je poměr stran menší jak 0.4 (= úzký),
-                    //pak je obrázek pravděpodobně textura -> nastavit opakování
-                    if (file.width === file.height || file.width <= 128 || file.height <= 128 || (file.width <= 512 && file.height <= 512) || file.width / file.height < 0.4) {
-
-                        backgroundImage.set("data.display", "repeat");
-
-                        return;
-                    }
-
-                    backgroundImage.set("data.display", "cover");
-                },
-
-                sending: function () {
-                },
-
-                uploadprogress: function (file, progress) {
-
-                    backgroundImage.fire("progressBarProgress", {
-                        id: file.name.replace(".", "_"),
-                        progress: progress
-                    });
-                },
-
-                success: function (file, res) {
-
-                    backgroundImage.set(
-                        "data.src",
-                        res.path.replace(/^public/, "").replace(/\\/g, "/")
-                    );
-
-                    backgroundImage.fire("pageSectionMessage", {
-                        title: "Nahrát obrázek",
-                        text: "Obrázek (" + file.name + ") se podařilo úspěšně nahrát.",
-                        timeout: 2000,
-                        status: "success"
-                    });
-                },
-
-                error: function (file, error) {
-
-                    backgroundImage.fire("progressBarError", {
-                        id: file.name.replace(".", "_")
-                    });
-
-                    setTimeout(function() {
-
-                        backgroundImage.fire("pageSectionMessage", {
-                            title: "Nahrát obrázek",
-                            text: error,
-                            timeout: 3000,
-                            status: "error"
-                        });
-
-                    }, 0);
-
-                    if (prevDisplay) {
-
-                        backgroundImage.set("data.display", prevDisplay);
-                    }
-
-                    if (prevSrc) {
-
-                        backgroundImage.set("data.src", prevSrc);
-                    }
-                },
-
-                complete: function () {
-                }
-            });
+            this.dropzone = this.$self.dropzone(options);
 
             this.dropzone.on("dragenter", function () {
 
-                backgroundImage.fire("pageSectionMessage", {
-                    title: "Nahrát obrázek",
-                    text: "Maximální velikost souboru: 1 MB. Podporované formáty: jpg, png."
+                this.fire("pageSectionMessage", {
+                    title: "Nahrát soubor",
+                    text: "Maximální velikost souboru: " + options.maxFilesize + " MB. Podporované formáty: jpg, png."
                 });
+
+            }.bind(this));
+
+            this.dropzone.on("dragleave dragend", function () {
+
+                this.fire("pageSectionMessage", null);
+
+            }.bind(this));
+        },
+
+        handleAddedfile: function () {
+
+            //uložit původní nastavení, kdyby se nepodařilo obrázek nahrát (-> vrátit)
+            this.prevDisplay = this.get("data.display");
+            this.prevSrc = this.get("data.src");
+
+            this.fire("pageSectionMessage", {
+                title: "Nahrát soubor",
+                text: "Počkejte prosím...",
+                status: "info"
+            });
+        },
+
+        handleThumbnail: function (file, imageData) {
+
+            if (this.torndown) {
+
+                return;
+            }
+
+            //obrázek by se mohl nahrát dříve než se vytvoří thumnail -> zkontrolovat, jestli už obrázek nebyl nahrazen
+            if (this.prevSrc === this.get("data.src")) {
+
+                this.set("data.src", imageData);
+            }
+
+            //je-li obrázek čtverec nebo jsou obě strany menší jak 512px nebo je jedna ze stran
+            //menší jak 128px nebo je poměr stran menší jak 0.4 (= úzký),
+            //pak je obrázek pravděpodobně textura -> nastavit opakování
+            if (file.width === file.height || file.width <= 128 || file.height <= 128 || (file.width <= 512 && file.height <= 512) || file.width / file.height < 0.4) {
+
+                this.set("data.display", "repeat");
+
+                return;
+            }
+
+            this.set("data.display", "cover");
+        },
+
+        handleUploadProgress: function (file, progress) {
+
+            if (this.torndown) {
+
+                return;
+            }
+
+            this.fire("progressBarProgress", {
+                id: file.name.replace(".", "_"),
+                progress: progress
             });
 
-            this.dropzone.on("dragleave dragend drop", function () {
-
-                backgroundImage.fire("pageSectionMessage", null);
+            this.fire("pageSectionMessage", {
+                title: "Soubor se nahrává...",
+                text: progress.toFixed() + " %",
+                status: "info"
             });
+        },
+
+        handleUploadSuccess: function (file, res) {
+
+            this.set(
+                "data.src",
+                res.path.replace(/^public/, "").replace(/\\/g, "/")
+            );
+
+            this.fire("pageSectionMessage", {
+                title: "Nahrát soubor",
+                text: "Obrázek (" + file.name + ") se podařilo úspěšně nahrát.",
+                timeout: 2000,
+                status: "success"
+            });
+        },
+
+        handleUploadError: function (file, error) {
+
+            if (this.torndown) {
+
+                return;
+            }
+
+            this.fire("progressBarError", {
+                id: file.name.replace(".", "_")
+            });
+
+            this.fire("pageSectionMessage", {
+                title: "Nahrát soubor",
+                text: error,
+                timeout: 3000,
+                status: "error"
+            });
+
+            if (this.prevDisplay) {
+
+                this.set("data.display", this.prevDisplay);
+            }
+
+            if (this.prevSrc || this.prevSrc === "") {
+
+                this.set("data.src", this.prevSrc);
+            }
         },
 
         initParallax: function () {
@@ -344,6 +374,8 @@
 
         onteardown: function () {
 
+            this.torndown = true;
+
             clearTimeout(this.sectionChangeThrottle);
 
             if (this.parallax) {
@@ -353,7 +385,16 @@
                 this.parallax = null;
             }
 
-            Dropzone.forElement(this.self).destroy();
+            if (this.dropzone) {
+
+                this.dropzone.off("dragenter dragleave dragend drop");
+
+                Dropzone.forElement(this.self).removeAllFiles(true);
+                Dropzone.forElement(this.self).destroy();
+
+                this.$dropzonePreview.remove();
+                this.$dropzonePreview = null;
+            }
         },
 
         getParallaxExtention: function (strength) {

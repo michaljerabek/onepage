@@ -13,6 +13,7 @@ var ParallaxController = (function () {
             winWidth = 0,
             winScrollTop = 0,
 
+            //v případě, že je sekce vidět, zavolá metodu transform příslušného Parallaxu
             updateParallaxes = function (type, event) {
 
                 winScrollTop = $win.scrollTop();
@@ -135,7 +136,7 @@ var instanceCounter = 0,
         this.BackgroundImage = backgroundImageComponent;
         this.CLASS = backgroundImageComponent.CLASS;
 
-        return this.refresh(true, backgroundImageComponent);
+        this.refresh(true, backgroundImageComponent);
     };
 
 Parallax.prototype.destroy = function () {
@@ -168,7 +169,9 @@ Parallax.prototype.refresh = function (elements) {
 
     this.getOffset();
 
+    //velikost zvětšení sekce (polovina)
     this.parallaxExtention = (this.imageHeight - this.backgroundHeight) / 2;
+    //rozsah parallaxu -> kolik pixelů bude efekt viditelný
     this.parallaxOuterRange = this.backgroundHeight + ParallaxController.getWinHeight();
 
     this.initialized = true;
@@ -192,9 +195,12 @@ Parallax.prototype.transform = function () {
 
     var backgroundBottom = this.offsetTop + this.backgroundHeight,
 
+        //kolik procent efektu již bylo provedeno (násobí se dvěma pro následující výpočty)
         parallaxProgression = ((backgroundBottom - ParallaxController.getWinScrollTop()) / this.parallaxOuterRange) * 2,
+        //přepočet "parallaxProgression" od středu na rozsah mezi -1 a 1 (označující o kolik % "parallaxExtention" se má obrázek posunout)
         progressionFromCenter = parallaxProgression > 1 ? (parallaxProgression - 1) * -1: 1 - parallaxProgression,
 
+        //odčítá se (this.backgroundHeight / 2), protože obrázek má top: 50%.
         transform = (this.parallaxExtention * progressionFromCenter) - this.parallaxExtention - (this.backgroundHeight / 2);
 
     this.$image.css({
