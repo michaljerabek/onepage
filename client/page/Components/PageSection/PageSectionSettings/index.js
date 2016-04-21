@@ -70,7 +70,9 @@
 
         components: {
             BackgroundImageSettings: BackgroundImageSettings,
-            ColorSettings: ColorSettings
+            ColorSettings: ColorSettings,
+
+            ProgressBar: require("./../../../../libs/Components/ProgressBar")
         },
 
         partials: {

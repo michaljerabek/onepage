@@ -40,6 +40,8 @@
             >
         </div>
 
+        <FileBrowser progressBarId="{{.data.internalId}}" />
+
     </div>
 
 </div>

@@ -24,6 +24,7 @@ router.get("/", isAuthenticated, function (req, res, next) {
         var data = {
             user: req.user.name,
             databaseName: req.user.databaseName,
+            userId: req.user._id,
             pages: pages
         };
 

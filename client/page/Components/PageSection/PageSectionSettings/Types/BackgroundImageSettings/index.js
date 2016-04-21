@@ -19,6 +19,7 @@
         template: require("./index.tpl"),
 
         components: {
+            FileBrowser: require("./../../../../../../libs/Components/FileBrowser")
         },
 
         partials: {

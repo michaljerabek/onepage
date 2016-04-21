@@ -4,6 +4,9 @@ var config = require("./../../config");
 var io = require("socket.io")(config.websocket.port);
 var WSReq = require("./WSReq");
 var mongoose = require("mongoose");
+var fs = require("fs");
+var path = require("path");
+var mime = require("mime");
 
 var getHostFromSocket = function (socket) {
 
@@ -24,6 +27,7 @@ io.on("connection", function (socket) {
 
     var db,
         databaseName,
+        userId,
         dbTimeout;
 
     var dbConnectionTimeout = function () {
@@ -61,16 +65,118 @@ io.on("connection", function (socket) {
     socket.on("databaseName", function (data) {
 
         databaseName = data.databaseName;
+        userId = data.userId;
         db = connectToDb(db, databaseName);
         dbConnectionTimeout();
 
-        socket.join(databaseName);
+        socket.join(userId);
 
 //        var adminRequests = require("./Admin");
         var pageRequests = require("./Page");
 
-//        adminRequests(req, db);
-        pageRequests(req, db);
+//        adminRequests(req, db, userId);
+        pageRequests(req, db, userId);
+
+        req("images.dirs", function (req, res) {
+
+            var directories = [];
+
+            directories.push({
+                name: "Moje obrázky",
+                path: "uploads/users/" + userId + "/images",
+                deletable: true,
+                uploadable: true
+            });
+
+            var libraryPath = path.resolve("public/library/background-images");
+
+            fs.readdir(libraryPath, function (err, data) {
+
+                if (err || !data) {
+
+                    res({
+                        directories: directories
+                    });
+                }
+
+                var libraryDirectories = [],
+
+                    d = data.length - 1;
+
+                for (d; d >= 0; d--) {
+
+                    var stat = fs.statSync(path.join(libraryPath, data[d]));
+
+                    if (stat.isDirectory()) {
+
+                        libraryDirectories.unshift({
+                            name: data[d],
+                            path: path.join("library/background-images", data[d])
+                        });
+                    }
+                }
+
+                res({
+                    directories: directories.concat(libraryDirectories)
+                });
+            });
+        });
+
+        req("images", function (req, res) {
+
+            var directoryPath = path.resolve("public/" + req.params.directory),
+
+                response = {
+                    files: []
+                };
+
+            fs.readdir(directoryPath, function (err, data) {
+
+                if (err || !data) {
+
+                    res(response);
+
+                    return;
+                }
+
+                var f = data.length - 1;
+
+                for (f; f >= 0; f--) {
+
+                    var filePath = path.join(directoryPath, data[f]),
+                        stat = fs.statSync(filePath),
+                        mimeType = "";
+
+                    if (stat.isFile()) {
+
+                        mimeType = mime.lookup(filePath);
+
+                        if (mimeType.match(/image/)) {
+
+                            response.files.unshift({
+                                name: data[f],
+                                path: path.join(req.params.directory, data[f]),
+                                directory: req.params.directory
+                            });
+                        }
+                    }
+                }
+
+                res(response);
+            });
+        });
+
+        req("images.delete", function (req) {
+
+            var parsed = path.parse(req.params.path),
+
+                filePath = path.resolve("public/" + req.params.path),
+                thumbPath = path.resolve(path.join("public", parsed.dir, "/thumbs", parsed.base));
+
+            fs.unlink(filePath, function () {});
+            fs.unlink(thumbPath, function () {});
+        });
+
     });
 
 });

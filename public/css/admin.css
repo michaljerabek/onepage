@@ -729,6 +729,874 @@ body {
     margin-left: 4px;
 }
 
+.FileBrowser {
+    position: relative;
+
+    color: #404040;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+}
+
+.FileBrowser--message, .FileBrowser--drag-drop-overlay {
+    text-align: center;
+
+    z-index: 100;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+	width: 100%;
+	height: 100%;
+    padding: 0 10%;
+
+    color: #404040;
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+}
+
+.FileBrowser--message-overlay {
+    z-index: 110;
+}
+
+.FileBrowser--drag-drop-overlay:after {
+    content: "";
+
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    width: -webkit-calc(100% - 24px);
+
+    width: -moz-calc(100% - 24px);
+
+    width: calc(100% - 24px);
+    height: -webkit-calc(100% - 24px);
+    height: -moz-calc(100% - 24px);
+    height: calc(100% - 24px);
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+    border: 2px dashed #404040;
+}
+
+.FileBrowser--message-title, .FileBrowser--drag-drop-overlay-title {
+    font-size: 25px;
+    font-weight: bold;
+
+    color: #404040;
+}
+
+.FileBrowser--message-text, .FileBrowser--drag-drop-overlay-text {
+    font-size: 17px;
+    line-height: 1.47;
+
+    margin-top: 12px;
+
+    color: #888;
+}
+
+.FileBrowser--message__active, .FileBrowser.dz-drag-hover .FileBrowser--drag-drop-overlay {
+    opacity: 0.9;
+    visibility: visible;
+
+    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+}
+
+.FileBrowser--directories {
+    min-height: 42px;
+
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #d7d7d7;
+    border-top: 1px solid #d7d7d7;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+}
+
+/*---------------------------- DIRECTORY ----------------------------*/
+
+.FileBrowser--directory {
+}
+
+.FileBrowser--directory-name {
+    line-height: 40px;
+    vertical-align: middle;
+
+    padding: 0 12px;
+
+    background-color: #f5f5f5;
+
+    display: block;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--directory:not(:last-of-type) {
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.FileBrowser--directory:hover .FileBrowser--directory-name {
+    color: #fff;
+    background-color: #404040;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--directory__opened  .FileBrowser--directory-name, .FileBrowser--directory__opened:hover  .FileBrowser--directory-name {
+    color: #fff;
+    background-color: #fa742c;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+/*---------------------------- UPLOAD-FILE ----------------------------*/
+
+.FileBrowser--upload-files {
+    font-size: 14px;
+    line-height: 1;
+    vertical-align: middle;
+
+    margin-left: 4px;
+    z-index: 5;
+    position: relative;
+
+    width: 20px;
+    height: 20px;
+    padding-top: 1px;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    opacity: 0.5;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--directory__opened .FileBrowser--upload-files {
+    background-color: #404040;
+}
+
+.FileBrowser--upload-files:hover {
+    background-color: #fc742a;
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--directory__opened .FileBrowser--upload-files:hover {
+    color: #404040;
+    background-color: #fff;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--upload-files:active {
+    -webkit-transform: scale(0.95);
+       -moz-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+         -o-transform: scale(0.95);
+            transform: scale(0.95);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.FileBrowser--upload-files:after {
+    content: "";
+
+    z-index: -1;
+    position: absolute;
+    top: -11px;
+    left: -6px;
+
+    width: 32px;
+    height: 40px;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- FILES ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.FileBrowser--files {
+    position: relative;
+
+    padding: 8px;
+
+    color: #404040;
+    background-color: #f2f2f2;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    overflow: hidden;
+}
+
+.FileBrowser--files:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+
+       -moz-box-shadow: inset 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+
+            box-shadow: inset 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+
+    pointer-events: none;
+}
+
+.FileBrowser--file {
+    font-size: 0;
+    text-align: center;
+
+    position: relative;
+
+    will-change: transform, opacity, box-shadow;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--file-wrapper {
+    font-size: 0;
+
+    -webkit-transform: scale(1);
+
+       -moz-transform: scale(1);
+
+        -ms-transform: scale(1);
+
+         -o-transform: scale(1);
+
+            transform: scale(1);
+
+    display: inline-block;
+
+    overflow: hidden;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    will-change: transform, opacity, box-shadow;
+}
+
+.FileBrowser--file-wrapper:hover {
+    -webkit-transform: scale(1.08163265);
+       -moz-transform: scale(1.08163265);
+        -ms-transform: scale(1.08163265);
+         -o-transform: scale(1.08163265);
+            transform: scale(1.08163265);
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -webkit-transition-delay: 0.1s;
+       -moz-transition-delay: 0.1s;
+         -o-transition-delay: 0.1s;
+            transition-delay: 0.1s;
+}
+
+.FileBrowser--file-wrapper:active {
+    -webkit-transform: scale(1.0408163);
+       -moz-transform: scale(1.0408163);
+        -ms-transform: scale(1.0408163);
+         -o-transform: scale(1.0408163);
+            transform: scale(1.0408163);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -webkit-transition-delay: 0s;
+       -moz-transition-delay: 0s;
+         -o-transition-delay: 0s;
+            transition-delay: 0s;
+}
+
+@media (pointer: coarse) {
+
+    .FileBrowser--file-wrapper:hover {
+        -webkit-transform: scale(1.0612244);
+           -moz-transform: scale(1.0612244);
+            -ms-transform: scale(1.0612244);
+             -o-transform: scale(1.0612244);
+                transform: scale(1.0612244);
+    }
+
+    .FileBrowser--file-wrapper:active {
+        -webkit-transform: scale(0.9591836);
+           -moz-transform: scale(0.9591836);
+            -ms-transform: scale(0.9591836);
+             -o-transform: scale(0.9591836);
+                transform: scale(0.9591836);
+    }
+
+}
+
+.FileBrowser--file__image {
+    margin: 8px;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper {
+    line-height: 96px;
+
+    position: relative;
+
+    width: 98px;
+    height: 98px;
+
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+       -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+}
+
+.FileBrowser--file__error.FileBrowser--file__image img, .FileBrowser--file__uploading.FileBrowser--file__image img {
+    opacity: 0.5;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--file__error.FileBrowser--file__image .FileBrowser--file-wrapper {
+    opacity: 0.5;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px 0px 1px 1px rgba(255, 0, 0, 0.5);
+
+       -moz-box-shadow: inset 0px 0px 1px 1px rgba(255, 0, 0, 0.5);
+
+            box-shadow: inset 0px 0px 1px 1px rgba(255, 0, 0, 0.5);
+    opacity: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--file__error.FileBrowser--file__image .FileBrowser--file-wrapper:after {
+    opacity: 1;
+}
+
+.FileBrowser--file__image img {
+    vertical-align: middle;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ DELETE ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.FileBrowser--delete-file-confirm, .FileBrowser--delete-file {
+    font-size: 14px;
+    line-height: 1;
+    font-weight: bold;
+
+    z-index: 5;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+
+    width: 16px;
+    height: 16px;
+    padding-top: 1px;
+
+    color: #fff;
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.75);
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--delete-file-confirm {
+    font-size: 10px;
+    font-weight: normal;
+
+    background-color: limegreen;
+}
+
+.FileBrowser--delete-file-confirm:before, .FileBrowser--delete-file:before {
+    content: "";
+
+    z-index: -1;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+
+    width: -webkit-calc(100% + 8px);
+
+    width: -moz-calc(100% + 8px);
+
+    width: calc(100% + 8px);
+    height: -webkit-calc(100% + 8px);
+    height: -moz-calc(100% + 8px);
+    height: calc(100% + 8px);
+
+    background-color: transparent;
+}
+
+.FileBrowser--delete-file-confirm:hover, .FileBrowser--delete-file:hover {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--delete-file:hover {
+    background-color: #f00;
+}
+
+.FileBrowser--delete-file-confirm:active, .FileBrowser--delete-file:active {
+    -webkit-transform: scale(0.95);
+       -moz-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+         -o-transform: scale(0.95);
+            transform: scale(0.95);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
+    z-index: 10;
+    right: 24px;
+
+    background-color: #f00;
+}
+
+@media (pointer: coarse) {
+
+    .FileBrowser--delete-file-confirm, .FileBrowser--delete-file {
+        font-size: 18px;
+
+        top: 6px;
+        right: 6px;
+
+        width: 20px;
+        height: 20px;
+        padding-top: 0px;
+    }
+
+    .FileBrowser--delete-file-confirm {
+        font-size: 13px;
+
+        padding-top: 1px;
+    }
+
+    .FileBrowser--delete-file-confirm:before, .FileBrowser--delete-file:before {
+        top: -6px;
+        left: -6px;
+
+        width: -webkit-calc(100% + 12px);
+
+        width: -moz-calc(100% + 12px);
+
+        width: calc(100% + 12px);
+        height: -webkit-calc(100% + 12px);
+        height: -moz-calc(100% + 12px);
+        height: calc(100% + 12px);
+    }
+
+    .FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
+        right: 32px;
+    }
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ LOADER ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.FileBrowser--loader:before, .FileBrowser--loader:after, .FileBrowser--loader {
+    width: 8px;
+    height: 8px;
+
+    -webkit-border-radius: 50%;
+
+       -moz-border-radius: 50%;
+
+            border-radius: 50%;
+
+    will-change: box-shadow;
+
+    -webkit-animation: FileBrowser--loader 1.4s ease-out both infinite;
+
+       -moz-animation: FileBrowser--loader 1.4s ease-out both infinite;
+
+         -o-animation: FileBrowser--loader 1.4s ease-out both infinite;
+
+            animation: FileBrowser--loader 1.4s ease-out both infinite;
+}
+
+.FileBrowser--loader {
+    font-size: 0;
+    text-indent: -99999px;
+
+    vertical-align: middle;
+    margin-left: 8px;
+    position: relative;
+    top: -8px;
+
+    color: currentColor;
+
+    display: inline-block;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+    -webkit-animation-delay: -0.28s;
+       -moz-animation-delay: -0.28s;
+         -o-animation-delay: -0.28s;
+            animation-delay: -0.28s;
+}
+
+.FileBrowser--loader__uploading {
+    margin: auto;
+    z-index: 100;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+
+    -webkit-transform: translateZ(0) translateX(-14px) translateY(-8px);
+
+       -moz-transform: translateZ(0) translateX(-14px) translateY(-8px);
+
+            transform: translateZ(0) translateX(-14px) translateY(-8px);
+}
+
+.FileBrowser--loader__directories {
+    margin: auto;
+    z-index: 100;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+
+    -webkit-transform: translateZ(0) translateX(-14px) translateY(-8px);
+
+       -moz-transform: translateZ(0) translateX(-14px) translateY(-8px);
+
+            transform: translateZ(0) translateX(-14px) translateY(-8px);
+}
+
+.FileBrowser--loader:before {
+    left: 14px;
+
+    -webkit-animation-delay: -0.14s;
+
+       -moz-animation-delay: -0.14s;
+
+         -o-animation-delay: -0.14s;
+
+            animation-delay: -0.14s;
+}
+
+.FileBrowser--loader:after {
+    left: 28px;
+}
+
+.FileBrowser--loader:before, .FileBrowser--loader:after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+}
+
+@-webkit-keyframes FileBrowser--loader {
+    0%, 80%, 100% {
+        -webkit-box-shadow: 0 8px 0 -4px;
+                box-shadow: 0 8px 0 -4px;
+    }
+    40% {
+        -webkit-box-shadow: 0 8px 0 0;
+                box-shadow: 0 8px 0 0;
+    }
+}
+
+@-moz-keyframes FileBrowser--loader {
+    0%, 80%, 100% {
+        -moz-box-shadow: 0 8px 0 -4px;
+             box-shadow: 0 8px 0 -4px;
+    }
+    40% {
+        -moz-box-shadow: 0 8px 0 0;
+             box-shadow: 0 8px 0 0;
+    }
+}
+
+@-o-keyframes FileBrowser--loader {
+    0%, 80%, 100% {
+        box-shadow: 0 8px 0 -4px;
+    }
+    40% {
+        box-shadow: 0 8px 0 0;
+    }
+}
+
+@keyframes FileBrowser--loader {
+    0%, 80%, 100% {
+        -webkit-box-shadow: 0 8px 0 -4px;
+           -moz-box-shadow: 0 8px 0 -4px;
+                box-shadow: 0 8px 0 -4px;
+    }
+    40% {
+        -webkit-box-shadow: 0 8px 0 0;
+           -moz-box-shadow: 0 8px 0 0;
+                box-shadow: 0 8px 0 0;
+    }
+}
+
 /*====================================================================*/
 /*---------------------------- PROGRESSBAR ---------------------------*/
 /*====================================================================*/
@@ -5538,156 +6406,6 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 .E_GlobalPageSettings {
 }
 
-.E_NewPageSectionSelector {
-}
-
-.E_NewPageSectionSelector--page-section-types {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-       -moz-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-       -moz-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-}
-
-.E_NewPageSectionSelector--page-section-type {
-    font-size: 23px;
-
-    margin-bottom: 20px;
-    position: relative;
-
-    -webkit-flex-shrink: 1;
-
-        -ms-flex-negative: 1;
-
-            flex-shrink: 1;
-	-webkit-flex-basis: -webkit-calc(50% - 10px);
-	    -ms-flex-preferred-size: calc(50% - 10px);
-	        flex-basis: -moz-calc(50% - 10px);
-	        flex-basis: calc(50% - 10px);
-
-    cursor: -webkit-grab;
-
-    cursor: -moz-grab;
-
-    cursor: grab;
-}
-
-.E_NewPageSectionSelector--page-section-type .type {
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-
-    background-color: #404040;
-}
-
-.P_sortable-sections .E_NewPageSectionSelector--page-section-type {
-    margin-bottom: 0;
-}
-
-.P_sortable-sections .E_NewPageSectionSelector--page-section-type .type {
-    height: 100%;
-    padding-bottom: 0;
-}
-
-.E_NewPageSectionSelector--page-section-type .text {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    color: #fff;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
-.E_NewPageSectionSelector--clone {
-    z-index: 320;
-
-    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-
-       -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-
-            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-
-    -webkit-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
-
-       -moz-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
-
-         -o-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
-
-            animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
-    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-
-    cursor: -webkit-grabbing;
-
-    cursor: -moz-grabbing;
-
-    cursor: grabbing;
-}
-
-body > .E_NewPageSectionSelector--clone .type {
-    opacity: 0.75;
-}
-
-.E_NewPageSectionSelector--clone__removed {
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
-}
-
-@-webkit-keyframes E_NewPageSectionSelector--clone-shadow {
-    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
-}
-
-@-moz-keyframes E_NewPageSectionSelector--clone-shadow {
-    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
-}
-
-@-o-keyframes E_NewPageSectionSelector--clone-shadow {
-    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
-}
-
-@keyframes E_NewPageSectionSelector--clone-shadow {
-    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
-}
-
 .P_PageElement {
     z-index: 1;
     position: relative;
@@ -5996,6 +6714,156 @@ body > .E_NewPageSectionSelector--clone .type {
     cursor: default;
     -ms-touch-action: manipulation;
         touch-action: manipulation;
+}
+
+.E_NewPageSectionSelector {
+}
+
+.E_NewPageSectionSelector--page-section-types {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+       -moz-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+       -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+.E_NewPageSectionSelector--page-section-type {
+    font-size: 23px;
+
+    margin-bottom: 20px;
+    position: relative;
+
+    -webkit-flex-shrink: 1;
+
+        -ms-flex-negative: 1;
+
+            flex-shrink: 1;
+	-webkit-flex-basis: -webkit-calc(50% - 10px);
+	    -ms-flex-preferred-size: calc(50% - 10px);
+	        flex-basis: -moz-calc(50% - 10px);
+	        flex-basis: calc(50% - 10px);
+
+    cursor: -webkit-grab;
+
+    cursor: -moz-grab;
+
+    cursor: grab;
+}
+
+.E_NewPageSectionSelector--page-section-type .type {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+
+    background-color: #404040;
+}
+
+.P_sortable-sections .E_NewPageSectionSelector--page-section-type {
+    margin-bottom: 0;
+}
+
+.P_sortable-sections .E_NewPageSectionSelector--page-section-type .type {
+    height: 100%;
+    padding-bottom: 0;
+}
+
+.E_NewPageSectionSelector--page-section-type .text {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    color: #fff;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.E_NewPageSectionSelector--clone {
+    z-index: 320;
+
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+       -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+    -webkit-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+
+       -moz-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+
+         -o-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+
+            animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    cursor: -webkit-grabbing;
+
+    cursor: -moz-grabbing;
+
+    cursor: grabbing;
+}
+
+body > .E_NewPageSectionSelector--clone .type {
+    opacity: 0.75;
+}
+
+.E_NewPageSectionSelector--clone__removed {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+@-webkit-keyframes E_NewPageSectionSelector--clone-shadow {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+@-moz-keyframes E_NewPageSectionSelector--clone-shadow {
+    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+@-o-keyframes E_NewPageSectionSelector--clone-shadow {
+    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+@keyframes E_NewPageSectionSelector--clone-shadow {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
 }
 
 .P_PageSection {

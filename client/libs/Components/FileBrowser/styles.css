@@ -1,0 +1,544 @@
+.FileBrowser {
+    position: relative;
+
+    color: #404040;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.FileBrowser--message,
+.FileBrowser--drag-drop-overlay {
+    text-align: center;
+
+    z-index: 100;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+	width: 100%;
+	height: 100%;
+    padding: 0 10%;
+
+    color: #404040;
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    transition:
+        opacity var(--default-transition-duration) var(--default-transition-easing) 0s,
+        visibility 0s linear var(--default-transition-duration);
+}
+
+.FileBrowser--message-overlay {
+    z-index: 110;
+}
+
+.FileBrowser--drag-drop-overlay:after {
+    content: "";
+
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+
+    border-radius: 4px;
+    border: 2px dashed #404040;
+}
+
+.FileBrowser--message-title,
+.FileBrowser--drag-drop-overlay-title {
+    font-size: 25px;
+    font-weight: bold;
+
+    color: #404040;
+}
+
+.FileBrowser--message-text,
+.FileBrowser--drag-drop-overlay-text {
+    font-size: 17px;
+    line-height: 1.47;
+
+    margin-top: 12px;
+
+    color: #888;
+}
+
+.FileBrowser--message__active,
+.FileBrowser.dz-drag-hover .FileBrowser--drag-drop-overlay {
+    opacity: 0.9;
+    visibility: visible;
+
+    transition:
+        opacity var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        visibility 0s linear 0s;
+}
+
+.FileBrowser--directories {
+    min-height: 42px;
+
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #d7d7d7;
+    border-top: 1px solid #d7d7d7;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+/*---------------------------- DIRECTORY ----------------------------*/
+
+.FileBrowser--directory {
+}
+
+.FileBrowser--directory-name {
+    line-height: 40px;
+    vertical-align: middle;
+
+    padding: 0 12px;
+
+    background-color: #f5f5f5;
+
+    display: block;
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--directory:not(:last-of-type) {
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.FileBrowser--directory:hover .FileBrowser--directory-name {
+    color: #fff;
+    background-color: #404040;
+
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--directory__opened  .FileBrowser--directory-name,
+.FileBrowser--directory__opened:hover  .FileBrowser--directory-name {
+    color: #fff;
+    background-color: #fa742c;
+
+    transition: var(--default-transition-hover);
+}
+
+/*---------------------------- UPLOAD-FILE ----------------------------*/
+
+.FileBrowser--upload-files {
+    font-size: 14px;
+    line-height: 1;
+    vertical-align: middle;
+
+    margin-left: 4px;
+    z-index: 5;
+    position: relative;
+
+    width: 20px;
+    height: 20px;
+    padding-top: 1px;
+
+    color: #fff;
+    background-color: #404040;
+    border-radius: 50%;
+    opacity: 0.5;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--directory__opened .FileBrowser--upload-files {
+    background-color: #404040;
+}
+
+.FileBrowser--upload-files:hover {
+    background-color: #fc742a;
+    opacity: 1;
+
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--directory__opened .FileBrowser--upload-files:hover {
+    color: #404040;
+    background-color: #fff;
+
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--upload-files:active {
+    transform: scale(0.95);
+
+    transition: var(--default-transition-active);
+}
+
+.FileBrowser--upload-files:after {
+    content: "";
+
+    z-index: -1;
+    position: absolute;
+    top: -11px;
+    left: -6px;
+
+    width: 32px;
+    height: 40px;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- FILES ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.FileBrowser--files {
+    position: relative;
+
+    padding: 8px;
+
+    color: #404040;
+    background-color: #f2f2f2;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.FileBrowser--files:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    box-shadow: inset 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+
+    pointer-events: none;
+}
+
+.FileBrowser--file {
+    font-size: 0;
+    text-align: center;
+
+    position: relative;
+
+    will-change: transform, opacity, box-shadow;
+    transition: var(--default-transition);
+}
+
+.FileBrowser--file-wrapper {
+    font-size: 0;
+
+    transform: scale(1);
+
+    display: inline-block;
+
+    overflow: hidden;
+
+    transition: var(--default-transition);
+    will-change: transform, opacity, box-shadow;
+}
+
+.FileBrowser--file-wrapper:hover {
+    transform: scale(1.08163265);
+
+    transition: var(--default-transition-hover);
+    transition-delay: 0.1s;
+}
+
+.FileBrowser--file-wrapper:active {
+    transform: scale(1.0408163);
+
+    transition: var(--default-transition-active);
+    transition-delay: 0s;
+}
+
+@media (pointer: coarse) {
+
+    .FileBrowser--file-wrapper:hover {
+        transform: scale(1.0612244);
+    }
+
+    .FileBrowser--file-wrapper:active {
+        transform: scale(0.9591836);
+    }
+
+}
+
+.FileBrowser--file__image {
+    margin: 8px;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper {
+    line-height: 96px;
+
+    position: relative;
+
+    width: 98px;
+    height: 98px;
+
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+}
+
+.FileBrowser--file__error.FileBrowser--file__image img,
+.FileBrowser--file__uploading.FileBrowser--file__image img {
+    opacity: 0.5;
+
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--file__error.FileBrowser--file__image .FileBrowser--file-wrapper {
+    opacity: 0.5;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    box-shadow: inset 0px 0px 1px 1px rgba(255, 0, 0, 0.5);
+    opacity: 0;
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--file__error.FileBrowser--file__image .FileBrowser--file-wrapper:after {
+    opacity: 1;
+}
+
+.FileBrowser--file__image img {
+    vertical-align: middle;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    transition: var(--default-transition);
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ DELETE ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.FileBrowser--delete-file-confirm,
+.FileBrowser--delete-file {
+    font-size: 14px;
+    line-height: 1;
+    font-weight: bold;
+
+    z-index: 5;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+
+    width: 16px;
+    height: 16px;
+    padding-top: 1px;
+
+    color: #fff;
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--delete-file-confirm {
+    font-size: 10px;
+    font-weight: normal;
+
+    background-color: limegreen;
+}
+
+.FileBrowser--delete-file-confirm:before,
+.FileBrowser--delete-file:before {
+    content: "";
+
+    z-index: -1;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+
+    background-color: transparent;
+}
+
+.FileBrowser--delete-file-confirm:hover,
+.FileBrowser--delete-file:hover {
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--delete-file:hover {
+    background-color: #f00;
+}
+
+.FileBrowser--delete-file-confirm:active,
+.FileBrowser--delete-file:active {
+    transform: scale(0.95);
+
+    transition: var(--default-transition-active);
+}
+
+.FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
+    z-index: 10;
+    right: 24px;
+
+    background-color: #f00;
+}
+
+@media (pointer: coarse) {
+
+    .FileBrowser--delete-file-confirm,
+    .FileBrowser--delete-file {
+        font-size: 18px;
+
+        top: 6px;
+        right: 6px;
+
+        width: 20px;
+        height: 20px;
+        padding-top: 0px;
+    }
+
+    .FileBrowser--delete-file-confirm {
+        font-size: 13px;
+
+        padding-top: 1px;
+    }
+
+    .FileBrowser--delete-file-confirm:before,
+    .FileBrowser--delete-file:before {
+        top: -6px;
+        left: -6px;
+
+        width: calc(100% + 12px);
+        height: calc(100% + 12px);
+    }
+
+    .FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
+        right: 32px;
+    }
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ LOADER ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.FileBrowser--loader:before,
+.FileBrowser--loader:after,
+.FileBrowser--loader {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    will-change: box-shadow;
+
+    animation: FileBrowser--loader 1.4s ease-out both infinite;
+}
+
+.FileBrowser--loader {
+    font-size: 0;
+    text-indent: -99999px;
+
+    vertical-align: middle;
+    margin-left: 8px;
+    position: relative;
+    top: -8px;
+
+    color: currentColor;
+
+    display: inline-block;
+
+    transform: translateZ(0);
+    animation-delay: -0.28s;
+}
+
+.FileBrowser--loader__uploading {
+    margin: auto;
+    z-index: 100;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+
+    transform: translateZ(0) translateX(-14px) translateY(-8px);
+}
+
+.FileBrowser--loader__directories {
+    margin: auto;
+    z-index: 100;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+
+    transform: translateZ(0) translateX(-14px) translateY(-8px);
+}
+
+.FileBrowser--loader:before {
+    left: 14px;
+
+    animation-delay: -0.14s;
+}
+
+.FileBrowser--loader:after {
+    left: 28px;
+}
+
+.FileBrowser--loader:before,
+.FileBrowser--loader:after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+}
+
+@keyframes FileBrowser--loader {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 8px 0 -4px;
+    }
+    40% {
+        box-shadow: 0 8px 0 0;
+    }
+}

@@ -52,6 +52,7 @@
 
                     acceptedFiles: "image/jpg,image/jpeg,image/png",
                     maxFilesize: 1,
+                    uploadMultiple: false,
 
                     clickable: false,
 

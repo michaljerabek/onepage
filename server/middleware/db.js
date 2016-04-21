@@ -31,6 +31,8 @@ var assignUserDbForPage = function (req, res, next) {
                 "mongodb://" + config.Db.users.host + "/" + user.databaseName
             );
 
+            req.userId = user._id;
+
             return next();
         }
 
