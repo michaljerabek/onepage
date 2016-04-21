@@ -58,10 +58,10 @@
                                 {{#if deletable && !.uploading && !.uploadError}}
 
                                     {{#if ~/showRemoveConfirmation === .path}}
-                                        <span class="FileBrowser--delete-file-confirm" on-tap="deleteFile:{{.path}}">&#10003;</span>
+                                        <span class="FileBrowser--delete-file-confirm" on-tap="deleteFile:{{.path}},{{.uploading}}">&#10003;</span>
                                     {{/if}}
 
-                                    <span class="FileBrowser--delete-file" on-tap="set('showRemoveConfirmation', ~/showRemoveConfirmation === .path ? null : path)">&times;</span>
+                                    <span class="FileBrowser--delete-file" on-tap="set('showRemoveConfirmation', ~/showRemoveConfirmation === .path ? null : .path)">&times;</span>
 
                                 {{/if}}
 
@@ -101,7 +101,7 @@
 
     {{/if}}
 
-    {{#if !.uploading && !.uploadError && !.preview}}
+    {{#if !.uploadingId && .path}}
 
         <img src="{{~/thumbsFullPath(.path)}}" alt="" title="{{.name}}" on-tap="selectFile:{{.path}}">
 

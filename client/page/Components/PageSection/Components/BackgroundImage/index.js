@@ -290,10 +290,9 @@
 
         handleUploadSuccess: function (file, res) {
 
-            this.set(
-                "data.src",
-                res.path.replace(/^public/, "").replace(/\\/g, "/")
-            );
+            var path = res.path.replace(/^public/, "").replace(/\\/g, "/");
+            
+            this.set("data.src", path);
 
             this.fire("pageSectionMessage", {
                 title: "Nahrát soubor",
@@ -301,6 +300,13 @@
                 timeout: 2000,
                 status: "success"
             });
+            
+            var browser = this.PageSection.findComponent("FileBrowser");
+            
+            if (browser) {
+                
+                browser.addFileToUploadDirectory(res.name, path);
+            }
         },
 
         handleUploadError: function (file, error) {

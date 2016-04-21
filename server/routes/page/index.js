@@ -109,7 +109,8 @@ router.post("/upload-background-image", upload.single("background-image"), funct
         .write(path.join(req.file.destination, "thumbs", req.file.filename), function () {});
 
     res.json({
-        path: req.file.path
+        path: req.file.path,
+        name: req.file.filename
     });
 
 });

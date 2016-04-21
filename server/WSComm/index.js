@@ -145,7 +145,9 @@ io.on("connection", function (socket) {
 
                     var filePath = path.join(directoryPath, data[f]),
                         stat = fs.statSync(filePath),
-                        mimeType = "";
+                        mimeType = "",
+                        thumbPath,
+                        thumbStat;
 
                     if (stat.isFile()) {
 
@@ -153,11 +155,24 @@ io.on("connection", function (socket) {
 
                         if (mimeType.match(/image/)) {
 
-                            response.files.unshift({
-                                name: data[f],
-                                path: path.join(req.params.directory, data[f]),
-                                directory: req.params.directory
-                            });
+                            try {
+
+                                thumbPath = path.join(directoryPath, "thumbs", data[f]);
+                                thumbStat = fs.statSync(thumbPath);
+
+                                response.files.unshift({
+                                    name: data[f],
+                                    path: path.join(req.params.directory, data[f]),
+                                    directory: req.params.directory
+                                });
+
+                            } catch (e) {
+
+                                if (!directoryPath.match(/^library/)) {
+
+                                    fs.unlink(filePath, function () {});
+                                }
+                            }
                         }
                     }
                 }

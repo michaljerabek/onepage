@@ -42,6 +42,7 @@
                     uploadMultiple: true,
                     acceptedFiles: "image/jpg,image/jpeg,image/png",
                     maxFilesize: 1,
+                    parallelUploads: 5,
 
                     clickable: false,
 
@@ -147,8 +148,8 @@
 
                 this.dropzone.off("*");
 
-                Dropzone.forElement(this.self).removeAllFiles(true);
-                Dropzone.forElement(this.self).destroy();
+                this.dropzoneInstance.removeAllFiles(true);
+                this.dropzoneInstance.destroy();
 
                 this.$dropzonePreview.remove();
                 this.$dropzonePreview = null;
@@ -216,13 +217,14 @@
             options.addedfile = this.handleAddedfile.bind(this);
             options.resize = this.handleResize.bind(this);
             options.thumbnail = this.handleThumbnail.bind(this);
-            options.sending = this.handleUploadSending.bind(this);
             options.uploadprogress = this.handleUploadProgress.bind(this);
             options.successmultiple = this.handleUploadSuccessmultiple.bind(this);
             options.error = this.handleUploadError.bind(this);
             options.complete = this.handleUploadComplete.bind(this);
 
             this.dropzone = this.$self.dropzone(options);
+
+            this.dropzoneInstance = Dropzone.forElement(this.self);
         },
 
         handleAddedfile: function (file) {
@@ -241,7 +243,8 @@
                 uploadDirectory.files.unshift({
                     name: file.name,
                     uploading: true,
-                    uploadingId: this.fileUploadCounter
+                    uploadingId: this.fileUploadCounter,
+                    file: file
                 });
 
                 file.fileBrowserId = this.fileUploadCounter;
@@ -280,14 +283,6 @@
                     fileIndex = this.getFileIndexByUploadingId(file.fileBrowserId);
 
                 this.set("directories." + directoryIndex + ".files." + fileIndex + ".preview", data);
-            }
-        },
-
-        handleUploadSending: function () {
-
-            if (this.torndown) {
-
-                return;
             }
         },
 
@@ -330,7 +325,6 @@
                     }
                 }
             }
-
         },
 
         handleUploadError: function (file, error) {
@@ -445,15 +439,43 @@
             }.bind(this));
         },
 
+        addFileToUploadDirectory: function (name, path) {
+
+            if (path && name) {
+
+                setTimeout(function() {
+
+                    if (this.torndown) {
+
+                        return;
+                    }
+
+                    var directoryIndex = this.getDirectoryIndexByName(this.get("uploadDirectory"));
+
+                    if (~directoryIndex) {
+
+                        this.unshift("directories." + directoryIndex + ".files", {
+                            name: name,
+                            path: path
+                        });
+                    }
+
+                }.bind(this), 1000);
+            }
+        },
+
         deleteFile: function (event, path) {
 
             var index = event.keypath.match(/[0-9]+$/);
 
             this.splice(event.keypath.replace(/\.[0-9]+$/, ""), index, 1);
 
-            this.req(this.get("reqName") + ".delete", {
-                path: path
-            }, true);
+            if (path) {
+
+                this.req(this.get("reqName") + ".delete", {
+                    path: path
+                }, true);
+            }
         },
 
         openDirectory: function (directoryIndex) {
