@@ -176,6 +176,7 @@
                 this.set("parallax", !!parallax);
                 this.set("fixed", !!fixed);
             });
+
         },
 
         onrender: function () {
@@ -192,7 +193,31 @@
                 if (Ractive.EDIT_MODE) {
 
                     this.initDragDropUpload();
+
+                    this.PageSection.on("BackgroundImageBrowser.selectFile", function (e, file) {
+
+                        this.guessDisplayFromSize(file);
+
+                    }.bind(this));
                 }
+            }
+        },
+
+        guessDisplayFromSize: function (file) {
+
+            if (file && file.width && file.height) {
+
+                //je-li obrázek čtverec nebo jsou obě strany menší jak 512px nebo je jedna ze stran
+                //menší jak 128px nebo je poměr stran menší jak 0.4 (= úzký),
+                //pak je obrázek pravděpodobně textura -> nastavit opakování
+                if (file.width === file.height || file.width <= 128 || file.height <= 128 || (file.width <= 512 && file.height <= 512) || file.width / file.height < 0.4) {
+
+                    this.set("data.display", "repeat");
+
+                    return;
+                }
+
+                this.set("data.display", "cover");
             }
         },
 
@@ -256,17 +281,7 @@
                 this.set("data.src", imageData);
             }
 
-            //je-li obrázek čtverec nebo jsou obě strany menší jak 512px nebo je jedna ze stran
-            //menší jak 128px nebo je poměr stran menší jak 0.4 (= úzký),
-            //pak je obrázek pravděpodobně textura -> nastavit opakování
-            if (file.width === file.height || file.width <= 128 || file.height <= 128 || (file.width <= 512 && file.height <= 512) || file.width / file.height < 0.4) {
-
-                this.set("data.display", "repeat");
-
-                return;
-            }
-
-            this.set("data.display", "cover");
+            this.guessDisplayFromSize(file);
         },
 
         handleUploadProgress: function (file, progress) {
@@ -301,7 +316,7 @@
                 status: "success"
             });
             
-            var browser = this.PageSection.findComponent("FileBrowser");
+            var browser = this.PageSection.findComponent("BackgroundImageBrowser");
             
             if (browser) {
                 

@@ -19,21 +19,30 @@
         template: require("./index.tpl"),
 
         components: {
-            FileBrowser: require("./../../../../../../libs/Components/FileBrowser")
+            BackgroundImageBrowser: require("./../../../../../../libs/Components/FileBrowser/ImageBrowser")
         },
 
         partials: {
         },
 
-        superOnrender: function () {
+        onconfig: function () {
+
+            this.superOnconfig();
 
         },
 
-        superOnconfig: function () {
+        onrender: function () {
 
-        },
+            this.superOnrender();
 
-        superOncomplete: function () {
+            this.on("BackgroundImageBrowser.selectFile", function (event, file) {
+
+                if (file && file.path) {
+
+                    this.set("data.backgroundImage.src", file.path);
+                }
+
+            }, {context: this});
 
         }
 

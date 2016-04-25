@@ -88,7 +88,8 @@ module.exports = function (ractive, ractiveData, config) {
 
             transitions: {
                 slide: require("ractive-transitions-slide"),
-                fade: require("ractive-transitions-fade")
+                fade: require("ractive-transitions-fade"),
+                attr: require("ractive-transitions-attr")
             }
         });
 

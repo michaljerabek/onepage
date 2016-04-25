@@ -23,37 +23,64 @@
                     FileBrowser--directory
                     {{#if  ~/openDirectory === d}}FileBrowser--directory__opened{{/if}}
                 "
-                intro-outro="slide"
+                intro="slide"
             >
 
-                <span class="
-                        FileBrowser--directory-name
-                    "
-                    on-tap="set('openDirectory', ~/openDirectory === d ? null : d)"
-                >
-                    {{.name}}
+                {{#if .path === "#search"}}
 
-                    {{#if .uploadable}}
-                        <span class="FileBrowser--upload-files">&#10010;</span>
-                    {{/if}}
+                    <div class="FileBrowser--search">
 
-                    {{#if ~/loadingDirectory === d || (~/uploadDirectory === .name && ~/uploading.length)}}
-                        <span intro-outro="fade" class="FileBrowser--loader FileBrowser--loader__directory">(Načítá se...)</span>
-                    {{/if}}
+                        <input type="text" name="search" value="{{~/searchText}}" placeholder="{{.name}}" on-focusin-touchend="set('openDirectory', d)">
 
-                </span>
+                        {{#if ~/searching}}
+                            <span intro-outro="fade" class="FileBrowser--loader FileBrowser--loader__searching">(Načítá se...)</span>
+                        {{/if}}
+
+                    </div>
+
+                {{else}}
+
+                    <span class="
+                            FileBrowser--directory-name
+                        "
+                        on-tap="set('openDirectory', ~/openDirectory === d ? null : d)"
+                    >
+                        {{.name}}
+
+                        {{#if .uploadable && ~/uploadDirectory === .name}}
+                            <span class="FileBrowser--upload-files">&#10010;</span>
+                        {{/if}}
+
+                        {{#if ~/loadingDirectory === d || (~/uploadDirectory === .name && ~/uploading.length)}}
+                            <span intro-outro="fade" class="FileBrowser--loader FileBrowser--loader__directory">(Načítá se...)</span>
+                        {{/if}}
+
+                    </span>
+
+                {{/if}}
 
                 {{#if ~/openDirectory === d}}
 
                     {{#if .files.length}}
 
-                        <ul intro-outro="slide" class="FileBrowser--files">
+                        <ul class="FileBrowser--files
+                                {{#if .path === '#search'}}FileBrowser--files__search{{/if}}
+                                {{#if .initDirContent}}FileBrowser--files__init-dir-content{{/if}}
+                            "
+                            intro-outro="slide"
+                        >
 
                             {{#each .files}}
-                            <li intro-outro="fade" class="FileBrowser--file FileBrowser--file__{{~/filesType}}
+
+                            <li class="FileBrowser--file FileBrowser--file__{{~/filesType}}
                                     {{#if .uploading}}FileBrowser--file__uploading{{/if}}
+                                    {{#if .svg}}FileBrowser--file__svg{{/if}}
                                     {{#if .uploadError}}FileBrowser--file__error{{/if}}
+                                    {{#if ~/selectedPath.length && ~/selectedPath === .path}}FileBrowser--file__selected{{/if}}
                                 "
+                                intro-outro="attr:{
+                                    duration: 600
+                                }"
                             >
                                 {{#if deletable && !.uploading && !.uploadError}}
 
@@ -73,7 +100,7 @@
                                     <span class="FileBrowser--overlay"></span>
                                 {{/if}}
 
-                                <div class="FileBrowser--file-wrapper">
+                                <div class="FileBrowser--file-wrapper" on-tap="selectFile:{{this}}">
                                     {{> ~/filesType + "File"}}
                                 </div>
                             </li>
@@ -97,13 +124,37 @@
 
     {{#if .preview}}
 
-        <img src="{{.preview}}" alt="" title="{{.name}}" {{#if !.uploading && !.uploadError}}on-tap="selectFile:{{.path}}"{{/if}}>
+        <img src="{{.preview}}" alt="" title="{{.name}}">
 
     {{/if}}
 
     {{#if !.uploadingId && .path}}
 
-        <img src="{{~/thumbsFullPath(.path)}}" alt="" title="{{.name}}" on-tap="selectFile:{{.path}}">
+        <img src="{{~/thumbsFullPath(.path)}}" alt="" title="{{.name}}">
+
+    {{/if}}
+
+{{/partial}}
+
+{{#partial iconFile}}
+
+    {{#if .svg}}
+
+        {{{.svg}}}
+
+    {{else}}
+
+        {{#if .preview}}
+
+            <img src="{{.preview}}" alt="" title="{{.name}}">
+
+        {{/if}}
+
+        {{#if !.uploadingId && .path}}
+
+            <img src="{{.path.match(/.svg$/) ? .path : ~/thumbsFullPath(.path)}}" alt="" title="{{.name}}">
+
+        {{/if}}
 
     {{/if}}
 

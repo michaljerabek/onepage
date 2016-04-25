@@ -30,6 +30,8 @@
     justify-content: center;
     align-items: center;
 
+    overflow: hidden;
+
     transition:
         opacity var(--default-transition-duration) var(--default-transition-easing) 0s,
         visibility 0s linear var(--default-transition-duration);
@@ -85,8 +87,6 @@
     min-height: 42px;
 
     background-color: #f5f5f5;
-    border-bottom: 1px solid #d7d7d7;
-    border-top: 1px solid #d7d7d7;
 
     display: flex;
     flex-flow: column nowrap;
@@ -204,6 +204,70 @@
     height: 40px;
 }
 
+/*---------------------------- SEARCH ----------------------------*/
+
+.FileBrowser--search {
+    vertical-align: middle;
+
+    position: relative;
+
+    height: 40px;
+    width: 100%;
+
+    display: block;
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--search input {
+    font-size: 17px;
+    line-height: 40px;
+    text-align: left;
+    vertical-align: middle;
+
+    height: 100%;
+    width: 100%;
+    padding: 0 12px;
+    padding-right: 56px;
+
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 0;
+
+    transition: var(--default-transition);
+
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    -o-user-select: auto;
+    user-select: auto;
+}
+
+.FileBrowser--search input:hover {
+    background-color: #fff;
+
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--directory__opened .FileBrowser--search input {
+    color: #fff;
+    background-color: #fc742a;
+
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--search input::-webkit-input-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; }
+.FileBrowser--search input::-moz-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; opacity: 1; }
+.FileBrowser--search input:-ms-input-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; }
+.FileBrowser--search input:-moz-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic;  opacity: 1; }
+.FileBrowser--search input:placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; opacity: 1; }
+
+.FileBrowser--directory__opened .FileBrowser--search input::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; }
+.FileBrowser--directory__opened .FileBrowser--search input::-moz-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search input:-ms-input-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; }
+.FileBrowser--directory__opened .FileBrowser--search input:-moz-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic;  opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search input:placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; opacity: 1; }
+
 /*--------------------------------------------------------------------*/
 /*------------------------------- FILES ------------------------------*/
 /*--------------------------------------------------------------------*/
@@ -221,6 +285,10 @@
     align-items: center;
 
     overflow: hidden;
+}
+
+.FileBrowser--directory:last-of-type .FileBrowser--files {
+    border-bottom: 1px solid #d7d7d7;
 }
 
 .FileBrowser--files:after {
@@ -248,47 +316,167 @@
     transition: var(--default-transition);
 }
 
+.FileBrowser__images .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
+    animation:
+        FileBrowser--file-intro__image 0.6s linear forwards 0s;
+}
+
+@keyframes FileBrowser--file-intro__image {
+    0% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+.FileBrowser__images .FileBrowser--file[ractive-transition="outro"] {
+    animation:
+        FileBrowser--file-outro__image 0.6s linear 0s forwards;
+}
+
+@keyframes FileBrowser--file-outro__image {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+}
+
+.FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
+    animation:
+        FileBrowser--file-intro__icon 0.6s linear forwards 0s;
+}
+
+@keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+.FileBrowser__icon .FileBrowser--file[ractive-transition="outro"] {
+    animation:
+        FileBrowser--file-outro__icon 0.6s linear 0s forwards;
+}
+
+@keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
 .FileBrowser--file-wrapper {
     font-size: 0;
-
-    transform: scale(1);
 
     display: inline-block;
 
     overflow: hidden;
 
-    transition: var(--default-transition);
     will-change: transform, opacity, box-shadow;
+    transition: var(--default-transition);
 }
 
 .FileBrowser--file-wrapper:hover {
-    transform: scale(1.08163265);
-
     transition: var(--default-transition-hover);
-    transition-delay: 0.1s;
 }
 
 .FileBrowser--file-wrapper:active {
-    transform: scale(1.0408163);
+    transition: var(--default-transition-active);
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper {
+    transform: scale(1);
+
+    transition-duration: 0.2s;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper:hover {
+    transform: scale(1.0625);
+
+    transition: var(--default-transition-hover);
+    transition-delay: 0.1s;
+    transition-duration: 0.075s;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper:active {
+    transform: scale(1.0416666);
 
     transition: var(--default-transition-active);
     transition-delay: 0s;
+    transition-duration: 0.05s;
 }
 
 @media (pointer: coarse) {
 
-    .FileBrowser--file-wrapper:hover {
-        transform: scale(1.0612244);
+    .FileBrowser--file__image .FileBrowser--file-wrapper:hover {
+        transform: scale(1.0416666);
     }
 
-    .FileBrowser--file-wrapper:active {
-        transform: scale(0.9591836);
+    .FileBrowser--file__image .FileBrowser--file-wrapper:active {
+        transform: scale(0.97916666);
     }
 
 }
 
 .FileBrowser--file__image {
-    margin: 8px;
+    width: 112px;
+    height: 112px;
+    padding: 8px;
 }
 
 .FileBrowser--file__image .FileBrowser--file-wrapper {
@@ -296,12 +484,30 @@
 
     position: relative;
 
-    width: 98px;
-    height: 98px;
+    width: 96px;
+    height: 96px;
 
     background-color: #fff;
-    border: 1px solid #ddd;
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper:before {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+
+    transition: inherit;
+}
+
+.FileBrowser--file__image.FileBrowser--file__selected .FileBrowser--file-wrapper:before {
+    box-shadow: inset 0px 0px 0px 1px rgba(250, 116, 44, 0.85);
 }
 
 .FileBrowser--file__error.FileBrowser--file__image img,
@@ -344,6 +550,74 @@
     transition: var(--default-transition);
 }
 
+.FileBrowser--file__icon {
+    padding: 12px;
+
+    transform: translateZ(0);
+}
+
+.FileBrowser--file__icon .FileBrowser--file-wrapper {
+    line-height: 40px;
+
+    position: relative;
+
+    width: 40px;
+    height: 40px;
+
+    overflow: visible;
+}
+
+.FileBrowser--file__icon .FileBrowser--file-wrapper img,
+.FileBrowser--file__icon .FileBrowser--file-wrapper svg {
+    vertical-align: middle;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    fill: #404040;
+    stroke: #404040;
+
+    transform: translateZ(0);
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--file__icon.FileBrowser--file__selected:hover .FileBrowser--file-wrapper svg,
+.FileBrowser--file__icon:hover .FileBrowser--file-wrapper svg {
+    fill: #fc742a;
+    stroke: #fc742a;
+
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--file__icon .FileBrowser--file-wrapper:before {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--file__icon.FileBrowser--file__selected:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before,
+.FileBrowser--file__icon:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before {
+    box-shadow: 0px 0px 0px 1px rgba(250, 116, 44, 1);
+
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--file__icon.FileBrowser--file__error .FileBrowser--file-wrapper:before {
+    box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
+
+    transition: var(--default-transition-hover);
+}
+
 /*--------------------------------------------------------------------*/
 /*------------------------------ DELETE ------------------------------*/
 /*--------------------------------------------------------------------*/
@@ -356,8 +630,8 @@
 
     z-index: 5;
     position: absolute;
-    top: 4px;
-    right: 4px;
+    top: 12px;
+    right: 12px;
 
     width: 16px;
     height: 16px;
@@ -365,7 +639,7 @@
 
     color: #fff;
     text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
 
     display: flex;
@@ -395,8 +669,8 @@
 
     z-index: -1;
     position: absolute;
-    top: -4px;
-    left: -4px;
+    top: -12px;
+    left: -12px;
 
     width: calc(100% + 8px);
     height: calc(100% + 8px);
@@ -422,7 +696,7 @@
 
 .FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
     z-index: 10;
-    right: 24px;
+    right: 32px;
 
     background-color: #f00;
 }
@@ -433,12 +707,18 @@
     .FileBrowser--delete-file {
         font-size: 18px;
 
-        top: 6px;
-        right: 6px;
+        top: 14px;
+        right: 14px;
 
         width: 20px;
         height: 20px;
         padding-top: 0px;
+    }
+
+    .FileBrowser__icon .FileBrowser--delete-file-confirm,
+    .FileBrowser__icon .FileBrowser--delete-file {
+        top: 2px;
+        right: 2px;
     }
 
     .FileBrowser--delete-file-confirm {
@@ -449,15 +729,25 @@
 
     .FileBrowser--delete-file-confirm:before,
     .FileBrowser--delete-file:before {
-        top: -6px;
-        left: -6px;
+        top: -14px;
+        left: -14px;
 
         width: calc(100% + 12px);
         height: calc(100% + 12px);
     }
 
+    .FileBrowser__icon .FileBrowser--delete-file-confirm:before,
+    .FileBrowser__icon .FileBrowser--delete-file:before {
+        top: -2px;
+        left: -2px;
+    }
+
     .FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
-        right: 32px;
+        right: 40px;
+    }
+
+    .FileBrowser__icon .FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
+        right: 28px;
     }
 }
 
@@ -505,6 +795,19 @@
     right: 0px;
 
     transform: translateZ(0) translateX(-14px) translateY(-8px);
+}
+
+.FileBrowser--loader__searching {
+    margin: auto;
+    z-index: 100;
+    position:absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 12px;
+
+    color: #fff;
+
+    transform: translateZ(0) translateX(-28px) translateY(-8px);
 }
 
 .FileBrowser--loader__directories {

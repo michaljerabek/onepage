@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+
+
+</head>
+
+<body>
+
+    <%= state %>
+
+    <form action="/create-icon" method="post" style="vertical-align: top">
+
+        <label for="name">name</label>
+        <input type="text" name="name" id="name">
+
+        <br>
+
+        <label for="category">category</label>
+        <input type="text" name="category" id="category">
+
+        <br>
+
+
+        <label for="file">file</label>
+        <input type="file" name="file" id="file">
+        <br>
+        <img id="preview" src="" alt="">
+        <br>
+        <textarea name="data" id="data" cols="30" rows="10"></textarea>
+
+        <br>
+
+        <label for="tags">tags</label>
+        <input type="text" name="tags" id="tags">
+
+        <br>
+
+        <button>save</button>
+
+    </form>
+
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+
+    <script>
+
+        $("#file").on("change", function (e) {
+
+            var reader = new FileReader();
+            var reader2 = new FileReader();
+
+            reader.onload = function (e) {
+
+                if (e.target.readyState == FileReader.DONE) {
+
+                    $("#data").val(e.target.result.match(/<svg[\s\S]*<\/svg>/)[0]);
+                }
+            }
+
+            reader2.onload = function (e) {
+
+                if (e.target.readyState == FileReader.DONE) {
+
+                    $("#preview").attr("src", e.target.result);
+                }
+            }
+
+            reader.readAsText(e.target.files[0]);
+            reader2.readAsDataURL(e.target.files[0]);
+        })
+    </script>
+
+</body>
+
+</html>

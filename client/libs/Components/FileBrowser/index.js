@@ -1,4 +1,5 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+/*global $*/
 (function (root, factory) {
 
     if (typeof module === 'object' && module.exports) {
@@ -17,7 +18,11 @@
         root.FileBrowser = factory(root.Ractive, root.Dropzone, "", {client: true});
     }
 
-}(this, function (Ractive, Dropzone, template, on) {
+}(this, function (Ractive, Dropzone, template) {
+
+    var savedDirectories = {},
+
+        savedSearchText = {};
 
     return Ractive.extend({
 
@@ -30,17 +35,17 @@
         },
 
         OPTIONS: {
-            TYPE_IMAGE: "image",
-            TYPE_SVG: "SVG" ,
+            FILETYPE_IMAGE: "image",
+            FILETYPE_ICON: "icon" ,
 
             DROPZONE: function () {
 
                 return {
-                    url: "/upload-background-images",
-                    paramName: "background-images",
+                    url: "/upload-files",
+                    paramName: "files",
 
                     uploadMultiple: true,
-                    acceptedFiles: "image/jpg,image/jpeg,image/png",
+                    acceptedFiles: "",
                     maxFilesize: 1,
                     parallelUploads: 5,
 
@@ -49,7 +54,7 @@
                     thumbnailWidth: 100,
                     thumbnailHeight: 100,
 
-                    dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu jpg nebo png.",
+                    dictInvalidFileType: "Nepodporovaný formát.",
                     dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
                     dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})"
                 };
@@ -77,27 +82,35 @@
 //                      ]
 //                  }
 //              ]
+                type: "default",
+
                 directories: [],
                 openDirectory: null,
                 loadingDirectory: null,
 
                 //název requestu odesílaného na server
-                reqName: "images",
+                reqName: "files",
 
-                filesType: this.OPTIONS.TYPE_IMAGE,
+                filesType: "",
 
                 srcPath: window.location.origin,
                 thumbsPath: "/thumbs",
                 thumbsFullPath: this.getThumbsFullPath,
+                selectedPath: "",
 
-                uploadDirectory: "Moje obrázky",
+                uploadDirectory: "",
 
                 uploadOverlayTitle: "Nahrát soubory",
-                uploadOverlayText: "Maximální velikost souboru: 1 MB. Podporované formáty: jpg, png.",
+                uploadOverlayText: "",
 
                 uploading: [],
 
-                showMessage: false
+                showMessage: false,
+
+                saveOnTeardown: true,
+
+                searchable: false,
+                searchText: ""
             };
         },
 
@@ -116,17 +129,48 @@
 
         superOnconfig: function () {
 
-            this.loadDirectories();
-
             this.observe("openDirectory", this.openDirectory, {init: false});
 
             this.on("deleteFile", this.deleteFile);
+
+            if (this.get("saveOnTeardown")) {
+
+                this.set("directories", savedDirectories[this.get("reqName")] || []);
+
+                this.set("searchText", savedSearchText[this.get("reqName")] || "");
+            }
+
+            if (!this.get("directories").length) {
+
+                this.loadDirectories();
+            }
+
+            this.observe("directories.*.files openDirectory", this.hasInitContentOnOpen);
+
+            if (this.get("searchable")) {
+
+                this.observe("searchText", function (searchText) {
+
+                    clearTimeout(this.searchTimeout);
+
+                    this.searchTimeout = setTimeout(
+                        this.searchFiles.bind(this, searchText),
+                        window.navigator.userAgent.match(/Mobi/) ? 1000 : 500
+                    );
+
+                }, {init: false});
+            }
         },
 
         superOnrender: function () {
 
             this.self = this.find("." + this.CLASS.self);
             this.$self = $(this.self);
+
+            if (this.get("directories").length) {
+
+                this.initUploadFiles();
+            }
         },
 
         superOncomplete: function () {
@@ -137,11 +181,19 @@
 
             this.torndown = true;
 
-            this.dirReq.cancelReq(true);
+            if (this.dirReq) {
 
-            if (this.imageReq) {
+                this.dirReq.cancelReq(true);
+            }
 
-                this.imageReq.cancelReq(true);
+            if (this.filesReq) {
+
+                this.filesReq.cancelReq(true);
+            }
+
+            if (this.searchReq) {
+
+                this.searchReq.cancelReq(true);
             }
 
             if (this.dropzone) {
@@ -165,6 +217,25 @@
 
                     clearTimeout(this.uploadErrorRemovingFnTimeouts[t]);
                 }
+            }
+
+            if (this.get("saveOnTeardown")) {
+
+                var directories = this.get("directories");
+
+                if (this.get("uploadDirectory")) {
+
+                    var directoryIndex = this.getDirectoryIndexByName(this.get("uploadDirectory"));
+
+                    if (~directoryIndex) {
+
+                        directories[directoryIndex].files = [];
+                    }
+                }
+
+                savedDirectories[this.get("reqName")] = directories;
+
+                savedSearchText[this.get("reqName")] = this.get("searchText");
             }
         },
 
@@ -190,7 +261,7 @@
 
         initUploadFiles: function () {
 
-            if (!this.get("uploadDirectory")) {
+            if (!this.get("uploadDirectory") || this.uploadFilesLoaded) {
 
                 return;
             }
@@ -210,13 +281,26 @@
             this.$dropzoneClickable.on("mousedown.FileBrowser touchend.FileBrowser", function (e) {
 
                 e.stopPropagation();
-                e.preventDefault();
-                return false;
+
+                if (e.type !== "touchend") {
+
+                    e.preventDefault();
+                    return false;
+                }
             });
 
             options.addedfile = this.handleAddedfile.bind(this);
-            options.resize = this.handleResize.bind(this);
-            options.thumbnail = this.handleThumbnail.bind(this);
+
+            if (this.handleResize) {
+
+                options.resize = this.handleResize.bind(this);
+            }
+
+            if (this.handleThumbnail) {
+
+                options.thumbnail = this.handleThumbnail.bind(this);
+            }
+
             options.uploadprogress = this.handleUploadProgress.bind(this);
             options.successmultiple = this.handleUploadSuccessmultiple.bind(this);
             options.error = this.handleUploadError.bind(this);
@@ -225,6 +309,33 @@
             this.dropzone = this.$self.dropzone(options);
 
             this.dropzoneInstance = Dropzone.forElement(this.self);
+
+            this.thumbWidth = options.thumbnailWidth;
+            this.thumbHeight = options.thumbnailHeight;
+
+            this.uploadFilesLoaded = true;
+        },
+
+        hasInitContentOnOpen: function (current, before, path, index) {
+
+            var dirIndex = path === "openDirectory" ? current : +index;
+
+            if (this.skipInitDirContentObserver === dirIndex) {
+
+                return;
+            }
+
+            if (path === "openDirectory") {
+
+                this.skipInitDirContentObserver = dirIndex;
+            }
+
+            if (dirIndex || dirIndex === 0) {
+
+                this.set("directories." + dirIndex + ".initDirContent", !before || !before.length || path === "openDirectory");
+            }
+
+            this.skipInitDirContentObserver = null;
         },
 
         handleAddedfile: function (file) {
@@ -265,8 +376,8 @@
                 srcX: 0,
                 srcWidth: file.width,
                 srcHeight: file.height,
-                trgWidth: file.width > file.height ? 100 : 100 * (file.width / file.height),
-                trgHeight: file.width > file.height ? 100 * (file.height / file.width) : 100
+                trgWidth: file.width > file.height ? this.thumbWidth : this.thumbWidth * (file.width / file.height),
+                trgHeight: file.width > file.height ? this.thumbHeight * (file.height / file.width) : this.thumbHeight
             };
         },
 
@@ -277,7 +388,7 @@
                 return;
             }
 
-            if (file.fileBrowserId) {
+            if (file.fileBrowserId && data) {
 
                 var directoryIndex = this.getDirectoryIndexByName(this.get("uploadDirectory")),
                     fileIndex = this.getFileIndexByUploadingId(file.fileBrowserId);
@@ -319,9 +430,17 @@
 
                     if (filesInDir[f].name === paths.files[p].originalname) {
 
-                        this.set("directories." + directoryIndex + ".files." + f + ".uploading", false);
-                        this.set("directories." + directoryIndex + ".files." + f + ".path", paths.files[p].path.replace(/\\/g, "/").replace(/^public\//g, ""));
-                        this.set("directories." + directoryIndex + ".files." + f + ".name", paths.files[p].name);
+                        var dataFilePath = "directories." + directoryIndex + ".files." + f;
+
+                        this.set(dataFilePath + ".uploading", false);
+                        this.set(dataFilePath + ".uploaded", true);
+                        this.set(dataFilePath + ".path", paths.files[p].path.replace(/\\/g, "/").replace(/^public\//g, ""));
+                        this.set(dataFilePath + ".name", paths.files[p].name);
+
+                        if (paths.files[p].svg) {
+
+                            this.set(dataFilePath + ".svg", paths.files[p].svg);
+                        }
                     }
                 }
             }
@@ -402,41 +521,67 @@
                     res.directories[d].files = [];
                 }
 
+                if (this.get("searchable")) {
+
+                    res.directories.unshift({
+                        name: "Najít...",
+                        path: "#search",
+                        files: []
+                    });
+                }
+
                 this.set("directories", res.directories);
 
                 setTimeout(this.initUploadFiles.bind(this), 0);
 
-            }.bind(this));
+            }.bind(this)).catch(function () {});
         },
 
-        loadFilesForDirectory: function (directory) {
+        loadFilesForDirectory: function (directory, directoryIndex) {
 
-            if (this.imageReq) {
+            this.set("loadingDirectory", directoryIndex);
 
-                this.imageReq.cancelReq();
+            if (this.filesReq) {
+
+                this.filesReq.cancelReq();
             }
 
-            this.imageReq = this.req(this.get("reqName"), {
+            this.filesReq = this.req(this.get("reqName"), {
                 directory: directory.path
             });
 
-            this.imageReq.then(function (res) {
+            this.filesReq.then(function (res) {
 
                 if (res && res.files) {
 
-                    var f = res.files.length - 1;
+                    //odstranit již nahrané soubory - jsou opět načtené ze serveru
+                    var inF = directory.files.length - 1;
 
-                    for (f; f>= 0; f--) {
+                    for (inF; inF >= 0; inF--) {
+
+                        if (directory.files[inF].uploaded) {
+
+
+                            directory.files.splice(inF, 1);
+                        }
+                    }
+
+                    var f = 0,
+                        files = [];
+
+                    for (f; f < res.files.length; f++) {
 
                         res.files[f].path = res.files[f].path.replace(/\\/g, "/");
 
-                        directory.files.unshift(res.files[f]);
+                        files.push(res.files[f]);
                     }
+
+                    this.set("directories." + directoryIndex + ".files", directory.files.concat(files));
                 }
 
                 this.set("loadingDirectory", null);
 
-            }.bind(this));
+            }.bind(this)).catch(function () {});
         },
 
         addFileToUploadDirectory: function (name, path) {
@@ -454,9 +599,12 @@
 
                     if (~directoryIndex) {
 
+                        this.set("directories." + directoryIndex + ".initDirContent", false);
+
                         this.unshift("directories." + directoryIndex + ".files", {
                             name: name,
-                            path: path
+                            path: path,
+                            uploaded: true
                         });
                     }
 
@@ -484,20 +632,19 @@
 
             if (directoryIndex || directoryIndex === 0) {
 
-                var directory = this.getDirectoryByIndex(directoryIndex),
-                    files = [];
+                var directory = this.getDirectoryByIndex(directoryIndex);
 
                 if (directory && directory.files && directory.files.length && !this.directoryHasOnlyUploadedFiles(directoryIndex))  {
 
                     return;
                 }
 
-                this.set("loadingDirectory", directoryIndex);
+                this.loadFilesForDirectory(directory, directoryIndex);
 
-                this.set("directories." + directoryIndex + ".files", this.get("directories." + directoryIndex + ".files").concat(files));
-
-                this.loadFilesForDirectory(directory);
+                return;
             }
+
+            this.set("loadingDirectory", null);
         },
 
         directoryHasOnlyUploadedFiles: function (directoryIndex) {
@@ -545,6 +692,22 @@
             for (d; d >= 0; d--) {
 
                 if (directories[d].name === name) {
+
+                    return d;
+                }
+            }
+
+            return -1;
+        },
+
+        getDirectoryIndexByPath: function (path) {
+
+            var directories = this.get("directories"),
+                d = directories.length - 1;
+
+            for (d; d >= 0; d--) {
+
+                if (directories[d].path === path) {
 
                     return d;
                 }
@@ -611,6 +774,46 @@
             clearTimeout(this.hideMessageTimeout);
 
             this.hideMessageTimeout = setTimeout(this.set.bind(this, "showMessage", false), hideTimeout || 3000);
+        },
+
+        searchFiles: function (searchText) {
+
+            if (this.searchReq) {
+
+                this.searchReq.cancelReq(true);
+            }
+
+            if (!searchText || searchText.length < 2) {
+
+                var directoryIndex = this.getDirectoryIndexByPath("#search");
+
+                this.set("directories." + directoryIndex + ".files", []);
+
+                return;
+            }
+
+            this.set("searching", true);
+
+            this.searchReq = this.req(this.get("reqName") + ".search", {search: searchText});
+
+            this.searchReq.then(function (result) {
+
+                if (result && result.files) {
+
+                    var directoryIndex = this.getDirectoryIndexByPath("#search");
+
+                    this.merge("directories." + directoryIndex + ".files", result.files, {compare: true});
+
+                    this.set("directories." + directoryIndex + ".initDirContent", false);
+                }
+
+                this.set("searching", null);
+
+            }.bind(this)).catch(function () {
+
+                this.set("searching", null);
+
+            }.bind(this));
         }
     });
 

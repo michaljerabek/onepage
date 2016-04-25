@@ -53,7 +53,6 @@
             self: "E_PageSectionSettings",
 
             wrapper: "E_PageSectionSettings--wrapper",
-            scrollingContent: "E_PageSectionsSettings--scrolling-content",
 
             resizer: "E_PageSectionSettings--resizer",
             resizerActive: "E_PageSectionSettings--resizer__active",
@@ -86,8 +85,6 @@
 
                 var $node = $(node),
                     $scrollingElement = !scrollingElementSelector || $node.is(scrollingElementSelector) ? $node : $node.find(scrollingElementSelector),
-
-                    $scrollingContent = $scrollingElement.find("." + this.parent.CLASS.scrollingContent),
 
                     refreshThrottle = null,
                     refreshScrollbars = function () {
@@ -123,7 +120,7 @@
 
                         if ($scrollingElement) {
 
-                            ($scrollingContent.length ? $scrollingContent : $scrollingElement).each(function (i, el) {
+                            $scrollingElement.each(function (i, el) {
 
                                 rects[i] = el.getBoundingClientRect();
                             });
@@ -134,13 +131,14 @@
 
                     lastRects = getRectsForScrollables(),
 
+                    lastTab = this.get("openTab"),
+
                     lastMutation = +new Date(),
 
-                    sizeTimeout = null,
-                    sizeByTransitionTimeout = null,
-                    transitionTimeout = null,
+                    onContentChange = function () {
 
-                    onContentChange = function (delay) {
+                        var isMax = this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMax) && !this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMin),
+                            isMin = !isMax;
 
                         var currentRects = getRectsForScrollables();
 
@@ -148,32 +146,21 @@
 
                             if (rect.width !== lastRects[i].width || rect.height !== lastRects[i].height) {
 
-                                var isMax = this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMax) && !this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMin),
-                                    isMin = !isMax;
+                                if (isMin) {
 
-                                clearTimeout(sizeTimeout);
+                                    this.beforeHeight = this.parent.getSettingsHeight();
+                                }
 
-                                this.parent.set("elementHeight", this.parent.getSettingsHeight());
+                                if (!this.parent.wasResized) {
 
-                                sizeTimeout = setTimeout(function() {
+                                    this.parent.minmax(null, isMax, isMin);
 
-                                    if (isMin) {
+                                } else {
 
-                                        this.beforeHeight = this.parent.getSettingsHeight();
-                                    }
+                                    this.parent.wasResized = false;
 
-                                    if (!this.parent.wasResized) {
-
-                                        this.parent.minmax(null, isMax, isMin);
-
-                                    } else {
-
-                                        this.parent.wasResized = false;
-
-                                        this.parent.set("elementHeight", this.parent.getSettingsHeight());
-                                    }
-
-                                }.bind(this), delay ? 500 : 50);
+                                    this.parent.set("elementHeight", this.parent.getSettingsHeight());
+                                }
 
                                 return false;
                             }
@@ -183,108 +170,58 @@
 
                     }.bind(this),
 
+                    onContentChangeTimeout = null,
+
                     contentObserver = new MutationObserver(function () {
+
+                        clearTimeout(onContentChangeTimeout);
 
                         var currentTime = +new Date();
 
                         if (currentTime - lastMutation < 50) {
+
+                            onContentChangeTimeout = setTimeout(onContentChange, 100);
 
                             lastMutation = currentTime;
 
                             return;
                         }
 
-                        if (this.parent.find("." + this.parent.CLASS.resizerActive)) {
+                        if (this.get("openTab") !== lastTab || this.parent.find("." + this.parent.CLASS.resizerActive)) {
 
                             return;
                         }
 
-                        if (!this.minmaxing) {
-
-                            this.parent.$resizableBox.css({
-                                transition: "none",
-                                height: this.parent.getSettingsHeight()
-                            });
-
-                            /*iOS fix*/
-                            transitionTimeout = setTimeout(function() {
-
-                                this.parent.$resizableBox.css({
-                                    transition: ""
-                                });
-
-                            }.bind(this), 0);
-                        }
+                        onContentChange();
 
                         lastMutation = currentTime;
 
-                        onContentChange();
+                }.bind(this));
 
-                    }.bind(this)),
+                contentObserver.observe(this.parent.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
 
-                    initChangeObservers = function () {
+                this.observe("openTab", function (tab) {
 
-                        contentObserver.observe(this.parent.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
+                    //při změně tabu je potřeba zablokovat MutationObserver, protože je potřeba změnu veliosti zajistit jiným způsobem.
+                    lastTab = tab;
 
-                        $scrollingElement.on("transitionend." + this.parent.EVENT_NS, function (e) {
+                    var saveBeforeHeight = this.beforeHeight,
 
-                            if (e.originalEvent.propertyName.match(/opacity|visibility|width|height|top|left|right|bottom|margin|padding|letter-spacing|border|font|text-transform/)) {
-                                var currentTime = +new Date();
+                        isMax = this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMax) && !this.parent.minmaxButton.classList.contains(this.parent.CLASS.minmaxMin),
+                        isMin = !isMax;
 
-                                if (!this.minmaxing && currentTime - lastMutation > 50) {
+                    if (isMin) {
 
-                                    this.parent.$resizableBox.css({
-                                        transition: "none",
-                                        height: this.parent.getSettingsHeight()
-                                    });
-
-                                    clearTimeout(transitionTimeout);
-
-                                    /*iOS fix*/
-                                    transitionTimeout = setTimeout(function() {
-
-                                        this.parent.$resizableBox.css({
-                                            transition: ""
-                                        });
-
-                                    }.bind(this), 0);
-                                }
-
-                                lastMutation = currentTime;
-
-                                clearTimeout(sizeByTransitionTimeout);
-
-                                sizeByTransitionTimeout = setTimeout(onContentChange, 20);
-                            }
-
-                        }.bind(this));
-
-                    }.bind(this),
-
-                    cancelChangeObservers = function () {
-
-                        contentObserver.disconnect();
-
-                        clearTimeout(sizeByTransitionTimeout);
-
-                        $scrollingElement.off("transitionend." + this.parent.EVENT_NS);
-
-                    }.bind(this);
-
-                initChangeObservers();
-
-                this.parent.minmax = this.parent.minmax || function (event, forceMax, forceMin) {
-
-                    if (this.minmaxing && !event) {
-
-                        this.nextRequest = true;
-
-                        onContentChange(true);
-
-                        return;
+                        this.beforeHeight = this.parent.getSettingsHeight();
                     }
 
-                    this.minmaxing = true;
+                    this.parent.minmax(null, isMax, isMin);
+
+                    this.beforeHeight = saveBeforeHeight;
+
+                }, {init: false, defer: true, context: this});
+
+                this.parent.minmax = this.parent.minmax || function (event, forceMax, forceMin) {
 
                     contentObserver.disconnect();
 
@@ -304,7 +241,15 @@
                         });
 
                     clearTimeout(this.clearAnimStyles);
-                    clearTimeout(transitionTimeout);
+
+                    //použije se, pokud nenastane transitionend
+                    this.clearAnimStyles = setTimeout(function () {
+
+                        this.parent.resizableBox.style.height = "";
+
+                        contentObserver.observe(this.parent.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
+
+                    }.bind(this), 1000);
 
                     this.parent.resizableBox.style.height = "";
 
@@ -323,10 +268,7 @@
                     //zvětšit na maximální velikost
                     } else {
 
-                        if (!forceMax) {
-
-                            this.beforeHeight = this.parent.get("elementHeight");
-                        }
+                        this.beforeHeight = this.parent.get("elementHeight");
 
                         if (this.maxResizeHeight) {
 
@@ -342,20 +284,6 @@
                     //zjistit konečné rozměry boxu
                     var resizableBoxRect = this.parent.resizableBox.getBoundingClientRect();
 
-                    //použije se, pokud nenastane transitionend
-                    this.clearAnimStyles = setTimeout(function () {
-
-                        if (this.minResizeHeight) {
-
-                            this.parent.resizableBox.style.minHeight = resizableBoxRect.height >= this.minResizeHeight ? this.minResizeHeight + "px" : resizableBoxRect.height + "px";
-                        }
-
-                        this.parent.resizableBox.style.height = "";
-
-                        contentObserver.observe(this.parent.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
-
-                    }.bind(this), 1000);
-
                     //po zjištění rozměrů po změně velikosti, je potřeba vrátit původní hodnoty kvůli animaci
                     this.parent.set("elementHeight", currentHeight);
 
@@ -368,18 +296,11 @@
                             transition: ""
                         });
 
-                        this.minmaxing = false;
-
-                        clearTimeout(this.clearAnimStyles);
-
-                        contentObserver.observe(this.parent.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
-
                         return;
                     }
 
                     //začátek animace: zafixování současné velikosti
                     this.parent.resizableBox.style.height = currentHeight + "px";
-
                     //Je potřeba odstranit maxVelikost, aby bylo možné roztáhnout element na požadovanou velikost.
                     //V případě, že se změní obsah a box není maximalizovaný, je potřeba velikost zafixovat,
                     //protože by měla zůstat stejná.
@@ -392,7 +313,7 @@
 
                     this.parent.resizableBox.style.minHeight = this.minHeight + "px";
 
-                    transitionTimeout = setTimeout(function() {
+                    setTimeout(function() {
 
                         //spuštění animace: konečná velikost
                         this.parent.resizableBox.style.height = resizableBoxRect.height + "px";
@@ -415,13 +336,7 @@
                                     //přiřadit aktuální vekost do max-rozměrů pro správnou funkčnost roztahování
                                     this.parent.set("elementHeight", this.parent.getSettingsHeight());
 
-                                    if (this.minResizeHeight) {
-
-                                        this.parent.resizableBox.style.minHeight = resizableBoxRect.height >= this.minResizeHeight ? this.minResizeHeight + "px" : resizableBoxRect.height + "px";
-                                    }
-
                                     clearTimeout(this.clearAnimStyles);
-
                                     this.parent.resizableBox.style.height = "";
 
                                     $scrollingElement.perfectScrollbar("update");
@@ -433,20 +348,11 @@
                                     contentObserver.observe(this.parent.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
 
                                     //iOS fix
-                                    transitionTimeout = setTimeout(function() {
+                                    setTimeout(function() {
 
                                         this.parent.$resizableBox.css({
                                             transition: ""
                                         });
-
-                                        this.minmaxing = false;
-
-                                        if (this.nextRequest) {
-
-                                            this.nextRequest = false;
-
-                                            onContentChange(true);
-                                        }
 
                                     }.bind(this), 0);
                                 }
@@ -456,7 +362,7 @@
 
                         this.doNotUpdateScrollbars = false;
 
-                    }.bind(this), 20);
+                    }.bind(this), 0);
 
                 }.bind(this);
 
@@ -499,10 +405,8 @@
                 return {
                     teardown: function () {
 
-                        cancelChangeObservers();
+                        contentObserver.disconnect();
 
-                        clearTimeout(sizeTimeout);
-                        clearTimeout(transitionTimeout);
                         clearTimeout(refreshThrottle);
 
                         $scrollingElement
@@ -510,6 +414,8 @@
                                 position: ""
                             })
                             .perfectScrollbar("destroy");
+
+                        $node.off("transitionend.resize-" + this.EVENT_NS);
 
                         $scrollingElement = null;
                     }
@@ -533,8 +439,6 @@
 
                 Ractive.$scrollElement = Ractive.$scrollElement || $("html, body");
             }
-
-            this.minmaxing = true;
 
             //Počkat až se zavře jiné nastavení ve stejné sekci?
             this.set("delayOpening", this.parent.get("anotherSettingsOpened"));
@@ -560,8 +464,6 @@
 
                 this.set("elementHeight", this.getSettingsHeight());
             }
-
-            this.minmaxing = false;
         },
 
         onteardown: function () {
@@ -602,8 +504,7 @@
                         this.minmaxButton.classList.remove(this.CLASS.minmaxMax);
 
                         this.$resizableBox.css({
-                            transition: "none",
-                            height: ""
+                            transition: "none"
                         });
                     }
 

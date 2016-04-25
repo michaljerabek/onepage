@@ -3,15 +3,20 @@ var express = require("express");
 var router = express.Router();
 var fse = require("fs-extra");
 var imagemagick = require("imagemagick");
-var gm = require("gm");
 var path = require("path");
+var gm = require("gm");
+var mime = require("mime");
+var document = require("jsdom").jsdom();
+var DOMPurify = require("dompurify")(document.defaultView);
+
+var Icon = require("./../../models/Icon");
 
 require("ractive-require-templates")(".tpl");
 var Ractive = require("ractive"),
 
     multer = require("multer"),
 
-    storage = multer.diskStorage({
+    storageImages = multer.diskStorage({
         destination: function (req, file, cb) {
 
             var path = "public/uploads/users/" + (req.userId || req.user._id) + "/images";
@@ -40,8 +45,41 @@ var Ractive = require("ractive"),
         }
     }),
 
-    upload = multer({
-        storage: storage
+    storageIcons = multer.diskStorage({
+        destination: function (req, file, cb) {
+
+            var path = "public/uploads/users/" + (req.userId || req.user._id) + "/icons";
+
+            fse.stat(path, function (err) {
+
+                if (err) {
+
+                    fse.mkdirs(path + "/thumbs", function (err) {
+
+                        if (!err) {
+
+                            cb(null, path);
+                        }
+                    });
+
+                    return;
+                }
+
+                cb(null, path);
+            });
+
+        },
+        filename: function (req, file, cb) {
+            cb(null, Date.now() + "-" + file.originalname);
+        }
+    }),
+
+    uploadImages = multer({
+        storage: storageImages
+    }),
+
+    uploadIcons = multer({
+        storage: storageIcons
     });
 
 router.get("/", function (req, res, next) {
@@ -73,7 +111,7 @@ router.get("/", function (req, res, next) {
 
 
 //router.post("/upload-background-images", upload.array("background-images"), function (req, res) {
-router.post("/upload-background-images", upload.any(), function (req, res) {
+router.post("/upload-background-images", uploadImages.any(), function (req, res) {
 
     var f = req.files.length - 1,
 
@@ -100,7 +138,7 @@ router.post("/upload-background-images", upload.any(), function (req, res) {
 
 });
 
-router.post("/upload-background-image", upload.single("background-image"), function (req, res) {
+router.post("/upload-background-image", uploadImages.single("background-image"), function (req, res) {
 
     gm(req.file.path)
         .resize(100, 100)
@@ -115,5 +153,95 @@ router.post("/upload-background-image", upload.single("background-image"), funct
 
 });
 
+router.post("/upload-icons", uploadIcons.any(), function (req, res) {
+
+    var f = req.files.length - 1,
+
+        files = [];
+
+    processAndSendIcons(files, req, res);
+
+});
+
+function processAndSendIcons(files, req, res) {
+
+    if (!req.files.length) {
+
+        return res.json({
+            files: files
+        });
+    }
+
+    var currentFile = req.files.shift(),
+
+        mimeType = mime.lookup(currentFile.path);
+
+    if (mimeType.match(/svg|xml/)) {
+
+        fse.readFile(currentFile.path, function (err, buffer) {
+
+            if (err) {
+
+                return processAndSendIcons(files, req, res);
+            }
+
+            var content = buffer.toString(),
+
+                purified = DOMPurify.sanitize(content);
+
+            files.push({
+                originalname: currentFile.originalname,
+                name: currentFile.filename,
+                path: currentFile.path,
+                svg: purified
+            });
+
+            processAndSendIcons(files, req, res);
+        });
+
+        return;
+    }
+
+    gm(currentFile.path)
+        .resize(40, 40)
+        .quality(65)
+        .noProfile()
+        .write(path.join(currentFile.destination, "thumbs", currentFile.filename), function () {});
+
+    files.push({
+        originalname: currentFile.originalname,
+        name: currentFile.filename,
+        path: currentFile.path
+    });
+
+    processAndSendIcons(files, req, res);
+}
+
+router.post("/upload-icon", uploadIcons.single("icon"), function (req, res) {
+
+});
+
+router.get("/create-icon", function (req, res) {
+
+    res.render("create-icon", {state: ""});
+});
+
+router.post("/create-icon", function (req, res) {
+
+    var icon = new Icon({
+        name: req.body.name,
+        category: req.body.category,
+        data: req.body.data,
+        tags: req.body.tags.trim()
+            .replace(/\s*,\s*/g, ",")
+            .split(",")
+    });
+
+    icon.save(function (err) {
+
+        res.render("create-icon", {state: err ? "err" : "ok"});
+    });
+
+});
 
 module.exports = router;

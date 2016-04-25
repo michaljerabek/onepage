@@ -5,13 +5,15 @@
 >
 
     <nav class="E_ColorSettings--menu PageSectionSetitngs--scrollable">
-        <ul class="E_ColorSettings--menu-list">
-            {{>ColorSettingsNavItem {index: 1, settings: this}}}
-        </ul>
+        <div class="E_PageSectionsSettings--scrolling-content">
+            <ul class="E_ColorSettings--menu-list">
+                {{>ColorSettingsNavItem {index: 1, settings: this}}}
+            </ul>
+        </div>
     </nav>
 
     <div class="E_ColorSettings--ColorPicker PageSectionSetitngs--scrollable">
-        {{>ColorSettingsTab}}
+        <div class="E_PageSectionsSettings--scrolling-content">{{>ColorSettingsTab}}</div>
     </div>
 
 </div>
