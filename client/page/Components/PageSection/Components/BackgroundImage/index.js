@@ -47,18 +47,19 @@
             DROPZONE: function () {
 
                 return {
-                    url: "/upload-background-image",
-                    paramName: "background-image",
+                    url: "/upload-image",
+                    paramName: "image",
 
                     acceptedFiles: "image/jpg,image/jpeg,image/png",
                     maxFilesize: 1,
+                    uploadMultiple: false,
 
                     clickable: false,
 
                     thumbnailWidth: null,
                     thumbnailHeight: null,
 
-                    dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu jpg nebo png.",
+                    dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu .jpg, .png.",
                     dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
                     dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})"
                 };
@@ -175,6 +176,7 @@
                 this.set("parallax", !!parallax);
                 this.set("fixed", !!fixed);
             });
+
         },
 
         onrender: function () {
@@ -191,7 +193,31 @@
                 if (Ractive.EDIT_MODE) {
 
                     this.initDragDropUpload();
+
+                    this.PageSection.on("BackgroundImageBrowser.selectFile", function (e, file) {
+
+                        this.guessDisplayFromSize(file);
+
+                    }.bind(this));
                 }
+            }
+        },
+
+        guessDisplayFromSize: function (file) {
+
+            if (file && file.width && file.height) {
+
+                //je-li obrázek čtverec nebo jsou obě strany menší jak 512px nebo je jedna ze stran
+                //menší jak 128px nebo je poměr stran menší jak 0.4 (= úzký),
+                //pak je obrázek pravděpodobně textura -> nastavit opakování
+                if (file.width === file.height || file.width <= 128 || file.height <= 128 || (file.width <= 512 && file.height <= 512) || file.width / file.height < 0.4) {
+
+                    this.set("data.display", "repeat");
+
+                    return;
+                }
+
+                this.set("data.display", "cover");
             }
         },
 
@@ -216,8 +242,8 @@
             this.dropzone.on("dragenter", function () {
 
                 this.fire("pageSectionMessage", {
-                    title: "Nahrát soubor",
-                    text: "Maximální velikost souboru: " + options.maxFilesize + " MB. Podporované formáty: jpg, png."
+                    title: "Nahrát obrázek",
+                    text: "Maximální velikost souboru: " + options.maxFilesize + " MB. Podporované formáty: .jpg, .png."
                 });
 
             }.bind(this));
@@ -236,7 +262,7 @@
             this.prevSrc = this.get("data.src");
 
             this.fire("pageSectionMessage", {
-                title: "Nahrát soubor",
+                title: "Nahrát obrázek",
                 text: "Počkejte prosím...",
                 status: "info"
             });
@@ -244,7 +270,7 @@
 
         handleThumbnail: function (file, imageData) {
 
-            if (this.torndown) {
+            if (this.torndown || !file.accepted) {
 
                 return;
             }
@@ -255,17 +281,7 @@
                 this.set("data.src", imageData);
             }
 
-            //je-li obrázek čtverec nebo jsou obě strany menší jak 512px nebo je jedna ze stran
-            //menší jak 128px nebo je poměr stran menší jak 0.4 (= úzký),
-            //pak je obrázek pravděpodobně textura -> nastavit opakování
-            if (file.width === file.height || file.width <= 128 || file.height <= 128 || (file.width <= 512 && file.height <= 512) || file.width / file.height < 0.4) {
-
-                this.set("data.display", "repeat");
-
-                return;
-            }
-
-            this.set("data.display", "cover");
+            this.guessDisplayFromSize(file);
         },
 
         handleUploadProgress: function (file, progress) {
@@ -289,17 +305,23 @@
 
         handleUploadSuccess: function (file, res) {
 
-            this.set(
-                "data.src",
-                res.path.replace(/^public/, "").replace(/\\/g, "/")
-            );
+            var path = res.path.replace(/^public/, "").replace(/\\/g, "/");
+            
+            this.set("data.src", path);
 
             this.fire("pageSectionMessage", {
-                title: "Nahrát soubor",
+                title: "Nahrát obrázek",
                 text: "Obrázek (" + file.name + ") se podařilo úspěšně nahrát.",
                 timeout: 2000,
                 status: "success"
             });
+            
+            var browser = this.PageSection.findComponent("BackgroundImageBrowser");
+            
+            if (browser) {
+                
+                browser.addFileToUploadDirectory(res.name, path);
+            }
         },
 
         handleUploadError: function (file, error) {
@@ -314,7 +336,7 @@
             });
 
             this.fire("pageSectionMessage", {
-                title: "Nahrát soubor",
+                title: "Nahrát obrázek",
                 text: error,
                 timeout: 3000,
                 status: "error"

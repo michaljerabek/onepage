@@ -44,7 +44,7 @@ var initPolyfills = function () {
     require("request-frame")("native");
 };
 
-var connectToSocketIO = function (config, databaseName) {
+var connectToSocketIO = function (config, databaseName, userId) {
 
     var socket = io("http://" + window.location.hostname + ":" + config.websocket.port);
 
@@ -53,7 +53,8 @@ var connectToSocketIO = function (config, databaseName) {
     socket.on("connect", function () {
 
         socket.emit("databaseName", {
-            databaseName: databaseName
+            databaseName: databaseName,
+            userId: userId
         });
     });
 
@@ -70,7 +71,7 @@ module.exports = function (ractive, ractiveData, config) {
 
         loadLibs();
 
-        connectToSocketIO(config, ractiveData.databaseName);
+        connectToSocketIO(config, ractiveData.databaseName, ractiveData.userId);
 
         console.time("pageLoaded");
 
@@ -87,7 +88,8 @@ module.exports = function (ractive, ractiveData, config) {
 
             transitions: {
                 slide: require("ractive-transitions-slide"),
-                fade: require("ractive-transitions-fade")
+                fade: require("ractive-transitions-fade"),
+                attr: require("ractive-transitions-attr")
             }
         });
 

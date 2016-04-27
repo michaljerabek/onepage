@@ -51,6 +51,331 @@ blockquote, q {
 .cf { display: block; }
 
 
+/*====================================================================*/
+/*------------------------------ FONTS -------------------------------*/
+/*====================================================================*/
+
+/*--------------------------------------------------------------------*/
+/*-------------------------------- APP -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+/*---------------------------- ENCODE SANS ----------------------------*/
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSans-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSans-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSans-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSans-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSans-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSans-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSans-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSans-Black.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Black.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Black.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Black.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Black.ttf");
+}
+
 html, body {
     margin: 0;
 
@@ -5477,6 +5802,18 @@ body > .E_NewPageSectionSelector--clone .type {
     visibility: visible;
 }
 
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) *:not([class*='P_BackgroundImage']) {
+    -webkit-transition: color 0.1s linear,
+        background-color 0.1s linear;
+    -moz-transition: color 0.1s linear,
+        background-color 0.1s linear;
+    -o-transition: color 0.1s linear,
+        background-color 0.1s linear;
+    transition:
+        color 0.1s linear,
+        background-color 0.1s linear;
+}
+
 .P_font-type-1 .P_PageSection--content {
     font-family: serif;
 }
@@ -5503,6 +5840,12 @@ body > .E_NewPageSectionSelector--clone .type {
 .E_PageElementSettings--transition-wrapper {
     z-index: 120;
 	position: relative;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
 }
 
 .E_PageElementSettings {
@@ -5517,6 +5860,11 @@ body > .E_NewPageSectionSelector--clone .type {
        -moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
             box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
 
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
     will-change: top, left, opacity;
     -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
     -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
@@ -5550,11 +5898,39 @@ body > .E_NewPageSectionSelector--clone .type {
 }
 
 .E_PageElementSettings--content {
-    min-width: 200px;
-    min-height: 200px;
+    position: relative;
+
+    min-width: 220px;
+    min-height: 180px;
+}
+
+.E_PageElementSettings--content:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: -4px;
+
+    width: -webkit-calc(100% + 8px);
+
+    width: -moz-calc(100% + 8px);
+
+    width: calc(100% + 8px);
+    height: -webkit-calc(100% + 4px);
+    height: -moz-calc(100% + 4px);
+    height: calc(100% + 4px);
+
+    -webkit-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+       -moz-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+            box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+    pointer-events: none;
 }
 
 .E_PageElementSettings--resizable-box {
+    will-change: width, height;
     -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
     -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
     -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
@@ -5563,6 +5939,13 @@ body > .E_NewPageSectionSelector--clone .type {
     -moz-transition-property: width, height;
     -o-transition-property: width, height;
     transition-property: width, height;
+}
+
+.E_PageElementSettings--scrollable {
+    will-change: scroll-position;
+    -webkit-transform: translateZ(0);
+       -moz-transform: translateZ(0);
+            transform: translateZ(0);
 }
 
 .E_PageElementSettings--resizer {
@@ -6256,6 +6639,127 @@ body > .E_NewPageSectionSelector--clone .type {
     cursor: grabbing;
 }
 
+/*====================================================================*/
+/*------------------------------ MESSAGE -----------------------------*/
+/*====================================================================*/
+
+.E_PageSectionMessage {
+    margin: auto;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+
+    -webkit-transform: translateY(-50%);
+
+       -moz-transform: translateY(-50%);
+
+        -ms-transform: translateY(-50%);
+
+         -o-transform: translateY(-50%);
+
+            transform: translateY(-50%);
+
+    opacity: 0;
+    visibility: hidden;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    pointer-events: none;
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+}
+
+.E_PageSectionMessage__active {
+    opacity: 0.9;
+    visibility: visible;
+
+    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+}
+
+.E_PageSectionMessage--message {
+    font-size: 17px;
+    line-height: 1.47;
+
+    min-width: 256px;
+    width: auto;
+    max-width: 80%;
+    padding: 12px 24px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+    outline: 2px solid #888;
+    outline-offset: -2px;
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+}
+
+.E_PageSectionMessage--message__success {
+    outline-color: limegreen;
+}
+
+.E_PageSectionMessage--message__error {
+    outline-color: #e90000;
+}
+
+.E_PageSectionMessage--message__warn {
+    outline-color: orange;
+}
+
+.E_PageSectionMessage--message__info {
+    outline-color: deepskyblue;
+}
+
+.E_PageSectionMessage--title {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.E_PageSectionMessage--text {
+    font-size: 14px;
+
+    margin-top: 4px;
+
+    color: #707070;
+}
+
 .E_PageSectionSettings {
     line-height: 1;
 
@@ -6317,7 +6821,6 @@ body > .E_NewPageSectionSelector--clone .type {
     -o-transition-property: height;
     transition-property: height;
 }
-
 /*---------------------------- CLOSE | MINMAX ----------------------------*/
 
 .E_PageSectionSettings--min-max, .E_PageSectionSettings--close {
@@ -6485,127 +6988,6 @@ body > .E_NewPageSectionSelector--clone .type {
     transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
-/*====================================================================*/
-/*------------------------------ MESSAGE -----------------------------*/
-/*====================================================================*/
-
-.E_PageSectionMessage {
-    margin: auto;
-    z-index: 10;
-    position: absolute;
-    top: 50%;
-    left: 0px;
-    right: 0;
-    bottom: 0;
-
-    -webkit-transform: translateY(-50%);
-
-       -moz-transform: translateY(-50%);
-
-        -ms-transform: translateY(-50%);
-
-         -o-transform: translateY(-50%);
-
-            transform: translateY(-50%);
-
-    opacity: 0;
-    visibility: hidden;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-
-    pointer-events: none;
-    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        visibility 0s linear 0.3s;
-    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        visibility 0s linear 0.3s;
-    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        visibility 0s linear 0.3s;
-    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        visibility 0s linear 0.3s;
-}
-
-.E_PageSectionMessage__active {
-    opacity: 0.9;
-    visibility: visible;
-
-    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
-        visibility 0s linear 0s;
-
-    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
-        visibility 0s linear 0s;
-
-    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
-        visibility 0s linear 0s;
-
-    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
-        visibility 0s linear 0s;
-}
-
-.E_PageSectionMessage--message {
-    font-size: 17px;
-    line-height: 1.47;
-
-    min-width: 256px;
-    width: auto;
-    max-width: 80%;
-    padding: 12px 24px;
-
-    color: #404040;
-    background-color: #f5f5f5;
-    outline: 2px solid #888;
-    outline-offset: -2px;
-    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-       -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-}
-
-.E_PageSectionMessage--message__success {
-    outline-color: limegreen;
-}
-
-.E_PageSectionMessage--message__error {
-    outline-color: #e90000;
-}
-
-.E_PageSectionMessage--message__warn {
-    outline-color: orange;
-}
-
-.E_PageSectionMessage--message__info {
-    outline-color: deepskyblue;
-}
-
-.E_PageSectionMessage--title {
-    font-size: 19px;
-    font-weight: bold;
-}
-
-.E_PageSectionMessage--text {
-    font-size: 14px;
-    
-    margin-top: 4px;
-
-    color: #707070;
-}
-
 .P_PageElement__text-content {
     line-height: 1.4;
 
@@ -6674,6 +7056,14 @@ body > .E_NewPageSectionSelector--clone .type {
     height: 100%;
 
     background-position: center center;
+
+    -webkit-transition: background-image 0.1s linear;
+
+    -moz-transition: background-image 0.1s linear;
+
+    -o-transition: background-image 0.1s linear;
+
+    transition: background-image 0.1s linear;
 }
 
 .P_BackgroundImage__parallax .P_BackgroundImage--image {
@@ -7187,6 +7577,1784 @@ body > .E_NewPageSectionSelector--clone .type {
 
 .ColorPicker--input-text:not(:first-child) {
     margin-left: 4px;
+}
+
+.FileBrowser {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+
+    position: relative;
+
+    color: #404040;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+}
+
+.FileBrowser--message, .FileBrowser--drag-drop-overlay {
+    text-align: center;
+
+    z-index: 100;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+	width: 100%;
+	height: 100%;
+    padding: 0 10%;
+
+    color: #404040;
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    overflow: hidden;
+
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+}
+
+.FileBrowser--message-overlay {
+    z-index: 110;
+}
+
+.FileBrowser--drag-drop-overlay:after {
+    content: "";
+
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    width: -webkit-calc(100% - 24px);
+
+    width: -moz-calc(100% - 24px);
+
+    width: calc(100% - 24px);
+    height: -webkit-calc(100% - 24px);
+    height: -moz-calc(100% - 24px);
+    height: calc(100% - 24px);
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+    border: 2px dashed #404040;
+}
+
+.FileBrowser--message-title, .FileBrowser--drag-drop-overlay-title {
+    font-size: 23px;
+    font-weight: 600;
+
+    color: #404040;
+}
+
+.FileBrowser--message-text, .FileBrowser--drag-drop-overlay-text {
+    font-family: "Encode Sans";
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.47;
+
+    margin-top: 8px;
+
+    color: #888;
+}
+
+.FileBrowser--message__active, .FileBrowser.dz-drag-hover .FileBrowser--drag-drop-overlay {
+    opacity: 0.9;
+    visibility: visible;
+
+    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+}
+
+.FileBrowser--directories {
+    min-height: 42px;
+
+    background-color: #f5f5f5;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+}
+
+/*---------------------------- DIRECTORY ----------------------------*/
+
+.FileBrowser--directory {
+}
+
+.FileBrowser--directory-name {
+    font-size: 17px;
+    line-height: 40px;
+    text-align: left;
+    vertical-align: middle;
+
+    width: 100%;
+    padding: 0 12px 0px 2px;
+
+    background-color: #f5f5f5;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    cursor: default;
+}
+
+.FileBrowser--directory-name-text {
+    padding: 0 8px 0 4px;
+}
+
+.FileBrowser--directory:not(:last-of-type) {
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.FileBrowser--directory:hover .FileBrowser--directory-name {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: #404040;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--directory__opened  .FileBrowser--directory-name, .FileBrowser--directory__opened:hover  .FileBrowser--directory-name {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: #fa742c;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+/*---------------------------- ICONS ----------------------------*/
+
+.FileBrowser--icon {
+    margin: 0 0 0 4px;
+
+    height: 40px;
+    width: 40px;
+
+	display: -webkit-box;
+
+	display: -webkit-flex;
+
+	display: -moz-box;
+
+	display: -ms-flexbox;
+
+	display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    overflow: hidden;
+}
+
+.FileBrowser--icon svg {
+    width: 20px;
+    height: 20px;
+
+    fill: #505050;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--icon__directory svg {
+    -webkit-transform: rotate(-3deg);
+       -moz-transform: rotate(-3deg);
+        -ms-transform: rotate(-3deg);
+         -o-transform: rotate(-3deg);
+            transform: rotate(-3deg);
+}
+
+.FileBrowser--directory:hover  .FileBrowser--icon svg, .FileBrowser--directory__opened  .FileBrowser--icon svg, .FileBrowser--directory__opened:hover  .FileBrowser--icon svg {
+    fill: rgba(255, 255, 255, 0.9);
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--directory:hover  .FileBrowser--icon svg {
+    -webkit-transform: scale(1.15) rotate(-5deg);
+       -moz-transform: scale(1.15) rotate(-5deg);
+        -ms-transform: scale(1.15) rotate(-5deg);
+         -o-transform: scale(1.15) rotate(-5deg);
+            transform: scale(1.15) rotate(-5deg);
+}
+
+.FileBrowser--directory__opened  .FileBrowser--icon svg, .FileBrowser--directory__opened:hover  .FileBrowser--icon svg {
+    -webkit-transform: scale(1.5) rotate(-15deg);
+       -moz-transform: scale(1.5) rotate(-15deg);
+        -ms-transform: scale(1.5) rotate(-15deg);
+         -o-transform: scale(1.5) rotate(-15deg);
+            transform: scale(1.5) rotate(-15deg);
+}
+
+.FileBrowser--directory:hover  .FileBrowser--icon__directory svg {
+    -webkit-transform: scale(1.15) rotate(-8deg);
+       -moz-transform: scale(1.15) rotate(-8deg);
+        -ms-transform: scale(1.15) rotate(-8deg);
+         -o-transform: scale(1.15) rotate(-8deg);
+            transform: scale(1.15) rotate(-8deg);
+}
+
+.FileBrowser--directory__opened  .FileBrowser--icon__directory svg, .FileBrowser--directory__opened:hover  .FileBrowser--icon__directory svg {
+    -webkit-transform: scale(1.5) rotate(-18deg);
+       -moz-transform: scale(1.5) rotate(-18deg);
+        -ms-transform: scale(1.5) rotate(-18deg);
+         -o-transform: scale(1.5) rotate(-18deg);
+            transform: scale(1.5) rotate(-18deg);
+}
+
+/*---------------------------- UPLOAD-FILE ----------------------------*/
+
+.FileBrowser--upload-files {
+    font-size: 14px;
+    line-height: 1;
+    vertical-align: middle;
+
+    z-index: 5;
+    position: relative;
+
+    width: 20px;
+    height: 20px;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    opacity: 0.5;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--directory__opened .FileBrowser--upload-files {
+    background-color: #404040;
+}
+
+.FileBrowser--upload-files:hover {
+    background-color: #fc742a;
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--directory__opened .FileBrowser--upload-files:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--upload-files:active {
+    -webkit-transform: scale(0.95);
+       -moz-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+         -o-transform: scale(0.95);
+            transform: scale(0.95);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.FileBrowser--upload-files:after {
+    content: "";
+
+    z-index: -1;
+    position: absolute;
+    top: -11px;
+    left: -6px;
+
+    width: 32px;
+    height: 40px;
+}
+
+.FileBrowser--upload-files svg {
+    width: 10px;
+    height: 10px;
+
+    fill: rgba(255, 255, 255, 0.9);
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--directory__opened .FileBrowser--upload-files:hover svg {
+    fill: #505050;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+/*---------------------------- SEARCH ----------------------------*/
+
+.FileBrowser--search {
+    vertical-align: middle;
+
+    position: relative;
+
+    height: 40px;
+    width: 100%;
+
+    display: block;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--search-input {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 40px;
+    text-align: left;
+    vertical-align: middle;
+
+    height: 100%;
+    width: 100%;
+    padding: 0 12px;
+    padding-right: 56px;
+    padding-left: 50px;
+
+    color: inherit;
+    background-color: #f5f5f5;
+    border: none;
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    -o-user-select: auto;
+    user-select: auto;
+}
+
+.FileBrowser--search-input:hover {
+    background-color: #fff;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--directory__opened .FileBrowser--search-input {
+    color: #fff;
+    background-color: #fc742a;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--search-input::-webkit-input-placeholder { color: rgba(64, 64, 64, 0.65); }
+.FileBrowser--search-input::-moz-placeholder { color: rgba(64, 64, 64, 0.65); opacity: 1; }
+.FileBrowser--search-input:-ms-input-placeholder { color: rgba(64, 64, 64, 0.65); }
+.FileBrowser--search-input:-moz-placeholder { color: rgba(64, 64, 64, 0.65);  opacity: 1; }
+.FileBrowser--search-input:placeholder { color: rgba(64, 64, 64, 0.65); opacity: 1; }
+
+.FileBrowser--directory__opened .FileBrowser--search-input::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.75); }
+.FileBrowser--directory__opened .FileBrowser--search-input::-moz-placeholder { color: rgba(255, 255, 255, 0.75); opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search-input:-ms-input-placeholder { color: rgba(255, 255, 255, 0.75); }
+.FileBrowser--directory__opened .FileBrowser--search-input:-moz-placeholder { color: rgba(255, 255, 255, 0.75);  opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search-input:placeholder { color: rgba(255, 255, 255, 0.75); opacity: 1; }
+
+.FileBrowser--search .FileBrowser--icon {
+    z-index: 5;
+
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.FileBrowser--directory:not(.FileBrowser--directory__opened):hover .FileBrowser--search .FileBrowser--icon svg {
+    fill: #505050;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- FILES ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.FileBrowser--files {
+    position: relative;
+
+    padding: 8px;
+
+    color: #404040;
+    background-color: #f2f2f2;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    overflow: hidden;
+}
+
+.FileBrowser--directory:last-of-type .FileBrowser--files {
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.FileBrowser--files:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+
+       -moz-box-shadow: inset 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+
+            box-shadow: inset 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+
+    pointer-events: none;
+}
+
+.FileBrowser--file {
+    font-size: 0;
+    text-align: center;
+
+    position: relative;
+
+    will-change: transform, opacity, box-shadow;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--file-wrapper {
+    font-size: 0;
+
+    display: inline-block;
+
+    overflow: hidden;
+
+    will-change: transform, opacity, box-shadow;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--file-wrapper:hover {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--file-wrapper:active {
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+/*---------------------------- FILE-IMAGE ----------------------------*/
+
+.FileBrowser__images .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
+    -webkit-animation:
+        FileBrowser--file-intro__image 0.45s linear forwards 0s;
+       -moz-animation:
+        FileBrowser--file-intro__image 0.45s linear forwards 0s;
+         -o-animation:
+        FileBrowser--file-intro__image 0.45s linear forwards 0s;
+            animation:
+        FileBrowser--file-intro__image 0.45s linear forwards 0s;
+}
+
+@-webkit-keyframes FileBrowser--file-intro__image {
+    0% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes FileBrowser--file-intro__image {
+    0% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+@-o-keyframes FileBrowser--file-intro__image {
+    0% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+@keyframes FileBrowser--file-intro__image {
+    0% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+.FileBrowser__images .FileBrowser--file[ractive-transition="outro"] {
+    -webkit-animation:
+        FileBrowser--file-outro__image 0.45s linear 0s forwards;
+       -moz-animation:
+        FileBrowser--file-outro__image 0.45s linear 0s forwards;
+         -o-animation:
+        FileBrowser--file-outro__image 0.45s linear 0s forwards;
+            animation:
+        FileBrowser--file-outro__image 0.45s linear 0s forwards;
+}
+
+@-webkit-keyframes FileBrowser--file-outro__image {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes FileBrowser--file-outro__image {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+}
+
+@-o-keyframes FileBrowser--file-outro__image {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+}
+
+@keyframes FileBrowser--file-outro__image {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -112px;
+        margin-right:-112px;
+
+        opacity: 0;
+    }
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper {
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+         -o-transform: scale(1);
+            transform: scale(1);
+
+    -webkit-transition-duration: 0.2s;
+
+       -moz-transition-duration: 0.2s;
+
+         -o-transition-duration: 0.2s;
+
+            transition-duration: 0.2s;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper:hover {
+    -webkit-transform: scale(1.0625);
+       -moz-transform: scale(1.0625);
+        -ms-transform: scale(1.0625);
+         -o-transform: scale(1.0625);
+            transform: scale(1.0625);
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -webkit-transition-delay: 0.1s;
+       -moz-transition-delay: 0.1s;
+         -o-transition-delay: 0.1s;
+            transition-delay: 0.1s;
+    -webkit-transition-duration: 0.075s;
+       -moz-transition-duration: 0.075s;
+         -o-transition-duration: 0.075s;
+            transition-duration: 0.075s;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper:active {
+    -webkit-transform: scale(1.0416666);
+       -moz-transform: scale(1.0416666);
+        -ms-transform: scale(1.0416666);
+         -o-transform: scale(1.0416666);
+            transform: scale(1.0416666);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -webkit-transition-delay: 0s;
+       -moz-transition-delay: 0s;
+         -o-transition-delay: 0s;
+            transition-delay: 0s;
+    -webkit-transition-duration: 0.05s;
+       -moz-transition-duration: 0.05s;
+         -o-transition-duration: 0.05s;
+            transition-duration: 0.05s;
+}
+
+@media (pointer: coarse) {
+
+    .FileBrowser--file__image .FileBrowser--file-wrapper:hover {
+        -webkit-transform: scale(1.0416666);
+           -moz-transform: scale(1.0416666);
+            -ms-transform: scale(1.0416666);
+             -o-transform: scale(1.0416666);
+                transform: scale(1.0416666);
+    }
+
+    .FileBrowser--file__image .FileBrowser--file-wrapper:active {
+        -webkit-transform: scale(0.97916666);
+           -moz-transform: scale(0.97916666);
+            -ms-transform: scale(0.97916666);
+             -o-transform: scale(0.97916666);
+                transform: scale(0.97916666);
+    }
+
+}
+
+.FileBrowser--file__image {
+    width: 112px;
+    height: 112px;
+    padding: 8px;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper {
+    line-height: 96px;
+
+    position: relative;
+
+    width: 96px;
+    height: 96px;
+
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+       -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper:before {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+
+       -moz-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+
+            box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+
+    -webkit-transition: inherit;
+
+    -moz-transition: inherit;
+
+    -o-transition: inherit;
+
+    transition: inherit;
+}
+
+.FileBrowser--file__image.FileBrowser--file__selected .FileBrowser--file-wrapper:before {
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(250, 116, 44, 0.85);
+       -moz-box-shadow: inset 0px 0px 0px 1px rgba(250, 116, 44, 0.85);
+            box-shadow: inset 0px 0px 0px 1px rgba(250, 116, 44, 0.85);
+}
+
+.FileBrowser--file__error.FileBrowser--file__image img, .FileBrowser--file__uploading.FileBrowser--file__image img {
+    opacity: 0.5;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--file__error.FileBrowser--file__image .FileBrowser--file-wrapper {
+    opacity: 0.5;
+}
+
+.FileBrowser--file__image .FileBrowser--file-wrapper:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px 0px 1px 1px rgba(255, 0, 0, 0.5);
+
+       -moz-box-shadow: inset 0px 0px 1px 1px rgba(255, 0, 0, 0.5);
+
+            box-shadow: inset 0px 0px 1px 1px rgba(255, 0, 0, 0.5);
+    opacity: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--file__error.FileBrowser--file__image .FileBrowser--file-wrapper:after {
+    opacity: 1;
+}
+
+.FileBrowser--file__image img {
+    vertical-align: middle;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+/*---------------------------- FILE-ICON ----------------------------*/
+
+.FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
+    -webkit-animation:
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
+       -moz-animation:
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
+         -o-animation:
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
+            animation:
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
+}
+
+@-webkit-keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+@-o-keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+@keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+.FileBrowser__icon .FileBrowser--file[ractive-transition="outro"] {
+    -webkit-animation:
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
+       -moz-animation:
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
+         -o-animation:
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
+            animation:
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
+}
+
+@-webkit-keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
+@-o-keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
+@keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
+.FileBrowser--file__icon {
+    padding: 12px;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+}
+
+.FileBrowser--file__icon .FileBrowser--file-wrapper {
+    line-height: 40px;
+
+    position: relative;
+
+    width: 40px;
+    height: 40px;
+
+    overflow: visible;
+}
+
+.FileBrowser--file__icon .FileBrowser--file-wrapper img, .FileBrowser--file__icon .FileBrowser--file-wrapper svg {
+    vertical-align: middle;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    fill: #404040;
+    stroke: #404040;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--file__icon.FileBrowser--file__selected:hover .FileBrowser--file-wrapper svg, .FileBrowser--file__icon:hover .FileBrowser--file-wrapper svg {
+    fill: #fc742a;
+    stroke: #fc742a;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--file__icon .FileBrowser--file-wrapper:before {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+
+       -moz-box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+
+            box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--file__icon.FileBrowser--file__selected:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before, .FileBrowser--file__icon:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before {
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(250, 116, 44, 1);
+       -moz-box-shadow: 0px 0px 0px 1px rgba(250, 116, 44, 1);
+            box-shadow: 0px 0px 0px 1px rgba(250, 116, 44, 1);
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--file__icon.FileBrowser--file__error .FileBrowser--file-wrapper:before {
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
+       -moz-box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
+            box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ DELETE ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.FileBrowser--delete-file-confirm, .FileBrowser--delete-file {
+    z-index: 5;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 16px;
+    height: 16px;
+
+    color: #fff;
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--delete-file-confirm {
+    background-color: limegreen;
+}
+
+.FileBrowser--delete-file-confirm:before, .FileBrowser--delete-file:before {
+    content: "";
+
+    z-index: -1;
+    position: absolute;
+    top: -12px;
+    left: -12px;
+
+    width: -webkit-calc(100% + 8px);
+
+    width: -moz-calc(100% + 8px);
+
+    width: calc(100% + 8px);
+    height: -webkit-calc(100% + 8px);
+    height: -moz-calc(100% + 8px);
+    height: calc(100% + 8px);
+
+    background-color: transparent;
+}
+
+.FileBrowser--delete-file-confirm:hover, .FileBrowser--delete-file:hover {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--delete-file:hover {
+    background-color: #f00;
+}
+
+.FileBrowser--delete-file-confirm:active, .FileBrowser--delete-file:active {
+    -webkit-transform: scale(0.95);
+       -moz-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+         -o-transform: scale(0.95);
+            transform: scale(0.95);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
+    z-index: 10;
+    right: 32px;
+
+    background-color: #f00;
+}
+
+.FileBrowser--delete-file-confirm svg, .FileBrowser--delete-file svg {
+    width: 8px;
+    height: 8px;
+
+    fill: currentColor;
+
+    -webkit-transform-origin: center center;
+
+       -moz-transform-origin: center center;
+
+        -ms-transform-origin: center center;
+
+         -o-transform-origin: center center;
+
+            transform-origin: center center;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--delete-file-confirm:hover svg, .FileBrowser--delete-file:hover svg {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--delete-file path {
+    -webkit-transform-origin: center center;
+       -moz-transform-origin: center center;
+        -ms-transform-origin: center center;
+         -o-transform-origin: center center;
+            transform-origin: center center;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--delete-file-confirm + .FileBrowser--delete-file path + path {
+    -webkit-transform-origin: center center;
+       -moz-transform-origin: center center;
+        -ms-transform-origin: center center;
+         -o-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-transform: rotate(90deg);
+       -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+         -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+}
+
+.FileBrowser--delete-file:hover path {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--delete-file-confirm + .FileBrowser--delete-file svg {
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+@media (pointer: coarse) {
+
+    .FileBrowser--delete-file-confirm, .FileBrowser--delete-file {
+        top: 14px;
+        right: 14px;
+
+        width: 20px;
+        height: 20px;
+    }
+
+    .FileBrowser__icon .FileBrowser--delete-file-confirm, .FileBrowser__icon .FileBrowser--delete-file {
+        top: 2px;
+        right: 2px;
+    }
+
+    .FileBrowser--delete-file-confirm:before, .FileBrowser--delete-file:before {
+        top: -14px;
+        left: -14px;
+
+        width: -webkit-calc(100% + 12px);
+
+        width: -moz-calc(100% + 12px);
+
+        width: calc(100% + 12px);
+        height: -webkit-calc(100% + 12px);
+        height: -moz-calc(100% + 12px);
+        height: calc(100% + 12px);
+    }
+
+    .FileBrowser__icon .FileBrowser--delete-file-confirm:before, .FileBrowser__icon .FileBrowser--delete-file:before {
+        top: -2px;
+        left: -2px;
+    }
+
+    .FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
+        right: 40px;
+    }
+
+    .FileBrowser__icon .FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
+        right: 28px;
+    }
+
+    .FileBrowser--delete-file-confirm svg, .FileBrowser--delete-file svg {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ LOADER ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.FileBrowser--loader:before, .FileBrowser--loader:after, .FileBrowser--loader {
+    width: 8px;
+    height: 8px;
+
+    -webkit-border-radius: 50%;
+
+       -moz-border-radius: 50%;
+
+            border-radius: 50%;
+
+    will-change: box-shadow;
+
+    -webkit-animation: FileBrowser--loader 1.4s ease-out both infinite;
+
+       -moz-animation: FileBrowser--loader 1.4s ease-out both infinite;
+
+         -o-animation: FileBrowser--loader 1.4s ease-out both infinite;
+
+            animation: FileBrowser--loader 1.4s ease-out both infinite;
+}
+
+.FileBrowser--loader {
+    font-size: 0;
+    text-indent: -99999px;
+
+    vertical-align: middle;
+    margin-left: 8px;
+    position: relative;
+    top: -8px;
+
+    color: currentColor;
+
+    display: inline-block;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+    -webkit-animation-delay: -0.28s;
+       -moz-animation-delay: -0.28s;
+         -o-animation-delay: -0.28s;
+            animation-delay: -0.28s;
+}
+
+.FileBrowser--loader__uploading {
+    margin: auto;
+    z-index: 100;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+
+    -webkit-transform: translateZ(0) translateX(-14px) translateY(-8px);
+
+       -moz-transform: translateZ(0) translateX(-14px) translateY(-8px);
+
+            transform: translateZ(0) translateX(-14px) translateY(-8px);
+}
+
+.FileBrowser--loader__searching {
+    margin: auto;
+    z-index: 100;
+    position:absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 12px;
+
+    color: #fff;
+
+    -webkit-transform: translateZ(0) translateX(-28px) translateY(-8px);
+
+       -moz-transform: translateZ(0) translateX(-28px) translateY(-8px);
+
+            transform: translateZ(0) translateX(-28px) translateY(-8px);
+}
+
+.FileBrowser--loader__directories {
+    margin: auto;
+    z-index: 100;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+
+    -webkit-transform: translateZ(0) translateX(-14px) translateY(-8px);
+
+       -moz-transform: translateZ(0) translateX(-14px) translateY(-8px);
+
+            transform: translateZ(0) translateX(-14px) translateY(-8px);
+}
+
+.FileBrowser--loader:before {
+    left: 14px;
+
+    -webkit-animation-delay: -0.14s;
+
+       -moz-animation-delay: -0.14s;
+
+         -o-animation-delay: -0.14s;
+
+            animation-delay: -0.14s;
+}
+
+.FileBrowser--loader:after {
+    left: 28px;
+}
+
+.FileBrowser--loader:before, .FileBrowser--loader:after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+}
+
+@-webkit-keyframes FileBrowser--loader {
+    0%, 80%, 100% {
+        -webkit-box-shadow: 0 8px 0 -4px;
+                box-shadow: 0 8px 0 -4px;
+    }
+    40% {
+        -webkit-box-shadow: 0 8px 0 0;
+                box-shadow: 0 8px 0 0;
+    }
+}
+
+@-moz-keyframes FileBrowser--loader {
+    0%, 80%, 100% {
+        -moz-box-shadow: 0 8px 0 -4px;
+             box-shadow: 0 8px 0 -4px;
+    }
+    40% {
+        -moz-box-shadow: 0 8px 0 0;
+             box-shadow: 0 8px 0 0;
+    }
+}
+
+@-o-keyframes FileBrowser--loader {
+    0%, 80%, 100% {
+        box-shadow: 0 8px 0 -4px;
+    }
+    40% {
+        box-shadow: 0 8px 0 0;
+    }
+}
+
+@keyframes FileBrowser--loader {
+    0%, 80%, 100% {
+        -webkit-box-shadow: 0 8px 0 -4px;
+           -moz-box-shadow: 0 8px 0 -4px;
+                box-shadow: 0 8px 0 -4px;
+    }
+    40% {
+        -webkit-box-shadow: 0 8px 0 0;
+           -moz-box-shadow: 0 8px 0 0;
+                box-shadow: 0 8px 0 0;
+    }
 }
 
 /*====================================================================*/

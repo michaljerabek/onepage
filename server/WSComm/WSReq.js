@@ -8,7 +8,7 @@ var serverReq = function (socket, onReq, reqPrefix, resPrefix) {
 
     resPrefix = typeof resPrefix !== "string" ? "res." : resPrefix + ".";
 
-    return function req(name, reqHandler) {
+    function req(name, reqHandler) {
 
         socket.on(reqPrefix + name, function (request) {
 
@@ -47,7 +47,30 @@ var serverReq = function (socket, onReq, reqPrefix, resPrefix) {
                 }
             });
         });
+
+        return {
+            cancelReq: function () {
+
+                socket.removeAllListeners(resPrefix + name);
+            },
+
+            reqName: reqPrefix + name
+        };
+    }
+
+    req.socket = socket;
+
+    req.removeListener = function (reqName, reqHandler) {
+
+        socket.removeListener(reqName, reqHandler);
     };
+
+    req.removeAllListeners = function (reqName) {
+
+        socket.removeListener(reqName);
+    };
+
+    return req;
 };
 
 var clientReq = function (socket, onRes, reqPrefix, resPrefix) {
@@ -58,7 +81,7 @@ var clientReq = function (socket, onRes, reqPrefix, resPrefix) {
 
     resPrefix = typeof resPrefix !== "string" ? "res." : resPrefix + ".";
 
-    return function req(name, params, doNotForceLastRequest) {
+    function req(name, params, sendOnly, doNotForceLastRequest) {
 
         var timestamp = Date.now();
 
@@ -70,42 +93,77 @@ var clientReq = function (socket, onRes, reqPrefix, resPrefix) {
             hostname: window.location.hostname,
             timestamp: timestamp,
             doNotForceLastRequest: doNotForceLastRequest
-        };
+        },
 
-        var promise = new Promise(function (resolve, reject) {
+            promise = {},
 
-            socket.once(resPrefix + name + (doNotForceLastRequest ? "" : timestamp), function (response) {
+            promiseReject = function () {};
 
-                if (timestamp !== requestTimes[name]) {
+        if (!sendOnly) {
+
+            promise = new Promise(function (resolve, reject) {
+
+                promiseReject = reject;
+
+                socket.once(resPrefix + name + (doNotForceLastRequest ? "" : timestamp), function (response) {
+
+                    if (timestamp !== requestTimes[name]) {
+
+                        if (typeof onRes === "function") {
+
+                            response.rejected = true;
+
+                            onRes(response);
+                        }
+
+                        return;
+                    }
 
                     if (typeof onRes === "function") {
-
-                        response.rejected = true;
 
                         onRes(response);
                     }
 
-                    return;
-                }
+                    if (response.error) {
 
-                if (typeof onRes === "function") {
+                        return reject(response);
+                    }
 
-                    onRes(response);
-                }
-
-                if (response.error) {
-
-                    return reject(response);
-                }
-
-                resolve(response);
+                    resolve(response);
+                });
             });
-        });
+        }
+
+        promise.reqName = resPrefix + name + (doNotForceLastRequest ? "" : timestamp);
+
+        promise.cancelReq = function (rejectPromise) {
+
+            socket.removeAllListeners(resPrefix + name + (doNotForceLastRequest ? "" : timestamp));
+
+            if (rejectPromise) {
+
+                promiseReject({ canceled: true });
+            }
+        };
 
         socket.emit(reqPrefix + name, request);
 
         return promise;
+    }
+
+    req.socket = socket;
+
+    req.removeListener = function (reqName, reqHandler) {
+
+        socket.removeListener(reqName, reqHandler);
     };
+
+    req.removeAllListeners = function (reqName) {
+
+        socket.removeListener(reqName);
+    };
+
+    return req;
 };
 
 module.exports = on.server ? serverReq : clientReq;

@@ -80,6 +80,9 @@
                 preventDefault: function () {
                     event.preventDefault();
                 },
+                stopPropagation: function () {
+                    event.stopPropagation();
+                },
 
                 event         : event,
                 source        : source

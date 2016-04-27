@@ -5,6 +5,9 @@ var io = require("socket.io")(config.websocket.port);
 var WSReq = require("./WSReq");
 var mongoose = require("mongoose");
 
+var ImageReq = require("./../Page/ImageReq");
+var IconReq = require("./../Page/IconReq");
+
 var getHostFromSocket = function (socket) {
 
     return socket.handshake.headers.host.split(":").shift();
@@ -24,6 +27,7 @@ io.on("connection", function (socket) {
 
     var db,
         databaseName,
+        userId,
         dbTimeout;
 
     var dbConnectionTimeout = function () {
@@ -61,16 +65,21 @@ io.on("connection", function (socket) {
     socket.on("databaseName", function (data) {
 
         databaseName = data.databaseName;
+        userId = data.userId;
         db = connectToDb(db, databaseName);
         dbConnectionTimeout();
 
-        socket.join(databaseName);
+        socket.join(userId);
 
 //        var adminRequests = require("./Admin");
         var pageRequests = require("./Page");
 
-//        adminRequests(req, db);
-        pageRequests(req, db);
+//        adminRequests(req, db, userId);
+        pageRequests(req, db, userId);
+
+        ImageReq.registerWSComm(req, userId);
+        IconReq.registerWSComm(req, userId);
+
     });
 
 });

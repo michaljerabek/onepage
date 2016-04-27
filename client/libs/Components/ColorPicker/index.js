@@ -258,6 +258,8 @@
                 this.HBox = this.find(".ColorPicker--H-box");
                 this.HSelector = this.find(".ColorPicker--H-selector");
 
+                this.$self = $(this.find(".ColorPicker"));
+
                 this.moveSelectorsToCurrentColorPosition();
 
                 if (!this.waitForUserInteraction) {
@@ -265,7 +267,7 @@
                     this.fire("output", this.getCurrentRGB());
                 }
 
-                Ractive.$win.on("resize", this.windowResizeHandler.bind(this));
+                Ractive.$win.on("resize." + this.EVENT_NS, this.windowResizeHandler.bind(this));
 
                 var pageElementSettings = this.findParent("PageElementSettings");
 
@@ -299,6 +301,7 @@
         onteardown: function () {
 
             Ractive.$win.off("." + this.EVENT_NS);
+            this.$self.off("." + this.EVENT_NS);
         },
 
         windowResizeHandler: function () {
@@ -450,7 +453,7 @@
 
             if (eventData.pointers > 1) {
 
-                Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS)
+                this.$self.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS);
 
                 clearTimeout(this[type === "SV" ? "moveSVToPositionTimeout"   : "moveHToPositionTimeout"]);
 
@@ -523,7 +526,7 @@
             //pokud uživatel nepohne myší/prstem => přesunout na místo
             this[moveToPositionTimeout] = setTimeout(moveToStartEventPosition.bind(this, true), eventData.isTouchEvent ? 200 : 100);
 
-            Ractive.$win
+            this.$self
                 .off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS)
                 .on("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS, function (e) {
 
@@ -533,7 +536,7 @@
 
                         clearTimeout(this[moveToPositionTimeout]);
 
-                        Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS)
+                        this.$self.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS)
 
                         return;
                     }
@@ -557,6 +560,7 @@
 
                     this[moveSelectorFn].apply(this, args);
 
+                    e.stopPropagation();
                     e.preventDefault();
                     return false;
 
@@ -570,13 +574,15 @@
                         moveToStartEventPosition(true, true);
                     }
 
-                    Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
+                    this.$self.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
 
+                    e.stopPropagation();
                     e.preventDefault();
                     return false;
 
                 }.bind(this));
 
+            eventData.stopPropagation();
             eventData.preventDefault();
             return false;
         },

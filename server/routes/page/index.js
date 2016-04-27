@@ -2,26 +2,16 @@
 var express = require("express");
 var router = express.Router();
 
+var ImageReq = require("./../../Page/ImageReq");
+var IconReq = require("./../../Page/IconReq");
+
 require("ractive-require-templates")(".tpl");
-var Ractive = require("ractive"),
+//var Ractive = require("ractive");
 
-    multer = require("multer"),
-    storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, "public/uploads");
-        },
-        filename: function (req, file, cb) {
-            cb(null, Date.now() + "-" + file.originalname);
-        }
-    }),
-
-    upload = multer({
-        storage: storage
-    });
-
-router.get("/", function (req, res, next) {
+router.get("/", function (req, res) {
 
     var data = {
+        userId: req.userId || req.user._id,
         databaseName: req.userDb.name,
         page: {
             _id: req.Page._id,
@@ -45,12 +35,32 @@ router.get("/", function (req, res, next) {
     });
 });
 
-router.post("/upload-background-image", upload.single("background-image"), function (req, res, next) {
+router.get("/create-icon", function (req, res) {
 
-    res.json({
-        path: req.file.path
+    res.render("create-icon", {state: ""});
+});
+
+var Icon = require("./../../models/Icon");
+
+router.post("/create-icon", function (req, res) {
+
+    var icon = new Icon({
+        name: req.body.name,
+        category: req.body.category,
+        data: req.body.data,
+        tags: req.body.tags.trim()
+            .replace(/\s*,\s*/g, ",")
+            .split(",")
+    });
+
+    icon.save(function (err) {
+
+        res.render("create-icon", {state: err ? "err" : "ok"});
     });
 
 });
+
+ImageReq.registerRoutes(router);
+IconReq.registerRoutes(router);
 
 module.exports = router;

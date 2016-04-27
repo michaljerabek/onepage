@@ -45,7 +45,6 @@
     transition: var(--default-transition);
     transition-property: height;
 }
-
 /*---------------------------- CLOSE | MINMAX ----------------------------*/
 
 .E_PageSectionSettings--min-max,

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../../../../../public/css/page.css">
+    <link rel="stylesheet" href="../../../../css/colors.css">
+    <link rel="stylesheet" href="../../../../css/settings.css">
+    <link rel="stylesheet" href="../styles.css">
+
+</head>
+<body>
+
+    <div id="app"></div>
+
+    <script id="tpl" type="text/html">
+
+        <FileBrowser srcPath="/public" />
+
+    </script>
+
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
+    <script src="../../../ractive-events-tap.umd.js"></script>
+    <script src="../../../ractive-transitions-slide.js"></script>
+    <script src="../../../ractive-transitions-fade.umd.js"></script>
+
+    <script src="../index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js"></script>
+    <script>
+
+    /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
+    /*global Ractive, io, $*/
+
+    var WSReq = function (socket, onRes, reqPrefix, resPrefix) {
+
+        var requestTimes = {};
+
+        reqPrefix = typeof reqPrefix !== "string" ? "req." : reqPrefix + ".";
+
+        resPrefix = typeof resPrefix !== "string" ? "res." : resPrefix + ".";
+
+        function req(name, params, sendOnly, doNotForceLastRequest) {
+
+            var timestamp = Date.now();
+
+            requestTimes[name] = timestamp;
+
+            var request = {
+                    params: params || {},
+                    name: name,
+                    hostname: window.location.hostname,
+                    timestamp: timestamp,
+                    doNotForceLastRequest: doNotForceLastRequest
+                },
+
+                promise = {},
+
+                promiseReject = function () {};
+
+            if (!sendOnly) {
+
+                promise = new Promise(function (resolve, reject) {
+
+                    promiseReject = reject;
+
+                    socket.once(resPrefix + name + (doNotForceLastRequest ? "" : timestamp), function (response) {
+
+                        if (timestamp !== requestTimes[name]) {
+
+                            if (typeof onRes === "function") {
+
+                                response.rejected = true;
+
+                                onRes(response);
+                            }
+
+                            return;
+                        }
+
+                        if (typeof onRes === "function") {
+
+                            onRes(response);
+                        }
+
+                        if (response.error) {
+
+                            return reject(response);
+                        }
+
+                        resolve(response);
+                    });
+                });
+            }
+
+            promise.reqName = resPrefix + name + (doNotForceLastRequest ? "" : timestamp);
+
+            promise.cancelReq = function (rejectPromise) {
+
+                socket.removeAllListeners(resPrefix + name + (doNotForceLastRequest ? "" : timestamp));
+
+                if (rejectPromise) {
+
+                    promiseReject({ canceled: true });
+                }
+            };
+
+            socket.emit(reqPrefix + name, request);
+
+            return promise;
+        }
+
+        req.socket = socket;
+
+        req.removeListener = function (reqName, reqHandler) {
+
+            socket.removeListener(reqName, reqHandler);
+        };
+
+        req.removeAllListeners = function (reqName) {
+
+            socket.removeListener(reqName);
+        };
+
+        return req;
+    };
+
+    var socket = io("http://192.168.1.100:5000");
+
+    Ractive.defaults.req = WSReq(socket);
+
+    socket.on("connect", function () {
+
+        socket.emit("databaseName", {
+            databaseName: "ipad",
+            userId: "56d83eff9308737c21d28cd4"
+        });
+    });
+
+    var app;
+
+    $.when.apply($, [
+        $.get("../index.tpl")
+    ]).then(function (fileBrowser) {
+        app = new Ractive({
+            el: "#app",
+            template: "#tpl",
+
+            components: {
+                FileBrowser: window.FileBrowser.extend({
+                    template: fileBrowser
+                })
+            },
+
+            partials: {
+
+            },
+
+            data: {
+
+            }
+        });
+    });
+
+    </script>
+
+</body>
+</html>

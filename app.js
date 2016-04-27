@@ -48,6 +48,7 @@ app.get("/", function (req, res, next) {
 
     if (req.hostname !== config.appHostname) {
 
+
         return next();
     }
 

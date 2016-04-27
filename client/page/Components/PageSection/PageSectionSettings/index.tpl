@@ -7,6 +7,9 @@
         easing  : 'cubic-bezier(0.1, 0.4, 0.4, 1)'
     }"
 >
+
+    <ProgressBar id="{{.data.internalId}}" />
+
     <div class="E_PageSectionSettings--wrapper">
         <div class="E_PageSectionSettings--shadow"></div>
         <div class="E_PageSectionSettings--wrapper-2">{{> content}}</div>
