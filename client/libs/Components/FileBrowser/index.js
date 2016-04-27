@@ -31,7 +31,9 @@
         CLASS: {
             self: "FileBrowser",
 
-            uploadFiles: "FileBrowser--upload-files"
+            uploadFiles: "FileBrowser--upload-files",
+
+            searchInput: "FileBrowser--search-input"
         },
 
         OPTIONS: {
@@ -162,6 +164,8 @@
             if (this.get("directories").length) {
 
                 this.initUploadFiles();
+
+                this.searchInput = this.find("." + this.CLASS.searchInput);
             }
         },
 
@@ -377,7 +381,7 @@
 
         handleThumbnail: function (file, data) {
 
-            if (this.torndown) {
+            if (this.torndown || !file.accepted) {
 
                 return;
             }
@@ -521,13 +525,20 @@
                     res.directories.unshift({
                         name: this.get("searchPlaceholder"),
                         path: this.get("searchDirPath"),
-                        files: []
+                        files: [],
+                        searchDir: true
                     });
                 }
 
                 this.set("directories", res.directories);
 
-                setTimeout(this.initUploadFiles.bind(this), 0);
+                setTimeout(function () {
+
+                    this.searchInput = this.find("." + this.CLASS.searchInput);
+
+                    this.initUploadFiles();
+
+                }.bind(this), 0);
 
             }.bind(this)).catch(function () {});
         },
@@ -624,9 +635,11 @@
 
             this.set("showRemoveConfirmation", null);
 
+            var directory;
+
             if (directoryIndex || directoryIndex === 0) {
 
-                var directory = this.getDirectoryByIndex(directoryIndex);
+                directory = this.getDirectoryByIndex(directoryIndex);
 
                 //pokud jsou soubory již načteny -> return
                 if (directory && directory.files && directory.files.length && !this.directoryHasOnlyUploadedFiles(directoryIndex))  {
@@ -636,10 +649,16 @@
 
                 this.loadFilesForDirectory(directory, directoryIndex);
 
-                return;
+            } else {
+
+                this.set("loadingDirectory", null);
             }
 
-            this.set("loadingDirectory", null);
+            //nastavit/odstranit focus u vyhledávání
+            if (this.searchInput) {
+
+                this.searchInput[directory && directory.searchDir ? "focus" : "blur"]();
+            }
         },
 
         directoryHasOnlyUploadedFiles: function (directoryIndex) {

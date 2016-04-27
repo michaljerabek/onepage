@@ -9,7 +9,7 @@
          data-min-resize-width="464"
          data-max-resize-width="464"
          data-max-resize-height="464"
-         style="max-width: 272px; max-height: 280px; display: flex"
+         style="max-width: 272px; max-height: 336px; display: flex"
     >
 
         <div class="E_PageElementSettings--scrollable" style="width: 100%">

@@ -216,32 +216,11 @@
 
                         contentObserver.observe(this.parent.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
 
-                        $scrollingElement.on("transitionend." + this.parent.EVENT_NS, function (e) {
-
-                            if (e.originalEvent.propertyName.match(/opacity|visibility|width|height|top|left|right|bottom|margin|padding|letter-spacing|border|font|text-transform/)) {
-
-                                var currentTime = +new Date();
-
-                                if (!this.minmaxing && currentTime - lastMutation > 50) {
-
-                                    this.parent.$resizableBox.css({
-                                        transition: "none",
-                                        height: this.parent.getSettingsHeight()
-                                    });
-                                }
-
-                                lastMutation = currentTime;
-                            }
-
-                        }.bind(this));
-
                     }.bind(this),
 
                     cancelChangeObservers = function () {
 
                         contentObserver.disconnect();
-
-                        $scrollingElement.off("transitionend." + this.parent.EVENT_NS);
 
                     }.bind(this);
 
@@ -531,7 +510,9 @@
 
             var eventData = U.eventData(e),
 
-                lastY = eventData.clientY;
+                lastY = eventData.clientY,
+                
+                resized = false;
 
             if (eventData.pointers > 1) {
 
@@ -565,27 +546,32 @@
                         });
                     }
 
+                    resized = true;
+                
                     e.preventDefault();
                     return false;
 
                 }.bind(this))
                 .one("mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS, function (e) {
 
-                    this.wasResized = true;
+                    this.wasResized = resized;
 
                     eventData.target.classList.remove(this.CLASS.resizerActive);
 
-                    this.set("elementHeight", this.getSettingsHeight());
+                    if (resized) {
+                        
+                        this.set("elementHeight", this.getSettingsHeight());
 
-                    this.userDefHeight = this.get("elementHeight");
+                        this.userDefHeight = this.get("elementHeight");
+                        
+                        setTimeout(function() {
+
+                            this.wasResized = false;
+
+                        }.bind(this), 0);
+                    }
 
                     Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
-
-                    setTimeout(function() {
-
-                        this.wasResized = false;
-
-                    }.bind(this), 0);
 
                     e.preventDefault();
                     return false;

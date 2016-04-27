@@ -248,33 +248,11 @@
 
                         contentObserver.observe(this.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
 
-                        $scrollingElement.on("transitionend." + this.EVENT_NS, function (e) {
-
-                            if (e.originalEvent.propertyName.match(/width|height|top|left|right|bottom|margin|padding|letter-spacing|border|font|text-transform/)) {
-
-                                var currentTime = +new Date();
-
-                                if (!this.minmaxing && currentTime - lastMutation > 50) {
-
-                                    this.$resizableBox.css({
-                                        transition: "none",
-                                        height: this.getSettingsHeight(),
-                                        width:  this.getSettingsWidth()
-                                    });
-                                }
-
-                                lastMutation = currentTime;
-                            }
-
-                        }.bind(this));
-
                     }.bind(this),
 
                     cancelChangeObservers = function () {
 
                         contentObserver.disconnect();
-
-                        $scrollingElement.off("transitionend." + this.EVENT_NS);
 
                     }.bind(this);
 
@@ -764,7 +742,9 @@
             var eventData = U.eventData(e),
 
                 lastY = eventData.clientY,
-                lastX = eventData.clientX;
+                lastX = eventData.clientX,
+                
+                resized = false;
 
             if (eventData.pointers > 1) {
 
@@ -815,42 +795,47 @@
                     lastY = eventData.clientY;
                     lastX = eventData.clientX;
 
+                    resized = true;
+                
                     e.preventDefault();
                     return false;
                 }.bind(this))
                 .one("mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS, function (e) {
 
-                    this.wasResized = true;
+                    this.wasResized = resized;
 
                     eventData.target.classList.remove(this.CLASS.resizerActive);
 
-                    if (position.match(/bottom|top/)) {
+                    if (resized) {
 
-                        this.set("resizableElementHeight", this.getSettingsHeight());
+                        if (position.match(/bottom|top/)) {
 
-                        this.userDefHeight = this.get("resizableElementHeight");
+                            this.set("resizableElementHeight", this.getSettingsHeight());
+
+                            this.userDefHeight = this.get("resizableElementHeight");
+                        }
+
+                        if (position.match(/left|right/)) {
+
+                            this.set("resizableElementWidth", this.getSettingsWidth());
+
+                            this.userDefWidth = this.get("resizableElementWidth");
+                        }
+
+                        this.setPosition(true, position);
+
+                        setTimeout(function() {
+
+                            this.wasResized = false;
+
+                        }.bind(this), 0);
                     }
-
-                    if (position.match(/left|right/)) {
-
-                        this.set("resizableElementWidth", this.getSettingsWidth());
-
-                        this.userDefWidth = this.get("resizableElementWidth");
-                    }
-
-                    this.setPosition(true, position);
 
                     this.$self.css({
                         transition: ""
                     });
 
                     Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
-
-                    setTimeout(function() {
-
-                        this.wasResized = false;
-
-                    }.bind(this), 0);
 
                     e.preventDefault();
                     return false;

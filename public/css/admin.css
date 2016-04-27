@@ -51,6 +51,331 @@ blockquote, q {
 .cf { display: block; }
 
 
+/*====================================================================*/
+/*------------------------------ FONTS -------------------------------*/
+/*====================================================================*/
+
+/*--------------------------------------------------------------------*/
+/*-------------------------------- APP -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+/*---------------------------- ENCODE SANS ----------------------------*/
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSans-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSans-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSans-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSans-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSans-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSans-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSans-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSans-Black.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Narrow";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSansNarrow-Black.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Condensed";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSansCondensed-Black.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Compressed";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSansCompressed-Black.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 100;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 200;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 300;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Light.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 400;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 500;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 600;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 700;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 800;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Encode Sans Wide";
+    font-weight: 900;
+
+    src: url("../fonts/encode-sans/EncodeSansWide-Black.ttf");
+}
+
 html, body {
     margin: 0;
 
@@ -730,6 +1055,9 @@ body {
 }
 
 .FileBrowser {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+
     position: relative;
 
     color: #404040;
@@ -836,17 +1164,19 @@ body {
 }
 
 .FileBrowser--message-title, .FileBrowser--drag-drop-overlay-title {
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 23px;
+    font-weight: 600;
 
     color: #404040;
 }
 
 .FileBrowser--message-text, .FileBrowser--drag-drop-overlay-text {
-    font-size: 17px;
+    font-family: "Encode Sans";
+    font-size: 14px;
+    font-weight: 300;
     line-height: 1.47;
 
-    margin-top: 12px;
+    margin-top: 8px;
 
     color: #888;
 }
@@ -898,11 +1228,25 @@ body {
     text-align: left;
     vertical-align: middle;
 
-    padding: 0 12px;
+    width: 100%;
+    padding: 0 12px 0px 2px;
 
     background-color: #f5f5f5;
 
-    display: block;
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 
     -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 
@@ -915,11 +1259,17 @@ body {
     cursor: default;
 }
 
+.FileBrowser--directory-name-text {
+    padding: 0 8px 0 4px;
+}
+
 .FileBrowser--directory:not(:last-of-type) {
     border-bottom: 1px solid #d7d7d7;
 }
 
 .FileBrowser--directory:hover .FileBrowser--directory-name {
+    font-weight: 500;
+
     color: #fff;
     background-color: #404040;
 
@@ -933,6 +1283,8 @@ body {
 }
 
 .FileBrowser--directory__opened  .FileBrowser--directory-name, .FileBrowser--directory__opened:hover  .FileBrowser--directory-name {
+    font-weight: 500;
+
     color: #fff;
     background-color: #fa742c;
 
@@ -945,6 +1297,104 @@ body {
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 }
 
+/*---------------------------- ICONS ----------------------------*/
+
+.FileBrowser--icon {
+    margin: 0 0 0 4px;
+
+    height: 40px;
+    width: 40px;
+
+	display: -webkit-box;
+
+	display: -webkit-flex;
+
+	display: -moz-box;
+
+	display: -ms-flexbox;
+
+	display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    overflow: hidden;
+}
+
+.FileBrowser--icon svg {
+    width: 20px;
+    height: 20px;
+
+    fill: #505050;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--icon__directory svg {
+    -webkit-transform: rotate(-3deg);
+       -moz-transform: rotate(-3deg);
+        -ms-transform: rotate(-3deg);
+         -o-transform: rotate(-3deg);
+            transform: rotate(-3deg);
+}
+
+.FileBrowser--directory:hover  .FileBrowser--icon svg, .FileBrowser--directory__opened  .FileBrowser--icon svg, .FileBrowser--directory__opened:hover  .FileBrowser--icon svg {
+    fill: rgba(255, 255, 255, 0.9);
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--directory:hover  .FileBrowser--icon svg {
+    -webkit-transform: scale(1.15) rotate(-5deg);
+       -moz-transform: scale(1.15) rotate(-5deg);
+        -ms-transform: scale(1.15) rotate(-5deg);
+         -o-transform: scale(1.15) rotate(-5deg);
+            transform: scale(1.15) rotate(-5deg);
+}
+
+.FileBrowser--directory__opened  .FileBrowser--icon svg, .FileBrowser--directory__opened:hover  .FileBrowser--icon svg {
+    -webkit-transform: scale(1.5) rotate(-15deg);
+       -moz-transform: scale(1.5) rotate(-15deg);
+        -ms-transform: scale(1.5) rotate(-15deg);
+         -o-transform: scale(1.5) rotate(-15deg);
+            transform: scale(1.5) rotate(-15deg);
+}
+
+.FileBrowser--directory:hover  .FileBrowser--icon__directory svg {
+    -webkit-transform: scale(1.15) rotate(-8deg);
+       -moz-transform: scale(1.15) rotate(-8deg);
+        -ms-transform: scale(1.15) rotate(-8deg);
+         -o-transform: scale(1.15) rotate(-8deg);
+            transform: scale(1.15) rotate(-8deg);
+}
+
+.FileBrowser--directory__opened  .FileBrowser--icon__directory svg, .FileBrowser--directory__opened:hover  .FileBrowser--icon__directory svg {
+    -webkit-transform: scale(1.5) rotate(-18deg);
+       -moz-transform: scale(1.5) rotate(-18deg);
+        -ms-transform: scale(1.5) rotate(-18deg);
+         -o-transform: scale(1.5) rotate(-18deg);
+            transform: scale(1.5) rotate(-18deg);
+}
+
 /*---------------------------- UPLOAD-FILE ----------------------------*/
 
 .FileBrowser--upload-files {
@@ -952,14 +1402,11 @@ body {
     line-height: 1;
     vertical-align: middle;
 
-    margin-left: 4px;
     z-index: 5;
     position: relative;
-    top: -1px;
 
     width: 20px;
     height: 20px;
-    padding-top: 1px;
 
     color: #fff;
     background-color: #404040;
@@ -968,15 +1415,15 @@ body {
             border-radius: 50%;
     opacity: 0.5;
 
-    display: -webkit-inline-box;
+    display: -webkit-box;
 
-    display: -webkit-inline-flex;
+    display: -webkit-flex;
 
-    display: -moz-inline-box;
+    display: -moz-box;
 
-    display: -ms-inline-flexbox;
+    display: -ms-flexbox;
 
-    display: inline-flex;
+    display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
        -moz-box-pack: center;
@@ -1022,8 +1469,7 @@ body {
 }
 
 .FileBrowser--directory__opened .FileBrowser--upload-files:hover {
-    color: #404040;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9);
 
     -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 
@@ -1062,6 +1508,33 @@ body {
     height: 40px;
 }
 
+.FileBrowser--upload-files svg {
+    width: 10px;
+    height: 10px;
+
+    fill: rgba(255, 255, 255, 0.9);
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--directory__opened .FileBrowser--upload-files:hover svg {
+    fill: #505050;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
 /*---------------------------- SEARCH ----------------------------*/
 
 .FileBrowser--search {
@@ -1083,8 +1556,10 @@ body {
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.FileBrowser--search input {
+.FileBrowser--search-input {
+    font-family: "Encode Sans Narrow", sans-serif;
     font-size: 17px;
+    font-weight: 500;
     line-height: 40px;
     text-align: left;
     vertical-align: middle;
@@ -1093,7 +1568,9 @@ body {
     width: 100%;
     padding: 0 12px;
     padding-right: 56px;
+    padding-left: 50px;
 
+    color: inherit;
     background-color: #f5f5f5;
     border: none;
     -webkit-border-radius: 0;
@@ -1115,7 +1592,7 @@ body {
     user-select: auto;
 }
 
-.FileBrowser--search input:hover {
+.FileBrowser--search-input:hover {
     background-color: #fff;
 
     -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
@@ -1127,7 +1604,7 @@ body {
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 }
 
-.FileBrowser--directory__opened .FileBrowser--search input {
+.FileBrowser--directory__opened .FileBrowser--search-input {
     color: #fff;
     background-color: #fc742a;
 
@@ -1140,17 +1617,29 @@ body {
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 }
 
-.FileBrowser--search input::-webkit-input-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; }
-.FileBrowser--search input::-moz-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; opacity: 1; }
-.FileBrowser--search input:-ms-input-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; }
-.FileBrowser--search input:-moz-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic;  opacity: 1; }
-.FileBrowser--search input:placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; opacity: 1; }
+.FileBrowser--search-input::-webkit-input-placeholder { color: rgba(64, 64, 64, 0.65); }
+.FileBrowser--search-input::-moz-placeholder { color: rgba(64, 64, 64, 0.65); opacity: 1; }
+.FileBrowser--search-input:-ms-input-placeholder { color: rgba(64, 64, 64, 0.65); }
+.FileBrowser--search-input:-moz-placeholder { color: rgba(64, 64, 64, 0.65);  opacity: 1; }
+.FileBrowser--search-input:placeholder { color: rgba(64, 64, 64, 0.65); opacity: 1; }
 
-.FileBrowser--directory__opened .FileBrowser--search input::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; }
-.FileBrowser--directory__opened .FileBrowser--search input::-moz-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; opacity: 1; }
-.FileBrowser--directory__opened .FileBrowser--search input:-ms-input-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; }
-.FileBrowser--directory__opened .FileBrowser--search input:-moz-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic;  opacity: 1; }
-.FileBrowser--directory__opened .FileBrowser--search input:placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search-input::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.75); }
+.FileBrowser--directory__opened .FileBrowser--search-input::-moz-placeholder { color: rgba(255, 255, 255, 0.75); opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search-input:-ms-input-placeholder { color: rgba(255, 255, 255, 0.75); }
+.FileBrowser--directory__opened .FileBrowser--search-input:-moz-placeholder { color: rgba(255, 255, 255, 0.75);  opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search-input:placeholder { color: rgba(255, 255, 255, 0.75); opacity: 1; }
+
+.FileBrowser--search .FileBrowser--icon {
+    z-index: 5;
+
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.FileBrowser--directory:not(.FileBrowser--directory__opened):hover .FileBrowser--search .FileBrowser--icon svg {
+    fill: #505050;
+}
 
 /*--------------------------------------------------------------------*/
 /*------------------------------- FILES ------------------------------*/
@@ -1220,6 +1709,36 @@ body {
     -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
+
+.FileBrowser--file-wrapper {
+    font-size: 0;
+
+    display: inline-block;
+
+    overflow: hidden;
+
+    will-change: transform, opacity, box-shadow;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--file-wrapper:hover {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--file-wrapper:active {
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+/*---------------------------- FILE-IMAGE ----------------------------*/
 
 .FileBrowser__images .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
     -webkit-animation:
@@ -1409,224 +1928,6 @@ body {
 
         opacity: 0;
     }
-}
-
-.FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
-    -webkit-animation:
-        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
-       -moz-animation:
-        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
-         -o-animation:
-        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
-            animation:
-        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
-}
-
-@-webkit-keyframes FileBrowser--file-intro__icon {
-    0% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes FileBrowser--file-intro__icon {
-    0% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 1;
-    }
-}
-
-@-o-keyframes FileBrowser--file-intro__icon {
-    0% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 1;
-    }
-}
-
-@keyframes FileBrowser--file-intro__icon {
-    0% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 1;
-    }
-}
-
-.FileBrowser__icon .FileBrowser--file[ractive-transition="outro"] {
-    -webkit-animation:
-        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
-       -moz-animation:
-        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
-         -o-animation:
-        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
-            animation:
-        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
-}
-
-@-webkit-keyframes FileBrowser--file-outro__icon {
-    0% {
-        margin-top: 0;
-        margin-right:0;
-
-        opacity: 1;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right: 0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-}
-
-@-moz-keyframes FileBrowser--file-outro__icon {
-    0% {
-        margin-top: 0;
-        margin-right:0;
-
-        opacity: 1;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right: 0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-}
-
-@-o-keyframes FileBrowser--file-outro__icon {
-    0% {
-        margin-top: 0;
-        margin-right:0;
-
-        opacity: 1;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right: 0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-}
-
-@keyframes FileBrowser--file-outro__icon {
-    0% {
-        margin-top: 0;
-        margin-right:0;
-
-        opacity: 1;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right: 0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-}
-
-.FileBrowser--file-wrapper {
-    font-size: 0;
-
-    display: inline-block;
-
-    overflow: hidden;
-
-    will-change: transform, opacity, box-shadow;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.FileBrowser--file-wrapper:hover {
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.FileBrowser--file-wrapper:active {
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
 .FileBrowser--file__image .FileBrowser--file-wrapper {
@@ -1825,6 +2126,198 @@ body {
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
+/*---------------------------- FILE-ICON ----------------------------*/
+
+.FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
+    -webkit-animation:
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
+       -moz-animation:
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
+         -o-animation:
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
+            animation:
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
+}
+
+@-webkit-keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+@-o-keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+@keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+.FileBrowser__icon .FileBrowser--file[ractive-transition="outro"] {
+    -webkit-animation:
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
+       -moz-animation:
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
+         -o-animation:
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
+            animation:
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
+}
+
+@-webkit-keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
+@-o-keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
+@keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
 .FileBrowser--file__icon {
     padding: 12px;
 
@@ -1941,10 +2434,6 @@ body {
 /*--------------------------------------------------------------------*/
 
 .FileBrowser--delete-file-confirm, .FileBrowser--delete-file {
-    font-size: 14px;
-    line-height: 1;
-    font-weight: bold;
-
     z-index: 5;
     position: absolute;
     top: 12px;
@@ -1952,7 +2441,6 @@ body {
 
     width: 16px;
     height: 16px;
-    padding-top: 1px;
 
     color: #fff;
     text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
@@ -1998,9 +2486,6 @@ body {
 }
 
 .FileBrowser--delete-file-confirm {
-    font-size: 10px;
-    font-weight: normal;
-
     background-color: limegreen;
 }
 
@@ -2058,28 +2543,95 @@ body {
     background-color: #f00;
 }
 
+.FileBrowser--delete-file-confirm svg, .FileBrowser--delete-file svg {
+    width: 8px;
+    height: 8px;
+
+    fill: currentColor;
+
+    -webkit-transform-origin: center center;
+
+       -moz-transform-origin: center center;
+
+        -ms-transform-origin: center center;
+
+         -o-transform-origin: center center;
+
+            transform-origin: center center;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--delete-file-confirm:hover svg, .FileBrowser--delete-file:hover svg {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--delete-file path {
+    -webkit-transform-origin: center center;
+       -moz-transform-origin: center center;
+        -ms-transform-origin: center center;
+         -o-transform-origin: center center;
+            transform-origin: center center;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.FileBrowser--delete-file-confirm + .FileBrowser--delete-file path + path {
+    -webkit-transform-origin: center center;
+       -moz-transform-origin: center center;
+        -ms-transform-origin: center center;
+         -o-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-transform: rotate(90deg);
+       -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+         -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+}
+
+.FileBrowser--delete-file:hover path {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.FileBrowser--delete-file-confirm + .FileBrowser--delete-file svg {
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
 @media (pointer: coarse) {
 
     .FileBrowser--delete-file-confirm, .FileBrowser--delete-file {
-        font-size: 18px;
-
         top: 14px;
         right: 14px;
 
         width: 20px;
         height: 20px;
-        padding-top: 0px;
     }
 
     .FileBrowser__icon .FileBrowser--delete-file-confirm, .FileBrowser__icon .FileBrowser--delete-file {
         top: 2px;
         right: 2px;
-    }
-
-    .FileBrowser--delete-file-confirm {
-        font-size: 13px;
-
-        padding-top: 1px;
     }
 
     .FileBrowser--delete-file-confirm:before, .FileBrowser--delete-file:before {
@@ -2107,6 +2659,11 @@ body {
 
     .FileBrowser__icon .FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
         right: 28px;
+    }
+
+    .FileBrowser--delete-file-confirm svg, .FileBrowser--delete-file svg {
+        width: 10px;
+        height: 10px;
     }
 }
 
@@ -8959,6 +9516,18 @@ body > .E_NewPageSectionSelector--clone .type {
     transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
+.P_PageElement__text-content {
+    line-height: 1.4;
+
+    display: inline-block;
+}
+
+.P_PageElement__title {
+    line-height: 1.4;
+
+    display: inline-block;
+}
+
 .P_BackgroundImage {
     position:absolute;
     top: 0px;
@@ -9040,17 +9609,5 @@ body > .E_NewPageSectionSelector--clone .type {
     background-attachment: fixed;
 }
 
-
-.P_PageElement__text-content {
-    line-height: 1.4;
-
-    display: inline-block;
-}
-
-.P_PageElement__title {
-    line-height: 1.4;
-
-    display: inline-block;
-}
 
 /*# sourceMappingURL=admin.css.map */

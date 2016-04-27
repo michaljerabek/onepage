@@ -270,7 +270,7 @@
 
         handleThumbnail: function (file, imageData) {
 
-            if (this.torndown) {
+            if (this.torndown || !file.accepted) {
 
                 return;
             }

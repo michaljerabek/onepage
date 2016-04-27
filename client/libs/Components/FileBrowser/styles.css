@@ -1,4 +1,7 @@
 .FileBrowser {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+
     position: relative;
 
     color: #404040;
@@ -57,18 +60,20 @@
 
 .FileBrowser--message-title,
 .FileBrowser--drag-drop-overlay-title {
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 23px;
+    font-weight: 600;
 
     color: #404040;
 }
 
 .FileBrowser--message-text,
 .FileBrowser--drag-drop-overlay-text {
-    font-size: 17px;
+    font-family: "Encode Sans";
+    font-size: 14px;
+    font-weight: 300;
     line-height: 1.47;
 
-    margin-top: 12px;
+    margin-top: 8px;
 
     color: #888;
 }
@@ -103,15 +108,21 @@
     text-align: left;
     vertical-align: middle;
 
-    padding: 0 12px;
+    width: 100%;
+    padding: 0 12px 0px 2px;
 
     background-color: #f5f5f5;
 
-    display: block;
+    display: flex;
+    align-items: center;
 
     transition: var(--default-transition);
 
     cursor: default;
+}
+
+.FileBrowser--directory-name-text {
+    padding: 0 8px 0 4px;
 }
 
 .FileBrowser--directory:not(:last-of-type) {
@@ -119,6 +130,8 @@
 }
 
 .FileBrowser--directory:hover .FileBrowser--directory-name {
+    font-weight: 500;
+
     color: #fff;
     background-color: #404040;
 
@@ -127,10 +140,66 @@
 
 .FileBrowser--directory__opened  .FileBrowser--directory-name,
 .FileBrowser--directory__opened:hover  .FileBrowser--directory-name {
+    font-weight: 500;
+
     color: #fff;
     background-color: #fa742c;
 
     transition: var(--default-transition-hover);
+}
+
+/*---------------------------- ICONS ----------------------------*/
+
+.FileBrowser--icon {
+    margin: 0 0 0 4px;
+
+    height: 40px;
+    width: 40px;
+
+	display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.FileBrowser--icon svg {
+    width: 20px;
+    height: 20px;
+
+    fill: #505050;
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--icon__directory svg {
+    transform: rotate(-3deg);
+}
+
+.FileBrowser--directory:hover  .FileBrowser--icon svg,
+.FileBrowser--directory__opened  .FileBrowser--icon svg,
+.FileBrowser--directory__opened:hover  .FileBrowser--icon svg {
+    fill: rgba(255, 255, 255, 0.9);
+
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--directory:hover  .FileBrowser--icon svg {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+.FileBrowser--directory__opened  .FileBrowser--icon svg,
+.FileBrowser--directory__opened:hover  .FileBrowser--icon svg {
+    transform: scale(1.5) rotate(-15deg);
+}
+
+.FileBrowser--directory:hover  .FileBrowser--icon__directory svg {
+    transform: scale(1.15) rotate(-8deg);
+}
+
+.FileBrowser--directory__opened  .FileBrowser--icon__directory svg,
+.FileBrowser--directory__opened:hover  .FileBrowser--icon__directory svg {
+    transform: scale(1.5) rotate(-18deg);
 }
 
 /*---------------------------- UPLOAD-FILE ----------------------------*/
@@ -140,21 +209,18 @@
     line-height: 1;
     vertical-align: middle;
 
-    margin-left: 4px;
     z-index: 5;
     position: relative;
-    top: -1px;
 
     width: 20px;
     height: 20px;
-    padding-top: 1px;
 
     color: #fff;
     background-color: #404040;
     border-radius: 50%;
     opacity: 0.5;
 
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -180,8 +246,7 @@
 }
 
 .FileBrowser--directory__opened .FileBrowser--upload-files:hover {
-    color: #404040;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9);
 
     transition: var(--default-transition-hover);
 }
@@ -204,6 +269,21 @@
     height: 40px;
 }
 
+.FileBrowser--upload-files svg {
+    width: 10px;
+    height: 10px;
+
+    fill: rgba(255, 255, 255, 0.9);
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--directory__opened .FileBrowser--upload-files:hover svg {
+    fill: #505050;
+
+    transition: var(--default-transition-hover);
+}
+
 /*---------------------------- SEARCH ----------------------------*/
 
 .FileBrowser--search {
@@ -219,8 +299,10 @@
     transition: var(--default-transition);
 }
 
-.FileBrowser--search input {
+.FileBrowser--search-input {
+    font-family: "Encode Sans Narrow", sans-serif;
     font-size: 17px;
+    font-weight: 500;
     line-height: 40px;
     text-align: left;
     vertical-align: middle;
@@ -229,7 +311,9 @@
     width: 100%;
     padding: 0 12px;
     padding-right: 56px;
+    padding-left: 50px;
 
+    color: inherit;
     background-color: #f5f5f5;
     border: none;
     border-radius: 0;
@@ -243,30 +327,42 @@
     user-select: auto;
 }
 
-.FileBrowser--search input:hover {
+.FileBrowser--search-input:hover {
     background-color: #fff;
 
     transition: var(--default-transition-hover);
 }
 
-.FileBrowser--directory__opened .FileBrowser--search input {
+.FileBrowser--directory__opened .FileBrowser--search-input {
     color: #fff;
     background-color: #fc742a;
 
     transition: var(--default-transition-hover);
 }
 
-.FileBrowser--search input::-webkit-input-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; }
-.FileBrowser--search input::-moz-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; opacity: 1; }
-.FileBrowser--search input:-ms-input-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; }
-.FileBrowser--search input:-moz-placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic;  opacity: 1; }
-.FileBrowser--search input:placeholder { color: rgba(64, 64, 64, 0.65); font-style: italic; opacity: 1; }
+.FileBrowser--search-input::-webkit-input-placeholder { color: rgba(64, 64, 64, 0.65); }
+.FileBrowser--search-input::-moz-placeholder { color: rgba(64, 64, 64, 0.65); opacity: 1; }
+.FileBrowser--search-input:-ms-input-placeholder { color: rgba(64, 64, 64, 0.65); }
+.FileBrowser--search-input:-moz-placeholder { color: rgba(64, 64, 64, 0.65);  opacity: 1; }
+.FileBrowser--search-input:placeholder { color: rgba(64, 64, 64, 0.65); opacity: 1; }
 
-.FileBrowser--directory__opened .FileBrowser--search input::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; }
-.FileBrowser--directory__opened .FileBrowser--search input::-moz-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; opacity: 1; }
-.FileBrowser--directory__opened .FileBrowser--search input:-ms-input-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; }
-.FileBrowser--directory__opened .FileBrowser--search input:-moz-placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic;  opacity: 1; }
-.FileBrowser--directory__opened .FileBrowser--search input:placeholder { color: rgba(255, 255, 255, 0.75); font-style: italic; opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search-input::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.75); }
+.FileBrowser--directory__opened .FileBrowser--search-input::-moz-placeholder { color: rgba(255, 255, 255, 0.75); opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search-input:-ms-input-placeholder { color: rgba(255, 255, 255, 0.75); }
+.FileBrowser--directory__opened .FileBrowser--search-input:-moz-placeholder { color: rgba(255, 255, 255, 0.75);  opacity: 1; }
+.FileBrowser--directory__opened .FileBrowser--search-input:placeholder { color: rgba(255, 255, 255, 0.75); opacity: 1; }
+
+.FileBrowser--search .FileBrowser--icon {
+    z-index: 5;
+
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.FileBrowser--directory:not(.FileBrowser--directory__opened):hover .FileBrowser--search .FileBrowser--icon svg {
+    fill: #505050;
+}
 
 /*--------------------------------------------------------------------*/
 /*------------------------------- FILES ------------------------------*/
@@ -315,6 +411,27 @@
     will-change: transform, opacity, box-shadow;
     transition: var(--default-transition);
 }
+
+.FileBrowser--file-wrapper {
+    font-size: 0;
+
+    display: inline-block;
+
+    overflow: hidden;
+
+    will-change: transform, opacity, box-shadow;
+    transition: var(--default-transition);
+}
+
+.FileBrowser--file-wrapper:hover {
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--file-wrapper:active {
+    transition: var(--default-transition-active);
+}
+
+/*---------------------------- FILE-IMAGE ----------------------------*/
 
 .FileBrowser__images .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
     animation:
@@ -366,77 +483,6 @@
 
         opacity: 0;
     }
-}
-
-.FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
-    animation:
-        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
-}
-
-@keyframes FileBrowser--file-intro__icon {
-    0% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: 0px;
-        margin-right:0px;
-
-        opacity: 1;
-    }
-}
-
-.FileBrowser__icon .FileBrowser--file[ractive-transition="outro"] {
-    animation:
-        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
-}
-
-@keyframes FileBrowser--file-outro__icon {
-    0% {
-        margin-top: 0;
-        margin-right:0;
-
-        opacity: 1;
-    }
-    50% {
-        margin-top: 0px;
-        margin-right: 0px;
-
-        opacity: 0;
-    }
-    100% {
-        margin-top: -64px;
-        margin-right:-64px;
-
-        opacity: 0;
-    }
-}
-
-.FileBrowser--file-wrapper {
-    font-size: 0;
-
-    display: inline-block;
-
-    overflow: hidden;
-
-    will-change: transform, opacity, box-shadow;
-    transition: var(--default-transition);
-}
-
-.FileBrowser--file-wrapper:hover {
-    transition: var(--default-transition-hover);
-}
-
-.FileBrowser--file-wrapper:active {
-    transition: var(--default-transition-active);
 }
 
 .FileBrowser--file__image .FileBrowser--file-wrapper {
@@ -550,6 +596,60 @@
     transition: var(--default-transition);
 }
 
+/*---------------------------- FILE-ICON ----------------------------*/
+
+.FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
+    animation:
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
+}
+
+@keyframes FileBrowser--file-intro__icon {
+    0% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        margin-right:0px;
+
+        opacity: 1;
+    }
+}
+
+.FileBrowser__icon .FileBrowser--file[ractive-transition="outro"] {
+    animation:
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
+}
+
+@keyframes FileBrowser--file-outro__icon {
+    0% {
+        margin-top: 0;
+        margin-right:0;
+
+        opacity: 1;
+    }
+    50% {
+        margin-top: 0px;
+        margin-right: 0px;
+
+        opacity: 0;
+    }
+    100% {
+        margin-top: -64px;
+        margin-right:-64px;
+
+        opacity: 0;
+    }
+}
+
 .FileBrowser--file__icon {
     padding: 12px;
 
@@ -624,10 +724,6 @@
 
 .FileBrowser--delete-file-confirm,
 .FileBrowser--delete-file {
-    font-size: 14px;
-    line-height: 1;
-    font-weight: bold;
-
     z-index: 5;
     position: absolute;
     top: 12px;
@@ -635,7 +731,6 @@
 
     width: 16px;
     height: 16px;
-    padding-top: 1px;
 
     color: #fff;
     text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
@@ -657,9 +752,6 @@
 }
 
 .FileBrowser--delete-file-confirm {
-    font-size: 10px;
-    font-weight: normal;
-
     background-color: limegreen;
 }
 
@@ -701,30 +793,57 @@
     background-color: #f00;
 }
 
+.FileBrowser--delete-file-confirm svg,
+.FileBrowser--delete-file svg {
+    width: 8px;
+    height: 8px;
+
+    fill: currentColor;
+
+    transform-origin: center center;
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--delete-file-confirm:hover svg,
+.FileBrowser--delete-file:hover svg {
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--delete-file path {
+    transform-origin: center center;
+
+    transition: var(--default-transition);
+}
+
+.FileBrowser--delete-file-confirm + .FileBrowser--delete-file path + path {
+    transform-origin: center center;
+    transform: rotate(90deg);
+}
+
+.FileBrowser--delete-file:hover path {
+    transition: var(--default-transition-hover);
+}
+
+.FileBrowser--delete-file-confirm + .FileBrowser--delete-file svg {
+    transform: rotate(45deg);
+}
+
 @media (pointer: coarse) {
 
     .FileBrowser--delete-file-confirm,
     .FileBrowser--delete-file {
-        font-size: 18px;
-
         top: 14px;
         right: 14px;
 
         width: 20px;
         height: 20px;
-        padding-top: 0px;
     }
 
     .FileBrowser__icon .FileBrowser--delete-file-confirm,
     .FileBrowser__icon .FileBrowser--delete-file {
         top: 2px;
         right: 2px;
-    }
-
-    .FileBrowser--delete-file-confirm {
-        font-size: 13px;
-
-        padding-top: 1px;
     }
 
     .FileBrowser--delete-file-confirm:before,
@@ -748,6 +867,12 @@
 
     .FileBrowser__icon .FileBrowser--delete-file-confirm + .FileBrowser--delete-file {
         right: 28px;
+    }
+
+    .FileBrowser--delete-file-confirm svg,
+    .FileBrowser--delete-file svg {
+        width: 10px;
+        height: 10px;
     }
 }
 
