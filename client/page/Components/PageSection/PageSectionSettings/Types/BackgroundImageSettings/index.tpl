@@ -10,7 +10,7 @@
 
             <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--source">
 
-                <input type="text" style="line-heigth: 32px; height: 32px; width: calc(100% - 40px); margin: 20px" value="{{data.backgroundImage.src}}">
+                <button type="button" on-tap="set('data.backgroundImage.src', '')">Odstranit obrázek</button>
 
             </div>
 

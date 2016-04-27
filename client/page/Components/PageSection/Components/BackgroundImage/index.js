@@ -96,6 +96,20 @@
 
         onconfig: function () {
 
+            this.observe("data.src", function (src) {
+
+                if (!src) {
+
+                    this.set("parallax", false);
+                    this.set("fixed", false);
+
+                } else {
+
+                    this.update("data.effects");
+                }
+
+            }, {init: false});
+
             this.observe("data.effectsStrength", function (value) {
 
                 var insertedValue = value;
@@ -172,6 +186,11 @@
                 }
 
                 this.skipEffectsObserver = false;
+
+                if (!this.get("data.src")) {
+
+                    return;
+                }
 
                 this.set("parallax", !!parallax);
                 this.set("fixed", !!fixed);

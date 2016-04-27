@@ -18,6 +18,10 @@
 
         template: require("./index.tpl"),
 
+        data: {
+            data: {}
+        },
+
         components: {
             BackgroundImageBrowser: require("./../../../../../../libs/Components/FileBrowser/ImageBrowser")
         },
