@@ -1223,13 +1223,13 @@ body {
 
 .FileBrowser__images .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
     -webkit-animation:
-        FileBrowser--file-intro__image 0.6s linear forwards 0s;
+        FileBrowser--file-intro__image 0.45s linear forwards 0s;
        -moz-animation:
-        FileBrowser--file-intro__image 0.6s linear forwards 0s;
+        FileBrowser--file-intro__image 0.45s linear forwards 0s;
          -o-animation:
-        FileBrowser--file-intro__image 0.6s linear forwards 0s;
+        FileBrowser--file-intro__image 0.45s linear forwards 0s;
             animation:
-        FileBrowser--file-intro__image 0.6s linear forwards 0s;
+        FileBrowser--file-intro__image 0.45s linear forwards 0s;
 }
 
 @-webkit-keyframes FileBrowser--file-intro__image {
@@ -1318,13 +1318,13 @@ body {
 
 .FileBrowser__images .FileBrowser--file[ractive-transition="outro"] {
     -webkit-animation:
-        FileBrowser--file-outro__image 0.6s linear 0s forwards;
+        FileBrowser--file-outro__image 0.45s linear 0s forwards;
        -moz-animation:
-        FileBrowser--file-outro__image 0.6s linear 0s forwards;
+        FileBrowser--file-outro__image 0.45s linear 0s forwards;
          -o-animation:
-        FileBrowser--file-outro__image 0.6s linear 0s forwards;
+        FileBrowser--file-outro__image 0.45s linear 0s forwards;
             animation:
-        FileBrowser--file-outro__image 0.6s linear 0s forwards;
+        FileBrowser--file-outro__image 0.45s linear 0s forwards;
 }
 
 @-webkit-keyframes FileBrowser--file-outro__image {
@@ -1413,13 +1413,13 @@ body {
 
 .FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
     -webkit-animation:
-        FileBrowser--file-intro__icon 0.6s linear forwards 0s;
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
        -moz-animation:
-        FileBrowser--file-intro__icon 0.6s linear forwards 0s;
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
          -o-animation:
-        FileBrowser--file-intro__icon 0.6s linear forwards 0s;
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
             animation:
-        FileBrowser--file-intro__icon 0.6s linear forwards 0s;
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
 }
 
 @-webkit-keyframes FileBrowser--file-intro__icon {
@@ -1508,13 +1508,13 @@ body {
 
 .FileBrowser__icon .FileBrowser--file[ractive-transition="outro"] {
     -webkit-animation:
-        FileBrowser--file-outro__icon 0.6s linear 0s forwards;
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
        -moz-animation:
-        FileBrowser--file-outro__icon 0.6s linear 0s forwards;
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
          -o-animation:
-        FileBrowser--file-outro__icon 0.6s linear 0s forwards;
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
             animation:
-        FileBrowser--file-outro__icon 0.6s linear 0s forwards;
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
 }
 
 @-webkit-keyframes FileBrowser--file-outro__icon {
@@ -7773,6 +7773,18 @@ body > .E_NewPageSectionSelector--clone .type {
     visibility: visible;
 }
 
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) *:not([class*='P_BackgroundImage']) {
+    -webkit-transition: color 0.1s linear,
+        background-color 0.1s linear;
+    -moz-transition: color 0.1s linear,
+        background-color 0.1s linear;
+    -o-transition: color 0.1s linear,
+        background-color 0.1s linear;
+    transition:
+        color 0.1s linear,
+        background-color 0.1s linear;
+}
+
 .P_font-type-1 .P_PageSection--content {
     font-family: serif;
 }
@@ -7833,8 +7845,6 @@ body > .E_NewPageSectionSelector--clone .type {
     -moz-transition-property: top, left;
     -o-transition-property: top, left;
     transition-property: top, left;
-
-    overflow: hidden;
 }
 
 .E_PageElementSettings--wrapper {
@@ -8949,18 +8959,6 @@ body > .E_NewPageSectionSelector--clone .type {
     transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
-.P_PageElement__text-content {
-    line-height: 1.4;
-
-    display: inline-block;
-}
-
-.P_PageElement__title {
-    line-height: 1.4;
-
-    display: inline-block;
-}
-
 .P_BackgroundImage {
     position:absolute;
     top: 0px;
@@ -9017,6 +9015,14 @@ body > .E_NewPageSectionSelector--clone .type {
     height: 100%;
 
     background-position: center center;
+
+    -webkit-transition: background-image 0.1s linear;
+
+    -moz-transition: background-image 0.1s linear;
+
+    -o-transition: background-image 0.1s linear;
+
+    transition: background-image 0.1s linear;
 }
 
 .P_BackgroundImage__parallax .P_BackgroundImage--image {
@@ -9034,5 +9040,17 @@ body > .E_NewPageSectionSelector--clone .type {
     background-attachment: fixed;
 }
 
+
+.P_PageElement__text-content {
+    line-height: 1.4;
+
+    display: inline-block;
+}
+
+.P_PageElement__title {
+    line-height: 1.4;
+
+    display: inline-block;
+}
 
 /*# sourceMappingURL=admin.css.map */

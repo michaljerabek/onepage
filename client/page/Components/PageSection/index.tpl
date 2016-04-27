@@ -22,7 +22,7 @@
 
             {{/if}}
 
-            <div class="P_PageSection--content">
+            <div class="P_PageSection--content {{#if .stopColorTransitions}}E_PageSection__stop-color-transitions{{/if}}">
 
                 <div class="P_PageSection--background-color" style="background-color: {{.section.backgroundColor}}">
 

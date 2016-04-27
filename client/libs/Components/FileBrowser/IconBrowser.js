@@ -38,8 +38,8 @@
 
                 uploadDirectory: "Moje ikony",
 
-                uploadOverlayTitle: "Nahrát soubory",
-                uploadOverlayText: "Maximální velikost souboru: 64 KB. Podporované formáty: png a svg.",
+                uploadOverlayTitle: "Nahrát ikony",
+                uploadOverlayText: "Maximální velikost souboru: 64 KB. Podporované formáty: .png, .svg.",
 
                 searchable: true
             };

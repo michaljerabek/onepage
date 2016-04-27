@@ -137,6 +137,12 @@
     visibility: visible;
 }
 
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) *:not([class*='P_BackgroundImage']) {
+    transition:
+        color 0.1s linear,
+        background-color 0.1s linear;
+}
+
 .P_font-type-1 .P_PageSection--content {
     font-family: serif;
 }

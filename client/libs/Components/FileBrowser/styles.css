@@ -318,7 +318,7 @@
 
 .FileBrowser__images .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
     animation:
-        FileBrowser--file-intro__image 0.6s linear forwards 0s;
+        FileBrowser--file-intro__image 0.45s linear forwards 0s;
 }
 
 @keyframes FileBrowser--file-intro__image {
@@ -344,7 +344,7 @@
 
 .FileBrowser__images .FileBrowser--file[ractive-transition="outro"] {
     animation:
-        FileBrowser--file-outro__image 0.6s linear 0s forwards;
+        FileBrowser--file-outro__image 0.45s linear 0s forwards;
 }
 
 @keyframes FileBrowser--file-outro__image {
@@ -370,7 +370,7 @@
 
 .FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
     animation:
-        FileBrowser--file-intro__icon 0.6s linear forwards 0s;
+        FileBrowser--file-intro__icon 0.45s linear forwards 0s;
 }
 
 @keyframes FileBrowser--file-intro__icon {
@@ -396,7 +396,7 @@
 
 .FileBrowser__icon .FileBrowser--file[ractive-transition="outro"] {
     animation:
-        FileBrowser--file-outro__icon 0.6s linear 0s forwards;
+        FileBrowser--file-outro__icon 0.45s linear 0s forwards;
 }
 
 @keyframes FileBrowser--file-outro__icon {

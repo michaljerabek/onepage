@@ -30,7 +30,6 @@
         data: function () {
 
             return {
-
                 type: "images",
 
                 //název requestu odesílaného na server
@@ -40,8 +39,8 @@
 
                 uploadDirectory: "Moje obrázky",
 
-                uploadOverlayTitle: "Nahrát soubory",
-                uploadOverlayText: "Maximální velikost souboru: 1 MB. Podporované formáty: jpg, png."
+                uploadOverlayTitle: "Nahrát obrázky",
+                uploadOverlayText: "Maximální velikost souboru: 1 MB. Podporované formáty: .jpg, .png, .svg."
             };
         },
 
@@ -57,8 +56,8 @@
             this.OPTIONS.DROPZONE = function () {
 
                 return {
-                    url: "/upload-background-images",
-                    paramName: "background-images",
+                    url: "/upload-images",
+                    paramName: "images",
 
                     uploadMultiple: true,
                     acceptedFiles: "image/jpg,image/jpeg,image/png",
@@ -70,7 +69,7 @@
                     thumbnailWidth: 100,
                     thumbnailHeight: 100,
 
-                    dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu jpg nebo png.",
+                    dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu .jpg nebo .png.",
                     dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
                     dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})"
                 };

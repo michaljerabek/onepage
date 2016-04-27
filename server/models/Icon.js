@@ -40,4 +40,8 @@ IconSchema.statics.findByCategory = function (category, cb) {
     return this.find({category: category}, cb);
 };
 
+IconSchema.statics.getCategories = function (cb) {
+    return this.distinct("category", cb);
+};
+
 module.exports = mongoose.model("Icon", IconSchema);

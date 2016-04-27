@@ -57,6 +57,8 @@
 
             innerWrapper: "P_PageSection--inner-wrapper",
 
+            stopColorTransitions: "E_PageSection__stop-color-transitions",
+
             //Seřazování sekcí
             parentOfSortable: "P_sortable-sections",
             parentOfNonSortable: "P_nonsortable-sections",
@@ -85,7 +87,8 @@
         data: function () {
 
             return {
-                editMode: Ractive.EDIT_MODE
+                editMode: Ractive.EDIT_MODE,
+                stopColorTransitions: false
             };
         },
 
@@ -98,6 +101,15 @@
 
                 this.initPageElementSettings();
                 this.initPageSectionSettings();
+
+                this.on("ColorPicker.*", function (data) {
+
+                    if (data && typeof data === "object" && data.key === "current") {
+
+                        this.set("stopColorTransitions", !data.context.get("animate"));
+                    }
+
+                }.bind(this));
             }
         },
 

@@ -6,10 +6,10 @@
     positionElement="{{.pageElementSettingsPositionElement}}"
 >
     <div decorator="PageElementSettingsBox:.E_PageElementSettings--scrollable"
-         data-min-resize-width="475"
-         data-max-resize-width="475"
-         data-max-resize-height="475"
-         style="max-width: 420px; max-height: 320px; display: flex"
+         data-min-resize-width="464"
+         data-max-resize-width="464"
+         data-max-resize-height="464"
+         style="max-width: 272px; max-height: 280px; display: flex"
     >
 
         <div class="E_PageElementSettings--scrollable" style="width: 100%">

@@ -26,11 +26,11 @@
                 intro="slide"
             >
 
-                {{#if .path === "#search"}}
+                {{#if .path === ~/searchDirPath}}
 
                     <div class="FileBrowser--search">
 
-                        <input type="text" name="search" value="{{~/searchText}}" placeholder="{{.name}}" on-focusin-touchend="set('openDirectory', d)">
+                        <input type="text" name="search" value="{{~/searchText}}" placeholder="{{.name}}" on-focus-touchend="set('openDirectory', d)">
 
                         {{#if ~/searching}}
                             <span intro-outro="fade" class="FileBrowser--loader FileBrowser--loader__searching">(Načítá se...)</span>
@@ -64,7 +64,7 @@
                     {{#if .files.length}}
 
                         <ul class="FileBrowser--files
-                                {{#if .path === '#search'}}FileBrowser--files__search{{/if}}
+                                {{#if .path === ~/searchDirPath}}FileBrowser--files__search{{/if}}
                                 {{#if .initDirContent}}FileBrowser--files__init-dir-content{{/if}}
                             "
                             intro-outro="slide"
@@ -79,7 +79,7 @@
                                     {{#if ~/selectedPath.length && ~/selectedPath === .path}}FileBrowser--file__selected{{/if}}
                                 "
                                 intro-outro="attr:{
-                                    duration: 600
+                                    duration: 450
                                 }"
                             >
                                 {{#if deletable && !.uploading && !.uploadError}}

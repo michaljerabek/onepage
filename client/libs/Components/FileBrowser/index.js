@@ -72,16 +72,6 @@
         data: function () {
 
             return {
-//              directories: [
-//                  {
-//                      name: "Složka 1",
-//                      files: [
-//                          {
-//                              name: "Soubor 1"
-//                          }
-//                      ]
-//                  }
-//              ]
                 type: "default",
 
                 directories: [],
@@ -110,6 +100,8 @@
                 saveOnTeardown: true,
 
                 searchable: false,
+                searchDirPath: "#search",
+                searchPlaceholder: "Najít...",
                 searchText: ""
             };
         },
@@ -219,6 +211,7 @@
                 }
             }
 
+            //uložit složky pro další instanci (kromě uploadovací složky)
             if (this.get("saveOnTeardown")) {
 
                 var directories = this.get("directories");
@@ -316,6 +309,7 @@
             this.uploadFilesLoaded = true;
         },
 
+        //pokud složka při otevření obsahuje soubory je potřeba použit jinou intro animaci
         hasInitContentOnOpen: function (current, before, path, index) {
 
             var dirIndex = path === "openDirectory" ? current : +index;
@@ -521,11 +515,12 @@
                     res.directories[d].files = [];
                 }
 
+                //vytvořit "složku" pro vyhledávání
                 if (this.get("searchable")) {
 
                     res.directories.unshift({
-                        name: "Najít...",
-                        path: "#search",
+                        name: this.get("searchPlaceholder"),
+                        path: this.get("searchDirPath"),
                         files: []
                     });
                 }
@@ -554,18 +549,6 @@
 
                 if (res && res.files) {
 
-                    //odstranit již nahrané soubory - jsou opět načtené ze serveru
-                    var inF = directory.files.length - 1;
-
-                    for (inF; inF >= 0; inF--) {
-
-                        if (directory.files[inF].uploaded) {
-
-
-                            directory.files.splice(inF, 1);
-                        }
-                    }
-
                     var f = 0,
                         files = [];
 
@@ -576,7 +559,18 @@
                         files.push(res.files[f]);
                     }
 
-                    this.set("directories." + directoryIndex + ".files", directory.files.concat(files));
+                    this.merge("directories." + directoryIndex + ".files", directory.files.concat(files), {compare: "svg"});
+
+                    //odstranit již nahrané soubory - jsou opět načtené ze serveru
+                    var inF = directory.files.length - 1;
+
+                    for (inF; inF >= 0; inF--) {
+
+                        if (directory.files[inF].uploaded) {
+
+                            directory.files.splice(inF, 1);
+                        }
+                    }
                 }
 
                 this.set("loadingDirectory", null);
@@ -634,6 +628,7 @@
 
                 var directory = this.getDirectoryByIndex(directoryIndex);
 
+                //pokud jsou soubory již načteny -> return
                 if (directory && directory.files && directory.files.length && !this.directoryHasOnlyUploadedFiles(directoryIndex))  {
 
                     return;
@@ -785,7 +780,7 @@
 
             if (!searchText || searchText.length < 2) {
 
-                var directoryIndex = this.getDirectoryIndexByPath("#search");
+                var directoryIndex = this.getDirectoryIndexByPath(this.get("searchDirPath"));
 
                 this.set("directories." + directoryIndex + ".files", []);
 
@@ -800,7 +795,7 @@
 
                 if (result && result.files) {
 
-                    var directoryIndex = this.getDirectoryIndexByPath("#search");
+                    var directoryIndex = this.getDirectoryIndexByPath(this.get("searchDirPath"));
 
                     this.merge("directories." + directoryIndex + ".files", result.files, {compare: true});
 

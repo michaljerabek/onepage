@@ -17,8 +17,6 @@
     will-change: top, left, opacity;
     transition: var(--default-transition);
     transition-property: top, left;
-
-    overflow: hidden;
 }
 
 .E_PageElementSettings--wrapper {

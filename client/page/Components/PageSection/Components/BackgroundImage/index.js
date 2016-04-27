@@ -47,8 +47,8 @@
             DROPZONE: function () {
 
                 return {
-                    url: "/upload-background-image",
-                    paramName: "background-image",
+                    url: "/upload-image",
+                    paramName: "image",
 
                     acceptedFiles: "image/jpg,image/jpeg,image/png",
                     maxFilesize: 1,
@@ -59,7 +59,7 @@
                     thumbnailWidth: null,
                     thumbnailHeight: null,
 
-                    dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu jpg nebo png.",
+                    dictInvalidFileType: "Nepodporovaný formát. Soubor musí být formátu .jpg, .png.",
                     dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
                     dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})"
                 };
@@ -242,8 +242,8 @@
             this.dropzone.on("dragenter", function () {
 
                 this.fire("pageSectionMessage", {
-                    title: "Nahrát soubor",
-                    text: "Maximální velikost souboru: " + options.maxFilesize + " MB. Podporované formáty: jpg, png."
+                    title: "Nahrát obrázek",
+                    text: "Maximální velikost souboru: " + options.maxFilesize + " MB. Podporované formáty: .jpg, .png."
                 });
 
             }.bind(this));
@@ -262,7 +262,7 @@
             this.prevSrc = this.get("data.src");
 
             this.fire("pageSectionMessage", {
-                title: "Nahrát soubor",
+                title: "Nahrát obrázek",
                 text: "Počkejte prosím...",
                 status: "info"
             });
@@ -310,7 +310,7 @@
             this.set("data.src", path);
 
             this.fire("pageSectionMessage", {
-                title: "Nahrát soubor",
+                title: "Nahrát obrázek",
                 text: "Obrázek (" + file.name + ") se podařilo úspěšně nahrát.",
                 timeout: 2000,
                 status: "success"
@@ -336,7 +336,7 @@
             });
 
             this.fire("pageSectionMessage", {
-                title: "Nahrát soubor",
+                title: "Nahrát obrázek",
                 text: error,
                 timeout: 3000,
                 status: "error"
