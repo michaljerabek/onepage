@@ -8,3 +8,5 @@
 /**/experiments/*.png
 /public/uploads/*
 /icons
+/public/css/admin.css*
+/public/css/page.css*
