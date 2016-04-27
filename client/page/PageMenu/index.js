@@ -349,7 +349,7 @@ var instaceCounter = 0,
         //skrýt/zobrazit při úpravě stránky
         this.sortableActiveObserver = this.Page.observe("sortableActive", ensureVisibility.bind(this), {init: false});
         this.Page.on("*.sectionHasOutline", ensureVisibility.bind(this));
-        this.Page.on("*.openPageSectionSettings", ensureVisibility.bind(this));
+        this.Page.on("*.openPageSectionSettings *.closeThisSettings", ensureVisibility.bind(this));
 
         this.Page.on("activateResizer", activateResizer.bind(this));
 
