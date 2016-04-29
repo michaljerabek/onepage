@@ -51,9 +51,11 @@
 
         CLASS: {
             self: "E_PageSectionSettings",
+            multipleTabs: "E_PageSectionSettings__multiple-tabs",
 
             wrapper: "E_PageSectionSettings--wrapper",
-            scrollingContent: "E_PageSectionsSettings--scrolling-content",
+            scrollingContent: "E_PageSectionSettings--scrolling-content",
+            scrollingContentHideOverlay: "E_PageSectionSettings--scrolling-content__hide-overlay",
 
             resizer: "E_PageSectionSettings--resizer",
             resizerActive: "E_PageSectionSettings--resizer__active",
@@ -96,10 +98,41 @@
 
                         refreshThrottle = setTimeout(function() {
 
-                            $scrollingElement.perfectScrollbar("update");
+                            $scrollingElement.each(function (i, element) {
 
-                        }, 100);
+                                var $element = $(element),
+
+                                    elementRect = element.getBoundingClientRect(),
+                                    contentRect = element.firstChild.getBoundingClientRect();
+
+                                if (elementRect.bottom > contentRect.bottom) {
+
+                                    $element.stop()
+                                        .animate({
+                                            scrollTop: element.firstChild.offsetHeight - element.offsetHeight
+                                        }, {
+                                            duration: 200,
+                                            progress: function () {
+                                                clearTimeout(refreshScrollbars);
+                                            },
+                                            complete: function () {
+                                                $element.perfectScrollbar("update");
+                                            }
+                                        });
+
+                                } else if (elementRect.bottom < contentRect.bottom) {
+
+                                    $element.stop().perfectScrollbar("update");
+                                }
+                            });
+
+                        }, 50);
                     };
+
+                if ($scrollingContent.length > 1) {
+
+                    this.parent.self.classList.add(this.parent.CLASS.multipleTabs);
+                }
 
                 this.parent.$resizableBox = $node;
                 this.parent.resizableBox  = node;
@@ -321,6 +354,8 @@
 
                         contentObserver.observe(this.parent.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
 
+                        refreshScrollbars();
+
                         return;
                     }
 
@@ -369,13 +404,13 @@
 
                                     clearTimeout(this.clearAnimStyles);
 
-                                    $scrollingElement.perfectScrollbar("update");
-
                                     this.parent.$resizableBox.off("transitionend.resize-" + this.parent.EVENT_NS + "." + eventId);
 
                                     contentObserver.observe(this.parent.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
 
                                     this.minmaxing = false;
+
+                                    refreshScrollbars();
 
                                     if (this.nextRequest) {
 
@@ -445,7 +480,12 @@
                             })
                             .perfectScrollbar("destroy");
 
+                        $scrollingContent
+                            .off("touchstart." + this.EVENT_NS + " mouseenter." + this.EVENT_NS);
+
+
                         $scrollingElement = null;
+                        $scrollingContent = null;
                     }
                 };
             }

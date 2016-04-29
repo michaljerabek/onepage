@@ -118,13 +118,9 @@
 
                     value = this.OPTIONS.EFFECTS_STRENGTH_DEF;
 
-                } else if (insertedValue < 0) {
+                } else {
 
-                    value = 0;
-
-                } else if (insertedValue > 100) {
-
-                    value = 100;
+                    value = Math.max(Math.min(100, insertedValue), 0);
 
                 }
 
@@ -216,6 +212,15 @@
                     this.PageSection.on("BackgroundImageBrowser.selectFile", function (e, file) {
 
                         this.guessDisplayFromSize(file);
+
+                    }.bind(this));
+
+                    this.PageSection.on("BackgroundImageBrowser.deleteFile", function (e, file) {
+
+                        if (file.path === this.get("data.src")) {
+
+                            this.set("data.src", "");
+                        }
 
                     }.bind(this));
                 }

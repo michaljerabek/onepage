@@ -1,12 +1,12 @@
 <div class="E_BackgroundImageSettings"
-    decorator="PageSectionSettingsBox:.PageSectionSetitngs--scrollable"
+    decorator="PageSectionSettingsBox:.E_PageSectionSettings--scrollable"
     data-max-resize-height="768"
-    style="max-height: 320px; display: flex"
+    style="max-height: 320px;"
  >
 
-    <div class="PageSectionSetitngs--scrollable" style="width: 100%">
+    <div class="E_BackgroundImageSettings--background-settings E_PageSectionSettings--scrollable">
 
-       <div class="E_PageSectionsSettings--scrolling-content">
+       <div class="E_PageSectionSettings--scrolling-content">
 
             <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--source">
 
@@ -41,6 +41,14 @@
                     {{#if .data.backgroundImage.effects.indexOf('parallax') === -1}}disabled{{/if}}
                 >
             </div>
+
+        </div>
+
+    </div>
+
+    <div class="E_BackgroundImageSettings--image-browser E_PageSectionSettings--scrollable">
+
+        <div class="E_PageSectionSettings--scrolling-content">
 
             <BackgroundImageBrowser progressBarId="{{.data.internalId}}" selectedPath="{{.data.backgroundImage.src}}" />
 

@@ -1,7 +1,13 @@
+/*====================================================================*/
+/*------------------------ PageSectionSetings ------------------------*/
+/*====================================================================*/
+
 .E_PageSectionSettings {
     line-height: 1;
 
     position: relative;
+
+    width: 100%;
 
     background-color: #f7f7f7;
     border-top: 1px solid #d7d7d7;
@@ -26,9 +32,18 @@
     overflow: hidden;
 }
 
-.csspointerevents .E_PageSectionSettings--shadow {
+@media (min-width: 1440px) {
+
+    .E_PageSectionSettings--wrapper-2 {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+    }
+}
+
+.E_PageSectionSettings--shadow {
     content: "";
 
+    z-index: 500;
     position: absolute;
     top: 0px;
     left: -8px;
@@ -36,81 +51,234 @@
     width: calc(100% + 16px);
     height: 100%;
 
-    box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
 
     pointer-events: none;
 }
 
 .E_PageSectionSettings--resizable-box {
+    display: flex;
+
+    width: 100%;
+
     transition: var(--default-transition);
     transition-property: height;
 }
+
+.E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
+    flex-basis: 38.08%;
+    flex-grow: 1;
+
+    will-change: min-width;
+    transition: var(--default-transition-hover);
+    transition-property: min-width;
+    transition-duration: 0.2s;
+}
+
+.E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type {
+    flex-basis: 61.92%;
+    flex-grow: 1;
+
+    border-left: 1px solid #ddd;
+
+    will-change: min-width;
+    transition: var(--default-transition-hover);
+    transition-property: min-width;
+    transition-duration: 0.3s;
+}
+
+.E_PageSectionSettings--scrolling-content {
+    position: relative;
+}
+
+@media (max-width: 640px) {
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrolling-content:after {
+        content: "";
+
+        z-index: 600;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .E_PageSectionSettings__multiple-tabs:not(:hover) .E_PageSectionSettings--scrollable:first-of-type:not(:hover) .E_PageSectionSettings--scrolling-content:after,
+    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:hover .E_PageSectionSettings--scrolling-content:after,
+    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:last-of-type:hover .E_PageSectionSettings--scrolling-content:after {
+        pointer-events: none;
+
+        animation: E_PageSectionSettings--pointer-events-none 0.3s 0s forwards;
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
+        min-width: calc(100vw - 60px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type {
+        min-width: 60px;
+
+        box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type:hover {
+        min-width: calc(100vw - 60px);
+    }
+
+    .E_PageSectionSettings--scrollable:first-of-type,
+    .E_PageSectionSettings--scrollable:last-of-type {
+        transition-delay: 0.5s;
+    }
+
+    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type,
+    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:last-of-type {
+        transition-delay: 0s;
+    }
+
+    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:not(:hover) {
+        min-width: 60px;
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type > .E_PageSectionSettings--scrolling-content {
+        min-width: calc(100vw - 60px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type  > .E_PageSectionSettings--scrolling-content {
+        min-width: calc(100vw - 60px - 1px);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
+        min-width: calc(100vw - 40px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type {
+        min-width: 40px;
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type:hover {
+        min-width: calc(100vw - 40px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:not(:hover) {
+        min-width: 40px;
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type > .E_PageSectionSettings--scrolling-content,
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type > .E_PageSectionSettings--scrolling-content {
+        min-width: 280px;
+    }
+}
+
 /*---------------------------- CLOSE | MINMAX ----------------------------*/
 
 .E_PageSectionSettings--min-max,
 .E_PageSectionSettings--close {
-    font-size: 23px;
-    text-align: center;
-    line-height: 24px;
-
-    z-index: 110;
+    z-index: 1100;
     position: absolute;
     top: 0px;
     right: 0px;
 
     width: 24px;
     height: 24px;
+    padding-top: 2px;
 
-    color: #404040;
-    background-color: transparent;
-    border: none;
-    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+
+    transition: var(--default-transition);
+}
+
+.E_PageSectionSettings--close {
+    padding-right: 2px;
+}
+
+.E_PageSectionSettings--min-max {
+    padding-left: 4px;
+}
+
+.E_PageSectionSettings--min-max svg,
+.E_PageSectionSettings--close svg {
+    width: 12px;
+    height: 12px;
+
+    fill: #404040;
+    opacity: 0.4;
 
     transition: var(--default-transition);
 }
 
 .E_PageSectionSettings--min-max {
-    font-size: 14px;
-
     right: 24px;
 }
 
 @media (pointer: coarse) {
 
+    .E_PageSectionSettings--min-max,
     .E_PageSectionSettings--close {
-        font-size: 25px;
-        text-indent: 4px;
+        width: 30px;
+        height: 30px;
+        padding-top: 0;
+    }
 
-        width: 32px;
-        height: 32px;
-        padding-bottom: 8px;
+    .E_PageSectionSettings--close {
+        padding-right: 2px;
     }
 
     .E_PageSectionSettings--min-max {
-        font-size: 17px;
+        padding-left: 8px;
+    }
 
-        right: 32px;
+    .E_PageSectionSettings--min-max svg,
+    .E_PageSectionSettings--close svg {
+        width: 14px;
+        height: 14px;
+    }
 
-        width: 32px;
-        height: 32px;
+    .E_PageSectionSettings--min-max {
+        right: 30px;
     }
 }
 
 .E_PageSectionSettings--min-max__max {
-    color: orange;
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.E_PageSectionSettings--min-max__max svg {
+    fill: orange;
     opacity: 1;
 }
 
 .E_PageSectionSettings--min-max:hover,
 .E_PageSectionSettings--close:hover {
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageSectionSettings--min-max:hover svg,
+.E_PageSectionSettings--close:hover svg {
     opacity: 1;
 
     transition: var(--default-transition-hover);
 }
 
-.E_PageSectionSettings--min-max:active,
-.E_PageSectionSettings--close:active {
-    transform: scale(0.95);
+.E_PageSectionSettings--min-max:active svg,
+.E_PageSectionSettings--close:active svg {
+    transform: scale(0.9);
 
     transition: var(--default-transition-active);
 }
@@ -168,4 +336,9 @@
     border-bottom-color: orange;
 
     transition: var(--default-transition-active);
+}
+
+@keyframes E_PageSectionSettings--pointer-events-none {
+    from { pointer-events: all; }
+    to { pointer-events: none; }
 }

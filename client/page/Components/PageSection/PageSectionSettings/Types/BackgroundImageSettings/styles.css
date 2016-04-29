@@ -1,0 +1,15 @@
+/*====================================================================*/
+/*-------------------- BACKGROUND IMAGE SETTINGS ---------------------*/
+/*====================================================================*/
+
+.E_BackgroundImageSettings {
+    width: 100%;
+
+    display: flex;
+}
+
+.E_BackgroundImageSettings--background-settings {
+}
+
+.E_BackgroundImageSettings--image-browser {
+}

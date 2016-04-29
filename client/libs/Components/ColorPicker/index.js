@@ -560,8 +560,6 @@
 
                     this[moveSelectorFn].apply(this, args);
 
-                    e.stopPropagation();
-                    e.preventDefault();
                     return false;
 
                 }.bind(this))
@@ -576,15 +574,11 @@
 
                     this.$self.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
 
-                    e.stopPropagation();
-                    e.preventDefault();
                     return false;
 
                 }.bind(this));
 
-            eventData.stopPropagation();
             eventData.preventDefault();
-            return false;
         },
 
         validateRGB: function (color) {
