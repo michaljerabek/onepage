@@ -617,16 +617,16 @@
             }
         },
 
-        deleteFile: function (event, path) {
+        deleteFile: function (event, file) {
 
             var index = event.keypath.match(/[0-9]+$/);
 
             this.splice(event.keypath.replace(/\.[0-9]+$/, ""), index, 1);
 
-            if (path) {
+            if (file.path) {
 
                 this.req(this.get("reqName") + ".delete", {
-                    path: path
+                    path: file.path
                 }, true);
             }
         },

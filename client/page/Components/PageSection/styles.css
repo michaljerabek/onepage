@@ -137,7 +137,8 @@
     visibility: visible;
 }
 
-.P_PageSection--content:not(.E_PageSection__stop-color-transitions) *:not([class*='P_BackgroundImage']) {
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageSection--background-color,
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .E_PageElement--outline ~ * {
     transition:
         color 0.1s linear,
         background-color 0.1s linear;

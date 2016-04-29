@@ -96,7 +96,7 @@
                                 {{#if deletable && !.uploading && !.uploadError}}
 
                                     {{#if ~/showRemoveConfirmation === .path}}
-                                        <span intro-outro="fade:{duration: 100}" class="FileBrowser--delete-file-confirm" on-tap="deleteFile:{{.path}},{{.uploading}}">
+                                        <span intro-outro="fade:{duration: 100}" class="FileBrowser--delete-file-confirm" on-tap="deleteFile:{{.}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                                         </span>
                                     {{/if}}
@@ -118,7 +118,7 @@
                                     <span class="FileBrowser--overlay"></span>
                                 {{/if}}
 
-                                <div class="FileBrowser--file-wrapper" on-tap="selectFile:{{this}}">
+                                <div class="FileBrowser--file-wrapper" on-tap="selectFile:{{.}}">
                                     {{> ~/filesType + "File"}}
                                 </div>
                             </li>

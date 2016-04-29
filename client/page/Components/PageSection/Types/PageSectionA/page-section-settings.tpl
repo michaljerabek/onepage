@@ -1,6 +1,6 @@
 {{#if .openPageSectionSettings === 'edit1'}}
-<PageSectionSettings data="{{section}}">
-    <BackgroundImageSettings />
+<PageSectionSettings data="{{.section}}">
+    <BackgroundImageSettings data="{{.data}}" />
 </PageSectionSettings>
 {{/if}}
 

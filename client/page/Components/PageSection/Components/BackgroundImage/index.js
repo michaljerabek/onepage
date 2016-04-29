@@ -96,6 +96,20 @@
 
         onconfig: function () {
 
+            this.observe("data.src", function (src) {
+
+                if (!src) {
+
+                    this.set("parallax", false);
+                    this.set("fixed", false);
+
+                } else {
+
+                    this.update("data.effects");
+                }
+
+            }, {init: false});
+
             this.observe("data.effectsStrength", function (value) {
 
                 var insertedValue = value;
@@ -104,13 +118,9 @@
 
                     value = this.OPTIONS.EFFECTS_STRENGTH_DEF;
 
-                } else if (insertedValue < 0) {
+                } else {
 
-                    value = 0;
-
-                } else if (insertedValue > 100) {
-
-                    value = 100;
+                    value = Math.max(Math.min(100, insertedValue), 0);
 
                 }
 
@@ -173,6 +183,11 @@
 
                 this.skipEffectsObserver = false;
 
+                if (!this.get("data.src")) {
+
+                    return;
+                }
+
                 this.set("parallax", !!parallax);
                 this.set("fixed", !!fixed);
             });
@@ -197,6 +212,15 @@
                     this.PageSection.on("BackgroundImageBrowser.selectFile", function (e, file) {
 
                         this.guessDisplayFromSize(file);
+
+                    }.bind(this));
+
+                    this.PageSection.on("BackgroundImageBrowser.deleteFile", function (e, file) {
+
+                        if (file.path === this.get("data.src")) {
+
+                            this.set("data.src", "");
+                        }
 
                     }.bind(this));
                 }

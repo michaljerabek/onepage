@@ -96,9 +96,35 @@
 
                         refreshThrottle = setTimeout(function() {
 
-                            $scrollingElement.perfectScrollbar("update");
+                            $scrollingElement.each(function (i, element) {
 
-                        }, 100);
+                                var $element = $(element),
+
+                                    elementRect = element.getBoundingClientRect(),
+                                    contentRect = element.firstChild.getBoundingClientRect();
+
+                                if (elementRect.bottom > contentRect.bottom) {
+
+                                    $element.stop()
+                                        .animate({
+                                            scrollTop: element.firstChild.offsetHeight - element.offsetHeight
+                                        }, {
+                                            duration: 200,
+                                            progress: function () {
+                                                clearTimeout(refreshScrollbars);
+                                            },
+                                            complete: function () {
+                                                $element.perfectScrollbar("update");
+                                            }
+                                        });
+
+                                } else {
+
+                                    $element.stop().perfectScrollbar("update");
+                                }
+                            });
+
+                        }, 50);
                     };
 
                 this.$resizableBox = $node;
@@ -374,6 +400,8 @@
 
                         contentObserver.observe(this.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
 
+                        refreshScrollbars();
+
                         return;
                     }
 
@@ -439,7 +467,7 @@
 
                                     clearTimeout(this.clearAnimStyles);
 
-                                    $scrollingElement.perfectScrollbar("update");
+                                    refreshScrollbars();
 
                                     transitionTimeout = setTimeout(function() {
 
