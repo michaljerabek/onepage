@@ -8,11 +8,27 @@
             "
         >
 
-            <span class="E_PageMenu--button E_PageMenu--button__settings" on-tap="set('openPageMenu', 'settings')">Nastavení</span>
+            <span class="E_PageMenu--button E_PageMenu--button__settings">
+
+                {{> FlatButton {
+                        type: "default-2",
+                        size: "large",
+                        text: "Nastavení",
+                        icon: "#icon-gear",
+                        title: "Globální nastavení stránky",
+                        set: "openPageMenu",
+                        value: "settings",
+                        className: ""
+                    }
+                }}
+
+            </span>
 
             <div class="E_PageMenu--content">
 
-                <span class="E_PageMenu--hide-content" on-tap="set('openPageMenu', null)">&times;</span>
+                <span class="E_PageMenu--hide-content" on-tap="set('openPageMenu', null)">
+                    <svg><use xlink:href="#icon-x"></use></svg>
+                </span>
 
                 <div class="E_PageMenu--content-wrapper">
                     <GlobalPageSettings settings="{{.page.settings}}" pageTitleColorTest="{{pageTitleColorTest}}" />
@@ -29,17 +45,27 @@
                 {{#if .draggableActive}}E_PageMenu--item__adding-section{{/if}}
             "
        >
-            <span class="E_PageMenu--button E_PageMenu--button__add-section" on-tap="set('openPageMenu', 'add-section')">
-                <span class="E_PageMenu--add-section__add">Přidat</span>
-                <span class="E_PageMenu--add-section__cancel
-                        {{#if .cancelAddSection}}E_PageMenu--add-section__active-cancel{{/if}}
-                    "
-                >Zrušit</span>
+            <span class="E_PageMenu--button E_PageMenu--button__add-section">
+
+                {{> FlatButton {
+                        type: ~/cancelAddSection ? "danger" : "default-2",
+                        size: "large",
+                        text:  ~/draggableActive ? "Zrušit" : "Přidat sekci",
+                        icon: ~/draggableActive ? "#icon-trash" : "#icon-plus",
+                        title: ~/draggableActive ? "Zrušit přidávání sekce" : "Přidat novou sekci",
+                        set: "openPageMenu",
+                        value: "add-section",
+                        state: ~/draggableActive ? "active" : ""
+                    }
+                }}
+
             </span>
 
             <div class="E_PageMenu--content">
 
-                <span class="E_PageMenu--hide-content" on-tap="set('openPageMenu', null)">&times;</span>
+                <span class="E_PageMenu--hide-content" on-tap="set('openPageMenu', null)">
+                    <svg><use xlink:href="#icon-x"></use></svg>
+                </span>
 
                 <div class="E_PageMenu--content-wrapper">
                     <NewPageSectionSelector />
@@ -54,10 +80,14 @@
     </ul>
 
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__top">
-        <span class="icon" on-tap="switchPosition:{{'top'}}">&uarr;</span>
+        <span class="icon" on-tap="switchPosition:{{'top'}}">
+            <svg><use xlink:href="#icon-arrow-2"></use></svg>
+        </span>
     </div>
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__bottom">
-        <span class="icon" on-tap="switchPosition:{{'bottom'}}">&darr;</span>
+        <span class="icon" on-tap="switchPosition:{{'bottom'}}">
+            <svg><use xlink:href="#icon-arrow-2"></use></svg>
+        </span>
     </div>
 
 </div>
@@ -68,7 +98,22 @@
 
         <li class="E_PageMenu--item">
 
-            <span class="E_PageMenu--button E_PageMenu--button__close" on-tap="closePage()">Zavřít</span>
+            <span class="E_PageMenu--button E_PageMenu--button__close">
+
+                {{> FlatButton {
+                        type: "default-danger",
+                        size: "large",
+                        text: "Zavřít",
+                        icon: "#icon-x",
+                        iconY: 1,
+                        iconW: 30,
+                        iconH: 30,
+                        title: "Zavřít editaci stránky",
+                        fire: "closePage"
+                    }
+                }}
+
+            </span>
 
         </li>
 
@@ -77,17 +122,34 @@
             "
         >
 
-            <span class="E_PageMenu--button E_PageMenu--button__save" on-tap="savePage()">Uložit</span>
+            <span class="E_PageMenu--button E_PageMenu--button__save">
+
+                {{> FlatButton {
+                        type: ~/unsavedChanges ? "warn" : ~/changesSaved ? "ok" : "default",
+                        size: "large",
+                        text: "Uložit",
+                        icon: "#icon-upload",
+                        iconY: 1,
+                        title:  ~/unsavedChanges ? "Uložit stránku a publikovat změny" : "Žádné změny",
+                        fire: "savePage"
+                    }
+                }}
+
+            </span>
 
         </li>
 
     </ul>
 
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__top">
-        <span class="icon" on-tap="switchPosition:{{'top'}}">&uarr;</span>
+        <span class="icon" on-tap="switchPosition:{{'top'}}">
+            <svg><use xlink:href="#icon-arrow-2"></use></svg>
+        </span>
     </div>
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__bottom">
-        <span class="icon" on-tap="switchPosition:{{'bottom'}}">&darr;</span>
+        <span class="icon" on-tap="switchPosition:{{'bottom'}}">
+            <svg><use xlink:href="#icon-arrow-2"></use></svg>
+        </span>
     </div>
 
 </div>

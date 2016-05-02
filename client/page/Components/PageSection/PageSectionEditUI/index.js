@@ -15,7 +15,9 @@
                 EditUIControlsTopLeft: require("./partials/top-left.tpl"),
                 EditUIControlsTopRight: require("./partials/top-right.tpl"),
                 EditUIControlsBottomLeft: require("./partials/bottom-left.tpl"),
-                EditUIControlsBottomRight: require("./partials/bottom-right.tpl")
+                EditUIControlsBottomRight: require("./partials/bottom-right.tpl"),
+
+                FlatButton: require("./../../UI/FlatButton/index.tpl")
             };
 
         module.exports = factory(Ractive, EventEmitter, template, partials, on);
@@ -107,6 +109,8 @@
                 if (!state) {
 
                     this.blockHover = false;
+
+                    this.set("removeSectionConfirmation", false);
                 }
 
             }, {init: false});
@@ -185,6 +189,11 @@
                     }
                 }
             });
+
+            this.on("cancelHideEditUI", this.cancelHideEditUI);
+            this.on("preHideEditUI", this.preHideEditUI);
+            this.on("hideEditUI", this.hideEditUI);
+            this.on("resetFocus", this.resetFocus);
         },
 
         superOnrender: function () {
@@ -202,7 +211,39 @@
         },
 
         //uživatel tapnul na zavření UI
+        preHideEditUI: function (event) {
+
+            this.startHideCoords = {
+                x: event.original.changedTouches ? event.original.changedTouches[0].clientX : event.original.clientX,
+                y: event.original.changedTouches ? event.original.changedTouches[0].clientY : event.original.clientY
+            };
+
+            event.original.preventDefault();
+            event.original.stopPropagation();
+            this.blockTouchend = true;
+
+            this.Page.forEachEditor("saveSelection");
+
+            this.$lastFocused = this.parent.get$SectionElement().find(":focus");
+        },
+
+        //uživatel tapnul na zavření UI
         hideEditUI: function (event) {
+
+            if (this.startHideCoords) {
+
+                var currentX = event.original.changedTouches ? event.original.changedTouches[0].clientX : event.original.clientX,
+                    currentY = event.original.changedTouches ? event.original.changedTouches[0].clientY : event.original.clientY;
+
+                if (Math.abs(this.startHideCoords.x - currentX) || Math.abs(this.startHideCoords.y - currentY)) {
+
+                    this.startHideCoords = null;
+
+                    return;
+                }
+
+                this.startHideCoords = null;
+            }
 
             this.set("hover", false);
 
@@ -212,9 +253,17 @@
             event.original.preventDefault();
             event.original.stopPropagation();
 
-            this.Page.forEachEditor("saveSelection");
+            if (event.original.type !== "touchend") {
 
-            this.$lastFocused = this.parent.get$SectionElement().find(":focus");
+                this.Page.forEachEditor("saveSelection");
+
+                this.$lastFocused = this.parent.get$SectionElement().find(":focus");
+            }
+
+            if (event.original.type === "touchend") {
+
+                this.resetFocus();
+            }
         },
 
         //po zavření UI je potřeba vrátit původní :focus a označení textu

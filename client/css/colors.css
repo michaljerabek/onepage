@@ -1,0 +1,40 @@
+:root {
+    --color-selected: #ef6737;
+    --color-selected-over: #fb7241;
+    --color-selected-active: #e85a27;
+    --color-selected-border: #dc6135;
+    --color-selected-hover: #ffede7;
+    --color-selected-85: rgba(239, 103, 55, 0.85);
+    --color-temp-selected: #0f758b;
+    --color-temp-selected-border: #075d70;
+    --color-temp-selected-light: #08a1c2;
+    --color-temp-selected-light-over: #15b0d1;
+    --color-temp-selected-light-active: #088eab;
+    --color-warn: var(--color-selected);
+    --color-warn-over: var(--color-selected-over);
+    --color-warn-active: var(--color-selected-active);
+    --color-warn-border: var(--color-selected-border);
+    --color-warn-hover: var(--color-selected-hover);
+    --color-danger: #e32d39;
+    --color-danger-active: #d0232e;
+    --color-danger-over: #ff3e4b;
+    --color-danger-half: rgba(227, 45, 57, 0.5);
+    --color-ok: #36b73c;
+    --color-ok-active: #29ac2e;
+    --color-ok-over: #3ace41;
+    --color-hover: #404040;
+    --color-hover-border: #323232;
+
+    --color-flat-button-bg: #fcfcfc;
+    --color-flat-button-text: #404040;
+    --color-flat-button-icon: #5c5c5c;
+    --color-flat-button-icon-hover: rgba(255, 255, 255, 0.9);
+
+    --color-element-outline: #ef6737;
+    --color-element-outline-glow: rgba(239, 103, 55, 0.75);
+
+    --color-title-1: #0f758b;
+    --color-text-1: #404040;
+    --color-text-2: #5c5c5c;
+    --color-text-3: #6f6f6f;
+}

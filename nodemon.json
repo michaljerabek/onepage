@@ -1,4 +1,4 @@
 {
     "verbose": true,
-    "ignore": ["views", "public", "client", "public/uploads", "public/**/*"]
+    "ignore": ["views", "public", "client", "public/uploads", "public/**/*", "icons", "gulpfile.js"]
 }

@@ -23,7 +23,6 @@
 
     touch-action: manipulation;
 
-    transition: var(--default-transition);
     transition:
         border var(--default-transition-duration) var(--default-transition-easing) 0s,
         box-shadow var(--default-transition-duration) var(--default-transition-easing) 0s,
@@ -34,7 +33,7 @@
 }
 
 .csspointerevents .E_PageElement--outline__active {
-    border-color: red;
+    border-color: var(--color-element-outline);
 
     pointer-events: none;
 
@@ -60,7 +59,7 @@
 }
 
 .csspointerevents .E_PageElement--outline__active:after {
-    box-shadow: 0px 0px 8px 0px rgba(255, 0, 0, 0.75);
+    box-shadow: 0px 0px 8px 0px var(--color-element-outline-glow);
 }
 
 .csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline {

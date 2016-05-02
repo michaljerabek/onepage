@@ -36,19 +36,20 @@
 
 {{#partial SVBox}}
 <div class="ColorPicker--SV-box"
-     on-mousedown-touchstart="activateSelector(event, 'SV')"
-     style="
-            background-image:
+    on-mousedown-touchstart="activateSelector(event, 'SV')"
+    style="
+        background-image:
             linear-gradient(to bottom, rgba(0, 0, 0, 0), #000),
             linear-gradient(to right, #fff, {{.SVBoxHue}});
-        "
+    "
 >
     <div class="ColorPicker--SV-selector"
-         on-mousedown-touchstart="activateSelector(event, 'SV')"
-         style="
-                transform: translate({{SVSelector.x}}px, {{SVSelector.y}}px);
-                transition: {{.animate ? '' : 'none'}};
-            "
+        on-mousedown-touchstart="activateSelector(event, 'SV')"
+        style="
+            transform: translate({{SVSelector.x}}px, {{SVSelector.y}}px);
+            transition: {{.animate ? '' : 'none'}};
+            background-color: {{.output}};
+        "
     ></div>
 </div><!--/ColorPicker--SV-box-->
 {{/partial}}
@@ -58,11 +59,12 @@
      on-mousedown-touchstart="activateSelector(event, 'H')"
  >
     <div class="ColorPicker--H-selector"
-         on-mousedown-touchstart="activateSelector(event, 'H')"
-         style="
-                transform: translateY({{HSelector.y}}px);
-                transition: {{.animate ? '' : 'none'}};
-            "
+        on-mousedown-touchstart="activateSelector(event, 'H')"
+        style="
+            transform: translateY({{HSelector.y}}px);
+            transition: {{.animate ? '' : 'none'}};
+            background-color: {{.SVBoxHue}};
+        "
     ></div>
 </div><!--/ColorPicker--H-box-->
 {{/partial}}

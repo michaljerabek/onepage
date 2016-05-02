@@ -29,7 +29,7 @@
                 '<div class="medium-editor-form-nav">',
                     '<label class="medium-editor-form-open-tab" for="medium-editor-open-tab-1-', this.base.id, '">Odkaz</label>',
                     '<label class="medium-editor-form-open-tab" for="medium-editor-open-tab-2-', this.base.id, '">Sekce</label>',
-                    '<a class="medium-editor-form-nav-close" href="#">&times;</a>',
+                    '<a class="medium-editor-form-nav-close" href="#"><svg><use xlink:href="#icon-x"></use></svg></a>',
                 '</div>'
             );
 

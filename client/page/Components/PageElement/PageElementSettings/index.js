@@ -239,13 +239,29 @@
 
                     }.bind(this),
 
-                    contentObserver = new MutationObserver(function () {
+                    contentObserver = new MutationObserver(function (mutations) {
 
                         var currentTime = +new Date();
 
                         if (currentTime - lastMutation < 50) {
 
                             lastMutation = currentTime;
+
+                            return;
+                        }
+
+                        var m = mutations.length - 1,
+                            scrollbarMutations = 0;
+
+                        for (m; m >= 0; m--) {
+
+                            if (mutations[m].target && mutations[m].target.className.match("ps-scrollbar")) {
+
+                                scrollbarMutations++;
+                            }
+                        }
+
+                        if (mutations.length === scrollbarMutations) {
 
                             return;
                         }

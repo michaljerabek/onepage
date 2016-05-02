@@ -141,9 +141,12 @@ var instanceCounter = 0,
 
 Parallax.prototype.destroy = function () {
 
-    this.$image.css({
-        transform: ""
-    });
+    if (this.$image) {
+
+        this.$image.css({
+            transform: ""
+        });
+    }
 
     this.$background = null;
     this.$image = null;

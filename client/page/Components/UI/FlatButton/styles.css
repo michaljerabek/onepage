@@ -1,0 +1,946 @@
+/*====================================================================*/
+/*---------------------------- FLATBUTTON ----------------------------*/
+/*====================================================================*/
+
+.FlatButton--icon svg,
+.FlatButton--wrapper:after,
+.FlatButton--text,
+.FlatButton {
+    transition: var(--default-transition);
+}
+
+.FlatButton:hover .FlatButton--icon svg,
+.FlatButton:hover .FlatButton--wrapper:after,
+.FlatButton:hover .FlatButton--text,
+.FlatButton:hover {
+    transition: var(--default-transition-hover);
+}
+
+.FlatButton:active .FlatButton--icon svg,
+.FlatButton:active .FlatButton--wrapper:after,
+.FlatButton:active .FlatButton--text,
+.FlatButton:active {
+    transition: var(--default-transition-active);
+}
+
+.FlatButton {
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.FlatButton--event {
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+}
+
+.FlatButton--event ~ * {
+    pointer-events: none;
+}
+
+.FlatButton--icon {
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+    margin: 0 auto;
+}
+
+.FlatButton--icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.FlatButton--wrapper {
+    font-size: 0;
+    line-height: 0;
+
+    margin: auto;
+    position: relative;
+
+    border-radius: 2px;
+
+    overflow: hidden;
+}
+
+.FlatButton--wrapper:after {
+    content: "";
+
+    border-radius: 4px;
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    transform: translateZ(0);
+}
+
+.FlatButton--text {
+    font-family: "Encode Sans Condensed", sans-serif;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1;
+    white-space: nowrap;
+
+    position: relative;
+
+    min-width: 100%;
+
+    display: inline-block;
+
+    will-change: transform;
+}
+
+.FlatButton--text__long,
+.FlatButton--text__extra-long {
+    font-family: "Encode Sans Compressed";
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.FlatButton__medium {
+    width: 48px;
+    height: 48px;
+    padding: 0px 0;
+}
+
+.FlatButton__medium .FlatButton--icon {
+    margin-top: 4px;
+    margin-bottom: 1px;
+
+    width: 24px;
+    height: 24px;
+}
+
+.FlatButton__medium.FlatButton__no-text .FlatButton--icon {
+    width: 28px;
+    height: 28px;
+
+    margin: 0;
+}
+
+.FlatButton__medium .FlatButton--wrapper {
+    width: 48px;
+    padding: 4px;
+}
+
+.FlatButton__medium .FlatButton--text {
+    font-size: 12px;
+}
+
+.FlatButton__medium .FlatButton--text__short {
+    font-size: 14px;
+}
+
+.FlatButton__medium .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text {
+    font-size: 9px;
+}
+
+.FlatButton__medium:hover .FlatButton--text {
+    animation: FlatButton--move-text__medium 1.2s linear 1.92s infinite alternate,
+        FlatButton--move-text-2__medium 0.96s linear 0s 2 alternate;
+}
+
+.FlatButton__medium:hover .FlatButton--text.FlatButton--text__extra-long {
+    animation: FlatButton--move-text__medium__extra-long 1.4s linear 2.24s infinite alternate,
+        FlatButton--move-text-2__medium__extra-long 1.12s linear 0s 2 alternate;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.FlatButton__large {
+    width: 64px;
+    height: 64px;
+    padding: 0px 0;
+}
+
+.FlatButton__large .FlatButton--icon {
+    margin-top: 6px;
+    margin-bottom: 1px;
+
+    width: 32px;
+    height: 32px;
+}
+
+.FlatButton__large.FlatButton__no-text .FlatButton--icon {
+    width: 40px;
+    height: 40px;
+
+    margin: 0;
+}
+
+.FlatButton__large .FlatButton--wrapper {
+    width: 64px;
+    padding: 6px;
+}
+
+.FlatButton__large .FlatButton--text {
+    font-size: 14px;
+}
+
+.FlatButton__large .FlatButton--text__short {
+    font-size: 16px;
+}
+
+.FlatButton__large .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text {
+    font-size: 10px;
+}
+
+.FlatButton__large:hover .FlatButton--text {
+    animation: FlatButton--move-text__large 1.2s linear 1.92s infinite alternate,
+        FlatButton--move-text-2__large 0.96s linear 0s 2 alternate;
+}
+
+.FlatButton__large:hover .FlatButton--text.FlatButton--text__extra-long {
+    animation: FlatButton--move-text__large__extra-long 1.4s linear 2.24s infinite alternate,
+        FlatButton--move-text-2__large__extra-long 1.12s linear 0s 2 alternate;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.FlatButton__small {
+    width: 32px;
+    height: 32px;
+    padding: 0px 0;
+}
+
+.FlatButton__small .FlatButton--icon {
+    margin-top: 4px;
+    margin-bottom: 1px;
+
+    width: 16px;
+    height: 16px;
+}
+
+.FlatButton__small.FlatButton__no-text .FlatButton--icon {
+    margin: 0;
+
+    width: 20px;
+    height: 20px;
+}
+
+.FlatButton__small .FlatButton--wrapper {
+    width: 32px;
+    padding: 2px;
+}
+
+.FlatButton__small .FlatButton--wrapper:after {
+    border-radius: 0px;
+}
+
+.FlatButton__small .FlatButton--text {
+    font-size: 10px;
+}
+
+.FlatButton__small .FlatButton--text__short {
+    font-size: 12px;
+}
+
+.FlatButton__small .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text {
+    font-size: 7px;
+}
+
+.FlatButton__small:hover .FlatButton--text {
+    animation: FlatButton--move-text__small 1.2s linear 1.92s infinite alternate,
+        FlatButton--move-text-2__small 0.96s linear 0s 2 alternate;
+}
+
+.FlatButton__small:hover .FlatButton--text.FlatButton--text__extra-long {
+    animation: FlatButton--move-text__small__extra-long 1.4s linear 2.24s infinite alternate,
+        FlatButton--move-text-2__small__extra-long 1.12s linear 0s 2 alternate;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+[class*="FlatButton__default"] {
+    background-color: var(--color-flat-button-bg);
+}
+
+[class*="FlatButton__default"] .FlatButton--icon svg {
+    fill: var(--color-flat-button-icon);
+}
+
+[class*="FlatButton__default"] .FlatButton--text {
+    font-weight: 600;
+
+    color: var(--color-flat-button-icon);
+}
+
+[class*="FlatButton__default"] .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text {
+    font-weight: 500;
+
+    color: var(--color-flat-button-text);
+}
+
+[class*="FlatButton__default"].FlatButton__medium .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px #fcfcfc;
+}
+
+[class*="FlatButton__default"].FlatButton__large .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px #fcfcfc;
+}
+
+[class*="FlatButton__default"].FlatButton__small .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px #fcfcfc;
+}
+
+.FlatButton__default:hover {
+	background-color: var(--color-hover);
+}
+
+.FlatButton__default:hover .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default:active .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default.FlatButton__active .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default:active .FlatButton--text,
+.FlatButton__default.FlatButton__active .FlatButton--text,
+.FlatButton__default:hover .FlatButton--text {
+    font-weight: 600;
+
+	color: #fff;
+}
+
+.FlatButton__default.FlatButton__medium:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-hover);
+}
+
+.FlatButton__default.FlatButton__large:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-hover);
+}
+
+.FlatButton__default.FlatButton__small:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-hover);
+}
+
+.FlatButton__default.FlatButton__active:hover {
+    background-color: var(--color-selected-over);
+}
+
+.FlatButton__default.FlatButton__medium.FlatButton__active:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-selected-over);
+}
+
+.FlatButton__default.FlatButton__large.FlatButton__active:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-selected-over);
+}
+
+.FlatButton__default.FlatButton__small.FlatButton__active:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-selected-over);
+}
+
+.FlatButton__default:active .FlatButton--icon svg,
+.FlatButton__default.FlatButton__active .FlatButton--icon svg,
+.FlatButton__default:hover .FlatButton--icon svg {
+	fill: var(--color-flat-button-icon-hover);
+}
+
+.FlatButton__default.FlatButton__active {
+	background-color: var(--color-selected);
+}
+
+.FlatButton__default.FlatButton__medium.FlatButton__active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-selected);
+}
+
+.FlatButton__default.FlatButton__large.FlatButton__active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-selected);
+}
+
+.FlatButton__default.FlatButton__small.FlatButton__active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-selected);
+}
+
+.FlatButton__default:active,
+.FlatButton__default.FlatButton__active:active {
+	background-color: var(--color-selected-active);
+}
+
+.FlatButton__default.FlatButton__medium.FlatButton__active:active .FlatButton--wrapper:after,
+.FlatButton__default.FlatButton__medium:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-selected-active);
+}
+
+.FlatButton__default.FlatButton__large.FlatButton__active:active .FlatButton--wrapper:after,
+.FlatButton__default.FlatButton__large:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-selected-active);
+}
+
+.FlatButton__default.FlatButton__small.FlatButton__active:active .FlatButton--wrapper:after,
+.FlatButton__default.FlatButton__small:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-selected-active);
+}
+
+/*---------------------------- TYPE - DEFAULT-2 ----------------------------*/
+
+.FlatButton__default-2:hover {
+	background-color: var(--color-hover);
+}
+
+.FlatButton__default-2:hover .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default-2:active .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default-2.FlatButton__active .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default-2:active .FlatButton--text,
+.FlatButton__default-2.FlatButton__active .FlatButton--text,
+.FlatButton__default-2:hover .FlatButton--text {
+    font-weight: 600;
+
+	color: #fff;
+}
+
+.FlatButton__default-2.FlatButton__medium:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-hover);
+}
+
+.FlatButton__default-2.FlatButton__large:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-hover);
+}
+
+.FlatButton__default-2.FlatButton__small:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-hover);
+}
+
+.FlatButton__default-2.FlatButton__active:hover {
+    background-color: var(--color-temp-selected-light-over);
+}
+
+.FlatButton__default-2.FlatButton__medium.FlatButton__active:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-temp-selected-light-over);
+}
+
+.FlatButton__default-2.FlatButton__large.FlatButton__active:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-temp-selected-light-over);
+}
+
+.FlatButton__default-2.FlatButton__small.FlatButton__active:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-temp-selected-light-over);
+}
+
+.FlatButton__default-2:active .FlatButton--icon svg,
+.FlatButton__default-2.FlatButton__active .FlatButton--icon svg,
+.FlatButton__default-2:hover .FlatButton--icon svg {
+	fill: var(--color-flat-button-icon-hover);
+}
+
+.FlatButton__default-2.FlatButton__active {
+	background-color: var(--color-temp-selected-light);
+}
+
+.FlatButton__default-2.FlatButton__medium.FlatButton__active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-temp-selected-light);
+}
+
+.FlatButton__default-2.FlatButton__large.FlatButton__active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-temp-selected-light);
+}
+
+.FlatButton__default-2.FlatButton__small.FlatButton__active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-temp-selected-light);
+}
+
+.FlatButton__default-2:active,
+.FlatButton__default-2.FlatButton__active:active {
+	background-color: var(--color-temp-selected-light-active);
+}
+
+.FlatButton__default-2.FlatButton__medium.FlatButton__active:active .FlatButton--wrapper:after,
+.FlatButton__default-2.FlatButton__medium:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-temp-selected-light-active);
+}
+
+.FlatButton__default-2.FlatButton__large.FlatButton__active:active .FlatButton--wrapper:after,
+.FlatButton__default-2.FlatButton__large:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-temp-selected-light-active);
+}
+
+.FlatButton__default-2.FlatButton__small.FlatButton__active:active .FlatButton--wrapper:after,
+.FlatButton__default-2.FlatButton__small:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-temp-selected-light-active);
+}
+
+/*---------------------------- TYPE - OK ----------------------------*/
+
+.FlatButton__ok {
+	background-color: var(--color-ok);
+}
+
+.FlatButton__ok .FlatButton--text {
+    font-weight: 600;
+
+	color: #fff;
+}
+
+.FlatButton__ok.FlatButton__medium .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-ok);
+}
+
+.FlatButton__ok.FlatButton__large .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-ok);
+}
+
+.FlatButton__ok.FlatButton__lsmall.FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 52x var(--color-ok);
+}
+
+.FlatButton__ok .FlatButton--icon svg {
+	fill: var(--color-flat-button-icon-hover);
+}
+
+.FlatButton__ok:hover {
+	background-color: var(--color-ok-over);
+}
+
+.FlatButton__ok.FlatButton__medium:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-ok-over);
+}
+
+.FlatButton__ok.FlatButton__large:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-ok-over);
+}
+
+.FlatButton__ok.FlatButton__small:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-ok-over);
+}
+
+.FlatButton__ok:active {
+	background-color: var(--color-ok-active);
+}
+
+.FlatButton__ok.FlatButton__medium:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-ok-active);
+}
+
+.FlatButton__ok.FlatButton__large:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-ok-active);
+}
+
+.FlatButton__ok.FlatButton__small:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-ok-active);
+}
+
+/*---------------------------- TYPE - DEFAULT-DANGER ----------------------------*/
+
+.FlatButton__default-danger:hover {
+    background-color: var(--color-danger);
+}
+
+.FlatButton__default-danger:hover .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default-danger:active .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default-danger.FlatButton__active .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default-danger:active .FlatButton--text,
+.FlatButton__default-danger.FlatButton__active .FlatButton--text,
+.FlatButton__default-danger:hover .FlatButton--text {
+    font-weight: 600;
+
+    color: #fff;
+}
+
+.FlatButton__default-danger.FlatButton__medium:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-danger);
+}
+
+.FlatButton__default-danger.FlatButton__large:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-danger);
+}
+
+.FlatButton__default-danger.FlatButton__small:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-danger);
+}
+
+.FlatButton__default-danger.FlatButton__active:hover {
+    background-color: var(--color-danger-over);
+}
+
+.FlatButton__default-danger.FlatButton__medium.FlatButton__active:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-danger-over);
+}
+
+.FlatButton__default-danger.FlatButton__large.FlatButton__active:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-danger-over);
+}
+
+.FlatButton__default-danger.FlatButton__small.FlatButton__active:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-danger-over);
+}
+
+.FlatButton__default-danger:active .FlatButton--icon svg,
+.FlatButton__default-danger.FlatButton__active .FlatButton--icon svg,
+.FlatButton__default-danger:hover .FlatButton--icon svg {
+    fill: var(--color-flat-button-icon-hover);
+}
+
+.FlatButton__default-danger.FlatButton__active {
+    background-color: var(--color-danger);
+}
+
+.FlatButton__default-danger.FlatButton__medium.FlatButton__active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-danger);
+}
+
+.FlatButton__default-danger.FlatButton__large.FlatButton__active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-danger);
+}
+
+.FlatButton__default-danger.FlatButton__small.FlatButton__active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-danger);
+}
+
+.FlatButton__default-danger:active,
+.FlatButton__default-danger.FlatButton__active:active {
+    background-color: var(--color-danger-active);
+}
+
+.FlatButton__default-danger.FlatButton__medium.FlatButton__active:active .FlatButton--wrapper:after,
+.FlatButton__default-danger.FlatButton__medium:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-danger-active);
+}
+
+.FlatButton__default-danger.FlatButton__large.FlatButton__active:active .FlatButton--wrapper:after,
+.FlatButton__default-danger.FlatButton__large:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-danger-active);
+}
+
+.FlatButton__default-danger.FlatButton__small.FlatButton__active:active .FlatButton--wrapper:after,
+.FlatButton__default-danger.FlatButton__small:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-danger-active);
+}
+
+/*---------------------------- TYPE - DANGER ----------------------------*/
+
+.FlatButton__danger {
+	background-color: var(--color-danger);
+}
+
+.FlatButton__danger .FlatButton--text {
+    font-weight: 600;
+
+	color: #fff;
+}
+
+.FlatButton__danger.FlatButton__medium .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-danger);
+}
+
+.FlatButton__danger.FlatButton__large .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-danger);
+}
+
+.FlatButton__danger.FlatButton__small .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-danger);
+}
+
+.FlatButton__danger .FlatButton--icon svg {
+	fill: var(--color-flat-button-icon-hover);
+}
+
+.FlatButton__danger:hover {
+	background-color: var(--color-danger-over);
+}
+
+.FlatButton__danger.FlatButton__medium:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-danger-over);
+}
+
+.FlatButton__danger.FlatButton__large:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-danger-over);
+}
+
+.FlatButton__danger.FlatButton__small:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-danger-over);
+}
+
+.FlatButton__danger:active {
+	background-color: var(--color-danger-active);
+}
+
+.FlatButton__danger.FlatButton__medium:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-danger-active);
+}
+
+.FlatButton__danger.FlatButton__large:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-danger-active);
+}
+
+.FlatButton__danger.FlatButton__small:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-danger-active);
+}
+
+
+/*---------------------------- TYPE - WARN ----------------------------*/
+
+.FlatButton__warn {
+	background-color: var(--color-warn);
+}
+
+.FlatButton__warn .FlatButton--text {
+    font-weight: 600;
+
+	color: #fff;
+}
+
+.FlatButton__warn.FlatButton__medium .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-warn);
+}
+
+.FlatButton__warn.FlatButton__large .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-warn);
+}
+
+.FlatButton__warn.FlatButton__small .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-warn);
+}
+
+.FlatButton__warn .FlatButton--icon svg {
+	fill: var(--color-flat-button-icon-hover);
+}
+
+.FlatButton__warn:hover {
+	background-color: var(--color-warn-over);
+}
+
+.FlatButton__warn.FlatButton__medium:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-warn-over);
+}
+
+.FlatButton__warn.FlatButton__large:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-warn-over);
+}
+
+.FlatButton__warn.FlatButton__small:hover .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-warn-over);
+}
+
+.FlatButton__warn:active {
+	background-color: var(--color-warn-active);
+}
+
+.FlatButton__warn.FlatButton__medium:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 3px var(--color-warn-active);
+}
+
+.FlatButton__warn.FlatButton__large:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 5px var(--color-warn-active);
+}
+
+.FlatButton__warn.FlatButton__small:active .FlatButton--wrapper:after {
+    box-shadow: inset 0 0 2px 1px var(--color-warn-active);
+}
+
+/*--------------------------------------------------------------------*/
+/*---------------------------- ANIMATIONS ----------------------------*/
+/*--------------------------------------------------------------------*/
+
+@keyframes FlatButton--move-text__medium {
+    0% {
+        transform: translateX(0px);
+    }
+    30% {
+        transform: translateX(0px);
+    }
+    70% {
+        transform: translateX(calc(-100% + 40px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 40px));
+    }
+}
+
+@keyframes FlatButton--move-text-2__medium {
+    0% {
+        transform: translateX(0px);
+    }
+    45% {
+        transform: translateX(calc(-100% + 40px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 40px));
+    }
+}
+
+@keyframes FlatButton--move-text__large {
+    0% {
+        transform: translateX(0px);
+    }
+    30% {
+        transform: translateX(0px);
+    }
+    70% {
+        transform: translateX(calc(-100% + 52px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 52px));
+    }
+}
+
+@keyframes FlatButton--move-text-2__large {
+    0% {
+        transform: translateX(0px);
+    }
+    45% {
+        transform: translateX(calc(-100% + 52px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 52px));
+    }
+}
+
+@keyframes FlatButton--move-text__small {
+    0% {
+        transform: translateX(0px);
+    }
+    30% {
+        transform: translateX(0px);
+    }
+    70% {
+        transform: translateX(calc(-100% + 28px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 28px));
+    }
+}
+
+@keyframes FlatButton--move-text-2__small {
+    0% {
+        transform: translateX(0px);
+    }
+    45% {
+        transform: translateX(calc(-100% + 28px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 28px));
+    }
+}
+@keyframes FlatButton--move-text__large {
+    0% {
+        transform: translateX(0px);
+    }
+    30% {
+        transform: translateX(0px);
+    }
+    70% {
+        transform: translateX(calc(-100% + 52px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 52px));
+    }
+}
+
+@keyframes FlatButton--move-text-2__large {
+    0% {
+        transform: translateX(0px);
+    }
+    45% {
+        transform: translateX(calc(-100% + 52px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 52px));
+    }
+}
+
+
+@keyframes FlatButton--move-text__medium__extra-long {
+    0% {
+        transform: translateX(0px);
+    }
+    20% {
+        transform: translateX(0px);
+    }
+    80% {
+        transform: translateX(calc(-100% + 40px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 40px));
+    }
+}
+
+@keyframes FlatButton--move-text-2__medium__extra-long {
+    0% {
+        transform: translateX(0px);
+    }
+    70% {
+        transform: translateX(calc(-100% + 40px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 40px));
+    }
+}
+
+@keyframes FlatButton--move-text__large__extra-long {
+    0% {
+        transform: translateX(0px);
+    }
+    20% {
+        transform: translateX(0px);
+    }
+    80% {
+        transform: translateX(calc(-100% + 52px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 52px));
+    }
+}
+
+@keyframes FlatButton--move-text-2__large__extra-long {
+    0% {
+        transform: translateX(0px);
+    }
+    70% {
+        transform: translateX(calc(-100% + 52px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 52px));
+    }
+}
+
+@keyframes FlatButton--move-text__small__extra-long {
+    0% {
+        transform: translateX(0px);
+    }
+    20% {
+        transform: translateX(0px);
+    }
+    80% {
+        transform: translateX(calc(-100% + 28px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 28px));
+    }
+}
+
+@keyframes FlatButton--move-text-2__small__extra-long {
+    0% {
+        transform: translateX(0px);
+    }
+    70% {
+        transform: translateX(calc(-100% + 28px));
+    }
+    100% {
+        transform: translateX(calc(-100% + 28px));
+    }
+}
+

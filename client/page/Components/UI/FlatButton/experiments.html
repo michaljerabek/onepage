@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../../../../../public/css/page.css">
+    <link rel="stylesheet" href="../../../../css/colors.css">
+    <link rel="stylesheet" href="../../../../css/settings.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        button {
+            box-shadow: 0px 0px 1px gray;
+            margin: 10px;
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Black.ttf");
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <div id="app"></div>
+
+    <script id="tpl" type="text/html">
+
+        <div>
+
+            {{> FlatButton {
+                    text: "Text tlačítka",
+                    icon: "#icon-x",
+                    state: .activeBtn === "btn1" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn1" ? null: "btn1"
+                }
+            }}
+
+            {{> FlatButton {
+                    text: "Delší text tlačítka",
+                    icon: "#icon-plus",
+                    state: .activeBtn === "btn2" ? "active" : "",
+                    fire: "activeBtn",
+                    event: .activeBtn === "btn2" ? null: "btn2"
+                }
+            }}
+
+            {{> FlatButton {
+                    text: "Tlačítko",
+                    icon: "#icon-maximize",
+                    state: .activeBtn === "btn3" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn3" ? null: "btn3"
+                }
+            }}
+
+
+            {{> FlatButton {
+                    text: "Tlačítko",
+                    icon: "#icon-maximize",
+                    state: .activeBtn === "btn31" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn31" ? null: "btn31",
+                    type: "ok"
+                }
+            }}
+
+
+            {{> FlatButton {
+                    text: "Tlačítko",
+                    icon: "#icon-maximize",
+                    state: .activeBtn === "btn32" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn32" ? null: "btn32",
+                    type: "danger"
+                }
+            }}
+
+            {{> FlatButton {
+                    text: "Tlačítko",
+                    icon: "#icon-maximize",
+                    state: .activeBtn === "btn33" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn33" ? null: "btn33",
+                    type: "default-danger"
+                }
+            }}
+            {{> FlatButton {
+                    text: "Tlačítko",
+                    icon: "#icon-maximize",
+                    state: .activeBtn === "btn34" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn34" ? null: "btn34",
+                    type: "default-2"
+                }
+            }}
+
+            {{> FlatButton {
+                    icon: "#icon-maximize",
+                    state: .activeBtn === "btn35" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn35" ? null: "btn35",
+                    type: "default-2"
+                }
+            }}
+
+            {{> FlatButton {
+                    icon: "#icon-maximize",
+                    state: .activeBtn === "btn36" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn36" ? null: "btn36",
+                    type: "default-2",
+                    size: "large"
+                }
+            }}
+
+            {{> FlatButton {
+                    icon: "#icon-x",
+                    state: .activeBtn === "btn35" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn35" ? null: "btn35",
+                    type: "default-2"
+                }
+            }}
+
+            {{> FlatButton {
+                    icon: "#icon-x",
+                    state: .activeBtn === "btn36" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn36" ? null: "btn36",
+                    type: "default-2",
+                    size: "large"
+                }
+            }}
+            {{> FlatButton {
+                    icon: "#icon-up-down",
+                    state: .activeBtn === "btn35" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn35" ? null: "btn35",
+                    type: "default-2"
+                }
+            }}
+
+            {{> FlatButton {
+                    icon: "#icon-up-down",
+                    state: .activeBtn === "btn36" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn36" ? null: "btn36",
+                    type: "default-2",
+                    size: "large"
+                }
+            }}
+
+            {{> FlatButton {
+                    icon: "#icon-maximize",
+                    text: "Tlačítko",
+                    state: .activeBtn === "btn35" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn35" ? null: "btn35",
+                    type: "default-2",
+                    size: "small"
+                }
+            }}
+
+            {{> FlatButton {
+                    icon: "#icon-maximize",
+                    state: .activeBtn === "btn36" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn36" ? null: "btn36",
+                    type: "default-2",
+                    size: "small"
+                }
+            }}
+
+            {{> FlatButton {
+                    icon: "#icon-x",
+                    text: "Malé tlačítko",
+                    state: .activeBtn === "btn35" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn35" ? null: "btn35",
+                    type: "default",
+                    size: "small"
+                }
+            }}
+
+            {{> FlatButton {
+                    icon: "#icon-x",
+                    state: .activeBtn === "btn36" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn36" ? null: "btn36",
+                    type: "default",
+                    size: "small"
+                }
+            }}
+
+            {{> FlatButton {
+                    text: "Tlačítko",
+                    state: .activeBtn === "btn35" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn35" ? null: "btn35",
+                    type: "default",
+                    size: "small"
+                }
+            }}
+
+            {{> FlatButton {
+                    text: "OK",
+                    state: .activeBtn === "btn36" ? "active" : "",
+                    set: "activeBtn",
+                    value: .activeBtn === "btn36" ? null: "btn36",
+                    type: "default",
+                    size: "small"
+                }
+            }}
+
+            {{> FlatButton {text: "Velké tlačítko", icon: "#icon-folder", size: "large", id: "btn4", state: .activeBtn } }}
+            {{> FlatButton {text: "Tlačítko", icon: "#icon-folder", size: "large", id: "btn5", state: .activeBtn } }}
+            {{> FlatButton {text: "Tlačítko", icon: "#icon-x", size: "large", id: "btn6", state: .activeBtn } }}
+
+            {{> FlatButton {text: "Tlačítko", id: "btn7", state: .activeBtn } }}
+            {{> FlatButton {text: "Ano", id: "btn8", state: .activeBtn } }}
+            {{> FlatButton {text: "Ne", id: "btn9", state: .activeBtn } }}
+            {{> FlatButton {text: "Tlačítko", size: "large", id: "btn10", state: .activeBtn } }}
+            {{> FlatButton {text: "Ano", size: "large", id: "btn11", state: .activeBtn } }}
+            {{> FlatButton {text: "Ne", size: "large", id: "btn12", state: .activeBtn } }}
+
+        </div>
+
+    </script>
+
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
+    <script src="../../../../libs/ractive-events-tap.umd.js"></script>
+
+    <script>
+
+        $.get("../../../../../public/img/icons/app/symbol/svg/sprite.symbol.svg", function (svg) {
+
+            $("body").append(svg.firstChild);
+
+        });
+
+        var app;
+
+        $.get("index.tpl", function (template) {
+
+            app = new Ractive({
+                el: "#app",
+                template: "#tpl",
+
+                components: {
+
+                },
+
+                partials: {
+                    FlatButton: template
+                },
+
+                data: {
+
+                },
+
+                onconfig: function () {
+                    this.on("activeBtn", function () {
+                        console.log(arguments);
+                    });
+                }
+            });
+
+        });
+
+    </script>
+
+
+</body>
+</html>

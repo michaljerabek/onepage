@@ -1,4 +1,4 @@
-{{#if .openPageSectionSettings === 'edit1'}}
+{{#if .openPageSectionSettings === 'background'}}
 <PageSectionSettings data="{{section}}">
     <div contenteditable="true" value="{{.data.name}}"></div>
 </PageSectionSettings>

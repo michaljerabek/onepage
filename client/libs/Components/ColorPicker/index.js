@@ -460,125 +460,143 @@
                 return;
             }
 
-            var movedToPosition = false,
+            var moveData = {};
 
-                selector              = type === "SV" ? ".ColorPicker--SV-selector" : ".ColorPicker--H-selector",
-                moveToPositionTimeout = type === "SV" ? "moveSVToPositionTimeout"   : "moveHToPositionTimeout",
-                moveSelectorFn        = type === "SV" ? "moveSVSelector"            : "moveHSelector",
-                dataSelector          = type === "SV" ? "SVSelector"                : "HSelector",
+            moveData.type = type;
 
-                $selector = $(eventData.target).closest(selector),
+            moveData.movedToPosition = false;
 
-                selectorPosition = $selector.position(),
+            moveData.selector              = type === "SV" ? ".ColorPicker--SV-selector" : ".ColorPicker--H-selector";
+            moveData.moveToPositionTimeout = type === "SV" ? "moveSVToPositionTimeout"   : "moveHToPositionTimeout";
+            moveData.moveSelectorFn        = type === "SV" ? "moveSVSelector"            : "moveHSelector";
+            moveData.dataSelector          = type === "SV" ? "SVSelector"                : "HSelector";
 
-                initPositions = {};
+            moveData.$selector = $(eventData.target).closest(moveData.selector);
 
-            initPositions.pointerY = eventData.clientY;
-            initPositions.pointerX = eventData.clientX;
+            moveData.selectorPosition = moveData.$selector.position();
 
-            initPositions.handleY = this.get(dataSelector + ".y");
+            moveData.initPositions = {};
+
+            moveData.initPositions.pointerY = eventData.clientY;
+            moveData.initPositions.pointerX = eventData.clientX;
+
+            moveData.initPositions.handleY = this.get(moveData.dataSelector + ".y");
 
             if (type === "SV") {
 
-                initPositions.handleX = this.get(dataSelector + ".x");
+                moveData.initPositions.handleX = this.get(moveData.dataSelector + ".x");
             }
 
-            initPositions.startOffsetX = eventData.offsetX;
-            initPositions.startOffsetY = eventData.offsetY;
+            moveData.initPositions.startOffsetX = eventData.offsetX;
+            moveData.initPositions.startOffsetY = eventData.offsetY;
 
             //událost vznikla na selektoru - je potřeba upravit pozici
-            if ($selector.length) {
+            if (moveData.$selector.length) {
 
-                initPositions.startOffsetX += selectorPosition.left;
-                initPositions.startOffsetY += selectorPosition.top;
+                moveData.initPositions.startOffsetX += moveData.selectorPosition.left;
+                moveData.initPositions.startOffsetY += moveData.selectorPosition.top;
             }
 
-            var moveToStartEventPosition = function (animate, byEndEvent) {
+            moveData.moveToStartEventPosition = function (animate, byEndEvent) {
 
-                var args = [initPositions.startOffsetY, animate];
+                var args = [moveData.initPositions.startOffsetY, animate];
 
                 if (type === "SV") {
 
-                    args.unshift(initPositions.startOffsetX);
+                    args.unshift(moveData.initPositions.startOffsetX);
                 }
 
-                this[moveSelectorFn].apply(this, args);
+                this[moveData.moveSelectorFn].apply(this, args);
 
                 if (!byEndEvent) {
 
                     if (type === "SV") {
 
-                        initPositions.handleY = this.getVSelectorPosition();
-                        initPositions.handleX = this.getSSelectorPosition();
+                        moveData.initPositions.handleY = this.getVSelectorPosition();
+                        moveData.initPositions.handleX = this.getSSelectorPosition();
 
                     } else {
 
-                        initPositions.handleY = this.getHSelectorPosition();
+                        moveData.initPositions.handleY = this.getHSelectorPosition();
                     }
                 }
 
-                movedToPosition = true;
+                moveData.movedToPosition = true;
 
             }.bind(this);
 
-            clearTimeout(this[moveToPositionTimeout]);
+            clearTimeout(this[moveData.moveToPositionTimeout]);
 
             //pokud uživatel nepohne myší/prstem => přesunout na místo
-            this[moveToPositionTimeout] = setTimeout(moveToStartEventPosition.bind(this, true), eventData.isTouchEvent ? 200 : 100);
+            this[moveData.moveToPositionTimeout] = setTimeout(moveData.moveToStartEventPosition.bind(this, true), eventData.isTouchEvent ? 200 : 100);
 
-            this.$self
-                .off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS)
-                .on("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS, function (e) {
+            if (eventData.type === "mousedown") {
 
-                    var eventData = U.eventData(e);
+                Ractive.$win
+                    .off("mousemove." + this.EVENT_NS + " mouseup." + this.EVENT_NS)
+                    .on( "mousemove." + this.EVENT_NS, this.handlePointerMoveEvent.bind(this, moveData))
+                    .one("mouseup."   + this.EVENT_NS, this.handlePointerEndEvent.bind(this, moveData));
 
-                    if (eventData.pointers > 1) {
+            } else {
 
-                        clearTimeout(this[moveToPositionTimeout]);
-
-                        this.$self.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS + " mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS)
-
-                        return;
-                    }
-
-                    if (!movedToPosition) {
-
-                        clearTimeout(this[moveToPositionTimeout]);
-
-                        //nejdříve je potřeba přesunout selektor na pozici myši/prstu
-                        moveToStartEventPosition();
-                    }
-
-                    var args = [
-                        initPositions.handleY + eventData.clientY - initPositions.pointerY
-                    ];
-
-                    if (type === "SV") {
-
-                        args.unshift(initPositions.handleX + eventData.clientX - initPositions.pointerX);
-                    }
-
-                    this[moveSelectorFn].apply(this, args);
-
-                    return false;
-
-                }.bind(this))
-                .one("mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS, function (e) {
-
-                    if (!movedToPosition) {
-
-                        clearTimeout(this[moveToPositionTimeout]);
-
-                        moveToStartEventPosition(true, true);
-                    }
-
-                    this.$self.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
-
-                    return false;
-
-                }.bind(this));
+                this.$self
+                    .off("touchmove." + this.EVENT_NS + " touchend." + this.EVENT_NS)
+                    .on( "touchmove." + this.EVENT_NS, this.handlePointerMoveEvent.bind(this, moveData))
+                    .one("touchend."  + this.EVENT_NS, this.handlePointerEndEvent.bind(this, moveData));
+            }
 
             eventData.preventDefault();
+        },
+
+        handlePointerMoveEvent: function (moveData, e) {
+
+            var eventData = U.eventData(e);
+
+            if (eventData.pointers > 1) {
+
+                clearTimeout(this[moveData.moveToPositionTimeout]);
+
+                this.$self.off("touchmove." + this.EVENT_NS + " touchend." + this.EVENT_NS);
+                Ractive.$win.off("mousemove." + this.EVENT_NS + " mouseup." + this.EVENT_NS);
+
+                return;
+            }
+
+            if (!moveData.movedToPosition) {
+
+                clearTimeout(this[moveData.moveToPositionTimeout]);
+
+                //nejdříve je potřeba přesunout selektor na pozici myši/prstu
+                moveData.moveToStartEventPosition();
+            }
+
+            var args = [
+                moveData.initPositions.handleY + eventData.clientY - moveData.initPositions.pointerY
+            ];
+
+            if (moveData.type === "SV") {
+
+                args.unshift(moveData.initPositions.handleX + eventData.clientX - moveData.initPositions.pointerX);
+            }
+
+            this[moveData.moveSelectorFn].apply(this, args);
+
+            return false;
+        },
+
+        handlePointerEndEvent: function (moveData) {
+
+            if (!moveData.movedToPosition) {
+
+                clearTimeout(this[moveData.moveToPositionTimeout]);
+
+                moveData.moveToStartEventPosition(true, true);
+            }
+
+            this.$self.off("touchmove." + this.EVENT_NS);
+            Ractive.$win.off("mousemove." + this.EVENT_NS);
+
+            return false;
         },
 
         validateRGB: function (color) {

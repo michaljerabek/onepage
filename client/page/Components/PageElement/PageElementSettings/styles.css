@@ -177,28 +177,28 @@
 .csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__top:hover ~ .E_PageElementSettings--resizer-hover {
-    border-top-color: red;
+    border-top-color: var(--color-selected);
     border-top-width: 1px;
 }
 
 .csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__bottom:hover ~ .E_PageElementSettings--resizer-hover {
-    border-bottom-color: red;
+    border-bottom-color: var(--color-selected);
     border-bottom-width: 1px;
 }
 
 .csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__left:hover ~ .E_PageElementSettings--resizer-hover {
-    border-left-color: red;
+    border-left-color: var(--color-selected);
     border-left-width: 1px;
 }
 
 .csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__right:hover ~ .E_PageElementSettings--resizer-hover {
-    border-right-color: red;
+    border-right-color: var(--color-selected);
     border-right-width: 1px;
 }
 
@@ -208,7 +208,7 @@
 .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__top[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-top-color: orange;
+    border-top-color: var(--color-ok);
     border-top-width: 1px;
 }
 
@@ -218,7 +218,7 @@
 .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__bottom[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-bottom-color: orange;
+    border-bottom-color: var(--color-ok);
     border-bottom-width: 1px;
 }
 
@@ -228,7 +228,7 @@
 .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__left[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-left-color: orange;
+    border-left-color: var(--color-ok);
     border-left-width: 1px;
 }
 
@@ -238,7 +238,7 @@
 .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
 .csspointerevents .E_PageElementSettings--resizer__right[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-right-color: orange;
+    border-right-color: var(--color-ok);
     border-right-width: 1px;
 }
 
@@ -374,7 +374,6 @@
 
     height: 24px;
     width: 100%;
-    padding-right: 48px;
 
     color: #fff;
     background-color: #404040;
@@ -383,15 +382,26 @@
 }
 
 .E_PageElementSettings--title {
-    font-size: 12px;
-    text-overflow: ellipsis;
+    font-family: "Encode Sans", sans-serif;
+    font-size: 11px;
     white-space: nowrap;
+
+    position: relative;
 
     padding: 0 8px;
 
-    cursor: move;
+    color: #f5f5f5;
 
-    overflow: hidden;
+    cursor: move;
+    display: block;
+}
+
+.E_PageElementSettings--title-self + .E_PageElementSettings--title-section:before {
+    content: " — ";
+}
+
+.E_PageElementSettings--title-section {
+    opacity: 0.75;
 }
 
 @media (pointer: coarse) {
@@ -400,58 +410,106 @@
         line-height: 32px;
 
         height: 32px;
-        padding-right: 64px;
     }
 
     .E_PageElementSettings--title {
-        font-size: 14px;
-
-        padding: 0 12px;
+        font-size: 13px;
     }
 }
 
 .E_PageElementSettings--min-max,
 .E_PageElementSettings--close {
-    line-height: 24px;
-    text-align: center;
-
-    z-index: 10;
-    position:absolute;
+    z-index: 110;
+    position: absolute;
     top: 0px;
     right: 0px;
 
     padding: 0;
-    width: 100%;
+    width: 20px;
+    height: 24px;
+
+    background-color: #404040;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.E_PageElementSettings--close {
+    padding-right: 4px;
+
+    border-top-right-radius: 4px;
+}
+
+.E_PageElementSettings--min-max {
+    padding-left: 2px;
+}
+
+.E_PageElementSettings--min-max:after {
+    content: "";
+
+    z-index: 120;
+    position: absolute;
+    top: 0px;
+    right: 100%;
+
+    width: 40px;
     height: 100%;
-    min-height: 24px;
-    max-height: 24px;
-    min-width: 24px;
-    max-width: 24px;
 
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    border-radius: 0px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    background-image: linear-gradient(to left, #404040, rgba(64, 64, 64, 0));
 
-    display: block;
+    pointer-events: none;
+}
+
+.E_PageElementSettings--min-max svg,
+.E_PageElementSettings--close svg {
+    width: 10px;
+    height: 10px;
+
+    fill: rgba(255, 255, 255, 0.75);
+
+    transition: var(--default-transition);
+}
+
+.E_PageElementSettings--min-max:hover svg,
+.E_PageElementSettings--close:hover svg {
+    fill: #fff;
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageElementSettings--min-max:active svg,
+.E_PageElementSettings--close:active svg {
+    transform: scale(0.9);
+
+    transition: var(--default-transition-active);
 }
 
 @media (pointer: coarse) {
 
     .E_PageElementSettings--min-max,
     .E_PageElementSettings--close {
-        min-height: 32px;
-        max-height: 32px;
-        min-width: 32px;
-        max-width: 32px;
+        height: 32px;
+        width: 32px;
+    }
+
+    .E_PageElementSettings--close {
+        padding-left: 4px;
+    }
+
+    .E_PageElementSettings--min-max {
+        padding-left: 12px;
+    }
+
+    .E_PageElementSettings--min-max svg,
+    .E_PageElementSettings--close svg {
+        height: 12px;
+        width: 12px;
     }
 }
 
 .E_PageElementSettings--min-max {
-    right: 24px;
+    right: 20px;
 
     cursor: default;
 }
@@ -463,23 +521,7 @@
     }
 }
 
-.E_PageElementSettings--min-max__max {
-    background-color: orange;
+.E_PageElementSettings--min-max__max:hover svg,
+.E_PageElementSettings--min-max__max svg {
+    fill: var(--color-selected);
 }
-
-/*
-.test {
-    max-width: 240px;
-    max-height: 280px;
-    overflow: hidden;
-}
-
-.fll {
-    float: left;
-    width: 50%;
-    min-width: 120px;
-    max-width: 200px;
-    height: 100px;
-    border: 1px solid #000;
-}
-*/

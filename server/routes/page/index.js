@@ -31,7 +31,8 @@ router.get("/", function (req, res) {
         ractiveHtml: App.toHTML(),
         ractiveCss: App.toCSS(),
         ractiveData: JSON.stringify(data),
-        env: "dev"
+        env: "dev",
+        editMode: req.query.editMode !== undefined
     });
 });
 

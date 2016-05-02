@@ -6,13 +6,15 @@
 
     <div class="E_BackgroundImageSettings--background-settings E_PageSectionSettings--scrollable">
 
-       <div class="E_PageSectionSettings--scrolling-content">
+        <div class="E_PageSectionSettings--scrolling-content">
 
             <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--source">
 
                 <button type="button" on-tap="set('data.backgroundImage.src', '')">Odstranit obrázek</button>
 
             </div>
+
+            <div class="E_PageSectionSettings--divider"></div>
 
             <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--display">
                 <h2>Zbrazení</h2>
