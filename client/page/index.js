@@ -61,9 +61,10 @@ module.exports = Ractive.extend({
         PageSectionB: "<PageSectionB section='{{this}}' />",
         PageSectionC: "<PageSectionC section='{{this}}' />",
 
-        pageMenu: require("./PageMenu/index.tpl"),
+        pageMenu: Ractive.EDIT_MODE ? require("./PageMenu/index.tpl") : null,
 
-        FlatButton: require("./Components/UI/FlatButton/index.tpl")
+        FlatButton: Ractive.EDIT_MODE ? require("./Components/UI/FlatButton/index.tpl") : null,
+        Button: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Button/index.tpl") : null
     },
 
     data: function () {

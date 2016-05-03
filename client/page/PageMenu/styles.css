@@ -512,6 +512,8 @@ body:not(.cursor-grabbing) .E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_P
     text-align: center;
     line-height: 32px;
 
+    position: relative;
+
     width: 32px;
     height: 32px;
 
@@ -519,9 +521,7 @@ body:not(.cursor-grabbing) .E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_P
     border-radius: 50%;
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
 
     transition: inherit;
 }
@@ -538,8 +538,12 @@ body:not(.cursor-grabbing) .E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_P
 }
 
 .E_PageMenu--position-switcher .icon svg {
-    width: 16px;
-    height: 16px;
+    margin: auto;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 
     fill: var(--color-flat-button-icon);
 
@@ -554,12 +558,70 @@ body:not(.cursor-grabbing) .E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_P
     transition: var(--default-transition-hover);
 }
 
-.E_PageMenu--position-switcher__top svg {
+.E_PageMenu--icon__arrow {
+    width: 16px;
+    height: 16px;
+}
+
+.E_PageMenu--icon__touch {
+    width: 20px;
+    height: 20px;
+
+    display: none;
+}
+
+.E_PageMenu--position-switcher__top .E_PageMenu--icon__arrow {
     transform: translateY(-1px) rotate(-90deg);
 }
 
-.E_PageMenu--position-switcher__bottom svg {
+.E_PageMenu--position-switcher__bottom .E_PageMenu--icon__arrow {
     transform: translateY(1px) rotate(90deg);
+}
+
+.E_PageMenu--position-switcher__top .E_PageMenu--icon__touch {
+    transform: translateY(1px);
+}
+
+.E_PageMenu:not(.E_PageMenu__css-fixed):hover .E_PageMenu--icon__touch {
+    opacity: 0;
+
+    display: block;
+
+    animation: E_PageMenu--show-icon__touch 2s linear 1s forwards;
+}
+
+.E_PageMenu:not(.E_PageMenu__css-fixed):hover .E_PageMenu--icon__arrow {
+    animation: E_PageMenu--hide-icon__arrow 3s linear 0.5s forwards;
+}
+
+@keyframes E_PageMenu--hide-icon__arrow {
+    0% {
+        opacity: 1;
+    }
+    16.666% {
+        opacity: 0;
+    }
+    83.333% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes E_PageMenu--show-icon__touch {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /*--------------------------------------------------------------------*/

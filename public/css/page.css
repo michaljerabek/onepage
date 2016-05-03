@@ -1370,7 +1370,7 @@ body {
 }
 
 .medium-editor-toolbar li button:not(:disabled):hover {
-    background-color: #ffede7;
+    background-color: #fff3ef;
 }
 
 .medium-editor-toolbar li button:not(:disabled):hover:after {
@@ -4441,6 +4441,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     text-align: center;
     line-height: 32px;
 
+    position: relative;
+
     width: 32px;
     height: 32px;
 
@@ -4452,25 +4454,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
 
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    display: block;
 
     -webkit-transition: inherit;
 
@@ -4500,8 +4484,12 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_PageMenu--position-switcher .icon svg {
-    width: 16px;
-    height: 16px;
+    margin: auto;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 
     fill: #5c5c5c;
 
@@ -4536,7 +4524,19 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 }
 
-.E_PageMenu--position-switcher__top svg {
+.E_PageMenu--icon__arrow {
+    width: 16px;
+    height: 16px;
+}
+
+.E_PageMenu--icon__touch {
+    width: 20px;
+    height: 20px;
+
+    display: none;
+}
+
+.E_PageMenu--position-switcher__top .E_PageMenu--icon__arrow {
     -webkit-transform: translateY(-1px) rotate(-90deg);
        -moz-transform: translateY(-1px) rotate(-90deg);
         -ms-transform: translateY(-1px) rotate(-90deg);
@@ -4544,12 +4544,161 @@ ium-editor-toolbar li button:disabled:not(:hover) {
             transform: translateY(-1px) rotate(-90deg);
 }
 
-.E_PageMenu--position-switcher__bottom svg {
+.E_PageMenu--position-switcher__bottom .E_PageMenu--icon__arrow {
     -webkit-transform: translateY(1px) rotate(90deg);
        -moz-transform: translateY(1px) rotate(90deg);
         -ms-transform: translateY(1px) rotate(90deg);
          -o-transform: translateY(1px) rotate(90deg);
             transform: translateY(1px) rotate(90deg);
+}
+
+.E_PageMenu--position-switcher__top .E_PageMenu--icon__touch {
+    -webkit-transform: translateY(1px);
+       -moz-transform: translateY(1px);
+        -ms-transform: translateY(1px);
+         -o-transform: translateY(1px);
+            transform: translateY(1px);
+}
+
+.E_PageMenu:not(.E_PageMenu__css-fixed):hover .E_PageMenu--icon__touch {
+    opacity: 0;
+
+    display: block;
+
+    -webkit-animation: E_PageMenu--show-icon__touch 2s linear 1s forwards;
+
+       -moz-animation: E_PageMenu--show-icon__touch 2s linear 1s forwards;
+
+         -o-animation: E_PageMenu--show-icon__touch 2s linear 1s forwards;
+
+            animation: E_PageMenu--show-icon__touch 2s linear 1s forwards;
+}
+
+.E_PageMenu:not(.E_PageMenu__css-fixed):hover .E_PageMenu--icon__arrow {
+    -webkit-animation: E_PageMenu--hide-icon__arrow 3s linear 0.5s forwards;
+       -moz-animation: E_PageMenu--hide-icon__arrow 3s linear 0.5s forwards;
+         -o-animation: E_PageMenu--hide-icon__arrow 3s linear 0.5s forwards;
+            animation: E_PageMenu--hide-icon__arrow 3s linear 0.5s forwards;
+}
+
+@-webkit-keyframes E_PageMenu--hide-icon__arrow {
+    0% {
+        opacity: 1;
+    }
+    16.666% {
+        opacity: 0;
+    }
+    83.333% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes E_PageMenu--hide-icon__arrow {
+    0% {
+        opacity: 1;
+    }
+    16.666% {
+        opacity: 0;
+    }
+    83.333% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes E_PageMenu--hide-icon__arrow {
+    0% {
+        opacity: 1;
+    }
+    16.666% {
+        opacity: 0;
+    }
+    83.333% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes E_PageMenu--hide-icon__arrow {
+    0% {
+        opacity: 1;
+    }
+    16.666% {
+        opacity: 0;
+    }
+    83.333% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes E_PageMenu--show-icon__touch {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes E_PageMenu--show-icon__touch {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-o-keyframes E_PageMenu--show-icon__touch {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes E_PageMenu--show-icon__touch {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /*--------------------------------------------------------------------*/
@@ -9450,6 +9599,8 @@ body > .E_NewPageSectionSelector--clone .type {
 }
 
 .E_BackgroundImageSettings--background-settings {
+    text-align: left;
+
     padding: 12px 0;
 }
 
@@ -9483,668 +9634,6 @@ body > .E_NewPageSectionSelector--clone .type {
         -ms-flex-preferred-size: 75%;
 
             flex-basis: 75%;
-}
-
-/*====================================================================*/
-/*--------------------------- COLOR PICKER ---------------------------*/
-/*====================================================================*/
-
-.ColorPicker {
-    line-height: 1;
-
-    width: 100%;
-    padding: 12px 36px;
-
-    overflow: hidden;
-}
-
-.ColorPicker--wrapper-2 {
-    margin-left: -24px;
-    margin-right: -48px;
-    margin-bottom: -16px;
-
-    min-width: 100%;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-       -moz-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-}
-
-.ColorPicker *:not(input) {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    cursor: default;
-}
-
-/*Iframe používaný pro nalezení barev z obrázku.*/
-.VibrantCanvas {
-    z-index: -1;
-    position: absolute;
-    top: -99999px;
-    left: -99999px;
-
-    max-width: 0px;
-    max-height: 0px;
-
-    border: none;
-    opacity: 0;
-
-    visibility: hidden;
-}
-
-/*--------------------------------------------------------------------*/
-/*---------------------------- COLOR BOXES ---------------------------*/
-/*--------------------------------------------------------------------*/
-
-.ColorPicker--widget-wrapper {
-    margin-bottom: 8px;
-    margin-right: 24px;
-
-    -webkit-flex-basis: 220px;
-
-        -ms-flex-preferred-size: 220px;
-
-            flex-basis: 220px;
-    -webkit-flex-shrink: 1;
-        -ms-flex-negative: 1;
-            flex-shrink: 1;
-    -webkit-box-flex: 0;
-    -webkit-flex-grow: 0;
-       -moz-box-flex: 0;
-        -ms-flex-positive: 0;
-            flex-grow: 0;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-}
-
-.ColorPicker--HSV-wrapper {
-    font-size: 0;
-
-    width: 100%;
-}
-
-/*---------------------------- BOXES ----------------------------*/
-
-.ColorPicker--SV-box {
-    vertical-align: top;
-
-    position: relative;
-    margin-bottom: 8px;
-
-    width: -webkit-calc(100% - 12px - 12px);
-
-    width: -moz-calc(100% - 12px - 12px);
-
-    width: calc(100% - 12px - 12px);
-    height: 0px;
-    padding-bottom: -webkit-calc(100% - 8px - 14px - 1px - 1px);
-    padding-bottom: -moz-calc(100% - 8px - 14px - 1px - 1px);
-    padding-bottom: calc(100% - 8px - 14px - 1px - 1px);
-
-    background-image:
-        -webkit-gradient(
-            linear,
-            left top, left bottom,
-            from(rgba(0, 0, 0, 0)),
-            to(rgba(0, 0, 0, 1))
-        ),
-        -webkit-gradient(
-            linear,
-            left top, right top,
-            from(rgb(255, 255, 255)),
-            to(rgb(255,   0,   0))
-        );
-
-    background-image:
-        -webkit-linear-gradient(
-            top,
-            rgba(0, 0, 0, 0),
-            rgba(0, 0, 0, 1)
-        ),
-        -webkit-linear-gradient(
-            left,
-            rgb(255, 255, 255),
-            rgb(255,   0,   0)
-        );
-
-    background-image:
-        -moz-linear-gradient(
-            top,
-            rgba(0, 0, 0, 0),
-            rgba(0, 0, 0, 1)
-        ),
-        -moz-linear-gradient(
-            left,
-            rgb(255, 255, 255),
-            rgb(255,   0,   0)
-        );
-
-    background-image:
-        -o-linear-gradient(
-            top,
-            rgba(0, 0, 0, 0),
-            rgba(0, 0, 0, 1)
-        ),
-        -o-linear-gradient(
-            left,
-            rgb(255, 255, 255),
-            rgb(255,   0,   0)
-        );
-
-    background-image:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0),
-            rgba(0, 0, 0, 1)
-        ),
-        linear-gradient(
-            to right,
-            rgb(255, 255, 255),
-            rgb(255,   0,   0)
-        );
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    -webkit-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
-        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
-        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
-        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
-
-    display: inline-block;
-    will-change: background-image, box-shadow;
-}
-
-.ColorPicker--H-box {
-    position: relative;
-    margin-left: 12px;
-
-    width: 12px;
-    min-width: 12px;
-    height: 0;
-    padding-bottom: -webkit-calc(100% - 8px - 14px - 1px - 1px);
-    padding-bottom: -moz-calc(100% - 8px - 14px - 1px - 1px);
-    padding-bottom: calc(100% - 8px - 14px - 1px - 1px);
-
-    background-image:
-        -webkit-gradient(
-            linear,
-            left bottom, left top,
-            color-stop(0.00%, #ff0000),
-            color-stop(16.67%, #ffff00),
-            color-stop(33.33%, #00ff00),
-            color-stop(50.00%, #00ffff),
-            color-stop(66.67%, #0000ff),
-            color-stop(83.33%, #ff00ff),
-            color-stop(100.00%, #ff0000)
-        );
-
-    background-image:
-        -webkit-linear-gradient(
-            bottom,
-            #ff0000   0.00%,
-            #ffff00  16.67%,
-            #00ff00  33.33%,
-            #00ffff  50.00%,
-            #0000ff  66.67%,
-            #ff00ff  83.33%,
-            #ff0000 100.00%
-        );
-
-    background-image:
-        -moz-linear-gradient(
-            bottom,
-            #ff0000   0.00%,
-            #ffff00  16.67%,
-            #00ff00  33.33%,
-            #00ffff  50.00%,
-            #0000ff  66.67%,
-            #ff00ff  83.33%,
-            #ff0000 100.00%
-        );
-
-    background-image:
-        -o-linear-gradient(
-            bottom,
-            #ff0000   0.00%,
-            #ffff00  16.67%,
-            #00ff00  33.33%,
-            #00ffff  50.00%,
-            #0000ff  66.67%,
-            #ff00ff  83.33%,
-            #ff0000 100.00%
-        );
-
-    background-image:
-        linear-gradient(
-            to top,
-            #ff0000   0.00%,
-            #ffff00  16.67%,
-            #00ff00  33.33%,
-            #00ffff  50.00%,
-            #0000ff  66.67%,
-            #ff00ff  83.33%,
-            #ff0000 100.00%
-        );
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    -webkit-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
-        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
-        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
-        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
-
-    display: inline-block;
-    will-change: box-shadow;
-}
-
-.ColorPicker--H-box:before, .ColorPicker--H-box:after {
-    content: "";
-
-    position: absolute;
-    top: -1px;
-
-    width: 9px;
-    height: -webkit-calc(100% + 2px);
-    height: -moz-calc(100% + 2px);
-    height: calc(100% + 2px);
-}
-
-.ColorPicker--H-box:before {
-    left: -9px;
-}
-
-.ColorPicker--H-box:after {
-    left: 12px;
-}
-
-/*---------------------------- SELECTORS ----------------------------*/
-
-.ColorPicker--SV-selector, .ColorPicker--H-selector {
-    position: absolute;
-
-    will-change: transform, box-shadow;
-    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -webkit-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -webkit-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    -moz-transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -moz-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    -o-transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -o-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -webkit-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -moz-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -o-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-}
-
-.ColorPicker--SV-selector {
-    top: -8px;
-    left: -8px;
-    -webkit-transform: translate(0px, 0px);
-       -moz-transform: translate(0px, 0px);
-        -ms-transform: translate(0px, 0px);
-         -o-transform: translate(0px, 0px);
-            transform: translate(0px, 0px);
-
-    width: 16px;
-    height: 16px;
-
-    -webkit-border-radius: 50%;
-
-       -moz-border-radius: 50%;
-
-            border-radius: 50%;
-    border: 3px solid #fcfcfc;
-    -webkit-box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
-        1px 1px 4px rgba(34, 34, 34, 0.35);
-       -moz-box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
-        1px 1px 4px rgba(34, 34, 34, 0.35);
-            box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
-        1px 1px 4px rgba(34, 34, 34, 0.35);
-}
-
-.ColorPicker--H-selector {
-    top: -5px;
-    left: -3px;
-    -webkit-transform: translateY(0px);
-       -moz-transform: translateY(0px);
-        -ms-transform: translateY(0px);
-         -o-transform: translateY(0px);
-            transform: translateY(0px);
-
-    width: 18px;
-    height: 10px;
-
-    border: 3px solid #fcfcfc;
-    -webkit-border-radius: 2px;
-       -moz-border-radius: 2px;
-            border-radius: 2px;
-    -webkit-box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
-        1px 1px 4px rgba(34, 34, 34, 0.35);
-       -moz-box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
-        1px 1px 4px rgba(34, 34, 34, 0.35);
-            box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
-        1px 1px 4px rgba(34, 34, 34, 0.35);
-}
-
-.ColorPicker--H-selector:before, .ColorPicker--H-selector:after, .ColorPicker--SV-selector:before, .ColorPicker--SV-selector:after {
-    content: "";
-
-    position: absolute;
-    top: -3px;
-    left: -3px;
-
-    width: -webkit-calc(100% + 6px);
-
-    width: -moz-calc(100% + 6px);
-
-    width: calc(100% + 6px);
-    height: -webkit-calc(100% + 6px);
-    height: -moz-calc(100% + 6px);
-    height: calc(100% + 6px);
-
-    -webkit-box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.35),
-        inset 1px 1px 0px rgba(0, 0, 0, 0);
-
-       -moz-box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.35),
-        inset 1px 1px 0px rgba(0, 0, 0, 0);
-
-            box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.35),
-        inset 1px 1px 0px rgba(0, 0, 0, 0);
-    -webkit-border-radius: inherit;
-       -moz-border-radius: inherit;
-            border-radius: inherit;
-
-    pointer-events: none;
-}
-
-.ColorPicker--H-selector:before, .ColorPicker--SV-selector:before {
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.35),
-        1px 1px 0px rgba(0, 0, 0, 0);
-
-       -moz-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.35),
-        1px 1px 0px rgba(0, 0, 0, 0);
-
-            box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.35),
-        1px 1px 0px rgba(0, 0, 0, 0);
-}
-
-/*--------------------------------------------------------------------*/
-/*------------------------------ INPUTS ------------------------------*/
-/*--------------------------------------------------------------------*/
-
-.ColorPicker--input {
-    width: 100%;
-    padding: 0 8px;
-}
-
-.ColorPicker--input-wrapper-2 {
-    margin-right: -16px;
-    margin-left: -8px;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-}
-
-/*---------------------------- TYPE ----------------------------*/
-
-.ColorPicker--type-selector-wrapper {
-    margin-bottom: 4px;
-    margin-right: 8px;
-
-    width: 64px;
-    min-width: 64px;
-
-    -webkit-box-flex: 1;
-
-    -webkit-flex-grow: 1;
-
-       -moz-box-flex: 1;
-
-        -ms-flex-positive: 1;
-
-            flex-grow: 1;
-    -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
-            flex-shrink: 0;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.ColorPicker--type-selector {
-    line-height: 32px;
-
-    height: 32px;
-    padding: 0 4px;
-
-    -webkit-box-flex: 1;
-
-    -webkit-flex-grow: 1;
-
-       -moz-box-flex: 1;
-
-        -ms-flex-positive: 1;
-
-            flex-grow: 1;
-}
-
-/*---------------------------- TEXT ----------------------------*/
-
-.ColorPicker--input-text-wrapper {
-    margin-right: 8px;
-
-    -webkit-flex-basis: -webkit-calc(100% - 64px - 8px - 8px);
-
-        -ms-flex-preferred-size: calc(100% - 64px - 8px - 8px);
-
-            flex-basis: -moz-calc(100% - 64px - 8px - 8px);
-
-            flex-basis: calc(100% - 64px - 8px - 8px);
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.ColorPicker--input-text {
-    line-height: 32px;
-
-    margin-bottom: 8px;
-
-    min-width: 44px;
-    width: 100%;
-
-    height: 32px;
-    padding: 0 8px;
-
-    -webkit-flex-basis: -webkit-calc(100% - 4px);
-
-        -ms-flex-preferred-size: calc(100% - 4px);
-
-            flex-basis: -moz-calc(100% - 4px);
-
-            flex-basis: calc(100% - 4px);
-    -webkit-flex-shrink: 1;
-        -ms-flex-negative: 1;
-            flex-shrink: 1;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-}
-
-.ColorPicker--input-text:not(:first-child) {
-    margin-left: 4px;
-}
-
-/*====================================================================*/
-/*---------------------------- PROGRESSBAR ---------------------------*/
-/*====================================================================*/
-
-.E_ProgressBar {
-    z-index: 400;
-    position:absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-
-    opacity: 0;
-
-    will-change: opacity;
-    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
-        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-}
-
-.E_ProgressBar__active {
-    opacity: 1;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.E_ProgressBar .E_ProgressBar--progress {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-
-    height: 1px;
-    width: 0%;
-
-    background-color: deepskyblue;
-    -webkit-box-shadow: 0px 0px 4px 1px deepskyblue;
-       -moz-box-shadow: 0px 0px 4px 1px deepskyblue;
-            box-shadow: 0px 0px 4px 1px deepskyblue;
-
-    will-change: width, box-shadow;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -webkit-transition-timing-function: linear;
-       -moz-transition-timing-function: linear;
-         -o-transition-timing-function: linear;
-            transition-timing-function: linear;
-}
-
-.E_ProgressBar__success .E_ProgressBar--progress {
-    background-color: lawngreen;
-    -webkit-box-shadow: 0px 0px 4px 1px lawngreen;
-       -moz-box-shadow: 0px 0px 4px 1px lawngreen;
-            box-shadow: 0px 0px 4px 1px lawngreen;
-}
-
-.E_ProgressBar__error .E_ProgressBar--progress {
-    background-color: crimson;
-    -webkit-box-shadow: 0px 0px 4px 1px crimson;
-       -moz-box-shadow: 0px 0px 4px 1px crimson;
-            box-shadow: 0px 0px 4px 1px crimson;
-}
-
-.E_ProgressBar__warn .E_ProgressBar--progress, .E_ProgressBar__error.E_ProgressBar__warn .E_ProgressBar--progress {
-    background-color: darkorange;
-    -webkit-box-shadow: 0px 0px 4px 1px darkorange;
-       -moz-box-shadow: 0px 0px 4px 1px darkorange;
-            box-shadow: 0px 0px 4px 1px darkorange;
 }
 
 .FileBrowser {
@@ -11926,6 +11415,1594 @@ body > .E_NewPageSectionSelector--clone .type {
                 box-shadow: 0 8px 0 0;
     }
 }
+
+/*====================================================================*/
+/*--------------------------- COLOR PICKER ---------------------------*/
+/*====================================================================*/
+
+.ColorPicker {
+    line-height: 1;
+
+    width: 100%;
+    padding: 12px 36px;
+
+    overflow: hidden;
+}
+
+.ColorPicker--wrapper-2 {
+    margin-left: -24px;
+    margin-right: -48px;
+    margin-bottom: -16px;
+
+    min-width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+       -moz-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+}
+
+.ColorPicker *:not(input) {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+/*Iframe používaný pro nalezení barev z obrázku.*/
+.VibrantCanvas {
+    z-index: -1;
+    position: absolute;
+    top: -99999px;
+    left: -99999px;
+
+    max-width: 0px;
+    max-height: 0px;
+
+    border: none;
+    opacity: 0;
+
+    visibility: hidden;
+}
+
+/*--------------------------------------------------------------------*/
+/*---------------------------- COLOR BOXES ---------------------------*/
+/*--------------------------------------------------------------------*/
+
+.ColorPicker--widget-wrapper {
+    margin-bottom: 8px;
+    margin-right: 24px;
+
+    -webkit-flex-basis: 220px;
+
+        -ms-flex-preferred-size: 220px;
+
+            flex-basis: 220px;
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+       -moz-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+.ColorPicker--HSV-wrapper {
+    font-size: 0;
+
+    width: 100%;
+}
+
+/*---------------------------- BOXES ----------------------------*/
+
+.ColorPicker--SV-box {
+    vertical-align: top;
+
+    position: relative;
+    margin-bottom: 8px;
+
+    width: -webkit-calc(100% - 12px - 12px);
+
+    width: -moz-calc(100% - 12px - 12px);
+
+    width: calc(100% - 12px - 12px);
+    height: 0px;
+    padding-bottom: -webkit-calc(100% - 8px - 14px - 1px - 1px);
+    padding-bottom: -moz-calc(100% - 8px - 14px - 1px - 1px);
+    padding-bottom: calc(100% - 8px - 14px - 1px - 1px);
+
+    background-image:
+        -webkit-gradient(
+            linear,
+            left top, left bottom,
+            from(rgba(0, 0, 0, 0)),
+            to(rgba(0, 0, 0, 1))
+        ),
+        -webkit-gradient(
+            linear,
+            left top, right top,
+            from(rgb(255, 255, 255)),
+            to(rgb(255,   0,   0))
+        );
+
+    background-image:
+        -webkit-linear-gradient(
+            top,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        -webkit-linear-gradient(
+            left,
+            rgb(255, 255, 255),
+            rgb(255,   0,   0)
+        );
+
+    background-image:
+        -moz-linear-gradient(
+            top,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        -moz-linear-gradient(
+            left,
+            rgb(255, 255, 255),
+            rgb(255,   0,   0)
+        );
+
+    background-image:
+        -o-linear-gradient(
+            top,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        -o-linear-gradient(
+            left,
+            rgb(255, 255, 255),
+            rgb(255,   0,   0)
+        );
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 1)
+        ),
+        linear-gradient(
+            to right,
+            rgb(255, 255, 255),
+            rgb(255,   0,   0)
+        );
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
+
+    display: inline-block;
+    will-change: background-image, box-shadow;
+}
+
+.ColorPicker--H-box {
+    position: relative;
+    margin-left: 12px;
+
+    width: 12px;
+    min-width: 12px;
+    height: 0;
+    padding-bottom: -webkit-calc(100% - 8px - 14px - 1px - 1px);
+    padding-bottom: -moz-calc(100% - 8px - 14px - 1px - 1px);
+    padding-bottom: calc(100% - 8px - 14px - 1px - 1px);
+
+    background-image:
+        -webkit-gradient(
+            linear,
+            left bottom, left top,
+            color-stop(0.00%, #ff0000),
+            color-stop(16.67%, #ffff00),
+            color-stop(33.33%, #00ff00),
+            color-stop(50.00%, #00ffff),
+            color-stop(66.67%, #0000ff),
+            color-stop(83.33%, #ff00ff),
+            color-stop(100.00%, #ff0000)
+        );
+
+    background-image:
+        -webkit-linear-gradient(
+            bottom,
+            #ff0000   0.00%,
+            #ffff00  16.67%,
+            #00ff00  33.33%,
+            #00ffff  50.00%,
+            #0000ff  66.67%,
+            #ff00ff  83.33%,
+            #ff0000 100.00%
+        );
+
+    background-image:
+        -moz-linear-gradient(
+            bottom,
+            #ff0000   0.00%,
+            #ffff00  16.67%,
+            #00ff00  33.33%,
+            #00ffff  50.00%,
+            #0000ff  66.67%,
+            #ff00ff  83.33%,
+            #ff0000 100.00%
+        );
+
+    background-image:
+        -o-linear-gradient(
+            bottom,
+            #ff0000   0.00%,
+            #ffff00  16.67%,
+            #00ff00  33.33%,
+            #00ffff  50.00%,
+            #0000ff  66.67%,
+            #ff00ff  83.33%,
+            #ff0000 100.00%
+        );
+
+    background-image:
+        linear-gradient(
+            to top,
+            #ff0000   0.00%,
+            #ffff00  16.67%,
+            #00ff00  33.33%,
+            #00ffff  50.00%,
+            #0000ff  66.67%,
+            #ff00ff  83.33%,
+            #ff0000 100.00%
+        );
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.15);
+
+    display: inline-block;
+    will-change: box-shadow;
+}
+
+.ColorPicker--H-box:before, .ColorPicker--H-box:after {
+    content: "";
+
+    position: absolute;
+    top: -1px;
+
+    width: 9px;
+    height: -webkit-calc(100% + 2px);
+    height: -moz-calc(100% + 2px);
+    height: calc(100% + 2px);
+}
+
+.ColorPicker--H-box:before {
+    left: -9px;
+}
+
+.ColorPicker--H-box:after {
+    left: 12px;
+}
+
+/*---------------------------- SELECTORS ----------------------------*/
+
+.ColorPicker--SV-selector, .ColorPicker--H-selector {
+    position: absolute;
+
+    will-change: transform, box-shadow;
+    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    -moz-transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    -o-transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -o-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -o-transform 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+}
+
+.ColorPicker--SV-selector {
+    top: -8px;
+    left: -8px;
+    -webkit-transform: translate(0px, 0px);
+       -moz-transform: translate(0px, 0px);
+        -ms-transform: translate(0px, 0px);
+         -o-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+
+    width: 16px;
+    height: 16px;
+
+    -webkit-border-radius: 50%;
+
+       -moz-border-radius: 50%;
+
+            border-radius: 50%;
+    border: 3px solid #fcfcfc;
+    -webkit-box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
+        1px 1px 4px rgba(34, 34, 34, 0.35);
+       -moz-box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
+        1px 1px 4px rgba(34, 34, 34, 0.35);
+            box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
+        1px 1px 4px rgba(34, 34, 34, 0.35);
+}
+
+.ColorPicker--H-selector {
+    top: -5px;
+    left: -3px;
+    -webkit-transform: translateY(0px);
+       -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+         -o-transform: translateY(0px);
+            transform: translateY(0px);
+
+    width: 18px;
+    height: 10px;
+
+    border: 3px solid #fcfcfc;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+    -webkit-box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
+        1px 1px 4px rgba(34, 34, 34, 0.35);
+       -moz-box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
+        1px 1px 4px rgba(34, 34, 34, 0.35);
+            box-shadow: inset -1px -1px 3px rgba(34, 34, 34, 0.075),
+        1px 1px 4px rgba(34, 34, 34, 0.35);
+}
+
+.ColorPicker--H-selector:before, .ColorPicker--H-selector:after, .ColorPicker--SV-selector:before, .ColorPicker--SV-selector:after {
+    content: "";
+
+    position: absolute;
+    top: -3px;
+    left: -3px;
+
+    width: -webkit-calc(100% + 6px);
+
+    width: -moz-calc(100% + 6px);
+
+    width: calc(100% + 6px);
+    height: -webkit-calc(100% + 6px);
+    height: -moz-calc(100% + 6px);
+    height: calc(100% + 6px);
+
+    -webkit-box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.35),
+        inset 1px 1px 0px rgba(0, 0, 0, 0);
+
+       -moz-box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.35),
+        inset 1px 1px 0px rgba(0, 0, 0, 0);
+
+            box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.35),
+        inset 1px 1px 0px rgba(0, 0, 0, 0);
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    pointer-events: none;
+}
+
+.ColorPicker--H-selector:before, .ColorPicker--SV-selector:before {
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.35),
+        1px 1px 0px rgba(0, 0, 0, 0);
+
+       -moz-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.35),
+        1px 1px 0px rgba(0, 0, 0, 0);
+
+            box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.35),
+        1px 1px 0px rgba(0, 0, 0, 0);
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ INPUTS ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.ColorPicker--input {
+    width: 100%;
+    padding: 0 8px;
+}
+
+.ColorPicker--input-wrapper-2 {
+    margin-right: -16px;
+    margin-left: -8px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+/*---------------------------- TYPE ----------------------------*/
+
+.ColorPicker--type-selector-wrapper {
+    margin-bottom: 4px;
+    margin-right: 8px;
+
+    width: 64px;
+    min-width: 64px;
+
+    -webkit-box-flex: 1;
+
+    -webkit-flex-grow: 1;
+
+       -moz-box-flex: 1;
+
+        -ms-flex-positive: 1;
+
+            flex-grow: 1;
+    -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.ColorPicker--type-selector {
+    line-height: 32px;
+
+    height: 32px;
+    padding: 0 4px;
+
+    -webkit-box-flex: 1;
+
+    -webkit-flex-grow: 1;
+
+       -moz-box-flex: 1;
+
+        -ms-flex-positive: 1;
+
+            flex-grow: 1;
+}
+
+/*---------------------------- TEXT ----------------------------*/
+
+.ColorPicker--input-text-wrapper {
+    margin-right: 8px;
+
+    -webkit-flex-basis: -webkit-calc(100% - 64px - 8px - 8px);
+
+        -ms-flex-preferred-size: calc(100% - 64px - 8px - 8px);
+
+            flex-basis: -moz-calc(100% - 64px - 8px - 8px);
+
+            flex-basis: calc(100% - 64px - 8px - 8px);
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.ColorPicker--input-text {
+    line-height: 32px;
+
+    margin-bottom: 8px;
+
+    min-width: 44px;
+    width: 100%;
+
+    height: 32px;
+    padding: 0 8px;
+
+    -webkit-flex-basis: -webkit-calc(100% - 4px);
+
+        -ms-flex-preferred-size: calc(100% - 4px);
+
+            flex-basis: -moz-calc(100% - 4px);
+
+            flex-basis: calc(100% - 4px);
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+}
+
+.ColorPicker--input-text:not(:first-child) {
+    margin-left: 4px;
+}
+
+/*====================================================================*/
+/*---------------------------- PROGRESSBAR ---------------------------*/
+/*====================================================================*/
+
+.E_ProgressBar {
+    z-index: 400;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+
+    opacity: 0;
+
+    will-change: opacity;
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 3s,
+        background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+}
+
+.E_ProgressBar__active {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_ProgressBar .E_ProgressBar--progress {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 1px;
+    width: 0%;
+
+    background-color: deepskyblue;
+    -webkit-box-shadow: 0px 0px 4px 1px deepskyblue;
+       -moz-box-shadow: 0px 0px 4px 1px deepskyblue;
+            box-shadow: 0px 0px 4px 1px deepskyblue;
+
+    will-change: width, box-shadow;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-timing-function: linear;
+       -moz-transition-timing-function: linear;
+         -o-transition-timing-function: linear;
+            transition-timing-function: linear;
+}
+
+.E_ProgressBar__success .E_ProgressBar--progress {
+    background-color: lawngreen;
+    -webkit-box-shadow: 0px 0px 4px 1px lawngreen;
+       -moz-box-shadow: 0px 0px 4px 1px lawngreen;
+            box-shadow: 0px 0px 4px 1px lawngreen;
+}
+
+.E_ProgressBar__error .E_ProgressBar--progress {
+    background-color: crimson;
+    -webkit-box-shadow: 0px 0px 4px 1px crimson;
+       -moz-box-shadow: 0px 0px 4px 1px crimson;
+            box-shadow: 0px 0px 4px 1px crimson;
+}
+
+.E_ProgressBar__warn .E_ProgressBar--progress, .E_ProgressBar__error.E_ProgressBar__warn .E_ProgressBar--progress {
+    background-color: darkorange;
+    -webkit-box-shadow: 0px 0px 4px 1px darkorange;
+       -moz-box-shadow: 0px 0px 4px 1px darkorange;
+            box-shadow: 0px 0px 4px 1px darkorange;
+}
+
+/*====================================================================*/
+/*------------------------------ BUTTON ------------------------------*/
+/*====================================================================*/
+
+.Button, .Button:after, .Button--content, .Button--text, .Button--icon svg {
+    will-change: box-shadow, transform, background, fill, color;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Button:hover, .Button:hover, .Button:hover:after, .Button:hover .Button--text, .Button:hover .Button--icon svg, .Button--event:focus ~ .Button--content, .Button:focus .Button--content, .Button:focus .Button--text, .Button:focus .Button--icon svg {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.Button:active, .Button:active, .Button:active .Button--content, .Button:active:after, .Button:active .Button--text, .Button:active .Button--icon svg {
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.Button {
+    line-height: 0;
+    white-space: nowrap;
+
+    position: relative;
+
+    padding: 0;
+
+    border: none;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.Button:active {
+    -webkit-transform: translate(1px, 1px);
+       -moz-transform: translate(1px, 1px);
+        -ms-transform: translate(1px, 1px);
+         -o-transform: translate(1px, 1px);
+            transform: translate(1px, 1px);
+}
+
+.Button:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.Button:active:after {
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Button:after {
+        -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+             box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Button:active:after {
+        -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+             box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Button--content {
+    background-color: #fcfcfc;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    min-width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.Button--content:focus {
+    outline: none;
+}
+
+.Button--icon {
+    position: relative;
+}
+
+.Button--icon svg {
+    width: 100%;
+    height: 100%;
+
+    fill: #505050;
+}
+
+.Button:active .Button--icon svg, .Button__active .Button--icon svg {
+    fill: rgba(255, 255, 255, 0.9);
+}
+
+.Button--text {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+
+    color: #404040;
+}
+
+.Button:active .Button--text, .Button__active .Button--text {
+    color: #fff;
+}
+
+.Button--event {
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+}
+
+.Button--event ~ * {
+    pointer-events: none;
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.Button__medium .Button--content {
+    height: 40px;
+    min-width: 40px;
+    padding: 0 16px 0 12px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Button__medium.Button__active .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Button__medium.Button__active:active .Button--content, .Button__medium:active .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.3),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.3),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.3),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Button__medium .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__medium.Button__active .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.2),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.2),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__medium.Button__active:active .Button--content, .Button__medium:active .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.3),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.3),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Button__medium.Button__no-text .Button--content {
+    padding: 0;
+}
+
+.Button__medium.Button__no-icon .Button--content {
+    padding: 0 16px;
+}
+
+.Button__medium .Button--icon {
+    margin-right: 8px;
+
+    width: 20px;
+    height: 20px;
+}
+
+.Button__medium.Button__no-text .Button--icon {
+    margin: auto;
+
+    width: 24px;
+    height: 24px;
+}
+
+.Button__medium .Button--text {
+    font-size: 14px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.Button__large .Button--content {
+    height: 48px;
+    min-width: 48px;
+    padding: 0 20px 0 12px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Button__large.Button__active .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Button__large.Button__active:active .Button--content, .Button__large:active .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Button__large .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__large.Button__active .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.2),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.2),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__large.Button__active:active .Button--content, .Button__large:active .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.3),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.3),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Button__large.Button__no-text .Button--content {
+    padding: 0;
+}
+
+.Button__large.Button__no-icon .Button--content {
+    padding: 0 20px;
+}
+
+.Button__large .Button--icon {
+    margin-right: 10px;
+
+    width: 24px;
+    height: 24px;
+}
+
+.Button__large.Button__no-text .Button--icon {
+    margin: auto;
+
+    width: 32px;
+    height: 32px;
+}
+
+.Button__large .Button--text {
+    font-size: 17px;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.Button__small .Button--content {
+    height: 32px;
+    min-width: 32px;
+    padding: 0 12px 0 10px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Button__small.Button__active .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.2),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Button__small.Button__active:active .Button--content, .Button__small:active .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.3),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.3),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.3),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Button__small .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__small.Button__active .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.2),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.2),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__small.Button__active:active .Button--content, .Button__small:active .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.3),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.3),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Button__small.Button__no-text .Button--content {
+    padding: 0;
+}
+
+.Button__small.Button__no-icon .Button--content {
+    padding: 0 12px;
+}
+
+.Button__small .Button--icon {
+    margin-right: 6px;
+
+    width: 16px;
+    height: 16px;
+}
+
+.Button__small.Button__no-text .Button--icon {
+    margin: auto;
+
+    width: 20px;
+    height: 20px;
+}
+
+.Button__small .Button--text {
+    font-size: 14px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.Button__default:hover .Button--content, .Button__default:not(.Button__active):not(:active) .Button--event:focus ~ .Button--content, .Button__default:focus .Button--content {
+    background-color: #edfcff;
+}
+
+.Button__medium.Button__default:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__default:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__default:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Button__large.Button__default:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__default:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__default:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Button__small.Button__default:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__default:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__default:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .Button__medium.Button__default:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__default:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__default:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Button__large.Button__default:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__default:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__default:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Button__small.Button__default:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__default:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__default:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+}
+
+.Button__default.Button__active .Button--content {
+    background-color: #08a1c2;
+}
+
+.Button__default.Button__active:focus .Button--content, .Button__default.Button__active .Button--event:focus ~ .Button--content, .Button__default.Button__active:hover .Button--content {
+    background-color: #15b0d1;
+}
+
+.Button__default.Button__active:active .Button--content, .Button__default:active .Button--content {
+    background-color: #088eab;
+}
+
+/*---------------------------- TYPE - DANGER ----------------------------*/
+
+.Button__danger:hover .Button--content, .Button__danger:not(.Button__active):not(:active) .Button--event:focus ~ .Button--content, .Button__danger:focus .Button--content {
+    background-color: #fff0f1;
+}
+
+.Button__medium.Button__danger:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__danger:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__danger:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+}
+
+.Button__large.Button__danger:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__danger:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__danger:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+}
+
+.Button__small.Button__danger:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__danger:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__danger:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .Button__medium.Button__danger:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__danger:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__danger:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(227, 45, 57, 0.2),
+            inset  0px  0px  1px 0px rgba(227, 45, 57, 1);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(227, 45, 57, 0.2),
+            inset  0px  0px  1px 0px rgba(227, 45, 57, 1);
+    }
+
+    .Button__large.Button__danger:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__danger:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__danger:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(227, 45, 57, 0.2),
+            inset  0px  0px  1px 0px rgba(227, 45, 57, 1);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(227, 45, 57, 0.2),
+            inset  0px  0px  1px 0px rgba(227, 45, 57, 1);
+    }
+
+    .Button__small.Button__danger:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__danger:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__danger:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(227, 45, 57, 0.2),
+            inset  0px  0px  1px 0px rgba(227, 45, 57, 1);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(227, 45, 57, 0.2),
+            inset  0px  0px  1px 0px rgba(227, 45, 57, 1);
+    }
+}
+
+.Button__danger.Button__active .Button--content {
+    background-color: #e32d39;
+}
+
+.Button__danger.Button__active:focus .Button--content, .Button__danger.Button__active .Button--event:focus ~ .Button--content, .Button__danger.Button__active:hover .Button--content {
+    background-color: #ff3e4b;
+}
+
+.Button__danger.Button__active:active .Button--content, .Button__danger:active .Button--content {
+    background-color: #d0232e;
+}
+
+/*---------------------------- TYPE - OK ----------------------------*/
+
+.Button__ok:hover .Button--content, .Button__ok:not(.Button__active):not(:active) .Button--event:focus ~ .Button--content, .Button__ok:focus .Button--content {
+    background-color: #f3fff4;
+}
+
+.Button__medium.Button__ok:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__ok:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__ok:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(54, 183, 60, 0.2),
+        inset  0px  0px  2px 0px rgba(54, 183, 60, 1);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(54, 183, 60, 0.2),
+        inset  0px  0px  2px 0px rgba(54, 183, 60, 1);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(54, 183, 60, 0.2),
+        inset  0px  0px  2px 0px rgba(54, 183, 60, 1);
+}
+
+.Button__large.Button__ok:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__ok:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__ok:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(54, 183, 60, 0.2),
+        inset  0px  0px  2px 0px rgba(54, 183, 60, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(54, 183, 60, 0.2),
+        inset  0px  0px  2px 0px rgba(54, 183, 60, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(54, 183, 60, 0.2),
+        inset  0px  0px  2px 0px rgba(54, 183, 60, 1);
+}
+
+.Button__small.Button__ok:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__ok:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__ok:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(54, 183, 60, 0.2),
+        inset  0px  0px  2px 0px rgba(54, 183, 60, 1);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(54, 183, 60, 0.2),
+        inset  0px  0px  2px 0px rgba(54, 183, 60, 1);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(54, 183, 60, 0.2),
+        inset  0px  0px  2px 0px rgba(54, 183, 60, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .Button__medium.Button__ok:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__ok:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__ok:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(54, 183, 60, 0.2),
+            inset  0px  0px  1px 0px rgba(54, 183, 60, 1);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(54, 183, 60, 0.2),
+            inset  0px  0px  1px 0px rgba(54, 183, 60, 1);
+    }
+
+    .Button__large.Button__ok:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__ok:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__ok:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(54, 183, 60, 0.2),
+            inset  0px  0px  1px 0px rgba(54, 183, 60, 1);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(54, 183, 60, 0.2),
+            inset  0px  0px  1px 0px rgba(54, 183, 60, 1);
+    }
+
+    .Button__small.Button__ok:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__ok:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__ok:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(54, 183, 60, 0.2),
+            inset  0px  0px  1px 0px rgba(54, 183, 60, 1);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(54, 183, 60, 0.2),
+            inset  0px  0px  1px 0px rgba(54, 183, 60, 1);
+    }
+}
+
+.Button__ok.Button__active .Button--content {
+    background-color: #36b73c;
+}
+
+.Button__ok.Button__active:focus .Button--content, .Button__ok.Button__active .Button--event:focus ~ .Button--content, .Button__ok.Button__active:hover .Button--content {
+    background-color: #3ace41;
+}
+
+.Button__ok.Button__active:active .Button--content, .Button__ok:active .Button--content {
+    background-color: #29ac2e;
+}
+
+/*---------------------------- TYPE - DEFAULT-2 ----------------------------*/
+
+.Button__default-2:hover .Button--content, .Button__default-2:not(.Button__active):not(:active) .Button--event:focus ~ .Button--content, .Button__default-2:focus .Button--content {
+    background-color: #fff3ef;
+}
+
+.Button__medium.Button__default-2:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__default-2:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__default-2:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+}
+
+.Button__large.Button__default-2:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__default-2:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__default-2:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+}
+
+.Button__small.Button__default-2:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__default-2:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__default-2:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .Button__medium.Button__default-2:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__default-2:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__default-2:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+    }
+
+    .Button__large.Button__default-2:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__default-2:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__default-2:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+    }
+
+    .Button__small.Button__default-2:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__default-2:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__default-2:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+    }
+}
+
+.Button__default-2.Button__active .Button--content {
+    background-color: #ef6737;
+}
+
+.Button__default-2.Button__active:focus .Button--content, .Button__default-2.Button__active .Button--event:focus ~ .Button--content, .Button__default-2.Button__active:hover .Button--content {
+    background-color: #fb7241;
+}
+
+.Button__default-2.Button__active:active .Button--content, .Button__default-2:active .Button--content {
+    background-color: #e85a27;
+}
+
+/*---------------------------- TYPE - WARN ----------------------------*/
+
+.Button__warn:hover .Button--content, .Button__warn:not(.Button__active):not(:active) .Button--event:focus ~ .Button--content, .Button__warn:focus .Button--content {
+    background-color: #fff3ef;
+}
+
+.Button__medium.Button__warn:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__warn:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__warn:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+}
+
+.Button__large.Button__warn:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__warn:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__warn:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+}
+
+.Button__small.Button__warn:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__warn:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__warn:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+        inset  0px  0px  2px 0px rgba(239, 103, 55, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .Button__medium.Button__warn:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__warn:not(:active):not(.Button__active):focus .Button--content, .Button__medium.Button__warn:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+    }
+
+    .Button__large.Button__warn:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__warn:not(:active):not(.Button__active):focus .Button--content, .Button__large.Button__warn:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+    }
+
+    .Button__small.Button__warn:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__warn:not(:active):not(.Button__active):focus .Button--content, .Button__small.Button__warn:not(:active):not(.Button__active) .Button--event:focus ~ .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(239, 103, 55, 0.2),
+            inset  0px  0px  1px 0px rgba(239, 103, 55, 1);
+    }
+}
+
+.Button__warn.Button__active .Button--content {
+    background-color: #ef6737;
+}
+
+.Button__warn.Button__active:focus .Button--content, .Button__warn.Button__active .Button--event:focus ~ .Button--content, .Button__warn.Button__active:hover .Button--content {
+    background-color: #fb7241;
+}
+
+.Button__warn.Button__active:active .Button--content, .Button__warn:active .Button--content {
+    background-color: #e85a27;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /*====================================================================*/
 /*----------------------------- PALETTES -----------------------------*/

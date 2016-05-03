@@ -12,7 +12,14 @@
 
                 <div class="E_PageSectionSettings--section E_BackgroundImageSettings--source">
 
-                    <button type="button" on-tap="set('data.backgroundImage.src', '')">Nepoužívat obrázek na pozadí</button>
+                    {{> Button {
+                            text: "Zrušit obrázek na pozadí",
+                            icon: "#icon-x",
+                            size: "small",
+                            set: "data.backgroundImage.src",
+                            value: ""
+                        }
+                    }}
 
                 </div>
 

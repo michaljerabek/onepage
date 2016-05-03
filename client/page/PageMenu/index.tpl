@@ -81,12 +81,14 @@
 
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__top">
         <span class="icon" on-tap="switchPosition:{{'top'}}">
-            <svg><use xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__touch"><use xlink:href="#icon-touch-move-up-3"></use></svg>
         </span>
     </div>
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__bottom">
         <span class="icon" on-tap="switchPosition:{{'bottom'}}">
-            <svg><use xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__touch"><use xlink:href="#icon-touch-move-down-3"></use></svg>
         </span>
     </div>
 
@@ -143,12 +145,12 @@
 
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__top">
         <span class="icon" on-tap="switchPosition:{{'top'}}">
-            <svg><use xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
         </span>
     </div>
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__bottom">
         <span class="icon" on-tap="switchPosition:{{'bottom'}}">
-            <svg><use xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
         </span>
     </div>
 
