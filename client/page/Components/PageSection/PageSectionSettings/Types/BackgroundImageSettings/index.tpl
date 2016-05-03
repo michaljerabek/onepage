@@ -8,47 +8,56 @@
 
         <div class="E_PageSectionSettings--scrolling-content">
 
-            <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--source">
+            <div class="E_PageSectionSettings--sections">
 
-                <button type="button" on-tap="set('data.backgroundImage.src', '')">Odstranit obrázek</button>
+                <div class="E_PageSectionSettings--section E_BackgroundImageSettings--source">
+
+                    <button type="button" on-tap="set('data.backgroundImage.src', '')">Nepoužívat obrázek na pozadí</button>
+
+                </div>
 
             </div>
 
-            <div class="E_PageSectionSettings--divider"></div>
+            <div class="E_PageSectionSettings--sections">
 
-            <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--display">
-                <h2>Zbrazení</h2>
+                <div class="E_PageSectionSettings--section E_BackgroundImageSettings--display">
 
-                <input id="E_BackgroundImageSettings--display__repeat" type="radio" name="{{.data.backgroundImage.display}}" value="repeat">
-                <label for="E_BackgroundImageSettings--display__repeat">Opakovat</label>
-                <input id="E_BackgroundImageSettings--display__cover" type="radio" name="{{.data.backgroundImage.display}}" value="cover">
-                <label for="E_BackgroundImageSettings--display__cover">Vyplnit</label>
-            </div>
+                    <h2 class="E_PageSectionSettings--section-title">Zbrazení</h2>
 
-            <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--effects">
-                <h2>Efekt</h2>
+                    <input id="E_BackgroundImageSettings--display__repeat" type="radio" name="{{.data.backgroundImage.display}}" value="repeat">
+                    <label for="E_BackgroundImageSettings--display__repeat">Opakovat</label>
+                    <input id="E_BackgroundImageSettings--display__cover" type="radio" name="{{.data.backgroundImage.display}}" value="cover">
+                    <label for="E_BackgroundImageSettings--display__cover">Vyplnit</label>
+                </div>
 
-                <input id="E_BackgroundImageSettings--effects__fixed" type="checkbox" name="{{.data.backgroundImage.effects}}" value="fixed">
-                <label for="E_BackgroundImageSettings--effects__fixed">Fixní</label>
-                <input id="E_BackgroundImageSettings--effects__parallax" type="checkbox" name="{{.data.backgroundImage.effects}}" value="parallax">
-                <label for="E_BackgroundImageSettings--effects__parallax">Parallax</label>
-            </div>
+                <div class="E_PageSectionSettings--section E_BackgroundImageSettings--effects">
 
-            <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--effects">
-                <h2>Síla efektu</h2>
+                    <h2 class="E_PageSectionSettings--section-title">Efekt</h2>
 
-                <input id="E_BackgroundImageSettings--effects-strength"
-                    type="number"
-                    value="{{.data.backgroundImage.effectsStrength}}"
-                    {{#if .data.backgroundImage.effects.indexOf('parallax') === -1}}disabled{{/if}}
-                >
+                    <input id="E_BackgroundImageSettings--effects__fixed" type="checkbox" name="{{.data.backgroundImage.effects}}" value="fixed">
+                    <label for="E_BackgroundImageSettings--effects__fixed">Fixní</label>
+                    <input id="E_BackgroundImageSettings--effects__parallax" type="checkbox" name="{{.data.backgroundImage.effects}}" value="parallax">
+                    <label for="E_BackgroundImageSettings--effects__parallax">Parallax</label>
+                </div>
+
+                <div class="E_PageSectionSettings--section E_BackgroundImageSettings--effect-strength">
+
+                    <h2 class="E_PageSectionSettings--section-title">Síla efektu</h2>
+
+                    <input id="E_BackgroundImageSettings--effects-strength"
+                        type="number"
+                        value="{{.data.backgroundImage.effectsStrength}}"
+                        {{#if .data.backgroundImage.effects.indexOf('parallax') === -1}}disabled{{/if}}
+                    >
+                </div>
+
             </div>
 
         </div>
 
     </div>
 
-    <div class="E_BackgroundImageSettings--image-browser E_PageSectionSettings--scrollable">
+    <div class="E_BackgroundImageSettings--ImageBrowser E_PageSectionSettings--scrollable">
 
         <div class="E_PageSectionSettings--scrolling-content">
 

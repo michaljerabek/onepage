@@ -1,8 +1,8 @@
 /*====================================================================*/
-/*------------------- E_PageSectionSettings--menu --------------------*/
+/*------------------- E_PageSectionSettingsMenu --------------------*/
 /*====================================================================*/
 
-.E_PageSectionSettings--menu {
+.E_PageSectionSettingsMenu {
     font-family: "Encode Sans Narrow", sans-serif;
     font-size: 17px;
     text-align: left;
@@ -16,11 +16,11 @@
     user-select: none;
 }
 
-.E_PageSectionSettings--menu-list {
+.E_PageSectionSettingsMenu--list {
     border-top: 1px solid #ddd;
 }
 
-.E_PageSectionSettings--menu-item {
+.E_PageSectionSettingsMenu--item {
     line-height: 1.35;
 
 	height: 41px;
@@ -36,15 +36,15 @@
     cursor: pointer;
 }
 
-.E_PageSectionSettings--menu-item:hover {
+.E_PageSectionSettingsMenu--item:hover {
     font-weight: 500;
 
     background-color: var(--color-hover);
     border-bottom-color: var(--color-hover-border);
 }
 
-.E_PageSectionSettings--menu-item__active:hover,
-.E_PageSectionSettings--menu-item__active {
+.E_PageSectionSettingsMenu--item__active:hover,
+.E_PageSectionSettingsMenu--item__active {
     font-weight: 500;
 
     background-color: var(--color-temp-selected);
@@ -53,25 +53,25 @@
     cursor: default;
 }
 
-.E_PageSectionSettings--menu-item,
-.E_PageSectionSettings--menu-title,
-.E_PageSectionSettings--menu-subtitle {
+.E_PageSectionSettingsMenu--item,
+.E_PageSectionSettingsMenu--title,
+.E_PageSectionSettingsMenu--subtitle {
     transition: var(--default-transition);
     transition-property: color, background, border;
 }
 
-.E_PageSectionSettings--menu-item:hover,
-.E_PageSectionSettings--menu-item:hover .E_PageSectionSettings--menu-title,
-.E_PageSectionSettings--menu-item:hover .E_PageSectionSettings--menu-subtitle {
+.E_PageSectionSettingsMenu--item:hover,
+.E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--title,
+.E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--subtitle {
     transition: var(--default-transition-hover);
     transition-property: color, background, border;
 }
 
-.E_PageSectionSettings--menu-title {
+.E_PageSectionSettingsMenu--title {
     color: var(--color-text-1);
 }
 
-.E_PageSectionSettings--menu-subtitle {
+.E_PageSectionSettingsMenu--subtitle {
     font-size: 9px;
 
     padding-bottom: 1px;
@@ -79,9 +79,9 @@
 	color: var(--color-text-3);
 }
 
-.E_PageSectionSettings--menu-item__active .E_PageSectionSettings--menu-title,
-.E_PageSectionSettings--menu-item__active .E_PageSectionSettings--menu-subtitle,
-.E_PageSectionSettings--menu-item:hover .E_PageSectionSettings--menu-title,
-.E_PageSectionSettings--menu-item:hover .E_PageSectionSettings--menu-subtitle {
+.E_PageSectionSettingsMenu--item__active .E_PageSectionSettingsMenu--title,
+.E_PageSectionSettingsMenu--item__active .E_PageSectionSettingsMenu--subtitle,
+.E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--title,
+.E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--subtitle {
     color: #fff;
 }

@@ -5,8 +5,8 @@
 >
 
     <div class="E_ColorSettings--menu E_PageSectionSettings--scrollable">
-        <div class="E_PageSectionSettings--menu E_PageSectionSettings--scrolling-content">
-            <ul class="E_PageSectionSettings--menu-list E_ColorSettings--menu-list">
+        <div class="E_PageSectionSettingsMenu E_PageSectionSettings--scrolling-content">
+            <ul class="E_PageSectionSettingsMenu--list E_ColorSettings--menu-list">
                 {{>ColorSettingsNavItem {index: 1, settings: this}}}
             </ul>
         </div>
@@ -22,14 +22,14 @@
 
     {{#if .settings["color" + .index + "-title"]}}
 
-        <li class="E_PageSectionSettings--menu-item
-                {{#if ~/openTab === .index}}E_PageSectionSettings--menu-item__active{{/if}}
+        <li class="E_PageSectionSettingsMenu--item
+                {{#if ~/openTab === .index}}E_PageSectionSettingsMenu--item__active{{/if}}
                 E_ColorSettings--menu-item
             "
             on-tap="set('openTab', .index)"
         >
-            <span class="E_PageSectionSettings--menu-title">{{.settings["color" + .index + "-title"]}}</span>
-            <span class="E_PageSectionSettings--menu-subtitle">{{.settings["color" + .index + "-subtitle"]}}</span>
+            <span class="E_PageSectionSettingsMenu--title">{{.settings["color" + .index + "-title"]}}</span>
+            <span class="E_PageSectionSettingsMenu--subtitle">{{.settings["color" + .index + "-subtitle"]}}</span>
         </li>
 
         {{>ColorSettingsNavItem {index: .index + 1, settings: .settings}}}
