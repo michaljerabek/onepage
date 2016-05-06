@@ -7,10 +7,10 @@
         {{#if !.icon}}Button__no-icon{{/if}}
         {{#if !.text}}Button__no-text{{/if}}
     "
-    {{#if !.fire && !.set}}tabindex="{{.tabindex || 0}}"{{/if}}
+    {{#if !.fire && !.set && .state !== 'disabled'}}tabindex="{{.tabindex || 0}}"{{/if}}
 >
 
-    {{#if .fire}}
+    {{#if .fire && .state !== "disabled"}}
 
         <span class="Button--event"
             tabindex="{{.tabindex || 0}}"
@@ -18,12 +18,13 @@
             on-enter="{{.fire}}:{{.event}}"
         ></span>
 
-    {{elseif .set}}
+    {{elseif .set && .state !== "disabled"}}
 
         <span class="Button--event"
             tabindex="{{.tabindex || 0}}"
-            on-tap="set(.set, .value)"
-            on-enter="set(.set, .value)"
+            on-tap="set(.set.replace(/^\./, ''), .value)"
+            on-enter="set(.set.replace(/^\./, ''), .value)"
+            on-space="set(.set.replace(/^\./, ''), .value)"
         ></span>
 
     {{/if}}
@@ -36,7 +37,7 @@
                           top: {{.iconY + 'px'}};
                          left: {{.iconX + 'px'}};
                         width: {{.iconW + 'px'}};
-                       heigth: {{.iconH + 'px'}};
+                       height: {{.iconH + 'px'}};
                     transform: rotate({{.iconR || 0}}deg);
                 "
             >

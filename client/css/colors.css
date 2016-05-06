@@ -5,6 +5,7 @@
     --color-selected-border: #dc6135;
     --color-selected-hover: #fff3ef;
     --color-selected-85: rgba(239, 103, 55, 0.85);
+    --color-selected-15-2: rgba(255, 166, 135, 0.15);
     --color-temp-selected: #0f758b;
     --color-temp-selected-border: #075d70;
     --color-temp-selected-light: #08a1c2;
@@ -34,10 +35,14 @@
     --color-flat-button-icon-hover: rgba(255, 255, 255, 0.9);
 
     --color-button-bg: #fcfcfc;
+    --color-button-bg-disabled: #f2f2f2;
+    --color-button-bg-disabled-active: #e2e2e2;
     --color-button-text: #404040;
+    --color-button-text-disabled: #b2b2b2;
     --color-button-icon: #505050;
     --color-button-icon-hover: #505050;
     --color-button-icon-active: rgba(255, 255, 255, 0.9);
+    --color-button-icon-disabled: rgba(80, 80, 80, 0.3);
 
     --color-element-outline: #ef6737;
     --color-element-outline-glow: rgba(239, 103, 55, 0.75);

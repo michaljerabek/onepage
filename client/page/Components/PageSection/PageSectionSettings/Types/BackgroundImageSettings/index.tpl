@@ -29,22 +29,57 @@
 
                 <div class="E_PageSectionSettings--section E_BackgroundImageSettings--display">
 
-                    <h2 class="E_PageSectionSettings--section-title">Zbrazení</h2>
+                    <h2 class="E_PageSectionSettings--section-title">Zobrazení</h2>
 
-                    <input id="E_BackgroundImageSettings--display__repeat" type="radio" name="{{.data.backgroundImage.display}}" value="repeat">
-                    <label for="E_BackgroundImageSettings--display__repeat">Opakovat</label>
-                    <input id="E_BackgroundImageSettings--display__cover" type="radio" name="{{.data.backgroundImage.display}}" value="cover">
-                    <label for="E_BackgroundImageSettings--display__cover">Vyplnit</label>
+                    {{>Switch {
+                            size: "small",
+                            value: ".data.backgroundImage.display",
+                            options: [
+                                {
+                                    icon: "#icon-squares-2x2",
+                                    text: "Opakovat",
+                                    value: "repeat",
+                                    title: "Vyplnit plochu opakováním obrázku"
+                                },
+                                {
+                                    icon: "#icon-fullscreen",
+                                    text: "Vyplnit",
+                                    value: "cover",
+                                    title: "Vyplnit plochu přizpůsobením obrázku"
+                                }
+                            ]
+                        }
+                    }}
+
                 </div>
 
                 <div class="E_PageSectionSettings--section E_BackgroundImageSettings--effects">
 
                     <h2 class="E_PageSectionSettings--section-title">Efekt</h2>
 
-                    <input id="E_BackgroundImageSettings--effects__fixed" type="checkbox" name="{{.data.backgroundImage.effects}}" value="fixed">
-                    <label for="E_BackgroundImageSettings--effects__fixed">Fixní</label>
-                    <input id="E_BackgroundImageSettings--effects__parallax" type="checkbox" name="{{.data.backgroundImage.effects}}" value="parallax">
-                    <label for="E_BackgroundImageSettings--effects__parallax">Parallax</label>
+                    {{>Switch {
+                            multiple: true,
+                            size: "small",
+                            value: ".data.backgroundImage.effects",
+                            options: [
+                                {
+                                    icon: "#icon-pin",
+                                    text: "Fixní",
+                                    value: "fixed",
+                                    title: "Zafixovat jako nepohyblivou tapetu"
+                                },
+                                {
+                                    icon: "#icon-scroll",
+                                    text: "Parallax",
+                                    value: "parallax",
+                                    title: "Posouvat pozadí pomaleji"
+                                }
+                            ]
+                        }
+                    }}
+
+                    <p class="E_PageSectionSettings--section-note">Efekt <q>fixní</q> nemusí fungovat na mobilních zařízeních.</p>
+
                 </div>
 
                 <div class="E_PageSectionSettings--section E_BackgroundImageSettings--effect-strength">

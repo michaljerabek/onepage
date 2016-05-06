@@ -29,6 +29,17 @@
         partials: {
         },
 
+        events: {
+            custom: function (node, fire) {
+
+
+
+                return {
+                    teardown: function () {}
+                };
+            }
+        },
+
         onconfig: function () {
 
             this.superOnconfig();

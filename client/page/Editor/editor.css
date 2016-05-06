@@ -30,7 +30,7 @@
     height: 180px;
     width: 320px;
 
-    color: #404040;
+    color: var(--color-text-1);
     opacity: 0;
 
     display: flex;
@@ -119,7 +119,7 @@
     height: 43px;
     padding: 0;
 
-    background-color: #f9f9f9;
+    background-color: var(--color-button-bg);
     border-top: 3px solid currentColor;
     border-bottom: 0px solid currentColor;
     border-radius: 4px;
@@ -375,7 +375,7 @@
 }
 
 .medium-editor-toolbar li button:not(:disabled):hover {
-    background-color: var(--color-selected-hover);
+    background-color: var(--color-selected-15-2);
 }
 
 .medium-editor-toolbar li button:not(:disabled):hover:after {
@@ -384,7 +384,7 @@
 
 .medium-editor-toolbar li button.medium-editor-button-active:hover,
 .medium-editor-toolbar li button.medium-editor-button-active {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--color-button-icon-active);
     background-color: var(--color-selected);
     box-shadow:
         inset 2px 2px 3px 0px rgba(34, 34, 34, 0.15),
@@ -423,8 +423,8 @@
 }
 
 .medium-editor-toolbar li button:disabled {
-    color: rgba(64, 64, 64, 0.25);
-    background-color: #f2f2f2;
+    color: var(--color-button-text-disabled);
+    background-color: var(--color-button-bg-disabled);
 
     cursor: default;
 }
@@ -448,7 +448,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 .medium-editor-toolbar li button:disabled:hover:active,
 .medium-editor-toolbar li button:disabled:active {
-    background-color: #d7d7d7;
+    background-color: var(--color-button-bg-disabled-active);
 }
 
 .medium-editor-toolbar .medium-editor-has-action-subscript,

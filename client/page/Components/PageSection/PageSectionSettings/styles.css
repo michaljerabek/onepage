@@ -348,6 +348,8 @@
 /*---------------------------- SECTION ----------------------------*/
 
 .E_PageSectionSettings--sections {
+    position: relative;
+
     width: calc(100% + 12px);
     padding: 16px 12px;
 
@@ -364,6 +366,19 @@
 }
 
 .E_PageSectionSettings--sections:not(:last-of-type) {
+    margin-bottom: 1px;
+}
+
+.E_PageSectionSettings--sections:not(:last-of-type):after {
+    content: "";
+
+    position: absolute;
+    bottom: -1px;
+    left: 12px;
+
+    width: calc(100% - 36px);
+    height: 0;
+
     border-bottom: 1px solid #d7d7d7;
 }
 
@@ -371,7 +386,9 @@
     margin-right: 12px;
     margin-bottom: 16px;
 
-    flex-basis: calc(50% - 12px);
+    min-width: calc(50% - 12px);
+
+    flex-basis: calc(180px - 12px);
     flex-grow: 1;
 }
 
@@ -382,6 +399,29 @@
 .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2),
 .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
     margin-bottom: 0;
+}
+
+.E_PageSectionSettings--section-note q:after {
+    content: close-quote;
+
+    color: var(--color-text-3);
+}
+
+.E_PageSectionSettings--section-note q:before {
+    content: open-quote;
+
+    color: var(--color-text-3);
+}
+
+.E_PageSectionSettings--section-note {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 400;
+
+    margin-top: 6px;
+
+    color: var(--color-text-3);
 }
 
 /*---------------------------- TITLES ----------------------------*/

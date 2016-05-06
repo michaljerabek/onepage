@@ -64,7 +64,8 @@ module.exports = Ractive.extend({
         pageMenu: Ractive.EDIT_MODE ? require("./PageMenu/index.tpl") : null,
 
         FlatButton: Ractive.EDIT_MODE ? require("./Components/UI/FlatButton/index.tpl") : null,
-        Button: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Button/index.tpl") : null
+        Button: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Button/index.tpl") : null,
+        Switch: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Switch/index.tpl") : null
     },
 
     data: function () {

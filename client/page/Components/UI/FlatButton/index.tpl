@@ -34,7 +34,7 @@
                       top: {{.iconY + 'px'}};
                      left: {{.iconX + 'px'}};
                     width: {{.iconW + 'px'}};
-                   heigth: {{.iconH + 'px'}};
+                   height: {{.iconH + 'px'}};
                 transform: rotate({{.iconR || 0}}deg);
             "
         >
