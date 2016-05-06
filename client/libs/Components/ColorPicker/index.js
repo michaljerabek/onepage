@@ -9,16 +9,18 @@
             Spectra = require("spectra"),
             U = require("./../../U"),
             template = require("./index.tpl"),
+            Select = require("./../UI/Select/index.tpl"),
+//            Text = require("./index.tpl"),
             on = require("./../../../../helpers/on");
 
-        module.exports = factory(Ractive, ColorPickerPalette, Spectra, U, template, on);
+        module.exports = factory(Ractive, ColorPickerPalette, Spectra, U, template, Select, "", on);
 
     } else {
 
-        root.ColorPicker = factory(root.Ractive, root.ColorPickerPalette, root.Spectra, root.U, "", {client: true});
+        root.ColorPicker = factory(root.Ractive, root.ColorPickerPalette, root.Spectra, root.U, "", "", "", {client: true});
     }
 
-}(this, function (Ractive, ColorPickerPalette, Spectra, U, template, on) {
+}(this, function (Ractive, ColorPickerPalette, Spectra, U, template, Select, Text, on) {
 
     var instanceCounter = 0;
 
@@ -30,6 +32,11 @@
 
         components: {
             ColorPickerPalette: ColorPickerPalette
+        },
+
+        partials: {
+            Select: Select,
+            Text: Text
         },
 
         computed: {

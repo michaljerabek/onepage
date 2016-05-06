@@ -1084,20 +1084,18 @@ body {
 }
 
 .ColorPicker--type-selector {
-    line-height: 32px;
-
-    height: 32px;
-    padding: 0 4px;
-
     -webkit-box-flex: 1;
-
     -webkit-flex-grow: 1;
-
        -moz-box-flex: 1;
-
         -ms-flex-positive: 1;
-
             flex-grow: 1;
+}
+
+.ColorPicker--type-selector:not(.Select) {
+    line-height: 34px;
+
+    height: 34px;
+    padding: 0 4px;
 }
 
 /*---------------------------- TEXT ----------------------------*/
@@ -1125,14 +1123,14 @@ body {
 }
 
 .ColorPicker--input-text {
-    line-height: 32px;
+    line-height: 34px;
 
     margin-bottom: 8px;
 
     min-width: 44px;
     width: 100%;
 
-    height: 32px;
+    height: 34px;
     padding: 0 8px;
 
     -webkit-flex-basis: -webkit-calc(100% - 4px);
@@ -3246,6 +3244,18 @@ body {
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Button__disabled.Button__medium .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 .Button__medium:not(.Button__disabled).Button__active .Button--content, .Button__medium:not(.Button__disabled).Button__active:active .Button--content, .Button__medium:not(.Button__disabled):active .Button--content {
     -webkit-box-shadow:
         inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
@@ -3267,6 +3277,15 @@ body {
              box-shadow:
             inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__disabled.Button__medium .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__medium:not(.Button__disabled).Button__active .Button--content, .Button__medium:not(.Button__disabled).Button__active:active .Button--content, .Button__medium:not(.Button__disabled):active .Button--content {
@@ -3325,6 +3344,18 @@ body {
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Button__disabled.Button__large .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 .Button__large:not(.Button__disabled).Button__active .Button--content, .Button__large:not(.Button__disabled).Button__active:active .Button--content, .Button__large:not(.Button__disabled):active .Button--content {
     -webkit-box-shadow:
         inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
@@ -3346,6 +3377,15 @@ body {
              box-shadow:
             inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__disabled.Button__large .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__large:not(.Button__disabled).Button__active .Button--content, .Button__large:not(.Button__disabled).Button__active:active .Button--content, .Button__large:not(.Button__disabled):active .Button--content {
@@ -3404,6 +3444,18 @@ body {
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Button__disabled.Button__small .Button--content {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 .Button__small:not(.Button__disabled).Button__active .Button--content, .Button__small:not(.Button__disabled).Button__active:active .Button--content, .Button__small:not(.Button__disabled):active .Button--content {
     -webkit-box-shadow:
         inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
@@ -3425,6 +3477,15 @@ body {
              box-shadow:
             inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__disabled.Button__small .Button--content {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__small:not(.Button__disabled).Button__active .Button--content, .Button__small:not(.Button__disabled).Button__active:active .Button--content, .Button__small:not(.Button__disabled):active .Button--content {
@@ -3900,37 +3961,37 @@ body {
 .Button__medium.Button__disabled:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
     -webkit-box-shadow:
         inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
        -moz-box-shadow:
         inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
             box-shadow:
         inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
 }
 
 .Button__large.Button__disabled:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
     -webkit-box-shadow:
         inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
        -moz-box-shadow:
         inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
             box-shadow:
         inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
 }
 
 .Button__small.Button__disabled:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
     -webkit-box-shadow:
         inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
        -moz-box-shadow:
         inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
             box-shadow:
         inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
 }
 
 @-moz-document url-prefix() {
@@ -3938,28 +3999,28 @@ body {
     .Button__medium.Button__disabled:not(:active):not(.Button__active):hover .Button--content, .Button__medium.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
         -moz-box-shadow:
             inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
              box-shadow:
             inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__large.Button__disabled:not(:active):not(.Button__active):hover .Button--content, .Button__large.Button__disabled:not(:active):not(.Button__active):focus .Button--content{
         -moz-box-shadow:
             inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
              box-shadow:
             inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__small.Button__disabled:not(:active):not(.Button__active):hover .Button--content, .Button__small.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
         -moz-box-shadow:
             inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
              box-shadow:
             inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 }
 
@@ -4086,7 +4147,11 @@ body {
 }
 
 .Switch__adaptive {
-    display: block;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
 }
 
 .Switch--input {
@@ -4108,14 +4173,15 @@ body {
 
             border-radius: inherit;
 
+    -webkit-flex-basis: 100%;
+
+        -ms-flex-preferred-size: 100%;
+
+            flex-basis: 100%;
     display: -webkit-box;
-
     display: -webkit-flex;
-
     display: -moz-box;
-
     display: -ms-flexbox;
-
     display: flex;
 
     overflow: hidden;
@@ -4438,6 +4504,18 @@ body {
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Switch__disabled.Switch__small:before {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 @-moz-document url-prefix() {
 
     .Switch__small:before {
@@ -4447,6 +4525,15 @@ body {
              box-shadow:
             inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Switch__disabled.Switch__small:before {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 }
 
@@ -4550,6 +4637,18 @@ body {
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Switch__disabled.Switch__medium:before {
+    -webkit-box-shadow:
+        inset  0px  0px 18px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 18px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 18px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 @-moz-document url-prefix() {
 
     .Switch__medium:before {
@@ -4559,6 +4658,15 @@ body {
              box-shadow:
             inset  0px  0px 18px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Switch__disabled.Switch__medium:before {
+        -moz-box-shadow:
+            inset  0px  0px 18px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 18px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 }
 
@@ -4662,6 +4770,18 @@ body {
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Switch__disabled.Switch__large:before {
+    -webkit-box-shadow:
+        inset  0px  0px 20px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 20px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 20px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 @-moz-document url-prefix() {
 
     .Switch__large:before {
@@ -4671,6 +4791,15 @@ body {
              box-shadow:
             inset  0px  0px 20px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Switch__disabled.Switch__large:before {
+        -moz-box-shadow:
+            inset  0px  0px 20px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 20px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 }
 
@@ -5965,6 +6094,727 @@ body {
 
 
 
+
+/*====================================================================*/
+/*------------------------------ SELECT ------------------------------*/
+/*====================================================================*/
+
+.Select, .Select:after, .Select--icon svg, .Select--options {
+    will-change: box-shadow, transform, background, fill, color;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Select:hover, .Select:hover:after, .Select--options:hover + .Select--icon svg, .Select--options:hover, .Select--options:focus, .Select--options:focus + .Select--icon svg, .Select:has(:focus):after {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.Select:active:after, .Select--options:active + .Select--icon svg, .Select:active .Select--options, .Select--options:active, .Select:has(:active):after {
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.Select {
+    line-height: 0;
+
+    position: relative;
+
+    padding: 0;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+
+}
+
+.Select:not(.Select__disabled):active {
+    -webkit-transform: translate(1px, 1px);
+       -moz-transform: translate(1px, 1px);
+        -ms-transform: translate(1px, 1px);
+         -o-transform: translate(1px, 1px);
+            transform: translate(1px, 1px);
+}
+
+.Select__adaptive {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.Select:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.Select:not(.Select__disabled):active:after {
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Select:after {
+        -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+             box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Select:not(.Select__disabled):active:after {
+        -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+             box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Select--options {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+
+    margin: 0;
+
+    min-width: 100%;
+
+    color: #404040;
+    background-color: #fcfcfc;
+    border: none;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    -webkit-flex-basis: 100%;
+
+        -ms-flex-preferred-size: 100%;
+
+            flex-basis: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.Select--options::-ms-expand {
+    display: none;
+}
+
+.Select--options:focus {
+    outline: none;
+}
+
+.Select--options:active {
+    color: #fff;
+}
+
+.Select--options option {
+    font-weight: 500;
+
+	color: #404040;
+	background-color: #fcfcfc;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.Select--icon {
+    z-index: 2;
+    position:absolute;
+    top: 0px;
+    right: 1px;
+
+    height: 100%;
+
+    -webkit-transform: rotate(180deg);
+
+       -moz-transform: rotate(180deg);
+
+        -ms-transform: rotate(180deg);
+
+         -o-transform: rotate(180deg);
+
+            transform: rotate(180deg);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    pointer-events: none;
+}
+
+.Select--icon svg {
+    fill: #505050;
+}
+
+.Select--options:active + .Select--icon svg {
+    fill: rgba(255, 255, 255, 0.9);
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.Select__medium {
+    height: 42px;
+}
+
+.Select__medium .Select--options {
+    font-size: 14px;
+
+    height: 42px;
+    min-width: 42px;
+    padding: 0 24px 0 14px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__medium .Select--options {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__medium .Select--icon {
+	width: 24px;
+}
+
+.Select__medium .Select--icon svg {
+	width: 8px;
+	height: 8px;
+}
+
+.Select__medium:not(.Select__disabled):active .Select--options {
+    -webkit-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__medium .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__medium:not(.Select__disabled):active .Select--options {
+        -moz-box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__medium option {
+	height: 24px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.Select__large {
+    height: 50px;
+}
+
+.Select__large .Select--options {
+    font-size: 17px;
+
+    height: 50px;
+    min-width: 50px;
+    padding: 0 28px 0 18px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__large .Select--options {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__large .Select--icon {
+    width: 28px;
+}
+
+.Select__large .Select--icon svg {
+    width: 10px;
+    height: 10px;
+}
+
+.Select__large:not(.Select__disabled):active .Select--options {
+    -webkit-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__large .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__large .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__large:not(.Select__disabled):active .Select--options {
+        -moz-box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__large option {
+    height: 32px;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.Select__small {
+    height: 34px;
+}
+
+.Select__small .Select--options {
+    font-size: 14px;
+
+    height: 34px;
+    min-width: 34px;
+    padding: 0 20px 0 10px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__small .Select--options {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__small .Select--icon {
+    width: 20px;
+}
+
+.Select__small .Select--icon svg {
+    width: 8px;
+    height: 8px;
+}
+
+.Select__small:not(.Select__disabled):active .Select--options {
+    -webkit-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__small .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__small .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__small:not(.Select__disabled):active .Select--options {
+        -moz-box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__small option {
+    height: 20px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+}
+
+.Select__default.Select__active .Select--options {
+    background-color: #08a1c2;
+}
+
+.Select__default.Select__active .Select--options:focus, .Select__default.Select__active .Select--options:hover {
+    background-color: #15b0d1;
+}
+
+.Select__default.Select__active .Select--options:active, .Select__default .Select--options:active {
+    background-color: #088eab;
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.Select__disabled .Select--options, .Select__disabled .Select--options:hover, .Select__disabled .Select--options:focus {
+    color: #b2b2b2;
+    background-color: #f2f2f2;
+}
+
+.Select__disabled .Select--options:focus + .Select--icon svg, .Select__disabled .Select--options:hover + .Select--icon svg, .Select__disabled .Select--icon svg {
+    fill: rgba(80, 80, 80, 0.3);
+}
+
+.Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus{
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+}
+
+.Select__disabled .Select--options:active {
+    background-color: #e2e2e2;
+}
+
+.Select__disabled .Select--options:active + .Select--icon svg {
+    fill: rgba(80, 80, 80, 0.3);
+}
+
+.Select--options option:disabled {
+    color: #b2b2b2;
+}
 
 /*====================================================================*/
 /*----------------------------- PALETTES -----------------------------*/
@@ -8481,38 +9331,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
             justify-content: flex-end;
 }
 
-.medium-editor-use-touch .medium-editor-form-btns {
-    height: 56px;
-}
-
-.medium-editor-toolbar-form .medium-editor-form-btns a {
-    font-size: 23px;
-    text-decoration: none;
-
+.medium-editor-toolbar-form .medium-editor-form-btns > span {
     margin-left: 12px;
 
-    -webkit-flex-basis: 42px;
-
-        -ms-flex-preferred-size: 42px;
-
-            flex-basis: 42px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-
-    color: inherit;
+    width: auto;
 }
 
 /*---------------------------- SECTION TAB ----------------------------*/
@@ -10996,270 +11818,6 @@ body > .E_NewPageSectionSelector--clone .type {
     to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
 }
 
-.P_PageSection {
-    position: relative;
-
-    width: 100%;
-
-    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
-        z-index 0s linear 0.3s;
-
-    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
-        z-index 0s linear 0.3s;
-
-    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
-        z-index 0s linear 0.3s;
-
-    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
-        z-index 0s linear 0.3s;
-}
-
-.P_PageSection:hover, .P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
-    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-}
-
-.P_PageSection:hover {
-    z-index: 2;
-}
-
-.P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
-    z-index: 3;
-}
-
-.P_PageSection--background-color, .P_PageSection--section, .P_PageSection--content {
-    position: relative;
-}
-
-.P_PageSection:hover .P_PageSection--content, .P_PageSection__has-outline:hover .P_PageSection--content, .P_PageSection__has-settings:hover .P_PageSection--content, .P_PageSection__has-outline .P_PageSection--content, .P_PageSection__has-settings .P_PageSection--content {
-    z-index: 1;
-}
-
-.P_PageSection__dragged, .P_PageSection__dragged:hover, .P_PageSection__removed, .P_PageSection__removed:hover, .P_PageSection__placed, .P_PageSection__placed:hover {
-    z-index: 10;
-
-    overflow: hidden;
-}
-
-.P_PageSection__removed:hover, .P_PageSection__removed {
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
-}
-
-.P_PageSection__placed:not(.P_PageSection__new), .P_PageSection__removed, .P_PageSection__dragged {
-    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-       -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-
-    -webkit-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-       -moz-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-         -o-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-            animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-}
-
-.P_PageSection__dragged {
-    -webkit-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-       -moz-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-         -o-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-            animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-}
-
-.P_PageSection__placed:not(.P_PageSection__new) {
-    -webkit-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
-       -moz-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
-         -o-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
-            animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
-}
-
-.P_PageSection__new:not(.P_PageSection__inserted-by-tap) {
-    -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
-       -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
-
-    -webkit-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-       -moz-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-         -o-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-
-            animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
-}
-
-@-webkit-keyframes PageSection--sort-shadow__dragged {
-    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-moz-keyframes PageSection--sort-shadow__dragged {
-    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-o-keyframes PageSection--sort-shadow__dragged {
-    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@keyframes PageSection--sort-shadow__dragged {
-    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-webkit-keyframes PageSection--sort-shadow__placed {
-    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-moz-keyframes PageSection--sort-shadow__placed {
-    to { -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-o-keyframes PageSection--sort-shadow__placed {
-    to { box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@keyframes PageSection--sort-shadow__placed {
-    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-webkit-keyframes PageSection--sort-shadow__removed {
-    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-moz-keyframes PageSection--sort-shadow__removed {
-    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-o-keyframes PageSection--sort-shadow__removed {
-    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@keyframes PageSection--sort-shadow__removed {
-    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
-}
-
-@-webkit-keyframes PageSection--sort-shadow__new {
-    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
-}
-
-@-moz-keyframes PageSection--sort-shadow__new {
-    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
-}
-
-@-o-keyframes PageSection--sort-shadow__new {
-    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
-}
-
-@keyframes PageSection--sort-shadow__new {
-    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
-}
-
-.P_PageSection__dragged {
-    height: 48px;
-    min-height: 48px;
-}
-
-.E .P_PageSection, .E .P_PageSection:after, .E .P_PageSection:before {
-    will-change: box-shadow, transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
-}
-
-.E .P_PageSection:after {
-    content: attr(data-page-section-name);
-
-    font-size: 19px;
-
-    z-index: 120;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    color: #fff;
-    background-color: #404040;
-    opacity: 0;
-    visibility: hidden;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-
-    -webkit-transition-property: opacity, visibility;
-
-    -moz-transition-property: opacity, visibility;
-
-    -o-transition-property: opacity, visibility;
-
-    transition-property: opacity, visibility;
-    -webkit-transition-duration: 0.35s;
-       -moz-transition-duration: 0.35s;
-         -o-transition-duration: 0.35s;
-            transition-duration: 0.35s;
-    -webkit-transition-timing-function: cubic-bezier(0, 0, .58, 1);
-       -moz-transition-timing-function: cubic-bezier(0, 0, .58, 1);
-         -o-transition-timing-function: cubic-bezier(0, 0, .58, 1);
-            transition-timing-function: cubic-bezier(0, 0, .58, 1);
-}
-
-.E .P_PageSection__dragged:after {
-    opacity: 1;
-    visibility: visible;
-}
-
-.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageSection--background-color, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .E_PageElement--outline ~ * {
-    -webkit-transition: color 0.1s linear,
-        background-color 0.1s linear;
-    -moz-transition: color 0.1s linear,
-        background-color 0.1s linear;
-    -o-transition: color 0.1s linear,
-        background-color 0.1s linear;
-    transition:
-        color 0.1s linear,
-        background-color 0.1s linear;
-}
-
-.P_font-type-1 .P_PageSection--content {
-    font-family: serif;
-}
-
-.P_font-type-2 .P_PageSection--content {
-    font-family: sans-serif;
-}
-
-.P_PageSection--content sup {
-    font-size: 70%;
-    vertical-align: super;
-}
-
-.P_PageSection--content sub {
-    font-size: 70%;
-    vertical-align: sub;
-}
-
-.P_PageSection--content a {
-    color: inherit;
-}
-
-
 .P_PageElement {
     z-index: 1;
     position: relative;
@@ -11566,6 +12124,818 @@ body > .E_NewPageSectionSelector--clone .type {
     cursor: default;
     -ms-touch-action: manipulation;
         touch-action: manipulation;
+}
+
+.P_PageSection {
+    position: relative;
+
+    width: 100%;
+
+    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
+        z-index 0s linear 0.3s;
+
+    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
+        z-index 0s linear 0.3s;
+
+    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
+        z-index 0s linear 0.3s;
+
+    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s,
+        z-index 0s linear 0.3s;
+}
+
+.P_PageSection:hover, .P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
+    -webkit-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+    -moz-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+    -o-transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+    transition: height 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+}
+
+.P_PageSection:hover {
+    z-index: 2;
+}
+
+.P_PageSection__has-outline:hover, .P_PageSection__has-settings:hover, .P_PageSection__has-outline, .P_PageSection__has-settings {
+    z-index: 3;
+}
+
+.P_PageSection--background-color, .P_PageSection--section, .P_PageSection--content {
+    position: relative;
+}
+
+.P_PageSection:hover .P_PageSection--content, .P_PageSection__has-outline:hover .P_PageSection--content, .P_PageSection__has-settings:hover .P_PageSection--content, .P_PageSection__has-outline .P_PageSection--content, .P_PageSection__has-settings .P_PageSection--content {
+    z-index: 1;
+}
+
+.P_PageSection__dragged, .P_PageSection__dragged:hover, .P_PageSection__removed, .P_PageSection__removed:hover, .P_PageSection__placed, .P_PageSection__placed:hover {
+    z-index: 10;
+
+    overflow: hidden;
+}
+
+.P_PageSection__removed:hover, .P_PageSection__removed {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+.P_PageSection__placed:not(.P_PageSection__new), .P_PageSection__removed, .P_PageSection__dragged {
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+
+    -webkit-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+       -moz-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+         -o-animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+            animation: PageSection--sort-shadow__removed 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+}
+
+.P_PageSection__dragged {
+    -webkit-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+       -moz-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+         -o-animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+            animation: PageSection--sort-shadow__dragged 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+}
+
+.P_PageSection__placed:not(.P_PageSection__new) {
+    -webkit-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+       -moz-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+         -o-animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+            animation: PageSection--sort-shadow__placed 0.35s cubic-bezier(0, 0, .58, 1) forwards reverse;
+}
+
+.P_PageSection__new:not(.P_PageSection__inserted-by-tap) {
+    -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3);
+
+    -webkit-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+       -moz-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+         -o-animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+
+            animation: PageSection--sort-shadow__new 0.35s cubic-bezier(0, 0, .58, 1) forwards;
+}
+
+@-webkit-keyframes PageSection--sort-shadow__dragged {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__dragged {
+    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-o-keyframes PageSection--sort-shadow__dragged {
+    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__dragged {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-webkit-keyframes PageSection--sort-shadow__placed {
+    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__placed {
+    to { -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-o-keyframes PageSection--sort-shadow__placed {
+    to { box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__placed {
+    to { -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-webkit-keyframes PageSection--sort-shadow__removed {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__removed {
+    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-o-keyframes PageSection--sort-shadow__removed {
+    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes PageSection--sort-shadow__removed {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3); }
+}
+
+@-webkit-keyframes PageSection--sort-shadow__new {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+@-moz-keyframes PageSection--sort-shadow__new {
+    to { -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+@-o-keyframes PageSection--sort-shadow__new {
+    to { box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+@keyframes PageSection--sort-shadow__new {
+    to { -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0); }
+}
+
+.P_PageSection__dragged {
+    height: 48px;
+    min-height: 48px;
+}
+
+.E .P_PageSection, .E .P_PageSection:after, .E .P_PageSection:before {
+    will-change: box-shadow, transform, opacity, width, min-width, max-width, height, min-height, max-height, margin, margin-bottom;
+}
+
+.E .P_PageSection:after {
+    content: attr(data-page-section-name);
+
+    font-size: 19px;
+
+    z-index: 120;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    color: #fff;
+    background-color: #404040;
+    opacity: 0;
+    visibility: hidden;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-transition-property: opacity, visibility;
+
+    -moz-transition-property: opacity, visibility;
+
+    -o-transition-property: opacity, visibility;
+
+    transition-property: opacity, visibility;
+    -webkit-transition-duration: 0.35s;
+       -moz-transition-duration: 0.35s;
+         -o-transition-duration: 0.35s;
+            transition-duration: 0.35s;
+    -webkit-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+       -moz-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+         -o-transition-timing-function: cubic-bezier(0, 0, .58, 1);
+            transition-timing-function: cubic-bezier(0, 0, .58, 1);
+}
+
+.E .P_PageSection__dragged:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageSection--background-color, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .E_PageElement--outline ~ * {
+    -webkit-transition: color 0.1s linear,
+        background-color 0.1s linear;
+    -moz-transition: color 0.1s linear,
+        background-color 0.1s linear;
+    -o-transition: color 0.1s linear,
+        background-color 0.1s linear;
+    transition:
+        color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.P_font-type-1 .P_PageSection--content {
+    font-family: serif;
+}
+
+.P_font-type-2 .P_PageSection--content {
+    font-family: sans-serif;
+}
+
+.P_PageSection--content sup {
+    font-size: 70%;
+    vertical-align: super;
+}
+
+.P_PageSection--content sub {
+    font-size: 70%;
+    vertical-align: sub;
+}
+
+.P_PageSection--content a {
+    color: inherit;
+}
+
+
+.E_PageElementSettings--transition-wrapper {
+    z-index: 120;
+	position: relative;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+}
+
+.E_PageElementSettings {
+    z-index: 120;
+    position: absolute;
+
+    background-color: #f5f5f5;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+       -moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+    will-change: top, left, opacity;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: top, left;
+    -moz-transition-property: top, left;
+    -o-transition-property: top, left;
+    transition-property: top, left;
+}
+
+.E_PageElementSettings--wrapper {
+    position: relative;
+
+    padding-top: 24px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+
+    overflow: hidden;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--wrapper {
+        padding-top: 32px;
+    }
+}
+
+.E_PageElementSettings--content {
+    position: relative;
+
+    min-width: 220px;
+    min-height: 180px;
+}
+
+.E_PageElementSettings--content:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: -4px;
+
+    width: -webkit-calc(100% + 8px);
+
+    width: -moz-calc(100% + 8px);
+
+    width: calc(100% + 8px);
+    height: -webkit-calc(100% + 4px);
+    height: -moz-calc(100% + 4px);
+    height: calc(100% + 4px);
+
+    -webkit-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+       -moz-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+            box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+    pointer-events: none;
+}
+
+.E_PageElementSettings--resizable-box {
+    will-change: width, height;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: width, height;
+    -moz-transition-property: width, height;
+    -o-transition-property: width, height;
+    transition-property: width, height;
+}
+
+.E_PageElementSettings--scrollable {
+    will-change: scroll-position;
+    -webkit-transform: translateZ(0);
+       -moz-transform: translateZ(0);
+            transform: translateZ(0);
+}
+
+.E_PageElementSettings--resizer {
+    z-index: 100;
+    position: absolute;
+}
+
+.E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
+    left: 0;
+
+    width: 100%;
+    height: 8px;
+
+    cursor: ns-resize;
+}
+
+.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
+    top: -6px;
+}
+
+.E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
+    bottom: -6px;
+}
+
+.E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
+    top: 0;
+
+    width: 8px;
+    height: 100%;
+
+    cursor: ew-resize;
+}
+
+.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
+    left: -6px;
+}
+
+.E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
+    right: -6px;
+}
+
+.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
+    z-index: 110;
+
+    width: 8px;
+    height: 8px;
+}
+
+.E_PageElementSettings--resizer__top-left {
+    cursor: nw-resize;
+}
+
+.E_PageElementSettings--resizer__top-right {
+    cursor: ne-resize;
+}
+
+.E_PageElementSettings--resizer__bottom-left {
+    cursor: sw-resize;
+}
+
+.E_PageElementSettings--resizer__bottom-right {
+    cursor: se-resize;
+}
+
+.csspointerevents .E_PageElementSettings--resizer-hover {
+    z-index: 200;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0px solid transparent;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    pointer-events: none;
+
+    -webkit-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    -moz-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    -o-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+}
+
+.csspointerevents .E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
+    -webkit-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -moz-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -o-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+}
+
+.csspointerevents .E_PageElementSettings--resizer:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    -webkit-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top:hover ~ .E_PageElementSettings--resizer-hover {
+    border-top-color: #ef6737;
+    border-top-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom:hover ~ .E_PageElementSettings--resizer-hover {
+    border-bottom-color: #ef6737;
+    border-bottom-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left:hover ~ .E_PageElementSettings--resizer-hover {
+    border-left-color: #ef6737;
+    border-left-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right:hover ~ .E_PageElementSettings--resizer-hover {
+    border-right-color: #ef6737;
+    border-right-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-top-color: #36b73c;
+    border-top-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-bottom-color: #36b73c;
+    border-bottom-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-left-color: #36b73c;
+    border-left-width: 1px;
+}
+
+.csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-right-color: #36b73c;
+    border-right-width: 1px;
+}
+
+.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+    content: "";
+
+    position: absolute;
+
+    width: 0px;
+    height: 0px;
+
+    width: 8px;
+    height: 8px;
+}
+
+.E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+    left: 0;
+    top: 8px;
+}
+
+.E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+    top: -8px;
+}
+
+.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before {
+    left: 8px;
+    top: 0;
+}
+
+.E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
+    left: -8px;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
+        height: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
+        top: -18px;
+    }
+
+    .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
+        bottom: -18px;
+    }
+
+    .E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
+        width: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
+        left: -18px;
+    }
+
+    .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
+        right: -18px;
+    }
+
+    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
+        width: 24px;
+        height: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+        width: 24px;
+        height: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__bottom-left:before {
+        left: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
+        left: -24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after {
+        top: 24px;
+    }
+
+    .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+        top: -24px;
+    }
+}
+
+.E_PageElementSettings--title-bar {
+    line-height: 24px;
+
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 24px;
+    width: 100%;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-border-top-right-radius: 4px;
+       -moz-border-radius-topright: 4px;
+            border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+}
+
+.E_PageElementSettings--title {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 11px;
+    white-space: nowrap;
+
+    position: relative;
+
+    padding: 0 8px;
+
+    color: #f5f5f5;
+
+    cursor: move;
+    display: block;
+}
+
+.E_PageElementSettings--title-self + .E_PageElementSettings--title-section:before {
+    content: " — ";
+}
+
+.E_PageElementSettings--title-section {
+    opacity: 0.75;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--title-bar {
+        line-height: 32px;
+
+        height: 32px;
+    }
+
+    .E_PageElementSettings--title {
+        font-size: 13px;
+    }
+}
+
+.E_PageElementSettings--min-max, .E_PageElementSettings--close {
+    z-index: 110;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    padding: 0;
+    width: 20px;
+    height: 24px;
+
+    background-color: #404040;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.E_PageElementSettings--close {
+    padding-right: 4px;
+
+    -webkit-border-top-right-radius: 4px;
+
+       -moz-border-radius-topright: 4px;
+
+            border-top-right-radius: 4px;
+}
+
+.E_PageElementSettings--min-max {
+    padding-left: 2px;
+}
+
+.E_PageElementSettings--min-max:after {
+    content: "";
+
+    z-index: 120;
+    position: absolute;
+    top: 0px;
+    right: 100%;
+
+    width: 40px;
+    height: 100%;
+
+    background-image: -webkit-gradient(linear, right top, left top, from(#404040), to(rgba(64, 64, 64, 0)));
+
+    background-image: -webkit-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
+
+    background-image: -moz-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
+
+    background-image: -o-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
+
+    background-image: linear-gradient(to left, #404040, rgba(64, 64, 64, 0));
+
+    pointer-events: none;
+}
+
+.E_PageElementSettings--min-max svg, .E_PageElementSettings--close svg {
+    width: 10px;
+    height: 10px;
+
+    fill: rgba(255, 255, 255, 0.75);
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.E_PageElementSettings--min-max:hover svg, .E_PageElementSettings--close:hover svg {
+    fill: #fff;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_PageElementSettings--min-max:active svg, .E_PageElementSettings--close:active svg {
+    -webkit-transform: scale(0.9);
+       -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+         -o-transform: scale(0.9);
+            transform: scale(0.9);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max, .E_PageElementSettings--close {
+        height: 32px;
+        width: 32px;
+    }
+
+    .E_PageElementSettings--close {
+        padding-left: 4px;
+    }
+
+    .E_PageElementSettings--min-max {
+        padding-left: 12px;
+    }
+
+    .E_PageElementSettings--min-max svg, .E_PageElementSettings--close svg {
+        height: 12px;
+        width: 12px;
+    }
+}
+
+.E_PageElementSettings--min-max {
+    right: 20px;
+
+    cursor: default;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max {
+        right: 32px;
+    }
+}
+
+.E_PageElementSettings--min-max__max:hover svg, .E_PageElementSettings--min-max__max svg {
+    fill: #ef6737;
 }
 
 .E_PageSectionEditUI {
@@ -12757,554 +14127,6 @@ body > .E_NewPageSectionSelector--clone .type {
     to { pointer-events: none; }
 }
 
-
-.E_PageElementSettings--transition-wrapper {
-    z-index: 120;
-	position: relative;
-
-    -webkit-transform: translateZ(0);
-
-       -moz-transform: translateZ(0);
-
-            transform: translateZ(0);
-}
-
-.E_PageElementSettings {
-    z-index: 120;
-    position: absolute;
-
-    background-color: #f5f5f5;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-       -moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-            box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-
-    -webkit-transform: translateZ(0);
-
-       -moz-transform: translateZ(0);
-
-            transform: translateZ(0);
-    will-change: top, left, opacity;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -webkit-transition-property: top, left;
-    -moz-transition-property: top, left;
-    -o-transition-property: top, left;
-    transition-property: top, left;
-}
-
-.E_PageElementSettings--wrapper {
-    position: relative;
-
-    padding-top: 24px;
-
-    -webkit-border-radius: 4px;
-
-       -moz-border-radius: 4px;
-
-            border-radius: 4px;
-
-    overflow: hidden;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--wrapper {
-        padding-top: 32px;
-    }
-}
-
-.E_PageElementSettings--content {
-    position: relative;
-
-    min-width: 220px;
-    min-height: 180px;
-}
-
-.E_PageElementSettings--content:after {
-    content: "";
-
-    position: absolute;
-    top: 0px;
-    left: -4px;
-
-    width: -webkit-calc(100% + 8px);
-
-    width: -moz-calc(100% + 8px);
-
-    width: calc(100% + 8px);
-    height: -webkit-calc(100% + 4px);
-    height: -moz-calc(100% + 4px);
-    height: calc(100% + 4px);
-
-    -webkit-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-
-       -moz-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-
-            box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-
-    pointer-events: none;
-}
-
-.E_PageElementSettings--resizable-box {
-    will-change: width, height;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -webkit-transition-property: width, height;
-    -moz-transition-property: width, height;
-    -o-transition-property: width, height;
-    transition-property: width, height;
-}
-
-.E_PageElementSettings--scrollable {
-    will-change: scroll-position;
-    -webkit-transform: translateZ(0);
-       -moz-transform: translateZ(0);
-            transform: translateZ(0);
-}
-
-.E_PageElementSettings--resizer {
-    z-index: 100;
-    position: absolute;
-}
-
-.E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
-    left: 0;
-
-    width: 100%;
-    height: 8px;
-
-    cursor: ns-resize;
-}
-
-.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
-    top: -6px;
-}
-
-.E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
-    bottom: -6px;
-}
-
-.E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
-    top: 0;
-
-    width: 8px;
-    height: 100%;
-
-    cursor: ew-resize;
-}
-
-.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
-    left: -6px;
-}
-
-.E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
-    right: -6px;
-}
-
-.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
-    z-index: 110;
-
-    width: 8px;
-    height: 8px;
-}
-
-.E_PageElementSettings--resizer__top-left {
-    cursor: nw-resize;
-}
-
-.E_PageElementSettings--resizer__top-right {
-    cursor: ne-resize;
-}
-
-.E_PageElementSettings--resizer__bottom-left {
-    cursor: sw-resize;
-}
-
-.E_PageElementSettings--resizer__bottom-right {
-    cursor: se-resize;
-}
-
-.csspointerevents .E_PageElementSettings--resizer-hover {
-    z-index: 200;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    border: 0px solid transparent;
-    -webkit-border-radius: inherit;
-       -moz-border-radius: inherit;
-            border-radius: inherit;
-
-    pointer-events: none;
-
-    -webkit-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-
-    -moz-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-
-    -o-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-
-    transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-}
-
-.csspointerevents .E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
-    -webkit-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -moz-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -o-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-}
-
-.csspointerevents .E_PageElementSettings--resizer:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    -webkit-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -moz-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -o-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top:hover ~ .E_PageElementSettings--resizer-hover {
-    border-top-color: #ef6737;
-    border-top-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom:hover ~ .E_PageElementSettings--resizer-hover {
-    border-bottom-color: #ef6737;
-    border-bottom-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left:hover ~ .E_PageElementSettings--resizer-hover {
-    border-left-color: #ef6737;
-    border-left-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right:hover ~ .E_PageElementSettings--resizer-hover {
-    border-right-color: #ef6737;
-    border-right-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-top-color: #36b73c;
-    border-top-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-bottom-color: #36b73c;
-    border-bottom-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__left[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-left-color: #36b73c;
-    border-left-width: 1px;
-}
-
-.csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right:active ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .csspointerevents .E_PageElementSettings--resizer__right[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-right-color: #36b73c;
-    border-right-width: 1px;
-}
-
-.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-    content: "";
-
-    position: absolute;
-
-    width: 0px;
-    height: 0px;
-
-    width: 8px;
-    height: 8px;
-}
-
-.E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-    left: 0;
-    top: 8px;
-}
-
-.E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-    top: -8px;
-}
-
-.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before {
-    left: 8px;
-    top: 0;
-}
-
-.E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
-    left: -8px;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
-        height: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
-        top: -18px;
-    }
-
-    .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
-        bottom: -18px;
-    }
-
-    .E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
-        width: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
-        left: -18px;
-    }
-
-    .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
-        right: -18px;
-    }
-
-    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
-        width: 24px;
-        height: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-        width: 24px;
-        height: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__bottom-left:before {
-        left: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
-        left: -24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after {
-        top: 24px;
-    }
-
-    .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-        top: -24px;
-    }
-}
-
-.E_PageElementSettings--title-bar {
-    line-height: 24px;
-
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    height: 24px;
-    width: 100%;
-
-    color: #fff;
-    background-color: #404040;
-    -webkit-border-top-right-radius: 4px;
-       -moz-border-radius-topright: 4px;
-            border-top-right-radius: 4px;
-    -webkit-border-top-left-radius: 4px;
-       -moz-border-radius-topleft: 4px;
-            border-top-left-radius: 4px;
-}
-
-.E_PageElementSettings--title {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 11px;
-    white-space: nowrap;
-
-    position: relative;
-
-    padding: 0 8px;
-
-    color: #f5f5f5;
-
-    cursor: move;
-    display: block;
-}
-
-.E_PageElementSettings--title-self + .E_PageElementSettings--title-section:before {
-    content: " — ";
-}
-
-.E_PageElementSettings--title-section {
-    opacity: 0.75;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--title-bar {
-        line-height: 32px;
-
-        height: 32px;
-    }
-
-    .E_PageElementSettings--title {
-        font-size: 13px;
-    }
-}
-
-.E_PageElementSettings--min-max, .E_PageElementSettings--close {
-    z-index: 110;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-
-    padding: 0;
-    width: 20px;
-    height: 24px;
-
-    background-color: #404040;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-}
-
-.E_PageElementSettings--close {
-    padding-right: 4px;
-
-    -webkit-border-top-right-radius: 4px;
-
-       -moz-border-radius-topright: 4px;
-
-            border-top-right-radius: 4px;
-}
-
-.E_PageElementSettings--min-max {
-    padding-left: 2px;
-}
-
-.E_PageElementSettings--min-max:after {
-    content: "";
-
-    z-index: 120;
-    position: absolute;
-    top: 0px;
-    right: 100%;
-
-    width: 40px;
-    height: 100%;
-
-    background-image: -webkit-gradient(linear, right top, left top, from(#404040), to(rgba(64, 64, 64, 0)));
-
-    background-image: -webkit-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
-
-    background-image: -moz-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
-
-    background-image: -o-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
-
-    background-image: linear-gradient(to left, #404040, rgba(64, 64, 64, 0));
-
-    pointer-events: none;
-}
-
-.E_PageElementSettings--min-max svg, .E_PageElementSettings--close svg {
-    width: 10px;
-    height: 10px;
-
-    fill: rgba(255, 255, 255, 0.75);
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.E_PageElementSettings--min-max:hover svg, .E_PageElementSettings--close:hover svg {
-    fill: #fff;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.E_PageElementSettings--min-max:active svg, .E_PageElementSettings--close:active svg {
-    -webkit-transform: scale(0.9);
-       -moz-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-         -o-transform: scale(0.9);
-            transform: scale(0.9);
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--min-max, .E_PageElementSettings--close {
-        height: 32px;
-        width: 32px;
-    }
-
-    .E_PageElementSettings--close {
-        padding-left: 4px;
-    }
-
-    .E_PageElementSettings--min-max {
-        padding-left: 12px;
-    }
-
-    .E_PageElementSettings--min-max svg, .E_PageElementSettings--close svg {
-        height: 12px;
-        width: 12px;
-    }
-}
-
-.E_PageElementSettings--min-max {
-    right: 20px;
-
-    cursor: default;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--min-max {
-        right: 32px;
-    }
-}
-
-.E_PageElementSettings--min-max__max:hover svg, .E_PageElementSettings--min-max__max svg {
-    fill: #ef6737;
-}
 
 /*====================================================================*/
 /*---------------------------- FLATBUTTON ----------------------------*/
@@ -14776,6 +15598,18 @@ body > .E_NewPageSectionSelector--clone .type {
 }
 
 
+.P_PageElement__text-content {
+    line-height: 1.4;
+
+    display: inline-block;
+}
+
+.P_PageElement__title {
+    line-height: 1.4;
+
+    display: inline-block;
+}
+
 .P_BackgroundImage {
     position:absolute;
     top: 0px;
@@ -14857,17 +15691,5 @@ body > .E_NewPageSectionSelector--clone .type {
     background-attachment: fixed;
 }
 
-
-.P_PageElement__text-content {
-    line-height: 1.4;
-
-    display: inline-block;
-}
-
-.P_PageElement__title {
-    line-height: 1.4;
-
-    display: inline-block;
-}
 
 /*# sourceMappingURL=admin.css.map */

@@ -57,16 +57,30 @@
 
             //uložit
             template.push(
-                '<a href="#" class="medium-editor-toolbar-save">',
-                this.getEditorOption('buttonLabels') === 'fontawesome' ? '<i class="fa fa-check"></i>' : this.formSaveLabel,
-                '</a>'
+                '<span class="medium-editor-toolbar-save">',
+                    '<span class="Button Button__small Button__ok Button__normal" tabindex="1" role="button">',
+                        '<span class="Button--content">',
+                            '<span class="Button--icon">',
+                                '<svg><use xlink:href="#icon-check-mark"></use></svg>',
+                            '</span>',
+                            '<span class="Button--text">Použít</span> ',
+                        '</span>',
+                    '</span>',
+                '</span>'
             );
 
             //zavřít
             template.push(
-                '<a href="#" class="medium-editor-toolbar-close">',
-                this.getEditorOption('buttonLabels') === 'fontawesome' ? '<i class="fa fa-times"></i>' : this.formCloseLabel,
-                '</a>'
+                '<span class="medium-editor-toolbar-close">',
+                    '<span class="Button Button__small Button__danger Button__normal" tabindex="2" role="button">',
+                        '<span class="Button--content">',
+                            '<span class="Button--icon" style="width: 14px; height: 14px;">',
+                                '<svg><use xlink:href="#icon-x"></use></svg>',
+                            '</span>',
+                            '<span class="Button--text">Zavřít</span> ',
+                        '</span>',
+                    '</span>',
+                '</span>'
             );
 
             template.push(

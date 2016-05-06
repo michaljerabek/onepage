@@ -15,6 +15,8 @@
                     {{> Button {
                             text: "Zrušit obrázek na pozadí",
                             icon: "#icon-x",
+                            iconW: 14,
+                            iconH: 14,
                             size: "small",
                             set: "data.backgroundImage.src",
                             value: ""

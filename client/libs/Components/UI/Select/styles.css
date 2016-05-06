@@ -1,0 +1,493 @@
+/*====================================================================*/
+/*------------------------------ SELECT ------------------------------*/
+/*====================================================================*/
+
+.Select,
+.Select:after,
+.Select--icon svg,
+.Select--options {
+    will-change: box-shadow, transform, background, fill, color;
+    transition: var(--default-transition);
+}
+
+.Select:hover,
+.Select:hover:after,
+.Select--options:hover + .Select--icon svg,
+.Select--options:hover,
+.Select--options:focus,
+.Select--options:focus + .Select--icon svg,
+.Select:has(:focus):after {
+    transition: var(--default-transition-hover);
+}
+
+.Select:active:after,
+.Select--options:active + .Select--icon svg,
+.Select:active .Select--options,
+.Select--options:active,
+.Select:has(:active):after {
+    transition: var(--default-transition-active);
+}
+
+.Select {
+    line-height: 0;
+
+    position: relative;
+
+    padding: 0;
+
+    border-radius: 4px;
+
+    display: inline-flex;
+
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+
+}
+
+.Select:not(.Select__disabled):active {
+    transform: translate(1px, 1px);
+}
+
+.Select__adaptive {
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    display: flex;
+}
+
+.Select:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: inherit;
+    box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.Select:not(.Select__disabled):active:after {
+    box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Select:after {
+        box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Select:not(.Select__disabled):active:after {
+        box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Select--options {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+
+    margin: 0;
+
+    min-width: 100%;
+
+    color: var(--color-button-text);
+    background-color: var(--color-button-bg);
+    border: none;
+    border-radius: inherit;
+
+    flex-basis: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.Select--options::-ms-expand {
+    display: none;
+}
+
+.Select--options:focus {
+    outline: none;
+}
+
+.Select--options:active {
+    color: #fff;
+}
+
+.Select--options option {
+    font-weight: 500;
+
+	color: var(--color-button-text);
+	background-color: var(--color-button-bg);
+
+    display: flex;
+    align-items: center;
+}
+
+.Select--icon {
+    z-index: 2;
+    position:absolute;
+    top: 0px;
+    right: 1px;
+
+    height: 100%;
+
+    transform: rotate(180deg);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    pointer-events: none;
+}
+
+.Select--icon svg {
+    fill: var(--color-button-icon);
+}
+
+.Select--options:active + .Select--icon svg {
+    fill: var(--color-button-icon-active);
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.Select__medium {
+    height: 42px;
+}
+
+.Select__medium .Select--options {
+    font-size: 14px;
+
+    height: 42px;
+    min-width: 42px;
+    padding: 0 24px 0 14px;
+
+    box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__medium .Select--options {
+    box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__medium .Select--icon {
+	width: 24px;
+}
+
+.Select__medium .Select--icon svg {
+	width: 8px;
+	height: 8px;
+}
+
+.Select__medium:not(.Select__disabled):active .Select--options {
+    box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium .Select--options {
+        box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__medium .Select--options {
+        box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__medium:not(.Select__disabled):active .Select--options {
+        box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__medium option {
+	height: 24px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.Select__large {
+    height: 50px;
+}
+
+.Select__large .Select--options {
+    font-size: 17px;
+
+    height: 50px;
+    min-width: 50px;
+    padding: 0 28px 0 18px;
+
+    box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__large .Select--options {
+    box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__large .Select--icon {
+    width: 28px;
+}
+
+.Select__large .Select--icon svg {
+    width: 10px;
+    height: 10px;
+}
+
+.Select__large:not(.Select__disabled):active .Select--options {
+    box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__large .Select--options {
+        box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__large .Select--options {
+        box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__large:not(.Select__disabled):active .Select--options {
+        box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__large option {
+    height: 32px;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.Select__small {
+    height: 34px;
+}
+
+.Select__small .Select--options {
+    font-size: 14px;
+
+    height: 34px;
+    min-width: 34px;
+    padding: 0 20px 0 10px;
+
+    box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__small .Select--options {
+    box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__small .Select--icon {
+    width: 20px;
+}
+
+.Select__small .Select--icon svg {
+    width: 8px;
+    height: 8px;
+}
+
+.Select__small:not(.Select__disabled):active .Select--options {
+    box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__small .Select--options {
+        box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__small .Select--options {
+        box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__small:not(.Select__disabled):active .Select--options {
+        box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__small option {
+    height: 20px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.Select__medium.Select__default .Select--options:not(:active):hover,
+.Select__medium.Select__default .Select--options:not(:active):focus {
+    box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Select__large.Select__default .Select--options:not(:active):hover,
+.Select__large.Select__default .Select--options:not(:active):focus {
+    box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Select__small.Select__default .Select--options:not(:active):hover,
+.Select__small.Select__default .Select--options:not(:active):focus {
+    box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium.Select__default .Select--options:not(:active):hover,
+    .Select__medium.Select__default .Select--options:not(:active):focus {
+        box-shadow:
+            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Select__large.Select__default .Select--options:not(:active):hover,
+    .Select__large.Select__default .Select--options:not(:active):focus {
+        box-shadow:
+            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Select__small.Select__default .Select--options:not(:active):hover,
+    .Select__small.Select__default .Select--options:not(:active):focus {
+        box-shadow:
+            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+}
+
+.Select__default.Select__active .Select--options {
+    background-color: var(--color-temp-selected-light);
+}
+
+.Select__default.Select__active .Select--options:focus,
+.Select__default.Select__active .Select--options:hover {
+    background-color: var(--color-temp-selected-light-over);
+}
+
+.Select__default.Select__active .Select--options:active,
+.Select__default .Select--options:active {
+    background-color: var(--color-temp-selected-light-active);
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.Select__disabled .Select--options,
+.Select__disabled .Select--options:hover,
+.Select__disabled .Select--options:focus {
+    color: var(--color-button-text-disabled);
+    background-color: var(--color-button-bg-disabled);
+}
+
+.Select__disabled .Select--options:focus + .Select--icon svg,
+.Select__disabled .Select--options:hover + .Select--icon svg,
+.Select__disabled .Select--icon svg {
+    fill: var(--color-button-icon-disabled);
+}
+
+.Select__medium.Select__disabled .Select--options:not(:active):hover,
+.Select__medium.Select__disabled .Select--options:not(:active):focus {
+    box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__large.Select__disabled .Select--options:not(:active):hover,
+.Select__large.Select__disabled .Select--options:not(:active):focus {
+    box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__small.Select__disabled .Select--options:not(:active):hover,
+.Select__small.Select__disabled .Select--options:not(:active):focus {
+    box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium.Select__disabled .Select--options:not(:active):hover,
+    .Select__medium.Select__disabled .Select--options:not(:active):focus {
+        box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__large.Select__disabled .Select--options:not(:active):hover,
+    .Select__large.Select__disabled .Select--options:not(:active):focus{
+        box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__small.Select__disabled .Select--options:not(:active):hover,
+    .Select__small.Select__disabled .Select--options:not(:active):focus {
+        box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+}
+
+.Select__disabled .Select--options:active {
+    background-color: var(--color-button-bg-disabled-active);
+}
+
+.Select__disabled .Select--options:active + .Select--icon svg {
+    fill: var(--color-button-icon-disabled);
+}
+
+.Select--options option:disabled {
+    color: var(--color-button-text-disabled);
+}

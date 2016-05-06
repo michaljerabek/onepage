@@ -165,6 +165,12 @@
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Button__disabled.Button__medium .Button--content {
+    box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 .Button__medium:not(.Button__disabled).Button__active .Button--content,
 .Button__medium:not(.Button__disabled).Button__active:active .Button--content,
 .Button__medium:not(.Button__disabled):active .Button--content {
@@ -179,6 +185,12 @@
         box-shadow:
             inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__disabled.Button__medium .Button--content {
+        box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__medium:not(.Button__disabled).Button__active .Button--content,
@@ -228,6 +240,12 @@
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Button__disabled.Button__large .Button--content {
+    box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 .Button__large:not(.Button__disabled).Button__active .Button--content,
 .Button__large:not(.Button__disabled).Button__active:active .Button--content,
 .Button__large:not(.Button__disabled):active .Button--content {
@@ -242,6 +260,12 @@
         box-shadow:
             inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__disabled.Button__large .Button--content {
+        box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__large:not(.Button__disabled).Button__active .Button--content,
@@ -291,6 +315,12 @@
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Button__disabled.Button__small .Button--content {
+    box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 .Button__small:not(.Button__disabled).Button__active .Button--content,
 .Button__small:not(.Button__disabled).Button__active:active .Button--content,
 .Button__small:not(.Button__disabled):active .Button--content {
@@ -305,6 +335,12 @@
         box-shadow:
             inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Button__disabled.Button__small .Button--content {
+        box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__small:not(.Button__disabled).Button__active .Button--content ,
@@ -738,21 +774,21 @@
 .Button__medium.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
     box-shadow:
         inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
 }
 
 .Button__large.Button__disabled:not(:active):not(.Button__active):hover .Button--content,
 .Button__large.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
     box-shadow:
         inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
 }
 
 .Button__small.Button__disabled:not(:active):not(.Button__active):hover .Button--content,
 .Button__small.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
     box-shadow:
         inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
 }
 
 @-moz-document url-prefix() {
@@ -761,21 +797,21 @@
     .Button__medium.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
         box-shadow:
             inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__large.Button__disabled:not(:active):not(.Button__active):hover .Button--content,
     .Button__large.Button__disabled:not(:active):not(.Button__active):focus .Button--content{
         box-shadow:
             inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 
     .Button__small.Button__disabled:not(:active):not(.Button__active):hover .Button--content,
     .Button__small.Button__disabled:not(:active):not(.Button__active):focus .Button--content {
         box-shadow:
             inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 }
 

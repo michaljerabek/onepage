@@ -97,7 +97,7 @@
 }
 
 .Switch__adaptive {
-    display: block;
+    display: flex;
 }
 
 .Switch--input {
@@ -115,6 +115,7 @@
 
     border-radius: inherit;
 
+    flex-basis: 100%;
     display: flex;
 
     overflow: hidden;
@@ -338,12 +339,24 @@
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Switch__disabled.Switch__small:before {
+    box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 @-moz-document url-prefix() {
 
     .Switch__small:before {
         box-shadow:
             inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Switch__disabled.Switch__small:before {
+        box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 }
 
@@ -429,12 +442,24 @@
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Switch__disabled.Switch__medium:before {
+    box-shadow:
+        inset  0px  0px 18px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 @-moz-document url-prefix() {
 
     .Switch__medium:before {
         box-shadow:
             inset  0px  0px 18px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Switch__disabled.Switch__medium:before {
+        box-shadow:
+            inset  0px  0px 18px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 }
 
@@ -520,12 +545,24 @@
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
 }
 
+.Switch__disabled.Switch__large:before {
+    box-shadow:
+        inset  0px  0px 20px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
 @-moz-document url-prefix() {
 
     .Switch__large:before {
         box-shadow:
             inset  0px  0px 20px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Switch__disabled.Switch__large:before {
+        box-shadow:
+            inset  0px  0px 20px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
     }
 }
 

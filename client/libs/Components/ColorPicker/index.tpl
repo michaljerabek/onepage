@@ -77,10 +77,32 @@
 
             <div class="ColorPicker--type-selector-wrapper">
 
-                <select class="ColorPicker--type-selector" value="{{.inputType}}">
-                    <option value="{{.TYPE_HEX}}">HEX</option>
-                    <option value="{{.TYPE_RGB}}">RGB</option>
-                </select>
+                {{#if @ractive.partials.Select}}
+
+                    {{>Select {
+                            size: "small",
+                            value: ".inputType",
+                            className: "ColorPicker--type-selector",
+                            options: [
+                                {
+                                    text: "HEX",
+                                    value: .TYPE_HEX
+                                },
+                                {
+                                    text: "RGB",
+                                    value: .TYPE_RGB
+                                }
+                            ]
+                        }
+                    }}
+                {{else}}
+
+                    <select class="ColorPicker--type-selector" value="{{.inputType}}">
+                        <option value="{{.TYPE_HEX}}">HEX</option>
+                        <option value="{{.TYPE_RGB}}">RGB</option>
+                    </select>
+
+                {{/if}}
 
             </div><!--/ColorPicker--type-selector-wrapper-->
 
