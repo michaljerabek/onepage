@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="../../../../../public/css/page.css">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="_styles.css">
 
     <style>
 
@@ -333,7 +333,7 @@
     </style>
 
     <style>
-        .Select {
+        .Text {
             margin: 5px;
         }
     </style>
@@ -350,200 +350,130 @@
 
     <script id="tpl" type="text/html">
 
-        {{> Select {
+        {{> Text {
                 size: "small",
                 title: "Titulek",
-                value: "select1",
-                options: [
-                    {
-                        text: "Option 1",
-                        value: "option1"
-                    },
-                    {
-                        text: "Option 2",
-                        value: "option2"
-                    },
-                    {
-                        text: "Option 3",
-                        value: "option3",
-                        state: "disabled"
-                    }
-                ]
+                value: "text1"
             }
         }}
 
-        {{> Select {
+        {{> Text {
                 size: "medium",
                 title: "Titulek",
-                value: "select2",
-                options: [
-                    {
-                        text: "Option 1",
-                        value: "option1"
-                    },
-                    {
-                        text: "Option 2",
-                        value: "option2"
-                    },
-                    {
-                        text: "Option 3",
-                        value: "option3"
-                    }
-                ]
+                value: "text2"
             }
         }}
 
-        {{> Select {
+        {{> Text {
                 size: "large",
                 title: "Titulek",
-                value: "select3",
-                options: [
-                    {
-                        text: "Option 1",
-                        value: "option1"
-                    },
-                    {
-                        text: "Option 2",
-                        value: "option2"
-                    },
-                    {
-                        text: "Option 3",
-                        value: "option3"
-                    }
-                ]
+                value: "text3"
             }
         }}
 
-        {{> Select {
-                adaptive: true,
+        {{> Text {
                 size: "small",
                 title: "Titulek",
-                value: "select7",
-                options: [
-                    {
-                        text: "Option 1",
-                        value: "option1"
-                    },
-                    {
-                        text: "Option 2",
-                        value: "option2"
-                    },
-                    {
-                        text: "Option 3",
-                        value: "option3",
-                        state: "disabled"
-                    }
-                ]
+                value: "text4",
+                units: "%"
             }
         }}
 
-        {{> Select {
-                adaptive: true,
+        {{> Text {
                 size: "medium",
                 title: "Titulek",
-                value: "select8",
-                options: [
-                    {
-                        text: "Option 1",
-                        value: "option1"
-                    },
-                    {
-                        text: "Option 2",
-                        value: "option2"
-                    },
-                    {
-                        text: "Option 3",
-                        value: "option3"
-                    }
-                ]
+                value: "text5",
+                units: "Kč"
             }
         }}
 
-        {{> Select {
-                adaptive: true,
+        {{> Text {
                 size: "large",
                 title: "Titulek",
-                value: "select9",
-                options: [
-                    {
-                        text: "Option 1",
-                        value: "option1"
-                    },
-                    {
-                        text: "Option 2",
-                        value: "option2"
-                    },
-                    {
-                        text: "Option 3",
-                        value: "option3"
-                    }
-                ]
+                value: "text6",
+                units: "ks"
             }
         }}
 
-        {{> Select {
+        {{> Text {
+                type: "number",
+                state: "invalid",
                 size: "small",
                 title: "Titulek",
-                value: "select4",
-                state: "disabled",
-                options: [
-                    {
-                        text: "Option 1",
-                        value: "option1"
-                    },
-                    {
-                        text: "Option 2",
-                        value: "option2"
-                    },
-                    {
-                        text: "Option 3",
-                        value: "option3"
-                    }
-                ]
+                value: "text7",
+                units: "%"
             }
         }}
 
-        {{> Select {
+        {{> Text {
+                type: "number",
+                state: "invalid",
                 size: "medium",
                 title: "Titulek",
-                value: "select5",
-                state: "disabled",
-                options: [
-                    {
-                        text: "Option 1",
-                        value: "option1"
-                    },
-                    {
-                        text: "Option 2",
-                        value: "option2"
-                    },
-                    {
-                        text: "Option 3",
-                        value: "option3"
-                    }
-                ]
+                value: "text8",
+                units: "Kč"
             }
         }}
 
-        {{> Select {
+        {{> Text {
+                type: "number",
+                state: "invalid",
                 size: "large",
                 title: "Titulek",
-                value: "select6",
+                value: "text9",
+                units: "ks"
+            }
+        }}
+
+        {{> Text {
+                state: "valid",
+                size: "small",
+                title: "Titulek",
+                value: "text10"
+            }
+        }}
+
+        {{> Text {
+                state: "valid",
+                size: "medium",
+                title: "Titulek",
+                value: "text11"
+            }
+        }}
+
+        {{> Text {
+                state: "valid",
+                size: "large",
+                title: "Titulek",
+                value: "text12"
+            }
+        }}
+
+        {{> Text {
+                adaptive: true,
                 state: "disabled",
-                options: [
-                    {
-                        text: "Option 1",
-                        value: "option1"
-                    },
-                    {
-                        text: "Option 2",
-                        value: "option2"
-                    },
-                    {
-                        text: "Option 3",
-                        value: "option3"
-                    }
-                ]
+                size: "small",
+                title: "Titulek",
+                value: "text13"
+            }
+        }}
+
+        {{> Text {
+                adaptive: true,
+                state: "disabled",
+                size: "medium",
+                title: "Titulek",
+                value: "text14",
+                units: "kg"
+            }
+        }}
+
+        {{> Text {
+                adaptive: true,
+                state: "disabled",
+                size: "large",
+                title: "Titulek",
+                value: "text15"
             }
         }}
 
@@ -570,10 +500,25 @@
                 },
 
                 partials: {
-                    Select: template
+                    Text: template
                 },
 
                 data: {
+                    text1: "kj ůldfkj sůdfg sůdg",
+                    text2: "kj ůldfkj sůdfg sůdg",
+                    text3: "kj ůldfkj sůdfg sůdg",
+                    text4: "kj ůldfkj sůdfg sůdg",
+                    text5: "kj ůldfkj sůdfg sůdg",
+                    text6: "kj ůldfkj sůdfg sůdg",
+                    text7: "kj ůldfkj sůdfg sůdg",
+                    text8: "kj ůldfkj sůdfg sůdg",
+                    text9: "kj ůldfkj sůdfg sůdg",
+                    text10: "kj ůldfkj sůdfg sůdg",
+                    text11: "kj ůldfkj sůdfg sůdg",
+                    text12: "kj ůldfkj sůdfg sůdg",
+                    text13: "kj ůldfkj sůdfg sůdg",
+                    text14: "kj ůldfkj sůdfg sůdg",
+                    text15: "kj ůldfkj sůdfg sůdg"
                 },
 
                 onconfig: function () {

@@ -852,19 +852,19 @@
 
                     if (resized) {
 
-                        if (position.match(/bottom|top/)) {
+//                        if (position.match(/bottom|top/)) {
 
                             this.set("resizableElementHeight", this.getSettingsHeight());
 
                             this.userDefHeight = this.get("resizableElementHeight");
-                        }
+//                        }
 
-                        if (position.match(/left|right/)) {
+//                        if (position.match(/left|right/)) {
 
                             this.set("resizableElementWidth", this.getSettingsWidth());
 
                             this.userDefWidth = this.get("resizableElementWidth");
-                        }
+//                        }
 
                         this.setPosition(true, position);
 

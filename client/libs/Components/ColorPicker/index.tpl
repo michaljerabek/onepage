@@ -108,13 +108,65 @@
 
             <div class="ColorPicker--input-text-wrapper">
 
-                {{#if .inputType === .TYPE_HEX}}
-                    <input type="text" value="{{.inputTextHEX}}" class="ColorPicker--input-text ColorPicker--input-text__hex" on-keyup="inputTextHEXChanged()" placeholder="RRGGBB">
+                {{#if @ractive.partials.Text}}
+
+                    {{#if .inputType === .TYPE_HEX}}
+
+                        {{>Text {
+                                size: "small",
+                                value: "inputTextHEX",
+                                placeholder: "RRGGBB",
+                                keyup: "inputTextHEXChanged",
+                                className: "ColorPicker--input-text ColorPicker--input-text__hex"
+                            }
+                        }}
+
+                    {{else}}
+
+                        {{>Text {
+                                size: "small",
+                                value: "inputTextR",
+                                placeholder: "R",
+                                title: "Červená [0–255]",
+                                keyup: "inputTextRGBChanged",
+                                className: "ColorPicker--input-text ColorPicker--input-text__rgb"
+                            }
+                        }}
+
+                        {{>Text {
+                                size: "small",
+                                value: "inputTextG",
+                                placeholder: "G",
+                                title: "Zelená [0–255]",
+                                keyup: "inputTextRGBChanged",
+                                className: "ColorPicker--input-text ColorPicker--input-text__rgb"
+                            }
+                        }}
+
+                        {{>Text {
+                                size: "small",
+                                value: "inputTextB",
+                                placeholder: "B",
+                                title: "Modrá [0–255]",
+                                keyup: "inputTextRGBChanged",
+                                className: "ColorPicker--input-text ColorPicker--input-text__rgb"
+                            }
+                        }}
+
+                    {{/if}}
+
                 {{else}}
-                    <input type="text" value="{{.inputTextR}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="inputTextRGBChanged()" placeholder="R" title="Červená [0–255]">
-                    <input type="text" value="{{.inputTextG}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="inputTextRGBChanged()" placeholder="G" title="Zelená [0–255]">
-                    <input type="text" value="{{.inputTextB}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="inputTextRGBChanged()" placeholder="B" title="Modrá [0–255]">
+
+                    {{#if .inputType === .TYPE_HEX}}
+                        <input type="text" value="{{.inputTextHEX}}" class="ColorPicker--input-text ColorPicker--input-text__hex" on-keyup="inputTextHEXChanged()" placeholder="RRGGBB">
+                    {{else}}
+                        <input type="text" value="{{.inputTextR}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="inputTextRGBChanged()" placeholder="R" title="Červená [0–255]">
+                        <input type="text" value="{{.inputTextG}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="inputTextRGBChanged()" placeholder="G" title="Zelená [0–255]">
+                        <input type="text" value="{{.inputTextB}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="inputTextRGBChanged()" placeholder="B" title="Modrá [0–255]">
+                    {{/if}}
+
                 {{/if}}
+
 
             </div><!--/ColorPicker--input-text-wrapper-->
 

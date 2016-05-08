@@ -10,10 +10,10 @@
             U = require("./../../U"),
             template = require("./index.tpl"),
             Select = require("./../UI/Select/index.tpl"),
-//            Text = require("./index.tpl"),
+            Text = require("./../UI/Text/index.tpl"),
             on = require("./../../../../helpers/on");
 
-        module.exports = factory(Ractive, ColorPickerPalette, Spectra, U, template, Select, "", on);
+        module.exports = factory(Ractive, ColorPickerPalette, Spectra, U, template, Select, Text, on);
 
     } else {
 
@@ -141,6 +141,8 @@
 
             }, {init: false});
 
+            this.on("inputTextHEXChanged", this.inputTextHEXChanged);
+            this.on("inputTextRGBChanged", this.inputTextRGBChanged);
         },
 
         currentColorObserver: function () {

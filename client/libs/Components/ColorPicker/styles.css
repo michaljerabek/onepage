@@ -276,19 +276,21 @@
 }
 
 .ColorPicker--input-text {
-    line-height: 34px;
-
     margin-bottom: 8px;
 
     min-width: 44px;
     width: 100%;
 
-    height: 34px;
-    padding: 0 8px;
-
     flex-basis: calc(100% - 4px);
     flex-shrink: 1;
     flex-grow: 1;
+}
+
+.ColorPicker--input-text:not(.Text) {
+    line-height: 34px;
+
+    height: 34px;
+    padding: 0 8px;
 }
 
 .ColorPicker--input-text:not(:first-child) {
