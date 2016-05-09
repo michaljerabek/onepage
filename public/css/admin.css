@@ -4756,6 +4756,808 @@ body {
 }
 
 /*====================================================================*/
+/*------------------------------ SLIDER ------------------------------*/
+/*====================================================================*/
+
+.Slider--custom-handle {
+    will-change: box-shadow, background, left;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Slider--input:focus + .Slider--custom-handle, .Slider--input:hover + .Slider--custom-handle {
+    -webkit-transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        -webkit-box-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        -webkit-box-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -moz-transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        -moz-box-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -o-transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        background 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        -webkit-box-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        -moz-box-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+}
+
+.Slider--input:active + .Slider--custom-handle {
+    -webkit-transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        background 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s,
+        -webkit-box-shadow 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        background 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s,
+        -webkit-box-shadow 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s,
+        background 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s,
+        -moz-box-shadow 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s,
+        background 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s,
+        background 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: left 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s,
+        background 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s,
+        -webkit-box-shadow 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s,
+        -moz-box-shadow 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.Slider, .Slider--text, .Slider:before {
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Slider:hover, .Slider:hover .Slider--text, .Slider:hover:before {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.Slider:active, .Slider:active .Slider--text, .Slider:active:before {
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.Slider {
+    line-height: 0;
+
+    position: relative;
+
+    padding: 0;
+
+    background-color: #efefef;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow:
+        inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.65),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.65),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.65),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+       -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+
+@-moz-document url-prefix() {
+
+    .Slider {
+        -moz-box-shadow:
+            inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.65),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.10);
+             box-shadow:
+            inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.65),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.10);
+    }
+}
+
+.Slider__adaptive {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.Slider--input {
+    margin: 0;
+    z-index: 1;
+    position: relative;
+
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: transparent;
+    -webkit-appearance: none;
+
+    -webkit-box-flex: 1;
+
+    -webkit-flex-grow: 1;
+
+       -moz-box-flex: 1;
+
+        -ms-flex-positive: 1;
+
+            flex-grow: 1;
+    -webkit-flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+       -moz-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+}
+
+.Slider--input:focus {
+    outline: none;
+}
+
+/*---------------------------- THUMB ----------------------------*/
+
+.Slider--input::-webkit-slider-thumb {
+    background: none;
+    border: none;
+    -webkit-appearance: none;
+}
+
+.Slider--input::-moz-range-thumb {
+    background: none;
+    border: none;
+    -moz-border-radius: 4px;
+         border-radius: 4px;
+}
+
+.Slider--input::-ms-thumb {
+    background: none;
+    border: none;
+}
+
+.Slider--custom-handle {
+    position:absolute;
+    top: 0px;
+    left: 0%;
+
+    background-color: #fcfcfc;
+    background-color: #fcfcfc;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.85),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.85),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.85),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+@-moz-document url-prefix() {
+
+    .Slider--custom-handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.85),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.85),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+/*---------------------------- TRACK ----------------------------*/
+
+.Slider:before {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 4px;
+
+    background-color: #d7d7d7;
+    border: none;
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+@-moz-document url-prefix() {
+
+    .Slider:before {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.1),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.1),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Slider--input::-webkit-slider-runnable-track {
+    height: 4px;
+
+    background: none;
+    border: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+
+.Slider--input::-moz-range-track {
+    height: 4px;
+
+    background: none;
+    border: none;
+    -moz-box-shadow: none;
+         box-shadow: none;
+}
+
+.Slider--input::-ms-track {
+    height: 4px;
+
+    width: 100%;
+
+    color: transparent;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.Slider--input::-ms-fill-lower {
+    background-color: inherit;
+}
+
+.Slider--input::-ms-fill-upper {
+    background-color: inherit;
+}
+
+.Slider--custom-track {
+    position: absolute;
+    top: 0;
+
+    height: 4px;
+}
+
+/*---------------------------- TEXT ----------------------------*/
+
+.Slider--text {
+    font-family: "Encode Sans Condensed", sans-serif;
+    line-height: 1;
+    font-weight: 500;
+
+    z-index: 10;
+    position: relative;
+
+    min-width: 3ch;
+
+    color: #404040;
+}
+
+.Slider--text__min {
+    text-align: left;
+
+    margin-right: 4px;
+
+    -webkit-box-ordinal-group: 3;
+
+    -webkit-order: 2;
+
+       -moz-box-ordinal-group: 3;
+
+        -ms-flex-order: 2;
+
+            order: 2;
+}
+
+.Slider--text__max {
+    text-align: right;
+
+    margin-left: 4px;
+
+    -webkit-box-ordinal-group: 5;
+
+    -webkit-order: 4;
+
+       -moz-box-ordinal-group: 5;
+
+        -ms-flex-order: 4;
+
+            order: 4;
+}
+
+.Slider--text__current {
+    text-align: center;
+    font-weight: 600;
+
+    margin: 0 4px;
+
+    color: #ef6737;
+    opacity: 0;
+
+    -webkit-box-ordinal-group: 4;
+
+    -webkit-order: 3;
+
+       -moz-box-ordinal-group: 4;
+
+        -ms-flex-order: 3;
+
+            order: 3;
+}
+
+.Slider--input:not(:disabled):focus ~ .Slider--text__current, .Slider:not(.Slider__disabled):hover .Slider--text__current {
+    opacity: 1;
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.Slider__medium {
+    height: 50px;
+    padding: 0 2px;
+}
+
+.Slider__medium .Slider--input {
+    margin-bottom: -10px;
+
+    height: 36px;
+}
+
+.Slider__medium:before, .Slider__medium .Slider--custom-track {
+    left: 14px;
+    top: 16px;
+
+    width: -webkit-calc(100% - 28px);
+
+    width: -moz-calc(100% - 28px);
+
+    width: calc(100% - 28px);
+}
+
+.Slider__medium .Slider--custom-handle {
+    margin-top: -10px;
+    margin-left: -12px;
+
+    width: 24px;
+    height: 24px;
+}
+
+.Slider__medium .Slider--input::-webkit-slider-thumb {
+    margin-top: -10px;
+
+    width: 24px;
+    height: 24px;
+}
+
+.Slider__medium .Slider--input::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+}
+
+.Slider__medium .Slider--input::-ms-thumb {
+    width: 24px;
+    height: 24px;
+}
+
+.Slider__medium .Slider--text {
+    font-size: 10px;
+}
+
+.Slider__medium .Slider--text__min {
+    margin-left: 12px;
+}
+
+.Slider__medium .Slider--text__max {
+    margin-right: 12px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.Slider__large {
+    height: 58px;
+    padding: 0 2px;
+}
+
+.Slider__large .Slider--input {
+    margin-bottom: -12px;
+
+    height: 44px;
+}
+
+.Slider__large:before, .Slider__large .Slider--custom-track {
+    top: 20px;
+    left: 16px;
+
+    width: -webkit-calc(100% - 32px);
+
+    width: -moz-calc(100% - 32px);
+
+    width: calc(100% - 32px);
+}
+
+.Slider__large .Slider--custom-handle {
+    margin-top: -12px;
+    margin-left: -14px;
+
+    width: 28px;
+    height: 28px;
+}
+
+.Slider__large .Slider--input::-webkit-slider-thumb {
+    margin-top: -12px;
+
+    width: 28px;
+    height: 28px;
+}
+
+.Slider__large .Slider--input::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+}
+
+.Slider__large .Slider--input::-ms-thumb {
+    width: 28px;
+    height: 28px;
+}
+
+.Slider__large .Slider--text {
+    font-size: 10px;
+}
+
+.Slider__large .Slider--text__min {
+    margin-left: 14px;
+}
+
+.Slider__large .Slider--text__max {
+    margin-right: 14px;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.Slider__small {
+    height: 42px;
+    padding: 0 2px;
+}
+
+.Slider__small .Slider--input {
+    margin-bottom: -8px;
+
+    height: 32px;
+}
+
+.Slider__small:before, .Slider__small .Slider--custom-track {
+    top: 14px;
+    left: 12px;
+
+    width: -webkit-calc(100% - 24px);
+
+    width: -moz-calc(100% - 24px);
+
+    width: calc(100% - 24px);
+}
+
+.Slider__small .Slider--custom-handle {
+    margin-top: -8px;
+    margin-left: -10px;
+
+    width: 20px;
+    height: 20px;
+}
+
+.Slider__small .Slider--input::-webkit-slider-thumb {
+    margin-top: -8px;
+
+    width: 20px;
+    height: 20px;
+}
+
+.Slider__small .Slider--input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+}
+
+.Slider__small .Slider--input::-ms-thumb {
+    width: 20px;
+    height: 20px;
+}
+
+.Slider__small .Slider--text {
+    font-size: 8px;
+}
+
+.Slider__small .Slider--text__min {
+    margin-left: 10px;
+}
+
+.Slider__small .Slider--text__max {
+    margin-right: 10px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.Slider__default:not(.Slider__disabled) .Slider--input:focus + .Slider--custom-track .Slider--custom-handle, .Slider__default:not(.Slider__disabled) .Slider--input:hover + .Slider--custom-track .Slider--custom-handle {
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Slider__default:not(.Slider__disabled) .Slider--input:focus + .Slider--custom-track .Slider--custom-handle, .Slider__default:not(.Slider__disabled) .Slider--input:hover + .Slider--custom-track .Slider--custom-handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+            inset 0px 0px 1px rgba(239, 103, 55, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+            inset 0px 0px 1px rgba(239, 103, 55, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Slider__default:not(.Slider__disabled) .Slider--input:active + .Slider--custom-track .Slider--custom-handle {
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Slider__default:not(.Slider__disabled) .Slider--input:active + .Slider--custom-track .Slider--custom-handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+            inset 0px 0px 1px rgba(239, 103, 55, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 2px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(239, 103, 55, 0.1),
+            inset 0px 0px 1px rgba(239, 103, 55, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 2px rgba(34, 34, 34, 0.15);
+    }
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.Slider__disabled {
+    -webkit-box-shadow:
+        inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+}
+
+
+@-moz-document url-prefix() {
+
+    .Slider__disabled {
+        -moz-box-shadow:
+            inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.35),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.10);
+             box-shadow:
+            inset 2px 2px 4px 0px rgba(34, 34, 34, 0.15),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.35),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.10);
+    }
+}
+
+.Slider__disabled:before {
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Slider__disabled:before {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.1),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.1),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Slider__disabled .Slider--custom-handle {
+    background: #f2f2f2;
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Slider__disabled .Slider--custom-handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.55),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.1),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.55),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.1),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Slider__disabled .Slider--input:active + .Slider--custom-track .Slider--custom-handle {
+    background: #e2e2e2;
+}
+
+.Slider__disabled .Slider--text {
+    color: #b2b2b2;
+}
+
+/*====================================================================*/
 /*------------------------------ SWITCH ------------------------------*/
 /*====================================================================*/
 
@@ -14679,11 +15481,11 @@ body > .E_NewPageSectionSelector--clone .type {
             flex-grow: 1;
 }
 
-.E_PageSectionSettings--section:nth-of-type(even):last-of-type {
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(even):last-of-type {
     margin-bottom: 0;
 }
 
-.E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2), .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2), .E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
     margin-bottom: 0;
 }
 

@@ -33,7 +33,7 @@
 
                     <h2 class="E_PageSectionSettings--section-title">Zobrazení</h2>
 
-                    {{>Switch {
+                    {{> Switch {
                             size: "small",
                             value: ".data.backgroundImage.display",
                             options: [
@@ -88,11 +88,19 @@
 
                     <h2 class="E_PageSectionSettings--section-title">Síla efektu</h2>
 
-                    <input id="E_BackgroundImageSettings--effects-strength"
-                        type="number"
-                        value="{{.data.backgroundImage.effectsStrength}}"
-                        {{#if .data.backgroundImage.effects.indexOf('parallax') === -1}}disabled{{/if}}
-                    >
+                    {{> Slider {
+                            adaptive: true,
+                            value: ".data.backgroundImage.effectsStrength",
+                            min: 1,
+                            max: 100,
+                            state: .data.backgroundImage.effects.indexOf('parallax') === -1 ? "disabled" : "",
+                            maxWidth: "calc(50% - 12px)",
+                            minWidth: "200px",
+                            title: "Míra zpomalení posunu pozadí",
+                            minText: "1"
+                        }
+                    }}
+
                 </div>
 
             </div>

@@ -255,7 +255,7 @@
 
                         for (m; m >= 0; m--) {
 
-                            if (mutations[m].target && mutations[m].target.className.match("ps-scrollbar")) {
+                            if (mutations[m].target && mutations[m].target.className && mutations[m].target.className.match("ps-scrollbar")) {
 
                                 scrollbarMutations++;
                             }

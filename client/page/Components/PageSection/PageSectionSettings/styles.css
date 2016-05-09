@@ -392,12 +392,12 @@
     flex-grow: 1;
 }
 
-.E_PageSectionSettings--section:nth-of-type(even):last-of-type {
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(even):last-of-type {
     margin-bottom: 0;
 }
 
-.E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2),
-.E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2),
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
     margin-bottom: 0;
 }
 
