@@ -423,14 +423,14 @@
 }
 
 .E_PageMenu--resizer:hover:after {
-    border-right-color: red;
+    border-right-color: var(--color-selected);
 
     transition: var(--default-transition-hover);
 }
 
 .E_PageMenu--resizer__active:after,
 .E_PageMenu--resizer:active:after {
-    border-right-color: orange;
+    border-right-color: var(--color-ok);
 
     transition: var(--default-transition-active);
 }
@@ -622,16 +622,6 @@ body:not(.cursor-grabbing) .E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_P
     100% {
         opacity: 0;
     }
-}
-
-/*--------------------------------------------------------------------*/
-/*----------------------------- CONTENT ------------------------------*/
-/*--------------------------------------------------------------------*/
-
-.E_PageMenu h2 {
-    font-size: 23px;
-
-    margin-bottom: 20px;
 }
 
 /*====================================================================*/

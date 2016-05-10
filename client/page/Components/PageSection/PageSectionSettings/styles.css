@@ -427,13 +427,13 @@
 /*---------------------------- TITLES ----------------------------*/
 
 .E_PageSectionSettings--section-title {
-    font-family: "Encode Sans Narrow", sans-serif;
+    font-family: "Encode Sans", sans-serif;
     font-size: 19px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1;
     text-align: left;
 
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 
     color: var(--color-title-1);
 }

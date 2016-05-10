@@ -8247,6 +8247,574 @@ body {
 }
 
 /*====================================================================*/
+/*------------------------------ TOGGLE ------------------------------*/
+/*====================================================================*/
+
+.Toggle--handle, .Toggle--off, .Toggle--on {
+	-webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+	-moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+	-o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+	transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Toggle:hover .Toggle--handle, .Toggle:hover .Toggle--off, .Toggle:hover .Toggle--on, .Toggle--input:focus ~ .Toggle--event .Toggle--handle, .Toggle--input:focus ~ .Toggle--event .Toggle--off, .Toggle--input:focus ~ .Toggle--event .Toggle--on {
+	-webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+	-moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+	-o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+	transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.Toggle {
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+
+    overflow: hidden;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.Toggle--event {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+
+	width: 100%;
+	height: 100%;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+
+    overflow: hidden;
+}
+
+.Toggle--handle {
+    z-index: 2;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+
+    height: -webkit-calc(100% - 2px);
+
+    height: -moz-calc(100% - 2px);
+
+    height: calc(100% - 2px);
+
+    background-color: #fcfcfc;
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.85),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.85),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.85),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle--handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.85),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.85),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle--input {
+    z-index: -2;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+    opacity: 0;
+}
+
+.Toggle--input ~ .Toggle--event .Toggle--handle {
+    -webkit-transform: translateX(0px);
+       -moz-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+         -o-transform: translateX(0px);
+            transform: translateX(0px);
+}
+
+.Toggle--input:checked ~ .Toggle--event .Toggle--handle {
+    -webkit-transform: translateX(30px);
+       -moz-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+         -o-transform: translateX(30px);
+            transform: translateX(30px);
+}
+
+.Toggle--state {
+    position: absolute;
+    top: 0;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+    -webkit-box-shadow:
+        inset 0px 0px 2px rgba(34, 34, 34, 0.15),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.2),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 2px rgba(34, 34, 34, 0.15),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.2),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 2px rgba(34, 34, 34, 0.15),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.2),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+
+    overflow: hidden;
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle--state {
+        -moz-box-shadow:
+            inset 0px 0px 1px rgba(34, 34, 34, 0.15),
+            inset 2px 2px 4px rgba(34, 34, 34, 0.2),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 0px 0px 1px rgba(34, 34, 34, 0.15),
+            inset 2px 2px 4px rgba(34, 34, 34, 0.2),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Toggle--on, .Toggle--off {
+    z-index: -1;
+    position:absolute;
+    top: 0px;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.Toggle--on {
+    left: 0px;
+
+    background-color: #36b73c;
+}
+
+.Toggle--off {
+    left: 100%;
+
+    background-color: #e32d39;
+}
+
+.Toggle:not(.Toggle__disabled):hover .Toggle--on, .Toggle--input:not(:disabled):focus ~ .Toggle--event .Toggle--on {
+    background-color: #3ace41;
+}
+
+.Toggle:not(.Toggle__disabled):hover .Toggle--off, .Toggle--input:not(:disabled):focus ~ .Toggle--event .Toggle--off {
+    background-color: #ff3e4b;
+}
+
+.Toggle--input ~ .Toggle--event .Toggle--on {
+    -webkit-transform: translateX(-100%);
+       -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+         -o-transform: translateX(-100%);
+            transform: translateX(-100%);
+}
+
+.Toggle--input ~ .Toggle--event .Toggle--off {
+    -webkit-transform: translateX(-100%);
+       -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+         -o-transform: translateX(-100%);
+            transform: translateX(-100%);
+}
+
+.Toggle--input:checked ~ .Toggle--event .Toggle--off {
+    -webkit-transform: translateX(0%);
+       -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+         -o-transform: translateX(0%);
+            transform: translateX(0%);
+}
+
+.Toggle--input:checked ~ .Toggle--event .Toggle--on {
+    -webkit-transform: translateX(0%);
+       -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+         -o-transform: translateX(0%);
+            transform: translateX(0%);
+}
+
+.Toggle--text {
+    font-family: "Encode Sans Condensed", sans-serif;
+    font-weight: 600;
+    line-height: 1;
+
+    color: #fff;
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.Toggle__medium {
+    width: 58px;
+    height: 34px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+}
+
+.Toggle__medium .Toggle--handle {
+    width: 22px;
+}
+
+.Toggle__medium .Toggle--input:checked ~ .Toggle--event .Toggle--handle {
+    -webkit-transform: translateX(34px);
+       -moz-transform: translateX(34px);
+        -ms-transform: translateX(34px);
+         -o-transform: translateX(34px);
+            transform: translateX(34px);
+}
+
+.Toggle__medium .Toggle--input ~ .Toggle--event .Toggle--off {
+    padding-left: 22px;
+}
+
+.Toggle__medium .Toggle--input:checked ~ .Toggle--event .Toggle--on {
+    padding-right: 22px;
+}
+
+.Toggle__medium .Toggle--text {
+    font-size: 12px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.Toggle__large {
+    width: 66px;
+    height: 38px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+}
+
+.Toggle__large .Toggle--handle {
+    width: 24px;
+}
+
+.Toggle__large .Toggle--input:checked ~ .Toggle--event .Toggle--handle {
+    -webkit-transform: translateX(40px);
+       -moz-transform: translateX(40px);
+        -ms-transform: translateX(40px);
+         -o-transform: translateX(40px);
+            transform: translateX(40px);
+}
+
+.Toggle__large .Toggle--input ~ .Toggle--event .Toggle--off {
+    padding-left: 24px;
+}
+
+.Toggle__large .Toggle--input:checked ~ .Toggle--event .Toggle--on {
+    padding-right: 24px;
+}
+
+.Toggle__large .Toggle--text {
+    font-size: 14px;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.Toggle__small {
+    width: 50px;
+    height: 26px;
+
+    -webkit-border-radius: 3px;
+
+       -moz-border-radius: 3px;
+
+            border-radius: 3px;
+}
+
+.Toggle__small .Toggle--handle {
+    width: 18px;
+}
+
+.Toggle__small .Toggle--input:checked ~ .Toggle--event .Toggle--handle {
+    -webkit-transform: translateX(30px);
+       -moz-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+         -o-transform: translateX(30px);
+            transform: translateX(30px);
+}
+
+.Toggle__small .Toggle--input ~ .Toggle--event .Toggle--off {
+    padding-left: 18px;
+}
+
+.Toggle__small .Toggle--input:checked ~ .Toggle--event .Toggle--on {
+    padding-right: 18px;
+}
+
+.Toggle__small .Toggle--text {
+    font-size: 10px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.Toggle__default:not(.Toggle__disabled) .Toggle--input:focus + .Toggle--event .Toggle--handle, .Toggle__default:not(.Toggle__disabled):hover .Toggle--input + .Toggle--event .Toggle--handle {
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__default:not(.Toggle__disabled) .Toggle--input:focus + .Toggle--event .Toggle--handle, .Toggle__default:not(.Toggle__disabled):hover .Toggle--input + .Toggle--event .Toggle--handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle__default:not(.Toggle__disabled) .Toggle--input:active + .Toggle--event .Toggle--handle {
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__default:not(.Toggle__disabled) .Toggle--input:active + .Toggle--event .Toggle--handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 2px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 2px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle__default:not(.Toggle__disabled) .Toggle--input:checked:focus + .Toggle--event .Toggle--handle, .Toggle__default:not(.Toggle__disabled):hover .Toggle--input:checked + .Toggle--event .Toggle--handle {
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+        inset 0px 0px 2px rgba(54, 183, 60, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+        inset 0px 0px 2px rgba(54, 183, 60, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+        inset 0px 0px 2px rgba(54, 183, 60, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__default:not(.Toggle__disabled) .Toggle--input:checked:focus + .Toggle--event .Toggle--handle, .Toggle__default:not(.Toggle__disabled):hover .Toggle--input:checked + .Toggle--event .Toggle--handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+            inset 0px 0px 1px rgba(54, 183, 60, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+            inset 0px 0px 1px rgba(54, 183, 60, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle__default:not(.Toggle__disabled) .Toggle--input:checked:active + .Toggle--event .Toggle--handle {
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+        inset 0px 0px 2px rgba(54, 183, 60, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+        inset 0px 0px 2px rgba(54, 183, 60, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+        inset 0px 0px 2px rgba(54, 183, 60, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__default:not(.Toggle__disabled) .Toggle--input:checked:active + .Toggle--event .Toggle--handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+            inset 0px 0px 1px rgba(54, 183, 60, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 2px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+            inset 0px 0px 1px rgba(54, 183, 60, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 2px rgba(34, 34, 34, 0.15);
+    }
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.Toggle__disabled .Toggle--on, .Toggle__disabled .Toggle--off {
+    background-color: rgba(80, 80, 80, 0.3);
+}
+
+.Toggle__disabled .Toggle--handle {
+    background: #f2f2f2;
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__disabled .Toggle--handle {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.55),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.1),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+             box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.55),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.1),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle__disabled .Toggle--input:active + .Toggle--event .Toggle--handle {
+    background: #e2e2e2;
+}
+
+/*====================================================================*/
 /*----------------------------- PALETTES -----------------------------*/
 /*====================================================================*/
 
@@ -11483,6 +12051,19 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 /*====================================================================*/
+/*------------------------- PAGEMENU CONTENT -------------------------*/
+/*====================================================================*/
+
+.E_PageMenu--title {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+
+    margin-bottom: 16px;
+
+    color: #0f758b;
+}
+/*====================================================================*/
 /*----------------------------- PAGE MENU ----------------------------*/
 /*====================================================================*/
 
@@ -12194,7 +12775,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_PageMenu--resizer:hover:after {
-    border-right-color: red;
+    border-right-color: #ef6737;
 
     -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 
@@ -12206,7 +12787,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_PageMenu--resizer__active:after, .E_PageMenu--resizer:active:after {
-    border-right-color: orange;
+    border-right-color: #36b73c;
 
     -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 
@@ -12606,16 +13187,6 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     100% {
         opacity: 0;
     }
-}
-
-/*--------------------------------------------------------------------*/
-/*----------------------------- CONTENT ------------------------------*/
-/*--------------------------------------------------------------------*/
-
-.E_PageMenu h2 {
-    font-size: 23px;
-
-    margin-bottom: 20px;
 }
 
 /*====================================================================*/
@@ -13101,11 +13672,19 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 .E_NewPageSectionSelector {
 }
 
-.E_NewPageSectionSelector--page-section-types {
+.E_NewPageSectionSelector--thumbs {
+    width: -webkit-calc(100% + 24px);
+    width: -moz-calc(100% + 24px);
+    width: calc(100% + 24px);
+
     display: -webkit-box;
+
     display: -webkit-flex;
+
     display: -moz-box;
+
     display: -ms-flexbox;
+
     display: flex;
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
@@ -13115,137 +13694,21 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-       -moz-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+       -moz-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
 }
 
-.E_NewPageSectionSelector--page-section-type {
-    font-size: 23px;
-
-    margin-bottom: 20px;
-    position: relative;
-
-    -webkit-flex-shrink: 1;
-
-        -ms-flex-negative: 1;
-
-            flex-shrink: 1;
-	-webkit-flex-basis: -webkit-calc(50% - 10px);
-	    -ms-flex-preferred-size: calc(50% - 10px);
-	        flex-basis: -moz-calc(50% - 10px);
-	        flex-basis: calc(50% - 10px);
-
-    cursor: -webkit-grab;
-
-    cursor: -moz-grab;
-
-    cursor: grab;
+.E_NewPageSectionSelector .SectionThumb {
+    margin-bottom: 16px;
+    margin-right: 16px;
 }
 
-.E_NewPageSectionSelector--page-section-type .type {
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-
-    background-color: #404040;
-}
-
-.P_sortable-sections .E_NewPageSectionSelector--page-section-type {
+.P_sortable-sections .SectionThumb {
     margin-bottom: 0;
-}
-
-.P_sortable-sections .E_NewPageSectionSelector--page-section-type .type {
-    height: 100%;
-    padding-bottom: 0;
-}
-
-.E_NewPageSectionSelector--page-section-type .text {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    color: #fff;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
-.E_NewPageSectionSelector--clone {
-    z-index: 320;
-
-    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-
-       -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-
-            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-
-    -webkit-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
-
-       -moz-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
-
-         -o-animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
-
-            animation: E_NewPageSectionSelector--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
-    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-
-    cursor: -webkit-grabbing;
-
-    cursor: -moz-grabbing;
-
-    cursor: grabbing;
-}
-
-body > .E_NewPageSectionSelector--clone .type {
-    opacity: 0.75;
-}
-
-.E_NewPageSectionSelector--clone__removed {
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
-}
-
-@-webkit-keyframes E_NewPageSectionSelector--clone-shadow {
-    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
-}
-
-@-moz-keyframes E_NewPageSectionSelector--clone-shadow {
-    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
-}
-
-@-o-keyframes E_NewPageSectionSelector--clone-shadow {
-    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
-}
-
-@keyframes E_NewPageSectionSelector--clone-shadow {
-    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+    margin-right: 0;
 }
 
 .P_PageElement {
@@ -13819,6 +14282,702 @@ body > .E_NewPageSectionSelector--clone .type {
     color: inherit;
 }
 
+
+/*====================================================================*/
+/*--------------------------- SECTION-THUMB --------------------------*/
+/*====================================================================*/
+
+.SectionThumb, .SectionThumb:after, .SectionThumb--content, .SectionThumb--name, .SectionThumb--text, .SectionThumb--icon, .SectionThumb--icon svg {
+    will-change: box-shadow, transform, background, fill, color, width, height, opacity;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.SectionThumb:hover, .SectionThumb:hover:after, .SectionThumb:hover .SectionThumb--name, .SectionThumb:hover .SectionThumb--text, .SectionThumb:hover .SectionThumb--icon svg, .SectionThumb:focus, .SectionThumb:focus .SectionThumb--content, .SectionThumb:focus .SectionThumb--name, .SectionThumb:focus .SectionThumb--text, .SectionThumb:focus .SectionThumb--icon, .SectionThumb:focus .SectionThumb--icon svg {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.SectionThumb:active, .SectionThumb:active, .SectionThumb:active .SectionThumb--content, .SectionThumb:active:after, .SectionThumb:active .SectionThumb--name, .SectionThumb:active .SectionThumb--text, .SectionThumb:active .SectionThumb--icon, .SectionThumb:active .SectionThumb--icon svg {
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.SectionThumb {
+    line-height: 0;
+    white-space: nowrap;
+
+    position: relative;
+
+    padding: 0;
+
+    border: none;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+
+    width: 128px;
+    height: 128px;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+}
+
+.SectionThumb:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+@-moz-document url-prefix() {
+
+    .SectionThumb:after {
+        -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+             box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.SectionThumb--content {
+    width: 100%;
+    height: 100%;
+
+    background-color: #fcfcfc;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+       -moz-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+       -moz-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+}
+
+.SectionThumb--content:focus {
+    outline: none;
+}
+
+.SectionThumb__disabled .SectionThumb--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+@-moz-document url-prefix() {
+
+    .SectionThumb--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .SectionThumb__disabled .SectionThumb--content {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+}
+
+.SectionThumb--icon {
+    position: relative;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 20px;
+
+    width: 88px;
+    height: 72px;
+}
+
+.SectionThumb--icon svg {
+    width: 100%;
+    height: 100%;
+
+    fill: #505050;
+}
+
+.SectionThumb--name {
+    font-family: "Encode Sans Condensed", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+
+    position: relative;
+
+    width: 128px;
+    height: 24px;
+    padding: 0 12px;
+
+    color: #404040;
+    -webkit-mask-image: -webkit-linear-gradient(left, transparent 4px, black 12px, black -webkit-calc(100% - 12px), transparent -webkit-calc(100% - 4px));
+    -moz-mask-image: linear-gradient(to right, transparent 4px, black 12px, black -moz-calc(100% - 12px), transparent -moz-calc(100% - 4px));
+    mask-image: linear-gradient(to right, transparent 4px, black 12px, black calc(100% - 12px), transparent calc(100% - 4px));
+
+    overflow: hidden;
+}
+
+.SectionThumb--text {
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1;
+
+    min-width: 100%;
+
+    display: inline-block;
+}
+
+.SectionThumb--text__long {
+    font-family: "Encode Sans Compressed", sans-serif;
+}
+
+.SectionThumb:not(.SectionThumb--clone):hover .SectionThumb--text {
+    -webkit-animation: SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
+        SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
+       -moz-animation: SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
+        SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
+         -o-animation: SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
+        SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
+            animation: SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
+        SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
+}
+
+.SectionThumb:not(.SectionThumb--clone):hover .SectionThumb--text.SectionThumb--text__extra-long {
+    -webkit-animation: SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
+        SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
+       -moz-animation: SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
+        SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
+         -o-animation: SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
+        SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
+            animation: SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
+        SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
+}
+
+/*---------------------------- CLONE ----------------------------*/
+
+.SectionThumb--clone {
+    z-index: 320;
+
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+       -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+    -webkit-animation: SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+
+       -moz-animation: SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+
+         -o-animation: SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+
+            animation: SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    cursor: -webkit-grabbing;
+
+    cursor: -moz-grabbing;
+
+    cursor: grabbing;
+}
+
+@-webkit-keyframes SectionThumb--clone-shadow {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+@-moz-keyframes SectionThumb--clone-shadow {
+    to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+@-o-keyframes SectionThumb--clone-shadow {
+    to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+@keyframes SectionThumb--clone-shadow {
+    to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
+}
+
+body > .SectionThumb--clone .SectionThumb--content {
+    opacity: 0.75;
+}
+
+.SectionThumb--clone__removed:hover, .SectionThumb--clone__removed:focus, .SectionThumb--clone__removed:active, .SectionThumb--clone__removed {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+/*---------------------------- HOVER | FOCUS ----------------------------*/
+
+.SectionThumb--clone .SectionThumb--content, .SectionThumb:not(.SectionThumb__disabled):hover .SectionThumb--content, .SectionThumb:not(.SectionThumb__disabled):focus .SectionThumb--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .SectionThumb--clone .SectionThumb--content, .SectionThumb:not(.SectionThumb__disabled):hover .SectionThumb--content, .SectionThumb:not(.SectionThumb__disabled):focus .SectionThumb--content {
+        -moz-box-shadow:
+            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+}
+
+.SectionThumb--clone__cancel .SectionThumb--content {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(227, 45, 57, 0.2),
+        inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .SectionThumb--clone__cancel .SectionThumb--content {
+        -moz-box-shadow:
+            inset  0px  0px 14px 0px rgba(227, 45, 57, 0.2),
+            inset  0px  0px  1px 0px rgba(227, 45, 57, 1);
+             box-shadow:
+            inset  0px  0px 14px 0px rgba(227, 45, 57, 0.2),
+            inset  0px  0px  1px 0px rgba(227, 45, 57, 1);
+    }
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.SectionThumb__disabled {
+    cursor: not-allowed;
+}
+
+.SectionThumb__disabled .SectionThumb--content {
+    background-color: #f2f2f2;
+}
+
+.SectionThumb__disabled .SectionThumb--icon svg {
+    fill: rgba(80, 80, 80, 0.3);
+}
+
+.SectionThumb__disabled .SectionThumb--text {
+    color: #b2b2b2;
+}
+
+.SectionThumb__disabled:active .SectionThumb--content {
+    background-color: #e2e2e2;
+}
+
+@-webkit-keyframes SectionThumb--move-text {
+    0% {
+        -webkit-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    30% {
+        -webkit-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    70% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@-moz-keyframes SectionThumb--move-text {
+    0% {
+        -moz-transform: translateX(0px);
+             transform: translateX(0px);
+    }
+    30% {
+        -moz-transform: translateX(0px);
+             transform: translateX(0px);
+    }
+    70% {
+        -moz-transform: translateX(-moz-calc(-100% + 104px));
+             transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -moz-transform: translateX(-moz-calc(-100% + 104px));
+             transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@-o-keyframes SectionThumb--move-text {
+    0% {
+        -o-transform: translateX(0px);
+           transform: translateX(0px);
+    }
+    30% {
+        -o-transform: translateX(0px);
+           transform: translateX(0px);
+    }
+    70% {
+        -o-transform: translateX(calc(-100% + 104px));
+           transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -o-transform: translateX(calc(-100% + 104px));
+           transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@keyframes SectionThumb--move-text {
+    0% {
+        -webkit-transform: translateX(0px);
+           -moz-transform: translateX(0px);
+             -o-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    30% {
+        -webkit-transform: translateX(0px);
+           -moz-transform: translateX(0px);
+             -o-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    70% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+           -moz-transform: translateX(-moz-calc(-100% + 104px));
+             -o-transform: translateX(calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+           -moz-transform: translateX(-moz-calc(-100% + 104px));
+             -o-transform: translateX(calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@-webkit-keyframes SectionThumb--move-text-2 {
+    0% {
+        -webkit-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    45% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@-moz-keyframes SectionThumb--move-text-2 {
+    0% {
+        -moz-transform: translateX(0px);
+             transform: translateX(0px);
+    }
+    45% {
+        -moz-transform: translateX(-moz-calc(-100% + 104px));
+             transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -moz-transform: translateX(-moz-calc(-100% + 104px));
+             transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@-o-keyframes SectionThumb--move-text-2 {
+    0% {
+        -o-transform: translateX(0px);
+           transform: translateX(0px);
+    }
+    45% {
+        -o-transform: translateX(calc(-100% + 104px));
+           transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -o-transform: translateX(calc(-100% + 104px));
+           transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@keyframes SectionThumb--move-text-2 {
+    0% {
+        -webkit-transform: translateX(0px);
+           -moz-transform: translateX(0px);
+             -o-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    45% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+           -moz-transform: translateX(-moz-calc(-100% + 104px));
+             -o-transform: translateX(calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+           -moz-transform: translateX(-moz-calc(-100% + 104px));
+             -o-transform: translateX(calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+}
+
+
+@-webkit-keyframes SectionThumb--move-text__extra-long {
+    0% {
+        -webkit-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    20% {
+        -webkit-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    80% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+}
+
+
+@-moz-keyframes SectionThumb--move-text__extra-long {
+    0% {
+        -moz-transform: translateX(0px);
+             transform: translateX(0px);
+    }
+    20% {
+        -moz-transform: translateX(0px);
+             transform: translateX(0px);
+    }
+    80% {
+        -moz-transform: translateX(-moz-calc(-100% + 104px));
+             transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -moz-transform: translateX(-moz-calc(-100% + 104px));
+             transform: translateX(calc(-100% + 104px));
+    }
+}
+
+
+@-o-keyframes SectionThumb--move-text__extra-long {
+    0% {
+        -o-transform: translateX(0px);
+           transform: translateX(0px);
+    }
+    20% {
+        -o-transform: translateX(0px);
+           transform: translateX(0px);
+    }
+    80% {
+        -o-transform: translateX(calc(-100% + 104px));
+           transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -o-transform: translateX(calc(-100% + 104px));
+           transform: translateX(calc(-100% + 104px));
+    }
+}
+
+
+@keyframes SectionThumb--move-text__extra-long {
+    0% {
+        -webkit-transform: translateX(0px);
+           -moz-transform: translateX(0px);
+             -o-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    20% {
+        -webkit-transform: translateX(0px);
+           -moz-transform: translateX(0px);
+             -o-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    80% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+           -moz-transform: translateX(-moz-calc(-100% + 104px));
+             -o-transform: translateX(calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+           -moz-transform: translateX(-moz-calc(-100% + 104px));
+             -o-transform: translateX(calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@-webkit-keyframes SectionThumb--move-text-2__extra-long {
+    0% {
+        -webkit-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    70% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@-moz-keyframes SectionThumb--move-text-2__extra-long {
+    0% {
+        -moz-transform: translateX(0px);
+             transform: translateX(0px);
+    }
+    70% {
+        -moz-transform: translateX(-moz-calc(-100% + 104px));
+             transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -moz-transform: translateX(-moz-calc(-100% + 104px));
+             transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@-o-keyframes SectionThumb--move-text-2__extra-long {
+    0% {
+        -o-transform: translateX(0px);
+           transform: translateX(0px);
+    }
+    70% {
+        -o-transform: translateX(calc(-100% + 104px));
+           transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -o-transform: translateX(calc(-100% + 104px));
+           transform: translateX(calc(-100% + 104px));
+    }
+}
+
+@keyframes SectionThumb--move-text-2__extra-long {
+    0% {
+        -webkit-transform: translateX(0px);
+           -moz-transform: translateX(0px);
+             -o-transform: translateX(0px);
+                transform: translateX(0px);
+    }
+    70% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+           -moz-transform: translateX(-moz-calc(-100% + 104px));
+             -o-transform: translateX(calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+    100% {
+        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
+           -moz-transform: translateX(-moz-calc(-100% + 104px));
+             -o-transform: translateX(calc(-100% + 104px));
+                transform: translateX(calc(-100% + 104px));
+    }
+}
 
 .E_PageElementSettings--transition-wrapper {
     z-index: 120;
@@ -15515,13 +16674,13 @@ body > .E_NewPageSectionSelector--clone .type {
 /*---------------------------- TITLES ----------------------------*/
 
 .E_PageSectionSettings--section-title {
-    font-family: "Encode Sans Narrow", sans-serif;
+    font-family: "Encode Sans", sans-serif;
     font-size: 19px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1;
     text-align: left;
 
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 
     color: #0f758b;
 }
