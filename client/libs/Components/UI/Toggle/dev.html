@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../../../../css/colors.css">
+    <link rel="stylesheet" href="../../../../css/settings.css">
+
+    <link rel="stylesheet" href="../../../../../public/css/page.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Black.ttf");
+        }
+
+
+    </style>
+
+    <style>
+        .Toggle {
+            margin: 5px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
+    <script src="../../../../libs/ractive-events-tap.umd.js"></script>
+    <script src="../../../../libs/ractive-events-keys.js"></script>
+
+    <div id="app"></div>
+
+    <script id="tpl" type="text/html">
+
+        {{> Toggle {
+                size: "small",
+                value: ".toggle1",
+                onText: "Ano",
+                offText: "Ne"
+            }
+        }}
+
+        {{> Toggle {
+                size: "medium",
+                value: ".toggle2",
+                onText: "1",
+                offText: "0"
+            }
+        }}
+
+        {{> Toggle {
+                size: "large",
+                value: ".toggle3",
+                onText: "On",
+                offText: "Off"
+            }
+        }}
+
+        {{> Toggle {
+                state: "disabled",
+                size: "small",
+                value: ".toggle4",
+                onText: "Ano",
+                offText: "Ne"
+            }
+        }}
+
+        {{> Toggle {
+                state: "disabled",
+                size: "medium",
+                value: ".toggle5",
+                onText: "1",
+                offText: "0"
+            }
+        }}
+
+        {{> Toggle {
+                state: "disabled",
+                size: "large",
+                value: ".toggle6",
+                onText: "On",
+                offText: "Off"
+            }
+        }}
+
+    </script>
+
+    <script>
+
+    $.get("../../../../../public/img/icons/app/symbol/svg/sprite.symbol.svg", function (svg) {
+
+        $("body").append(svg.firstChild);
+
+    });
+        var app;
+
+        $.get("index.tpl", function (template) {
+
+            app = new Ractive({
+                el: "#app",
+                template: "#tpl",
+
+                components: {
+
+                },
+
+                partials: {
+                    Toggle: template
+                },
+
+                data: {
+                },
+
+                events: {
+                    windowMousedown: function (node, fire) {
+
+                        var eventHandler = function (e) {
+
+                            fire({
+                                node: node,
+                                original: e,
+                                clientX: e.clientX,
+                                clientY: e.clientY
+                            });
+                        };
+
+                        window.addEventListener("mousedown", eventHandler, false);
+
+                        return {
+                            teardown: function () {
+                                window.removeEventListener("mousedown", eventHandler);
+                            }
+                        };
+                    },
+                    windowMousemove: function (node, fire) {
+
+                        var eventHandler = function (e) {
+
+                            fire({
+                                node: node,
+                                original: e,
+                                clientX: e.clientX,
+                                clientY: e.clientY
+                            });
+                        };
+
+                        window.addEventListener("mousemove", eventHandler, false);
+
+                        return {
+                            teardown: function () {
+                                window.removeEventListener("mousemove", eventHandler);
+                            }
+                        };
+                    },
+                    windowMouseup: function (node, fire) {
+
+                        var eventHandler = function (e) {
+
+                            fire({
+                                node: node,
+                                original: e,
+                                clientX: e.clientX,
+                                clientY: e.clientY
+                            });
+                        };
+
+                        window.addEventListener("mouseup", eventHandler, false);
+
+                        return {
+                            teardown: function () {
+                                window.removeEventListener("mouseup", eventHandler);
+                            }
+                        };
+                    },
+
+                    windowTouchstart: function (node, fire) {
+
+                        var eventHandler = function (e) {
+
+                            fire({
+                                node: node,
+                                original: e,
+                                clientX: e.changedTouches[0].clientX,
+                                clientY: e.changedTouches[0].clientY
+                            });
+                        };
+
+                        window.addEventListener("touchstart", eventHandler, false);
+
+                        return {
+                            teardown: function () {
+                                window.removeEventListener("touchstart", eventHandler);
+                            }
+                        };
+                    },
+                    windowTouchmove: function (node, fire) {
+
+                        var eventHandler = function (e) {
+
+                            fire({
+                                node: node,
+                                original: e,
+                                clientX: e.changedTouches[0].clientX,
+                                clientY: e.changedTouches[0].clientY
+                            });
+                        };
+
+                        window.addEventListener("touchmove", eventHandler, false);
+
+                        return {
+                            teardown: function () {
+                                window.removeEventListener("touchmove", eventHandler);
+                            }
+                        };
+                    },
+                    windowTouchend: function (node, fire) {
+
+                        var eventHandler = function (e) {
+
+                            fire({
+                                node: node,
+                                original: e,
+                                clientX: e.changedTouches[0].clientX,
+                                clientY: e.changedTouches[0].clientY
+                            });
+                        };
+
+                        window.addEventListener("touchend", eventHandler, false);
+
+                        return {
+                            teardown: function () {
+                                window.removeEventListener("touchend", eventHandler);
+                            }
+                        };
+                    },
+                },
+
+                onconfig: function () {
+
+                    this.on("toggleEvent", function () {
+                        console.log(arguments);
+                    });
+
+                }
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
