@@ -9,7 +9,10 @@
 }
 
 .E_BackgroundImageSettings--background-settings {
+    text-align: left;
+
+    padding: 12px 0;
 }
 
-.E_BackgroundImageSettings--image-browser {
+.E_BackgroundImageSettings--ImageBrowser {
 }

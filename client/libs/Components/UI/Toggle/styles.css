@@ -1,0 +1,383 @@
+/*====================================================================*/
+/*------------------------------ TOGGLE ------------------------------*/
+/*====================================================================*/
+
+.Toggle--handle,
+.Toggle--off,
+.Toggle--on {
+	transition: var(--default-transition);
+}
+
+.Toggle:hover .Toggle--handle,
+.Toggle:hover .Toggle--off,
+.Toggle:hover .Toggle--on,
+.Toggle--input:focus ~ .Toggle--event .Toggle--handle,
+.Toggle--input:focus ~ .Toggle--event .Toggle--off,
+.Toggle--input:focus ~ .Toggle--event .Toggle--on {
+	transition: var(--default-transition-hover);
+}
+
+.Toggle {
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+
+    display: inline-flex;
+
+    overflow: hidden;
+
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.Toggle--event {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+
+	width: 100%;
+	height: 100%;
+
+    border-radius: inherit;
+
+    overflow: hidden;
+}
+
+.Toggle--handle {
+    z-index: 2;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+
+    border-radius: inherit;
+
+    height: calc(100% - 2px);
+
+    background-color: var(--color-button-bg);
+    box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.85),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle--handle {
+        box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.85),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle--input {
+    z-index: -2;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+    opacity: 0;
+}
+
+.Toggle--input ~ .Toggle--event .Toggle--handle {
+    transform: translateX(0px);
+}
+
+.Toggle--input:checked ~ .Toggle--event .Toggle--handle {
+    transform: translateX(30px);
+}
+
+.Toggle--state {
+    position: absolute;
+    top: 0;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: inherit;
+    box-shadow:
+        inset 0px 0px 2px rgba(34, 34, 34, 0.15),
+        inset 2px 2px 4px rgba(34, 34, 34, 0.2),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+
+    overflow: hidden;
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle--state {
+        box-shadow:
+            inset 0px 0px 1px rgba(34, 34, 34, 0.15),
+            inset 2px 2px 4px rgba(34, 34, 34, 0.2),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Toggle--on, .Toggle--off {
+    z-index: -1;
+    position:absolute;
+    top: 0px;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Toggle--on {
+    left: 0px;
+
+    background-color: var(--color-ok);
+}
+
+.Toggle--off {
+    left: 100%;
+
+    background-color: var(--color-danger);
+}
+
+.Toggle:not(.Toggle__disabled):hover .Toggle--on,
+.Toggle--input:not(:disabled):focus ~ .Toggle--event .Toggle--on {
+    background-color: var(--color-ok-over);
+}
+
+.Toggle:not(.Toggle__disabled):hover .Toggle--off,
+.Toggle--input:not(:disabled):focus ~ .Toggle--event .Toggle--off {
+    background-color: var(--color-danger-over);
+}
+
+.Toggle--input ~ .Toggle--event .Toggle--on {
+    transform: translateX(-100%);
+}
+
+.Toggle--input ~ .Toggle--event .Toggle--off {
+    transform: translateX(-100%);
+}
+
+.Toggle--input:checked ~ .Toggle--event .Toggle--off {
+    transform: translateX(0%);
+}
+
+.Toggle--input:checked ~ .Toggle--event .Toggle--on {
+    transform: translateX(0%);
+}
+
+.Toggle--text {
+    font-family: "Encode Sans Condensed", sans-serif;
+    font-weight: 600;
+    line-height: 1;
+
+    color: #fff;
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.Toggle__medium {
+    width: 58px;
+    height: 34px;
+
+    border-radius: 4px;
+}
+
+.Toggle__medium .Toggle--handle {
+    width: 22px;
+}
+
+.Toggle__medium .Toggle--input:checked ~ .Toggle--event .Toggle--handle {
+    transform: translateX(34px);
+}
+
+.Toggle__medium .Toggle--input ~ .Toggle--event .Toggle--off {
+    padding-left: 22px;
+}
+
+.Toggle__medium .Toggle--input:checked ~ .Toggle--event .Toggle--on {
+    padding-right: 22px;
+}
+
+.Toggle__medium .Toggle--text {
+    font-size: 12px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.Toggle__large {
+    width: 66px;
+    height: 38px;
+
+    border-radius: 4px;
+}
+
+.Toggle__large .Toggle--handle {
+    width: 24px;
+}
+
+.Toggle__large .Toggle--input:checked ~ .Toggle--event .Toggle--handle {
+    transform: translateX(40px);
+}
+
+.Toggle__large .Toggle--input ~ .Toggle--event .Toggle--off {
+    padding-left: 24px;
+}
+
+.Toggle__large .Toggle--input:checked ~ .Toggle--event .Toggle--on {
+    padding-right: 24px;
+}
+
+.Toggle__large .Toggle--text {
+    font-size: 14px;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.Toggle__small {
+    width: 50px;
+    height: 26px;
+
+    border-radius: 3px;
+}
+
+.Toggle__small .Toggle--handle {
+    width: 18px;
+}
+
+.Toggle__small .Toggle--input:checked ~ .Toggle--event .Toggle--handle {
+    transform: translateX(30px);
+}
+
+.Toggle__small .Toggle--input ~ .Toggle--event .Toggle--off {
+    padding-left: 18px;
+}
+
+.Toggle__small .Toggle--input:checked ~ .Toggle--event .Toggle--on {
+    padding-right: 18px;
+}
+
+.Toggle__small .Toggle--text {
+    font-size: 10px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.Toggle__default:not(.Toggle__disabled) .Toggle--input:focus + .Toggle--event .Toggle--handle,
+.Toggle__default:not(.Toggle__disabled):hover .Toggle--input + .Toggle--event .Toggle--handle {
+    box-shadow:
+        inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__default:not(.Toggle__disabled) .Toggle--input:focus + .Toggle--event .Toggle--handle,
+    .Toggle__default:not(.Toggle__disabled):hover .Toggle--input + .Toggle--event .Toggle--handle {
+        box-shadow:
+            inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle__default:not(.Toggle__disabled) .Toggle--input:active + .Toggle--event .Toggle--handle {
+    box-shadow:
+        inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__default:not(.Toggle__disabled) .Toggle--input:active + .Toggle--event .Toggle--handle {
+        box-shadow:
+            inset 0px 0px 8px rgba(227, 45, 57, 0.1),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 2px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle__default:not(.Toggle__disabled) .Toggle--input:checked:focus + .Toggle--event .Toggle--handle,
+.Toggle__default:not(.Toggle__disabled):hover .Toggle--input:checked + .Toggle--event .Toggle--handle {
+    box-shadow:
+        inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+        inset 0px 0px 2px rgba(54, 183, 60, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__default:not(.Toggle__disabled) .Toggle--input:checked:focus + .Toggle--event .Toggle--handle,
+    .Toggle__default:not(.Toggle__disabled):hover .Toggle--input:checked + .Toggle--event .Toggle--handle {
+        box-shadow:
+            inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+            inset 0px 0px 1px rgba(54, 183, 60, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle__default:not(.Toggle__disabled) .Toggle--input:checked:active + .Toggle--event .Toggle--handle {
+    box-shadow:
+        inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+        inset 0px 0px 2px rgba(54, 183, 60, 1),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 2px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__default:not(.Toggle__disabled) .Toggle--input:checked:active + .Toggle--event .Toggle--handle {
+        box-shadow:
+            inset 0px 0px 8px rgba(54, 183, 60, 0.1),
+            inset 0px 0px 1px rgba(54, 183, 60, 1),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.10),
+            0px 0px 2px rgba(34, 34, 34, 0.15);
+    }
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.Toggle__disabled .Toggle--on,
+.Toggle__disabled .Toggle--off {
+    background-color: var(--color-button-icon-disabled);
+}
+
+.Toggle__disabled .Toggle--handle {
+    background: var(--color-button-bg-disabled);
+    box-shadow:
+        inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.55),
+        inset -1px -1px 0px rgba(34, 34, 34, 0.15),
+        0px 0px 4px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Toggle__disabled .Toggle--handle {
+        box-shadow:
+            inset 0px 0px 8px rgba(34, 34, 34, 0.1),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.55),
+            inset -1px -1px 0px rgba(34, 34, 34, 0.1),
+            0px 0px 4px rgba(34, 34, 34, 0.15);
+    }
+}
+
+.Toggle__disabled .Toggle--input:active + .Toggle--event .Toggle--handle {
+    background: var(--color-button-bg-disabled-active);
+}

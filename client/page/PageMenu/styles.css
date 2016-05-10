@@ -206,10 +206,6 @@
 /*--------------------------------------------------------------------*/
 
 .E_PageMenu--button {
-    font-size: 12px;
-    line-height: 64px;
-    text-align: center;
-
     z-index: 2;
     position: absolute;
     top: 0px;
@@ -218,19 +214,10 @@
     width: 64px;
     height: 64px;
 
-    color: #404040;
-    background-color: #f5f5f5;
-    border: none;
     visibility: visible;
     opacity: 1;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     transition:
-        color      var(--default-transition-duration) var(--default-transition-easing) 0s,
-        background var(--default-transition-duration) var(--default-transition-easing) 0s,
         visibility 0s   linear 0.6s,
         opacity    0.3s linear 0.6s;
 
@@ -243,15 +230,8 @@
     user-select: none;
 }
 
-.E_PageMenu--button:hover {
-    color: #f5f5f5;
-    background-color: #404040;
-}
-
 .E_PageMenu--item__has-content .E_PageMenu--button:hover {
     transition:
-        color      var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
-        background var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         visibility 0s   linear 0.6s,
         opacity    0.3s linear 0.6s;
 }
@@ -261,74 +241,13 @@
     visibility: hidden;
 
     transition:
-        color      0.15s linear 0s,
-        background 0.15s linear 0s,
         opacity    0.15s linear 0s,
         visibility 0s    linear 0.15s;
-}
-
-/*---------------------------- ADD SECTION ----------------------------*/
-
-.E_PageMenu--add-section__add,
-.E_PageMenu--add-section__cancel {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.E_PageMenu--add-section__cancel {
-    z-index: -1;
-
-    color: #fff;
-    background-color: #404040;
-    opacity: 0;
-
-    transition:
-        opacity var(--default-transition-duration) var(--default-transition-easing) 0.5s,
-        background var(--default-transition-duration) var(--default-transition-easing) 0.5s,
-        color var(--default-transition-duration) var(--default-transition-easing) 0.5s,
-        z-index 0s linear 0.8s;
-}
-
-.E_PageMenu--add-section__active-cancel {
-    background-color: red;
-
-    transition:
-        opacity var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
-        color var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
-        background var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s;
-}
-
-.E_PageMenu--item__adding-section .E_PageMenu--add-section__cancel {
-    z-index: 2;
-
-    opacity: 1;
-
-    transition:
-        opacity var(--default-transition-duration) var(--default-transition-easing) 0s,
-        background var(--default-transition-duration) var(--default-transition-easing) 0s,
-        color var(--default-transition-duration) var(--default-transition-easing) 0s,
-        z-index 0s linear 0s;
-}
-
-/*---------------------------- SAVE ----------------------------*/
-
-.E_PageMenu--save__unsaved .E_PageMenu--button {
-    color: #fff;
-    background-color: #404040;
 }
 
 /*--------------------------------------------------------------------*/
 /*------------------------------ CONTENT -----------------------------*/
 /*--------------------------------------------------------------------*/
-
 
 .E_PageMenu--content {
     position: relative;
@@ -359,10 +278,6 @@
 /*---------------------------- HIDE CONTENT ----------------------------*/
 
 .E_PageMenu--hide-content {
-    font-size: 23px;
-    text-align: center;
-    line-height: 24px;
-
     z-index: 110;
     position: absolute;
     top: 0px;
@@ -371,12 +286,15 @@
     width: 24px;
     height: 24px;
 
-    color: #404040;
     background-color: transparent;
     border: none;
     opacity: 0.5;
 
     transition: var(--default-transition);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -389,12 +307,8 @@
 @media (pointer: coarse) {
 
     .E_PageMenu--hide-content {
-        font-size: 25px;
-        text-indent: 4px;
-
         width: 32px;
         height: 32px;
-        padding-bottom: 8px;
     }
 }
 .E_PageMenu--hide-content:hover {
@@ -407,6 +321,25 @@
     transform: scale(0.95);
 
     transition: var(--default-transition-active);
+}
+
+.E_PageMenu--hide-content svg {
+    width: 10px;
+    height: 10px;
+
+    fill: var(--color-text-1);
+}
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--hide-content svg {
+        position: relative;
+        left: 2px;
+        bottom: 2px;
+
+        width: 12px;
+        height: 12px;
+    }
 }
 
 /*---------------------------- SHOW PAGE ----------------------------*/
@@ -490,14 +423,14 @@
 }
 
 .E_PageMenu--resizer:hover:after {
-    border-right-color: red;
+    border-right-color: var(--color-selected);
 
     transition: var(--default-transition-hover);
 }
 
 .E_PageMenu--resizer__active:after,
 .E_PageMenu--resizer:active:after {
-    border-right-color: orange;
+    border-right-color: var(--color-ok);
 
     transition: var(--default-transition-active);
 }
@@ -579,24 +512,22 @@ body:not(.cursor-grabbing) .E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_P
     text-align: center;
     line-height: 32px;
 
+    position: relative;
+
     width: 32px;
     height: 32px;
 
-    color: #404040;
-    background-color: #f5f5f5;
+    background-color: var(--color-flat-button-bg);
     border-radius: 50%;
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
 
     transition: inherit;
 }
 
 .E_PageMenu--position-switcher .icon:hover {
-    color: #fff;
-    background-color: #404040;
+    background-color: var(--color-hover);
 
     transition: var(--default-transition-hover);
 }
@@ -606,14 +537,91 @@ body:not(.cursor-grabbing) .E_PageMenu__fixed-top.E_PageMenu__css-fixed:not(.E_P
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
 }
 
-/*--------------------------------------------------------------------*/
-/*----------------------------- CONTENT ------------------------------*/
-/*--------------------------------------------------------------------*/
+.E_PageMenu--position-switcher .icon svg {
+    margin: auto;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 
-.E_PageMenu h2 {
-    font-size: 23px;
+    fill: var(--color-flat-button-icon);
 
-    margin-bottom: 20px;
+    transform-origin: center center;
+
+    transition: var(--default-transition);
+}
+
+.E_PageMenu--position-switcher .icon:hover svg {
+    fill: var(--color-flat-button-icon-hover);
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageMenu--icon__arrow {
+    width: 16px;
+    height: 16px;
+}
+
+.E_PageMenu--icon__touch {
+    width: 20px;
+    height: 20px;
+
+    display: none;
+}
+
+.E_PageMenu--position-switcher__top .E_PageMenu--icon__arrow {
+    transform: translateY(-1px) rotate(-90deg);
+}
+
+.E_PageMenu--position-switcher__bottom .E_PageMenu--icon__arrow {
+    transform: translateY(1px) rotate(90deg);
+}
+
+.E_PageMenu--position-switcher__top .E_PageMenu--icon__touch {
+    transform: translateY(1px);
+}
+
+.E_PageMenu:not(.E_PageMenu__css-fixed):hover .E_PageMenu--icon__touch {
+    opacity: 0;
+
+    display: block;
+
+    animation: E_PageMenu--show-icon__touch 2s linear 1s forwards;
+}
+
+.E_PageMenu:not(.E_PageMenu__css-fixed):hover .E_PageMenu--icon__arrow {
+    animation: E_PageMenu--hide-icon__arrow 3s linear 0.5s forwards;
+}
+
+@keyframes E_PageMenu--hide-icon__arrow {
+    0% {
+        opacity: 1;
+    }
+    16.666% {
+        opacity: 0;
+    }
+    83.333% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes E_PageMenu--show-icon__touch {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /*====================================================================*/

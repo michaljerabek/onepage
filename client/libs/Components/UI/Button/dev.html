@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../../../../css/colors.css">
+    <link rel="stylesheet" href="../../../../css/settings.css">
+
+    <link rel="stylesheet" href="../../../../../public/css/page.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSans-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Narrow";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansNarrow-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Condensed";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCondensed-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Compressed";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansCompressed-Black.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 100;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Thin.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 200;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-ExtraLight.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 300;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Light.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 400;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 500;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 600;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 700;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Bold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 800;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-ExtraBold.ttf");
+        }
+
+        @font-face {
+            font-family: "Encode Sans Wide";
+            font-weight: 900;
+
+            src: url("../../../../../public/fonts/encode-sans/EncodeSansWide-Black.ttf");
+        }
+
+
+    </style>
+
+    <style>
+        .Button {
+            margin: 5px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
+    <script src="../../../../libs/ractive-events-tap.umd.js"></script>
+    <script src="../../../../libs/ractive-events-keys.js"></script>
+
+    <div id="app"></div>
+
+    <script id="tpl" type="text/html">
+
+        {{> Button {
+                text: "Ok",
+                fire: "buttonEvent",
+                event: "Ok"
+            }
+        }}
+
+        {{> Button {
+                text: "Storno",
+                fire: "buttonEvent",
+                event: "Storno"
+            }
+        }}
+
+        {{> Button {
+                text: "Přidat sekci",
+                size: "large",
+                set: "buttonData",
+                value: .buttonData === "id1" ? null: "id1",
+                state: .buttonData === "id1" ? "active" : ""
+            }
+        }}
+
+        {{> Button {
+                type: "default-2",
+                text: "Zavřít",
+                size: "small",
+                set: "buttonData",
+                value: .buttonData === "id2" ? null: "id2",
+                state: .buttonData === "id2" ? "active" : ""
+            }
+        }}
+
+        {{> Button {
+                type: "default-2",
+                text: "Přidat sekci",
+                size: "small",
+                icon: "#icon-plus",
+                set: "buttonData",
+                value: .buttonData === "id3" ? null: "id3",
+                state: .buttonData === "id3" ? "active" : ""
+            }
+        }}
+
+        {{> Button {
+                type: "default-2",
+                text: "Přidat sekci",
+                size: "medium",
+                icon: "#icon-plus",
+                set: "buttonData",
+                value: .buttonData === "id4" ? null: "id4",
+                state: .buttonData === "id4" ? "active" : ""
+            }
+        }}
+
+        {{> Button {
+                type: "warn",
+                text: "Přidat sekci",
+                size: "large",
+                icon: "#icon-plus",
+                set: "buttonData",
+                value: .buttonData === "id5" ? null: "id5",
+                state: .buttonData === "id5" ? "active" : ""
+            }
+        }}
+
+        {{> Button {
+                type: "ok",
+                text: "Smazat",
+                size: "small",
+                icon: "#icon-trash"
+            }
+        }}
+
+        {{> Button {
+                type: "ok",
+                text: "Smazat",
+                size: "medium",
+                icon: "#icon-trash"
+            }
+        }}
+
+        {{> Button {
+                type: "ok",
+                text: "Smazat",
+                size: "large",
+                icon: "#icon-trash"
+            }
+        }}
+
+        {{> Button {
+                type: "danger",
+                size: "small",
+                icon: "#icon-trash"
+            }
+        }}
+
+        {{> Button {
+                type: "danger",
+                size: "medium",
+                icon: "#icon-trash"
+            }
+        }}
+
+        {{> Button {
+                type: "danger",
+                size: "large",
+                icon: "#icon-trash"
+            }
+        }}
+
+        {{> Button {
+                type: "ok",
+                text: "Smazat",
+                size: "medium",
+                icon: "#icon-trash",
+                state: "disabled"
+            }
+        }}
+
+        {{> Button {
+                type: "ok",
+                text: "Smazat",
+                size: "large",
+                icon: "#icon-trash",
+                state: "disabled"
+            }
+        }}
+
+        {{> Button {
+                type: "danger",
+                size: "small",
+                icon: "#icon-trash",
+                state: "disabled"
+            }
+        }}
+
+    </script>
+
+    <script>
+
+    $.get("../../../../../public/img/icons/app/symbol/svg/sprite.symbol.svg", function (svg) {
+
+        $("body").append(svg.firstChild);
+
+    });
+        var app;
+
+        $.get("index.tpl", function (template) {
+
+            app = new Ractive({
+                el: "#app",
+                template: "#tpl",
+
+                components: {
+
+                },
+
+                partials: {
+                    Button: template
+                },
+
+                data: {
+
+                },
+
+                onconfig: function () {
+
+                    this.on("buttonEvent", function () {
+                        console.log(arguments);
+                    });
+
+                }
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

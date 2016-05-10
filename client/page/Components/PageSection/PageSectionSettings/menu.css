@@ -1,0 +1,87 @@
+/*====================================================================*/
+/*------------------- E_PageSectionSettingsMenu --------------------*/
+/*====================================================================*/
+
+.E_PageSectionSettingsMenu {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 17px;
+    text-align: left;
+
+    padding: 16px 0;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_PageSectionSettingsMenu--list {
+    border-top: 1px solid #ddd;
+}
+
+.E_PageSectionSettingsMenu--item {
+    line-height: 1.35;
+
+	height: 41px;
+    padding: 0 16px;
+    padding-bottom: 1px;
+
+    border-bottom: 1px solid #ddd;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.E_PageSectionSettingsMenu--item:hover {
+    font-weight: 500;
+
+    background-color: var(--color-hover);
+    border-bottom-color: var(--color-hover-border);
+}
+
+.E_PageSectionSettingsMenu--item__active:hover,
+.E_PageSectionSettingsMenu--item__active {
+    font-weight: 500;
+
+    background-color: var(--color-temp-selected);
+    border-bottom-color: var(--color-temp-selected-border);
+
+    cursor: default;
+}
+
+.E_PageSectionSettingsMenu--item,
+.E_PageSectionSettingsMenu--title,
+.E_PageSectionSettingsMenu--subtitle {
+    transition: var(--default-transition);
+    transition-property: color, background, border;
+}
+
+.E_PageSectionSettingsMenu--item:hover,
+.E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--title,
+.E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--subtitle {
+    transition: var(--default-transition-hover);
+    transition-property: color, background, border;
+}
+
+.E_PageSectionSettingsMenu--title {
+    color: var(--color-text-1);
+}
+
+.E_PageSectionSettingsMenu--subtitle {
+    font-size: 9px;
+
+    padding-bottom: 1px;
+
+	color: var(--color-text-3);
+}
+
+.E_PageSectionSettingsMenu--item__active .E_PageSectionSettingsMenu--title,
+.E_PageSectionSettingsMenu--item__active .E_PageSectionSettingsMenu--subtitle,
+.E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--title,
+.E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--subtitle {
+    color: #fff;
+}

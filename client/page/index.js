@@ -61,7 +61,13 @@ module.exports = Ractive.extend({
         PageSectionB: "<PageSectionB section='{{this}}' />",
         PageSectionC: "<PageSectionC section='{{this}}' />",
 
-        pageMenu: require("./PageMenu/index.tpl")
+        pageMenu: Ractive.EDIT_MODE ? require("./PageMenu/index.tpl") : null,
+
+        FlatButton: Ractive.EDIT_MODE ? require("./Components/UI/FlatButton/index.tpl") : null,
+        Button: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Button/index.tpl") : null,
+        Switch: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Switch/index.tpl") : null,
+        Slider: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Slider/index.tpl") : null,
+        Select: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Select/index.tpl") : null
     },
 
     data: function () {
@@ -214,6 +220,8 @@ module.exports = Ractive.extend({
         //sledovat změny stránky -> označit jako neuložené
         this.observe("page.settings page.sections", this.handlePageChanged, {init: false});
         this.on("*.sectionOrderChanged", this.handlePageChanged, {init: false});
+        this.on("savePage", this.savePage);
+        this.on("closePage", this.closePage);
     },
 
     handlePageChanged: function () {
@@ -245,6 +253,9 @@ module.exports = Ractive.extend({
 
     savePage: function () {
 
+        clearTimeout(this.changesSavedTimeout);
+
+        this.set("changesSaved", false);
         this.set("pageIsSaving", true);
 
         var params = {
@@ -262,6 +273,12 @@ module.exports = Ractive.extend({
 
                 this.set("pageIsSaving", false);
                 this.set("unsavedChanges", false);
+                this.set("changesSaved", true);
+
+                clearTimeout(this.changesSavedTimeout);
+
+                this.changesSavedTimeout = setTimeout(this.set.bind(this, "changesSaved", false), 3000);
+
                 console.log("Uloženo!");
             }
         }.bind(this));

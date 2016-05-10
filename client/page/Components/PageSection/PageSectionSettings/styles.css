@@ -9,7 +9,7 @@
 
     width: 100%;
 
-    background-color: #f7f7f7;
+    background-color: #f4f4f4;
     border-top: 1px solid #d7d7d7;
     border-bottom: 1px solid #d7d7d7;
 }
@@ -29,14 +29,16 @@
 
     max-width: var(--P_PageSection__max-width);
 
+    background-color: #f7f7f7;
+
     overflow: hidden;
 }
 
 @media (min-width: 1440px) {
 
     .E_PageSectionSettings--wrapper-2 {
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
+        border-left: 1px solid #d7d7d7;
+        border-right: 1px solid #d7d7d7;
     }
 }
 
@@ -79,7 +81,7 @@
     flex-basis: 61.92%;
     flex-grow: 1;
 
-    border-left: 1px solid #ddd;
+    border-left: 1px solid #d7d7d7;
 
     will-change: min-width;
     transition: var(--default-transition-hover);
@@ -89,6 +91,8 @@
 
 .E_PageSectionSettings--scrolling-content {
     position: relative;
+
+    overflow: hidden;
 }
 
 @media (max-width: 640px) {
@@ -164,13 +168,16 @@
         min-width: calc(100vw - 40px);
     }
 
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:not(:hover) {
+    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:not(:hover) {
         min-width: 40px;
     }
 
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type > .E_PageSectionSettings--scrolling-content,
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type > .E_PageSectionSettings--scrolling-content {
-        min-width: 280px;
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type > .E_PageSectionSettings--scrolling-content {
+        min-width: calc(100vw - 40px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type  > .E_PageSectionSettings--scrolling-content {
+        min-width: calc(100vw - 40px - 1px);
     }
 }
 
@@ -256,7 +263,7 @@
 }
 
 .E_PageSectionSettings--min-max__max svg {
-    fill: orange;
+    fill: var(--color-selected);
     opacity: 1;
 }
 
@@ -326,19 +333,124 @@
 }
 
 .E_PageSectionSettings--resizer:hover:after {
-    border-bottom-color: red;
+    border-bottom-color: var(--color-selected);
 
     transition: var(--default-transition-hover);
 }
 
 .E_PageSectionSettings--resizer__active:after,
 .E_PageSectionSettings--resizer:active:after {
-    border-bottom-color: orange;
+    border-bottom-color: var(--color-ok);
 
     transition: var(--default-transition-active);
+}
+
+/*---------------------------- SECTION ----------------------------*/
+
+.E_PageSectionSettings--sections {
+    position: relative;
+
+    width: calc(100% + 12px);
+    padding: 16px 12px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.E_PageSectionSettings--sections:first-of-type {
+    padding-top: 0;
+}
+
+.E_PageSectionSettings--sections:last-of-type {
+    padding-bottom: 0;
+}
+
+.E_PageSectionSettings--sections:not(:last-of-type) {
+    margin-bottom: 1px;
+}
+
+.E_PageSectionSettings--sections:not(:last-of-type):after {
+    content: "";
+
+    position: absolute;
+    bottom: -1px;
+    left: 12px;
+
+    width: calc(100% - 36px);
+    height: 0;
+
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.E_PageSectionSettings--section {
+    margin-right: 12px;
+    margin-bottom: 16px;
+
+    min-width: calc(50% - 12px);
+
+    flex-basis: calc(180px - 12px);
+    flex-grow: 1;
+}
+
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(even):last-of-type {
+    margin-bottom: 0;
+}
+
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2),
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
+    margin-bottom: 0;
+}
+
+.E_PageSectionSettings--section-note q:after {
+    content: close-quote;
+
+    color: var(--color-text-3);
+}
+
+.E_PageSectionSettings--section-note q:before {
+    content: open-quote;
+
+    color: var(--color-text-3);
+}
+
+.E_PageSectionSettings--section-note {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 400;
+
+    margin-top: 6px;
+
+    color: var(--color-text-3);
+}
+
+/*---------------------------- TITLES ----------------------------*/
+
+.E_PageSectionSettings--section-title {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: left;
+
+    margin-bottom: 12px;
+
+    color: var(--color-title-1);
+}
+
+/*---------------------------- DIVIDER ----------------------------*/
+
+.E_PageSectionSettings--divider {
+    margin: 16px auto;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: #d7d7d7;
 }
 
 @keyframes E_PageSectionSettings--pointer-events-none {
     from { pointer-events: all; }
     to { pointer-events: none; }
 }
+

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 
 <head>
     <title><%= title %></title>
@@ -31,6 +31,11 @@
 <body>
 
     <div id="app"><%- ractiveHtml %></div>
+
+    <% if (typeof isAdmin !== "undefined" || typeof editMode !== "undefined" && editMode) { %>
+        <%- include("../public/img/icons/app/symbol/svg/sprite.symbol.svg") %>
+    <% } else { %>
+    <% } %>
 
 <!--    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>-->
     <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>

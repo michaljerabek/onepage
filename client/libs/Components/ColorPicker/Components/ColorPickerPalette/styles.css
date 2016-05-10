@@ -4,7 +4,7 @@
 
 .ColorPicker--palettes {
     margin-right: 40px;
-    margin-bottom: -8px;
+    margin-bottom: -4px;
 
     min-width: 176px;
     max-width: 100%;
@@ -22,7 +22,7 @@
 
 .ColorPickerPalette {
     min-width: 176px;
-    padding-bottom: 20px;
+    padding-bottom: 16px;
 
     display: flex;
     flex-direction: column;
@@ -33,13 +33,16 @@
 }
 
 .ColorPickerPalette--title {
+    font-family: "Encode Sans Narrow", sans-serif;
     font-size: 14px;
-    line-height: 1.2;
+    line-height: 1.5;
     text-align: left;
     white-space: nowrap;
 
     margin: 0;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+
+    color: var(--color-text-1);
 }
 
 /*---------------------------- COLORS ----------------------------*/
@@ -60,13 +63,29 @@
     width: 32px;
     height: 32px;
 
-    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
 
     flex-shrink: 0;
 
     overflow: hidden;
 
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    will-change: background, box-shadow;
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+}
+
+.ColorPickerPalette--color:active {
+    box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
+
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
 }
 
 .ColorPickerPalette--color:last-of-type {

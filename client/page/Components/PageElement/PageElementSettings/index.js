@@ -239,13 +239,29 @@
 
                     }.bind(this),
 
-                    contentObserver = new MutationObserver(function () {
+                    contentObserver = new MutationObserver(function (mutations) {
 
                         var currentTime = +new Date();
 
                         if (currentTime - lastMutation < 50) {
 
                             lastMutation = currentTime;
+
+                            return;
+                        }
+
+                        var m = mutations.length - 1,
+                            scrollbarMutations = 0;
+
+                        for (m; m >= 0; m--) {
+
+                            if (mutations[m].target && mutations[m].target.className && mutations[m].target.className.match("ps-scrollbar")) {
+
+                                scrollbarMutations++;
+                            }
+                        }
+
+                        if (mutations.length === scrollbarMutations) {
 
                             return;
                         }
@@ -836,19 +852,19 @@
 
                     if (resized) {
 
-                        if (position.match(/bottom|top/)) {
+//                        if (position.match(/bottom|top/)) {
 
                             this.set("resizableElementHeight", this.getSettingsHeight());
 
                             this.userDefHeight = this.get("resizableElementHeight");
-                        }
+//                        }
 
-                        if (position.match(/left|right/)) {
+//                        if (position.match(/left|right/)) {
 
                             this.set("resizableElementWidth", this.getSettingsWidth());
 
                             this.userDefWidth = this.get("resizableElementWidth");
-                        }
+//                        }
 
                         this.setPosition(true, position);
 

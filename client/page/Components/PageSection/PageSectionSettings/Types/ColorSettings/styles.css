@@ -9,9 +9,8 @@
     max-width: 340px;
 }
 
-.E_ColorSettings .E_ColorSettings--menu > * {
-}
+.E_ColorSettings .E_ColorSettings--ColorPicker:nth-child(1n) {
+    padding: 4px;
 
-.E_ColorSettings--ColorPicker {
-/*    max-height: var(--E_PageSectionSettings--init-max-height);*/
+    flex-basis: 75%;
 }

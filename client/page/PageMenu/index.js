@@ -30,6 +30,7 @@ var instaceCounter = 0,
         resizerActive: "E_PageMenu--resizer__active"
     },
 
+    draggableActiveTimeout = null,
     resizeTimeout = null,
     ensureVisibilityTimeout = null,
     
@@ -309,9 +310,11 @@ var instaceCounter = 0,
         //skryje menu s výběrem sekcí, pokud uživatel přetáhně nějakou sekci do stránky
         this.draggableActiveObserver = this.Page.observe("draggableActive", function (state) {
 
+            clearTimeout(draggableActiveTimeout);
+
             if (state) {
 
-                this.set("openPageMenu", null);
+                draggableActiveTimeout = setTimeout(this.set.bind(this, "openPageMenu", null), 100);
             }
         }, {init: false});
 
@@ -375,6 +378,8 @@ var instaceCounter = 0,
     };
 
 PageMenu.prototype.destroy = function () {
+
+    clearTimeout(draggableActiveTimeout);
 
     if (this.pageMenuLeft) {
 

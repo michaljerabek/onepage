@@ -75,15 +75,21 @@ module.exports = function (ractive, ractiveData, config) {
 
         console.time("pageLoaded");
 
+        var ractiveKeyEvents = require("ractive-events-keys");
+
         App = ractive({
 
             el: "#app",
+
+            partials: {
+            },
 
             data: ractiveData,
 
             events: {
 //                tap: require("ractive-events-tap")
-                hover: require("ractive-events-hover")
+                hover: require("ractive-events-hover"),
+                enter: ractiveKeyEvents.enter
             },
 
             transitions: {

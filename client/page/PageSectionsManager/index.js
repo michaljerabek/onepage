@@ -33,6 +33,8 @@ module.exports = (function () {
         $placeholderTransitions = $("<div></div>"),
         $fakePlaceholder = $("<div></div>"),
 
+        $sectionThumb,
+
         getSectionsSortedByIndex = function () {
 
             var pageSections = page.findAllPageSections(),
@@ -188,7 +190,7 @@ module.exports = (function () {
 
             page.set("sortableActive", CLASS.Page.sortableActive);
 
-            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionThumb)) {
 
                 return;
             }
@@ -225,7 +227,7 @@ module.exports = (function () {
 
         onSortableStart = function (e, ui) {
 
-            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionThumb)) {
 
                 return;
             }
@@ -264,6 +266,10 @@ module.exports = (function () {
             if (!ui.item.data("inSortable.PageSectionsManager")) {
 
                 page.set("cancelAddSection", false);
+                if ($sectionThumb) {
+
+                    $sectionThumb.removeClass(CLASS.NewPageSectionSelector.cancelAddSection);
+                }
 
                 $placeholder.css({
                     height: 0,
@@ -285,7 +291,7 @@ module.exports = (function () {
             //aby se zjistilo, jestli je sekce ve stránce nebo ve výběru sekcí (pro odsranění)
             ui.item.data("inSortable.PageSectionsManager", true);
 
-            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType) && !ui.item.hasClass(CLASS.NewPageSectionSelector.inserted)) {
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionThumb) && !ui.item.hasClass(CLASS.NewPageSectionSelector.inserted)) {
 
                 ui.item.addClass(CLASS.NewPageSectionSelector.inserted);
 
@@ -337,23 +343,20 @@ module.exports = (function () {
                 ui.item.data("positionChanged.PageSectionsManager", false);
             }
 
-            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionThumb)) {
 
                 $("." + CLASS.NewPageSectionSelector.inserted).removeClass(CLASS.NewPageSectionSelector.inserted);
 
                 //klon přetahované sekce
-                var $clone = $("." + CLASS.NewPageSectionSelector.clone),
-
-                    //pozice seřazovatelných sekci
-                    $itemOffsetParent = ui.item.offsetParent(),
+                var $itemOffsetParent = ui.item.offsetParent(),
                     itemParentOffset = $itemOffsetParent.offset(),
                     //pozice vložené sekce = zástupce sekce
                     itemOffset = ui.item.offset(),
 
                     //pozice klonu, na kterou se přesune zástupce sekce kvůli animaci
-                    cloneWidth = $clone.outerWidth(),
-                    cloneHeight = $clone.outerHeight(),
-                    cloneOffset = $clone.offset(),
+                    cloneWidth = $sectionThumb.outerWidth(),
+                    cloneHeight = $sectionThumb.outerHeight(),
+                    cloneOffset = $sectionThumb.offset(),
 
                     //vygeneruje se nová sekce a vloží se do stránky
                     newPageSection = insertSection(ui.item.data("page-section-type"), {}, true),
@@ -444,9 +447,14 @@ module.exports = (function () {
 
                             transition: "all " + OPTIONS.SECTION_SPEED + " " + OPTIONS.SECTION_EASING
                         })
-                        .one(SUPPORT.TRANSITIONEND, function () {
-                            //zástupce se po provedení animace smaže
-                            ui.item.remove();
+                        .off(SUPPORT.TRANSITIONEND)
+                        .on(SUPPORT.TRANSITIONEND, function (e) {
+
+                            if (e.originalEvent.propertyName === "transform") {
+
+                                //zástupce se po provedení animace smaže
+                                ui.item.off(SUPPORT.TRANSITIONEND).remove();
+                            }
                         });
 
                     //vnitřní element se vrátí na nulovou pozici
@@ -508,6 +516,8 @@ module.exports = (function () {
                             });
                         });
                 }, 0);
+
+                $sectionThumb = null;
 
                 return;
             }
@@ -603,26 +613,28 @@ module.exports = (function () {
                     .addClass(CLASS.PageSection.placedSection)
                     .removeClass(CLASS.PageSection.draggedSection);
             });
+
+            $sectionThumb = null;
         },
 
         onDraggableStart = function (e, ui) {
 
-            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionType)) {
+            if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionThumb)) {
 
                 page.set("sortableActive", CLASS.Page.sortableActive);
                 page.set("draggableActive", true);
 
                 //přesunutí klonu do "<body />", protože pozice klonu není přesně na klonovaném elemenu
                 //a je posunut daleko od šipky
-                var $clone = ui.item.siblings("." + CLASS.NewPageSectionSelector.clone);
+                $sectionThumb = ui.item.siblings("." + CLASS.NewPageSectionSelector.clone);
 
                 $body
-                    .append($clone)
+                    .append($sectionThumb)
                     .addClass(CLASS.cursorGrabbing);
 
                 var offset = ui.item.offset();
 
-                $clone.css({
+                $sectionThumb.css({
                     top: offset.top,
                     left: offset.left,
                     transform: "translate(0px, 0px)"
@@ -650,6 +662,11 @@ module.exports = (function () {
                     transition: ""
                 });
 
+                if ($sectionThumb) {
+
+                    $sectionThumb.addClass(CLASS.NewPageSectionSelector.cancelAddSection);
+                }
+
                 page.set("cancelAddSection", true);
             }
 
@@ -676,6 +693,8 @@ module.exports = (function () {
 
             $placeholderTransitions.remove();
 
+            $sectionThumb = null;
+
             //zabránění vložení klonu
             e.preventDefault();
         },
@@ -692,8 +711,9 @@ module.exports = (function () {
                 .on("droppable:over", onDroppableOver)
                 .on("droppable:drop", onDroppableDrop);
 
-            $draggable = $("." + CLASS.NewPageSectionSelector.sectionType).draggable({
+            $draggable = $("." + CLASS.NewPageSectionSelector.sectionThumb).draggable({
                 connectWith: "." + CLASS.PageSection.parentOfSortable + ", ." + CLASS.Page.PageMenu.self + ", ." + CLASS.PageSection.parentOfNonSortable,
+                cancel: "." + CLASS.NewPageSectionSelector.sectionThumbDisabled,
                 placeholder: CLASS.PageSection.placeholder,
                 cloneClass: CLASS.NewPageSectionSelector.clone,
 

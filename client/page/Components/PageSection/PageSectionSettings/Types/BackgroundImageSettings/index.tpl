@@ -6,47 +6,110 @@
 
     <div class="E_BackgroundImageSettings--background-settings E_PageSectionSettings--scrollable">
 
-       <div class="E_PageSectionSettings--scrolling-content">
+        <div class="E_PageSectionSettings--scrolling-content">
 
-            <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--source">
+            <div class="E_PageSectionSettings--sections">
 
-                <button type="button" on-tap="set('data.backgroundImage.src', '')">Odstranit obrázek</button>
+                <div class="E_PageSectionSettings--section E_BackgroundImageSettings--source">
+
+                    {{> Button {
+                            text: "Zrušit obrázek na pozadí",
+                            icon: "#icon-x",
+                            iconW: 14,
+                            iconH: 14,
+                            size: "small",
+                            set: "data.backgroundImage.src",
+                            value: ""
+                        }
+                    }}
+
+                </div>
 
             </div>
 
-            <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--display">
-                <h2>Zbrazení</h2>
+            <div class="E_PageSectionSettings--sections">
 
-                <input id="E_BackgroundImageSettings--display__repeat" type="radio" name="{{.data.backgroundImage.display}}" value="repeat">
-                <label for="E_BackgroundImageSettings--display__repeat">Opakovat</label>
-                <input id="E_BackgroundImageSettings--display__cover" type="radio" name="{{.data.backgroundImage.display}}" value="cover">
-                <label for="E_BackgroundImageSettings--display__cover">Vyplnit</label>
-            </div>
+                <div class="E_PageSectionSettings--section E_BackgroundImageSettings--display">
 
-            <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--effects">
-                <h2>Efekt</h2>
+                    <h2 class="E_PageSectionSettings--section-title">Zobrazení</h2>
 
-                <input id="E_BackgroundImageSettings--effects__fixed" type="checkbox" name="{{.data.backgroundImage.effects}}" value="fixed">
-                <label for="E_BackgroundImageSettings--effects__fixed">Fixní</label>
-                <input id="E_BackgroundImageSettings--effects__parallax" type="checkbox" name="{{.data.backgroundImage.effects}}" value="parallax">
-                <label for="E_BackgroundImageSettings--effects__parallax">Parallax</label>
-            </div>
+                    {{> Switch {
+                            size: "small",
+                            value: ".data.backgroundImage.display",
+                            options: [
+                                {
+                                    icon: "#icon-squares-2x2",
+                                    text: "Opakovat",
+                                    value: "repeat",
+                                    title: "Vyplnit plochu opakováním obrázku"
+                                },
+                                {
+                                    icon: "#icon-fullscreen",
+                                    text: "Vyplnit",
+                                    value: "cover",
+                                    title: "Vyplnit plochu přizpůsobením obrázku"
+                                }
+                            ]
+                        }
+                    }}
 
-            <div style="padding-bottom: 20px" class="E_BackgroundImageSettings--effects">
-                <h2>Síla efektu</h2>
+                </div>
 
-                <input id="E_BackgroundImageSettings--effects-strength"
-                    type="number"
-                    value="{{.data.backgroundImage.effectsStrength}}"
-                    {{#if .data.backgroundImage.effects.indexOf('parallax') === -1}}disabled{{/if}}
-                >
+                <div class="E_PageSectionSettings--section E_BackgroundImageSettings--effects">
+
+                    <h2 class="E_PageSectionSettings--section-title">Efekt</h2>
+
+                    {{>Switch {
+                            multiple: true,
+                            size: "small",
+                            value: ".data.backgroundImage.effects",
+                            options: [
+                                {
+                                    icon: "#icon-pin",
+                                    text: "Fixní",
+                                    value: "fixed",
+                                    title: "Zafixovat jako nepohyblivou tapetu"
+                                },
+                                {
+                                    icon: "#icon-scroll",
+                                    text: "Parallax",
+                                    value: "parallax",
+                                    title: "Posouvat pozadí pomaleji"
+                                }
+                            ]
+                        }
+                    }}
+
+                    <p class="E_PageSectionSettings--section-note">Efekt <q>fixní</q> nemusí fungovat na mobilních zařízeních.</p>
+
+                </div>
+
+                <div class="E_PageSectionSettings--section E_BackgroundImageSettings--effect-strength">
+
+                    <h2 class="E_PageSectionSettings--section-title">Síla efektu</h2>
+
+                    {{> Slider {
+                            adaptive: true,
+                            value: ".data.backgroundImage.effectsStrength",
+                            min: 1,
+                            max: 100,
+                            state: .data.backgroundImage.effects.indexOf('parallax') === -1 ? "disabled" : "",
+                            maxWidth: "calc(50% - 12px)",
+                            minWidth: "200px",
+                            title: "Míra zpomalení posunu pozadí",
+                            minText: "1"
+                        }
+                    }}
+
+                </div>
+
             </div>
 
         </div>
 
     </div>
 
-    <div class="E_BackgroundImageSettings--image-browser E_PageSectionSettings--scrollable">
+    <div class="E_BackgroundImageSettings--ImageBrowser E_PageSectionSettings--scrollable">
 
         <div class="E_PageSectionSettings--scrolling-content">
 

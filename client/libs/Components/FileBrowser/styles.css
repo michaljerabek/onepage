@@ -4,7 +4,7 @@
 
     position: relative;
 
-    color: #404040;
+    color: var(--color-text-1);
 
     display: flex;
     flex-flow: column nowrap;
@@ -108,10 +108,12 @@
     text-align: left;
     vertical-align: middle;
 
+    position: relative;
+
     width: 100%;
     padding: 0 12px 0px 2px;
 
-    background-color: #f5f5f5;
+    background-color: #f7f7f7;
 
     display: flex;
     align-items: center;
@@ -133,7 +135,7 @@
     font-weight: 500;
 
     color: #fff;
-    background-color: #404040;
+    background-color: var(--color-hover);
 
     transition: var(--default-transition-hover);
 }
@@ -143,7 +145,7 @@
     font-weight: 500;
 
     color: #fff;
-    background-color: #fa742c;
+    background-color: var(--color-temp-selected);
 
     transition: var(--default-transition-hover);
 }
@@ -167,7 +169,7 @@
     width: 20px;
     height: 20px;
 
-    fill: #505050;
+    fill: var(--color-text-1);
 
     transition: var(--default-transition);
 }
@@ -240,7 +242,7 @@
 }
 
 .FileBrowser--upload-files:hover {
-    background-color: #fc742a;
+    background-color: var(--color-selected);
     opacity: 1;
 
     transition: var(--default-transition-hover);
@@ -280,7 +282,7 @@
 }
 
 .FileBrowser--directory__opened .FileBrowser--upload-files:hover svg {
-    fill: #505050;
+    fill: #5c5c5c;
 
     transition: var(--default-transition-hover);
 }
@@ -336,7 +338,7 @@
 
 .FileBrowser--directory__opened .FileBrowser--search-input {
     color: #fff;
-    background-color: #fc742a;
+    background-color: var(--color-temp-selected);
 
     transition: var(--default-transition-hover);
 }
@@ -362,7 +364,7 @@
 }
 
 .FileBrowser--directory:not(.FileBrowser--directory__opened):hover .FileBrowser--search .FileBrowser--icon svg {
-    fill: #505050;
+    fill: var(--color-text-2);
 }
 
 /*--------------------------------------------------------------------*/
@@ -374,7 +376,7 @@
 
     padding: 8px;
 
-    color: #404040;
+    color: var(--color-text-2);
     background-color: #f2f2f2;
 
     display: flex;
@@ -398,7 +400,7 @@
     width: 100%;
     height: 100%;
 
-    box-shadow: inset 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.10);
 
     pointer-events: none;
 }
@@ -554,7 +556,7 @@
 }
 
 .FileBrowser--file__image.FileBrowser--file__selected .FileBrowser--file-wrapper:before {
-    box-shadow: inset 0px 0px 0px 1px rgba(250, 116, 44, 0.85);
+    box-shadow: inset 0px 0px 0px 1px var(--color-selected-85);
 }
 
 .FileBrowser--file__error.FileBrowser--file__image img,
@@ -578,7 +580,7 @@
     width: 100%;
     height: 100%;
 
-    box-shadow: inset 0px 0px 1px 1px rgba(255, 0, 0, 0.5);
+    box-shadow: inset 0px 0px 1px 1px var(--color-danger-half);
     opacity: 0;
 
     transition: var(--default-transition);
@@ -675,8 +677,8 @@
     max-width: 100%;
     max-height: 100%;
 
-    fill: #404040;
-    stroke: #404040;
+    fill: var(--color-text-1);
+    stroke: var(--color-text-1);
 
     transform: translateZ(0);
 
@@ -685,8 +687,8 @@
 
 .FileBrowser--file__icon.FileBrowser--file__selected:hover .FileBrowser--file-wrapper svg,
 .FileBrowser--file__icon:hover .FileBrowser--file-wrapper svg {
-    fill: #fc742a;
-    stroke: #fc742a;
+    fill: var(--color-selected);
+    stroke: var(--color-selected);
 
     transition: var(--default-transition-hover);
 }
@@ -708,13 +710,13 @@
 
 .FileBrowser--file__icon.FileBrowser--file__selected:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before,
 .FileBrowser--file__icon:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before {
-    box-shadow: 0px 0px 0px 1px rgba(250, 116, 44, 1);
+    box-shadow: 0px 0px 0px 1px var(--color-selected);
 
     transition: var(--default-transition-hover);
 }
 
 .FileBrowser--file__icon.FileBrowser--file__error .FileBrowser--file-wrapper:before {
-    box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
+    box-shadow: 0px 0px 0px 1px var(--color-danger);
 
     transition: var(--default-transition-hover);
 }
@@ -753,7 +755,7 @@
 }
 
 .FileBrowser--delete-file-confirm {
-    background-color: limegreen;
+    background-color: var(--color-ok);
 }
 
 .FileBrowser--delete-file-confirm:before,
@@ -774,7 +776,7 @@
 }
 
 .FileBrowser--delete-file:hover {
-    background-color: #f00;
+    background-color: var(--color-danger);
 }
 
 .FileBrowser--delete-file-confirm:active,
@@ -788,7 +790,7 @@
     z-index: 10;
     right: 32px;
 
-    background-color: #f00;
+    background-color: var(--color-danger);
 }
 
 .FileBrowser--delete-file-confirm svg,
