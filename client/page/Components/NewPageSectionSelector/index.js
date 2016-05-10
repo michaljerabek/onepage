@@ -8,16 +8,19 @@ module.exports = Ractive.extend({
     CLASS: {
         self: "E_NewPageSectionSelector",
 
-        sectionType: "E_NewPageSectionSelector--page-section-type",
-        clone: "E_NewPageSectionSelector--clone",
-        cloneRemoved: "E_NewPageSectionSelector--clone__removed",
-        inserted: "E_NewPageSectionSelector__inserted"
+        sectionThumb: "E_SectionThumb",
+        sectionThumbDisabled: "E_SectionThumb__disabled",
+        clone: "E_SectionThumb--clone",
+        cloneRemoved: "E_SectionThumb--clone__removed",
+        cancelAddSection: "E_SectionThumb--clone__cancel",
+        inserted: "E_SectionThumb__inserted"
     },
 
     components: {
     },
 
     partials: {
+        SectionThumb: require("./SectionThumb/index.tpl")
     },
 
     data: function () {
