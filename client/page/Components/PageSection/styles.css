@@ -108,7 +108,9 @@
 .E .P_PageSection:after {
     content: attr(data-page-section-name);
 
-    font-size: 19px;
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
 
     z-index: 120;
     position: absolute;

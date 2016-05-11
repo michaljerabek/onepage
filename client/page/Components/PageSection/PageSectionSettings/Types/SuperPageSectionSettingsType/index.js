@@ -20,6 +20,7 @@
         },
 
         partials: {
+            Text: require("./../../../../../../libs/Components/UI/Text/index.tpl")
         },
 
         superOnrender: function () {
@@ -31,6 +32,10 @@
         },
 
         superOncomplete: function () {
+
+        },
+
+        superOnteardown: function () {
 
         }
 

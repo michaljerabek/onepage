@@ -10,13 +10,15 @@
             on = require("./../../../../../helpers/on"),
 
             BackgroundImageSettings = require("./Types/BackgroundImageSettings"),
-            ColorSettings = require("./Types/ColorSettings");
+            ColorSettings = require("./Types/ColorSettings"),
+            SectionSettings = require("./Types/SectionSettings");
 
         module.exports = factory(
             Ractive,
             U,
             BackgroundImageSettings,
             ColorSettings,
+            SectionSettings,
             require("./index.tpl"),
             on
         );
@@ -28,12 +30,13 @@
             root.U,
             root.BackgroundImageSettings,
             root.ColorSettings,
+            root.SectionSettings,
             "",
             {client: true}
         );
     }
 
-}(this, function (Ractive, U, BackgroundImageSettings, ColorSettings, template, on) {
+}(this, function (Ractive, U, BackgroundImageSettings, ColorSettings, SectionSettings, template, on) {
 
     var instanceCounter = 0;
 
@@ -74,6 +77,7 @@
         components: {
             BackgroundImageSettings: BackgroundImageSettings,
             ColorSettings: ColorSettings,
+            SectionSettings: SectionSettings,
 
             ProgressBar: require("./../../../../libs/Components/ProgressBar")
         },

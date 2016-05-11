@@ -18,3 +18,13 @@
         state: @ractive.parent.get("openPageSectionSettings") === "background" ? "active" : ""
     }
 }}
+
+{{> FlatButton {
+        text: "Nastavení",
+        icon: "#icon-gear",
+        title: "Obecné nastavení sekce",
+        fire: "openPageSectionSettings",
+        event: "section",
+        state: @ractive.parent.get("openPageSectionSettings") === "section" ? "active" : ""
+    }
+}}

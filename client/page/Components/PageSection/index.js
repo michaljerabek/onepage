@@ -239,12 +239,19 @@
 
         regenerateId: function (newName) {
 
-            if (!newName) {
+            if (typeof newName === "undefined") {
 
                 return;
             }
 
             var builder = this.findParent("Page").pageSectionBuilder;
+
+            if (!newName) {
+
+                this.set("section.name", builder.getDefaultName(this.get("section.type")));
+
+                return;
+            }
 
             this.set("section.id", builder.generateId(newName));
 

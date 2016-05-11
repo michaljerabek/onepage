@@ -34,6 +34,24 @@ module.exports = (function () {
             return id;
         },
 
+        generateName = function (name, counter, originalName) {
+
+            var sections = page.findAllPageSections(),
+                s = sections.length - 1;
+
+            counter = counter || 2;
+
+            for (s; s >= 0; s--) {
+
+                if (sections[s].get("name") === name) {
+
+                    return generateName((originalName || name) + " " + counter, ++counter, originalName || name);
+                }
+            }
+
+            return name;
+        },
+
         generateInternalId = function () {
 
             return DEF_SECTION_INT_ID_PREFIX + Date.now() + (counter++);
@@ -44,12 +62,21 @@ module.exports = (function () {
             var superDataTemplate = require("./../Components/PageSection/dataTemplate.js")(),
                 dataTemplate = require("./../Components/PageSection/Types/" + type + "/dataTemplate.js")();
 
+            dataTemplate.name = generateName(dataTemplate.name);
+
             var base = {
                 id: generateId(dataTemplate.name),
                 internalId: generateInternalId()
             };
 
             return $.extend(true, base, superDataTemplate, dataTemplate, rewriteData);
+        },
+
+        getDefaultName = function (sectionType) {
+
+            var dataTemplate = require("./../Components/PageSection/Types/" + sectionType + "/dataTemplate.js")();
+
+            return generateName(dataTemplate.name);
         };
 
     return function PageSectionBuilder(_page) {
@@ -58,7 +85,8 @@ module.exports = (function () {
 
         return {
             create: create,
-            generateId: generateId
+            generateId: generateId,
+            getDefaultName: getDefaultName
         };
     };
 

@@ -4035,727 +4035,6 @@ body {
 }
 
 /*====================================================================*/
-/*------------------------------ SELECT ------------------------------*/
-/*====================================================================*/
-
-.Select, .Select:after, .Select--icon svg, .Select--options {
-    will-change: box-shadow, transform, background, fill, color;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.Select:hover, .Select:hover:after, .Select--options:hover + .Select--icon svg, .Select--options:hover, .Select--options:focus, .Select--options:focus + .Select--icon svg, .Select:has(:focus):after {
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.Select:active:after, .Select--options:active + .Select--icon svg, .Select:active .Select--options, .Select--options:active, .Select:has(:active):after {
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-.Select {
-    line-height: 0;
-
-    position: relative;
-
-    padding: 0;
-
-    -webkit-border-radius: 4px;
-
-       -moz-border-radius: 4px;
-
-            border-radius: 4px;
-
-    display: -webkit-inline-box;
-
-    display: -webkit-inline-flex;
-
-    display: -moz-inline-box;
-
-    display: -ms-inline-flexbox;
-
-    display: inline-flex;
-
-    -ms-touch-action: manipulation;
-
-        touch-action: manipulation;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    cursor: default;
-
-}
-
-.Select:not(.Select__disabled):active {
-    -webkit-transform: translate(1px, 1px);
-       -moz-transform: translate(1px, 1px);
-        -ms-transform: translate(1px, 1px);
-         -o-transform: translate(1px, 1px);
-            transform: translate(1px, 1px);
-}
-
-.Select__adaptive {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-    -webkit-flex-shrink: 1;
-        -ms-flex-negative: 1;
-            flex-shrink: 1;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-}
-
-.Select:after {
-    content: "";
-
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    -webkit-border-radius: inherit;
-
-       -moz-border-radius: inherit;
-
-            border-radius: inherit;
-    -webkit-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
-        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
-        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
-            box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
-        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
-
-    pointer-events: none;
-}
-
-.Select:not(.Select__disabled):active:after {
-    -webkit-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
-        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
-        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
-            box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
-        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
-}
-
-@-moz-document url-prefix() {
-
-    .Select:after {
-        -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
-            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
-             box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
-            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
-    }
-
-    .Select:not(.Select__disabled):active:after {
-        -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
-            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
-             box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
-            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
-    }
-}
-
-.Select--options {
-    font-family: "Encode Sans Narrow", sans-serif;
-    font-weight: 500;
-
-    margin: 0;
-
-    min-width: 100%;
-
-    color: #404040;
-    background-color: #fcfcfc;
-    border: none;
-    -webkit-border-radius: inherit;
-       -moz-border-radius: inherit;
-            border-radius: inherit;
-
-    -webkit-flex-basis: 100%;
-
-        -ms-flex-preferred-size: 100%;
-
-            flex-basis: 100%;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: nowrap;
-        -ms-flex-wrap: nowrap;
-            flex-wrap: nowrap;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.Select--options::-ms-expand {
-    display: none;
-}
-
-.Select--options:focus {
-    outline: none;
-}
-
-.Select--options:active {
-    color: #fff;
-}
-
-.Select--options option {
-    font-weight: 500;
-
-	color: #404040;
-	background-color: #fcfcfc;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
-.Select--icon {
-    z-index: 2;
-    position:absolute;
-    top: 0px;
-    right: 1px;
-
-    height: 100%;
-
-    -webkit-transform: rotate(180deg);
-
-       -moz-transform: rotate(180deg);
-
-        -ms-transform: rotate(180deg);
-
-         -o-transform: rotate(180deg);
-
-            transform: rotate(180deg);
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-
-    pointer-events: none;
-}
-
-.Select--icon svg {
-    fill: #505050;
-}
-
-.Select--options:active + .Select--icon svg {
-    fill: rgba(255, 255, 255, 0.9);
-}
-
-/*---------------------------- SIZE - MEDIUM ----------------------------*/
-
-.Select__medium {
-    height: 42px;
-}
-
-.Select__medium .Select--options {
-    font-size: 14px;
-
-    height: 42px;
-    min-width: 42px;
-    padding: 0 24px 0 14px;
-
-    -webkit-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-       -moz-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-            box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-}
-
-.Select__disabled.Select__medium .Select--options {
-    -webkit-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-.Select__medium .Select--icon {
-	width: 24px;
-}
-
-.Select__medium .Select--icon svg {
-	width: 8px;
-	height: 8px;
-}
-
-.Select__medium:not(.Select__disabled):active .Select--options {
-    -webkit-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-       -moz-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-            box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__medium .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-    }
-
-    .Select__disabled.Select__medium .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__medium:not(.Select__disabled):active .Select--options {
-        -moz-box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-    }
-}
-
-.Select__medium option {
-	height: 24px;
-}
-
-/*---------------------------- SIZE - LARGE ----------------------------*/
-
-.Select__large {
-    height: 50px;
-}
-
-.Select__large .Select--options {
-    font-size: 17px;
-
-    height: 50px;
-    min-width: 50px;
-    padding: 0 28px 0 18px;
-
-    -webkit-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-       -moz-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-            box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-}
-
-.Select__disabled.Select__large .Select--options {
-    -webkit-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-.Select__large .Select--icon {
-    width: 28px;
-}
-
-.Select__large .Select--icon svg {
-    width: 10px;
-    height: 10px;
-}
-
-.Select__large:not(.Select__disabled):active .Select--options {
-    -webkit-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-       -moz-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-            box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__large .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-    }
-
-    .Select__disabled.Select__large .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__large:not(.Select__disabled):active .Select--options {
-        -moz-box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-    }
-}
-
-.Select__large option {
-    height: 32px;
-}
-
-/*---------------------------- SIZE - SMALL ----------------------------*/
-
-.Select__small {
-    height: 34px;
-}
-
-.Select__small .Select--options {
-    font-size: 14px;
-
-    height: 34px;
-    min-width: 34px;
-    padding: 0 20px 0 10px;
-
-    -webkit-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-       -moz-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-            box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-}
-
-.Select__disabled.Select__small .Select--options {
-    -webkit-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-.Select__small .Select--icon {
-    width: 20px;
-}
-
-.Select__small .Select--icon svg {
-    width: 8px;
-    height: 8px;
-}
-
-.Select__small:not(.Select__disabled):active .Select--options {
-    -webkit-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-       -moz-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-            box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__small .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-    }
-
-    .Select__disabled.Select__small .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__small:not(.Select__disabled):active .Select--options {
-        -moz-box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-    }
-}
-
-.Select__small option {
-    height: 20px;
-}
-
-/*---------------------------- TYPE - DEFAULT ----------------------------*/
-
-.Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-       -moz-box-shadow:
-        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-            box-shadow:
-        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-}
-
-.Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-       -moz-box-shadow:
-        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-            box-shadow:
-        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-}
-
-.Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-       -moz-box-shadow:
-        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-            box-shadow:
-        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-             box-shadow:
-            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-    }
-
-    .Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-             box-shadow:
-            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-    }
-
-    .Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-             box-shadow:
-            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-    }
-}
-
-.Select__default.Select__active .Select--options {
-    background-color: #08a1c2;
-}
-
-.Select__default.Select__active .Select--options:focus, .Select__default.Select__active .Select--options:hover {
-    background-color: #15b0d1;
-}
-
-.Select__default.Select__active .Select--options:active, .Select__default .Select--options:active {
-    background-color: #088eab;
-}
-
-/*---------------------------- STATE - DISABLED ----------------------------*/
-
-.Select__disabled .Select--options, .Select__disabled .Select--options:hover, .Select__disabled .Select--options:focus {
-    color: #b2b2b2;
-    background-color: #f2f2f2;
-}
-
-.Select__disabled .Select--options:focus + .Select--icon svg, .Select__disabled .Select--options:hover + .Select--icon svg, .Select__disabled .Select--icon svg {
-    fill: rgba(80, 80, 80, 0.3);
-}
-
-.Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-.Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-.Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus{
-        -moz-box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-}
-
-.Select__disabled .Select--options:active {
-    background-color: #e2e2e2;
-}
-
-.Select__disabled .Select--options:active + .Select--icon svg {
-    fill: rgba(80, 80, 80, 0.3);
-}
-
-.Select--options option:disabled {
-    color: #b2b2b2;
-}
-
-/*====================================================================*/
 /*------------------------------ SLIDER ------------------------------*/
 /*====================================================================*/
 
@@ -5554,6 +4833,727 @@ body {
 }
 
 .Slider__disabled .Slider--text {
+    color: #b2b2b2;
+}
+
+/*====================================================================*/
+/*------------------------------ SELECT ------------------------------*/
+/*====================================================================*/
+
+.Select, .Select:after, .Select--icon svg, .Select--options {
+    will-change: box-shadow, transform, background, fill, color;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Select:hover, .Select:hover:after, .Select--options:hover + .Select--icon svg, .Select--options:hover, .Select--options:focus, .Select--options:focus + .Select--icon svg, .Select:has(:focus):after {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.Select:active:after, .Select--options:active + .Select--icon svg, .Select:active .Select--options, .Select--options:active, .Select:has(:active):after {
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.Select {
+    line-height: 0;
+
+    position: relative;
+
+    padding: 0;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+
+}
+
+.Select:not(.Select__disabled):active {
+    -webkit-transform: translate(1px, 1px);
+       -moz-transform: translate(1px, 1px);
+        -ms-transform: translate(1px, 1px);
+         -o-transform: translate(1px, 1px);
+            transform: translate(1px, 1px);
+}
+
+.Select__adaptive {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.Select:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.Select:not(.Select__disabled):active:after {
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Select:after {
+        -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+             box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Select:not(.Select__disabled):active:after {
+        -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+             box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Select--options {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+
+    margin: 0;
+
+    min-width: 100%;
+
+    color: #404040;
+    background-color: #fcfcfc;
+    border: none;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    -webkit-flex-basis: 100%;
+
+        -ms-flex-preferred-size: 100%;
+
+            flex-basis: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.Select--options::-ms-expand {
+    display: none;
+}
+
+.Select--options:focus {
+    outline: none;
+}
+
+.Select--options:active {
+    color: #fff;
+}
+
+.Select--options option {
+    font-weight: 500;
+
+	color: #404040;
+	background-color: #fcfcfc;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.Select--icon {
+    z-index: 2;
+    position:absolute;
+    top: 0px;
+    right: 1px;
+
+    height: 100%;
+
+    -webkit-transform: rotate(180deg);
+
+       -moz-transform: rotate(180deg);
+
+        -ms-transform: rotate(180deg);
+
+         -o-transform: rotate(180deg);
+
+            transform: rotate(180deg);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    pointer-events: none;
+}
+
+.Select--icon svg {
+    fill: #505050;
+}
+
+.Select--options:active + .Select--icon svg {
+    fill: rgba(255, 255, 255, 0.9);
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.Select__medium {
+    height: 42px;
+}
+
+.Select__medium .Select--options {
+    font-size: 14px;
+
+    height: 42px;
+    min-width: 42px;
+    padding: 0 24px 0 14px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__medium .Select--options {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__medium .Select--icon {
+	width: 24px;
+}
+
+.Select__medium .Select--icon svg {
+	width: 8px;
+	height: 8px;
+}
+
+.Select__medium:not(.Select__disabled):active .Select--options {
+    -webkit-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__medium .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__medium:not(.Select__disabled):active .Select--options {
+        -moz-box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__medium option {
+	height: 24px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.Select__large {
+    height: 50px;
+}
+
+.Select__large .Select--options {
+    font-size: 17px;
+
+    height: 50px;
+    min-width: 50px;
+    padding: 0 28px 0 18px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__large .Select--options {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__large .Select--icon {
+    width: 28px;
+}
+
+.Select__large .Select--icon svg {
+    width: 10px;
+    height: 10px;
+}
+
+.Select__large:not(.Select__disabled):active .Select--options {
+    -webkit-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__large .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__large .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__large:not(.Select__disabled):active .Select--options {
+        -moz-box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__large option {
+    height: 32px;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.Select__small {
+    height: 34px;
+}
+
+.Select__small .Select--options {
+    font-size: 14px;
+
+    height: 34px;
+    min-width: 34px;
+    padding: 0 20px 0 10px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__small .Select--options {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__small .Select--icon {
+    width: 20px;
+}
+
+.Select__small .Select--icon svg {
+    width: 8px;
+    height: 8px;
+}
+
+.Select__small:not(.Select__disabled):active .Select--options {
+    -webkit-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__small .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__small .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__small:not(.Select__disabled):active .Select--options {
+        -moz-box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__small option {
+    height: 20px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+}
+
+.Select__default.Select__active .Select--options {
+    background-color: #08a1c2;
+}
+
+.Select__default.Select__active .Select--options:focus, .Select__default.Select__active .Select--options:hover {
+    background-color: #15b0d1;
+}
+
+.Select__default.Select__active .Select--options:active, .Select__default .Select--options:active {
+    background-color: #088eab;
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.Select__disabled .Select--options, .Select__disabled .Select--options:hover, .Select__disabled .Select--options:focus {
+    color: #b2b2b2;
+    background-color: #f2f2f2;
+}
+
+.Select__disabled .Select--options:focus + .Select--icon svg, .Select__disabled .Select--options:hover + .Select--icon svg, .Select__disabled .Select--icon svg {
+    fill: rgba(80, 80, 80, 0.3);
+}
+
+.Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus{
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+}
+
+.Select__disabled .Select--options:active {
+    background-color: #e2e2e2;
+}
+
+.Select__disabled .Select--options:active + .Select--icon svg {
+    fill: rgba(80, 80, 80, 0.3);
+}
+
+.Select--options option:disabled {
     color: #b2b2b2;
 }
 
@@ -9092,6 +9092,19 @@ body {
             flex-basis: 75%;
 }
 
+.E_SectionSettings {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
 .medium-editor-toolbar *:not(input)  {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -12063,6 +12076,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     color: #0f758b;
 }
+
 /*====================================================================*/
 /*----------------------------- PAGE MENU ----------------------------*/
 /*====================================================================*/
@@ -13426,6 +13440,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 .E .P_sortable-sections:after {
     content: "Sem můžete přidat další sekci...";
 
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 400;
     font-size: 17px;
 
     position: absolute;
@@ -13435,7 +13451,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     width: 100%;
     height: 100%;
 
-    color: #888;
+    color: #999;
     opacity: 0;
     visibility: hidden;
 
@@ -13486,7 +13502,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     width: 100%;
 
-    color: #888;
+    color: #999;
     background-color: #f7f7f7;
 
     -webkit-transform: translateZ(0px);
@@ -13524,7 +13540,9 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 .P_PageSection--fake-placeholder:after, .P_PageSection--placeholder:after {
     content: "Umístit sekci zde...";
 
+    font-family: "Encode Sans Narrow", sans-serif;
     font-size: 17px;
+    font-weight: 400;
 
     position: absolute;
     top: 0px;
@@ -13701,12 +13719,12 @@ ium-editor-toolbar li button:disabled:not(:hover) {
             justify-content: flex-start;
 }
 
-.E_NewPageSectionSelector .SectionThumb {
+.E_NewPageSectionSelector .E_SectionThumb {
     margin-bottom: 16px;
     margin-right: 16px;
 }
 
-.P_sortable-sections .SectionThumb {
+.P_sortable-sections .E_SectionThumb {
     margin-bottom: 0;
     margin-right: 0;
 }
@@ -14191,7 +14209,9 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 .E .P_PageSection:after {
     content: attr(data-page-section-name);
 
-    font-size: 19px;
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
 
     z-index: 120;
     position: absolute;
@@ -14287,7 +14307,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 /*--------------------------- SECTION-THUMB --------------------------*/
 /*====================================================================*/
 
-.SectionThumb, .SectionThumb:after, .SectionThumb--content, .SectionThumb--name, .SectionThumb--text, .SectionThumb--icon, .SectionThumb--icon svg {
+.E_SectionThumb, .E_SectionThumb:after, .E_SectionThumb--content, .E_SectionThumb--name, .E_SectionThumb--text, .E_SectionThumb--icon, .E_SectionThumb--icon svg {
     will-change: box-shadow, transform, background, fill, color, width, height, opacity;
     -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
     -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
@@ -14295,21 +14315,21 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.SectionThumb:hover, .SectionThumb:hover:after, .SectionThumb:hover .SectionThumb--name, .SectionThumb:hover .SectionThumb--text, .SectionThumb:hover .SectionThumb--icon svg, .SectionThumb:focus, .SectionThumb:focus .SectionThumb--content, .SectionThumb:focus .SectionThumb--name, .SectionThumb:focus .SectionThumb--text, .SectionThumb:focus .SectionThumb--icon, .SectionThumb:focus .SectionThumb--icon svg {
+.E_SectionThumb:hover, .E_SectionThumb:hover:after, .E_SectionThumb:hover .E_SectionThumb--name, .E_SectionThumb:hover .E_SectionThumb--text, .E_SectionThumb:hover .E_SectionThumb--icon svg, .E_SectionThumb:focus, .E_SectionThumb:focus .E_SectionThumb--content, .E_SectionThumb:focus .E_SectionThumb--name, .E_SectionThumb:focus .E_SectionThumb--text, .E_SectionThumb:focus .E_SectionThumb--icon, .E_SectionThumb:focus .E_SectionThumb--icon svg {
     -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 }
 
-.SectionThumb:active, .SectionThumb:active, .SectionThumb:active .SectionThumb--content, .SectionThumb:active:after, .SectionThumb:active .SectionThumb--name, .SectionThumb:active .SectionThumb--text, .SectionThumb:active .SectionThumb--icon, .SectionThumb:active .SectionThumb--icon svg {
+.E_SectionThumb:active, .E_SectionThumb:active, .E_SectionThumb:active .E_SectionThumb--content, .E_SectionThumb:active:after, .E_SectionThumb:active .E_SectionThumb--name, .E_SectionThumb:active .E_SectionThumb--text, .E_SectionThumb:active .E_SectionThumb--icon, .E_SectionThumb:active .E_SectionThumb--icon svg {
     -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
     -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
     -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
     transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
-.SectionThumb {
+.E_SectionThumb {
     line-height: 0;
     white-space: nowrap;
 
@@ -14355,7 +14375,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     cursor: grab;
 }
 
-.SectionThumb:after {
+.E_SectionThumb:after {
     content: "";
 
     position: absolute;
@@ -14382,7 +14402,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 @-moz-document url-prefix() {
 
-    .SectionThumb:after {
+    .E_SectionThumb:after {
         -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
             inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
              box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
@@ -14390,7 +14410,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     }
 }
 
-.SectionThumb--content {
+.E_SectionThumb--content {
     width: 100%;
     height: 100%;
 
@@ -14436,11 +14456,11 @@ ium-editor-toolbar li button:disabled:not(:hover) {
             justify-content: flex-start;
 }
 
-.SectionThumb--content:focus {
+.E_SectionThumb--content:focus {
     outline: none;
 }
 
-.SectionThumb__disabled .SectionThumb--content {
+.E_SectionThumb__disabled .E_SectionThumb--content {
     -webkit-box-shadow:
         inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
         inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
@@ -14454,7 +14474,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 @-moz-document url-prefix() {
 
-    .SectionThumb--content {
+    .E_SectionThumb--content {
         -moz-box-shadow:
             inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
@@ -14463,7 +14483,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
     }
 
-    .SectionThumb__disabled .SectionThumb--content {
+    .E_SectionThumb__disabled .E_SectionThumb--content {
         -moz-box-shadow:
             inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
             inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
@@ -14473,7 +14493,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     }
 }
 
-.SectionThumb--icon {
+.E_SectionThumb--icon {
     position: relative;
     margin-top: 16px;
     margin-bottom: 16px;
@@ -14483,14 +14503,14 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     height: 72px;
 }
 
-.SectionThumb--icon svg {
+.E_SectionThumb--icon svg {
     width: 100%;
     height: 100%;
 
     fill: #505050;
 }
 
-.SectionThumb--name {
+.E_SectionThumb--name {
     font-family: "Encode Sans Condensed", sans-serif;
     font-size: 12px;
     font-weight: 500;
@@ -14510,7 +14530,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     overflow: hidden;
 }
 
-.SectionThumb--text {
+.E_SectionThumb--text {
     text-align: center;
     white-space: nowrap;
     line-height: 1;
@@ -14520,35 +14540,35 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     display: inline-block;
 }
 
-.SectionThumb--text__long {
+.E_SectionThumb--text__long {
     font-family: "Encode Sans Compressed", sans-serif;
 }
 
-.SectionThumb:not(.SectionThumb--clone):hover .SectionThumb--text {
-    -webkit-animation: SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
-        SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
-       -moz-animation: SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
-        SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
-         -o-animation: SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
-        SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
-            animation: SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
-        SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
+.E_SectionThumb:not(.E_SectionThumb--clone):hover .E_SectionThumb--text {
+    -webkit-animation: E_SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
+        E_SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
+       -moz-animation: E_SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
+        E_SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
+         -o-animation: E_SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
+        E_SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
+            animation: E_SectionThumb--move-text 1.2s linear 1.92s infinite alternate,
+        E_SectionThumb--move-text-2 0.96s linear 0s 2 alternate;
 }
 
-.SectionThumb:not(.SectionThumb--clone):hover .SectionThumb--text.SectionThumb--text__extra-long {
-    -webkit-animation: SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
-        SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
-       -moz-animation: SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
-        SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
-         -o-animation: SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
-        SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
-            animation: SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
-        SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
+.E_SectionThumb:not(.E_SectionThumb--clone):hover .E_SectionThumb--text.E_SectionThumb--text__extra-long {
+    -webkit-animation: E_SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
+        E_SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
+       -moz-animation: E_SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
+        E_SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
+         -o-animation: E_SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
+        E_SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
+            animation: E_SectionThumb--move-text__extra-long 1.4s linear 2.24s infinite alternate,
+        E_SectionThumb--move-text-2__extra-long 1.12s linear 0s 2 alternate;
 }
 
 /*---------------------------- CLONE ----------------------------*/
 
-.SectionThumb--clone {
+.E_SectionThumb--clone {
     z-index: 320;
 
     -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
@@ -14557,13 +14577,13 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
             box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 
-    -webkit-animation: SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+    -webkit-animation: E_SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
 
-       -moz-animation: SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+       -moz-animation: E_SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
 
-         -o-animation: SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+         -o-animation: E_SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
 
-            animation: SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
+            animation: E_SectionThumb--clone-shadow 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) forwards;
     -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
     -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
     -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
@@ -14576,27 +14596,27 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     cursor: grabbing;
 }
 
-@-webkit-keyframes SectionThumb--clone-shadow {
+@-webkit-keyframes E_SectionThumb--clone-shadow {
     to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
 }
 
-@-moz-keyframes SectionThumb--clone-shadow {
+@-moz-keyframes E_SectionThumb--clone-shadow {
     to { -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
 }
 
-@-o-keyframes SectionThumb--clone-shadow {
+@-o-keyframes E_SectionThumb--clone-shadow {
     to { box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
 }
 
-@keyframes SectionThumb--clone-shadow {
+@keyframes E_SectionThumb--clone-shadow {
     to { -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.3) }
 }
 
-body > .SectionThumb--clone .SectionThumb--content {
+body > .E_SectionThumb--clone .E_SectionThumb--content {
     opacity: 0.75;
 }
 
-.SectionThumb--clone__removed:hover, .SectionThumb--clone__removed:focus, .SectionThumb--clone__removed:active, .SectionThumb--clone__removed {
+.E_SectionThumb--clone__removed:hover, .E_SectionThumb--clone__removed:focus, .E_SectionThumb--clone__removed:active, .E_SectionThumb--clone__removed {
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
@@ -14605,7 +14625,7 @@ body > .SectionThumb--clone .SectionThumb--content {
 
 /*---------------------------- HOVER | FOCUS ----------------------------*/
 
-.SectionThumb--clone .SectionThumb--content, .SectionThumb:not(.SectionThumb__disabled):hover .SectionThumb--content, .SectionThumb:not(.SectionThumb__disabled):focus .SectionThumb--content {
+.E_SectionThumb--clone .E_SectionThumb--content, .E_SectionThumb:not(.E_SectionThumb__disabled):hover .E_SectionThumb--content, .E_SectionThumb:not(.E_SectionThumb__disabled):focus .E_SectionThumb--content {
     -webkit-box-shadow:
         inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
         inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
@@ -14619,7 +14639,7 @@ body > .SectionThumb--clone .SectionThumb--content {
 
 @-moz-document url-prefix() {
 
-    .SectionThumb--clone .SectionThumb--content, .SectionThumb:not(.SectionThumb__disabled):hover .SectionThumb--content, .SectionThumb:not(.SectionThumb__disabled):focus .SectionThumb--content {
+    .E_SectionThumb--clone .E_SectionThumb--content, .E_SectionThumb:not(.E_SectionThumb__disabled):hover .E_SectionThumb--content, .E_SectionThumb:not(.E_SectionThumb__disabled):focus .E_SectionThumb--content {
         -moz-box-shadow:
             inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
             inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
@@ -14629,7 +14649,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-.SectionThumb--clone__cancel .SectionThumb--content {
+.E_SectionThumb--clone__cancel .E_SectionThumb--content {
     -webkit-box-shadow:
         inset  0px  0px 16px 0px rgba(227, 45, 57, 0.2),
         inset  0px  0px  2px 0px rgba(227, 45, 57, 1);
@@ -14643,7 +14663,7 @@ body > .SectionThumb--clone .SectionThumb--content {
 
 @-moz-document url-prefix() {
 
-    .SectionThumb--clone__cancel .SectionThumb--content {
+    .E_SectionThumb--clone__cancel .E_SectionThumb--content {
         -moz-box-shadow:
             inset  0px  0px 14px 0px rgba(227, 45, 57, 0.2),
             inset  0px  0px  1px 0px rgba(227, 45, 57, 1);
@@ -14655,27 +14675,27 @@ body > .SectionThumb--clone .SectionThumb--content {
 
 /*---------------------------- STATE - DISABLED ----------------------------*/
 
-.SectionThumb__disabled {
+.E_SectionThumb__disabled {
     cursor: not-allowed;
 }
 
-.SectionThumb__disabled .SectionThumb--content {
+.E_SectionThumb__disabled .E_SectionThumb--content {
     background-color: #f2f2f2;
 }
 
-.SectionThumb__disabled .SectionThumb--icon svg {
+.E_SectionThumb__disabled .E_SectionThumb--icon svg {
     fill: rgba(80, 80, 80, 0.3);
 }
 
-.SectionThumb__disabled .SectionThumb--text {
+.E_SectionThumb__disabled .E_SectionThumb--text {
     color: #b2b2b2;
 }
 
-.SectionThumb__disabled:active .SectionThumb--content {
+.E_SectionThumb__disabled:active .E_SectionThumb--content {
     background-color: #e2e2e2;
 }
 
-@-webkit-keyframes SectionThumb--move-text {
+@-webkit-keyframes E_SectionThumb--move-text {
     0% {
         -webkit-transform: translateX(0px);
                 transform: translateX(0px);
@@ -14694,7 +14714,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@-moz-keyframes SectionThumb--move-text {
+@-moz-keyframes E_SectionThumb--move-text {
     0% {
         -moz-transform: translateX(0px);
              transform: translateX(0px);
@@ -14713,7 +14733,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@-o-keyframes SectionThumb--move-text {
+@-o-keyframes E_SectionThumb--move-text {
     0% {
         -o-transform: translateX(0px);
            transform: translateX(0px);
@@ -14732,7 +14752,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@keyframes SectionThumb--move-text {
+@keyframes E_SectionThumb--move-text {
     0% {
         -webkit-transform: translateX(0px);
            -moz-transform: translateX(0px);
@@ -14759,7 +14779,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@-webkit-keyframes SectionThumb--move-text-2 {
+@-webkit-keyframes E_SectionThumb--move-text-2 {
     0% {
         -webkit-transform: translateX(0px);
                 transform: translateX(0px);
@@ -14774,7 +14794,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@-moz-keyframes SectionThumb--move-text-2 {
+@-moz-keyframes E_SectionThumb--move-text-2 {
     0% {
         -moz-transform: translateX(0px);
              transform: translateX(0px);
@@ -14789,7 +14809,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@-o-keyframes SectionThumb--move-text-2 {
+@-o-keyframes E_SectionThumb--move-text-2 {
     0% {
         -o-transform: translateX(0px);
            transform: translateX(0px);
@@ -14804,7 +14824,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@keyframes SectionThumb--move-text-2 {
+@keyframes E_SectionThumb--move-text-2 {
     0% {
         -webkit-transform: translateX(0px);
            -moz-transform: translateX(0px);
@@ -14826,7 +14846,7 @@ body > .SectionThumb--clone .SectionThumb--content {
 }
 
 
-@-webkit-keyframes SectionThumb--move-text__extra-long {
+@-webkit-keyframes E_SectionThumb--move-text__extra-long {
     0% {
         -webkit-transform: translateX(0px);
                 transform: translateX(0px);
@@ -14846,7 +14866,7 @@ body > .SectionThumb--clone .SectionThumb--content {
 }
 
 
-@-moz-keyframes SectionThumb--move-text__extra-long {
+@-moz-keyframes E_SectionThumb--move-text__extra-long {
     0% {
         -moz-transform: translateX(0px);
              transform: translateX(0px);
@@ -14866,7 +14886,7 @@ body > .SectionThumb--clone .SectionThumb--content {
 }
 
 
-@-o-keyframes SectionThumb--move-text__extra-long {
+@-o-keyframes E_SectionThumb--move-text__extra-long {
     0% {
         -o-transform: translateX(0px);
            transform: translateX(0px);
@@ -14886,7 +14906,7 @@ body > .SectionThumb--clone .SectionThumb--content {
 }
 
 
-@keyframes SectionThumb--move-text__extra-long {
+@keyframes E_SectionThumb--move-text__extra-long {
     0% {
         -webkit-transform: translateX(0px);
            -moz-transform: translateX(0px);
@@ -14913,7 +14933,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@-webkit-keyframes SectionThumb--move-text-2__extra-long {
+@-webkit-keyframes E_SectionThumb--move-text-2__extra-long {
     0% {
         -webkit-transform: translateX(0px);
                 transform: translateX(0px);
@@ -14928,7 +14948,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@-moz-keyframes SectionThumb--move-text-2__extra-long {
+@-moz-keyframes E_SectionThumb--move-text-2__extra-long {
     0% {
         -moz-transform: translateX(0px);
              transform: translateX(0px);
@@ -14943,7 +14963,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@-o-keyframes SectionThumb--move-text-2__extra-long {
+@-o-keyframes E_SectionThumb--move-text-2__extra-long {
     0% {
         -o-transform: translateX(0px);
            transform: translateX(0px);
@@ -14958,7 +14978,7 @@ body > .SectionThumb--clone .SectionThumb--content {
     }
 }
 
-@keyframes SectionThumb--move-text-2__extra-long {
+@keyframes E_SectionThumb--move-text-2__extra-long {
     0% {
         -webkit-transform: translateX(0px);
            -moz-transform: translateX(0px);
@@ -16587,6 +16607,11 @@ body > .SectionThumb--clone .SectionThumb--content {
             flex-wrap: wrap;
 }
 
+.E_PageSectionSettings--sections__full {
+    width: 100%;
+    padding: 16px 20px;
+}
+
 .E_PageSectionSettings--sections:first-of-type {
     padding-top: 0;
 }
@@ -16640,6 +16665,23 @@ body > .SectionThumb--clone .SectionThumb--content {
             flex-grow: 1;
 }
 
+.E_PageSectionSettings--sections__full .E_PageSectionSettings--section {
+    margin-right: 0px;
+
+    min-width: 100%;
+
+    -webkit-flex-basis: 100%;
+
+        -ms-flex-preferred-size: 100%;
+
+            flex-basis: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+}
+
 .E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(even):last-of-type {
     margin-bottom: 0;
 }
@@ -16647,6 +16689,28 @@ body > .SectionThumb--clone .SectionThumb--content {
 .E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2), .E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
     margin-bottom: 0;
 }
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ CONTENT -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+@media (min-width: 767px) {
+    .E_PageSectionSettings--sections__full .Text {
+        max-width: -webkit-calc(61.92% - 20px);
+        max-width: -moz-calc(61.92% - 20px);
+        max-width: calc(61.92% - 20px);
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .E_PageSectionSettings--sections__full .Text {
+        max-width: -webkit-calc(38.08% - 20px);
+        max-width: -moz-calc(38.08% - 20px);
+        max-width: calc(38.08% - 20px);
+    }
+}
+/*---------------------------- NOTE ----------------------------*/
 
 .E_PageSectionSettings--section-note q:after {
     content: close-quote;
@@ -16683,6 +16747,8 @@ body > .SectionThumb--clone .SectionThumb--content {
     margin-bottom: 12px;
 
     color: #0f758b;
+
+    display: block;
 }
 
 /*---------------------------- DIVIDER ----------------------------*/
