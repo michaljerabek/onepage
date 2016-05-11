@@ -26,7 +26,7 @@
 
         <div class="P_sortable-sections">{{#each .page.sections}}
 
-                {{#if this.type !== "PageSectionHeader" && this.type !== "PageSectionFooter"}}
+                {{#if this.type && this.type !== "PageSectionHeader" && this.type !== "PageSectionFooter"}}
                     {{> this.type}}
                 {{/if}}
 

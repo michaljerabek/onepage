@@ -4,6 +4,8 @@ module.exports = function () {
 
     return {
         type: "PageSectionC",
-        name: "Nová Sekce C"
+        name: "Sekce C",
+        title: "Titulek",
+        content: "obsah"
     };
 };

@@ -4,6 +4,12 @@
 </PageSectionSettings>
 {{/if}}
 
+{{#if .openPageSectionSettings === 'section'}}
+<PageSectionSettings data="{{.section}}">
+    <SectionSettings data="{{.data}}" />
+</PageSectionSettings>
+{{/if}}
+
 {{#if .openPageSectionSettings === 'colors'}}
     {{> ColorSettings}}
 {{/if}}

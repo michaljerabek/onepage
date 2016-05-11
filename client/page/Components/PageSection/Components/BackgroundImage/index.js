@@ -112,6 +112,11 @@
 
             this.observe("data.effectsStrength", function (value) {
 
+                if (typeof value === "undefined") {
+
+                    return;
+                }
+
                 var insertedValue = value;
 
                 if (!parseInt(insertedValue) && +insertedValue !== 0) {
@@ -156,7 +161,12 @@
 
             this.observe("data.effects", function (effects) {
 
-                if (!effects || this.skipEffectsObserver) {
+                if (this.torndown) {
+
+                    return;
+                }
+
+                if (!effects || this.skipEffectsObserver || this.torndown) {
 
                     return;
                 }
@@ -395,6 +405,11 @@
                     return;
                 }
 
+                if (this.torndown) {
+
+                    return;
+                }
+
                 if (this.get("parallax")) {
 
                     if (this.parallax) {
@@ -424,13 +439,6 @@
 
             clearTimeout(this.sectionChangeThrottle);
 
-            if (this.parallax) {
-
-                this.parallax.destroy();
-
-                this.parallax = null;
-            }
-
             if (this.dropzone) {
 
                 this.dropzone.off("dragenter dragleave dragend drop");
@@ -440,6 +448,13 @@
 
                 this.$dropzonePreview.remove();
                 this.$dropzonePreview = null;
+            }
+
+            if (this.parallax) {
+
+                this.parallax.destroy();
+
+                this.parallax = null;
             }
         },
 
