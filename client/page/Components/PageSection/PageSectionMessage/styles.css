@@ -36,6 +36,7 @@
 }
 
 .E_PageSectionMessage--message {
+    font-family: "Encode Sans Narrow", sans-serif;
     font-size: 17px;
     line-height: 1.47;
 
@@ -44,38 +45,38 @@
     max-width: 80%;
     padding: 12px 24px;
 
-    color: #404040;
-    background-color: #f5f5f5;
+    color: var(--color-text-1);
+    background-color: #f9f9f9;
     outline: 2px solid #888;
     outline-offset: -2px;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
 }
 
 .E_PageSectionMessage--message__success {
-    outline-color: limegreen;
+    outline-color: var(--color-ok);
 }
 
 .E_PageSectionMessage--message__error {
-    outline-color: #e90000;
+    outline-color: var(--color-danger);
 }
 
 .E_PageSectionMessage--message__warn {
-    outline-color: orange;
+    outline-color: var(--color-warn);
 }
 
 .E_PageSectionMessage--message__info {
-    outline-color: deepskyblue;
+    outline-color: var(--color-temp-selected-light);
 }
 
 .E_PageSectionMessage--title {
-    font-size: 19px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: 600;
 }
 
 .E_PageSectionMessage--text {
-    font-size: 14px;
+    font-size: 12px;
     
     margin-top: 4px;
 
-    color: #707070;
+    color: var(--color-text-3);
 }

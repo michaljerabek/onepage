@@ -35,7 +35,9 @@
             image: "P_BackgroundImage--image",
 
             parallax: "P_BackgroundImage__parallax",
-            fixed: "P_BackgroundImage__fixed"
+            fixed: "P_BackgroundImage__fixed",
+
+            notFileDragged: "dz-not-file"
         },
 
         OPTIONS: {
@@ -212,6 +214,7 @@
                 this.$self = $(this.self);
 
                 this.PageSection = this.getPageSection();
+                this.Page = this.findParent("Page");
 
                 this.initParallax();
 
@@ -225,9 +228,11 @@
 
                     }.bind(this));
 
-                    this.PageSection.on("BackgroundImageBrowser.deleteFile", function (e, file) {
+                    this.Page.on("BackgroundImageBrowser.deleteFile", function (e, file) {
 
-                        if (file.path === this.get("data.src")) {
+                        var src = this.get("data.src");
+
+                        if (src && file.path.replace(/^\//, "") === src.replace(/^\//, "")) {
 
                             this.set("data.src", "");
                         }
@@ -273,7 +278,17 @@
 
             this.dropzone = this.$self.dropzone(options);
 
-            this.dropzone.on("dragenter", function () {
+            this.dropzone.on("dragenter", function (event) {
+
+                if (!event.originalEvent.dataTransfer.types[0] ||
+                    !event.originalEvent.dataTransfer.types[0].match(/file/i)) {
+
+                    event.target.classList.add(this.CLASS.notFileDragged);
+
+                    return;
+                }
+
+                event.target.classList.remove(this.CLASS.notFileDragged);
 
                 this.fire("pageSectionMessage", {
                     title: "Nahrát obrázek",
@@ -350,11 +365,15 @@
                 status: "success"
             });
             
-            var browser = this.PageSection.findComponent("BackgroundImageBrowser");
+            var browsers = this.Page.findAllComponents("BackgroundImageBrowser"),
+                b = browsers.length - 1;
             
-            if (browser) {
+            if (browsers.length) {
                 
-                browser.addFileToUploadDirectory(res.name, path);
+                for (b; b >= 0; b--) {
+
+                    browsers[b].addFileToUploadDirectory(res.name, path);
+                }
             }
         },
 

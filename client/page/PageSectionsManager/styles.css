@@ -8,8 +8,8 @@
     content: var(--P_PageSection--empty_text);
 
     font-family: "Encode Sans Narrow", sans-serif;
-    font-weight: 400;
-    font-size: 17px;
+    font-weight: 500;
+    font-size: 14px;
 
     position: absolute;
     top: 0px;
@@ -66,8 +66,8 @@
     content: var(--P_PageSection--placeholder_text);
 
     font-family: "Encode Sans Narrow", sans-serif;
-    font-size: 17px;
-    font-weight: 400;
+    font-size: 14px;
+    font-weight: 500;
 
     position: absolute;
     top: 0px;
