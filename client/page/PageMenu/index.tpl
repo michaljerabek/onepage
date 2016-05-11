@@ -41,7 +41,7 @@
 
         <li class="E_PageMenu--item
                 E_PageMenu--item__has-content
-                {{#if .openPageMenu === 'add-section'}}E_PageMenu--item__show-content{{/if}}
+                {{#if .openPageMenu === 'add-section'}}E_PageMenu--item__show-content E_PageMenu--item__show-content__min{{/if}}
                 {{#if .draggableActive}}E_PageMenu--item__adding-section{{/if}}
             "
        >

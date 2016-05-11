@@ -23,7 +23,7 @@
 	height: 100%;
     padding: 0 10%;
 
-    color: #404040;
+    color: var(--color-text-1);
     background-color: #fff;
     opacity: 0;
     visibility: hidden;
@@ -63,19 +63,19 @@
     font-size: 23px;
     font-weight: 600;
 
-    color: #404040;
+    color: var(--color-text-1);
 }
 
 .FileBrowser--message-text,
 .FileBrowser--drag-drop-overlay-text {
-    font-family: "Encode Sans";
+    font-family: "Encode Sans Narrow";
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.47;
 
     margin-top: 8px;
 
-    color: #888;
+    color: var(--color-text-3);
 }
 
 .FileBrowser--message__active,
@@ -127,7 +127,7 @@
     padding: 0 8px 0 4px;
 }
 
-.FileBrowser--directory:not(:last-of-type) {
+.FileBrowser--directory {
     border-bottom: 1px solid #d7d7d7;
 }
 

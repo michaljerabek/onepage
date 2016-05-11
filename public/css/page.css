@@ -3920,6 +3920,14 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     padding: 24px;
 }
 
+.E_PageMenu--item.E_PageMenu--item__show-content__min {
+    width: 320px;
+}
+
+.E_PageMenu--item.E_PageMenu--item__show-content__min .E_PageMenu--content-wrapper {
+    width: 320px;
+}
+
 @media (pointer: coarse) {
 
     .E_PageMenu--item .E_PageMenu--content-wrapper {
@@ -4925,8 +4933,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     content: "Sem můžete přidat další sekci...";
 
     font-family: "Encode Sans Narrow", sans-serif;
-    font-weight: 400;
-    font-size: 17px;
+    font-weight: 500;
+    font-size: 14px;
 
     position: absolute;
     top: 0px;
@@ -5025,8 +5033,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     content: "Umístit sekci zde...";
 
     font-family: "Encode Sans Narrow", sans-serif;
-    font-size: 17px;
-    font-weight: 400;
+    font-size: 14px;
+    font-weight: 500;
 
     position: absolute;
     top: 0px;
@@ -7417,6 +7425,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 .E_PageSectionMessage--message {
+    font-family: "Encode Sans Narrow", sans-serif;
     font-size: 17px;
     line-height: 1.47;
 
@@ -7426,7 +7435,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     padding: 12px 24px;
 
     color: #404040;
-    background-color: #f5f5f5;
+    background-color: #f9f9f9;
     outline: 2px solid #888;
     outline-offset: -2px;
     -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
@@ -7435,32 +7444,32 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 .E_PageSectionMessage--message__success {
-    outline-color: limegreen;
+    outline-color: #36b73c;
 }
 
 .E_PageSectionMessage--message__error {
-    outline-color: #e90000;
+    outline-color: #e32d39;
 }
 
 .E_PageSectionMessage--message__warn {
-    outline-color: orange;
+    outline-color: #ef6737;
 }
 
 .E_PageSectionMessage--message__info {
-    outline-color: deepskyblue;
+    outline-color: #08a1c2;
 }
 
 .E_PageSectionMessage--title {
-    font-size: 19px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: 600;
 }
 
 .E_PageSectionMessage--text {
-    font-size: 14px;
+    font-size: 12px;
 
     margin-top: 4px;
 
-    color: #707070;
+    color: #6f6f6f;
 }
 
 /*====================================================================*/
@@ -8179,6 +8188,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 /*--------------------------------------------------------------------*/
 
 @media (min-width: 767px) {
+
     .E_PageSectionSettings--sections__full .Text {
         max-width: -webkit-calc(61.92% - 20px);
         max-width: -moz-calc(61.92% - 20px);
@@ -9784,7 +9794,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.E .P_BackgroundImage.dz-drag-hover:after {
+.E .P_BackgroundImage:not(.dz-not-file).dz-drag-hover:after {
     opacity: 0.5;
 
     -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
@@ -9900,6 +9910,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 
     display: flex;
 }
+
 /*====================================================================*/
 /*--------------------------- COLOR PICKER ---------------------------*/
 /*====================================================================*/
@@ -10584,14 +10595,14 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 .FileBrowser--message-text, .FileBrowser--drag-drop-overlay-text {
-    font-family: "Encode Sans";
+    font-family: "Encode Sans Narrow";
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.47;
 
     margin-top: 8px;
 
-    color: #888;
+    color: #6f6f6f;
 }
 
 .FileBrowser--message__active, .FileBrowser.dz-drag-hover .FileBrowser--drag-drop-overlay {
@@ -10678,7 +10689,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     padding: 0 8px 0 4px;
 }
 
-.FileBrowser--directory:not(:last-of-type) {
+.FileBrowser--directory {
     border-bottom: 1px solid #d7d7d7;
 }
 
@@ -12253,7 +12264,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 
 .E_ProgressBar {
     z-index: 400;
-    position:absolute;
+    position: absolute;
     top: 0px;
     left: 0px;
 
@@ -12305,10 +12316,10 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     height: 1px;
     width: 0%;
 
-    background-color: deepskyblue;
-    -webkit-box-shadow: 0px 0px 4px 1px deepskyblue;
-       -moz-box-shadow: 0px 0px 4px 1px deepskyblue;
-            box-shadow: 0px 0px 4px 1px deepskyblue;
+    background-color: #15b0d1;
+    -webkit-box-shadow: 0px 0px 4px 1px #15b0d1;
+       -moz-box-shadow: 0px 0px 4px 1px #15b0d1;
+            box-shadow: 0px 0px 4px 1px #15b0d1;
 
     will-change: width, box-shadow;
     -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
@@ -12322,24 +12333,24 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 .E_ProgressBar__success .E_ProgressBar--progress {
-    background-color: lawngreen;
-    -webkit-box-shadow: 0px 0px 4px 1px lawngreen;
-       -moz-box-shadow: 0px 0px 4px 1px lawngreen;
-            box-shadow: 0px 0px 4px 1px lawngreen;
+    background-color: #3ace41;
+    -webkit-box-shadow: 0px 0px 4px 1px #3ace41;
+       -moz-box-shadow: 0px 0px 4px 1px #3ace41;
+            box-shadow: 0px 0px 4px 1px #3ace41;
 }
 
 .E_ProgressBar__error .E_ProgressBar--progress {
-    background-color: crimson;
-    -webkit-box-shadow: 0px 0px 4px 1px crimson;
-       -moz-box-shadow: 0px 0px 4px 1px crimson;
-            box-shadow: 0px 0px 4px 1px crimson;
+    background-color: #ff3e4b;
+    -webkit-box-shadow: 0px 0px 4px 1px #ff3e4b;
+       -moz-box-shadow: 0px 0px 4px 1px #ff3e4b;
+            box-shadow: 0px 0px 4px 1px #ff3e4b;
 }
 
 .E_ProgressBar__warn .E_ProgressBar--progress, .E_ProgressBar__error.E_ProgressBar__warn .E_ProgressBar--progress {
-    background-color: darkorange;
-    -webkit-box-shadow: 0px 0px 4px 1px darkorange;
-       -moz-box-shadow: 0px 0px 4px 1px darkorange;
-            box-shadow: 0px 0px 4px 1px darkorange;
+    background-color: #fb7241;
+    -webkit-box-shadow: 0px 0px 4px 1px #fb7241;
+       -moz-box-shadow: 0px 0px 4px 1px #fb7241;
+            box-shadow: 0px 0px 4px 1px #fb7241;
 }
 
 /*====================================================================*/
@@ -13346,6 +13357,727 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 /*====================================================================*/
+/*------------------------------ SELECT ------------------------------*/
+/*====================================================================*/
+
+.Select, .Select:after, .Select--icon svg, .Select--options {
+    will-change: box-shadow, transform, background, fill, color;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Select:hover, .Select:hover:after, .Select--options:hover + .Select--icon svg, .Select--options:hover, .Select--options:focus, .Select--options:focus + .Select--icon svg, .Select:has(:focus):after {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.Select:active:after, .Select--options:active + .Select--icon svg, .Select:active .Select--options, .Select--options:active, .Select:has(:active):after {
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.Select {
+    line-height: 0;
+
+    position: relative;
+
+    padding: 0;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+
+}
+
+.Select:not(.Select__disabled):active {
+    -webkit-transform: translate(1px, 1px);
+       -moz-transform: translate(1px, 1px);
+        -ms-transform: translate(1px, 1px);
+         -o-transform: translate(1px, 1px);
+            transform: translate(1px, 1px);
+}
+
+.Select__adaptive {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.Select:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
+        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.Select:not(.Select__disabled):active:after {
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+            box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
+        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Select:after {
+        -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+             box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
+            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Select:not(.Select__disabled):active:after {
+        -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+             box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
+            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Select--options {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+
+    margin: 0;
+
+    min-width: 100%;
+
+    color: #404040;
+    background-color: #fcfcfc;
+    border: none;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    -webkit-flex-basis: 100%;
+
+        -ms-flex-preferred-size: 100%;
+
+            flex-basis: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.Select--options::-ms-expand {
+    display: none;
+}
+
+.Select--options:focus {
+    outline: none;
+}
+
+.Select--options:active {
+    color: #fff;
+}
+
+.Select--options option {
+    font-weight: 500;
+
+	color: #404040;
+	background-color: #fcfcfc;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.Select--icon {
+    z-index: 2;
+    position:absolute;
+    top: 0px;
+    right: 1px;
+
+    height: 100%;
+
+    -webkit-transform: rotate(180deg);
+
+       -moz-transform: rotate(180deg);
+
+        -ms-transform: rotate(180deg);
+
+         -o-transform: rotate(180deg);
+
+            transform: rotate(180deg);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    pointer-events: none;
+}
+
+.Select--icon svg {
+    fill: #505050;
+}
+
+.Select--options:active + .Select--icon svg {
+    fill: rgba(255, 255, 255, 0.9);
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.Select__medium {
+    height: 42px;
+}
+
+.Select__medium .Select--options {
+    font-size: 14px;
+
+    height: 42px;
+    min-width: 42px;
+    padding: 0 24px 0 14px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__medium .Select--options {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__medium .Select--icon {
+	width: 24px;
+}
+
+.Select__medium .Select--icon svg {
+	width: 8px;
+	height: 8px;
+}
+
+.Select__medium:not(.Select__disabled):active .Select--options {
+    -webkit-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__medium .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__medium:not(.Select__disabled):active .Select--options {
+        -moz-box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__medium option {
+	height: 24px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.Select__large {
+    height: 50px;
+}
+
+.Select__large .Select--options {
+    font-size: 17px;
+
+    height: 50px;
+    min-width: 50px;
+    padding: 0 28px 0 18px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__large .Select--options {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__large .Select--icon {
+    width: 28px;
+}
+
+.Select__large .Select--icon svg {
+    width: 10px;
+    height: 10px;
+}
+
+.Select__large:not(.Select__disabled):active .Select--options {
+    -webkit-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__large .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__large .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__large:not(.Select__disabled):active .Select--options {
+        -moz-box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__large option {
+    height: 32px;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.Select__small {
+    height: 34px;
+}
+
+.Select__small .Select--options {
+    font-size: 14px;
+
+    height: 34px;
+    min-width: 34px;
+    padding: 0 20px 0 10px;
+
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+}
+
+.Select__disabled.Select__small .Select--options {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__small .Select--icon {
+    width: 20px;
+}
+
+.Select__small .Select--icon svg {
+    width: 8px;
+    height: 8px;
+}
+
+.Select__small:not(.Select__disabled):active .Select--options {
+    -webkit-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+       -moz-box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+            box-shadow:
+        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__small .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
+    }
+
+    .Select__disabled.Select__small .Select--options {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__small:not(.Select__disabled):active .Select--options {
+        -moz-box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+             box-shadow:
+            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
+            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
+    }
+}
+
+.Select__small option {
+    height: 20px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+.Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+
+    .Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
+            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
+    }
+}
+
+.Select__default.Select__active .Select--options {
+    background-color: #08a1c2;
+}
+
+.Select__default.Select__active .Select--options:focus, .Select__default.Select__active .Select--options:hover {
+    background-color: #15b0d1;
+}
+
+.Select__default.Select__active .Select--options:active, .Select__default .Select--options:active {
+    background-color: #088eab;
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.Select__disabled .Select--options, .Select__disabled .Select--options:hover, .Select__disabled .Select--options:focus {
+    color: #b2b2b2;
+    background-color: #f2f2f2;
+}
+
+.Select__disabled .Select--options:focus + .Select--icon svg, .Select__disabled .Select--options:hover + .Select--icon svg, .Select__disabled .Select--icon svg {
+    fill: rgba(80, 80, 80, 0.3);
+}
+
+.Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+.Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
+    -webkit-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+       -moz-box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+            box-shadow:
+        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
+}
+
+@-moz-document url-prefix() {
+
+    .Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus{
+        -moz-box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+
+    .Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
+        -moz-box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+             box-shadow:
+            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
+            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
+    }
+}
+
+.Select__disabled .Select--options:active {
+    background-color: #e2e2e2;
+}
+
+.Select__disabled .Select--options:active + .Select--icon svg {
+    fill: rgba(80, 80, 80, 0.3);
+}
+
+.Select--options option:disabled {
+    color: #b2b2b2;
+}
+
+/*====================================================================*/
 /*------------------------------ SLIDER ------------------------------*/
 /*====================================================================*/
 
@@ -14148,10 +14880,10 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 /*====================================================================*/
-/*------------------------------ SELECT ------------------------------*/
+/*------------------------------- TEXT -------------------------------*/
 /*====================================================================*/
 
-.Select, .Select:after, .Select--icon svg, .Select--options {
+.Text, .Text--input, .Text--units {
     will-change: box-shadow, transform, background, fill, color;
     -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
     -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
@@ -14159,32 +14891,23 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.Select:hover, .Select:hover:after, .Select--options:hover + .Select--icon svg, .Select--options:hover, .Select--options:focus, .Select--options:focus + .Select--icon svg, .Select:has(:focus):after {
+.Text:hover .Text--input, .Text:hover .Text--units, .Text--input:focus, .Text--input:focus + .Text--units-wrapper .Text--units {
     -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 }
 
-.Select:active:after, .Select--options:active + .Select--icon svg, .Select:active .Select--options, .Select--options:active, .Select:has(:active):after {
+.Text--input:active, .Text--input:active + .Text--units-wrapper .Text--units {
     -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
     -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
     -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
     transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
-.Select {
+.Text {
+    font-size: 0;
     line-height: 0;
-
-    position: relative;
-
-    padding: 0;
-
-    -webkit-border-radius: 4px;
-
-       -moz-border-radius: 4px;
-
-            border-radius: 4px;
 
     display: -webkit-inline-box;
 
@@ -14195,28 +14918,9 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     display: -ms-inline-flexbox;
 
     display: inline-flex;
-
-    -ms-touch-action: manipulation;
-
-        touch-action: manipulation;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    cursor: default;
-
 }
 
-.Select:not(.Select__disabled):active {
-    -webkit-transform: translate(1px, 1px);
-       -moz-transform: translate(1px, 1px);
-        -ms-transform: translate(1px, 1px);
-         -o-transform: translate(1px, 1px);
-            transform: translate(1px, 1px);
-}
-
-.Select__adaptive {
+.Text__adaptive {
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
        -moz-box-flex: 1;
@@ -14225,6 +14929,15 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     -webkit-flex-shrink: 1;
         -ms-flex-negative: 1;
             flex-shrink: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.Text--input-wrapper {
+    width: 100%;
 
     display: -webkit-box;
 
@@ -14237,635 +14950,559 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     display: flex;
 }
 
-.Select:after {
-    content: "";
-
-    position: absolute;
-    top: 0px;
-    left: 0px;
+.Text--input {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 400;
 
     width: 100%;
-    height: 100%;
 
-    -webkit-border-radius: inherit;
+    color: #404040;
+    background-color: #fcfcfc;
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    border: none;
+    -webkit-appearance: none;
 
-       -moz-border-radius: inherit;
+    -webkit-box-ordinal-group: 3;
 
-            border-radius: inherit;
-    -webkit-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
-        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
-        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
-            box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.15),
-        inset -1px -1px 0px 0px rgba(34, 34, 34, 0.15);
+    -webkit-order: 2;
 
-    pointer-events: none;
+       -moz-box-ordinal-group: 3;
+
+        -ms-flex-order: 2;
+
+            order: 2;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+                -ms-grid-row-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
-.Select:not(.Select__disabled):active:after {
-    -webkit-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
-        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
-        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
-            box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.15),
-        inset 1px 1px 0px 0px rgba(34, 34, 34, 0.15);
+.Text__disabled .Text--input {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+
+    opacity: 1;
 }
 
 @-moz-document url-prefix() {
 
-    .Select:after {
-        -moz-box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
-            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
-             box-shadow: 0px 0px 4px 0px rgba(34, 34, 34, 0.1),
-            inset -1px -1px 0px 0px rgba(34, 34, 34, 0.1);
+    .Text--input {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
     }
 
-    .Select:not(.Select__disabled):active:after {
-        -moz-box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
-            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
-             box-shadow: 0px 0px 2px 0px rgba(34, 34, 34, 0.1),
-            inset 1px 1px 0px 0px rgba(34, 34, 34, 0.1);
+    .Text__disabled .Text--input {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
     }
 }
 
-.Select--options {
-    font-family: "Encode Sans Narrow", sans-serif;
-    font-weight: 500;
+.Text--input[type="number"] {
+    -moz-appearance: textfield;
+}
 
-    margin: 0;
-
-    min-width: 100%;
-
-    color: #404040;
-    background-color: #fcfcfc;
-    border: none;
-    -webkit-border-radius: inherit;
-       -moz-border-radius: inherit;
-            border-radius: inherit;
-
-    -webkit-flex-basis: 100%;
-
-        -ms-flex-preferred-size: 100%;
-
-            flex-basis: 100%;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: nowrap;
-        -ms-flex-wrap: nowrap;
-            flex-wrap: nowrap;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-
+.Text--input::-webkit-outer-spin-button, .Text--input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
 }
 
-.Select--options::-ms-expand {
+.Text--input::-ms-expand {
     display: none;
 }
 
-.Select--options:focus {
+.Text__has-units .Text--input {
+    text-indent: 14px;
+
+    margin-left: -16px;
+    width: -webkit-calc(100% + 16px);
+    width: -moz-calc(100% + 16px);
+    width: calc(100% + 16px);
+
+    -webkit-border-radius: 0px 4px 4px 0px;
+
+       -moz-border-radius: 0px 4px 4px 0px;
+
+            border-radius: 0px 4px 4px 0px;
+
+    overflow: hidden;
+}
+
+.Text--input:focus {
     outline: none;
 }
 
-.Select--options:active {
-    color: #fff;
+.Text--units-wrapper {
+    z-index: 1;
+    position: relative;
+
+    min-width: 16px;
+
+    -webkit-flex-shrink: 0;
+
+        -ms-flex-negative: 0;
+
+            flex-shrink: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+       -moz-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+
+    overflow: hidden;
 }
 
-.Select--options option {
-    font-weight: 500;
+.Text--units-wrapper:after {
+    content: "";
 
-	color: #404040;
-	background-color: #fcfcfc;
+    z-index: 5;
+    position: absolute;
+    top: -2px;
+    left: -2px;
 
-    display: -webkit-box;
+    width: -webkit-calc(100% + 2px);
 
-    display: -webkit-flex;
+    width: -moz-calc(100% + 2px);
 
-    display: -moz-box;
+    width: calc(100% + 2px);
+    height: -webkit-calc(100% + 4px);
+    height: -moz-calc(100% + 4px);
+    height: calc(100% + 4px);
 
-    display: -ms-flexbox;
+    -webkit-box-shadow: inset 0px 0px 1px 0px rgba(34, 34, 34, 0.35);
 
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
+       -moz-box-shadow: inset 0px 0px 1px 0px rgba(34, 34, 34, 0.35);
 
-.Select--icon {
-    z-index: 2;
-    position:absolute;
-    top: 0px;
-    right: 1px;
-
-    height: 100%;
-
-    -webkit-transform: rotate(180deg);
-
-       -moz-transform: rotate(180deg);
-
-        -ms-transform: rotate(180deg);
-
-         -o-transform: rotate(180deg);
-
-            transform: rotate(180deg);
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+            box-shadow: inset 0px 0px 1px 0px rgba(34, 34, 34, 0.35);
 
     pointer-events: none;
 }
 
-.Select--icon svg {
-    fill: #505050;
+.Text--units {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+
+    z-index: 1;
+    position: relative;
+    margin-right: -12px;
+
+    color: #6f6f6f;
+    background-color: #e7e7e7;
+    -webkit-border-radius: 4px 0px 0px 4px;
+       -moz-border-radius: 4px 0px 0px 4px;
+            border-radius: 4px 0px 0px 4px;
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    cursor: default;
 }
 
-.Select--options:active + .Select--icon svg {
-    fill: rgba(255, 255, 255, 0.9);
+.Text__disabled .Text--units {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Text--units {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Text__disabled .Text--units {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
+            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+
+.Text--input:not(:disabled):hover {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+        inset 0px 0px 2px rgba(8, 161, 194, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+        inset 0px 0px 2px rgba(8, 161, 194, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+        inset 0px 0px 2px rgba(8, 161, 194, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+}
+
+.Text--input:not(:disabled):hover + .Text--units-wrapper .Text--units {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+        inset 0px 0px 2px rgba(8, 161, 194, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+        inset 0px 0px 2px rgba(8, 161, 194, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+        inset 0px 0px 2px rgba(8, 161, 194, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Text--input:not(:disabled):hover {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+            inset 0px 0px 1px rgba(8, 161, 194, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+            inset 0px 0px 1px rgba(8, 161, 194, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Text--input:not(:disabled):hover + .Text--units-wrapper .Text--units {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+            inset 0px 0px 1px rgba(8, 161, 194, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(8, 161, 194, 0.2),
+            inset 0px 0px 1px rgba(8, 161, 194, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Text--input:not(:disabled):focus {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+}
+
+.Text--input:not(:disabled):focus + .Text--units-wrapper .Text--units {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+        inset 0px 0px 2px rgba(239, 103, 55, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Text--input:not(:disabled):focus {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+            inset 0px 0px 1px rgba(239, 103, 55, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+            inset 0px 0px 1px rgba(239, 103, 55, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Text--input:not(:disabled):focus + .Text--units-wrapper .Text--units {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+            inset 0px 0px 1px rgba(239, 103, 55, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(239, 103, 55, 0.2),
+            inset 0px 0px 1px rgba(239, 103, 55, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Text--input:not(:disabled):invalid:not(:focus) {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+}
+
+.Text--input:not(:disabled):invalid:not(:focus) + .Text--units-wrapper .Text--units {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+        inset 0px 0px 2px rgba(227, 45, 57, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Text--input:not(:disabled):invalid:not(:focus) {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Text--input:not(:disabled):invalid:not(:focus) + .Text--units-wrapper .Text--units {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(227, 45, 57, 0.2),
+            inset 0px 0px 1px rgba(227, 45, 57, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+}
+
+.Text--input:not(:disabled):focus:valid {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+        inset 0px 0px 2px rgba(54, 181, 60, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+        inset 0px 0px 2px rgba(54, 181, 60, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+        inset 0px 0px 2px rgba(54, 181, 60, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+}
+
+.Text--input:not(:disabled):focus:valid + .Text--units-wrapper .Text--units {
+    -webkit-box-shadow:
+        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+        inset 0px 0px 2px rgba(54, 181, 60, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+        inset 0px 0px 2px rgba(54, 181, 60, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+        inset 0px 0px 2px rgba(54, 181, 60, 1),
+        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
+}
+
+@-moz-document url-prefix() {
+
+    .Text--input:not(:disabled):focus:valid {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+            inset 0px 0px 1px rgba(54, 181, 60, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+            inset 0px 0px 1px rgba(54, 181, 60, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
+
+    .Text--input:not(:disabled):focus:valid + .Text--units-wrapper .Text--units {
+        -moz-box-shadow:
+            inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+            inset 0px 0px 1px rgba(54, 181, 60, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+             box-shadow:
+            inset 2px 2px 5px rgba(54, 181, 60, 0.2),
+            inset 0px 0px 1px rgba(54, 181, 60, 1),
+            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
+    }
 }
 
 /*---------------------------- SIZE - MEDIUM ----------------------------*/
 
-.Select__medium {
+.Text__medium {
     height: 42px;
 }
 
-.Select__medium .Select--options {
+.Text__medium .Text--input {
+    font-size: 17px;
+
+    height: 42px;
+    padding: 0 14px;
+}
+
+.Text__medium .Text--units {
     font-size: 14px;
 
-    height: 42px;
-    min-width: 42px;
-    padding: 0 24px 0 14px;
-
-    -webkit-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-       -moz-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-            box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-}
-
-.Select__disabled.Select__medium .Select--options {
-    -webkit-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-.Select__medium .Select--icon {
-	width: 24px;
-}
-
-.Select__medium .Select--icon svg {
-	width: 8px;
-	height: 8px;
-}
-
-.Select__medium:not(.Select__disabled):active .Select--options {
-    -webkit-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-       -moz-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-            box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__medium .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-    }
-
-    .Select__disabled.Select__medium .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__medium:not(.Select__disabled):active .Select--options {
-        -moz-box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-    }
-}
-
-.Select__medium option {
-	height: 24px;
+    padding: 0 24px 0 12px;
 }
 
 /*---------------------------- SIZE - LARGE ----------------------------*/
 
-.Select__large {
+.Text__large {
     height: 50px;
 }
 
-.Select__large .Select--options {
+.Text__large .Text--input {
+    font-size: 19px;
+
+    height: 50px;
+    padding: 0 16px;
+}
+
+.Text__large .Text--units {
     font-size: 17px;
 
-    height: 50px;
-    min-width: 50px;
-    padding: 0 28px 0 18px;
-
-    -webkit-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-       -moz-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-            box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-}
-
-.Select__disabled.Select__large .Select--options {
-    -webkit-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-.Select__large .Select--icon {
-    width: 28px;
-}
-
-.Select__large .Select--icon svg {
-    width: 10px;
-    height: 10px;
-}
-
-.Select__large:not(.Select__disabled):active .Select--options {
-    -webkit-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-       -moz-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-            box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__large .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-    }
-
-    .Select__disabled.Select__large .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__large:not(.Select__disabled):active .Select--options {
-        -moz-box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-    }
-}
-
-.Select__large option {
-    height: 32px;
+    padding: 0 26px 0 14px;
 }
 
 /*---------------------------- SIZE - SMALL ----------------------------*/
 
-.Select__small {
+.Text__small {
     height: 34px;
 }
 
-.Select__small .Select--options {
+.Text__small .Text--input {
     font-size: 14px;
 
     height: 34px;
-    min-width: 34px;
-    padding: 0 20px 0 10px;
-
-    -webkit-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-       -moz-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
-
-            box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.85);
+    padding: 0 10px;
 }
 
-.Select__disabled.Select__small .Select--options {
-    -webkit-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
+.Text__small .Text--units {
+    font-size: 12px;
 
-.Select__small .Select--icon {
-    width: 20px;
-}
-
-.Select__small .Select--icon svg {
-    width: 8px;
-    height: 8px;
-}
-
-.Select__small:not(.Select__disabled):active .Select--options {
-    -webkit-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-       -moz-box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-            box-shadow:
-        inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-        inset 0px 0px 2px 0px rgba(34, 34, 34, 0.85);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__small .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.85);
-    }
-
-    .Select__disabled.Select__small .Select--options {
-        -moz-box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__small:not(.Select__disabled):active .Select--options {
-        -moz-box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-             box-shadow:
-            inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35),
-            inset 0px 0px 1px 0px rgba(34, 34, 34, 0.85);
-    }
-}
-
-.Select__small option {
-    height: 20px;
-}
-
-/*---------------------------- TYPE - DEFAULT ----------------------------*/
-
-.Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-       -moz-box-shadow:
-        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-            box-shadow:
-        inset  0px  0px 12px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-}
-
-.Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-       -moz-box-shadow:
-        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-            box-shadow:
-        inset  0px  0px 16px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-}
-
-.Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-       -moz-box-shadow:
-        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-            box-shadow:
-        inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-        inset  0px  0px  2px 0px rgba(8, 161, 194, 1);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__medium.Select__default .Select--options:not(:active):hover, .Select__medium.Select__default .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-             box-shadow:
-            inset  0px  0px 10px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-    }
-
-    .Select__large.Select__default .Select--options:not(:active):hover, .Select__large.Select__default .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-             box-shadow:
-            inset  0px  0px 14px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-    }
-
-    .Select__small.Select__default .Select--options:not(:active):hover, .Select__small.Select__default .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-             box-shadow:
-            inset  0px  0px  8px 0px rgba(8, 161, 194, 0.2),
-            inset  0px  0px  1px 0px rgba(8, 161, 194, 1);
-    }
-}
-
-.Select__default.Select__active .Select--options {
-    background-color: #08a1c2;
-}
-
-.Select__default.Select__active .Select--options:focus, .Select__default.Select__active .Select--options:hover {
-    background-color: #15b0d1;
-}
-
-.Select__default.Select__active .Select--options:active, .Select__default .Select--options:active {
-    background-color: #088eab;
+    padding: 0 22px 0 10px;
 }
 
 /*---------------------------- STATE - DISABLED ----------------------------*/
 
-.Select__disabled .Select--options, .Select__disabled .Select--options:hover, .Select__disabled .Select--options:focus {
+.Text__disabled .Text--input, .Text__disabled:hover .Text--input, .Text__disabled .Text--input:valid, .Text__disabled .Text--input:invalid, .Text__disabled .Text--input:focus {
     color: #b2b2b2;
     background-color: #f2f2f2;
 }
 
-.Select__disabled .Select--options:focus + .Select--icon svg, .Select__disabled .Select--options:hover + .Select--icon svg, .Select__disabled .Select--icon svg {
-    fill: rgba(80, 80, 80, 0.3);
-}
-
-.Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-.Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-.Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
-    -webkit-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-       -moz-box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-            box-shadow:
-        inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-        inset  0px  0px  2px 0px rgba(34, 34, 34, 0.45);
-}
-
-@-moz-document url-prefix() {
-
-    .Select__medium.Select__disabled .Select--options:not(:active):hover, .Select__medium.Select__disabled .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 12px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__large.Select__disabled .Select--options:not(:active):hover, .Select__large.Select__disabled .Select--options:not(:active):focus{
-        -moz-box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 16px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-
-    .Select__small.Select__disabled .Select--options:not(:active):hover, .Select__small.Select__disabled .Select--options:not(:active):focus {
-        -moz-box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-             box-shadow:
-            inset  0px  0px 10px 0px rgba(34, 34, 34, 0.1),
-            inset  0px  0px  1px 0px rgba(34, 34, 34, 0.45);
-    }
-}
-
-.Select__disabled .Select--options:active {
-    background-color: #e2e2e2;
-}
-
-.Select__disabled .Select--options:active + .Select--icon svg {
-    fill: rgba(80, 80, 80, 0.3);
-}
-
-.Select--options option:disabled {
+.Text__disabled .Text--units {
     color: #b2b2b2;
+}
+
+.Text__disabled .Text--input:active {
+    background-color: #e2e2e2;
 }
 
 /*====================================================================*/
@@ -16930,632 +17567,6 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 
 
 
-
-/*====================================================================*/
-/*------------------------------- TEXT -------------------------------*/
-/*====================================================================*/
-
-.Text, .Text--input, .Text--units {
-    will-change: box-shadow, transform, background, fill, color;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.Text:hover .Text--input, .Text:hover .Text--units, .Text--input:focus, .Text--input:focus + .Text--units-wrapper .Text--units {
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.Text--input:active, .Text--input:active + .Text--units-wrapper .Text--units {
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-.Text {
-    font-size: 0;
-    line-height: 0;
-
-    display: -webkit-inline-box;
-
-    display: -webkit-inline-flex;
-
-    display: -moz-inline-box;
-
-    display: -ms-inline-flexbox;
-
-    display: inline-flex;
-}
-
-.Text__adaptive {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-    -webkit-flex-shrink: 1;
-        -ms-flex-negative: 1;
-            flex-shrink: 1;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.Text--input-wrapper {
-    width: 100%;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-}
-
-.Text--input {
-    font-family: "Encode Sans Narrow", sans-serif;
-    font-weight: 400;
-
-    width: 100%;
-
-    color: #404040;
-    background-color: #fcfcfc;
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    border: none;
-    -webkit-appearance: none;
-
-    -webkit-box-ordinal-group: 3;
-
-    -webkit-order: 2;
-
-       -moz-box-ordinal-group: 3;
-
-        -ms-flex-order: 2;
-
-            order: 2;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-                -ms-grid-row-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-}
-
-.Text__disabled .Text--input {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-
-    opacity: 1;
-}
-
-@-moz-document url-prefix() {
-
-    .Text--input {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-
-    .Text__disabled .Text--input {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-}
-
-.Text--input[type="number"] {
-    -moz-appearance: textfield;
-}
-
-.Text--input::-webkit-outer-spin-button, .Text--input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-
-.Text--input::-ms-expand {
-    display: none;
-}
-
-.Text__has-units .Text--input {
-    text-indent: 14px;
-
-    margin-left: -16px;
-    width: -webkit-calc(100% + 16px);
-    width: -moz-calc(100% + 16px);
-    width: calc(100% + 16px);
-
-    -webkit-border-radius: 0px 4px 4px 0px;
-
-       -moz-border-radius: 0px 4px 4px 0px;
-
-            border-radius: 0px 4px 4px 0px;
-
-    overflow: hidden;
-}
-
-.Text--input:focus {
-    outline: none;
-}
-
-.Text--units-wrapper {
-    z-index: 1;
-    position: relative;
-
-    min-width: 16px;
-
-    -webkit-flex-shrink: 0;
-
-        -ms-flex-negative: 0;
-
-            flex-shrink: 0;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: stretch;
-    -webkit-align-items: stretch;
-       -moz-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-
-    overflow: hidden;
-}
-
-.Text--units-wrapper:after {
-    content: "";
-
-    z-index: 5;
-    position: absolute;
-    top: -2px;
-    left: -2px;
-
-    width: -webkit-calc(100% + 2px);
-
-    width: -moz-calc(100% + 2px);
-
-    width: calc(100% + 2px);
-    height: -webkit-calc(100% + 4px);
-    height: -moz-calc(100% + 4px);
-    height: calc(100% + 4px);
-
-    -webkit-box-shadow: inset 0px 0px 1px 0px rgba(34, 34, 34, 0.35);
-
-       -moz-box-shadow: inset 0px 0px 1px 0px rgba(34, 34, 34, 0.35);
-
-            box-shadow: inset 0px 0px 1px 0px rgba(34, 34, 34, 0.35);
-
-    pointer-events: none;
-}
-
-.Text--units {
-    font-family: "Encode Sans Narrow", sans-serif;
-    font-weight: 500;
-
-    z-index: 1;
-    position: relative;
-    margin-right: -12px;
-
-    color: #6f6f6f;
-    background-color: #e7e7e7;
-    -webkit-border-radius: 4px 0px 0px 4px;
-       -moz-border-radius: 4px 0px 0px 4px;
-            border-radius: 4px 0px 0px 4px;
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.65),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    cursor: default;
-}
-
-.Text__disabled .Text--units {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-}
-
-@-moz-document url-prefix() {
-
-    .Text--units {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-            inset 0px 0px 1px rgba(34, 34, 34, 0.65),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-
-    .Text__disabled .Text--units {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(34, 34, 34, 0.2),
-            inset 0px 0px 1px rgba(34, 34, 34, 0.35),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-}
-
-
-.Text--input:not(:disabled):hover {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-        inset 0px 0px 2px rgba(8, 161, 194, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-        inset 0px 0px 2px rgba(8, 161, 194, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-        inset 0px 0px 2px rgba(8, 161, 194, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-}
-
-.Text--input:not(:disabled):hover + .Text--units-wrapper .Text--units {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-        inset 0px 0px 2px rgba(8, 161, 194, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-        inset 0px 0px 2px rgba(8, 161, 194, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-        inset 0px 0px 2px rgba(8, 161, 194, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-}
-
-@-moz-document url-prefix() {
-
-    .Text--input:not(:disabled):hover {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-            inset 0px 0px 1px rgba(8, 161, 194, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-            inset 0px 0px 1px rgba(8, 161, 194, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-
-    .Text--input:not(:disabled):hover + .Text--units-wrapper .Text--units {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-            inset 0px 0px 1px rgba(8, 161, 194, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(8, 161, 194, 0.2),
-            inset 0px 0px 1px rgba(8, 161, 194, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-}
-
-.Text--input:not(:disabled):focus {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-        inset 0px 0px 2px rgba(239, 103, 55, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-        inset 0px 0px 2px rgba(239, 103, 55, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-        inset 0px 0px 2px rgba(239, 103, 55, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-}
-
-.Text--input:not(:disabled):focus + .Text--units-wrapper .Text--units {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-        inset 0px 0px 2px rgba(239, 103, 55, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-        inset 0px 0px 2px rgba(239, 103, 55, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-        inset 0px 0px 2px rgba(239, 103, 55, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-}
-
-@-moz-document url-prefix() {
-
-    .Text--input:not(:disabled):focus {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-            inset 0px 0px 1px rgba(239, 103, 55, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-            inset 0px 0px 1px rgba(239, 103, 55, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-
-    .Text--input:not(:disabled):focus + .Text--units-wrapper .Text--units {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-            inset 0px 0px 1px rgba(239, 103, 55, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(239, 103, 55, 0.2),
-            inset 0px 0px 1px rgba(239, 103, 55, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-}
-
-.Text--input:not(:disabled):invalid:not(:focus) {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-        inset 0px 0px 2px rgba(227, 45, 57, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-        inset 0px 0px 2px rgba(227, 45, 57, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-        inset 0px 0px 2px rgba(227, 45, 57, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-}
-
-.Text--input:not(:disabled):invalid:not(:focus) + .Text--units-wrapper .Text--units {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-        inset 0px 0px 2px rgba(227, 45, 57, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-        inset 0px 0px 2px rgba(227, 45, 57, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-        inset 0px 0px 2px rgba(227, 45, 57, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-}
-
-@-moz-document url-prefix() {
-
-    .Text--input:not(:disabled):invalid:not(:focus) {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-            inset 0px 0px 1px rgba(227, 45, 57, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-            inset 0px 0px 1px rgba(227, 45, 57, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-
-    .Text--input:not(:disabled):invalid:not(:focus) + .Text--units-wrapper .Text--units {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-            inset 0px 0px 1px rgba(227, 45, 57, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(227, 45, 57, 0.2),
-            inset 0px 0px 1px rgba(227, 45, 57, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-}
-
-.Text--input:not(:disabled):focus:valid {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-        inset 0px 0px 2px rgba(54, 181, 60, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-        inset 0px 0px 2px rgba(54, 181, 60, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-        inset 0px 0px 2px rgba(54, 181, 60, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-}
-
-.Text--input:not(:disabled):focus:valid + .Text--units-wrapper .Text--units {
-    -webkit-box-shadow:
-        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-        inset 0px 0px 2px rgba(54, 181, 60, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-        inset 0px 0px 2px rgba(54, 181, 60, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-        inset 0px 0px 2px rgba(54, 181, 60, 1),
-        inset 1px 1px 0px rgba(34, 34, 34, 0.15);
-}
-
-@-moz-document url-prefix() {
-
-    .Text--input:not(:disabled):focus:valid {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-            inset 0px 0px 1px rgba(54, 181, 60, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-            inset 0px 0px 1px rgba(54, 181, 60, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-
-    .Text--input:not(:disabled):focus:valid + .Text--units-wrapper .Text--units {
-        -moz-box-shadow:
-            inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-            inset 0px 0px 1px rgba(54, 181, 60, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-             box-shadow:
-            inset 2px 2px 5px rgba(54, 181, 60, 0.2),
-            inset 0px 0px 1px rgba(54, 181, 60, 1),
-            inset 1px 1px 0px rgba(34, 34, 34, 0.1);
-    }
-}
-
-/*---------------------------- SIZE - MEDIUM ----------------------------*/
-
-.Text__medium {
-    height: 42px;
-}
-
-.Text__medium .Text--input {
-    font-size: 17px;
-
-    height: 42px;
-    padding: 0 14px;
-}
-
-.Text__medium .Text--units {
-    font-size: 14px;
-
-    padding: 0 24px 0 12px;
-}
-
-/*---------------------------- SIZE - LARGE ----------------------------*/
-
-.Text__large {
-    height: 50px;
-}
-
-.Text__large .Text--input {
-    font-size: 19px;
-
-    height: 50px;
-    padding: 0 16px;
-}
-
-.Text__large .Text--units {
-    font-size: 17px;
-
-    padding: 0 26px 0 14px;
-}
-
-/*---------------------------- SIZE - SMALL ----------------------------*/
-
-.Text__small {
-    height: 34px;
-}
-
-.Text__small .Text--input {
-    font-size: 14px;
-
-    height: 34px;
-    padding: 0 10px;
-}
-
-.Text__small .Text--units {
-    font-size: 12px;
-
-    padding: 0 22px 0 10px;
-}
-
-/*---------------------------- STATE - DISABLED ----------------------------*/
-
-.Text__disabled .Text--input, .Text__disabled:hover .Text--input, .Text__disabled .Text--input:valid, .Text__disabled .Text--input:invalid, .Text__disabled .Text--input:focus {
-    color: #b2b2b2;
-    background-color: #f2f2f2;
-}
-
-.Text__disabled .Text--units {
-    color: #b2b2b2;
-}
-
-.Text__disabled .Text--input:active {
-    background-color: #e2e2e2;
-}
 
 /*====================================================================*/
 /*------------------------------ TOGGLE ------------------------------*/

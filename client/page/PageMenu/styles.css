@@ -183,6 +183,14 @@
     padding: 24px;
 }
 
+.E_PageMenu--item.E_PageMenu--item__show-content__min {
+    width: 320px;
+}
+
+.E_PageMenu--item.E_PageMenu--item__show-content__min .E_PageMenu--content-wrapper {
+    width: 320px;
+}
+
 @media (pointer: coarse) {
 
     .E_PageMenu--item .E_PageMenu--content-wrapper {
