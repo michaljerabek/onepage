@@ -1,12 +1,13 @@
 <div class="E_BackgroundImageSettings"
-    decorator="PageSectionSettingsBox:.E_PageSectionSettings--scrollable"
+    decorator="ResizableBox"
     data-max-resize-height="768"
     style="max-height: 320px;"
  >
+<!--    decorator="PageSectionSettingsBox:.E_PageSectionSettings--scrollable"-->
 
-    <div class="E_BackgroundImageSettings--background-settings E_PageSectionSettings--scrollable">
+    <div class="E_BackgroundImageSettings--background-settings E_PageSectionSettings--scrollable ResizableBox--scrollable">
 
-        <div class="E_PageSectionSettings--scrolling-content">
+        <div class="E_PageSectionSettings--scrolling-content ResizableBox--scrolling-content">
 
             <div class="E_PageSectionSettings--sections">
 
@@ -109,9 +110,9 @@
 
     </div>
 
-    <div class="E_BackgroundImageSettings--ImageBrowser E_PageSectionSettings--scrollable">
+    <div class="E_BackgroundImageSettings--ImageBrowser E_PageSectionSettings--scrollable ResizableBox--scrollable">
 
-        <div class="E_PageSectionSettings--scrolling-content">
+        <div class="E_PageSectionSettings--scrolling-content ResizableBox--scrolling-content">
 
             <BackgroundImageBrowser progressBarId="{{.data.internalId}}" selectedPath="{{.data.backgroundImage.src}}" />
 

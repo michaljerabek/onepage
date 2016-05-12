@@ -19,17 +19,17 @@
                     <span class="E_PageElementSettings--title-section">{{section.name}}</span>
                 </div>
 
-                <span class="E_PageElementSettings--close" on-tap="closeThisSettings" title="Zavřít">
+                <span class="E_PageElementSettings--close ResizableBox--close" on-tap="closeThisSettings" title="Zavřít">
                     <svg><use xlink:href="#icon-x"></use></svg>
                 </span>
 
-                <span class="E_PageElementSettings--min-max" on-tap="minmax(event)" title="Zvětšovat podle obsahu">
+                <span class="E_PageElementSettings--min-max ResizableBox--min-max" on-tap="minmax(event)" title="Zvětšovat podle obsahu">
                     <svg><use xlink:href="#icon-maximize"></use></svg>
                 </span>
 
             </div>
 
-            <div class="E_PageElementSettings--content">
+            <div class="E_PageElementSettings--content ResizableBox ResizableBox__floating">
                 {{> content}}
             </div>
 

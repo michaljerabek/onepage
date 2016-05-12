@@ -58,7 +58,8 @@
     pointer-events: none;
 }
 
-.E_PageElementSettings--resizable-box {
+.E_PageElementSettings .ResizableBox--self,
+.E_PageElementSettings .E_PageElementSettings--resizable-box {
     will-change: width, height;
     transition: var(--default-transition);
     transition-property: width, height;
@@ -144,7 +145,7 @@
     cursor: se-resize;
 }
 
-.csspointerevents .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer-hover {
     z-index: 200;
     position: absolute;
     top: 0px;
@@ -163,81 +164,81 @@
         border-width var(--default-transition-duration) var(--default-transition-easing) var(--default-transition-duration);
 }
 
-.csspointerevents .E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
     transition:
         border-color var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s;
 }
 
-.csspointerevents .E_PageElementSettings--resizer:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer[class*="active"] ~ .E_PageElementSettings--resizer-hover {
     transition:
         border-color var(--default-transition-duration-active) var(--default-transition-easing-active) 0s;
 }
 
-.csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top:hover ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top:hover ~ .E_PageElementSettings--resizer-hover {
     border-top-color: var(--color-selected);
     border-top-width: 1px;
 }
 
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__bottom:hover ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__bottom:hover ~ .E_PageElementSettings--resizer-hover {
     border-bottom-color: var(--color-selected);
     border-bottom-width: 1px;
 }
 
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__left:hover ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__left:hover ~ .E_PageElementSettings--resizer-hover {
     border-left-color: var(--color-selected);
     border-left-width: 1px;
 }
 
-.csspointerevents .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__right:hover ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__right:hover ~ .E_PageElementSettings--resizer-hover {
     border-right-color: var(--color-selected);
     border-right-width: 1px;
 }
 
-.csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top[class*="active"] ~ .E_PageElementSettings--resizer-hover {
     border-top-color: var(--color-ok);
     border-top-width: 1px;
 }
 
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__bottom:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__bottom[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__bottom:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__bottom[class*="active"] ~ .E_PageElementSettings--resizer-hover {
     border-bottom-color: var(--color-ok);
     border-bottom-width: 1px;
 }
 
-.csspointerevents .E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__left:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__left[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__left:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__left[class*="active"] ~ .E_PageElementSettings--resizer-hover {
     border-left-color: var(--color-ok);
     border-left-width: 1px;
 }
 
-.csspointerevents .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__right:active ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
-.csspointerevents .E_PageElementSettings--resizer__right[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+.E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__right:active ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover,
+.E_PageElementSettings--resizer__right[class*="active"] ~ .E_PageElementSettings--resizer-hover {
     border-right-color: var(--color-ok);
     border-right-width: 1px;
 }
@@ -521,7 +522,7 @@
     }
 }
 
-.E_PageElementSettings--min-max__max:hover svg,
-.E_PageElementSettings--min-max__max svg {
+.E_PageElementSettings .ResizableBox--min-max__max:hover svg,
+.E_PageElementSettings .ResizableBox--min-max__max svg {
     fill: var(--color-selected);
 }

@@ -53,7 +53,9 @@ module.exports = Ractive.extend({
         PageSectionC: require("./Components/PageSection/Types/PageSectionC"),
 
         NewPageSectionSelector: Ractive.EDIT_MODE ? require("./Components/NewPageSectionSelector") : null,
-        GlobalPageSettings: Ractive.EDIT_MODE ? require("./Components/GlobalPageSettings") : null
+        GlobalPageSettings: Ractive.EDIT_MODE ? require("./Components/GlobalPageSettings") : null,
+
+        InlineWidget: Ractive.EDIT_MODE ? require("./../libs/Components/InlineWidget") : null
     },
 
     partials: {

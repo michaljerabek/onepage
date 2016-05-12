@@ -82,7 +82,9 @@
 
         decorators: {
 
-            PageElementSettingsBox: function (node, scrollingElementSelector) {
+            ResizableBox: require("./../../../../libs/Decorators/ResizableBox"),
+
+ /*           PageElementSettingsBox: function (node, scrollingElementSelector) {
 
                 var $node = $(node),
                     $scrollingElement = !scrollingElementSelector || $node.is(scrollingElementSelector) ? $node : $node.find(scrollingElementSelector),
@@ -111,7 +113,7 @@
                                         }, {
                                             duration: 200,
                                             progress: function () {
-                                                clearTimeout(refreshScrollbars);
+                                                clearTimeout(refreshThrottle);
                                             },
                                             complete: function () {
                                                 $element.perfectScrollbar("update");
@@ -608,7 +610,7 @@
                     }
                 };
             }
-        },
+     */   },
 
         data: function () {
 
@@ -625,7 +627,25 @@
                 Ractive.$win = Ractive.$win || $(window);
             }
 
-            this.minmaxing = true;
+            this.onresizableboxend = function (offset, selfRect) {
+
+                //upravení pozice, pokud se element nevešel na stránku
+                offset = this.minmaxSettingsPosition(offset, 0, 0, offset, selfRect);
+
+                offset.bottom = offset.top  + selfRect.height;
+                offset.right  = offset.left + selfRect.width;
+
+                this.$self
+                    .offset(offset)
+                    .data("lastOffset.PageElementSettings", offset);
+            };
+
+            this.onresizableboxresize = function (position) {
+
+                this.setPosition(true, position);
+            };
+
+//            this.minmaxing = true;
         },
 
         onrender: function () {
@@ -643,8 +663,8 @@
                 //parent === obalovací element pro transition
                 this.$self.parent().prependTo("#page");
 
-                this.resizableElement  = this.find("." + this.CLASS.content);
-                this.$resizableElement = $(this.resizableElement);
+//                this.resizableElement  = this.find("." + this.CLASS.content);
+//                this.$resizableElement = $(this.resizableElement);
 
                 //element, podle kterého se nastaví pozice nastavení (aktivační tlačítko)
                 this.positionElement  = this.get("positionElement");
@@ -660,17 +680,17 @@
 
             if (on.client) {
 
-                this.set("resizableElementHeight", this.getSettingsHeight());
-                this.set("resizableElementWidth" , this.getSettingsWidth());
+//                this.set("resizableElementHeight", this.getSettingsHeight());
+//                this.set("resizableElementWidth" , this.getSettingsWidth());
 
-                this.userDefHeight = this.get("resizableElementHeight");
-                this.userDefWidth = this.get("resizableElementWidth");
+//                this.userDefHeight = this.get("resizableElementHeight");
+//                this.userDefWidth = this.get("resizableElementWidth");
 
                 this.$self.css({
                     transition: ""
                 });
 
-                this.minmaxing = false;
+//                this.minmaxing = false;
             }
         },
 
@@ -780,124 +800,124 @@
 
             return newOffset;
         },
-
-        activateResizer: function (e, position) {
-
-            var eventData = U.eventData(e),
-
-                lastY = eventData.clientY,
-                lastX = eventData.clientX,
-                
-                resized = false;
-
-            if (eventData.pointers > 1) {
-
-                return;
-            }
-
-            this.$self.css({
-                transition: "none"
-            });
-
-            eventData.target.classList.add(this.CLASS.resizerActive);
-
-            Ractive.$win
-                .off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS)
-                .on( "mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS, function (e) {
-
-                    var eventData = U.eventData(e);
-
-                    if (eventData.pointers > 1) {
-
-                        return;
-                    }
-
-                    this.minmaxButton.classList.remove(this.CLASS.minmaxMax);
-
-                    this.$resizableBox.css({
-                        transition: "none",
-                        width: "",
-                        height: ""
-                    });
-
-                    if (position.match(/bottom|top/)) {
-
-                        var diffY = position.match(/bottom/) ? eventData.clientY - lastY : lastY - eventData.clientY;
-
-                        this.set("resizableElementHeight", this.getSettingsHeight() + diffY);
-                    }
-
-                    if (position.match(/left|right/)) {
-
-                        var diffX = position.match(/right/) ? eventData.clientX - lastX : lastX - eventData.clientX;
-
-                        this.set("resizableElementWidth" , this.getSettingsWidth()  + diffX);
-                    }
-
-                    this.setPosition(true, position);
-
-                    lastY = eventData.clientY;
-                    lastX = eventData.clientX;
-
-                    resized = true;
-                
-                    e.preventDefault();
-                    return false;
-                }.bind(this))
-                .one("mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS, function (e) {
-
-                    this.wasResized = resized;
-
-                    eventData.target.classList.remove(this.CLASS.resizerActive);
-
-                    if (resized) {
-
-//                        if (position.match(/bottom|top/)) {
-
-                            this.set("resizableElementHeight", this.getSettingsHeight());
-
-                            this.userDefHeight = this.get("resizableElementHeight");
-//                        }
-
-//                        if (position.match(/left|right/)) {
-
-                            this.set("resizableElementWidth", this.getSettingsWidth());
-
-                            this.userDefWidth = this.get("resizableElementWidth");
-//                        }
-
-                        this.setPosition(true, position);
-
-                        setTimeout(function() {
-
-                            this.wasResized = false;
-
-                        }.bind(this), 0);
-                    }
-
-                    this.$self.css({
-                        transition: ""
-                    });
-
-                    Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
-
-                    e.preventDefault();
-                    return false;
-                }.bind(this));
-
-            eventData.preventDefault();
-            return false;
-        },
-
-        getSettingsHeight: function () {
-
-            return this.resizableElement.getBoundingClientRect().height;
-        },
-
-        getSettingsWidth: function () {
-
-            return this.resizableElement.getBoundingClientRect().width;
-        },
+//
+//        activateResizer: function (e, position) {
+//
+//            var eventData = U.eventData(e),
+//
+//                lastY = eventData.clientY,
+//                lastX = eventData.clientX,
+//
+//                resized = false;
+//
+//            if (eventData.pointers > 1) {
+//
+//                return;
+//            }
+//
+//            this.$self.css({
+//                transition: "none"
+//            });
+//
+//            eventData.target.classList.add(this.CLASS.resizerActive);
+//
+//            Ractive.$win
+//                .off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS)
+//                .on( "mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS, function (e) {
+//
+//                    var eventData = U.eventData(e);
+//
+//                    if (eventData.pointers > 1) {
+//
+//                        return;
+//                    }
+//
+//                    this.minmaxButton.classList.remove(this.CLASS.minmaxMax);
+//
+//                    this.$resizableBox.css({
+//                        transition: "none",
+//                        width: "",
+//                        height: ""
+//                    });
+//
+//                    if (position.match(/bottom|top/)) {
+//
+//                        var diffY = position.match(/bottom/) ? eventData.clientY - lastY : lastY - eventData.clientY;
+//
+//                        this.set("resizableElementHeight", this.getSettingsHeight() + diffY);
+//                    }
+//
+//                    if (position.match(/left|right/)) {
+//
+//                        var diffX = position.match(/right/) ? eventData.clientX - lastX : lastX - eventData.clientX;
+//
+//                        this.set("resizableElementWidth" , this.getSettingsWidth()  + diffX);
+//                    }
+//
+//                    this.setPosition(true, position);
+//
+//                    lastY = eventData.clientY;
+//                    lastX = eventData.clientX;
+//
+//                    resized = true;
+//
+//                    e.preventDefault();
+//                    return false;
+//                }.bind(this))
+//                .one("mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS, function (e) {
+//
+//                    this.wasResized = resized;
+//
+//                    eventData.target.classList.remove(this.CLASS.resizerActive);
+//
+//                    if (resized) {
+//
+////                        if (position.match(/bottom|top/)) {
+//
+//                            this.set("resizableElementHeight", this.getSettingsHeight());
+//
+//                            this.userDefHeight = this.get("resizableElementHeight");
+////                        }
+//
+////                        if (position.match(/left|right/)) {
+//
+//                            this.set("resizableElementWidth", this.getSettingsWidth());
+//
+//                            this.userDefWidth = this.get("resizableElementWidth");
+////                        }
+//
+//                        this.setPosition(true, position);
+//
+//                        setTimeout(function() {
+//
+//                            this.wasResized = false;
+//
+//                        }.bind(this), 0);
+//                    }
+//
+//                    this.$self.css({
+//                        transition: ""
+//                    });
+//
+//                    Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
+//
+//                    e.preventDefault();
+//                    return false;
+//                }.bind(this));
+//
+//            eventData.preventDefault();
+//            return false;
+//        },
+//
+//        getSettingsHeight: function () {
+//
+//            return this.resizableElement.getBoundingClientRect().height;
+//        },
+//
+//        getSettingsWidth: function () {
+//
+//            return this.resizableElement.getBoundingClientRect().width;
+//        },
 
         setPosition: function (savedPosition, resizerPosition, checkDocOverflow) {
 
