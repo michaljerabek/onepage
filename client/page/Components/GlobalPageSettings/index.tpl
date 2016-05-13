@@ -2,16 +2,43 @@
 
     <h2 class="E_PageMenu--title">Globální nastavení <span class="E_PageMenu--show-page" on-touchstart-touchend-hover="showPage">&#x1f441</span></h2>
 
-    <label for="global-settings--font">Písmo:</label>
+    <section class="E_GlobalPageSettingss--section">
 
-    <select name="global-settings--font" id="global-settings--font" value="{{.settings.fontType}}">
-        {{#each .fontTypes}}
-            <option value="{{@key}}">{{.}}</option>
-        {{/each}}
-    </select>
+        <h3 class="
+                E_PageMenu--sub-title
+                E_PageMenu--sub-title__interactive
+                {{#if .openGlobalSettingsWidget === 'font'}}E_PageMenu--sub-title__active{{/if}}
+            "
+            on-tap="set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'font' ? null : 'font')"
+        >
+            Písmo
 
-    <InlineWidget>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, quia facere recusandae. Ex voluptatibus voluptatem fugit, optio est praesentium corrupti vero quas consequatur assumenda provident, labore necessitatibus animi et, distinctio excepturi. Rem quia nemo suscipit, numquam. Omnis sit id nisi incidunt distinctio quis dolores atque impedit ex, nostrum rerum beatae nesciunt et vel, illum deserunt, dolorum optio maiores! Quos modi, explicabo unde iusto aspernatur neque nostrum necessitatibus, atque alias dolorem fugiat debitis odio libero! Ratione magnam perspiciatis, dolorum iste vel, tenetur fugiat veniam laudantium aliquid nulla earum. A nobis perspiciatis, minima. Sapiente assumenda nihil, fugit, debitis iure suscipit dolorem itaque nisi saepe nulla nobis ipsam ea voluptatem veritatis ut, odit deserunt possimus unde animi! Nulla quidem praesentium delectus incidunt accusamus temporibus nobis, nostrum obcaecati, excepturi dignissimos unde sit. Laborum eveniet omnis molestias rerum, consectetur nisi culpa consequuntur inventore illo repudiandae veniam libero minus necessitatibus eum ipsam, odit! Fugiat ad laudantium voluptate nobis totam accusantium iste error distinctio voluptates laboriosam. Perferendis enim hic dolorum amet aperiam quod sed debitis expedita consequuntur alias obcaecati, aliquam deleniti at ab pariatur architecto temporibus, omnis aspernatur vero voluptatibus id quidem consequatur, qui ad. Quae obcaecati, eligendi id recusandae aliquam esse illo ex, delectus dolorem nam dicta quam omnis laboriosam! Ea deleniti quibusdam inventore quam vero tempora itaque, accusantium ad nemo, deserunt quis blanditiis, minima facere in assumenda expedita alias iure sint atque id illo. Ipsum excepturi aliquam explicabo rerum rem iste error consectetur neque dignissimos quia, ex fugiat cupiditate molestias tempore voluptatibus velit. Quas animi inventore officia tempora autem quaerat amet, quasi cumque maiores soluta sapiente debitis placeat odit magni, et sint corporis nostrum labore maxime delectus ducimus optio dolorem ea? Ex nihil officiis officia eveniet quibusdam harum earum, iure ipsam, quam, at maxime labore non nostrum molestias vel. Est ipsa et nobis enim minima sequi. Sunt nisi consequuntur non minus eaque facilis, minima beatae ex delectus maxime repudiandae, aut eveniet nulla aliquid ipsa accusantium quisquam veritatis quia sit. Inventore eligendi dignissimos, ipsa voluptatibus enim pariatur architecto distinctio eum quisquam sunt ad mollitia odio tempore, repellat expedita in dolorem veniam aperiam hic qui. At voluptatem eveniet fugit sequi quisquam, dolorem atque dignissimos maiores veniam ratione illum, facere praesentium vitae, vero quasi tempore ipsam beatae! Expedita corporis a libero voluptatum, animi, est dolores atque nisi eaque ea ipsam dignissimos commodi. Totam nam, maiores sint. Aut quasi aperiam accusamus. Officia iure nulla praesentium, assumenda eum sunt, enim quas! Modi nam quas impedit veniam earum, ullam ex, saepe totam fugit at alias est ab qui enim tempora. Et recusandae accusantium quibusdam veritatis id voluptas officia officiis unde voluptates veniam obcaecati excepturi tempora voluptate nulla a minus vero laudantium earum nostrum maxime, mollitia. Assumenda eius sequi minus placeat totam facere recusandae officiis, numquam maiores doloribus inventore veritatis, eum quae tempora deserunt corporis minima, ab dolore sint. Ab fugiat odit voluptatum tenetur aliquam expedita nobis iste officiis ullam obcaecati aspernatur saepe fuga doloribus delectus laborum necessitatibus adipisci, explicabo quas repudiandae, quisquam, nostrum repellat. Ullam minima deleniti vitae fugit nemo ex!
-    </InlineWidget>
+            {{> dropDownIcon}}
+
+            <span class="E_PageMenu--sub-title-value">
+                {{.fontTypes[.settings.fontType].title}} + {{.fontTypes[.settings.fontType].body}}
+            </span>
+        </h3>
+
+        {{#if .openGlobalSettingsWidget === "font"}}
+
+        <PageMenuInlineWidget initMaxHeight="400" close=".openGlobalSettingsWidget">
+            {{>fontSettings}}
+        </PageMenuInlineWidget>
+
+        {{/if}}
+
+    </section>
+
+    <section class="E_GlobalPageSettingss--section">
+
+        <h3 class="E_PageMenu--sub-title">Další nadpis</h3>
+    </section>
 
 </div>
+
+{{#partial dropDownIcon}}
+    <div class="E_PageMenu--sub-title-dropdown">
+        <svg><use xlink:href="#icon-triangle"></use></svg>
+    </div>
+{{/partial}}

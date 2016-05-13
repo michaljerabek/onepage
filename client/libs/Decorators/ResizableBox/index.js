@@ -2,7 +2,9 @@
 /*global $, MutationObserver*/
 var Ractive = require("ractive"),
 
-    U = require("./../../U");
+    U = require("./../../U"),
+
+    EventEmitter = require("./../../EventEmitter")();
 
 var CLASS = {
         resizableElement: "ResizableBox",
@@ -383,12 +385,18 @@ ResizableBox.contentMutationObserver = function (mutations) {
 
 ResizableBox.initChangeObservers = function () {
 
+    EventEmitter.on("change.ResizableBox." + this.BOX_EVENT_NS, function () {
+       ResizableBox.contentMutationObserver.call(this, [{}]);
+    }.bind(this));
+
     this.contentObserver.disconnect();
 
     this.contentObserver.observe(this.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
 };
 
 ResizableBox.cancelChangeObservers = function () {
+
+    EventEmitter.off("change.resizableBox." + this.BOX_EVENT_NS);
 
     this.contentObserver.disconnect();
 };

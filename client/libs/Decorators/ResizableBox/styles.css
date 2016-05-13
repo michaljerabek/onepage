@@ -21,6 +21,10 @@
     transition-property: height;
 }
 
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--scrollable {
+    width: 100%;
+}
+
 /*---------------------------- CLOSE | MINMAX ----------------------------*/
 
 .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max,

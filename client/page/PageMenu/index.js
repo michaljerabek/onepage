@@ -2,7 +2,8 @@
 /*global $*/
 
 var FixedElement = require("./../../libs/FixedElement"),
-    U = require("./../../libs/U");
+    U = require("./../../libs/U"),
+    EventEmitter = require("./../../libs/EventEmitter")();
 
 var instaceCounter = 0,
 
@@ -241,6 +242,8 @@ var instaceCounter = 0,
                 });
 
                 this.$win.off("mousemove.resizer-" + this.EVENT_NS + " touchmove.resizer-" + this.EVENT_NS);
+
+                EventEmitter.trigger("change.ResizableBox");
 
                 e.preventDefault();
                 return false;

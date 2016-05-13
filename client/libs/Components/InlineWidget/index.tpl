@@ -23,9 +23,20 @@
             </div>
         </div>
 
-        <span class="InlineWidget--close ResizableBox--close" on-tap="InlineWidget--close" title="Zavřít">
-            <svg><use xlink:href="#icon-x"></use></svg>
-        </span>
+        {{#if .close}}
+
+            <span class="InlineWidget--close ResizableBox--close" on-tap="setOnParent(.close.replace(/^\./, ''), null)" title="Zavřít">
+                <svg><use xlink:href="#icon-x"></use></svg>
+            </span>
+
+        {{else}}
+
+            <span class="InlineWidget--close ResizableBox--close" on-tap="InlineWidget--close" title="Zavřít">
+                <svg><use xlink:href="#icon-x"></use></svg>
+            </span>
+
+        {{/if}}
+
 
         <span class="InlineWidget--min-max ResizableBox--min-max" on-tap="minmax(event)" title="Zvětšovat podle obsahu">
             <svg><use xlink:href="#icon-maximize"></use></svg>

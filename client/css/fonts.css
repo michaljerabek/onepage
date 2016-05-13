@@ -2,6 +2,28 @@
 /*------------------------------ FONTS -------------------------------*/
 /*====================================================================*/
 
+:root {
+    --P_font-type-1-title-font-family: serif;
+    --P_font-type-1-title-font-weight: bold;
+    --P_font-type-1-body-font-family: serif;
+    --P_font-type-1-body-font-weight: normal;
+
+    --P_font-type-2-title-font-family: sans-serif;
+    --P_font-type-2-title-font-weight: bold;
+    --P_font-type-2-body-font-family: sans-serif;
+    --P_font-type-2-body-font-weight: normal;
+
+    --P_font-type-3-title-font-family: serif;
+    --P_font-type-3-title-font-weight: bold;
+    --P_font-type-3-body-font-family: serif;
+    --P_font-type-3-body-font-weight: normal;
+
+    --P_font-type-4-title-font-family: sans-serif;
+    --P_font-type-4-title-font-weight: bold;
+    --P_font-type-4-body-font-family: sans-serif;
+    --P_font-type-4-body-font-weight: normal;
+}
+
 /*--------------------------------------------------------------------*/
 /*-------------------------------- APP -------------------------------*/
 /*--------------------------------------------------------------------*/

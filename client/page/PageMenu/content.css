@@ -2,6 +2,10 @@
 /*------------------------- PAGEMENU CONTENT -------------------------*/
 /*====================================================================*/
 
+.E_GlobalPageSettingss--section {
+    padding: 8px 0;
+}
+
 .E_PageMenu--title {
     font-family: "Encode Sans", sans-serif;
     font-size: 19px;
@@ -10,4 +14,79 @@
     margin-bottom: 16px;
 
     color: var(--color-title-1);
+
+    cursor: default;
+}
+
+.E_PageMenu--sub-title {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    position: relative;
+
+    padding-bottom: 12px;
+
+    color: var(--color-title-2);
+
+    display: flex;
+    justify-content: space-between;
+
+    cursor: default;
+}
+
+.E_PageMenu--sub-title__interactive {
+    cursor: pointer;
+}
+
+.E_PageMenu--sub-title-value {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 400;
+
+    padding-left: 32px;
+
+    color: var(--color-text-2);
+
+    overflow: hidden;
+}
+
+.E_PageMenu--sub-title-dropdown {
+    position: absolute;
+    top: -2px;
+    right: -16px;
+
+    width: 16px;
+    height: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.E_PageMenu--sub-title-dropdown + .E_PageMenu--sub-title-value {
+    margin-right: 6px;
+}
+
+.E_PageMenu--sub-title-dropdown svg {
+    width: 12px;
+    height: 12px;
+
+    fill: var(--color-text-1);
+
+    transform: rotate(-90deg);
+
+    transition: var(--default-transition);
+}
+
+.E_PageMenu--sub-title__active .E_PageMenu--sub-title-dropdown svg,
+.E_PageMenu--sub-title:hover .E_PageMenu--sub-title-dropdown svg {
+    fill: var(--color-selected);
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageMenu--sub-title__active .E_PageMenu--sub-title-dropdown svg {
+    transform: rotate(-180deg);
 }

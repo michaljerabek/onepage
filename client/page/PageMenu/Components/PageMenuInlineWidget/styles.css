@@ -1,0 +1,17 @@
+/*====================================================================*/
+/*----------------------- PageMenuInlineWidget -----------------------*/
+/*====================================================================*/
+
+[class*='InlineWidget__PageMenu'] {
+	margin-left: -24px;
+
+    width: calc(100% + 48px);
+
+    background-color: #f5f5f5;
+    border-top: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+[class*='InlineWidget__PageMenu'] .InlineWidget--shadow {
+    box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+}

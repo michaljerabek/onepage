@@ -12,13 +12,7 @@ module.exports = Ractive.extend({
         wrapper: "InlineWidget--wrapper",
         scrollingContent: "InlineWidget--scrolling-content",
 
-        resizer: "InlineWidget--resizer",
-        resizerActive: "InlineWidget--resizer__active",
-        resizableBox: "InlineWidget--resizable-box",
-
-        minmax: "InlineWidget--min-max",
-        minmaxMax: "InlineWidget--min-max__max",
-        minmaxMin: "InlineWidget--min-max__min"
+        minmax: "InlineWidget--min-max"
     },
 
     components: {
@@ -49,5 +43,9 @@ module.exports = Ractive.extend({
     oncomplete: function () {
     },
 
+    setOnParent: function (path, value) {
+
+        this.parent.set(path, value);
+    }
 
 });
