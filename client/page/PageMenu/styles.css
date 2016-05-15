@@ -182,7 +182,7 @@
     min-width: 320px;
     max-width: 480px;
     width: calc((61.88vw / 21) * 8);
-    padding: 24px;
+    padding: 24px 20px;
 }
 
 .E_PageMenu--item.E_PageMenu--item__show-content__min {
@@ -195,6 +195,19 @@
 
 .E_PageMenu--content-wrapper > .ps-scrollbar-y-rail {
     z-index: 2;
+
+    margin-right: -2px;
+    width: 8px;
+
+    background: #d7d7d7;
+    opacity: 1;
+    visibility: visible;
+}
+
+.E_PageMenu--content-wrapper > .ps-scrollbar-y-rail .ps-scrollbar-y {
+    margin-right: 2px;
+
+    width: 4px;
 }
 
 @media (pointer: coarse) {
@@ -215,26 +228,10 @@
 }
 
 .E_PageMenu--content-wrapper.ps-active-y {
-    padding-right: 32px;
+    padding-right: 28px;
+    outline: 1px solid red;
 }
 
-.E_PageMenu--content-wrapper:after {
-    content: "";
-
-    position: absolute;
-    top: 0px;
-    right: 0px;
-
-    width: 8px;
-    height: 100%;
-
-    background-color: #d7d7d7;
-    opacity: 0;
-}
-
-.E_PageMenu--content-wrapper.ps-active-y:after {
-    opacity: 1;
-}
 
 .E_PageMenu__fixed-bottom .E_PageMenu--item.E_PageMenu--item__show-content {
     transform: translateY(14.48vh);
@@ -391,9 +388,19 @@
 /*---------------------------- SHOW PAGE ----------------------------*/
 
 .E_PageMenu--show-page {
-    position: relative;
+    z-index: 200;
+    position: absolute;
+    top: 0;
+    right: 24px;
 
-    display: inline-block;
+    width: 24px;
+    height: 24px;
+
+    opacity: 0.5;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     touch-action: manipulation;
     -webkit-user-select: none;
@@ -403,18 +410,44 @@
     user-select: none;
 }
 
-.E_PageMenu--show-page:after {
-    content: "";
+.E_PageMenu--show-page svg {
+    width: 16px;
+    height: 16px;
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    width: 40px;
-    height: 40px;
-
-    transform: translate(-50%, -50%);
+    margin-left: 4px;
 }
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--show-page {
+        right: 32px;
+
+        width: 32px;
+        height: 32px;
+    }
+
+    .E_PageMenu--show-page svg {
+        width: 20px;
+        height: 20px;
+
+        margin-bottom: 4px;
+    }
+
+    .E_PageMenu--show-page:after {
+        content: "";
+
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: 40px;
+        height: 40px;
+
+        touch-action: manipulation;
+    }
+}
+
 
 /*---------------------------- RESIZER ----------------------------*/
 

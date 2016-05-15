@@ -32,7 +32,7 @@
 
     width: calc(100% / 3);
     min-width: 100px;
-    max-width: 140px;
+    max-width: 160px;
 
     color: var(--color-text-1);
     background-color: #f7f7f7;

@@ -2,8 +2,10 @@
 /*------------------------- PAGEMENU CONTENT -------------------------*/
 /*====================================================================*/
 
-.E_GlobalPageSettingss--section {
-    padding: 8px 0;
+.E_PageMenu--section {
+    position: relative;
+
+    padding: 12px 0;
 }
 
 .E_PageMenu--title {
@@ -66,23 +68,30 @@
 }
 
 .E_PageMenu--sub-title-dropdown + .E_PageMenu--sub-title-value {
-    margin-right: 6px;
+    margin-right: 1px;
 }
 
 .E_PageMenu--sub-title-dropdown svg {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
 
     fill: var(--color-text-1);
+    opacity: 0.5;
 
     transform: rotate(-90deg);
 
     transition: var(--default-transition);
 }
 
-.E_PageMenu--sub-title__active .E_PageMenu--sub-title-dropdown svg,
 .E_PageMenu--sub-title:hover .E_PageMenu--sub-title-dropdown svg {
+    opacity: 1;
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageMenu--sub-title__active .E_PageMenu--sub-title-dropdown svg {
     fill: var(--color-selected);
+    opacity: 1;
 
     transition: var(--default-transition-hover);
 }

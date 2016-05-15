@@ -10,7 +10,14 @@
 
     {{/if}}
 
-    <div id="page" class="{{#if .editMode}}E{{/if}} {{.page.settings.fontType || 'P_font-type-1'}} {{.sortableActive}}">
+    <div id="page" class="{{#if .editMode}}E{{/if}}
+            {{.page.settings.fontType || .defaults.settings.fontType}}
+            P_roundness-{{.page.settings.roundness || .defaults.settings.roundness}}
+            P_animations-{{.page.settings.animations || .defaults.settings.animations}}
+            {{#if .page.settings.underlineTitles}}P_underline-titles{{/if}}
+            {{.sortableActive}}
+        "
+    >
 
         <div class="P_nonsortable-sections" style="overflow: hidden">
 

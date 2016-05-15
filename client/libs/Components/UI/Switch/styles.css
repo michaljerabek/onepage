@@ -227,6 +227,7 @@
 }
 
 .Switch__adaptive .Switch--option {
+    flex-basis: 100%;
     flex-grow: 1;
     flex-shrink: 1;
 }
@@ -283,7 +284,6 @@
     overflow: hidden;
 }
 
-
 .Switch--text-wrapper:after {
     content: "";
 
@@ -324,6 +324,16 @@
 .Switch:not(.Switch__adaptive) .Switch--text__long,
 .Switch:not(.Switch__adaptive) .Switch--text__extra-long {
     font-family: "Encode Sans Compressed";
+}
+
+.Switch__adaptive .Switch--text-wrapper {
+    position: relative;
+
+    max-width: 100%;
+}
+
+.Switch__adaptive .Switch--text {
+    width: 100%;
 }
 
 /*---------------------------- SIZE - SMALL ----------------------------*/
@@ -1004,13 +1014,3 @@
         transform: translateX(calc(-100% + 64px));
     }
 }
-
-
-
-
-
-
-
-
-
-

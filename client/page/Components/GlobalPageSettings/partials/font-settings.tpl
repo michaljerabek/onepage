@@ -1,3 +1,4 @@
+
 <div class="E_GlobalFontSettings">
 
     <div class="E_GlobalFontSettings--wrapper">
@@ -6,7 +7,9 @@
 
             <div class="
                     E_GlobalFontSettings--font-type
-                    {{#if ../../settings.fontType === @key}}E_GlobalFontSettings--font-type__active{{/if}}
+                    {{#if ../../settings.fontType === @key || (!../../settings.fontType && ../../defaultFontType === @key)}}
+                        E_GlobalFontSettings--font-type__active
+                    {{/if}}
                 "
                 data-font-type="{{@key}}"
                 on-tap="set('settings.fontType', @key)"

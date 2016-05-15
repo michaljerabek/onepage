@@ -1,7 +1,12 @@
 <section class="InlineWidget InlineWidget__{{.type}}"
-    intro-outro="slide:{
-        easing : 'cubic-bezier(0.1, 0.4, 0.4, 1)'
+    intro="slide:{
+        delay   : {{ .delayOpening ? 300 : 0 }},
+        easing  : 'cubic-bezier(0.1, 0.4, 0.4, 1)'
     }"
+    outro="slide:{
+        easing  : 'cubic-bezier(0.1, 0.4, 0.4, 1)'
+    }
+    "
 >
 
     <div class="InlineWidget--wrapper ResizableBox">
@@ -9,7 +14,7 @@
         <div class="InlineWidget--shadow"></div>
 
         <div class="InlineWidget--content ResizableBox--content"
-             decorator="ResizableBox:false,true"
+             decorator="ResizableBox"
              data-max-resize-height="{{.maxResize || 768}}"
              style="max-height: {{.initMaxHeight || 320}}px"
         >

@@ -2937,6 +2937,48 @@ body {
 }
 
 /*====================================================================*/
+/*--------------------------- InlineWidget ---------------------------*/
+/*====================================================================*/
+
+.InlineWidget {
+    line-height: 1;
+
+    position: relative;
+}
+
+.InlineWidget__ {
+    width: 100%;
+
+    background-color: #f7f7f7;
+    border-top: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.InlineWidget--shadow {
+    content: "";
+
+    z-index: 500;
+    position: absolute;
+    top: 0px;
+    left: -8px;
+
+    width: -webkit-calc(100% + 16px);
+
+    width: -moz-calc(100% + 16px);
+
+    width: calc(100% + 16px);
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
+
+       -moz-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
+
+            box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
+
+    pointer-events: none;
+}
+
+/*====================================================================*/
 /*---------------------------- PROGRESSBAR ---------------------------*/
 /*====================================================================*/
 
@@ -3029,48 +3071,6 @@ body {
     -webkit-box-shadow: 0px 0px 4px 1px #fb7241;
        -moz-box-shadow: 0px 0px 4px 1px #fb7241;
             box-shadow: 0px 0px 4px 1px #fb7241;
-}
-
-/*====================================================================*/
-/*--------------------------- InlineWidget ---------------------------*/
-/*====================================================================*/
-
-.InlineWidget {
-    line-height: 1;
-
-    position: relative;
-}
-
-.InlineWidget__ {
-    width: 100%;
-
-    background-color: #f7f7f7;
-    border-top: 1px solid #d7d7d7;
-    border-bottom: 1px solid #d7d7d7;
-}
-
-.InlineWidget--shadow {
-    content: "";
-
-    z-index: 500;
-    position: absolute;
-    top: 0px;
-    left: -8px;
-
-    width: -webkit-calc(100% + 16px);
-
-    width: -moz-calc(100% + 16px);
-
-    width: calc(100% + 16px);
-    height: 100%;
-
-    -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
-
-       -moz-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
-
-            box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
-
-    pointer-events: none;
 }
 
 /*====================================================================*/
@@ -3347,7 +3347,7 @@ body {
 /*------------------------------ BUTTON ------------------------------*/
 /*====================================================================*/
 
-.Button, .Button:after, .Button--content, .Button--text, .Button--icon svg {
+.Button, .Button:after, .Button--content, .Button--text, .Button--icon svg, .Button--icon {
     will-change: box-shadow, transform, background, fill, color;
     -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
     -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
@@ -3355,14 +3355,14 @@ body {
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.Button:hover, .Button:hover:after, .Button:hover .Button--text, .Button:hover .Button--icon svg, .Button--event:focus ~ .Button--content, .Button:focus, .Button:focus .Button--content, .Button:focus .Button--text, .Button:focus .Button--icon svg {
+.Button:hover, .Button:hover:after, .Button:hover .Button--text, .Button:hover .Button--icon svg, .Button:hover .Button--icon, .Button--event:focus ~ .Button--content, .Button:focus, .Button:focus:after, .Button:focus .Button--content, .Button:focus .Button--text, .Button:focus .Button--icon svg, .Button:focus .Button--icon {
     -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 }
 
-.Button:active, .Button:active, .Button:active .Button--content, .Button:active:after, .Button:active .Button--text, .Button:active .Button--icon svg {
+.Button:active, .Button:active .Button--content, .Button:active:after, .Button:active .Button--text, .Button:active .Button--icon svg, .Button:active .Button--icon {
     -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
     -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
     -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
@@ -6198,6 +6198,9 @@ body {
 }
 
 .Switch__adaptive .Switch--option {
+    -webkit-flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
        -moz-box-flex: 1;
@@ -6273,7 +6276,6 @@ body {
     overflow: hidden;
 }
 
-
 .Switch--text-wrapper:after {
     content: "";
 
@@ -6320,6 +6322,16 @@ body {
 
 .Switch:not(.Switch__adaptive) .Switch--text__long, .Switch:not(.Switch__adaptive) .Switch--text__extra-long {
     font-family: "Encode Sans Compressed";
+}
+
+.Switch__adaptive .Switch--text-wrapper {
+    position: relative;
+
+    max-width: 100%;
+}
+
+.Switch__adaptive .Switch--text {
+    width: 100%;
 }
 
 /*---------------------------- SIZE - SMALL ----------------------------*/
@@ -7921,17 +7933,6 @@ body {
                 transform: translateX(calc(-100% + 64px));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 /*====================================================================*/
 /*------------------------------- TEXT -------------------------------*/
 /*====================================================================*/
@@ -9125,6 +9126,216 @@ body {
 .Toggle__disabled .Toggle--input:active + .Toggle--event .Toggle--handle {
     background: #e2e2e2;
 }
+
+/*====================================================================*/
+/*---------------------------- TOGGLEFIELD ---------------------------*/
+/*====================================================================*/
+
+.ToggleField {
+    position: relative;
+
+    background-color: #f9f9f9;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    border: 1px solid #ddd;
+
+    -webkit-box-flex: 1;
+
+    -webkit-flex-grow: 1;
+
+       -moz-box-flex: 1;
+
+        -ms-flex-positive: 1;
+
+            flex-grow: 1;
+    -webkit-flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+       -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+}
+
+.ToggleField:after {
+    content: "";
+
+    z-index: 1;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+
+    width: -webkit-calc(100% + 2px);
+
+    width: -moz-calc(100% + 2px);
+
+    width: calc(100% + 2px);
+    height: -webkit-calc(100% + 2px);
+    height: -moz-calc(100% + 2px);
+    height: calc(100% + 2px);
+
+    -webkit-border-radius: inherit;
+
+       -moz-border-radius: inherit;
+
+            border-radius: inherit;
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(8, 161, 194, 0),
+        inset 0px 0px 2px rgba(8, 161, 194, 0);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(8, 161, 194, 0),
+        inset 0px 0px 2px rgba(8, 161, 194, 0);
+            box-shadow:
+        inset 0px 0px 8px rgba(8, 161, 194, 0),
+        inset 0px 0px 2px rgba(8, 161, 194, 0);
+
+    will-change: box-shadow;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    pointer-events: none;
+}
+
+
+@-moz-document url-prefix() {
+
+    .ToggleField:after {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(8, 161, 194, 0),
+            inset 0px 0px 1px rgba(8, 161, 194, 0);
+             box-shadow:
+            inset 0px 0px 8px rgba(8, 161, 194, 0),
+            inset 0px 0px 1px rgba(8, 161, 194, 0);
+    }
+}
+
+.ToggleField--text {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+	white-space: nowrap;
+
+    padding-right: 16px;
+
+    color: #404040;
+
+    overflow: hidden;
+}
+
+.ToggleField .Toggle {
+    z-index: 2;
+    position: relative;
+
+    -webkit-flex-shrink: 0;
+
+        -ms-flex-negative: 0;
+
+            flex-shrink: 0;
+}
+
+.ToggleField .Toggle--input {
+    visibility: hidden;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.ToggleField__small {
+    height: 34px;
+    padding-right: 3px;
+    padding-left: 10px;
+}
+
+.ToggleField__small .ToggleField--text {
+    font-size: 13px;
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.ToggleField__medium {
+    height: 42px;
+    padding-right: 3px;
+    padding-left: 12px;
+}
+
+.ToggleField__medium .ToggleField--text {
+    font-size: 14px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.ToggleField__large {
+    height: 50px;
+    padding-right: 5px;
+    padding-left: 16px;
+}
+
+.ToggleField__large .ToggleField--text {
+    font-size: 17px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.ToggleField:not(.ToggleField__disabled):focus:after, .ToggleField:not(.ToggleField__disabled):hover:after {
+    -webkit-box-shadow:
+        inset 0px 0px 8px rgba(8, 161, 194, 0.15),
+        inset 0px 0px 2px rgba(8, 161, 194, 1);
+       -moz-box-shadow:
+        inset 0px 0px 8px rgba(8, 161, 194, 0.15),
+        inset 0px 0px 2px rgba(8, 161, 194, 1);
+            box-shadow:
+        inset 0px 0px 8px rgba(8, 161, 194, 0.15),
+        inset 0px 0px 2px rgba(8, 161, 194, 1);
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+@-moz-document url-prefix() {
+
+    .ToggleField:not(.ToggleField__disabled):focus:after, .ToggleField:not(.ToggleField__disabled):hover:after {
+        -moz-box-shadow:
+            inset 0px 0px 8px rgba(8, 161, 194, 0.1),
+            inset 0px 0px 1px rgba(8, 161, 194, 1);
+             box-shadow:
+            inset 0px 0px 8px rgba(8, 161, 194, 0.1),
+            inset 0px 0px 1px rgba(8, 161, 194, 1);
+    }
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.ToggleField__disabled {
+	background-color: #f2f2f2;
+}
+
+.ToggleField__disabled .ToggleField--text {
+    color: #b2b2b2;
+}
+
+
 
 /*====================================================================*/
 /*----------------------------- PALETTES -----------------------------*/
@@ -12380,8 +12591,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 /*------------------------- PAGEMENU CONTENT -------------------------*/
 /*====================================================================*/
 
-.E_GlobalPageSettingss--section {
-    padding: 8px 0;
+.E_PageMenu--section {
+    position: relative;
+
+    padding: 12px 0;
 }
 
 .E_PageMenu--title {
@@ -12473,14 +12686,15 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_PageMenu--sub-title-dropdown + .E_PageMenu--sub-title-value {
-    margin-right: 6px;
+    margin-right: 1px;
 }
 
 .E_PageMenu--sub-title-dropdown svg {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
 
     fill: #404040;
+    opacity: 0.5;
 
     -webkit-transform: rotate(-90deg);
 
@@ -12501,8 +12715,21 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.E_PageMenu--sub-title__active .E_PageMenu--sub-title-dropdown svg, .E_PageMenu--sub-title:hover .E_PageMenu--sub-title-dropdown svg {
+.E_PageMenu--sub-title:hover .E_PageMenu--sub-title-dropdown svg {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_PageMenu--sub-title__active .E_PageMenu--sub-title-dropdown svg {
     fill: #ef6737;
+    opacity: 1;
 
     -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 
@@ -12879,7 +13106,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     width: -webkit-calc((61.88vw / 21) * 8);
     width: -moz-calc((61.88vw / 21) * 8);
     width: calc((61.88vw / 21) * 8);
-    padding: 24px;
+    padding: 24px 20px;
 }
 
 .E_PageMenu--item.E_PageMenu--item__show-content__min {
@@ -12892,6 +13119,19 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 .E_PageMenu--content-wrapper > .ps-scrollbar-y-rail {
     z-index: 2;
+
+    margin-right: -2px;
+    width: 8px;
+
+    background: #d7d7d7;
+    opacity: 1;
+    visibility: visible;
+}
+
+.E_PageMenu--content-wrapper > .ps-scrollbar-y-rail .ps-scrollbar-y {
+    margin-right: 2px;
+
+    width: 4px;
 }
 
 @media (pointer: coarse) {
@@ -12912,26 +13152,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_PageMenu--content-wrapper.ps-active-y {
-    padding-right: 32px;
+    padding-right: 28px;
+    outline: 1px solid red;
 }
 
-.E_PageMenu--content-wrapper:after {
-    content: "";
-
-    position: absolute;
-    top: 0px;
-    right: 0px;
-
-    width: 8px;
-    height: 100%;
-
-    background-color: #d7d7d7;
-    opacity: 0;
-}
-
-.E_PageMenu--content-wrapper.ps-active-y:after {
-    opacity: 1;
-}
 
 .E_PageMenu__fixed-bottom .E_PageMenu--item.E_PageMenu--item__show-content {
     -webkit-transform: translateY(14.48vh);
@@ -13177,9 +13401,35 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 /*---------------------------- SHOW PAGE ----------------------------*/
 
 .E_PageMenu--show-page {
-    position: relative;
+    z-index: 200;
+    position: absolute;
+    top: 0;
+    right: 24px;
 
-    display: inline-block;
+    width: 24px;
+    height: 24px;
+
+    opacity: 0.5;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 
     -ms-touch-action: manipulation;
 
@@ -13191,26 +13441,46 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     user-select: none;
 }
 
-.E_PageMenu--show-page:after {
-    content: "";
+.E_PageMenu--show-page svg {
+    width: 16px;
+    height: 16px;
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    width: 40px;
-    height: 40px;
-
-    -webkit-transform: translate(-50%, -50%);
-
-       -moz-transform: translate(-50%, -50%);
-
-        -ms-transform: translate(-50%, -50%);
-
-         -o-transform: translate(-50%, -50%);
-
-            transform: translate(-50%, -50%);
+    margin-left: 4px;
 }
+
+@media (pointer: coarse) {
+
+    .E_PageMenu--show-page {
+        right: 32px;
+
+        width: 32px;
+        height: 32px;
+    }
+
+    .E_PageMenu--show-page svg {
+        width: 20px;
+        height: 20px;
+
+        margin-bottom: 4px;
+    }
+
+    .E_PageMenu--show-page:after {
+        content: "";
+
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: 40px;
+        height: 40px;
+
+        -ms-touch-action: manipulation;
+
+            touch-action: manipulation;
+    }
+}
+
 
 /*---------------------------- RESIZER ----------------------------*/
 
@@ -14174,9 +14444,56 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     overflow: hidden;
 }
 
-.E_GlobalPageSettings {
+.E_PageMenu--section.E_GlobalPageSettings--font-settings {
+    padding-bottom: 0;
 }
 
+.E_GlobalPageSettings--font-settings .InlineWidget {
+    margin-bottom: 10px;
+}
+
+.E_GlobalPageSettings--underline-title {
+    padding-top: 6px;
+    padding-bottom: 8px;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title .E_GlobalColorPaletteSettings--colors {
+    margin-top: 12px;
+}
+
+.E_GlobalPageSettings--color-palette .Button {
+    position:absolute;
+    top: 38px;
+    right: 0px;
+}
+
+.E_GlobalPageSettings--color-palette .Button__small .Button--content {
+    height: 32px;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title .E_GlobalColorPaletteSettings--color {
+    margin-bottom: 0;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title-dropdown {
+    top: 25px;
+    right: auto;
+    left: 176px;
+
+    width: 32px;
+    height: 32px;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title-dropdown svg {
+    width: 14px;
+    height: 14px;
+}
 .E_NewPageSectionSelector {
 }
 
@@ -14794,6 +15111,166 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 
 /*====================================================================*/
+/*------------ GlobalPageSettings - color-palette-settings -----------*/
+/*====================================================================*/
+
+.E_GlobalColorPaletteSettings {
+    padding: 4px 0px;
+}
+
+.E_GlobalColorPaletteSettings--colors {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+       -moz-box-orient: horizontal;
+       -moz-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette) {
+    padding: 4px 20px;
+
+    border-bottom: 1px solid #ddd;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette):first-child {
+    border-top: 1px solid #ddd;
+}
+
+.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette):hover {
+    background-color: #404040;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette):active {
+    background-color: #e85a27;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.E_GlobalColorPaletteSettings--color {
+    position: relative;
+    margin-right: 4px;
+
+    width: 32px;
+    height: 32px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+    -webkit-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
+
+    -webkit-flex-shrink: 0;
+
+        -ms-flex-negative: 0;
+
+            flex-shrink: 0;
+
+    overflow: hidden;
+
+    will-change: background, box-shadow;
+    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    -moz-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    -o-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+}
+
+.E_GlobalColorPaletteSettings--color:active {
+    -webkit-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
+
+    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    -moz-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    -o-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+}
+/*====================================================================*/
 /*----------------- GlobalPageSettings - font-settings ---------------*/
 /*====================================================================*/
 
@@ -14845,7 +15322,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     width: calc(100% / 3);
     min-width: 100px;
-    max-width: 140px;
+    max-width: 160px;
 
     color: #404040;
     background-color: #f7f7f7;
@@ -18695,13 +19172,13 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 /*====================================================================*/
 
 [class*='InlineWidget__PageMenu'] {
-	margin-left: -24px;
+	margin-left: -20px;
 
-    width: -webkit-calc(100% + 48px);
+    width: -webkit-calc(100% + 40px);
 
-    width: -moz-calc(100% + 48px);
+    width: -moz-calc(100% + 40px);
 
-    width: calc(100% + 48px);
+    width: calc(100% + 40px);
 
     background-color: #f5f5f5;
     border-top: 1px solid #d7d7d7;

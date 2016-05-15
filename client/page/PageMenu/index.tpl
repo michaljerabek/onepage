@@ -30,8 +30,14 @@
                     <svg><use xlink:href="#icon-x"></use></svg>
                 </span>
 
+                <span class="E_PageMenu--show-page" on-touchstart-touchend-hover="showPage">
+                    <svg><use xlink:href="#icon-eye"></use></svg>
+                </span>
+
                 <div class="E_PageMenu--content-wrapper">
-                    <GlobalPageSettings settings="{{.page.settings}}" pageTitleColorTest="{{pageTitleColorTest}}" />
+                    {{#if .openPageMenu === 'settings'}}
+                    <GlobalPageSettings settings="{{.page.settings}}" />
+                    {{/if}}
                 </div>
             </div>
 

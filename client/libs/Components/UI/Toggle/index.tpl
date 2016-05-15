@@ -23,7 +23,7 @@
 
         <label class="Toggle--event" for="{{.id}}">
 
-            {{#if .data.state === "disabled" || !@ractive.events.windowMousemove}}
+            {{#if .data.state === "disabled" || !@ractive.root.events.windowMousemove}}
 
                 <span class="Toggle--handle"></span>
 

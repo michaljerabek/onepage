@@ -308,7 +308,7 @@ var instaceCounter = 0,
             .on("touchmove."  + this.EVENT_NS, handleTouchmove.bind(this))
             .on("touchend."   + this.EVENT_NS, handleTouchend.bind(this));
 
-        this.Page.on("*.showPage", toggleShowPage.bind(this));
+        this.Page.on("*.showPage showPage", toggleShowPage.bind(this));
         
         //skryje menu s výběrem sekcí, pokud uživatel přetáhně nějakou sekci do stránky
         this.draggableActiveObserver = this.Page.observe("draggableActive", function (state) {

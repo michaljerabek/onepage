@@ -22,14 +22,39 @@ module.exports = InlineWidget.extend({
 
     onconfig: function () {
 
+        if (this.parent) {
+
+            var connectWith = this.get("connectWith");
+
+            if (connectWith) {
+
+                this.connectWithObserver = this.parent.observe(connectWith.opener, function (current) {
+
+                    this.parent.set("__InlineWidget." + connectWith.id, !!current);
+
+                }.bind(this), {init: false});
+
+                this.set("delayOpening", this.parent.get("__InlineWidget." + connectWith.id));
+
+            } else  {
+
+                this.parent.set("__InlineWidget", {});
+            }
+        }
     },
 
     onrender: function () {
-
     },
 
     oncomplete: function () {
-    }
+    },
 
+    onteardown: function () {
+
+        if (this.connectWithObserver) {
+
+            this.connectWithObserver.cancel();
+        }
+    }
 
 });

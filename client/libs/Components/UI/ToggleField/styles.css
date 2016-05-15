@@ -1,0 +1,143 @@
+/*====================================================================*/
+/*---------------------------- TOGGLEFIELD ---------------------------*/
+/*====================================================================*/
+
+.ToggleField {
+    position: relative;
+
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+
+    flex-grow: 1;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    touch-action: manipulation;
+}
+
+.ToggleField:after {
+    content: "";
+
+    z-index: 1;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+
+    border-radius: inherit;
+    box-shadow:
+        inset 0px 0px 8px rgba(8, 161, 194, 0),
+        inset 0px 0px 2px rgba(8, 161, 194, 0);
+
+    will-change: box-shadow;
+    transition: var(--default-transition);
+    pointer-events: none;
+}
+
+
+@-moz-document url-prefix() {
+
+    .ToggleField:after {
+        box-shadow:
+            inset 0px 0px 8px rgba(8, 161, 194, 0),
+            inset 0px 0px 1px rgba(8, 161, 194, 0);
+    }
+}
+
+.ToggleField--text {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-weight: 500;
+    text-overflow: ellipsis;
+	white-space: nowrap;
+
+    padding-right: 16px;
+
+    color: var(--color-text-1);
+
+    overflow: hidden;
+}
+
+.ToggleField .Toggle {
+    z-index: 2;
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+.ToggleField .Toggle--input {
+    visibility: hidden;
+}
+
+/*---------------------------- SIZE - SMALL ----------------------------*/
+
+.ToggleField__small {
+    height: 34px;
+    padding-right: 3px;
+    padding-left: 10px;
+}
+
+.ToggleField__small .ToggleField--text {
+    font-size: 13px;
+}
+
+/*---------------------------- SIZE - MEDIUM ----------------------------*/
+
+.ToggleField__medium {
+    height: 42px;
+    padding-right: 3px;
+    padding-left: 12px;
+}
+
+.ToggleField__medium .ToggleField--text {
+    font-size: 14px;
+}
+
+/*---------------------------- SIZE - LARGE ----------------------------*/
+
+.ToggleField__large {
+    height: 50px;
+    padding-right: 5px;
+    padding-left: 16px;
+}
+
+.ToggleField__large .ToggleField--text {
+    font-size: 17px;
+}
+
+/*---------------------------- TYPE - DEFAULT ----------------------------*/
+
+.ToggleField:not(.ToggleField__disabled):focus:after,
+.ToggleField:not(.ToggleField__disabled):hover:after {
+    box-shadow:
+        inset 0px 0px 8px rgba(8, 161, 194, 0.15),
+        inset 0px 0px 2px rgba(8, 161, 194, 1);
+
+    transition: var(--default-transition-hover);
+}
+
+@-moz-document url-prefix() {
+
+    .ToggleField:not(.ToggleField__disabled):focus:after,
+    .ToggleField:not(.ToggleField__disabled):hover:after {
+        box-shadow:
+            inset 0px 0px 8px rgba(8, 161, 194, 0.1),
+            inset 0px 0px 1px rgba(8, 161, 194, 1);
+    }
+}
+
+/*---------------------------- STATE - DISABLED ----------------------------*/
+
+.ToggleField__disabled {
+	background-color: var(--color-button-bg-disabled);
+}
+
+.ToggleField__disabled .ToggleField--text {
+    color: var(--color-button-text-disabled);
+}
+
+
