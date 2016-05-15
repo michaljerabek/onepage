@@ -1,0 +1,162 @@
+/*====================================================================*/
+/*----------------- GlobalPageSettings - font-settings ---------------*/
+/*====================================================================*/
+
+.E_GlobalFontSettings {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_GlobalFontSettings--wrapper {
+    margin-bottom: -1px;
+
+    width: calc(100% + 1px);
+
+    display: flex;
+    flex-wrap: wrap;
+
+    overflow: hidden;
+}
+
+.E_GlobalFontSettings--font-type {
+    position: relative;
+
+    width: calc(100% / 3);
+    min-width: 100px;
+    max-width: 160px;
+
+    color: var(--color-text-1);
+    background-color: #f7f7f7;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+    cursor: default;
+    transition: var(--default-transition);
+}
+
+.E_GlobalFontSettings--font-type:hover {
+    color: #fff;
+    background-color: var(--color-hover);
+
+    transition: var(--default-transition-hover);
+}
+
+.E_GlobalFontSettings--font-type:active,
+.E_GlobalFontSettings--font-type__active:active {
+    color: #fff;
+    background-color: var(--color-selected-active);
+
+    transition: var(--default-transition-active);
+}
+
+.E_GlobalFontSettings--font-type__active {
+    color: #fff;
+    background-color: var(--color-selected);
+}
+
+.E_GlobalFontSettings--font-type__active:hover {
+    color: #fff;
+    background-color: var(--color-selected);
+
+    transition: var(--default-transition-hover);
+}
+
+.E_GlobalFontSettings--font-type .E_GlobalFontSettings--title,
+.E_GlobalFontSettings--font-type .E_GlobalFontSettings--body-title,
+.E_GlobalFontSettings--font-type .E_GlobalFontSettings--body-preview,
+.E_GlobalFontSettings--font-type:hover .E_GlobalFontSettings--title,
+.E_GlobalFontSettings--font-type:hover .E_GlobalFontSettings--body-title,
+.E_GlobalFontSettings--font-type:hover .E_GlobalFontSettings--body-preview,
+.E_GlobalFontSettings--font-type:active .E_GlobalFontSettings--title,
+.E_GlobalFontSettings--font-type:active .E_GlobalFontSettings--body-title,
+.E_GlobalFontSettings--font-type:active .E_GlobalFontSettings--body-text,
+.E_GlobalFontSettings--font-type__active:active .E_GlobalFontSettings--title,
+.E_GlobalFontSettings--font-type__active:active .E_GlobalFontSettings--body-title,
+.E_GlobalFontSettings--font-type__active:active .E_GlobalFontSettings--body-text {
+    transition: inherit;
+}
+
+.E_GlobalFontSettings--font-preview {
+    position: relative;
+
+    padding-bottom: 100%;
+    height: 0;
+
+    overflow: hidden;
+}
+
+.E_GlobalFontSettings--font-preview > * {
+    white-space: nowrap;
+
+    position:absolute;
+    top: 0px;
+    left: calc(18% - 4px);
+
+    overflow: hidden;
+}
+
+.E_GlobalFontSettings--title {
+    font-size: 25px;
+
+    top: calc(26% - 10px);
+}
+
+.E_GlobalFontSettings--body {
+    font-size: 14px;
+    line-height: 1.5;
+
+    top: calc(54% - 8px);
+}
+/*--------------------------------------------------------------------*/
+/*---------------------------- FONT TYPES ----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-1"] .E_GlobalFontSettings--title {
+    font-family: var(--P_font-type-1-title-font-family);
+    font-weight: var(--P_font-type-1-title-font-weight);
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-1"] .E_GlobalFontSettings--body {
+    font-family: var(--P_font-type-1-body-font-family);
+    font-weight: var(--P_font-type-1-body-font-weight);
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-2"] .E_GlobalFontSettings--title {
+    font-family: var(--P_font-type-2-title-font-family);
+    font-weight: var(--P_font-type-2-title-font-weight);
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-2"] .E_GlobalFontSettings--body {
+    font-family: var(--P_font-type-2-body-font-family);
+    font-weight: var(--P_font-type-2-body-font-weight);
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-3"] .E_GlobalFontSettings--title {
+    font-family: var(--P_font-type-3-title-font-family);
+    font-weight: var(--P_font-type-3-title-font-weight);
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-3"] .E_GlobalFontSettings--body {
+    font-family: var(--P_font-type-3-body-font-family);
+    font-weight: var(--P_font-type-3-body-font-weight);
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-4"] .E_GlobalFontSettings--title {
+    font-family: var(--P_font-type-4-title-font-family);
+    font-weight: var(--P_font-type-4-title-font-weight);
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-4"] .E_GlobalFontSettings--body {
+    font-family: var(--P_font-type-4-body-font-family);
+    font-weight: var(--P_font-type-4-body-font-weight);
+}
+

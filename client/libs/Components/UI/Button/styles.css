@@ -6,7 +6,8 @@
 .Button:after,
 .Button--content,
 .Button--text,
-.Button--icon svg {
+.Button--icon svg,
+.Button--icon {
     will-change: box-shadow, transform, background, fill, color;
     transition: var(--default-transition);
 }
@@ -15,20 +16,23 @@
 .Button:hover:after,
 .Button:hover .Button--text,
 .Button:hover .Button--icon svg,
+.Button:hover .Button--icon,
 .Button--event:focus ~ .Button--content,
 .Button:focus,
+.Button:focus:after,
 .Button:focus .Button--content,
 .Button:focus .Button--text,
-.Button:focus .Button--icon svg {
+.Button:focus .Button--icon svg,
+.Button:focus .Button--icon {
     transition: var(--default-transition-hover);
 }
 
 .Button:active,
-.Button:active,
 .Button:active .Button--content,
 .Button:active:after,
 .Button:active .Button--text,
-.Button:active .Button--icon svg {
+.Button:active .Button--icon svg,
+.Button:active .Button--icon {
     transition: var(--default-transition-active);
 }
 

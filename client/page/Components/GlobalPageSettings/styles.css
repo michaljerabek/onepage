@@ -1,2 +1,48 @@
-.E_GlobalPageSettings {
+.E_PageMenu--section.E_GlobalPageSettings--font-settings {
+    padding-bottom: 0;
+}
+
+.E_GlobalPageSettings--font-settings .InlineWidget {
+    margin-bottom: 10px;
+}
+
+.E_GlobalPageSettings--underline-title {
+    padding-top: 6px;
+    padding-bottom: 8px;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title {
+    flex-wrap: wrap;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title .E_GlobalColorPaletteSettings--colors {
+    margin-top: 12px;
+}
+
+.E_GlobalPageSettings--color-palette .Button {
+    position:absolute;
+    top: 38px;
+    right: 0px;
+}
+
+.E_GlobalPageSettings--color-palette .Button__small .Button--content {
+    height: 32px;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title .E_GlobalColorPaletteSettings--color {
+    margin-bottom: 0;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title-dropdown {
+    top: 25px;
+    right: auto;
+    left: 176px;
+
+    width: 32px;
+    height: 32px;
+}
+
+.E_GlobalPageSettings--color-palette .E_PageMenu--sub-title-dropdown svg {
+    width: 14px;
+    height: 14px;
 }

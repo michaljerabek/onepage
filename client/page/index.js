@@ -53,7 +53,10 @@ module.exports = Ractive.extend({
         PageSectionC: require("./Components/PageSection/Types/PageSectionC"),
 
         NewPageSectionSelector: Ractive.EDIT_MODE ? require("./Components/NewPageSectionSelector") : null,
-        GlobalPageSettings: Ractive.EDIT_MODE ? require("./Components/GlobalPageSettings") : null
+        GlobalPageSettings: Ractive.EDIT_MODE ? require("./Components/GlobalPageSettings") : null,
+
+        InlineWidget: Ractive.EDIT_MODE ? require("./../libs/Components/InlineWidget") : null,
+        PageMenuInlineWidget: Ractive.EDIT_MODE ? require("./PageMenu/Components/PageMenuInlineWidget") : null
     },
 
     partials: {
@@ -67,7 +70,9 @@ module.exports = Ractive.extend({
         Button: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Button/index.tpl") : null,
         Switch: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Switch/index.tpl") : null,
         Slider: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Slider/index.tpl") : null,
-        Select: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Select/index.tpl") : null
+        Select: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Select/index.tpl") : null,
+        Toggle: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Toggle/index.tpl") : null,
+        ToggleField: Ractive.EDIT_MODE ? require("./../libs/Components/UI/ToggleField/index.tpl") : null
     },
 
     data: function () {
@@ -77,9 +82,28 @@ module.exports = Ractive.extend({
             draggableActive: "",
             openPageMenu: null,
             cancelAddSection: false,
-            unsavedChanges: false
-        };
+            unsavedChanges: false,
 
+            defaults: {
+                settings: {
+                    animations: 10,
+                    roundness: 0,
+                    fontType: "P_font-type-1",
+                    colorPalette: {
+                        colors: [
+                            "rgb(204, 33, 33)",
+                            "rgb(19, 195, 19)",
+                            "rgb(29, 88, 183)",
+                            "rgb(232, 224, 122)",
+                            "rgb(91, 247, 169)"
+                        ],
+                        textLight: "rgb(255, 255, 255)",
+                        textDark: "rgb(0, 0, 0)",
+                        headerImg: ""
+                    }
+                }
+            }
+        };
     },
 
     onconfig: function () {

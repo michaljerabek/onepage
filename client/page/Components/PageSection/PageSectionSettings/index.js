@@ -88,6 +88,8 @@
 
         decorators: {
 
+            ResizableBox: require("./../../../../libs/Decorators/ResizableBox"),
+
             PageSectionSettingsBox: function (node, scrollingElementSelector) {
 
                 var $node = $(node),
@@ -117,7 +119,7 @@
                                         }, {
                                             duration: 200,
                                             progress: function () {
-                                                clearTimeout(refreshScrollbars);
+                                                clearTimeout(refreshThrottle);
                                             },
                                             complete: function () {
                                                 $element.perfectScrollbar("update");
@@ -500,10 +502,6 @@
                             })
                             .perfectScrollbar("destroy");
 
-                        $scrollingContent
-                            .off("touchstart." + this.EVENT_NS + " mouseenter." + this.EVENT_NS);
-
-
                         $scrollingElement = null;
                         $scrollingContent = null;
                     }
@@ -528,7 +526,10 @@
                 Ractive.$scrollElement = Ractive.$scrollElement || $("html, body");
             }
 
-            this.minmaxing = true;
+//            this.minmaxing = true;
+
+            this.onresizableboxinit = this.scrollToView;
+            this.onresizableboxend = this.scrollToView;
 
             //Počkat až se zavře jiné nastavení ve stejné sekci?
             this.set("delayOpening", this.parent.get("anotherSettingsOpened"));
@@ -541,10 +542,10 @@
                 this.self = this.find("." + this.CLASS.self);
                 this.$self = $(this.self);
 
-                this.resizableElement = this.find("." + this.CLASS.wrapper);
-                this.$resizableElement = $(this.resizableElement);
+//                this.resizableElement = this.find("." + this.CLASS.wrapper);
+//                this.$resizableElement = $(this.resizableElement);
 
-                this.scrollToView();
+//                this.scrollToView();
             }
         },
 
@@ -552,12 +553,11 @@
 
             if (on.client) {
 
-                this.set("elementHeight", this.getSettingsHeight());
+//                this.set("elementHeight", this.getSettingsHeight());
 
-                this.userDefHeight = this.get("resizableElementHeight");
-                this.userDefWidth = this.get("resizableElementWidth");
+//                this.userDefHeight = this.get("elementHeight");
 
-                this.minmaxing = false;
+//                this.minmaxing = false;
             }
         },
 
@@ -565,91 +565,91 @@
 
             Ractive.$win.off("." + this.EVENT_NS);
         },
+//
+//        activateResizer: function (e) {
+//
+//            var eventData = U.eventData(e),
+//
+//                lastY = eventData.clientY,
+//
+//                resized = false;
+//
+//            if (eventData.pointers > 1) {
+//
+//                return;
+//            }
+//
+//            eventData.target.classList.add(this.CLASS.resizerActive);
+//
+//            Ractive.$win
+//                .off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS)
+//                .on("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS, function (e) {
+//
+//                    var eventData = U.eventData(e);
+//
+//                    if (eventData.pointers > 1) {
+//
+//                        return;
+//                    }
+//
+//                    this.set("elementHeight", this.getSettingsHeight() + eventData.clientY - lastY);
+//
+//                    lastY = eventData.clientY;
+//
+//                    if (this.$resizableBox) {
+//
+//                        this.minmaxButton.classList.remove(this.CLASS.minmaxMax);
+//
+//                        this.$resizableBox.css({
+//                            transition: "none",
+//                            height: ""
+//                        });
+//                    }
+//
+//                    resized = true;
+//
+//                    e.preventDefault();
+//                    return false;
+//
+//                }.bind(this))
+//                .one("mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS, function (e) {
+//
+//                    this.wasResized = resized;
+//
+//                    eventData.target.classList.remove(this.CLASS.resizerActive);
+//
+//                    if (resized) {
+//
+//                        this.set("elementHeight", this.getSettingsHeight());
+//
+//                        this.userDefHeight = this.get("elementHeight");
+//
+//                        setTimeout(function() {
+//
+//                            this.wasResized = false;
+//
+//                        }.bind(this), 0);
+//                    }
+//
+//                    Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
+//
+//                    e.preventDefault();
+//                    return false;
+//
+//                }.bind(this));
+//
+//            eventData.preventDefault();
+//            return false;
+//        },
+//
+//        getSettingsHeight: function () {
+//
+//            return this.resizableElement.getBoundingClientRect().height;
+//        },
 
-        activateResizer: function (e) {
+        scrollToView: function (expectedRect, isMaximized) {
 
-            var eventData = U.eventData(e),
-
-                lastY = eventData.clientY,
-                
-                resized = false;
-
-            if (eventData.pointers > 1) {
-
-                return;
-            }
-
-            eventData.target.classList.add(this.CLASS.resizerActive);
-
-            Ractive.$win
-                .off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS)
-                .on("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS, function (e) {
-
-                    var eventData = U.eventData(e);
-
-                    if (eventData.pointers > 1) {
-
-                        return;
-                    }
-
-                    this.set("elementHeight", this.getSettingsHeight() + eventData.clientY - lastY);
-
-                    lastY = eventData.clientY;
-
-                    if (this.$resizableBox) {
-
-                        this.minmaxButton.classList.remove(this.CLASS.minmaxMax);
-
-                        this.$resizableBox.css({
-                            transition: "none",
-                            height: ""
-                        });
-                    }
-
-                    resized = true;
-                
-                    e.preventDefault();
-                    return false;
-
-                }.bind(this))
-                .one("mouseup." + this.EVENT_NS + " touchend." + this.EVENT_NS, function (e) {
-
-                    this.wasResized = resized;
-
-                    eventData.target.classList.remove(this.CLASS.resizerActive);
-
-                    if (resized) {
-                        
-                        this.set("elementHeight", this.getSettingsHeight());
-
-                        this.userDefHeight = this.get("elementHeight");
-                        
-                        setTimeout(function() {
-
-                            this.wasResized = false;
-
-                        }.bind(this), 0);
-                    }
-
-                    Ractive.$win.off("mousemove." + this.EVENT_NS + " touchmove." + this.EVENT_NS);
-
-                    e.preventDefault();
-                    return false;
-
-                }.bind(this));
-
-            eventData.preventDefault();
-            return false;
-        },
-
-        getSettingsHeight: function () {
-
-            return this.resizableElement.getBoundingClientRect().height;
-        },
-
-        scrollToView: function (expectedHeight, isMaximized) {
-
-            var height = expectedHeight || parseFloat(this.$resizableElement.css("height")),
+            var height = (expectedRect && expectedRect.height) || parseFloat(this.$resizableElement.css("height")),
                 prevSettingsHeight = 0,
 
                 top = this.$self[0].getBoundingClientRect().top,

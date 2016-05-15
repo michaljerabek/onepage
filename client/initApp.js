@@ -75,7 +75,8 @@ module.exports = function (ractive, ractiveData, config) {
 
         console.time("pageLoaded");
 
-        var ractiveKeyEvents = require("ractive-events-keys");
+        var ractiveKeyEvents = require("ractive-events-keys"),
+            ractiveWindowEvents = require("./libs/ractive-events-window");
 
         App = ractive({
 
@@ -87,9 +88,15 @@ module.exports = function (ractive, ractiveData, config) {
             data: ractiveData,
 
             events: {
-//                tap: require("ractive-events-tap")
                 hover: require("ractive-events-hover"),
-                enter: ractiveKeyEvents.enter
+                enter: ractiveKeyEvents.enter,
+                space: ractiveKeyEvents.space,
+                windowMousedown: ractiveWindowEvents.windowMousedown,
+                windowMousemove: ractiveWindowEvents.windowMousemove,
+                windowMouseup: ractiveWindowEvents.windowMouseup,
+                windowTouchstart: ractiveWindowEvents.windowTouchstart,
+                windowTouchmove: ractiveWindowEvents.windowTouchmove,
+                windowTouchend: ractiveWindowEvents.windowTouchend
             },
 
             transitions: {

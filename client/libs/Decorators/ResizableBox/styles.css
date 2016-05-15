@@ -1,0 +1,190 @@
+/*====================================================================*/
+/*--------------------------- ResizableBox ---------------------------*/
+/*====================================================================*/
+
+.ResizableBox:not(.ResizableBox__floating) {
+    position: relative;
+
+    min-height: 32px;
+
+    overflow: hidden;
+
+    will-change: height, max-height;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--self {
+    display: flex;
+
+    width: 100%;
+
+    transition: var(--default-transition);
+    transition-property: height;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--scrollable {
+    width: 100%;
+}
+
+/*---------------------------- CLOSE | MINMAX ----------------------------*/
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max,
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
+    z-index: 1100;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+    padding-top: 2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+
+    transition: var(--default-transition);
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
+    padding-right: 2px;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
+    padding-left: 4px;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max svg,
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--close svg {
+    width: 12px;
+    height: 12px;
+
+    fill: #404040;
+    opacity: 0.4;
+
+    transition: var(--default-transition);
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
+    right: 24px;
+}
+
+@media (pointer: coarse) {
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max,
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
+        width: 30px;
+        height: 30px;
+        padding-top: 0;
+    }
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
+        padding-right: 2px;
+    }
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
+        padding-left: 8px;
+    }
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max svg,
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
+        right: 30px;
+    }
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max__max {
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max__max svg {
+    fill: var(--color-selected);
+    opacity: 1;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max:hover,
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--close:hover {
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+
+    transition: var(--default-transition-hover);
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max:hover svg,
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--close:hover svg {
+    opacity: 1;
+
+    transition: var(--default-transition-hover);
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max:active svg,
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--close:active svg {
+    transform: scale(0.9);
+
+    transition: var(--default-transition-active);
+}
+
+/*---------------------------- RESIZER ----------------------------*/
+
+.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer {
+    z-index: 100;
+    position: absolute;
+    bottom: -7px;
+    left: 0px;
+
+    width: 100%;
+    height: 12px;
+
+    cursor: ns-resize;
+}
+
+@media (pointer: coarse) {
+
+    .ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer {
+        bottom: -13px;
+
+        height: 24px;
+    }
+}
+
+.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer:after {
+    content: "";
+
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 0px;
+
+    width: 100%;
+    height: 0px;
+
+    border-bottom: 1px solid transparent;
+
+    cursor: ns-resize;
+
+    transition: var(--default-transition);
+
+    transform: translateZ(0);
+}
+
+.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer:hover:after {
+    border-bottom-color: var(--color-selected);
+
+    transition: var(--default-transition-hover);
+}
+
+.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer__active:after,
+.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer:active:after {
+    border-bottom-color: var(--color-ok);
+
+    transition: var(--default-transition-active);
+}

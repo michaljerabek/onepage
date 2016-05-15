@@ -1,5 +1,5 @@
 /*====================================================================*/
-/*------------------------ PageSectionSetings ------------------------*/
+/*----------------------- PageSectionSettings ------------------------*/
 /*====================================================================*/
 
 .E_PageSectionSettings {
@@ -12,34 +12,6 @@
     background-color: #f4f4f4;
     border-top: 1px solid #d7d7d7;
     border-bottom: 1px solid #d7d7d7;
-}
-
-.E_PageSectionSettings--wrapper {
-    position: relative;
-
-    min-height: 32px;
-
-    overflow: hidden;
-
-    will-change: height, max-height;
-}
-
-.E_PageSectionSettings--wrapper-2 {
-    margin: 0px auto;
-
-    max-width: var(--P_PageSection__max-width);
-
-    background-color: #f7f7f7;
-
-    overflow: hidden;
-}
-
-@media (min-width: 1440px) {
-
-    .E_PageSectionSettings--wrapper-2 {
-        border-left: 1px solid #d7d7d7;
-        border-right: 1px solid #d7d7d7;
-    }
 }
 
 .E_PageSectionSettings--shadow {
@@ -58,13 +30,22 @@
     pointer-events: none;
 }
 
-.E_PageSectionSettings--resizable-box {
-    display: flex;
+.E_PageSectionSettings--wrapper-2 {
+    margin: 0px auto;
 
-    width: 100%;
+    max-width: var(--P_PageSection__max-width);
 
-    transition: var(--default-transition);
-    transition-property: height;
+    background-color: #f7f7f7;
+
+    overflow: hidden;
+}
+
+@media (min-width: 1440px) {
+
+    .E_PageSectionSettings--wrapper-2 {
+        border-left: 1px solid #d7d7d7;
+        border-right: 1px solid #d7d7d7;
+    }
 }
 
 .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
@@ -93,6 +74,10 @@
     position: relative;
 
     overflow: hidden;
+}
+
+.E_PageSectionSettings--scrollable {
+    width: 100%;
 }
 
 @media (max-width: 640px) {
@@ -181,170 +166,6 @@
     }
 }
 
-/*---------------------------- CLOSE | MINMAX ----------------------------*/
-
-.E_PageSectionSettings--min-max,
-.E_PageSectionSettings--close {
-    z-index: 1100;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-
-    width: 24px;
-    height: 24px;
-    padding-top: 2px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
-    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
-
-    transition: var(--default-transition);
-}
-
-.E_PageSectionSettings--close {
-    padding-right: 2px;
-}
-
-.E_PageSectionSettings--min-max {
-    padding-left: 4px;
-}
-
-.E_PageSectionSettings--min-max svg,
-.E_PageSectionSettings--close svg {
-    width: 12px;
-    height: 12px;
-
-    fill: #404040;
-    opacity: 0.4;
-
-    transition: var(--default-transition);
-}
-
-.E_PageSectionSettings--min-max {
-    right: 24px;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageSectionSettings--min-max,
-    .E_PageSectionSettings--close {
-        width: 30px;
-        height: 30px;
-        padding-top: 0;
-    }
-
-    .E_PageSectionSettings--close {
-        padding-right: 2px;
-    }
-
-    .E_PageSectionSettings--min-max {
-        padding-left: 8px;
-    }
-
-    .E_PageSectionSettings--min-max svg,
-    .E_PageSectionSettings--close svg {
-        width: 14px;
-        height: 14px;
-    }
-
-    .E_PageSectionSettings--min-max {
-        right: 30px;
-    }
-}
-
-.E_PageSectionSettings--min-max__max {
-    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-}
-
-.E_PageSectionSettings--min-max__max svg {
-    fill: var(--color-selected);
-    opacity: 1;
-}
-
-.E_PageSectionSettings--min-max:hover,
-.E_PageSectionSettings--close:hover {
-    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-
-    transition: var(--default-transition-hover);
-}
-
-.E_PageSectionSettings--min-max:hover svg,
-.E_PageSectionSettings--close:hover svg {
-    opacity: 1;
-
-    transition: var(--default-transition-hover);
-}
-
-.E_PageSectionSettings--min-max:active svg,
-.E_PageSectionSettings--close:active svg {
-    transform: scale(0.9);
-
-    transition: var(--default-transition-active);
-}
-
-/*---------------------------- RESIZER ----------------------------*/
-
-.E_PageSectionSettings--resizer {
-    z-index: 100;
-    position: absolute;
-    bottom: -7px;
-    left: 0px;
-
-    width: 100%;
-    height: 12px;
-
-    cursor: ns-resize;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageSectionSettings--resizer {
-        bottom: -13px;
-
-        height: 24px;
-    }
-}
-
-.E_PageSectionSettings--resizer:after {
-    content: "";
-
-    position: absolute;
-    top: calc(50% - 1px);
-    left: 0px;
-
-    width: 100%;
-    height: 0px;
-
-    border-bottom: 1px solid transparent;
-
-    cursor: ns-resize;
-
-    transition: var(--default-transition);
-
-    transform: translateZ(0);
-}
-
-.E_PageSectionSettings--resizer:hover:after {
-    border-bottom-color: var(--color-selected);
-
-    transition: var(--default-transition-hover);
-}
-
-.E_PageSectionSettings--resizer__active:after,
-.E_PageSectionSettings--resizer:active:after {
-    border-bottom-color: var(--color-ok);
-
-    transition: var(--default-transition-active);
-}
-
 /*---------------------------- SECTION ----------------------------*/
 
 .E_PageSectionSettings--sections {
@@ -362,11 +183,11 @@
     padding: 16px 20px;
 }
 
-.E_PageSectionSettings--sections:first-of-type {
+.E_PageSectionSettings--sections:not(.E_PageSectionSettings--sections__full):first-of-type {
     padding-top: 0;
 }
 
-.E_PageSectionSettings--sections:last-of-type {
+.E_PageSectionSettings--sections:not(.E_PageSectionSettings--sections__full):last-of-type {
     padding-bottom: 0;
 }
 

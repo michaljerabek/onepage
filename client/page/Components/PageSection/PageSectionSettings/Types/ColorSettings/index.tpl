@@ -1,19 +1,19 @@
 <div class="E_ColorSettings"
-    decorator="PageSectionSettingsBox:.E_PageSectionSettings--scrollable"
+    decorator="ResizableBox"
     data-max-resize-height="768"
     style="max-height: 320px"
 >
 
-    <div class="E_ColorSettings--menu E_PageSectionSettings--scrollable">
-        <div class="E_PageSectionSettingsMenu E_PageSectionSettings--scrolling-content">
+    <div class="E_ColorSettings--menu E_PageSectionSettings--scrollable ResizableBox--scrollable">
+        <div class="E_PageSectionSettingsMenu E_PageSectionSettings--scrolling-content ResizableBox--scrolling-content">
             <ul class="E_PageSectionSettingsMenu--list E_ColorSettings--menu-list">
                 {{>ColorSettingsNavItem {index: 1, settings: this}}}
             </ul>
         </div>
     </div>
 
-    <div class="E_ColorSettings--ColorPicker E_PageSectionSettings--scrollable">
-        <div class="E_PageSectionSettings--scrolling-content">{{>ColorSettingsTab}}</div>
+    <div class="E_ColorSettings--ColorPicker E_PageSectionSettings--scrollable ResizableBox--scrollable">
+        <div class="E_PageSectionSettings--scrolling-content ResizableBox--scrolling-content">{{>ColorSettingsTab}}</div>
     </div>
 
 </div>
