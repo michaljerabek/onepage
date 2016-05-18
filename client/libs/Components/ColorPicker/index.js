@@ -469,6 +469,8 @@
                 return;
             }
 
+            this.fire("activated", this);
+
             var moveData = {};
 
             moveData.type = type;

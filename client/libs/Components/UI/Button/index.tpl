@@ -6,7 +6,9 @@
         Button__{{.state || 'normal'}}
         {{#if !.icon}}Button__no-icon{{/if}}
         {{#if !.text}}Button__no-text{{/if}}
+        {{.className}}
     "
+    title={{.title}}
     {{#if !.fire && !.set && .state !== 'disabled'}}tabindex="{{.tabindex || 0}}"{{/if}}
 >
 
@@ -14,17 +16,14 @@
 
         <span class="Button--event"
             tabindex="{{.tabindex || 0}}"
-            on-tap="{{.fire}}:{{.event}}"
-            on-enter="{{.fire}}:{{.event}}"
+            on-tap-enter-space="{{.fire}}:{{.event}}"
         ></span>
 
     {{elseif .set && .state !== "disabled"}}
 
         <span class="Button--event"
             tabindex="{{.tabindex || 0}}"
-            on-tap="set(.set.replace(/^\./, ''), .value)"
-            on-enter="set(.set.replace(/^\./, ''), .value)"
-            on-space="set(.set.replace(/^\./, ''), .value)"
+            on-tap-enter-space="set(.set.replace(/^\./, ''), .value)"
         ></span>
 
     {{/if}}
@@ -34,10 +33,10 @@
         {{#if .icon}}
             <span class="Button--icon"
                 style="
-                          top: {{.iconY + 'px'}};
-                         left: {{.iconX + 'px'}};
-                        width: {{.iconW + 'px'}};
-                       height: {{.iconH + 'px'}};
+                          top: {{typeof .iconY !== 'undefined' ? .iconY + 'px' : ''}};
+                         left: {{typeof .iconX !== 'undefined' ? .iconX + 'px' : ''}};
+                        width: {{typeof .iconW !== 'undefined' ? .iconW + 'px' : ''}};
+                       height: {{typeof .iconH !== 'undefined' ? .iconH + 'px' : ''}};
                     transform: rotate({{.iconR || 0}}deg);
                 "
             >

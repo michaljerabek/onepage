@@ -241,6 +241,22 @@ module.exports = Ractive.extend({
             this.pageMenu.reset();
         }
 
+        if (!this.defaultColorsGenerator) {
+
+            if (!this.get("page.settings.colorPalette")) {
+
+                this.set("page.settings.colorPalette", this.get("defaults.settings.colorPalette"));
+            }
+
+            var DefaultColorsGenerator = require("./DefaultColorsGenerator");
+
+            this.defaultColorsGenerator = new DefaultColorsGenerator(this, this.get("page.settings.colorPalette"));
+
+        } else {
+
+            this.defaultColorsGenerator.reset();
+        }
+
         //sledovat změny stránky -> označit jako neuložené
         this.observe("page.settings page.sections", this.handlePageChanged, {init: false});
         this.on("*.sectionOrderChanged", this.handlePageChanged, {init: false});
@@ -395,14 +411,14 @@ module.exports = Ractive.extend({
         return pageSection;
     },
 
-    forEachPageSection: function (fn/*, args...*/) {
+    forEachPageSection: function (/*fn, args...*/) {
 
-        var sections = this.findPageSections(),
+        var args = Array.prototype.slice.call(arguments),
+
+            sections = $.isArray(args[0]) ? args.shift() : this.findPageSections(),
             s = sections.length - 1,
 
-            args = Array.prototype.slice.call(arguments);
-
-        args.shift();
+            fn = args.shift();
 
         for (s; s >= 0; s--) {
 
@@ -420,6 +436,15 @@ module.exports = Ractive.extend({
                 }
             }
         }
+    },
+
+    forEachPageSectionByIndex: function (/*fn, args...*/) {
+
+        var args = Array.prototype.slice.call(arguments);
+
+        args.unshift(this.pageSectionsManager.getSectionsSortedByIndex(true));
+
+        this.forEachPageSection.apply(this, args);
     },
 
     forEachEditor: function (fn/*, args*/) {

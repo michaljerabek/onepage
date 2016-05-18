@@ -5454,6 +5454,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     width: 14px;
     height: 14px;
 }
+
 .E_NewPageSectionSelector {
 }
 
@@ -6230,6 +6231,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
         -moz-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
 }
+
 /*====================================================================*/
 /*----------------- GlobalPageSettings - font-settings ---------------*/
 /*====================================================================*/
@@ -10301,6 +10303,40 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
             flex-basis: 75%;
 }
 
+.E_ColorSettings .E_PageSectionSettingsMenu {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+       -moz-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+}
+
+.E_ColorSettings .E_ColorSettings--menu-list {
+    width: 100%;
+}
+
+.Button.E_ColorSettings--random-colors-button {
+    margin-top: 32px;
+    margin-right: 16px;
+}
 .E_SectionSettings {
     width: 100%;
 
@@ -17659,6 +17695,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
                 transform: translateX(calc(-100% + 64px));
     }
 }
+
 /*====================================================================*/
 /*------------------------------- TEXT -------------------------------*/
 /*====================================================================*/
