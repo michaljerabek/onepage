@@ -91,14 +91,12 @@ module.exports = Ractive.extend({
                     fontType: "P_font-type-1",
                     colorPalette: {
                         colors: [
-                            "rgb(204, 33, 33)",
-                            "rgb(19, 195, 19)",
-                            "rgb(29, 88, 183)",
-                            "rgb(232, 224, 122)",
-                            "rgb(91, 247, 169)"
+                            "rgb(255, 200, 87)",
+                            "rgb(233, 114, 76)",
+                            "rgb(197, 40, 61)",
+                            "rgb(72, 29, 36)",
+                            "rgb(37, 95, 133)"
                         ],
-                        textLight: "rgb(255, 255, 255)",
-                        textDark: "rgb(0, 0, 0)",
                         headerImg: ""
                     }
                 }

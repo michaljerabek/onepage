@@ -72,6 +72,8 @@ var BLACK  = new Spectra("#000"),
     //fn (<- boolean) slouží k určení, jestli se má nalezená barva použít (true)
     findColorWithGoodContrast = function (i, minContrast, random, fn) {
 
+        random = random || 0;
+
         var colors = this.currentPalette.colors[i].sorted,
             c2 = colors.length - 1,
 
@@ -79,7 +81,7 @@ var BLACK  = new Spectra("#000"),
             colorIndex = -1,
 
             goodContrastColorsCount = 0;
-        
+
         for (c2; c2 >= 0; c2--) {
 
             if (!fn || fn.call(this, i, colors[c2])) {
@@ -89,7 +91,7 @@ var BLACK  = new Spectra("#000"),
 
                 if (contrast >= minContrast) {
 
-                    if (random === goodContrastColorsCount) {
+                    if (Math.abs(random + i) % 4 === goodContrastColorsCount) {
 
                         break;
                     }
@@ -475,11 +477,9 @@ DefaultColorsGenerator.prototype.indexOf = function (color) {
 
     var c = Object.keys(this.currentPalette.colors).length - 1;
 
-    color = color.replace(/\s/g, "");
-
     for (c; c >= 0; c--) {
 
-        if (this.currentPalette.colors[c].self.replace(/\s/g, "") === color) {
+        if (this.equals(this.currentPalette.colors[c].self, color)) {
 
             return c;
         }
@@ -488,7 +488,7 @@ DefaultColorsGenerator.prototype.indexOf = function (color) {
     return -1;
 };
 
-//najde index barvy (color)
+//zjistí, jestli jsou barvy shodné | barvy musí být ve formátu: rgb(0, 0, 0)
 DefaultColorsGenerator.prototype.equals = function (color1, color2) {
 
     return color1.replace(/\s/g, "") === color2.replace(/\s/g, "");
