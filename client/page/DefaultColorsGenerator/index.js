@@ -70,33 +70,31 @@ var BLACK  = new Spectra("#000"),
     //najde barvu s dostatečným kontrastem k dané barvě (i)
     //minContrast (number) + random (number) se použijí pro "náhodné" vyhledledání barvy, která má dostatečný kontrast
     //fn (<- boolean) slouží k určení, jestli se má nalezená barva použít (true)
-    findColorWithGoodContrast = function (i, colors, minContrast, random, fn) {
+    findColorWithGoodContrast = function (i, minContrast, random, fn) {
 
-        var c2 = colors.length - 1,
+        var colors = this.currentPalette.colors[i].sorted,
+            c2 = colors.length - 1,
 
             contrast = 0,
             colorIndex = -1,
 
             goodContrastColorsCount = 0;
-
+        
         for (c2; c2 >= 0; c2--) {
 
-            if (i !== c2 && c2 !== colors.length - 1) {
+            if (!fn || fn.call(this, i, colors[c2])) {
 
-                if (!fn || fn.call(this, i, c2)) {
+                contrast = this.currentPalette.colors[i]["contrastWith" + colors[c2]];
+                colorIndex = colors[c2];
 
-                    contrast = this.currentPalette.colors[i]["contrastWith" + c2];
-                    colorIndex = c2;
+                if (contrast >= minContrast) {
 
-                    if (contrast >= minContrast) {
+                    if (random === goodContrastColorsCount) {
 
-                        if (random === goodContrastColorsCount) {
-
-                            break;
-                        }
-
-                        goodContrastColorsCount++;
+                        break;
                     }
+
+                    goodContrastColorsCount++;
                 }
             }
         }
@@ -153,7 +151,7 @@ var BLACK  = new Spectra("#000"),
         }
     },
 
-    addTextColor = function (i, colors) {
+    addTextColor = function (i) {
 
         //pokud je barva bílá (= pozadí je bílé) a nemá se automaticky použít černá
         //nebo pokud je barva černá a nemá se automaticky použít bílá
@@ -169,7 +167,7 @@ var BLACK  = new Spectra("#000"),
 
         if ((isWhite && !this.useBlackTextForWhite) || (isBlack && this.useColorTextForBlack)) {
 
-            var highestContrastColor = findColorWithGoodContrast.call(this, i, colors, COLOR_TEXT_COLOR_MIN_CONTRAST, this.randomTextColorFactor);
+            var highestContrastColor = findColorWithGoodContrast.call(this, i, COLOR_TEXT_COLOR_MIN_CONTRAST, this.randomTextColorFactor);
 
             //pokud nejvyšší kontrast není dostatečný, použije se černá/bílá
             if (highestContrastColor.contrast >= COLOR_TEXT_COLOR_MIN_CONTRAST) {
@@ -212,10 +210,10 @@ var BLACK  = new Spectra("#000"),
         }
     },
 
-    addSpecialColor = function (i, colors) {
+    addSpecialColor = function (i) {
 
         //najít barvu s nejvyšším kontrastem; jinou než použitou pro text
-        var highestContrastColor = findColorWithGoodContrast.call(this, i, colors, SPECIAL_COLOR_MIN_CONTRAST, this.randomSpecialColorFactor, function (i, i2) {
+        var highestContrastColor = findColorWithGoodContrast.call(this, i, SPECIAL_COLOR_MIN_CONTRAST, this.randomSpecialColorFactor, function (i, i2) {
             return this.currentPalette.colors[i2].self !== this.currentPalette.colors[i].textColor;
         });
 
@@ -231,6 +229,43 @@ var BLACK  = new Spectra("#000"),
         }
     },
 
+    sortColorContrastByContrast = function (i) {
+        
+        var keys = Object.keys(this.currentPalette.colors[i]);
+
+        keys.sort(function (a, b) {
+
+            if (!a.match(/contrastWith[0-9]+/)) {
+
+                return 1;
+            }
+
+            if (!b.match(/contrastWith[0-9]+/)) {
+
+                return -1;
+            }
+
+            return this.currentPalette.colors[i][b] - this.currentPalette.colors[i][a];
+
+        }.bind(this));
+
+        this.currentPalette.colors[i].sorted = [];
+
+        var k = 0;
+
+        for (k; k < keys.length; k++) {
+
+            if (keys[k].match(/contrastWith[0-9]+/)) {
+
+                this.currentPalette.colors[i].sorted.push(keys[k].match(/[0-9]+/)[0]);
+
+            } else {
+
+                break;
+            }
+        }
+    },
+    
     processPalette = function (palette, doNotRewrite, singleColorChanged) {
 
         var colors = palette.colors.slice(),
@@ -274,20 +309,22 @@ var BLACK  = new Spectra("#000"),
         for (c; c >= 0; c--) {
 
             addColorContrast.call(this, c, colors);
+
+            sortColorContrastByContrast.call(this, c);
+        }
+        
+        c = colors.length - 1;
+
+        for (c; c >= 0; c--) {
+
+            addTextColor.call(this, c);
         }
 
         c = colors.length - 1;
 
         for (c; c >= 0; c--) {
 
-            addTextColor.call(this, c, colors);
-        }
-
-        c = colors.length - 1;
-
-        for (c; c >= 0; c--) {
-
-            addSpecialColor.call(this, c, colors);
+            addSpecialColor.call(this, c);
         }
 
         if (!doNotRewrite) {
