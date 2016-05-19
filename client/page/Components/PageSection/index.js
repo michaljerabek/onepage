@@ -134,6 +134,11 @@
 
                         var pathName = (event.component.container || event.component.parent).get("pathName");
 
+                        if (!pathName) {
+
+                            return;
+                        }
+
                         //uživatel nastavuje vlastní barvu z výchozích -> uložit odkaz na barvu, aby se měnila v případě změny v paletě
                         if (event.component.get("id") === "defaultColors") {
 
@@ -177,6 +182,11 @@
                     this.on("ColorPicker.activated", function (colorPicker) {
 
                         var pathName = colorPicker.get("pathName");
+
+                        if (!pathName) {
+
+                            return;
+                        }
 
                         //uživatel mění barvu na nevýchozí -> odstranit odkazy
                         //viz (2)
@@ -388,59 +398,63 @@
 
         handleSingleDefaultColorChanged: function (colorGenerator) {
 
-            if (typeof this.get("section.defaultColors.backgroundColorRef") === "number") {
+            var defaultColors = this.get("section.defaultColors");
+
+            if (defaultColors && typeof defaultColors.backgroundColorRef === "number") {
 
                 //uživatel změnil barvu pozadí z výchozích barev -> použít výchozí a odstranit nastaveno barvu
-                if (this.get("section.defaultColors.backgroundColorRefByUser")) {
+                if (defaultColors && defaultColors.backgroundColorRefByUser) {
 
                     this.set("section.backgroundColor", "");
                 }
 
                 //výchozí barvy podle odkazu
-                this.set("section.defaultColors.backgroundColor", colorGenerator.getColor(this.get("section.defaultColors.backgroundColorRef")));
+                this.set("section.defaultColors.backgroundColor", colorGenerator.getColor(defaultColors.backgroundColorRef));
 
                 //(1) uživatel změnil barvu textu (speciální) z výchozích -> použít výchozí z odkazu na tuto barvu a odstranit nastavenou
                 //(1) pokud uživatel mění tuto barvu (v paletě) -> barva se bude měnit také, ale nebude se přizůsovovat
-                if (typeof this.get("section.defaultColors.textColorRef") === "number") {
+                if (defaultColors && typeof defaultColors.textColorRef === "number") {
 
                     this.set("section.textColor", "");
-                    this.set("section.defaultColors.textColor", colorGenerator.getColor(this.get("section.defaultColors.textColorRef")));
+                    this.set("section.defaultColors.textColor", colorGenerator.getColor(defaultColors.textColorRef));
 
                     //(2) jestiže odkaz neexistuje, použije se dynamická barva patřící k pozadí
                 } else {
 
-                    this.set("section.defaultColors.textColor", colorGenerator.getTextColor(this.get("section.defaultColors.backgroundColorRef")));
+                    this.set("section.defaultColors.textColor", colorGenerator.getTextColor(defaultColors.backgroundColorRef));
                 }
 
                 //viz (1)
-                if (typeof this.get("section.defaultColors.specialColorRef") === "number") {
+                if (defaultColors && typeof defaultColors.specialColorRef === "number") {
 
                     this.set("section.specialColor", "");
-                    this.set("section.defaultColors.specialColor", colorGenerator.getColor(this.get("section.defaultColors.specialColorRef")));
+                    this.set("section.defaultColors.specialColor", colorGenerator.getColor(defaultColors.specialColorRef));
 
                 //viz (2)
                 } else {
 
-                    this.set("section.defaultColors.specialColor", colorGenerator.getSpecialColor(this.get("section.defaultColors.backgroundColorRef")));
+                    this.set("section.defaultColors.specialColor", colorGenerator.getSpecialColor(defaultColors.backgroundColorRef));
                 }
             }
         },
 
         handleColorPaletteChanged: function (colorGenerator, prevSection) {
 
+            var defaultColors = this.get("section.defaultColors");
+
             //v případě, že na jednotlivé barvy byly nastaveny odkazy (uživatel vybral barvu z výchozích),
             //tak se tyto barvy změní s paletou (odstraní se nastavené barvy)
-            if (typeof this.get("section.defaultColors.textColorRef") === "number") {
+            if (defaultColors && typeof defaultColors.textColorRef === "number") {
 
                 this.set("section.textColor", "");
             }
 
-            if (typeof this.get("section.defaultColors.specialColorRef") === "number") {
+            if (defaultColors && typeof defaultColors.specialColorRef === "number") {
 
                 this.set("section.specialColor", "");
             }
 
-            if (this.get("section.defaultColors.backgroundColorRefByUser")) {
+            if (defaultColors && defaultColors.backgroundColorRefByUser) {
 
                 this.set("section.backgroundColor", "");
             }
@@ -464,6 +478,11 @@
         },
 
         generateRandomColors: function (checkAfterAndBefore, stopTransitions) {
+
+            if (typeof checkAfterAndBefore === "object") {
+
+                checkAfterAndBefore = false;
+            }
 
             var colorPaths = this.getColorPaths(),
                 p = colorPaths .length - 1;

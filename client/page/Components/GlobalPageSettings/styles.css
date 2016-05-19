@@ -11,6 +11,10 @@
     padding-bottom: 8px;
 }
 
+/*--------------------------------------------------------------------*/
+/*-------------------------- COLOR PALETTE ---------------------------*/
+/*--------------------------------------------------------------------*/
+
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title {
     flex-wrap: wrap;
 }
@@ -19,14 +23,22 @@
     margin-top: 12px;
 }
 
-.E_GlobalPageSettings--color-palette .Button {
+.E_GlobalPageSettings--color-palette .E_GlobalColorPaletteSettings--palettes-button {
     position:absolute;
     top: 38px;
     right: 0px;
 }
 
-.E_GlobalPageSettings--color-palette .Button__small .Button--content {
+.E_GlobalPageSettings--color-palette .E_GlobalColorPaletteSettings--palettes-button .Button--content {
     height: 32px;
+}
+
+.E_GlobalColorPaletteSettings--regenerate-button {
+    margin-top: 8px;
+}
+
+.E_GlobalPageSettings--color-palette .InlineWidget {
+    margin-bottom: 10px;
 }
 
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title .E_GlobalColorPaletteSettings--color {

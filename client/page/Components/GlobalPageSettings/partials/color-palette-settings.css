@@ -55,6 +55,7 @@
 
     overflow: hidden;
 
+    transform: rotateZ(0);
     will-change: background, box-shadow;
     transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
         box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;

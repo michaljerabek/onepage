@@ -207,11 +207,14 @@
 
                 this.currentColor.saturationv(saturation);
 
-                this.preserveCurrentColorHue = true;
+                if (!this.skipUpdateSV) {
 
-                this.update("current");
+                    this.preserveCurrentColorHue = true;
 
-                this.preserveCurrentColorHue = false;
+                    this.update("current");
+
+                    this.preserveCurrentColorHue = false;
+                }
 
             }, {init: false});
 
@@ -219,11 +222,14 @@
 
                 this.currentColor.value(value);
 
-                this.preserveCurrentColorHue = true;
+                if (!this.skipUpdateSV) {
 
-                this.update("current");
+                    this.preserveCurrentColorHue = true;
 
-                this.preserveCurrentColorHue = false;
+                    this.update("current");
+
+                    this.preserveCurrentColorHue = false;
+                }
 
             }, {init: false});
         },
@@ -238,19 +244,15 @@
                 }
             }, {init: false});
 
-            this.observe("SVSelector.x", function () {
+            this.observe("SVSelector", function () {
 
                 if (!this.skipUpdateColor) {
 
-                    this.updateSaturation.apply(this, arguments);
-                }
-            }, {init: false});
+                    this.skipUpdateSV = true;
 
-            this.observe("SVSelector.y", function () {
+                    this.updateSaturationAndValue.apply(this, arguments);
 
-                if (!this.skipUpdateColor) {
-
-                    this.updateValue.apply(this, arguments);
+                    this.skipUpdateSV = false;
                 }
             }, {init: false});
         },
@@ -337,6 +339,14 @@
             this.set("inputTextB",   this.currentColor.blue());
         },
 
+        updateSaturationAndValue: function () {
+
+            this.updateSaturation();
+            this.updateValue();
+
+            this.update("current");
+        },
+
         updateSaturation: function () {
 
             var width = this.SVBox.offsetWidth,
@@ -392,8 +402,10 @@
 
                 this.set("animate", !!animate);
 
-                this.set("SVSelector.y", y);
-                this.set("SVSelector.x", x);
+                this.set("SVSelector", {
+                    x: x,
+                    y: y
+                });
             }
         },
 

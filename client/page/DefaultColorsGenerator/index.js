@@ -6,8 +6,15 @@ var BLACK  = new Spectra("#000"),
     BLACK2 = new Spectra("#222"),
     BLACK3 = new Spectra("#424242"),
     WHITE  = new Spectra("#fff"),
-    WHITE2 = new Spectra("#f0f0f0"),
-    WHITE3 = new Spectra("#e2e2e2"),
+    WHITE2 = new Spectra("#eee"),
+    WHITE3 = new Spectra("#dfdfdf"),
+
+    BLACK_RGB  = BLACK.rgbaString().replace(/\s*,[0-9]+\)/i, ")").replace(/rgba/i, "rgb"),
+    BLACK2_RGB = BLACK2.rgbaString().replace(/\s*,[0-9]+\)/i, ")").replace(/rgba/i, "rgb"),
+    BLACK3_RGB = BLACK3.rgbaString().replace(/\s*,[0-9]+\)/i, ")").replace(/rgba/i, "rgb"),
+    WHITE_RGB  = WHITE.rgbaString().replace(/\s*,[0-9]+\)/i, ")").replace(/rgba/i, "rgb"),
+    WHITE2_RGB = WHITE2.rgbaString().replace(/\s*,[0-9]+\)/i, ")").replace(/rgba/i, "rgb"),
+    WHITE3_RGB = WHITE3.rgbaString().replace(/\s*,[0-9]+\)/i, ")").replace(/rgba/i, "rgb"),
 
     WHITE_INDEX  = -2,
     WHITE2_INDEX = -3,
@@ -20,9 +27,13 @@ var BLACK  = new Spectra("#000"),
     MIN_WHITE = 224,
     MAX_DIFF  = 9,
 
-    TEXT_COLOR_MIN_CONTRAST       = 9,
-    COLOR_TEXT_COLOR_MIN_CONTRAST = 6,
-    SPECIAL_COLOR_MIN_CONTRAST    = 5,
+    TEXT_COLOR_MIN_CONTRAST                =  9,
+    TEXT_COLOR_MAX_CONTRAST                = 17,
+    COLOR_TEXT_COLOR_MIN_CONTRAST          =  6,
+    ON_BLACK_COLOR_TEXT_COLOR_MAX_CONTRAST = 14,
+    SPECIAL_COLOR_MIN_CONTRAST             =  5,
+    SPECIAL_COLOR_MAX_CONTRAST             = 17,
+    ON_BLACK_SPECIAL_COLOR_MAX_CONTRAST    = 14,
 
     getRgbString = function (color) {
         return  "rgb(" + color.red() + ", " + color.green() + ", " + color.blue() + ")";
@@ -70,7 +81,9 @@ var BLACK  = new Spectra("#000"),
     //najde barvu s dostatečným kontrastem k dané barvě (i)
     //minContrast (number) + random (number) se použijí pro "náhodné" vyhledledání barvy, která má dostatečný kontrast
     //fn (<- boolean) slouží k určení, jestli se má nalezená barva použít (true)
-    findColorWithGoodContrast = function (i, minContrast, random, fn) {
+    findColorWithGoodContrast = function (i, minContrast, maxContrast, random, fn) {
+
+        maxContrast = maxContrast || 21;
 
         random = random || 0;
 
@@ -86,10 +99,32 @@ var BLACK  = new Spectra("#000"),
 
             if (!fn || fn.call(this, i, colors[c2])) {
 
-                contrast = this.currentPalette.colors[i]["contrastWith" + colors[c2]];
-                colorIndex = colors[c2];
+                var thisContrast = this.currentPalette.colors[i]["contrastWith" + colors[c2]];
 
-                if (contrast >= minContrast) {
+                if (thisContrast >= minContrast && thisContrast <= maxContrast) {
+
+                    this.currentPalette.colors[i].hue        = typeof this.currentPalette.colors[i].hue          !== "undefined" ? this.currentPalette.colors[i].hue : this.currentPalette.colors[i].color.hue();
+                    this.currentPalette.colors[i].saturation = typeof this.currentPalette.colors[i].saturation          !== "undefined" ? this.currentPalette.colors[i].saturation : this.currentPalette.colors[i].color.saturation();
+
+                    this.currentPalette.colors[colors[c2]].hue        = typeof this.currentPalette.colors[colors[c2]].hue !== "undefined" ? this.currentPalette.colors[colors[c2]].hue : this.currentPalette.colors[colors[c2]].color.hue();
+                    this.currentPalette.colors[colors[c2]].saturation = typeof this.currentPalette.colors[colors[c2]].saturation !== "undefined" ? this.currentPalette.colors[colors[c2]].saturation : this.currentPalette.colors[colors[c2]].color.saturation();
+
+                    var iHue = this.currentPalette.colors[i].hue,
+                        cHue = this.currentPalette.colors[colors[c2]].hue,
+                        iSat = this.currentPalette.colors[i].saturation,
+                        cSat = this.currentPalette.colors[colors[c2]].saturation;
+
+                    //odstranit červenou na zelené
+                    if (iSat > 0.05 && cSat > 0.05 && ((iHue > 75 && iHue < 145) || (cHue > 75 && cHue < 145)) && ((iHue > 325 || iHue < 25) || (cHue > 325 || cHue < 25))) {
+
+                        if (!(this.currentPalette.colors[i].isDark || this.currentPalette.colors[colors[c2]].isDark)) {
+
+                            continue;
+                        }
+                    }
+
+                    contrast = thisContrast;
+                    colorIndex = colors[c2];
 
                     if (Math.abs(random + i) % 4 === goodContrastColorsCount) {
 
@@ -111,42 +146,42 @@ var BLACK  = new Spectra("#000"),
     addBlackWhiteContrast = function (i) {
 
         this.currentPalette.colors[i].contrastWithBlack       = calcContrastRatio(BLACK, this.currentPalette.colors[i].color);
-        this.currentPalette.colors[i].contrastWithBlackColor  = BLACK;
+        this.currentPalette.colors[i].contrastWithBlackColor  = BLACK_RGB;
         this.currentPalette.colors[i].contrastWithBlackIndex  = BLACK_INDEX;
         this.currentPalette.colors[i].contrastWithBlackOk     = this.currentPalette.colors[i].contrastWithBlack >= TEXT_COLOR_MIN_CONTRAST;
 
         if (this.currentPalette.colors[i].contrastWithBlack > TEXT_COLOR_MIN_CONTRAST) {
 
             this.currentPalette.colors[i].contrastWithBlack2      = calcContrastRatio(BLACK2, this.currentPalette.colors[i].color);
-            this.currentPalette.colors[i].contrastWithBlack2Color = BLACK2;
+            this.currentPalette.colors[i].contrastWithBlack2Color = BLACK2_RGB;
             this.currentPalette.colors[i].contrastWithBlack2Index = BLACK2_INDEX;
             this.currentPalette.colors[i].contrastWithBlack2Ok    = this.currentPalette.colors[i].contrastWithBlack2 >= TEXT_COLOR_MIN_CONTRAST;
 
             if (this.currentPalette.colors[i].contrastWithBlack2 > TEXT_COLOR_MIN_CONTRAST) {
 
                 this.currentPalette.colors[i].contrastWithBlack3      = calcContrastRatio(BLACK3, this.currentPalette.colors[i].color);
-                this.currentPalette.colors[i].contrastWithBlack3Color = BLACK3;
+                this.currentPalette.colors[i].contrastWithBlack3Color = BLACK3_RGB;
                 this.currentPalette.colors[i].contrastWithBlack3Index = BLACK3_INDEX;
                 this.currentPalette.colors[i].contrastWithBlack3Ok    = this.currentPalette.colors[i].contrastWithBlack3 >= TEXT_COLOR_MIN_CONTRAST;
             }
         }
 
         this.currentPalette.colors[i].contrastWithWhite       = calcContrastRatio(WHITE, this.currentPalette.colors[i].color);
-        this.currentPalette.colors[i].contrastWithWhiteColor  = WHITE;
+        this.currentPalette.colors[i].contrastWithWhiteColor  = WHITE_RGB;
         this.currentPalette.colors[i].contrastWithWhiteIndex  = WHITE_INDEX;
         this.currentPalette.colors[i].contrastWithWhiteOk     = this.currentPalette.colors[i].contrastWithWhite >= TEXT_COLOR_MIN_CONTRAST;
 
         if (this.currentPalette.colors[i].contrastWithWhite > TEXT_COLOR_MIN_CONTRAST) {
 
             this.currentPalette.colors[i].contrastWithWhite2      = calcContrastRatio(WHITE2, this.currentPalette.colors[i].color);
-            this.currentPalette.colors[i].contrastWithWhite2Color = WHITE2;
+            this.currentPalette.colors[i].contrastWithWhite2Color = WHITE2_RGB;
             this.currentPalette.colors[i].contrastWithWhite2Index = WHITE2_INDEX;
             this.currentPalette.colors[i].contrastWithWhite2Ok    = this.currentPalette.colors[i].contrastWithWhite2 >= TEXT_COLOR_MIN_CONTRAST;
 
             if (this.currentPalette.colors[i].contrastWithWhite2 > TEXT_COLOR_MIN_CONTRAST) {
 
                 this.currentPalette.colors[i].contrastWithWhite3      = calcContrastRatio(WHITE3, this.currentPalette.colors[i].color);
-                this.currentPalette.colors[i].contrastWithWhite3Color = WHITE3;
+                this.currentPalette.colors[i].contrastWithWhite3Color = WHITE3_RGB;
                 this.currentPalette.colors[i].contrastWithWhite3Index = WHITE3_INDEX;
                 this.currentPalette.colors[i].contrastWithWhite3Ok    = this.currentPalette.colors[i].contrastWithWhite3 >= TEXT_COLOR_MIN_CONTRAST;
             }
@@ -158,18 +193,9 @@ var BLACK  = new Spectra("#000"),
         //pokud je barva bílá (= pozadí je bílé) a nemá se automaticky použít černá
         //nebo pokud je barva černá a nemá se automaticky použít bílá
         //vyhledá se barva s nejvyšším kontrastem
-        var rgb = [
-                this.currentPalette.colors[i].color.red(),
-                this.currentPalette.colors[i].color.green(),
-                this.currentPalette.colors[i].color.blue()
-            ],
+        if ((this.currentPalette.colors[i].isWhite && (i + 1) % this.useBlackTextForWhite > 1) || (this.currentPalette.colors[i].isBlack && (i + 1) % this.useColorTextForBlack > 1)) {
 
-            isBlack = rgb[0] <= MIN_BLACK && rgb[1] <= MIN_BLACK && rgb[2] <= MIN_BLACK && Math.abs(rgb[0] - rgb[1]) <= MAX_DIFF && Math.abs(rgb[0] - rgb[2]) <= MAX_DIFF,
-            isWhite = rgb[0] >= MIN_WHITE && rgb[1] >= MIN_WHITE && rgb[2] >= MIN_WHITE && Math.abs(rgb[0] - rgb[1]) <= MAX_DIFF && Math.abs(rgb[0] - rgb[2]) <= MAX_DIFF;
-
-        if ((isWhite && !this.useBlackTextForWhite) || (isBlack && this.useColorTextForBlack)) {
-
-            var highestContrastColor = findColorWithGoodContrast.call(this, i, COLOR_TEXT_COLOR_MIN_CONTRAST, this.randomTextColorFactor);
+            var highestContrastColor = findColorWithGoodContrast.call(this, i, COLOR_TEXT_COLOR_MIN_CONTRAST, this.currentPalette.colors[i].isBlack || this.currentPalette.colors[i].isDark ? ON_BLACK_COLOR_TEXT_COLOR_MAX_CONTRAST : TEXT_COLOR_MAX_CONTRAST, this.randomTextColorFactor);
 
             //pokud nejvyšší kontrast není dostatečný, použije se černá/bílá
             if (highestContrastColor.contrast >= COLOR_TEXT_COLOR_MIN_CONTRAST) {
@@ -192,8 +218,8 @@ var BLACK  = new Spectra("#000"),
             blackIndex    = this.currentPalette.colors[i]["contrastWithBlack" + black + "Index"],
             whiteIndex    = this.currentPalette.colors[i]["contrastWithWhite" + white + "Index"];
 
-            this.currentPalette.colors[i].textColor    = blackContrast > whiteContrast ? blackColor : whiteColor;
-            this.currentPalette.colors[i].textColorRef = blackContrast > whiteContrast ? blackIndex : whiteIndex;
+        this.currentPalette.colors[i].textColor    = blackContrast > whiteContrast ? blackColor : whiteColor;
+        this.currentPalette.colors[i].textColorRef = blackContrast > whiteContrast ? blackIndex : whiteIndex;
     },
 
     //vzájemný kontrast barev (ignoruje se přidaná bílá, jinak by měla vždy nejvyšší kontrast)
@@ -215,7 +241,7 @@ var BLACK  = new Spectra("#000"),
     addSpecialColor = function (i) {
 
         //najít barvu s nejvyšším kontrastem; jinou než použitou pro text
-        var highestContrastColor = findColorWithGoodContrast.call(this, i, SPECIAL_COLOR_MIN_CONTRAST, this.randomSpecialColorFactor, function (i, i2) {
+        var highestContrastColor = findColorWithGoodContrast.call(this, i, SPECIAL_COLOR_MIN_CONTRAST, this.currentPalette.colors[i].isBlack || this.currentPalette.colors[i].isDark ? ON_BLACK_SPECIAL_COLOR_MAX_CONTRAST : SPECIAL_COLOR_MAX_CONTRAST, this.randomSpecialColorFactor, function (i, i2) {
             return this.currentPalette.colors[i2].self !== this.currentPalette.colors[i].textColor;
         });
 
@@ -257,9 +283,11 @@ var BLACK  = new Spectra("#000"),
 
         for (k; k < keys.length; k++) {
 
-            if (keys[k].match(/contrastWith[0-9]+/)) {
+            var prop = keys[k].match(/contrastWith([0-9])+/);
 
-                this.currentPalette.colors[i].sorted.push(keys[k].match(/[0-9]+/)[0]);
+            if (prop) {
+
+                this.currentPalette.colors[i].sorted.push(+prop[1]);
 
             } else {
 
@@ -268,17 +296,15 @@ var BLACK  = new Spectra("#000"),
         }
     },
     
-    processPalette = function (palette, doNotRewrite, singleColorChanged) {
+    addWhiteToPalette = function (colors) {
 
-        var colors = palette.colors.slice(),
-            c = colors.length - 1;
+        var c = colors.length - 1;
 
         this.whiteAdded = true;
 
-        //přidání bílé barvy, aby mohly vznikat i sekce s bílým pozadím
         for (c; c >= 0; c--) {
 
-            if (this.equals(colors[c], "rgb(255, 255, 255)")) {
+            if (this.equals(colors[c], WHITE_RGB)) {
 
                 this.whiteAdded = false;
 
@@ -288,22 +314,119 @@ var BLACK  = new Spectra("#000"),
 
         if (this.whiteAdded) {
 
-            colors.push("rgb(255, 255, 255)");
+            colors.push(WHITE_RGB);
+        }
+    },
+
+    findInOldColors = function (color) {
+
+        var oC = this.oldCount - 1;
+
+        for (oC; oC >= 0; oC--) {
+
+            if (color === this.oldColors[oC].self) {
+
+                return oC;
+            }
         }
 
-        this.currentPalette.colors = {};
+        return false;
+    },
 
-        c = colors.length - 1;
+    copyOldColorData = function (o, c) {
+
+        this.currentPalette.colors[c].color   = this.oldColors[o].color;
+        this.currentPalette.colors[c].self    = this.oldColors[o].self;
+        this.currentPalette.colors[c].isBlack = this.oldColors[o].isBlack;
+        this.currentPalette.colors[c].isWhite = this.oldColors[o].isWhite;
+        this.currentPalette.colors[c].isDark  = this.oldColors[o].isDark;
+
+        this.currentPalette.colors[c].contrastWithBlack       = this.oldColors[o].contrastWithBlack;
+        this.currentPalette.colors[c].contrastWithBlackColor  = this.oldColors[o].contrastWithBlackColor;
+        this.currentPalette.colors[c].contrastWithBlackIndex  = this.oldColors[o].contrastWithBlackIndex;
+        this.currentPalette.colors[c].contrastWithBlackOk     = this.oldColors[o].contrastWithBlackOk;
+
+        this.currentPalette.colors[c].contrastWithBlack2      = this.oldColors[o].contrastWithBlack2;
+        this.currentPalette.colors[c].contrastWithBlack2Color = this.oldColors[o].contrastWithBlack2Color;
+        this.currentPalette.colors[c].contrastWithBlack2Index = this.oldColors[o].contrastWithBlack2Index;
+        this.currentPalette.colors[c].contrastWithBlack2Ok    = this.oldColors[o].contrastWithBlack2Ok;
+
+        this.currentPalette.colors[c].contrastWithBlack3      = this.oldColors[o].contrastWithBlack3;
+        this.currentPalette.colors[c].contrastWithBlack3Color = this.oldColors[o].contrastWithBlack3Color;
+        this.currentPalette.colors[c].contrastWithBlack3Index = this.oldColors[o].contrastWithBlack3Index;
+        this.currentPalette.colors[c].contrastWithBlack3Ok    = this.oldColors[o].contrastWithBlack3Ok;
+
+        this.currentPalette.colors[c].contrastWithWhite       = this.oldColors[o].contrastWithWhite;
+        this.currentPalette.colors[c].contrastWithWhiteColor  = this.oldColors[o].contrastWithWhiteColor;
+        this.currentPalette.colors[c].contrastWithWhiteIndex  = this.oldColors[o].contrastWithWhiteIndex;
+        this.currentPalette.colors[c].contrastWithWhiteOk     = this.oldColors[o].contrastWithWhiteOk;
+
+        this.currentPalette.colors[c].contrastWithWhite2      = this.oldColors[o].contrastWithWhite2;
+        this.currentPalette.colors[c].contrastWithWhite2Color = this.oldColors[o].contrastWithWhite2Color;
+        this.currentPalette.colors[c].contrastWithWhite2Index = this.oldColors[o].contrastWithWhite2Index;
+        this.currentPalette.colors[c].contrastWithWhite2Ok    = this.oldColors[o].contrastWithWhite2Ok;
+
+        this.currentPalette.colors[c].contrastWithWhite3      = this.oldColors[o].contrastWithWhite3;
+        this.currentPalette.colors[c].contrastWithWhite3Color = this.oldColors[o].contrastWithWhite3Color;
+        this.currentPalette.colors[c].contrastWithWhite3Index = this.oldColors[o].contrastWithWhite3Index;
+        this.currentPalette.colors[c].contrastWithWhite3Ok    = this.oldColors[o].contrastWithWhite3Ok;
+
+        this.currentPalette.colors[c].hue        = this.oldColors[o].hue;
+        this.currentPalette.colors[c].saturation = this.oldColors[o].saturation;
+    },
+
+    createNewColorBase = function (i, color) {
+
+        this.colorCache[color] = this.colorCache[color] || {};
+
+        this.colorCache[color].color = this.colorCache[color].color || new Spectra(color);
+        this.colorCache[color].self  = this.colorCache[color].self  || getRgbString(this.colorCache[color].color);
+        this.colorCache[color].rgb   = this.colorCache[color].rgb   || [this.colorCache[color].color.red(), this.colorCache[color].color.green(), this.colorCache[color].color.blue()];
+
+        var rgb = this.colorCache[color].rgb;
+
+        this.colorCache[color].isBlack = typeof this.colorCache[color].isBlack !== "undefined" ? this.colorCache[color].isBlack : (rgb[0] <= MIN_BLACK && rgb[1] <= MIN_BLACK && rgb[2] <= MIN_BLACK && Math.abs(rgb[0] - rgb[1]) <= MAX_DIFF && Math.abs(rgb[0] - rgb[2]) <= MAX_DIFF) || this.colorCache[color].color.near(BLACK, 10) || this.colorCache[color].color.near(BLACK2, 10);
+        this.colorCache[color].isWhite = typeof this.colorCache[color].isWhite !== "undefined" ? this.colorCache[color].isWhite : (rgb[0] >= MIN_WHITE && rgb[1] >= MIN_WHITE && rgb[2] >= MIN_WHITE && Math.abs(rgb[0] - rgb[1]) <= MAX_DIFF && Math.abs(rgb[0] - rgb[2]) <= MAX_DIFF) || this.colorCache[color].color.near(WHITE, 10) || this.colorCache[color].color.near(WHITE2, 10) || this.colorCache[color].color.near(WHITE3, 10);
+        this.colorCache[color].isDark  = typeof this.colorCache[color].isDark  !== "undefined" ? this.colorCache[color].isDark  : this.colorCache[color].color.near(BLACK, 25);
+
+        this.currentPalette.colors[i].color   = this.colorCache[color].color;
+        //textová reprezentace barvy
+        this.currentPalette.colors[i].self    = this.colorCache[color].self;
+        this.currentPalette.colors[i].isBlack = this.colorCache[color].isBlack;
+        this.currentPalette.colors[i].isWhite = this.colorCache[color].isWhite;
+        this.currentPalette.colors[i].isDark  = this.colorCache[color].isDark;
+    },
+
+    processPalette = function (palette, doNotRewrite, singleColorChanged) {
+
+        var colors = palette.colors.slice();
+
+        //přidání bílé barvy, aby mohly vznikat i sekce s bílým pozadím
+        addWhiteToPalette.call(this, colors);
+
+        this.oldColors = this.currentPalette.colors || [];
+        this.oldCount = Object.keys(this.oldColors).length;
+
+        var c = colors.length - 1;
+
+        this.currentPalette.colors = {};
 
         for (c; c >= 0; c--) {
 
             this.currentPalette.colors[c] = {};
 
-            this.currentPalette.colors[c].color = new Spectra(colors[c]);
-            //textová reprezentace barvy
-            this.currentPalette.colors[c].self  = getRgbString(this.currentPalette.colors[c].color);
+            var inOld = findInOldColors.call(this, colors[c]);
 
-            addBlackWhiteContrast.call(this, c);
+            if (inOld === false) {
+
+                createNewColorBase.call(this, c, colors[c]);
+
+                addBlackWhiteContrast.call(this, c);
+
+            } else {
+
+                copyOldColorData.call(this, inOld, c);
+            }
         }
 
         c = colors.length - 1;
@@ -361,10 +484,15 @@ DefaultColorsGenerator.prototype.reset = function () {
 
 DefaultColorsGenerator.prototype.destroy = function () {
 
+    this.colorCache = null;
+    this.currentPalette = null;
+
     this.colorsSettingsObserver.cancel();
 };
 
 DefaultColorsGenerator.prototype.init = function () {
+
+    this.colorCache = {};
 
     this.currentPalette = {};
 
@@ -372,6 +500,11 @@ DefaultColorsGenerator.prototype.init = function () {
     this.useColorTextForBlack     = this.page.get("page.settings.colorPalette.useColorTextForBlack");
     this.randomTextColorFactor    = this.page.get("page.settings.colorPalette.randomTextColorFactor");
     this.randomSpecialColorFactor = this.page.get("page.settings.colorPalette.randomSpecialColorFactor");
+
+    this.useBlackTextForWhite     = typeof this.useBlackTextForWhite     === "number" ? this.useBlackTextForWhite     : 1;
+    this.useColorTextForBlack     = typeof this.useColorTextForBlack     === "number" ? this.useColorTextForBlack     : 1;
+    this.randomTextColorFactor    = typeof this.randomTextColorFactor    === "number" ? this.randomTextColorFactor    : 0;
+    this.randomSpecialColorFactor = typeof this.randomSpecialColorFactor === "number" ? this.randomSpecialColorFactor : 3;
 
     processPalette.call(this, this.initPalette, true);
 
@@ -386,8 +519,8 @@ DefaultColorsGenerator.prototype.init = function () {
 
         if (!singleColorChanged) {
 
-            this.useBlackTextForWhite     = !!Math.round(Math.random());
-            this.useColorTextForBlack     = !!Math.round(Math.random());
+            this.useBlackTextForWhite     = Math.round(Math.random() * 3) + 2; //plus 2, protože index se zvyžuje o 1, aby nebyl vždy 0
+            this.useColorTextForBlack     = Math.round(Math.random() * 3) + 2; //plus 2, protože index se zvyžuje o 1, aby nebyl vždy 0
             this.randomTextColorFactor    = Math.round(Math.random() * 3);
             this.randomSpecialColorFactor = Math.round(Math.random() * 3);
 
@@ -402,6 +535,7 @@ DefaultColorsGenerator.prototype.init = function () {
         }
 
         processPalette.call(this, newValue, false, singleColorChanged);
+
 
     }.bind(this), {init: false});
 };
@@ -435,13 +569,13 @@ DefaultColorsGenerator.prototype.getColor = function (index) {
     }
 
     switch (index) {
-        case WHITE_INDEX : return getRgbString(WHITE);
-        case WHITE2_INDEX: return getRgbString(WHITE2);
-        case WHITE3_INDEX: return getRgbString(WHITE3);
-        case BLACK_INDEX : return getRgbString(BLACK);
-        case BLACK2_INDEX: return getRgbString(BLACK2);
-        case BLACK3_INDEX: return getRgbString(BLACK3);
-        default: return this.currentPalette.colors[index] ? this.currentPalette.colors[index].self : this.currentPalette.colors[this.indexOf("rgb(255,255,255)")].self;
+        case WHITE_INDEX : return WHITE_RGB;
+        case WHITE2_INDEX: return WHITE2_RGB;
+        case WHITE3_INDEX: return WHITE3_RGB;
+        case BLACK_INDEX : return BLACK_RGB;
+        case BLACK2_INDEX: return BLACK2_RGB;
+        case BLACK3_INDEX: return BLACK3_RGB;
+        default: return this.currentPalette.colors[index] ? this.currentPalette.colors[index].self : this.currentPalette.colors[this.indexOf(WHITE_RGB)].self;
     }
 };
 
@@ -453,7 +587,7 @@ DefaultColorsGenerator.prototype.getTextColor = function (index) {
         processPalette.call(this, this.initPalette, true);
     }
 
-    return this.currentPalette.colors[index] ? this.currentPalette.colors[index].textColor : this.currentPalette.colors[this.indexOf("rgb(255,255,255)")].textColor;
+    return this.currentPalette.colors[index] ? this.currentPalette.colors[index].textColor : this.currentPalette.colors[this.indexOf(WHITE_RGB)].textColor;
 };
 
 //vrátí speciální barvu k dané barvě (index)
@@ -464,7 +598,7 @@ DefaultColorsGenerator.prototype.getSpecialColor = function (index) {
         processPalette.call(this, this.initPalette, true);
     }
 
-    return this.currentPalette.colors[index] ? this.currentPalette.colors[index].specialColor : this.currentPalette.colors[this.indexOf("rgb(255,255,255)")].specialColor;
+    return this.currentPalette.colors[index] ? this.currentPalette.colors[index].specialColor : this.currentPalette.colors[this.indexOf(WHITE_RGB)].specialColor;
 };
 
 //najde index barvy (color)

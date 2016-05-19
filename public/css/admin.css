@@ -9244,6 +9244,7 @@ body {
 .ToggleField .Toggle {
     z-index: 2;
     position: relative;
+    margin-left: auto;
 
     -webkit-flex-shrink: 0;
 
@@ -9650,6 +9651,7 @@ body {
     margin-top: 32px;
     margin-right: 16px;
 }
+
 .E_SectionSettings {
     width: 100%;
 
@@ -14492,6 +14494,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     padding-bottom: 8px;
 }
 
+/*--------------------------------------------------------------------*/
+/*-------------------------- COLOR PALETTE ---------------------------*/
+/*--------------------------------------------------------------------*/
+
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title {
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
@@ -14502,14 +14508,22 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     margin-top: 12px;
 }
 
-.E_GlobalPageSettings--color-palette .Button {
+.E_GlobalPageSettings--color-palette .E_GlobalColorPaletteSettings--palettes-button {
     position:absolute;
     top: 38px;
     right: 0px;
 }
 
-.E_GlobalPageSettings--color-palette .Button__small .Button--content {
+.E_GlobalPageSettings--color-palette .E_GlobalColorPaletteSettings--palettes-button .Button--content {
     height: 32px;
+}
+
+.E_GlobalColorPaletteSettings--regenerate-button {
+    margin-top: 8px;
+}
+
+.E_GlobalPageSettings--color-palette .InlineWidget {
+    margin-bottom: 10px;
 }
 
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title .E_GlobalColorPaletteSettings--color {
@@ -15253,6 +15267,15 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     overflow: hidden;
 
+    -webkit-transform: rotateZ(0);
+
+       -moz-transform: rotateZ(0);
+
+        -ms-transform: rotate(0);
+
+         -o-transform: rotateZ(0);
+
+            transform: rotateZ(0);
     will-change: background, box-shadow;
     -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
         -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;

@@ -150,34 +150,49 @@
                 icon: "#icon-triangle",
                 iconW: 10,
                 iconH: 10,
-                iconR: .openGlobalSettingsWidget === "colors" ? 180 : 90
+                iconR: .openGlobalSettingsWidget === "colors" ? 180 : 90,
+                className: "E_GlobalColorPaletteSettings--palettes-button"
             }
         }}
 
+        <div>
+            {{#with .settings.colorPalette || @ractive.set('settings.colorPalette', @ractive.findParent("Page").get("defaults.settings.colorPalette")) as __def}}
 
-        {{#with .settings.colorPalette || @ractive.set('settings.colorPalette', @ractive.findParent("Page").get("defaults.settings.colorPalette")) as __def}}
+                {{#if .openGlobalSettingsWidget === "colors"}}
 
-            {{#if .openGlobalSettingsWidget === "colors"}}
+                    <PageMenuInlineWidget initMaxHeight="320" close=".openGlobalSettingsWidget" connectWith="{id:'colors', opener: 'openGlobalSettingsWidget'}">
+                        {{> colorPaletteSettings}}
+                    </PageMenuInlineWidget>
 
-                <PageMenuInlineWidget initMaxHeight="320" close=".openGlobalSettingsWidget" connectWith="{id:'colors', opener: 'openGlobalSettingsWidget'}">
-                    {{> colorPaletteSettings}}
-                </PageMenuInlineWidget>
+                {{elseif typeof .openGlobalSettingsWidget === "object" && typeof .openGlobalSettingsWidget.colorKey !== "undefined"}}
 
-            {{elseif typeof .openGlobalSettingsWidget === "object" && typeof .openGlobalSettingsWidget.colorKey !== "undefined"}}
+                    <PageMenuInlineWidget initMaxHeight="400" close=".openGlobalSettingsWidget" connectWith="{id:'colors', opener: 'openGlobalSettingsWidget'}">
 
-                <PageMenuInlineWidget initMaxHeight="400" close=".openGlobalSettingsWidget" connectWith="{id:'colors', opener: 'openGlobalSettingsWidget'}">
+                        {{#if .toggleColorPicker}}
+                        <ColorPicker output="{{.settings.colorPalette.colors[.openGlobalSettingsWidget.colorKey]}}" inputType="[[.lastInputType]]" defer="true"/>
+                        {{else}}
+                        <ColorPicker output="{{.settings.colorPalette.colors[.openGlobalSettingsWidget.colorKey]}}" inputType="[[.lastInputType]]" defer="true"/>
+                        {{/if}}
 
-                    {{#if .toggleColorPicker}}
-                        <ColorPicker output="{{.settings.colorPalette.colors[.openGlobalSettingsWidget.colorKey]}}"/>
-                    {{else}}
-                        <ColorPicker output="{{.settings.colorPalette.colors[.openGlobalSettingsWidget.colorKey]}}"/>
-                    {{/if}}
+                    </PageMenuInlineWidget>
 
-                </PageMenuInlineWidget>
+                {{/if}}
 
-            {{/if}}
+            {{/with}}
 
-        {{/with}}
+        </div>
+
+        {{> Button {
+                size: "small",
+                text: "Vygenerovat novou kombinaci",
+                set: "settings.colorPalette",
+                value: {
+                    colors: .settings.colorPalette.colors.slice(),
+                    headerImg: .settings.colorPalette.headerImg
+                },
+                className: "E_GlobalColorPaletteSettings--regenerate-button"
+            }
+        }}
 
     </section>
 
