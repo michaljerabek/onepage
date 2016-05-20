@@ -278,6 +278,10 @@
     color: var(--color-text-3);
 }
 
+.E_PageSectionSettings--section-note:first-child {
+    margin-top: 0px;
+}
+
 /*---------------------------- TITLES ----------------------------*/
 
 .E_PageSectionSettings--section-title {

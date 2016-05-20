@@ -14,7 +14,7 @@
         <div class="InlineWidget--shadow"></div>
 
         <div class="InlineWidget--content ResizableBox--content"
-             decorator="ResizableBox"
+             decorator="ResizableBox:false,true"
              data-max-resize-height="{{.maxResize || 768}}"
              style="max-height: {{.initMaxHeight || 320}}px"
         >

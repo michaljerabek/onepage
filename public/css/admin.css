@@ -7933,6 +7933,7 @@ body {
                 transform: translateX(calc(-100% + 64px));
     }
 }
+
 /*====================================================================*/
 /*------------------------------- TEXT -------------------------------*/
 /*====================================================================*/
@@ -9243,6 +9244,7 @@ body {
 .ToggleField .Toggle {
     z-index: 2;
     position: relative;
+    margin-left: auto;
 
     -webkit-flex-shrink: 0;
 
@@ -9559,33 +9561,6 @@ body {
     background-color: red;
 }
 
-/*====================================================================*/
-/*-------------------- BACKGROUND IMAGE SETTINGS ---------------------*/
-/*====================================================================*/
-
-.E_BackgroundImageSettings {
-    width: 100%;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-}
-
-.E_BackgroundImageSettings--background-settings {
-    text-align: left;
-
-    padding: 12px 0;
-}
-
-.E_BackgroundImageSettings--ImageBrowser {
-}
-
 .E_ColorSettings {
     width: 100%;
 
@@ -9613,6 +9588,68 @@ body {
         -ms-flex-preferred-size: 75%;
 
             flex-basis: 75%;
+}
+
+.E_ColorSettings .E_PageSectionSettingsMenu {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+       -moz-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+}
+
+.E_ColorSettings .E_ColorSettings--menu-list {
+    width: 100%;
+}
+
+.Button.E_ColorSettings--random-colors-button {
+    margin-top: 32px;
+    margin-right: 16px;
+}
+
+/*====================================================================*/
+/*-------------------- BACKGROUND IMAGE SETTINGS ---------------------*/
+/*====================================================================*/
+
+.E_BackgroundImageSettings {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.E_BackgroundImageSettings--background-settings {
+    text-align: left;
+
+    padding: 12px 0;
+}
+
+.E_BackgroundImageSettings--ImageBrowser {
 }
 
 .E_SectionSettings {
@@ -14457,6 +14494,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     padding-bottom: 8px;
 }
 
+/*--------------------------------------------------------------------*/
+/*-------------------------- COLOR PALETTE ---------------------------*/
+/*--------------------------------------------------------------------*/
+
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title {
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
@@ -14467,14 +14508,22 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     margin-top: 12px;
 }
 
-.E_GlobalPageSettings--color-palette .Button {
+.E_GlobalPageSettings--color-palette .E_GlobalColorPaletteSettings--palettes-button {
     position:absolute;
     top: 38px;
     right: 0px;
 }
 
-.E_GlobalPageSettings--color-palette .Button__small .Button--content {
+.E_GlobalPageSettings--color-palette .E_GlobalColorPaletteSettings--palettes-button .Button--content {
     height: 32px;
+}
+
+.E_GlobalColorPaletteSettings--regenerate-button {
+    margin-top: 8px;
+}
+
+.E_GlobalPageSettings--color-palette .InlineWidget {
+    margin-bottom: 10px;
 }
 
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title .E_GlobalColorPaletteSettings--color {
@@ -14494,6 +14543,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     width: 14px;
     height: 14px;
 }
+
 .E_NewPageSectionSelector {
 }
 
@@ -15217,6 +15267,15 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     overflow: hidden;
 
+    -webkit-transform: rotateZ(0);
+
+       -moz-transform: rotateZ(0);
+
+        -ms-transform: rotate(0);
+
+         -o-transform: rotateZ(0);
+
+            transform: rotateZ(0);
     will-change: background, box-shadow;
     -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
         -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
@@ -15270,6 +15329,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
         -moz-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
 }
+
 /*====================================================================*/
 /*----------------- GlobalPageSettings - font-settings ---------------*/
 /*====================================================================*/
@@ -17649,6 +17709,10 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     color: #6f6f6f;
 }
 
+.E_PageSectionSettings--section-note:first-child {
+    margin-top: 0px;
+}
+
 /*---------------------------- TITLES ----------------------------*/
 
 .E_PageSectionSettings--section-title {
@@ -19197,12 +19261,6 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     display: inline-block;
 }
 
-.P_PageElement__title {
-    line-height: 1.4;
-
-    display: inline-block;
-}
-
 .P_BackgroundImage {
     position:absolute;
     top: 0px;
@@ -19284,5 +19342,11 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     background-attachment: fixed;
 }
 
+
+.P_PageElement__title {
+    line-height: 1.4;
+
+    display: inline-block;
+}
 
 /*# sourceMappingURL=admin.css.map */

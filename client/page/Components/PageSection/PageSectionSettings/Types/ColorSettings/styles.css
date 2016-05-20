@@ -14,3 +14,20 @@
 
     flex-basis: 75%;
 }
+
+.E_ColorSettings .E_PageSectionSettingsMenu {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.E_ColorSettings .E_ColorSettings--menu-list {
+    width: 100%;
+}
+
+.Button.E_ColorSettings--random-colors-button {
+    margin-top: 32px;
+    margin-right: 16px;
+}

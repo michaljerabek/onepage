@@ -27,123 +27,9 @@ module.exports = Ractive.extend({
     data: function () {
 
         return {
-            fontTypes: {
-                "P_font-type-1" : {
-                    title: "Serif",
-                    body: "Serif"
-                },
-                "P_font-type-2" : {
-                    title: "Sans Serif",
-                    body: "Sans Serif"
-                },
-                "P_font-type-3" : {
-                    title: "Serif",
-                    body: "Serif"
-                },
-                "P_font-type-4" : {
-                    title: "Sans Serif",
-                    body: "Sans Serif"
-                }
-            },
+            fontTypes: require("./../../PAGE_SETTINGS/FONT_TYPES"),
 
-            colorPalettes: [
-                {
-                    colors: [
-                        "rgb(255, 255, 255)",
-                        "rgb(0, 255, 255)",
-                        "rgb(255, 0, 255)",
-                        "rgb(255, 255, 0)",
-                        "rgb(0, 0, 0)"
-                    ],
-                    textLight: "rgb(255, 255, 255)",
-                    textDark: "rgb(0, 0, 0)",
-                    headerImg: ""
-                },
-                {
-                    colors: [
-                        "rgb(255, 255, 255)",
-                        "rgb(0, 255, 255)",
-                        "rgb(255, 0, 255)",
-                        "rgb(255, 255, 0)",
-                        "rgb(0, 0, 0)"
-                    ],
-                    textLight: "rgb(255, 255, 255)",
-                    textDark: "rgb(0, 0, 0)",
-                    headerImg: ""
-                },
-                {
-                    colors: [
-                        "rgb(255, 255, 255)",
-                        "rgb(0, 255, 255)",
-                        "rgb(255, 0, 255)",
-                        "rgb(255, 255, 0)",
-                        "rgb(0, 0, 0)"
-                    ],
-                    textLight: "rgb(255, 255, 255)",
-                    textDark: "rgb(0, 0, 0)",
-                    headerImg: ""
-                },
-                {
-                    colors: [
-                        "rgb(198, 48, 48)",
-                        "rgb(49, 190, 98)",
-                        "rgb(214, 73, 149)",
-                        "rgb(242, 185, 32)",
-                        "rgb(57, 214, 105)"
-                    ],
-                    textLight: "rgb(255, 255, 255)",
-                    textDark: "rgb(0, 0, 0)",
-                    headerImg: ""
-                },
-                {
-                    colors: [
-                        "rgb(255, 255, 255)",
-                        "rgb(0, 255, 255)",
-                        "rgb(255, 0, 255)",
-                        "rgb(255, 255, 0)",
-                        "rgb(0, 0, 0)"
-                    ],
-                    textLight: "rgb(255, 255, 255)",
-                    textDark: "rgb(0, 0, 0)",
-                    headerImg: ""
-                },
-                {
-                    colors: [
-                        "rgb(255, 255, 255)",
-                        "rgb(0, 255, 255)",
-                        "rgb(255, 0, 255)",
-                        "rgb(255, 255, 0)",
-                        "rgb(0, 0, 0)"
-                    ],
-                    textLight: "rgb(255, 255, 255)",
-                    textDark: "rgb(0, 0, 0)",
-                    headerImg: ""
-                },
-                {
-                    colors: [
-                        "rgb(255, 255, 255)",
-                        "rgb(0, 255, 255)",
-                        "rgb(255, 0, 255)",
-                        "rgb(255, 255, 0)",
-                        "rgb(0, 0, 0)"
-                    ],
-                    textLight: "rgb(255, 255, 255)",
-                    textDark: "rgb(0, 0, 0)",
-                    headerImg: ""
-                },
-                {
-                    colors: [
-                        "rgb(255, 255, 255)",
-                        "rgb(0, 255, 255)",
-                        "rgb(255, 0, 255)",
-                        "rgb(255, 255, 0)",
-                        "rgb(0, 0, 0)"
-                    ],
-                    textLight: "rgb(255, 255, 255)",
-                    textDark: "rgb(0, 0, 0)",
-                    headerImg: ""
-                }
-            ]
+            colorPalettes: require("./../../PAGE_SETTINGS/COLOR_PALETTES")
         };
     },
 
@@ -153,10 +39,37 @@ module.exports = Ractive.extend({
 
     onconfig: function () {
 
+        this.on("ColorPicker.*", function (data) {
 
+            if (data && typeof data === "object" && data.key === "current") {
+
+                var state = !data.context.get("animate");
+
+                this.parent.forEachPageSection(function (section) {
+
+                    section.set("stopColorTransitions", state);
+                });
+            }
+        });
+
+        this.observe("settings.colorPalette", function (newValue, oldValue) {
+
+            if (newValue !== oldValue) {
+
+                this.parent.forEachPageSection(function (section) {
+
+                    section.set("stopColorTransitions", false);
+                });
+            }
+        }, {init: false});
     },
 
     oncomplete: function () {
+
+    },
+
+    onteardown: function () {
+
     }
 
 });

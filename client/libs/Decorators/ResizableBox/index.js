@@ -37,8 +37,8 @@ var initResizableBox = function (node, floating, wheelPropagation) {
 
     this.minmaxing = true;
 
-    this.getSettingsHeight = ResizableBox.getSettingsHeight.bind(this);
-    this.getSettingsWidth = ResizableBox.getSettingsWidth.bind(this);
+    this.getBoxHeight = ResizableBox.getBoxHeight.bind(this);
+    this.getBoxWidth = ResizableBox.getBoxWidth.bind(this);
     this.activateResizer = ResizableBox.activateResizer.bind(this);
     this.minmax = ResizableBox.minmax.bind(this);
 
@@ -65,11 +65,11 @@ var initResizableBox = function (node, floating, wheelPropagation) {
     this.minmaxButton.classList.add(CLASS.minmaxMin);
     this.resizableBox.classList.add(CLASS.resizableBox);
 
-    this.initHeight = this.getSettingsHeight();
+    this.initHeight = this.getBoxHeight();
 
     if (floating) {
 
-        this.initWidth = this.getSettingsWidth();
+        this.initWidth = this.getBoxWidth();
     }
 
     this.beforeHeight = this.initHeight;
@@ -228,22 +228,22 @@ ResizableBox.onContentChange = function (delay) {
 
             clearTimeout(this.sizeTimeout);
 
-            this.set("resizableElementHeight", this.getSettingsHeight());
+            this.set("resizableElementHeight", this.getBoxHeight());
 
             if (this.floating) {
 
-                this.set("resizableElementWidth", this.getSettingsWidth());
+                this.set("resizableElementWidth", this.getBoxWidth());
             }
 
             this.sizeTimeout = setTimeout(function() {
 
                 if (isMin) {
 
-                    this.beforeHeight = this.getSettingsHeight();
+                    this.beforeHeight = this.getBoxHeight();
 
                     if (this.floating) {
 
-                        this.beforeWidth = this.getSettingsWidth();
+                        this.beforeWidth = this.getBoxWidth();
                     }
                 }
 
@@ -255,11 +255,11 @@ ResizableBox.onContentChange = function (delay) {
 
                     this.wasResized = false;
 
-                    this.set("resizableElementHeight", this.getSettingsHeight());
+                    this.set("resizableElementHeight", this.getBoxHeight());
 
                     if (this.floating) {
 
-                        this.set("resizableElementWidth", this.getSettingsWidth());
+                        this.set("resizableElementWidth", this.getBoxWidth());
                     }
                 }
 
@@ -367,12 +367,12 @@ ResizableBox.contentMutationObserver = function (mutations) {
 
         var css = {
             transition: "none",
-            height: this.getSettingsHeight()
+            height: this.getBoxHeight()
         };
 
         if (this.floating) {
 
-            css.width = this.getSettingsWidth();
+            css.width = this.getBoxWidth();
         }
 
         this.$resizableBox.css(css);
@@ -385,16 +385,26 @@ ResizableBox.contentMutationObserver = function (mutations) {
 
 ResizableBox.initChangeObservers = function () {
 
-    EventEmitter.on("change.ResizableBox." + this.BOX_EVENT_NS, function () {
-       ResizableBox.contentMutationObserver.call(this, [{}]);
-    }.bind(this));
+    EventEmitter
+        .off("change.resizableBox." + this.BOX_EVENT_NS)
+        .on( "change.ResizableBox." + this.BOX_EVENT_NS, function () {
+            ResizableBox.contentMutationObserver.call(this, [{}]);
+        }.bind(this));
 
     this.contentObserver.disconnect();
 
     this.contentObserver.observe(this.resizableBox, { attributes: true, childList: true, characterData: true, subtree: true });
+
+    clearInterval(this.interval);
+
+    this.interval = setInterval(function () {
+        ResizableBox.contentMutationObserver.call(this, [{}]);
+    }.bind(this), 1000);
 };
 
 ResizableBox.cancelChangeObservers = function () {
+
+    clearInterval(this.interval);
 
     EventEmitter.off("change.resizableBox." + this.BOX_EVENT_NS);
 
@@ -622,11 +632,11 @@ ResizableBox.minmax = function (event, forceMax, forceMin) {
                 this.$resizableBox.off("transitionend.resize-" + this.BOX_EVENT_NS + "." + eventId);
 
                 //přiřadit aktuální vekost do max-rozměrů pro správnou funkčnost roztahování
-                this.set("resizableElementHeight", this.getSettingsHeight());
+                this.set("resizableElementHeight", this.getBoxHeight());
 
                 if (this.floating) {
 
-                    this.set("resizableElementWidth", this.getSettingsWidth());
+                    this.set("resizableElementWidth", this.getBoxWidth());
                 }
 
                 if (this.minResizeHeight) {
@@ -636,7 +646,7 @@ ResizableBox.minmax = function (event, forceMax, forceMin) {
 
                 if (this.floating && this.minResizeWidth) {
 
-                    this.resizableBox.style.minWidth = resizableBoxRect.width >= this.minResizeHeight ? this.minResizeWidth + "px" : resizableBoxRect.width + "px";
+                    this.resizableBox.style.minWidth = resizableBoxRect.width >= this.minResizeWidth ? this.minResizeWidth + "px" : resizableBoxRect.width + "px";
                 }
 
                 clearTimeout(this.clearAnimStyles);
@@ -701,25 +711,25 @@ ResizableBox.minmax = function (event, forceMax, forceMin) {
     }.bind(this), 20);
 };
 
-ResizableBox.getSettingsHeight = function () {
+ResizableBox.getBoxHeight = function () {
 
     return this.resizableElement.getBoundingClientRect().height;
 };
 
-ResizableBox.getSettingsWidth = function () {
+ResizableBox.getBoxWidth = function () {
 
     return this.resizableElement.getBoundingClientRect().width;
 };
 
 ResizableBox.oncomplete = function () {
 
-    this.set("resizableElementHeight", this.getSettingsHeight());
+    this.set("resizableElementHeight", this.getBoxHeight());
 
     this.userDefHeight = this.get("resizableElementHeight");
 
     if (this.floating) {
 
-        this.set("resizableElementWidth", this.getSettingsWidth());
+        this.set("resizableElementWidth", this.getBoxWidth());
 
         this.userDefWidth = this.get("resizableElementWidth");
     }
@@ -782,14 +792,14 @@ ResizableBox.activateResizer = function (e, position) {
 
                 var diffY = position.match(/bottom/) ? eventData.clientY - lastY : lastY - eventData.clientY;
 
-                this.set("resizableElementHeight", this.getSettingsHeight() + diffY);
+                this.set("resizableElementHeight", this.getBoxHeight() + diffY);
             }
 
             if (position.match(/left|right/)) {
 
                 var diffX = position.match(/right/) ? eventData.clientX - lastX : lastX - eventData.clientX;
 
-                this.set("resizableElementWidth" , this.getSettingsWidth()  + diffX);
+                this.set("resizableElementWidth" , this.getBoxWidth()  + diffX);
             }
 
             if (this.onresizableboxresize) {
@@ -814,13 +824,13 @@ ResizableBox.activateResizer = function (e, position) {
 
         if (resized) {
 
-            this.set("resizableElementHeight", this.getSettingsHeight());
+            this.set("resizableElementHeight", this.getBoxHeight());
 
             this.userDefHeight = this.get("resizableElementHeight");
 
             if (this.floating) {
 
-                this.set("resizableElementWidth", this.getSettingsWidth());
+                this.set("resizableElementWidth", this.getBoxWidth());
 
                 this.userDefWidth = this.get("resizableElementWidth");
             }

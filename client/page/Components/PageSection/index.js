@@ -102,6 +102,19 @@
                 this.initPageElementSettings();
                 this.initPageSectionSettings();
 
+                //pokud je nastaven obrázek na pozadí, ale uživatel nevybral žádnou barvu pozadí,
+                //nastavit jako pozadí výchozí, aby při změně výchozí palety nedošlo ke změně barvy
+                //(barva bude vidět, než se načte obrázek)
+                this.observe("section.backgroundImage.src", function (value) {
+
+                    if (value && !this.get("section.backgroundColor")) {
+
+                        this.set("section.backgroundColor", this.get("section.defaultColors.backgroundColor"));
+
+                        this.set("section.defaultColors.backgroundColorRefByUser", false);
+                    }
+                }, {init: false});
+
                 this.on("ColorPicker.*", function (data) {
 
                     if (data && typeof data === "object" && data.key === "current") {
@@ -110,6 +123,97 @@
                     }
 
                 }.bind(this));
+
+                if (on.client) {
+
+                    /************************************/
+                    /*ZMĚNA BAREV*/
+                    this.on("*.generateRandomColors", this.generateRandomColors.bind(this));
+
+                    this.on("ColorPickerPalette.setColor", function (event) {
+
+                        var pathName = (event.component.container || event.component.parent).get("pathName");
+
+                        if (!pathName) {
+
+                            return;
+                        }
+
+                        //uživatel nastavuje vlastní barvu z výchozích -> uložit odkaz na barvu, aby se měnila v případě změny v paletě
+                        if (event.component.get("id") === "defaultColors") {
+
+                            this.set("section.defaultColors." + pathName + "Ref", event.index.i);
+
+                            //(1) odkaz na pozadí se používá pro získání všech ostatních barev,
+                            //(1) proto je potřeba zachovávát odkaz neustále, že je nutné zjistit nastavení uživatelem jiným způsobem
+                            if (pathName === "backgroundColor") {
+
+                                this.set("section.defaultColors.backgroundColorRefByUser", true);
+                            }
+
+                        //(2) uživatel nastavuje vlastní barvu, které nepatří k výchozí paletě -> odstranit odkaz na barvu -> výchozí barva pak bude opět dynamická
+                        //(2) pozadí je nutné řešit zvlášť -> viz (1)
+                        } else if (pathName !== "backgroundColor") {
+
+                            this.set("section.defaultColors." + pathName + "Ref", undefined);
+
+                            //odkaz na barvu odstraněn -> najít výchozí barvu, která patří k výchozímu pozadí
+                            var colorGenerator = this.findParent("Page").defaultColorsGenerator;
+
+                            if (typeof this.get("section.defaultColors.backgroundColorRef") === "number") {
+
+                                var method = "get" + pathName.charAt(0).toUpperCase() + pathName.slice(1);
+
+                                if (colorGenerator[method]) {
+
+                                    this.set("section.defaultColors." + pathName, colorGenerator[method](this.get("section.defaultColors.backgroundColorRef")));
+                                }
+                            }
+
+                        //(3) uživatel mění barvu pozadí na nevýchozí barvu; viz také (1)
+                        } else {
+
+                            this.set("section.defaultColors.backgroundColorRefByUser", false);
+                        }
+
+                    }.bind(this));
+
+                    //"ruční" nastavení barvy
+                    this.on("ColorPicker.activated", function (colorPicker) {
+
+                        var pathName = colorPicker.get("pathName");
+
+                        if (!pathName) {
+
+                            return;
+                        }
+
+                        //uživatel mění barvu na nevýchozí -> odstranit odkazy
+                        //viz (2)
+                        if (pathName !== "backgroundColor") {
+
+                            this.set("section.defaultColors." + pathName + "Ref", undefined);
+
+                            var colorGenerator = this.findParent("Page").defaultColorsGenerator;
+
+                            if (typeof this.get("section.defaultColors.backgroundColorRef") === "number") {
+
+                                var method = "get" + pathName.charAt(0).toUpperCase() + pathName.slice(1);
+
+                                if (colorGenerator[method]) {
+
+                                    this.set("section.defaultColors." + pathName, colorGenerator[method](this.get("section.defaultColors.backgroundColorRef")));
+                                }
+                            }
+                        //(3)
+                        } else {
+
+                            this.set("section.defaultColors.backgroundColorRefByUser", false);
+                        }
+
+                    }.bind(this));
+                }
+                /************************************/
             }
         },
 
@@ -203,6 +307,9 @@
             this.off("PageSectionSettings.closeThisSettings");
             this.off("PageSectionEditUI.openPageSectionSettings");
             this.off("*.sectionHasOutline");
+
+            EventEmitter.off("change.DefaultColorsGenerator." + this.get("section.internalId"));
+
         },
 
         updateHasSettingsState: function (pageElement) {
@@ -262,8 +369,174 @@
 
             var id = this.get("section.internalId");
 
-            $("[value='#" + id + "'], [data-value='#" + id + "']")
-                .text($("<span>").html(name).text());
+            $("[value='#" + id + "'], [data-value='#" + id + "']").text(name);
+        },
+
+        /**
+         * Logika změny barvy:
+         * Nastaví-li uživatel novou paletu, jsou výchozí barvy kompletně přepsány náhodnou barvou z výchozích,
+         * Odkaz na tuto barvu se udržuje v "section.defaultColors.backgroundColorRef" - z barvy pozadí se odvozují ostatní.
+         * Pokud uživatel nastavil vlastní výchozí barvy, jsou tyto barvy přepsány novou paletou (resp. nastavení barev je odstraněno, aby se použily barvy výchozí).
+         *
+         * Pokud se mění pouze jedna barva, tak v případě, že existuje odkaz na výchozí barvu (uživatel vybral vlastní výchozí barvu),
+         * se tato barva změní, pokud je změněna ve výchozí paletě, ale není dynamická (nemění se např. při změně pozadí na jinou).
+         * Pokud odkaz neexistuje použije se dynamická barva patřící k pozadí.
+         *
+         * Vlastní barvy zůstavají vždy zachovány.
+         */
+        handleDefaultColorsChanged: function (colorGenerator, singleColorChanged, prevSection) {
+
+            if (singleColorChanged) {
+
+                this.handleSingleDefaultColorChanged(colorGenerator);
+
+                return;
+            }
+
+            this.handleColorPaletteChanged(colorGenerator, prevSection);
+        },
+
+        handleSingleDefaultColorChanged: function (colorGenerator) {
+
+            var defaultColors = this.get("section.defaultColors");
+
+            if (defaultColors && typeof defaultColors.backgroundColorRef === "number") {
+
+                //uživatel změnil barvu pozadí z výchozích barev -> použít výchozí a odstranit nastaveno barvu
+                if (defaultColors && defaultColors.backgroundColorRefByUser) {
+
+                    this.set("section.backgroundColor", "");
+                }
+
+                //výchozí barvy podle odkazu
+                this.set("section.defaultColors.backgroundColor", colorGenerator.getColor(defaultColors.backgroundColorRef));
+
+                //(1) uživatel změnil barvu textu (speciální) z výchozích -> použít výchozí z odkazu na tuto barvu a odstranit nastavenou
+                //(1) pokud uživatel mění tuto barvu (v paletě) -> barva se bude měnit také, ale nebude se přizůsovovat
+                if (defaultColors && typeof defaultColors.textColorRef === "number") {
+
+                    this.set("section.textColor", "");
+                    this.set("section.defaultColors.textColor", colorGenerator.getColor(defaultColors.textColorRef));
+
+                    //(2) jestiže odkaz neexistuje, použije se dynamická barva patřící k pozadí
+                } else {
+
+                    this.set("section.defaultColors.textColor", colorGenerator.getTextColor(defaultColors.backgroundColorRef));
+                }
+
+                //viz (1)
+                if (defaultColors && typeof defaultColors.specialColorRef === "number") {
+
+                    this.set("section.specialColor", "");
+                    this.set("section.defaultColors.specialColor", colorGenerator.getColor(defaultColors.specialColorRef));
+
+                //viz (2)
+                } else {
+
+                    this.set("section.defaultColors.specialColor", colorGenerator.getSpecialColor(defaultColors.backgroundColorRef));
+                }
+            }
+        },
+
+        handleColorPaletteChanged: function (colorGenerator, prevSection) {
+
+            var defaultColors = this.get("section.defaultColors");
+
+            //v případě, že na jednotlivé barvy byly nastaveny odkazy (uživatel vybral barvu z výchozích),
+            //tak se tyto barvy změní s paletou (odstraní se nastavené barvy)
+            if (defaultColors && typeof defaultColors.textColorRef === "number") {
+
+                this.set("section.textColor", "");
+            }
+
+            if (defaultColors && typeof defaultColors.specialColorRef === "number") {
+
+                this.set("section.specialColor", "");
+            }
+
+            if (defaultColors && defaultColors.backgroundColorRefByUser) {
+
+                this.set("section.backgroundColor", "");
+            }
+
+            /**************************************/
+            //pokud má předcházející sekce stejnou barvu pozadí, vybrat jinou
+            var colors, thisRef,
+
+                prevRef = prevSection ? prevSection.get("section.defaultColors.backgroundColorRef") : null;
+
+            do {
+
+                colors = colorGenerator.getColors();
+
+                thisRef = colors.backgroundColorRef;
+
+            } while (thisRef === prevRef);
+            /**************************************/
+
+            this.set("section.defaultColors", colors);
+        },
+
+        generateRandomColors: function (checkAfterAndBefore, stopTransitions) {
+
+            if (typeof checkAfterAndBefore === "object") {
+
+                checkAfterAndBefore = false;
+            }
+
+            var colorPaths = this.getColorPaths(),
+                p = colorPaths .length - 1;
+
+            for (p; p >= 0; p--) {
+
+                this.set("section." + colorPaths[p], "");
+            }
+
+            var allSections, afterRef, beforeRef, s;
+
+            if (checkAfterAndBefore) {
+
+                allSections = this.findParent("Page").pageSectionsManager.getSectionsSortedByIndex(true);
+
+                s = allSections.length - 1;
+
+                for (s; s >= 0; s--) {
+
+                    if (allSections[s] === this) {
+
+                        //předchozí sekce
+                        if (allSections[s - 1]) {
+
+                            beforeRef = allSections[s - 1].get("section.defaultColors.backgroundColorRef");
+
+                        }
+                        //následující sekce
+                        if (allSections[s + 1]) {
+
+                            afterRef = allSections[s + 1].get("section.defaultColors.backgroundColorRef");
+                        }
+                    }
+                }
+            }
+
+            var colorGenerator = this.findParent("Page").defaultColorsGenerator,
+
+                colors,
+
+                lastRef = this.get("section.defaultColors.backgroundColorRef"),
+                thisRef;
+
+            do {
+
+                colors = colorGenerator.getColors();
+
+                thisRef = colors.backgroundColorRef;
+
+            } while ((thisRef === lastRef) || (checkAfterAndBefore && (thisRef === afterRef || thisRef === beforeRef)));
+
+            this.set("stopColorTransitions", !!stopTransitions);
+
+            this.set("section.defaultColors", colors);
         },
 
         handleHover: function (event) {
@@ -377,7 +650,11 @@
 
         getColorPaths: function () {
 
-            return ["backgroundColor", "textColor"];
+            var paths = ["backgroundColor", "textColor"];
+
+            //pokud je barva v poli -> přidat, každou cestu zvlášť ???
+
+            return paths;
         },
 
         getColors: function () {

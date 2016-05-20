@@ -1,5 +1,5 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/clearInterval
-/*global $, requestAnimationFrame*/
+/*global $, requestAnimationFrame, cancelAnimationFrame*/
 
 var SUPPORT = require("./../../SUPPORT"),
     EventEmitter = require("./../../libs/EventEmitter")();
@@ -35,7 +35,7 @@ module.exports = (function () {
 
         $sectionThumb,
 
-        getSectionsSortedByIndex = function () {
+        getSectionsSortedByIndex = function (asComponents) {
 
             var pageSections = page.findAllPageSections(),
 
@@ -49,15 +49,15 @@ module.exports = (function () {
 
                 if (pageSections[s].get("section.type") === "PageSectionHeader") {
 
-                    pageSectionHeader = pageSections[s].get("section");
+                    pageSectionHeader = asComponents ? pageSections[s] : pageSections[s].get("section");
 
                 } else if (pageSections[s].get("section.type") === "PageSectionFooter") {
 
-                    pageSectionFooter = pageSections[s].get("section");
+                    pageSectionFooter = asComponents ? pageSections[s] : pageSections[s].get("section");
 
                 } else {
 
-                    sections[pageSections[s].getCurrentIndex()] = pageSections[s].get("section");
+                    sections[pageSections[s].getCurrentIndex()] = asComponents ? pageSections[s] : pageSections[s].get("section");
                 }
             }
 
@@ -87,11 +87,16 @@ module.exports = (function () {
 
         insertSection = function (type, rewriteData, customAnimationProvided) {
 
-            var data = pageSectionBuilder.create(type, rewriteData);
+            var data = pageSectionBuilder.create(type, rewriteData),
 
-            page.push("page.sections", data);
+                pageSection;
 
-            var pageSection = page.findAllPageSections().pop();
+            page.push("page.sections", data).then(function () {
+
+                pageSection.generateRandomColors(true, true);
+            });
+
+            pageSection = page.findAllPageSections().pop();
 
             if (!customAnimationProvided) {
 

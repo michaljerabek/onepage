@@ -14,7 +14,7 @@
 
             <div class="E_PageElementSettings--scrolling-content ResizableBox--scrolling-content">
 
-                <ColorPicker output="{{.data.textColor}}" input="{{.data.textColor || 'black'}}" defer="true" noColor="true">
+                <ColorPicker pathName="textColor" output="{{.data.textColor}}" input="{{.data.textColor || 'black'}}" defer="true" noColor="true">
                     <ColorPickerPalette title="Nejpoužívanější" colors="{{mostUsedColors}}" />
                 </ColorPicker>
 

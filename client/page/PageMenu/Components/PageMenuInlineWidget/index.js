@@ -34,7 +34,7 @@ module.exports = InlineWidget.extend({
 
                 }.bind(this), {init: false});
 
-                this.set("delayOpening", this.parent.get("__InlineWidget." + connectWith.id));
+                this.set("delayOpening", !!this.parent.get("__InlineWidget." + connectWith.id));
 
             } else  {
 

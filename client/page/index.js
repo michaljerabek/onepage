@@ -91,14 +91,12 @@ module.exports = Ractive.extend({
                     fontType: "P_font-type-1",
                     colorPalette: {
                         colors: [
-                            "rgb(204, 33, 33)",
-                            "rgb(19, 195, 19)",
-                            "rgb(29, 88, 183)",
-                            "rgb(232, 224, 122)",
-                            "rgb(91, 247, 169)"
+                            "rgb(255, 200, 87)",
+                            "rgb(233, 114, 76)",
+                            "rgb(197, 40, 61)",
+                            "rgb(72, 29, 36)",
+                            "rgb(37, 95, 133)"
                         ],
-                        textLight: "rgb(255, 255, 255)",
-                        textDark: "rgb(0, 0, 0)",
                         headerImg: ""
                     }
                 }
@@ -239,6 +237,22 @@ module.exports = Ractive.extend({
         } else {
 
             this.pageMenu.reset();
+        }
+
+        if (!this.defaultColorsGenerator) {
+
+            if (!this.get("page.settings.colorPalette")) {
+
+                this.set("page.settings.colorPalette", this.get("defaults.settings.colorPalette"));
+            }
+
+            var DefaultColorsGenerator = require("./DefaultColorsGenerator");
+
+            this.defaultColorsGenerator = new DefaultColorsGenerator(this, this.get("page.settings.colorPalette"));
+
+        } else {
+
+            this.defaultColorsGenerator.reset();
         }
 
         //sledovat změny stránky -> označit jako neuložené
@@ -395,14 +409,14 @@ module.exports = Ractive.extend({
         return pageSection;
     },
 
-    forEachPageSection: function (fn/*, args...*/) {
+    forEachPageSection: function (/*fn, args...*/) {
 
-        var sections = this.findPageSections(),
+        var args = Array.prototype.slice.call(arguments),
+
+            sections = $.isArray(args[0]) ? args.shift() : this.findPageSections(),
             s = sections.length - 1,
 
-            args = Array.prototype.slice.call(arguments);
-
-        args.shift();
+            fn = args.shift();
 
         for (s; s >= 0; s--) {
 
@@ -420,6 +434,15 @@ module.exports = Ractive.extend({
                 }
             }
         }
+    },
+
+    forEachPageSectionByIndex: function (/*fn, args...*/) {
+
+        var args = Array.prototype.slice.call(arguments);
+
+        args.unshift(this.pageSectionsManager.getSectionsSortedByIndex(true));
+
+        this.forEachPageSection.apply(this, args);
     },
 
     forEachEditor: function (fn/*, args*/) {
