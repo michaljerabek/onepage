@@ -2,10 +2,10 @@
 
 var Spectra = require("spectra");
 
-var BLACK  = new Spectra("#000"),
-    BLACK2 = new Spectra("#222"),
+var BLACK  = new Spectra("#000000"),
+    BLACK2 = new Spectra("#222222"),
     BLACK3 = new Spectra("#424242"),
-    WHITE  = new Spectra("#fff"),
+    WHITE  = new Spectra("#ffffff"),
     WHITE2 = new Spectra("#f0f0f0"),
     WHITE3 = new Spectra("#e5e5e5"),
 
@@ -377,24 +377,15 @@ var BLACK  = new Spectra("#000"),
 
     createNewColorBase = function (i, color) {
 
-        this.colorCache[color] = this.colorCache[color] || {};
-
-        this.colorCache[color].color = this.colorCache[color].color || new Spectra(color);
-        this.colorCache[color].self  = this.colorCache[color].self  || getRgbString(this.colorCache[color].color);
-        this.colorCache[color].rgb   = this.colorCache[color].rgb   || [this.colorCache[color].color.red(), this.colorCache[color].color.green(), this.colorCache[color].color.blue()];
-
-        var rgb = this.colorCache[color].rgb;
-
-        this.colorCache[color].isBlack = typeof this.colorCache[color].isBlack !== "undefined" ? this.colorCache[color].isBlack : (rgb[0] <= MIN_BLACK && rgb[1] <= MIN_BLACK && rgb[2] <= MIN_BLACK && Math.abs(rgb[0] - rgb[1]) <= MAX_DIFF && Math.abs(rgb[0] - rgb[2]) <= MAX_DIFF) || this.colorCache[color].color.near(BLACK, 10) || this.colorCache[color].color.near(BLACK2, 10);
-        this.colorCache[color].isWhite = typeof this.colorCache[color].isWhite !== "undefined" ? this.colorCache[color].isWhite : (rgb[0] >= MIN_WHITE && rgb[1] >= MIN_WHITE && rgb[2] >= MIN_WHITE && Math.abs(rgb[0] - rgb[1]) <= MAX_DIFF && Math.abs(rgb[0] - rgb[2]) <= MAX_DIFF) || this.colorCache[color].color.near(WHITE, 10) || this.colorCache[color].color.near(WHITE2, 10) || this.colorCache[color].color.near(WHITE3, 10);
-        this.colorCache[color].isDark  = typeof this.colorCache[color].isDark  !== "undefined" ? this.colorCache[color].isDark  : this.colorCache[color].color.near(BLACK, 25);
-
-        this.currentPalette.colors[i].color   = this.colorCache[color].color;
+        this.currentPalette.colors[i].color   = new Spectra(color);
         //textová reprezentace barvy
-        this.currentPalette.colors[i].self    = this.colorCache[color].self;
-        this.currentPalette.colors[i].isBlack = this.colorCache[color].isBlack;
-        this.currentPalette.colors[i].isWhite = this.colorCache[color].isWhite;
-        this.currentPalette.colors[i].isDark  = this.colorCache[color].isDark;
+        this.currentPalette.colors[i].self    = getRgbString(this.currentPalette.colors[i].color);
+        
+        var rgb = [this.currentPalette.colors[i].color.red(), this.currentPalette.colors[i].color.green(), this.currentPalette.colors[i].color.blue()];
+
+        this.currentPalette.colors[i].isBlack = typeof this.currentPalette.colors[i].isBlack !== "undefined" ? this.currentPalette.colors[i].isBlack : (rgb[0] <= MIN_BLACK && rgb[1] <= MIN_BLACK && rgb[2] <= MIN_BLACK && Math.abs(rgb[0] - rgb[1]) <= MAX_DIFF && Math.abs(rgb[0] - rgb[2]) <= MAX_DIFF) || this.currentPalette.colors[i].color.near(BLACK, 10) || this.currentPalette.colors[i].color.near(BLACK2, 10);
+        this.currentPalette.colors[i].isWhite = typeof this.currentPalette.colors[i].isWhite !== "undefined" ? this.currentPalette.colors[i].isWhite : (rgb[0] >= MIN_WHITE && rgb[1] >= MIN_WHITE && rgb[2] >= MIN_WHITE && Math.abs(rgb[0] - rgb[1]) <= MAX_DIFF && Math.abs(rgb[0] - rgb[2]) <= MAX_DIFF) || this.currentPalette.colors[i].color.near(WHITE, 10) || this.currentPalette.colors[i].color.near(WHITE2, 10) || this.currentPalette.colors[i].color.near(WHITE3, 10);
+        this.currentPalette.colors[i].isDark  = typeof this.currentPalette.colors[i].isDark  !== "undefined" ? this.currentPalette.colors[i].isDark  : this.currentPalette.colors[i].color.near(BLACK, 25);
     },
 
     processPalette = function (palette, doNotRewrite, singleColorChanged) {
@@ -484,15 +475,12 @@ DefaultColorsGenerator.prototype.reset = function () {
 
 DefaultColorsGenerator.prototype.destroy = function () {
 
-    this.colorCache = null;
     this.currentPalette = null;
 
     this.colorsSettingsObserver.cancel();
 };
 
 DefaultColorsGenerator.prototype.init = function () {
-
-    this.colorCache = {};
 
     this.currentPalette = {};
 
