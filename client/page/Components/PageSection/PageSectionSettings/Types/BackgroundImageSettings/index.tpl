@@ -106,6 +106,16 @@
 
             </div>
 
+            <div class="E_PageSectionSettings--sections">
+
+                <div class="E_PageSectionSettings--section E_BackgroundImageSettings--bg-color-note">
+
+                    <p class="E_PageSectionSettings--section-note">Je vhodné také nastavit barvu pozadí, protože než se načte obrázek, text nemusí být čitelný.</p>
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>

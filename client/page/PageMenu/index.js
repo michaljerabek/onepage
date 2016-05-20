@@ -258,7 +258,16 @@ var instaceCounter = 0,
     resetCurrentItem = function () {
 
         var $openedItem = this.$pageMenu.find("." + CLASS.showContent),
-            $openedContentWrapper = $openedItem.find("." + CLASS.contentWrapper);
+            $openedContentWrapper = $openedItem.find("." + CLASS.contentWrapper),
+
+            cancelContentObserver = $openedContentWrapper.data("contentObserver." + this.EVENT_NS);
+
+        if (cancelContentObserver) {
+
+            cancelContentObserver();
+
+            $openedContentWrapper.data("contentObserver." + this.EVENT_NS, null);
+        }
 
         $openedContentWrapper.perfectScrollbar("destroy");
 
@@ -280,13 +289,70 @@ var instaceCounter = 0,
         });
     },
 
+    updateScrollbar = function ($contentWrapper, contentObserverTimeout) {
+
+        var wrapperRect = $contentWrapper[0].getBoundingClientRect(),
+            contentRect = $contentWrapper[0].firstChild.getBoundingClientRect(),
+
+            wrapperPadding = parseFloat($contentWrapper.css("padding-bottom")) + parseFloat($contentWrapper.css("padding-top"));
+
+        if (wrapperRect.bottom - wrapperPadding > contentRect.bottom) {
+
+            $contentWrapper
+                .stop()
+                .animate({
+                    scrollTop: $contentWrapper[0].firstChild.offsetHeight + wrapperPadding - $contentWrapper[0].offsetHeight
+                }, {
+                    duration: 200,
+
+                    progress: function () {
+                        clearTimeout(contentObserverTimeout);
+                    },
+
+                    complete: function () {
+                        $contentWrapper.perfectScrollbar("update");
+                    }
+                });
+
+        } else if (wrapperRect.bottom - wrapperPadding < contentRect.bottom) {
+
+            $contentWrapper.stop().perfectScrollbar("update");
+        }
+    },
+
     addScrollbar = function () {
 
         var $openedContentWrapper = this.$pageMenu.find("." + CLASS.showContent + " ." + CLASS.contentWrapper);
 
         $openedContentWrapper.perfectScrollbar({
-            swipePropagation: false //Odstranit? Při přiblízení nelze posouvat stránkou.
+            swipePropagation: false, //Odstranit? Při přiblízení nelze posouvat stránkou.,
+            wheelPropagation: false
         });
+
+        if (!$openedContentWrapper.data("contentObserver." + this.EVENT_NS)) {
+
+            var contentObserverTimeout = null,
+
+                contentObserver = new MutationObserver(function () {
+
+                    clearTimeout(contentObserverTimeout);
+
+                    contentObserverTimeout = setTimeout(updateScrollbar.bind(this, $openedContentWrapper, contentObserverTimeout), 50);
+                }),
+
+                cancelContentObserver = function () {
+
+                    clearTimeout(contentObserverTimeout);
+
+                    contentObserver.disconnect();
+
+                    $openedContentWrapper.stop();
+                };
+
+            contentObserver.observe($openedContentWrapper[0], { attributes: true, childList: true, characterData: true, subtree: true });
+
+            $openedContentWrapper.data("contentObserver." + this.EVENT_NS, cancelContentObserver);
+        }
     },
 
     init = function ($selectable) {
@@ -409,6 +475,19 @@ PageMenu.prototype.destroy = function () {
     this.pageMenuRight = null;
     this.$pageMenu = null;
     this.touch = null;
+
+    this.$pageMenu
+        .find("." + CLASS.contentWrapper)
+        .perfectScrollbar("destroy")
+        .each(function (i, wrapper) {
+
+            var cancelContentObserver = $(wrapper).data("contentObserver." + this.EVENT_NS);
+
+            if (cancelContentObserver) {
+
+                cancelContentObserver();
+            }
+        }.bind(this));
 
     this.$win
         .off("." + this.EVENT_NS)

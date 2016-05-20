@@ -248,11 +248,15 @@
 
                 if (!this.skipUpdateColor) {
 
+                    this.preserveCurrentColorHue = true;
+
                     this.skipUpdateSV = true;
 
                     this.updateSaturationAndValue.apply(this, arguments);
 
                     this.skipUpdateSV = false;
+
+                    this.preserveCurrentColorHue = false;
                 }
             }, {init: false});
         },
