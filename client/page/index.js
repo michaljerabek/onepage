@@ -108,6 +108,11 @@ module.exports = Ractive.extend({
 
         if (this.get("isAdmin")) {
 
+            if (!this.root.get("unsavedPages")) {
+
+                this.root.set("unsavedPages", []);
+            }
+
             this.Admin = this.root.findComponent("Admin");
 
             var pageId = this.get("pageId");
@@ -115,6 +120,8 @@ module.exports = Ractive.extend({
             if (this.isCurrentPage(pageId)) {
 
                 this.alreadyLoaded = true;
+
+                this.checkUnsavedChanges(pageId);
 
                 return;
             }
@@ -162,6 +169,14 @@ module.exports = Ractive.extend({
             this.pageMenu.destroy();
 
             clearTimeout(this.unsavedChangesTimeout);
+        }
+    },
+
+    checkUnsavedChanges: function (pageId) {
+
+        if (~this.root.get("unsavedPages").indexOf(pageId)) {
+
+            this.set("unsavedChanges", true);
         }
     },
 
@@ -266,6 +281,11 @@ module.exports = Ractive.extend({
 
         clearTimeout(this.unsavedChangesTimeout);
 
+        if (this.get("pageIsSaving")) {
+
+            return;
+        }
+
         this.unsavedChangesTimeout = setTimeout(
             this.set.bind(this, "unsavedChanges", true), 500
         );
@@ -289,19 +309,41 @@ module.exports = Ractive.extend({
         loadReq.then(this.initPage.bind(this));
     },
 
-    savePage: function () {
+    savePage: function (skipDialog) {
 
         clearTimeout(this.changesSavedTimeout);
+
+        if (skipDialog !== true) {
+
+            this.fire("showDialog", {
+                type: "warn",
+                title: "Uložit změny",
+                text: "Chcete uložit a publikovat provedené změny?",
+                confirm: {
+                    text: "Uložit",
+                    exec: this.savePage.bind(this, true)
+                },
+                dismiss: {
+                    active: 1
+                }
+            });
+
+            return;
+        }
 
         this.set("changesSaved", false);
         this.set("pageIsSaving", true);
 
-        var params = {
-            name: this.get("page.name"),
-            settings: this.get("page.settings"),
-            sections: this.pageSectionsManager.getSectionsSortedByIndex(),
-            _id: this.get("page._id")
-        };
+        var sortedSections = this.pageSectionsManager.getSectionsSortedByIndex(),
+
+            params = {
+                name: this.get("page.name"),
+                settings: this.get("page.settings"),
+                sections: sortedSections,
+                _id: this.get("page._id")
+            };
+
+        this.merge("page.sections", sortedSections);
 
         var saveReq = this.req("page.save", params);
 
@@ -312,6 +354,15 @@ module.exports = Ractive.extend({
                 this.set("pageIsSaving", false);
                 this.set("unsavedChanges", false);
                 this.set("changesSaved", true);
+
+                var pageId = this.get("pageId"),
+
+                    inUnsavedPages = (this.root.get("unsavedPages") || []).indexOf(pageId);
+
+                if (~inUnsavedPages) {
+
+                    this.root.splice("unsavedPages", inUnsavedPages, 1);
+                }
 
                 clearTimeout(this.changesSavedTimeout);
 
@@ -324,7 +375,34 @@ module.exports = Ractive.extend({
 
     closePage: function () {
 
-        if (this.get("unsavedChanges") && !confirm("Neuložené změny. Přesto zavřít?")) {
+        if (this.get("unsavedChanges")) {
+
+            this.fire("showDialog", {
+                title: "Zavřít editaci",
+                text: "Některé změny nebyly uloženy. Chcete přesto eidtaci zavřít?",
+                type: "warn",
+                confirm: {
+                    exec: function () {
+
+                        if (this.Admin) {
+
+                            if (this.get("unsavedChanges")) {
+
+                                this.merge("page.sections", this.pageSectionsManager.getSectionsSortedByIndex());
+
+                                this.root.push("unsavedPages", this.get("pageId"));
+                            }
+
+                            this.Admin.set("editPage", null);
+                        }
+                    },
+                    context: this,
+                    text: "Ano"
+                },
+                dismiss: {
+                    text: "Ne"
+                }
+            });
 
             return;
         }

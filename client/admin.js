@@ -19,7 +19,8 @@ var ractive = function (settings) {
 
         components: {
             Page: require("./Page/"),
-            Admin: require("./Admin/")
+            Admin: require("./Admin/"),
+            Dialog: require("./libs/Components/Dialog")
         },
 
         partials: {

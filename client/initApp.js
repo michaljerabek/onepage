@@ -85,12 +85,16 @@ module.exports = function (ractive, ractiveData, config) {
             partials: {
             },
 
+            components: {
+            },
+
             data: ractiveData,
 
             events: {
                 hover: require("ractive-events-hover"),
                 enter: ractiveKeyEvents.enter,
                 space: ractiveKeyEvents.space,
+                escape: ractiveKeyEvents.escape,
                 windowMousedown: ractiveWindowEvents.windowMousedown,
                 windowMousemove: ractiveWindowEvents.windowMousemove,
                 windowMouseup: ractiveWindowEvents.windowMouseup,
