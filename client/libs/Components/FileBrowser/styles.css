@@ -2,8 +2,6 @@
     font-family: "Encode Sans Narrow", sans-serif;
     font-weight: 500;
 
-    position: relative;
-
     color: var(--color-text-1);
 
     display: flex;
@@ -79,7 +77,7 @@
 }
 
 .FileBrowser--message__active,
-.FileBrowser.dz-drag-hover .FileBrowser--drag-drop-overlay {
+.FileBrowser.dz-drag-hover:not(.dz-not-file) .FileBrowser--drag-drop-overlay {
     opacity: 0.9;
     visibility: visible;
 
@@ -436,7 +434,7 @@
 
 /*---------------------------- FILE-IMAGE ----------------------------*/
 
-.FileBrowser__images .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
+.FileBrowser__images .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[data-ractive-transition="intro"] {
     animation:
         FileBrowser--file-intro__image 0.45s linear forwards 0s;
 }
@@ -462,7 +460,7 @@
     }
 }
 
-.FileBrowser__images .FileBrowser--file[ractive-transition="outro"] {
+.FileBrowser__images .FileBrowser--file[data-ractive-transition="outro"] {
     animation:
         FileBrowser--file-outro__image 0.45s linear 0s forwards;
 }
@@ -601,7 +599,7 @@
 
 /*---------------------------- FILE-ICON ----------------------------*/
 
-.FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[ractive-transition="intro"] {
+.FileBrowser__icon .FileBrowser--files:not(.FileBrowser--files__init-dir-content) .FileBrowser--file[data-ractive-transition="intro"] {
     animation:
         FileBrowser--file-intro__icon 0.45s linear forwards 0s;
 }
@@ -627,7 +625,7 @@
     }
 }
 
-.FileBrowser__icon .FileBrowser--file[ractive-transition="outro"] {
+.FileBrowser__icon .FileBrowser--file[data-ractive-transition="outro"] {
     animation:
         FileBrowser--file-outro__icon 0.45s linear 0s forwards;
 }

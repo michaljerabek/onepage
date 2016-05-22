@@ -17,7 +17,8 @@ var ractive = function (settings) {
         template: require("./page.tpl"),
 
         components: {
-            Page: require("./Page/")
+            Page: require("./Page/"),
+            Dialog: require("./libs/Components/Dialog")
         },
 
         partials: {

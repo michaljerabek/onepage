@@ -15,4 +15,9 @@
 }
 
 .E_BackgroundImageSettings--ImageBrowser {
+    position: relative;
+}
+
+.E_BackgroundImageSettings--ImageBrowser .ResizableBox--scrolling-content {
+    position: static;
 }

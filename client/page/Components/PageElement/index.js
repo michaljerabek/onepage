@@ -232,10 +232,24 @@
                 //zobrazit outline např při tabu nebo označení
                 .on("focusin." + this.EVENT_NS, function (e) {
 
+                    //pouze nejvnitřnější elmenet
+                    var children = this.findAllComponents(),
+
+                        i = children.length - 1;
+
+                    for (i; i >= 0; i--) {
+
+                        if (children[i].PAGE_ELEMENT && children[i].focusin) {
+
+                            return;
+                        }
+                    }
+
                     this.set("hover", true);
 
-                    //pouze nejvnitřnější elmenet
-                    e.stopPropagation();
+                    this.focusin = true;
+
+//                    e.stopPropagation();
 
                 }.bind(this));
 
@@ -251,6 +265,8 @@
                 this.updateOutlineState();
 
                 if (!state) {
+
+                    this.focusin = false;
 
                     this.set("restoreHover", false);
 

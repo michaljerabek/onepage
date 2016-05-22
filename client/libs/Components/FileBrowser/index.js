@@ -31,9 +31,14 @@
         CLASS: {
             self: "FileBrowser",
 
+            dragDropOverlay: "FileBrowser--drag-drop-overlay",
+            message: "FileBrowser--message",
+
             uploadFiles: "FileBrowser--upload-files",
 
-            searchInput: "FileBrowser--search-input"
+            searchInput: "FileBrowser--search-input",
+
+            notFileDragged: "dz-not-file"
         },
 
         OPTIONS: {
@@ -167,15 +172,28 @@
 
                 this.searchInput = this.find("." + this.CLASS.searchInput);
             }
+
+            this.$overlays = $(this.findAll("." + this.CLASS.dragDropOverlay + ", ." + this.CLASS.message));
+
+            this.$offsetElement = $([]);
         },
 
         superOncomplete: function () {
 
+            this.$offsetElement = this.$self.offsetParent().on("scroll.FileBrowser", function (e) {
+
+                this.$overlays.css({
+                    top: e.target.scrollTop
+                });
+
+            }.bind(this));
         },
 
         superOnteardown: function () {
 
             this.torndown = true;
+
+            this.$offsetElement.off(".FileBrowser");
 
             if (this.dirReq) {
 
@@ -311,6 +329,24 @@
             this.thumbHeight = options.thumbnailHeight;
 
             this.uploadFilesLoaded = true;
+
+            this.dropzone.on("dragenter", function (event) {
+
+                if (!event.originalEvent.dataTransfer.types[0] ||
+                    !event.originalEvent.dataTransfer.types[0].match(/file/i)) {
+
+                    this.self.classList.add(this.CLASS.notFileDragged);
+
+                    return;
+                }
+
+                this.self.classList.remove(this.CLASS.notFileDragged);
+
+                this.$overlays.css({
+                    top: this.$offsetElement.scrollTop()
+                });
+
+            }.bind(this));
         },
 
         //pokud složka při otevření obsahuje soubory je potřeba použit jinou intro animaci
@@ -779,6 +815,10 @@
         },
 
         showMessage: function (title, text, hideTimeout) {
+
+            this.$overlays.css({
+                top: this.$offsetElement.scrollTop()
+            });
 
             this.set("messageTitle", title);
             this.set("messageText", text);

@@ -21,6 +21,10 @@
     transition-property: height;
 }
 
+.ResizableBox--scrollable {
+    position: relative;
+}
+
 .ResizableBox:not(.ResizableBox__floating) .ResizableBox--scrollable {
     width: 100%;
 }

@@ -471,11 +471,6 @@ PageMenu.prototype.destroy = function () {
     this.Page.off("switchPosition");
     this.Page.off("*.showPage");
 
-    this.pageMenuLeft  = null;
-    this.pageMenuRight = null;
-    this.$pageMenu = null;
-    this.touch = null;
-
     this.$pageMenu
         .find("." + CLASS.contentWrapper)
         .perfectScrollbar("destroy")
@@ -488,6 +483,11 @@ PageMenu.prototype.destroy = function () {
                 cancelContentObserver();
             }
         }.bind(this));
+
+    this.pageMenuLeft  = null;
+    this.pageMenuRight = null;
+    this.$pageMenu = null;
+    this.touch = null;
 
     this.$win
         .off("." + this.EVENT_NS)
