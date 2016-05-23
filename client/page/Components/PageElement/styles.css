@@ -10,7 +10,7 @@
     pointer-events: none;
 }
 
-.csspointerevents .E_PageElement--outline {
+.E_PageElement--outline {
     z-index: 1;
     position: absolute;
     top: -12px;
@@ -32,7 +32,8 @@
         left 0s linear var(--default-transition-duration);
 }
 
-.csspointerevents .E_PageElement--outline__active {
+.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active,
+.P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active {
     border-color: var(--color-element-outline);
 
     pointer-events: none;
@@ -41,7 +42,7 @@
     transition-property: border, box-shadow;
 }
 
-.csspointerevents .E_PageElement--outline:after {
+.E_PageElement--outline:after {
     content: "";
 
     position: absolute;
@@ -58,11 +59,12 @@
     transition: inherit;
 }
 
-.csspointerevents .E_PageElement--outline__active:after {
+.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active:after,
+.P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active:after {
     box-shadow: 0px 0px 8px 0px var(--color-element-outline-glow);
 }
 
-.csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline {
+.P_PageElement .P_PageElement .E_PageElement--outline {
     top: -6px;
     left: -6px;
 
@@ -70,7 +72,7 @@
     height: calc(100% + 12px);
 }
 
-.csspointerevents .P_PageElement .P_PageElement .P_PageElement .E_PageElement--outline {
+.P_PageElement .P_PageElement .P_PageElement .E_PageElement--outline {
     top: 0px;
     left: 0px;
 
@@ -79,9 +81,9 @@
 }
 
 
-.csspointerevents .P_PageElement .E_PageElement--outline__limited,
-.csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline__limited,
-.csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline__limited {
+.P_PageElement .E_PageElement--outline__limited,
+.P_PageElement .P_PageElement .E_PageElement--outline__limited,
+.P_PageElement .P_PageElement .E_PageElement--outline__limited {
     top: 0px;
     left: 0px;
 
@@ -116,7 +118,7 @@
 }
 
 .E_PageElementEditUI * {
-	pointer-events: all;
+	pointer-events: none;
 }
 
 .P_PageElement .P_PageElement .E_PageElementEditUI {
@@ -145,13 +147,23 @@
         right 0s linear var(--default-transition-duration);
 }
 
-.E_PageElement--outline__active ~ .E_PageElementEditUI {
+.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI,
+.P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI {
     z-index: 2;
 
     opacity: 1;
 
     transition: var(--default-transition-hover);
     transition-property: opacity;
+}
+
+.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI *,
+.P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI * {
+    pointer-events: all;
+}
+
+.P_PageElement.E_PageElement__empty .E_PageElement--outline__active ~ .E_PageElementEditUI {
+    display: none;
 }
 
 .E_PageElementEditUI > * {
@@ -174,4 +186,74 @@
 
     cursor: default;
     touch-action: manipulation;
+}
+
+/*---------------------------- ACTIVATE ----------------------------*/
+
+.E_PageElement--activate {
+    margin: auto;
+    z-index: 100;
+    position: absolute;
+    top: -20px;
+    right: 0;
+    left: 0;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: var(--color-button-bg);
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition:
+        background-color var(--default-transition-duration) var(--default-transition-easing) 0s,
+        box-shadow       var(--default-transition-duration) var(--default-transition-easing) 0s,
+        opacity          var(--default-transition-duration) var(--default-transition-easing) 0s,
+        visibility 0s linear var(--default-transition-duration);
+}
+
+.E_PageElement--activate svg {
+    width: 20px;
+    height: 20px;
+
+    fill: var(--color-button-icon);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: var(--default-transition);
+}
+
+.E_PageElement__empty:not(.E_PageElement__active) .E_PageElement--activate {
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        background-color var(--default-transition-duration) var(--default-transition-easing) 0s,
+        box-shadow       var(--default-transition-duration) var(--default-transition-easing) 0.3s,
+        opacity          var(--default-transition-duration) var(--default-transition-easing) 0.3s;
+}
+
+.P_PageElement .E_PageElement--activate:hover {
+    background-color: var(--color-hover);
+
+    transition:
+        background-color var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        box-shadow       var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        opacity          var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        visibility 0s linear var(--default-transition-duration-hover);
+}
+
+.E_PageElement--activate:hover svg {
+    fill: var(--color-button-icon-active);
+
+    transition: var(--default-transition-hover);
 }

@@ -5,6 +5,7 @@
     if (typeof module === 'object' && module.exports) {
 
         var PageElement = require("./../../"),
+            Ractive = require("ractive"),
 
             U = require("./../../../../../libs/U"),
             on = require("./../../../../../../helpers/on"),
@@ -16,6 +17,7 @@
 
         module.exports = factory(
             PageElement,
+            Ractive,
             U,
             partials,
             on
@@ -25,13 +27,14 @@
 
         root.PageElementTextContent = factory(
             root.PageElement,
+            root.Ractive,
             root.U,
             {},
             {client: true}
         );
     }
 
-}(this, function (PageElement, U, partials, on) {
+}(this, function (PageElement, Ractive, U, partials, on) {
 
     return PageElement.extend({
 
@@ -52,13 +55,46 @@
         onconfig: function () {
 
             this.superOnconfig();
+
+            if (Ractive.EDIT_MODE) {
+
+                this.on("stateChange", function (state) {
+
+                    if (state && (this.hasFocusedEditor() || this.focusin)) {
+
+                        this.set("state", "active");
+
+                    } else {
+
+                        this.set("state", "inactive");
+                    }
+                });
+
+                this.on("activate", function (event) {
+
+                    event.original.preventDefault();
+
+                    setTimeout(function() {
+
+                        var editable = this.find("[data-medium-editor-element='true']");
+
+                        if (editable) {
+
+                            editable.focus();
+
+                            this.fire("stateChange", this.get("showOutline"));
+                        }
+
+                    }.bind(this), 0);
+                });
+            }
         },
 
         onrender: function () {
 
             this.superOnrender();
 
-            if (this.get("editMode")) {
+            if (Ractive.EDIT_MODE) {
 
                 this.Page = this.findParent("Page");
 
@@ -74,6 +110,11 @@
         onteardown: function () {
 
             this.superOnteardown();
+        },
+
+        isEmpty: function () {
+
+            return (this.get("element.content") || "").replace(/(?:<[^>]*>)/g, "").match(/^\s*$/);
         }
 
     });

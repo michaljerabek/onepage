@@ -194,7 +194,8 @@ module.exports = Ractive.extend({
             this.get.bind(this, "page.sections")
         );
 
-        this.off("sectionInserted.complete").on("sectionInserted.complete", this.refreshEditors);
+        this.off("sectionInserted.complete").on("sectionInserted.complete", this.refreshEditors.bind(this, true));
+        this.off("sectionRemoved.complete").on("sectionRemoved.complete", this.refreshEditors.bind(this, true));
 
         this.editorsLoaded = true;
     },
@@ -208,10 +209,10 @@ module.exports = Ractive.extend({
         this.scrollToSection = new ScrollToSection(mode, "section-");
     },
 
-    refreshEditors: function () {
+    refreshEditors: function (elementsOnly) {
 
-        this.titleEditor.refresh();
-        this.contentEditor.refresh();
+        this.titleEditor.refresh(elementsOnly === true);
+        this.contentEditor.refresh(elementsOnly === true);
     },
 
     isCurrentPage: function (pageId) {
