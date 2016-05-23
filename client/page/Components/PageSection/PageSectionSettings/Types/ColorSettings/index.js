@@ -3,24 +3,24 @@
 
     if (typeof module === 'object' && module.exports) {
 
-        var SuperPageSectionSettingsType = require("./../SuperPageSectionSettingsType"),
+        var PageSectionSettings = require("./../../../PageSectionSettings"),
             ColorPicker = require("./../../../../../../libs/Components/ColorPicker"),
             ColorPickerPalette = require("./../../../../../../libs/Components/ColorPicker/Components/ColorPickerPalette"),
 
             template = require("./index.tpl");
 
-        module.exports = factory(SuperPageSectionSettingsType, ColorPicker, ColorPickerPalette, template);
+        module.exports = factory(PageSectionSettings, ColorPicker, ColorPickerPalette, template);
 
     } else {
 
-        root.ColorSettings = factory(root.SuperPageSectionSettingsType, root.ColorPicker, root.ColorPickerPalette, "");
+        root.ColorSettings = factory(root.PageSectionSettings, root.ColorPicker, root.ColorPickerPalette, "");
     }
 
-}(this, function (SuperPageSectionSettingsType, ColorPicker, ColorPickerPalette, template) {
+}(this, function (PageSectionSettings, ColorPicker, ColorPickerPalette, template) {
 
-    return SuperPageSectionSettingsType.extend({
+    return PageSectionSettings.extend({
 
-        template: template,
+//        template: template,
 
         components: {
             ColorPickerPalette: ColorPickerPalette,
@@ -28,7 +28,9 @@
         },
 
         partials: {
-
+            pageSectionSettingsContent: template,
+            ColorSettingsNavItem: require("./color-settings-nav-item.tpl"),
+            ColorSettingsTab:  require("./color-settings-tab.tpl")
         },
 
         data: function () {
@@ -42,9 +44,9 @@
 
         onrender: function () {
 
-            this.observe("openTab", function () {
+            this.superOnrender();
 
-                this.set("lastInputType", this.findComponent("ColorPicker").get("inputType"));
+            this.observe("openTab", function () {
 
                 this.toggle("toggleTab");
 
@@ -63,6 +65,8 @@
 
         onconfig: function () {
 
+            this.superOnconfig();
+
             this.Page = this.findParent("Page");
 
             this.set("mostUsedColors", this.Page.findMostUsedColors());
@@ -72,9 +76,13 @@
 
         oncomplete: function () {
 
+            this.superOncomplete();
+
         },
 
         onteardown: function () {
+
+            this.superOnteardown();
 
             this.cancelImageColorsObservers();
         },

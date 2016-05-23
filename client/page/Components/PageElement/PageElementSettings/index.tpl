@@ -30,7 +30,17 @@
             </div>
 
             <div class="E_PageElementSettings--content ResizableBox ResizableBox__floating">
-                {{> content}}
+
+                {{#if @ractive.partials.pageElementSettingsContent}}
+
+                    {{> pageElementSettingsContent}}
+
+                {{else}}
+
+                    {{> content}}
+
+                {{/if}}
+
             </div>
 
         </div>

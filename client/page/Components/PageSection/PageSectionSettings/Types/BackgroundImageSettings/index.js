@@ -3,20 +3,20 @@
 
     if (typeof module === 'object' && module.exports) {
 
-        var SuperPageSectionSettingsType = require("./../SuperPageSectionSettingsType");
+        var PageSectionSettings = require("./../../../PageSectionSettings");
 
-        module.exports = factory(SuperPageSectionSettingsType);
+        module.exports = factory(PageSectionSettings);
 
     } else {
 
-        root.BackgroundImageSettings = factory(root.SuperPageSectionSettingsType);
+        root.BackgroundImageSettings = factory(root.PageSectionSettings);
     }
 
-}(this, function (SuperPageSectionSettingsType) {
+}(this, function (PageSectionSettings) {
 
-    return SuperPageSectionSettingsType.extend({
+    return PageSectionSettings.extend({
 
-        template: require("./index.tpl"),
+//        template: require("./index.tpl"),
 
         data: {
             data: {}
@@ -27,11 +27,24 @@
         },
 
         partials: {
+            pageSectionSettingsContent: require("./index.tpl")
         },
 
         onconfig: function () {
 
             this.superOnconfig();
+
+        },
+
+        oncomplete: function () {
+
+            this.superOncomplete();
+
+        },
+
+        onteardown: function () {
+
+            this.superOnteardown();
 
         },
 
