@@ -7,18 +7,11 @@
         var Ractive = require("ractive"),
 
             U = require("./../../../../libs/U"),
-            on = require("./../../../../../helpers/on"),
-
-            BackgroundImageSettings = require("./Types/BackgroundImageSettings"),
-            ColorSettings = require("./Types/ColorSettings"),
-            SectionSettings = require("./Types/SectionSettings");
+            on = require("./../../../../../helpers/on");
 
         module.exports = factory(
             Ractive,
             U,
-            BackgroundImageSettings,
-            ColorSettings,
-            SectionSettings,
             require("./index.tpl"),
             on
         );
@@ -28,15 +21,12 @@
         root.PageSectionSettings = factory(
             root.Ractive,
             root.U,
-            root.BackgroundImageSettings,
-            root.ColorSettings,
-            root.SectionSettings,
             "",
             {client: true}
         );
     }
 
-}(this, function (Ractive, U, BackgroundImageSettings, ColorSettings, SectionSettings, template, on) {
+}(this, function (Ractive, U, template, on) {
 
     var instanceCounter = 0;
 
@@ -75,15 +65,11 @@
         },
 
         components: {
-            BackgroundImageSettings: BackgroundImageSettings,
-            ColorSettings: ColorSettings,
-            SectionSettings: SectionSettings,
-
             ProgressBar: require("./../../../../libs/Components/ProgressBar")
         },
 
         partials: {
-
+            Text: require("./../../../../libs/Components/UI/Text/index.tpl")
         },
 
         decorators: {
@@ -96,7 +82,7 @@
             };
         },
 
-        onconfig: function () {
+        superOnconfig: function () {
 
             this.EVENT_NS = "PageSectionSettings-" + (++instanceCounter);
 
@@ -114,7 +100,7 @@
             this.set("delayOpening", this.parent.get("anotherSettingsOpened"));
         },
 
-        onrender: function () {
+        superOnrender: function () {
 
             if (on.client) {
 
@@ -123,16 +109,32 @@
             }
         },
 
-        oncomplete: function () {
+        superOncomplete: function () {
 
             if (on.client) {
 
             }
         },
 
-        onteardown: function () {
+        superOnteardown: function () {
 
             Ractive.$win.off("." + this.EVENT_NS);
+        },
+
+        onconfig: function () {
+            this.superOnconfig();
+        },
+
+        onrender: function () {
+            this.superOnrender();
+        },
+
+        oncomplete: function () {
+            this.superOncomplete();
+        },
+
+        onteardown: function () {
+            this.superOnteardown();
         },
 
         scrollToView: function (expectedRect, isMaximized) {

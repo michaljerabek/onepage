@@ -1,13 +1,11 @@
 {{#if .openPageSectionSettings === 'background'}}
-<PageSectionSettings data="{{section}}">
+<PageSectionSettings data="{{.section}}">
     <div contenteditable="true" value="{{.data.name}}"></div>
 </PageSectionSettings>
 {{/if}}
 
 {{#if .openPageSectionSettings === 'section'}}
-<PageSectionSettings data="{{.section}}">
-    <SectionSettings data="{{.data}}" />
-</PageSectionSettings>
+<SectionSettings data="{{.section}}" />
 {{/if}}
 
 {{#if .openPageSectionSettings === 'colors'}}

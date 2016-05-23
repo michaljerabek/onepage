@@ -153,6 +153,8 @@ module.exports = (function () {
 
             pageSection.set("isRemoved", true);
 
+            page.fire("sectionRemoved", pageSection);
+
             $sectionElement
                 .addClass(CLASS.PageSection.removedSection)
                 .slideUp(OPTIONS.SECTION_SPEED_JQ, OPTIONS.SECTION_EASING_JQ, function () {
@@ -169,6 +171,8 @@ module.exports = (function () {
                             break;
                         }
                     }
+
+                    page.fire("sectionRemoved.complete", pageSection);
 
                     $placeholderTransitions.remove();
                 });

@@ -15,6 +15,9 @@
                 ProgressBar: Ractive.EDIT_MODE ? require("./../../../libs/Components/ProgressBar") : null,
 
                 PageSectionSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings") : null,
+                ColorSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings/Types/ColorSettings") : null,
+                BackgroundImageSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings/Types/BackgroundImageSettings") : null,
+                SectionSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings/Types/SectionSettings") : null,
 
                 PageElementSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings") : null,
 

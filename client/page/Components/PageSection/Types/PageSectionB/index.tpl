@@ -1,3 +1,3 @@
 <BackgroundImage data="{{.section.backgroundImage}}" />
 
-<PageElementTextContent element="{{.section}}" />
+<PageElementTextContent element="{{.section}}" activateButton="true"/>

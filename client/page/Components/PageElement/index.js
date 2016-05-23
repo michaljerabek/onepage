@@ -42,6 +42,11 @@
      * Konkrétní typ musí obsahovat data "type" označující typ PageElementu,
      * data "hasEditUI" označující, jestli má ovládací prvky a může obsahovat
      * "settingsTitle" nastavující titulek PageElementSettings.
+     *
+     * Konkrétní typ může obsahovat metodu isEmpty, která zjistí, jestli je element prázdný (Přidá se třída E_PageElement__empty).
+     *
+     * Konkrétní typ může nastavovat stav PageElementu nastavením vlastnosti "state", která by měla vycházet z
+     * události "stateChange".
      */
 
     var instanceCounter = 0,
@@ -62,7 +67,7 @@
                 }
 
                 var cssText = [
-                    ".csspointerevents .E_PageElement--outline { ",
+                    ".E_PageElement--outline { ",
                         "pointer-events: none;",
                     "}"
                 ].join("");
@@ -224,6 +229,8 @@
 
                     this.set("hover", false);
 
+                    this.fire("stateChange", this.get("showOutline"));
+
                     clearTimeout(this.focusoutTimeout);
 
                     this.focusoutTimeout = setTimeout(this.updateOutlineState.bind(this), 100);
@@ -248,6 +255,8 @@
                     this.set("hover", true);
 
                     this.focusin = true;
+
+                    this.fire("stateChange", this.get("showOutline"));
 
 //                    e.stopPropagation();
 
@@ -284,6 +293,8 @@
 
                     this.set("hover", false);
 
+                    this.fire("stateChange", this.get("showOutline"));
+
                     //je potřeba uložit stav - až uživatel odjede z vnitřního elementu, outline se vrátí
                     this.set("restoreHover", true);
 
@@ -291,7 +302,11 @@
 
                     if (!this.hasChildPageElementHoverState()) {
 
-                        this.set("hover", this.get("restoreHover"));
+                        var restore = this.get("restoreHover");
+
+                        this.set("hover", restore);
+
+                        this.fire("stateChange", this.get("showOutline"));
                     }
                 }
             });
@@ -357,6 +372,8 @@
 
                             this.set("hover", false);
 
+                            this.fire("stateChange", this.get("showOutline"));
+
                             Ractive.$win.off("touchstart.hover-" + this.EVENT_NS);
                         }
 
@@ -379,6 +396,8 @@
 
             this.set("hover", true);
 
+            this.fire("stateChange", this.get("showOutline"));
+
             var touchendTime = +new Date();
 
             //pokud uživatel drží prst na elmentu méně než 500ms, needitovat text - pouze zobrazit ui
@@ -399,7 +418,7 @@
 
             setMouseTouchStyles(true);
 
-            this.set('hover', event.hover);
+            this.set("hover", event.hover);
         },
 
         //zobrazí ui, pokud je stav "hover" nebo je otevřeno nastavení nebo má Editor focus,
@@ -413,6 +432,8 @@
             this.checkOutlineSize(state);
 
             this.fire("sectionHasOutline", state);
+
+            this.fire("stateChange", !!state);
         },
 
         hasFocusedEditor: function () {

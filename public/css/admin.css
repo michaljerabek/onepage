@@ -9862,38 +9862,6 @@ body {
     background-color: red;
 }
 
-/*====================================================================*/
-/*-------------------- BACKGROUND IMAGE SETTINGS ---------------------*/
-/*====================================================================*/
-
-.E_BackgroundImageSettings {
-    width: 100%;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-}
-
-.E_BackgroundImageSettings--background-settings {
-    text-align: left;
-
-    padding: 12px 0;
-}
-
-.E_BackgroundImageSettings--ImageBrowser {
-    position: relative;
-}
-
-.E_BackgroundImageSettings--ImageBrowser .ResizableBox--scrolling-content {
-    position: static;
-}
-
 .E_ColorSettings {
     width: 100%;
 
@@ -9958,6 +9926,38 @@ body {
     margin-right: 16px;
 }
 
+/*====================================================================*/
+/*-------------------- BACKGROUND IMAGE SETTINGS ---------------------*/
+/*====================================================================*/
+
+.E_BackgroundImageSettings {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.E_BackgroundImageSettings--background-settings {
+    text-align: left;
+
+    padding: 12px 0;
+}
+
+.E_BackgroundImageSettings--ImageBrowser {
+    position: relative;
+}
+
+.E_BackgroundImageSettings--ImageBrowser .ResizableBox--scrolling-content {
+    position: static;
+}
+
 .E_SectionSettings {
     width: 100%;
 
@@ -9970,6 +9970,70 @@ body {
     display: -ms-flexbox;
 
     display: flex;
+}
+
+.E_ColorSettings {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.E_ColorSettings .E_ColorSettings--menu {
+    min-width: 209px;
+    max-width: 340px;
+}
+
+.E_ColorSettings .E_ColorSettings--ColorPicker:nth-child(1n) {
+    padding: 4px;
+
+    -webkit-flex-basis: 75%;
+
+        -ms-flex-preferred-size: 75%;
+
+            flex-basis: 75%;
+}
+
+.E_ColorSettings .E_PageSectionSettingsMenu {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+       -moz-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+}
+
+.E_ColorSettings .E_ColorSettings--menu-list {
+    width: 100%;
+}
+
+.Button.E_ColorSettings--random-colors-button {
+    margin-top: 32px;
+    margin-right: 16px;
 }
 
 .medium-editor-toolbar *:not(input)  {
@@ -14850,314 +14914,6 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     height: 14px;
 }
 
-.P_PageElement {
-    z-index: 1;
-    position: relative;
-
-    -ms-touch-action: manipulation;
-
-        touch-action: manipulation;
-}
-
-.E_Page__sortable-active .P_PageElement, .E_Page__sortable-active .P_PageElement * {
-    pointer-events: none;
-}
-
-.csspointerevents .E_PageElement--outline {
-    z-index: 1;
-    position: absolute;
-    top: -12px;
-    left: -12px;
-
-    width: -webkit-calc(100% + 24px);
-
-    width: -moz-calc(100% + 24px);
-
-    width: calc(100% + 24px);
-    height: -webkit-calc(100% + 24px);
-    height: -moz-calc(100% + 24px);
-    height: calc(100% + 24px);
-
-    border: 1px solid transparent;
-
-    -ms-touch-action: manipulation;
-
-        touch-action: manipulation;
-
-    -webkit-transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        width 0s linear 0.3s,
-        height 0s linear 0.3s,
-        top 0s linear 0.3s,
-        left 0s linear 0.3s,
-        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-
-    transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        width 0s linear 0.3s,
-        height 0s linear 0.3s,
-        top 0s linear 0.3s,
-        left 0s linear 0.3s,
-        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-
-    -moz-transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        width 0s linear 0.3s,
-        height 0s linear 0.3s,
-        top 0s linear 0.3s,
-        left 0s linear 0.3s,
-        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-
-    -o-transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        width 0s linear 0.3s,
-        height 0s linear 0.3s,
-        top 0s linear 0.3s,
-        left 0s linear 0.3s;
-
-    transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        width 0s linear 0.3s,
-        height 0s linear 0.3s,
-        top 0s linear 0.3s,
-        left 0s linear 0.3s;
-
-    transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        width 0s linear 0.3s,
-        height 0s linear 0.3s,
-        top 0s linear 0.3s,
-        left 0s linear 0.3s,
-        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
-}
-
-.csspointerevents .E_PageElement--outline__active {
-    border-color: #ef6737;
-
-    pointer-events: none;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -webkit-transition-property: border, -webkit-box-shadow;
-    transition-property: border, -webkit-box-shadow;
-    -moz-transition-property: border, box-shadow, -moz-box-shadow;
-    -o-transition-property: border, box-shadow;
-    transition-property: border, box-shadow;
-    transition-property: border, box-shadow, -webkit-box-shadow, -moz-box-shadow;
-}
-
-.csspointerevents .E_PageElement--outline:after {
-    content: "";
-
-    position: absolute;
-    top: -1px;
-    left: -1px;
-
-    width: -webkit-calc(100% + 2px);
-
-    width: -moz-calc(100% + 2px);
-
-    width: calc(100% + 2px);
-    height: -webkit-calc(100% + 2px);
-    height: -moz-calc(100% + 2px);
-    height: calc(100% + 2px);
-
-    -webkit-box-shadow: 0px 0px 8px 0px transparent;
-
-       -moz-box-shadow: 0px 0px 8px 0px transparent;
-
-            box-shadow: 0px 0px 8px 0px transparent;
-
-    pointer-events: none;
-
-    -webkit-transition: inherit;
-
-    -moz-transition: inherit;
-
-    -o-transition: inherit;
-
-    transition: inherit;
-}
-
-.csspointerevents .E_PageElement--outline__active:after {
-    -webkit-box-shadow: 0px 0px 8px 0px rgba(239, 103, 55, 0.75);
-       -moz-box-shadow: 0px 0px 8px 0px rgba(239, 103, 55, 0.75);
-            box-shadow: 0px 0px 8px 0px rgba(239, 103, 55, 0.75);
-}
-
-.csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline {
-    top: -6px;
-    left: -6px;
-
-    width: -webkit-calc(100% + 12px);
-
-    width: -moz-calc(100% + 12px);
-
-    width: calc(100% + 12px);
-    height: -webkit-calc(100% + 12px);
-    height: -moz-calc(100% + 12px);
-    height: calc(100% + 12px);
-}
-
-.csspointerevents .P_PageElement .P_PageElement .P_PageElement .E_PageElement--outline {
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-}
-
-
-.csspointerevents .P_PageElement .E_PageElement--outline__limited, .csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline__limited, .csspointerevents .P_PageElement .P_PageElement .E_PageElement--outline__limited {
-    top: 0px;
-    left: 0px;
-
-    width: -webkit-calc(100% + 0px);
-
-    width: -moz-calc(100% + 0px);
-
-    width: calc(100% + 0px);
-    height: -webkit-calc(100% + 0px);
-    height: -moz-calc(100% + 0px);
-    height: calc(100% + 0px);
-}
-
-/*--------------------------------------------------------------------*/
-/*------------------------------ EDIT UI -----------------------------*/
-/*--------------------------------------------------------------------*/
-
-.E_PageElementEditUI {
-    line-height: 0;
-    font-size: 0;
-
-    position: absolute;
-    top: -11px;
-    right: -11px;
-
-    padding-bottom: 6px;
-    padding-left: 6px;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-
-    overflow: hidden;
-    pointer-events: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-.E_PageElementEditUI * {
-	pointer-events: all;
-}
-
-.P_PageElement .P_PageElement .E_PageElementEditUI {
-    top: -5px;
-    right: -5px;
-}
-
-.P_PageElement .P_PageElement .P_PageElement .E_PageElementEditUI {
-    top: 1px;
-    right: 1px;
-}
-
-.P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI, .P_PageElement .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI, .P_PageElement .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI {
-    top: 1px;
-    right: 1px;
-}
-
-.E_PageElementEditUI {
-    opacity: 0;
-
-    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        top 0s linear 0.3s,
-        right 0s linear 0.3s;
-
-    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        top 0s linear 0.3s,
-        right 0s linear 0.3s;
-
-    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        top 0s linear 0.3s,
-        right 0s linear 0.3s;
-
-    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        top 0s linear 0.3s,
-        right 0s linear 0.3s;
-}
-
-.E_PageElement--outline__active ~ .E_PageElementEditUI {
-    z-index: 2;
-
-    opacity: 1;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -webkit-transition-property: opacity;
-    -moz-transition-property: opacity;
-    -o-transition-property: opacity;
-    transition-property: opacity;
-}
-
-.E_PageElementEditUI > * {
-    font-size: 12px;
-    line-height: 1;
-    word-break: break-all;
-
-    width: 32px;
-    height: 32px;
-
-    color: #404040;
-    background-color: #f5f5f5;
-    border: none;
-    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-       -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    overflow: hidden;
-
-    cursor: default;
-    -ms-touch-action: manipulation;
-        touch-action: manipulation;
-}
-
 .E_NewPageSectionSelector {
 }
 
@@ -15466,413 +15222,196 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 
-.E_PageElementSettings--transition-wrapper {
-    z-index: 120;
-	position: relative;
-
-    -webkit-transform: translateZ(0);
-
-       -moz-transform: translateZ(0);
-
-            transform: translateZ(0);
-}
-
-.E_PageElementSettings {
-    z-index: 120;
-    position: absolute;
-
-    background-color: #f5f5f5;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-       -moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-            box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-
-    -webkit-transform: translateZ(0);
-
-       -moz-transform: translateZ(0);
-
-            transform: translateZ(0);
-    will-change: top, left, opacity;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -webkit-transition-property: top, left;
-    -moz-transition-property: top, left;
-    -o-transition-property: top, left;
-    transition-property: top, left;
-}
-
-.E_PageElementSettings--wrapper {
+.P_PageElement {
+    z-index: 1;
     position: relative;
 
-    padding-top: 24px;
+    -ms-touch-action: manipulation;
 
-    -webkit-border-radius: 4px;
-
-       -moz-border-radius: 4px;
-
-            border-radius: 4px;
-
-    overflow: hidden;
+        touch-action: manipulation;
 }
 
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--wrapper {
-        padding-top: 32px;
-    }
-}
-
-.E_PageElementSettings--content {
-    position: relative;
-
-    min-width: 220px;
-    min-height: 180px;
-}
-
-.E_PageElementSettings--content:after {
-    content: "";
-
-    position: absolute;
-    top: 0px;
-    left: -4px;
-
-    width: -webkit-calc(100% + 8px);
-
-    width: -moz-calc(100% + 8px);
-
-    width: calc(100% + 8px);
-    height: -webkit-calc(100% + 4px);
-    height: -moz-calc(100% + 4px);
-    height: calc(100% + 4px);
-
-    -webkit-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-
-       -moz-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-
-            box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-
+.E_Page__sortable-active .P_PageElement, .E_Page__sortable-active .P_PageElement * {
     pointer-events: none;
 }
 
-.E_PageElementSettings .ResizableBox--self, .E_PageElementSettings .E_PageElementSettings--resizable-box {
-    will-change: width, height;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -webkit-transition-property: width, height;
-    -moz-transition-property: width, height;
-    -o-transition-property: width, height;
-    transition-property: width, height;
-}
-
-.E_PageElementSettings--scrollable {
-    will-change: scroll-position;
-    -webkit-transform: translateZ(0);
-       -moz-transform: translateZ(0);
-            transform: translateZ(0);
-}
-
-.E_PageElementSettings--resizer {
-    z-index: 100;
+.E_PageElement--outline {
+    z-index: 1;
     position: absolute;
+    top: -12px;
+    left: -12px;
+
+    width: -webkit-calc(100% + 24px);
+
+    width: -moz-calc(100% + 24px);
+
+    width: calc(100% + 24px);
+    height: -webkit-calc(100% + 24px);
+    height: -moz-calc(100% + 24px);
+    height: calc(100% + 24px);
+
+    border: 1px solid transparent;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+
+    -webkit-transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    -moz-transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    -o-transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s;
+
+    transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s;
+
+    transition: border 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        width 0s linear 0.3s,
+        height 0s linear 0.3s,
+        top 0s linear 0.3s,
+        left 0s linear 0.3s,
+        -webkit-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -moz-box-shadow 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
 }
 
-.E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
-    left: 0;
+.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active, .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active {
+    border-color: #ef6737;
 
-    width: 100%;
-    height: 8px;
+    pointer-events: none;
 
-    cursor: ns-resize;
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -webkit-transition-property: border, -webkit-box-shadow;
+    transition-property: border, -webkit-box-shadow;
+    -moz-transition-property: border, box-shadow, -moz-box-shadow;
+    -o-transition-property: border, box-shadow;
+    transition-property: border, box-shadow;
+    transition-property: border, box-shadow, -webkit-box-shadow, -moz-box-shadow;
 }
 
-.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
+.E_PageElement--outline:after {
+    content: "";
+
+    position: absolute;
+    top: -1px;
+    left: -1px;
+
+    width: -webkit-calc(100% + 2px);
+
+    width: -moz-calc(100% + 2px);
+
+    width: calc(100% + 2px);
+    height: -webkit-calc(100% + 2px);
+    height: -moz-calc(100% + 2px);
+    height: calc(100% + 2px);
+
+    -webkit-box-shadow: 0px 0px 8px 0px transparent;
+
+       -moz-box-shadow: 0px 0px 8px 0px transparent;
+
+            box-shadow: 0px 0px 8px 0px transparent;
+
+    pointer-events: none;
+
+    -webkit-transition: inherit;
+
+    -moz-transition: inherit;
+
+    -o-transition: inherit;
+
+    transition: inherit;
+}
+
+.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active:after, .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active:after {
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(239, 103, 55, 0.75);
+       -moz-box-shadow: 0px 0px 8px 0px rgba(239, 103, 55, 0.75);
+            box-shadow: 0px 0px 8px 0px rgba(239, 103, 55, 0.75);
+}
+
+.P_PageElement .P_PageElement .E_PageElement--outline {
     top: -6px;
-}
-
-.E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
-    bottom: -6px;
-}
-
-.E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
-    top: 0;
-
-    width: 8px;
-    height: 100%;
-
-    cursor: ew-resize;
-}
-
-.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
     left: -6px;
+
+    width: -webkit-calc(100% + 12px);
+
+    width: -moz-calc(100% + 12px);
+
+    width: calc(100% + 12px);
+    height: -webkit-calc(100% + 12px);
+    height: -moz-calc(100% + 12px);
+    height: calc(100% + 12px);
 }
 
-.E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
-    right: -6px;
-}
-
-.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
-    z-index: 110;
-
-    width: 8px;
-    height: 8px;
-}
-
-.E_PageElementSettings--resizer__top-left {
-    cursor: nw-resize;
-}
-
-.E_PageElementSettings--resizer__top-right {
-    cursor: ne-resize;
-}
-
-.E_PageElementSettings--resizer__bottom-left {
-    cursor: sw-resize;
-}
-
-.E_PageElementSettings--resizer__bottom-right {
-    cursor: se-resize;
-}
-
-.E_PageElementSettings--resizer-hover {
-    z-index: 200;
-    position: absolute;
+.P_PageElement .P_PageElement .P_PageElement .E_PageElement--outline {
     top: 0px;
     left: 0px;
 
     width: 100%;
     height: 100%;
-
-    border: 0px solid transparent;
-    -webkit-border-radius: inherit;
-       -moz-border-radius: inherit;
-            border-radius: inherit;
-
-    pointer-events: none;
-
-    -webkit-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-
-    -moz-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-
-    -o-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
-
-    transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
 }
 
-.E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
-    -webkit-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -moz-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    -o-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-    transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
-}
 
-.E_PageElementSettings--resizer:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    -webkit-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -moz-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    -o-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-    transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-.E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top:hover ~ .E_PageElementSettings--resizer-hover {
-    border-top-color: #ef6737;
-    border-top-width: 1px;
-}
-
-.E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom:hover ~ .E_PageElementSettings--resizer-hover {
-    border-bottom-color: #ef6737;
-    border-bottom-width: 1px;
-}
-
-.E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__left:hover ~ .E_PageElementSettings--resizer-hover {
-    border-left-color: #ef6737;
-    border-left-width: 1px;
-}
-
-.E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__right:hover ~ .E_PageElementSettings--resizer-hover {
-    border-right-color: #ef6737;
-    border-right-width: 1px;
-}
-
-.E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-top-color: #36b73c;
-    border-top-width: 1px;
-}
-
-.E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-bottom-color: #36b73c;
-    border-bottom-width: 1px;
-}
-
-.E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__left[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-left-color: #36b73c;
-    border-left-width: 1px;
-}
-
-.E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__right[class*="active"] ~ .E_PageElementSettings--resizer-hover {
-    border-right-color: #36b73c;
-    border-right-width: 1px;
-}
-
-.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-    content: "";
-
-    position: absolute;
-
-    width: 0px;
-    height: 0px;
-
-    width: 8px;
-    height: 8px;
-}
-
-.E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-    left: 0;
-    top: 8px;
-}
-
-.E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-    top: -8px;
-}
-
-.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before {
-    left: 8px;
-    top: 0;
-}
-
-.E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
-    left: -8px;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
-        height: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
-        top: -18px;
-    }
-
-    .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
-        bottom: -18px;
-    }
-
-    .E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
-        width: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
-        left: -18px;
-    }
-
-    .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
-        right: -18px;
-    }
-
-    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
-        width: 24px;
-        height: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-        width: 24px;
-        height: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__bottom-left:before {
-        left: 24px;
-    }
-
-    .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
-        left: -24px;
-    }
-
-    .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after {
-        top: 24px;
-    }
-
-    .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
-        top: -24px;
-    }
-}
-
-.E_PageElementSettings--title-bar {
-    line-height: 24px;
-
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    height: 24px;
-    width: 100%;
-
-    color: #fff;
-    background-color: #404040;
-    -webkit-border-top-right-radius: 4px;
-       -moz-border-radius-topright: 4px;
-            border-top-right-radius: 4px;
-    -webkit-border-top-left-radius: 4px;
-       -moz-border-radius-topleft: 4px;
-            border-top-left-radius: 4px;
-}
-
-.E_PageElementSettings--title {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 11px;
-    white-space: nowrap;
-
-    position: relative;
-
-    padding: 0 8px;
-
-    color: #f5f5f5;
-
-    cursor: move;
-    display: block;
-}
-
-.E_PageElementSettings--title-self + .E_PageElementSettings--title-section:before {
-    content: " — ";
-}
-
-.E_PageElementSettings--title-section {
-    opacity: 0.75;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--title-bar {
-        line-height: 32px;
-
-        height: 32px;
-    }
-
-    .E_PageElementSettings--title {
-        font-size: 13px;
-    }
-}
-
-.E_PageElementSettings--min-max, .E_PageElementSettings--close {
-    z-index: 110;
-    position: absolute;
+.P_PageElement .E_PageElement--outline__limited, .P_PageElement .P_PageElement .E_PageElement--outline__limited, .P_PageElement .P_PageElement .E_PageElement--outline__limited {
     top: 0px;
-    right: 0px;
+    left: 0px;
 
-    padding: 0;
-    width: 20px;
-    height: 24px;
+    width: -webkit-calc(100% + 0px);
 
-    background-color: #404040;
+    width: -moz-calc(100% + 0px);
+
+    width: calc(100% + 0px);
+    height: -webkit-calc(100% + 0px);
+    height: -moz-calc(100% + 0px);
+    height: calc(100% + 0px);
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ EDIT UI -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.E_PageElementEditUI {
+    line-height: 0;
+    font-size: 0;
+
+    position: absolute;
+    top: -11px;
+    right: -11px;
+
+    padding-bottom: 6px;
+    padding-left: 6px;
 
     display: -webkit-box;
 
@@ -15883,61 +15422,224 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     display: -ms-flexbox;
 
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_PageElementEditUI * {
+	pointer-events: none;
+}
+
+.P_PageElement .P_PageElement .E_PageElementEditUI {
+    top: -5px;
+    right: -5px;
+}
+
+.P_PageElement .P_PageElement .P_PageElement .E_PageElementEditUI {
+    top: 1px;
+    right: 1px;
+}
+
+.P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI, .P_PageElement .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI, .P_PageElement .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI {
+    top: 1px;
+    right: 1px;
+}
+
+.E_PageElementEditUI {
+    opacity: 0;
+
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        top 0s linear 0.3s,
+        right 0s linear 0.3s;
+
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        top 0s linear 0.3s,
+        right 0s linear 0.3s;
+
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        top 0s linear 0.3s,
+        right 0s linear 0.3s;
+
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        top 0s linear 0.3s,
+        right 0s linear 0.3s;
+}
+
+.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI, .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI {
+    z-index: 2;
+
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+}
+
+.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI *, .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI * {
+    pointer-events: all;
+}
+
+.P_PageElement.E_PageElement__empty .E_PageElement--outline__active ~ .E_PageElementEditUI {
+    display: none;
+}
+
+.E_PageElementEditUI > * {
+    font-size: 12px;
+    line-height: 1;
+    word-break: break-all;
+
+    width: 32px;
+    height: 32px;
+
+    color: #404040;
+    background-color: #f5f5f5;
+    border: none;
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
        -moz-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    overflow: hidden;
+
+    cursor: default;
+    -ms-touch-action: manipulation;
+        touch-action: manipulation;
 }
 
-.E_PageElementSettings--close {
-    padding-right: 4px;
+/*---------------------------- ACTIVATE ----------------------------*/
 
-    -webkit-border-top-right-radius: 4px;
-
-       -moz-border-radius-topright: 4px;
-
-            border-top-right-radius: 4px;
-}
-
-.E_PageElementSettings--min-max {
-    padding-left: 2px;
-}
-
-.E_PageElementSettings--min-max:after {
-    content: "";
-
-    z-index: 120;
+.E_PageElement--activate {
+    margin: auto;
+    z-index: 100;
     position: absolute;
-    top: 0px;
-    right: 100%;
+    top: -20px;
+    right: 0;
+    left: 0;
 
     width: 40px;
-    height: 100%;
+    height: 40px;
 
-    background-image: -webkit-gradient(linear, right top, left top, from(#404040), to(rgba(64, 64, 64, 0)));
+    background-color: #fcfcfc;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+       -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 
-    background-image: -webkit-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
+    display: -webkit-box;
 
-    background-image: -moz-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
+    display: -webkit-flex;
 
-    background-image: -o-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
+    display: -moz-box;
 
-    background-image: linear-gradient(to left, #404040, rgba(64, 64, 64, 0));
+    display: -ms-flexbox;
 
-    pointer-events: none;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    -webkit-transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s,
+        -webkit-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s,
+        -webkit-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    -moz-transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s,
+        -moz-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
+
+    -o-transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+
+    transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+
+    transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s,
+        -webkit-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        -moz-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s;
 }
 
-.E_PageElementSettings--min-max svg, .E_PageElementSettings--close svg {
-    width: 10px;
-    height: 10px;
+.E_PageElement--activate svg {
+    width: 20px;
+    height: 20px;
 
-    fill: rgba(255, 255, 255, 0.75);
+    fill: #505050;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 
     -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 
@@ -15948,8 +15650,80 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.E_PageElementSettings--min-max:hover svg, .E_PageElementSettings--close:hover svg {
-    fill: #fff;
+.E_PageElement__empty:not(.E_PageElement__active) .E_PageElement--activate {
+    -webkit-box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.5);
+       -moz-box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    visibility: visible;
+
+    -webkit-transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s,
+        -webkit-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s,
+        -webkit-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    -moz-transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s,
+        -moz-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    -o-transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    transition: background-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s,
+        opacity          0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s,
+        -webkit-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s,
+        -moz-box-shadow       0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+}
+
+.P_PageElement .E_PageElement--activate:hover {
+    background-color: #404040;
+
+    -webkit-transition: background-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        opacity          0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0.125s,
+        -webkit-box-shadow       0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    transition: background-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        opacity          0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0.125s,
+        -webkit-box-shadow       0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    -moz-transition: background-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        box-shadow       0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        opacity          0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0.125s,
+        -moz-box-shadow       0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+
+    -o-transition: background-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        box-shadow       0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        opacity          0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0.125s;
+
+    transition: background-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        box-shadow       0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        opacity          0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0.125s;
+
+    transition: background-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        box-shadow       0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        opacity          0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0.125s,
+        -webkit-box-shadow       0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        -moz-box-shadow       0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+}
+
+.E_PageElement--activate:hover svg {
+    fill: rgba(255, 255, 255, 0.9);
 
     -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 
@@ -15958,60 +15732,6 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 
     transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.E_PageElementSettings--min-max:active svg, .E_PageElementSettings--close:active svg {
-    -webkit-transform: scale(0.9);
-       -moz-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-         -o-transform: scale(0.9);
-            transform: scale(0.9);
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--min-max, .E_PageElementSettings--close {
-        height: 32px;
-        width: 32px;
-    }
-
-    .E_PageElementSettings--close {
-        padding-left: 4px;
-    }
-
-    .E_PageElementSettings--min-max {
-        padding-left: 12px;
-    }
-
-    .E_PageElementSettings--min-max svg, .E_PageElementSettings--close svg {
-        height: 12px;
-        width: 12px;
-    }
-}
-
-.E_PageElementSettings--min-max {
-    right: 20px;
-
-    cursor: default;
-}
-
-@media (pointer: coarse) {
-
-    .E_PageElementSettings--min-max {
-        right: 32px;
-    }
-}
-
-.E_PageElementSettings .ResizableBox--min-max__max:hover svg, .E_PageElementSettings .ResizableBox--min-max__max svg {
-    fill: #ef6737;
 }
 
 /*====================================================================*/
@@ -16426,8 +16146,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
        -moz-border-radius: 4px;
             border-radius: 4px;
 
-    width: 128px;
-    height: 128px;
+    width: 132px;
+    height: 132px;
     display: -webkit-inline-box;
     display: -webkit-inline-flex;
     display: -moz-inline-box;
@@ -16579,9 +16299,9 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 .E_SectionThumb--icon {
     position: relative;
-    margin-top: 16px;
+    margin-top: 18px;
     margin-bottom: 16px;
-    margin-left: 20px;
+    margin-left: 22px;
 
     width: 88px;
     height: 72px;
@@ -16602,7 +16322,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     position: relative;
 
-    width: 128px;
+    width: 132px;
     height: 24px;
     padding: 0 12px;
 
@@ -16789,12 +16509,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
                 transform: translateX(0px);
     }
     70% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16808,12 +16528,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
              transform: translateX(0px);
     }
     70% {
-        -moz-transform: translateX(-moz-calc(-100% + 104px));
-             transform: translateX(calc(-100% + 104px));
+        -moz-transform: translateX(-moz-calc(-100% + 108px));
+             transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -moz-transform: translateX(-moz-calc(-100% + 104px));
-             transform: translateX(calc(-100% + 104px));
+        -moz-transform: translateX(-moz-calc(-100% + 108px));
+             transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16827,12 +16547,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
            transform: translateX(0px);
     }
     70% {
-        -o-transform: translateX(calc(-100% + 104px));
-           transform: translateX(calc(-100% + 104px));
+        -o-transform: translateX(calc(-100% + 108px));
+           transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -o-transform: translateX(calc(-100% + 104px));
-           transform: translateX(calc(-100% + 104px));
+        -o-transform: translateX(calc(-100% + 108px));
+           transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16850,16 +16570,16 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
                 transform: translateX(0px);
     }
     70% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-           -moz-transform: translateX(-moz-calc(-100% + 104px));
-             -o-transform: translateX(calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+           -moz-transform: translateX(-moz-calc(-100% + 108px));
+             -o-transform: translateX(calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-           -moz-transform: translateX(-moz-calc(-100% + 104px));
-             -o-transform: translateX(calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+           -moz-transform: translateX(-moz-calc(-100% + 108px));
+             -o-transform: translateX(calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16869,12 +16589,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
                 transform: translateX(0px);
     }
     45% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16884,12 +16604,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
              transform: translateX(0px);
     }
     45% {
-        -moz-transform: translateX(-moz-calc(-100% + 104px));
-             transform: translateX(calc(-100% + 104px));
+        -moz-transform: translateX(-moz-calc(-100% + 108px));
+             transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -moz-transform: translateX(-moz-calc(-100% + 104px));
-             transform: translateX(calc(-100% + 104px));
+        -moz-transform: translateX(-moz-calc(-100% + 108px));
+             transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16899,12 +16619,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
            transform: translateX(0px);
     }
     45% {
-        -o-transform: translateX(calc(-100% + 104px));
-           transform: translateX(calc(-100% + 104px));
+        -o-transform: translateX(calc(-100% + 108px));
+           transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -o-transform: translateX(calc(-100% + 104px));
-           transform: translateX(calc(-100% + 104px));
+        -o-transform: translateX(calc(-100% + 108px));
+           transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16916,16 +16636,16 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
                 transform: translateX(0px);
     }
     45% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-           -moz-transform: translateX(-moz-calc(-100% + 104px));
-             -o-transform: translateX(calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+           -moz-transform: translateX(-moz-calc(-100% + 108px));
+             -o-transform: translateX(calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-           -moz-transform: translateX(-moz-calc(-100% + 104px));
-             -o-transform: translateX(calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+           -moz-transform: translateX(-moz-calc(-100% + 108px));
+             -o-transform: translateX(calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16940,12 +16660,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
                 transform: translateX(0px);
     }
     80% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16960,12 +16680,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
              transform: translateX(0px);
     }
     80% {
-        -moz-transform: translateX(-moz-calc(-100% + 104px));
-             transform: translateX(calc(-100% + 104px));
+        -moz-transform: translateX(-moz-calc(-100% + 108px));
+             transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -moz-transform: translateX(-moz-calc(-100% + 104px));
-             transform: translateX(calc(-100% + 104px));
+        -moz-transform: translateX(-moz-calc(-100% + 108px));
+             transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -16980,12 +16700,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
            transform: translateX(0px);
     }
     80% {
-        -o-transform: translateX(calc(-100% + 104px));
-           transform: translateX(calc(-100% + 104px));
+        -o-transform: translateX(calc(-100% + 108px));
+           transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -o-transform: translateX(calc(-100% + 104px));
-           transform: translateX(calc(-100% + 104px));
+        -o-transform: translateX(calc(-100% + 108px));
+           transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -17004,16 +16724,16 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
                 transform: translateX(0px);
     }
     80% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-           -moz-transform: translateX(-moz-calc(-100% + 104px));
-             -o-transform: translateX(calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+           -moz-transform: translateX(-moz-calc(-100% + 108px));
+             -o-transform: translateX(calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-           -moz-transform: translateX(-moz-calc(-100% + 104px));
-             -o-transform: translateX(calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+           -moz-transform: translateX(-moz-calc(-100% + 108px));
+             -o-transform: translateX(calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -17023,12 +16743,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
                 transform: translateX(0px);
     }
     70% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -17038,12 +16758,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
              transform: translateX(0px);
     }
     70% {
-        -moz-transform: translateX(-moz-calc(-100% + 104px));
-             transform: translateX(calc(-100% + 104px));
+        -moz-transform: translateX(-moz-calc(-100% + 108px));
+             transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -moz-transform: translateX(-moz-calc(-100% + 104px));
-             transform: translateX(calc(-100% + 104px));
+        -moz-transform: translateX(-moz-calc(-100% + 108px));
+             transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -17053,12 +16773,12 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
            transform: translateX(0px);
     }
     70% {
-        -o-transform: translateX(calc(-100% + 104px));
-           transform: translateX(calc(-100% + 104px));
+        -o-transform: translateX(calc(-100% + 108px));
+           transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -o-transform: translateX(calc(-100% + 104px));
-           transform: translateX(calc(-100% + 104px));
+        -o-transform: translateX(calc(-100% + 108px));
+           transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -17070,16 +16790,16 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
                 transform: translateX(0px);
     }
     70% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-           -moz-transform: translateX(-moz-calc(-100% + 104px));
-             -o-transform: translateX(calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+           -moz-transform: translateX(-moz-calc(-100% + 108px));
+             -o-transform: translateX(calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
     100% {
-        -webkit-transform: translateX(-webkit-calc(-100% + 104px));
-           -moz-transform: translateX(-moz-calc(-100% + 104px));
-             -o-transform: translateX(calc(-100% + 104px));
-                transform: translateX(calc(-100% + 104px));
+        -webkit-transform: translateX(-webkit-calc(-100% + 108px));
+           -moz-transform: translateX(-moz-calc(-100% + 108px));
+             -o-transform: translateX(calc(-100% + 108px));
+                transform: translateX(calc(-100% + 108px));
     }
 }
 
@@ -19537,6 +19257,554 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 
+.E_PageElementSettings--transition-wrapper {
+    z-index: 120;
+	position: relative;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+}
+
+.E_PageElementSettings {
+    z-index: 120;
+    position: absolute;
+
+    background-color: #f5f5f5;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+       -moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+    will-change: top, left, opacity;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: top, left;
+    -moz-transition-property: top, left;
+    -o-transition-property: top, left;
+    transition-property: top, left;
+}
+
+.E_PageElementSettings--wrapper {
+    position: relative;
+
+    padding-top: 24px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+
+    overflow: hidden;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--wrapper {
+        padding-top: 32px;
+    }
+}
+
+.E_PageElementSettings--content {
+    position: relative;
+
+    min-width: 220px;
+    min-height: 180px;
+}
+
+.E_PageElementSettings--content:after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: -4px;
+
+    width: -webkit-calc(100% + 8px);
+
+    width: -moz-calc(100% + 8px);
+
+    width: calc(100% + 8px);
+    height: -webkit-calc(100% + 4px);
+    height: -moz-calc(100% + 4px);
+    height: calc(100% + 4px);
+
+    -webkit-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+       -moz-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+            box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+    pointer-events: none;
+}
+
+.E_PageElementSettings .ResizableBox--self, .E_PageElementSettings .E_PageElementSettings--resizable-box {
+    will-change: width, height;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: width, height;
+    -moz-transition-property: width, height;
+    -o-transition-property: width, height;
+    transition-property: width, height;
+}
+
+.E_PageElementSettings--scrollable {
+    will-change: scroll-position;
+    -webkit-transform: translateZ(0);
+       -moz-transform: translateZ(0);
+            transform: translateZ(0);
+}
+
+.E_PageElementSettings--resizer {
+    z-index: 100;
+    position: absolute;
+}
+
+.E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
+    left: 0;
+
+    width: 100%;
+    height: 8px;
+
+    cursor: ns-resize;
+}
+
+.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
+    top: -6px;
+}
+
+.E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
+    bottom: -6px;
+}
+
+.E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
+    top: 0;
+
+    width: 8px;
+    height: 100%;
+
+    cursor: ew-resize;
+}
+
+.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
+    left: -6px;
+}
+
+.E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
+    right: -6px;
+}
+
+.E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
+    z-index: 110;
+
+    width: 8px;
+    height: 8px;
+}
+
+.E_PageElementSettings--resizer__top-left {
+    cursor: nw-resize;
+}
+
+.E_PageElementSettings--resizer__top-right {
+    cursor: ne-resize;
+}
+
+.E_PageElementSettings--resizer__bottom-left {
+    cursor: sw-resize;
+}
+
+.E_PageElementSettings--resizer__bottom-right {
+    cursor: se-resize;
+}
+
+.E_PageElementSettings--resizer-hover {
+    z-index: 200;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0px solid transparent;
+    -webkit-border-radius: inherit;
+       -moz-border-radius: inherit;
+            border-radius: inherit;
+
+    pointer-events: none;
+
+    -webkit-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    -moz-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    -o-transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+
+    transition: border-color 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        border-width 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0.3s;
+}
+
+.E_PageElementSettings--resizer:hover ~ .E_PageElementSettings--resizer-hover {
+    -webkit-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -moz-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    -o-transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+    transition: border-color 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s;
+}
+
+.E_PageElementSettings--resizer:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    -webkit-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -moz-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    -o-transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+    transition: border-color 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top:hover ~ .E_PageElementSettings--resizer-hover {
+    border-top-color: #ef6737;
+    border-top-width: 1px;
+}
+
+.E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom:hover ~ .E_PageElementSettings--resizer-hover {
+    border-bottom-color: #ef6737;
+    border-bottom-width: 1px;
+}
+
+.E_PageElementSettings--resizer__bottom-left:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-left:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__left:hover ~ .E_PageElementSettings--resizer-hover {
+    border-left-color: #ef6737;
+    border-left-width: 1px;
+}
+
+.E_PageElementSettings--resizer__bottom-right:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right:hover ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__right:hover ~ .E_PageElementSettings--resizer-hover {
+    border-right-color: #ef6737;
+    border-right-width: 1px;
+}
+
+.E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-top-color: #36b73c;
+    border-top-width: 1px;
+}
+
+.E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-bottom-color: #36b73c;
+    border-bottom-width: 1px;
+}
+
+.E_PageElementSettings--resizer__bottom-left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__left:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-left[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__left[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-left-color: #36b73c;
+    border-left-width: 1px;
+}
+
+.E_PageElementSettings--resizer__bottom-right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__right:active ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__bottom-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__top-right[class*="active"] ~ .E_PageElementSettings--resizer-hover, .E_PageElementSettings--resizer__right[class*="active"] ~ .E_PageElementSettings--resizer-hover {
+    border-right-color: #36b73c;
+    border-right-width: 1px;
+}
+
+.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+    content: "";
+
+    position: absolute;
+
+    width: 0px;
+    height: 0px;
+
+    width: 8px;
+    height: 8px;
+}
+
+.E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+    left: 0;
+    top: 8px;
+}
+
+.E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+    top: -8px;
+}
+
+.E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before {
+    left: 8px;
+    top: 0;
+}
+
+.E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
+    left: -8px;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--resizer__top, .E_PageElementSettings--resizer__bottom {
+        height: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__top {
+        top: -18px;
+    }
+
+    .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__bottom {
+        bottom: -18px;
+    }
+
+    .E_PageElementSettings--resizer__left, .E_PageElementSettings--resizer__right {
+        width: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__left {
+        left: -18px;
+    }
+
+    .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-right, .E_PageElementSettings--resizer__right {
+        right: -18px;
+    }
+
+    .E_PageElementSettings--resizer__top-left, .E_PageElementSettings--resizer__top-right, .E_PageElementSettings--resizer__bottom-left, .E_PageElementSettings--resizer__bottom-right {
+        width: 24px;
+        height: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-left:before, .E_PageElementSettings--resizer__bottom-right:before, .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after, .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+        width: 24px;
+        height: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left:before, .E_PageElementSettings--resizer__bottom-left:before {
+        left: 24px;
+    }
+
+    .E_PageElementSettings--resizer__top-right:before, .E_PageElementSettings--resizer__bottom-right:before {
+        left: -24px;
+    }
+
+    .E_PageElementSettings--resizer__top-left:after, .E_PageElementSettings--resizer__top-right:after {
+        top: 24px;
+    }
+
+    .E_PageElementSettings--resizer__bottom-left:after, .E_PageElementSettings--resizer__bottom-right:after {
+        top: -24px;
+    }
+}
+
+.E_PageElementSettings--title-bar {
+    line-height: 24px;
+
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 24px;
+    width: 100%;
+
+    color: #fff;
+    background-color: #404040;
+    -webkit-border-top-right-radius: 4px;
+       -moz-border-radius-topright: 4px;
+            border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+       -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+}
+
+.E_PageElementSettings--title {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 11px;
+    white-space: nowrap;
+
+    position: relative;
+
+    padding: 0 8px;
+
+    color: #f5f5f5;
+
+    cursor: move;
+    display: block;
+}
+
+.E_PageElementSettings--title-self + .E_PageElementSettings--title-section:before {
+    content: " — ";
+}
+
+.E_PageElementSettings--title-section {
+    opacity: 0.75;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--title-bar {
+        line-height: 32px;
+
+        height: 32px;
+    }
+
+    .E_PageElementSettings--title {
+        font-size: 13px;
+    }
+}
+
+.E_PageElementSettings--min-max, .E_PageElementSettings--close {
+    z-index: 110;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    padding: 0;
+    width: 20px;
+    height: 24px;
+
+    background-color: #404040;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.E_PageElementSettings--close {
+    padding-right: 4px;
+
+    -webkit-border-top-right-radius: 4px;
+
+       -moz-border-radius-topright: 4px;
+
+            border-top-right-radius: 4px;
+}
+
+.E_PageElementSettings--min-max {
+    padding-left: 2px;
+}
+
+.E_PageElementSettings--min-max:after {
+    content: "";
+
+    z-index: 120;
+    position: absolute;
+    top: 0px;
+    right: 100%;
+
+    width: 40px;
+    height: 100%;
+
+    background-image: -webkit-gradient(linear, right top, left top, from(#404040), to(rgba(64, 64, 64, 0)));
+
+    background-image: -webkit-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
+
+    background-image: -moz-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
+
+    background-image: -o-linear-gradient(right, #404040, rgba(64, 64, 64, 0));
+
+    background-image: linear-gradient(to left, #404040, rgba(64, 64, 64, 0));
+
+    pointer-events: none;
+}
+
+.E_PageElementSettings--min-max svg, .E_PageElementSettings--close svg {
+    width: 10px;
+    height: 10px;
+
+    fill: rgba(255, 255, 255, 0.75);
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.E_PageElementSettings--min-max:hover svg, .E_PageElementSettings--close:hover svg {
+    fill: #fff;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_PageElementSettings--min-max:active svg, .E_PageElementSettings--close:active svg {
+    -webkit-transform: scale(0.9);
+       -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+         -o-transform: scale(0.9);
+            transform: scale(0.9);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max, .E_PageElementSettings--close {
+        height: 32px;
+        width: 32px;
+    }
+
+    .E_PageElementSettings--close {
+        padding-left: 4px;
+    }
+
+    .E_PageElementSettings--min-max {
+        padding-left: 12px;
+    }
+
+    .E_PageElementSettings--min-max svg, .E_PageElementSettings--close svg {
+        height: 12px;
+        width: 12px;
+    }
+}
+
+.E_PageElementSettings--min-max {
+    right: 20px;
+
+    cursor: default;
+}
+
+@media (pointer: coarse) {
+
+    .E_PageElementSettings--min-max {
+        right: 32px;
+    }
+}
+
+.E_PageElementSettings .ResizableBox--min-max__max:hover svg, .E_PageElementSettings .ResizableBox--min-max__max svg {
+    fill: #ef6737;
+}
+
 /*====================================================================*/
 /*----------------------- PageMenuInlineWidget -----------------------*/
 /*====================================================================*/
@@ -19644,15 +19912,143 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 
 
 .P_PageElement__text-content {
+    position: relative;
+
     line-height: 1.4;
+
+    display: inline-block;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElementTextContent {
+    font-size: 32px;
+    line-height: 1.4;
+
+    margin: 0;
+
+    min-height: 100%;
+    max-height: 100%;
+    min-width: 24px;
+    min-height: 45px;
+    padding: 0;
 
     display: inline-block;
 }
 
+.P_PageElement__text-content.E_PageElement__empty:not(.E_PageElement__active) > .P_PageElementTextContent {
+    line-height: 0;
+
+    margin: 0;
+
+    min-width: 0;
+    max-width: 0;
+    min-height: 0;
+    max-height: 0;
+    padding: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElement__text-content.E_PageElement__empty:not(.E_PageElement__active) {
+    line-height: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElement__text-content.E_PageElement__empty.E_PageElement__active > .P_PageElementTextContent {
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
 .P_PageElement__title {
+    position: relative;
+
     line-height: 1.4;
 
     display: inline-block;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElementTitle {
+    font-size: 32px;
+    line-height: 1.4;
+
+    margin: 0;
+
+    min-height: 100%;
+    max-height: 100%;
+    min-width: 24px;
+    min-height: 45px;
+    padding: 0;
+
+    display: inline-block;
+}
+
+.P_PageElement__title.E_PageElement__empty:not(.E_PageElement__active) > .P_PageElementTitle {
+    line-height: 0;
+
+    margin: 0;
+
+    min-width: 0px;
+    max-width: 0px;
+    min-height: 0px;
+    max-height: 0px;
+    padding: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElement__title.E_PageElement__empty:not(.E_PageElement__active) {
+    line-height: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElement__title.E_PageElement__empty.E_PageElement__active > .P_PageElementTitle {
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
 /*# sourceMappingURL=admin.css.map */

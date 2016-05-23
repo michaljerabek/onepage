@@ -3,36 +3,33 @@
 
     if (typeof module === 'object' && module.exports) {
 
-        var SuperPageSectionSettingsType = require("./../SuperPageSectionSettingsType"),
+        var PageSectionSettings = require("./../../../PageSectionSettings"),
 
             template = require("./index.tpl");
 
-        module.exports = factory(SuperPageSectionSettingsType, template);
+        module.exports = factory(PageSectionSettings, template);
 
     } else {
 
-        root.ColorSettings = factory(root.SuperPageSectionSettingsType, root.ColorPicker, root.ColorPickerPalette, "");
+        root.ColorSettings = factory(root.PageSectionSettings, root.ColorPicker, root.ColorPickerPalette, "");
     }
 
-}(this, function (SuperPageSectionSettingsType, template) {
+}(this, function (PageSectionSettings, template) {
 
-    return SuperPageSectionSettingsType.extend({
+    return PageSectionSettings.extend({
 
-        template: template,
+//        template: template,
 
         components: {
         },
 
         partials: {
-
+            pageSectionSettingsContent: template
         },
 
         data: function () {
 
             return {
-                openTab: 1,
-
-                imageColors: {}
             };
         },
 

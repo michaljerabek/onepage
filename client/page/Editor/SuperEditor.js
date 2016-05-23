@@ -32,7 +32,6 @@ SuperEditor.prototype.init = function () {
     this.editor = new MediumEditor($(this.$editableSelector), this.options);
 
     this.$toolbar = $(this.editor.toolbar && this.editor.toolbar.toolbar);
-
 };
 
 SuperEditor.prototype.destroy = function () {
@@ -43,7 +42,39 @@ SuperEditor.prototype.destroy = function () {
     }
 };
 
-SuperEditor.prototype.refresh = function () {
+SuperEditor.prototype.refresh = function (elementsOnly) {
+
+    if (elementsOnly && this.editor) {
+
+        var editables = $(this.$editableSelector).get(),
+
+            add = [],
+            remove = [],
+
+            newCount = editables.length - 1,
+            currentCount = this.editor.elements.length - 1;
+
+        for (newCount; newCount >= 0; newCount--) {
+
+            if (this.editor.elements.indexOf(editables[newCount]) === -1) {
+
+                add.push(editables[newCount]);
+            }
+        }
+
+        for (currentCount; currentCount >= 0; currentCount--) {
+
+            if (editables.indexOf(this.editor.elements[currentCount]) === -1) {
+
+                remove.push(this.editor.elements[currentCount]);
+            }
+        }
+
+        this.editor.removeElements(remove);
+        this.editor.addElements(add);
+
+        return;
+    }
 
     this.destroy();
 
