@@ -29,13 +29,30 @@ module.exports = function (app, express) {
         next();
     });
 
+    app.use(favicon(path.join(__dirname, "../../public/plus.svg")));
     app.use(logger("dev"));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
         extended: false
     }));
     app.use(cookieParser());
-    app.use(express.static(path.join(__dirname, "../../public")));
+    app.use(express.static(path.join(__dirname, "../../public"), {
+
+        setHeaders: function (res, path) {
+
+            var dir = path.replace(/(?:\/|\\)[^\\\/]*$/, "");
+
+            if (dir.match(/thumbs$/)) {
+
+                res.set("Cache-Control", "public, max-age=" + config.cache.thumbs);
+
+            } else if (dir.match(/images/)) {
+
+                res.set("Cache-Control", "public, max-age=" + config.cache.images);
+            }
+        }
+    }));
+
     app.use(flash());
 
     app.use(session({

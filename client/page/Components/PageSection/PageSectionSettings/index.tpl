@@ -27,7 +27,7 @@
 
         </div>
 
-        <span class="E_PageSectionSettings--close ResizableBox--close" on-tap="closeThisSettings" title="Zavřít">
+        <span class="E_PageSectionSettings--close ResizableBox--close" on-tap="closeThisSectionSettings" title="Zavřít">
             <svg><use xlink:href="#icon-x"></use></svg>
         </span>
 

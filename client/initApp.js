@@ -91,22 +91,22 @@ module.exports = function (ractive, ractiveData, config) {
             data: ractiveData,
 
             events: {
-                hover: require("ractive-events-hover"),
-                enter: ractiveKeyEvents.enter,
-                space: ractiveKeyEvents.space,
-                escape: ractiveKeyEvents.escape,
-                windowMousedown: ractiveWindowEvents.windowMousedown,
-                windowMousemove: ractiveWindowEvents.windowMousemove,
-                windowMouseup: ractiveWindowEvents.windowMouseup,
+                hover           : require("ractive-events-hover"),
+                enter           : ractiveKeyEvents.enter,
+                space           : ractiveKeyEvents.space,
+                escape          : ractiveKeyEvents.escape,
+                windowMousedown : ractiveWindowEvents.windowMousedown,
+                windowMousemove : ractiveWindowEvents.windowMousemove,
+                windowMouseup   : ractiveWindowEvents.windowMouseup,
                 windowTouchstart: ractiveWindowEvents.windowTouchstart,
-                windowTouchmove: ractiveWindowEvents.windowTouchmove,
-                windowTouchend: ractiveWindowEvents.windowTouchend
+                windowTouchmove : ractiveWindowEvents.windowTouchmove,
+                windowTouchend  : ractiveWindowEvents.windowTouchend
             },
 
             transitions: {
                 slide: require("ractive-transitions-slide"),
-                fade: require("ractive-transitions-fade"),
-                attr: require("ractive-transitions-attr")
+                fade : require("ractive-transitions-fade"),
+                attr : require("ractive-transitions-attr")
             }
         });
 

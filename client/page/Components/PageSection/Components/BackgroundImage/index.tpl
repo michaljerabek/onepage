@@ -6,7 +6,7 @@
 >
     <div class="P_BackgroundImage--image"
         style="
-            background-image:        url({{.data.src}});
+            {{#if .data.src}}background-image: url({{.data.src}}){{/if}};
             -webkit-background-size: {{.backgroundSize}};
             background-size:         {{.backgroundSize}};
             background-repeat:       {{.backgroundRepeat}};
@@ -17,6 +17,5 @@
             {{/if}}
         "
     >
-
     </div>
 </div>

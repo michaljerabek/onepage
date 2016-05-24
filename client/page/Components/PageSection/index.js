@@ -302,7 +302,7 @@
             });
 
             //Uživatel kliknul na "zavřít" v nastavení.
-            this.on("PageSectionSettings.closeThisSettings", this.togglePageSectionSettings.bind(this, false));
+            this.on("*.closeThisSectionSettings", this.togglePageSectionSettings.bind(this, false));
         },
 
         superOnteardown: function () {
