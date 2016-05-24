@@ -2,6 +2,10 @@
 var path = require("path");
 var webpack = require("webpack");
 
+//var def = new webpack.DefinePlugin({
+//    ADMIN: true
+//});
+
 module.exports = {
     entry: {
         page: ["./public/js/touch-dnd.js", "./client/Page.js", "webpack/hot/dev-server", "webpack-hot-middleware/client"],

@@ -32,7 +32,6 @@ var ractive = function (settings) {
         data: settings.data,
 
         onconfig: function () {
-
         },
 
         oncomplete: function () {

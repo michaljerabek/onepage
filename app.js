@@ -28,7 +28,7 @@ app.use("/admin", function (req, res, next) {
     }
 
     /*Uživatel se pravděpodobně pokouší použít adresu své stránky pro administraci (např. mujweb.cz/admin).*/
-    res.redirect("http://" + config.appHostname + "/admin");
+    return res.redirect("http://" + config.appHostname + "/admin");
 
 }, adminRoutes);
 
@@ -41,18 +41,22 @@ app.get(/\w+/i, function (req, res, next) {
         return next();
     }
 
-    res.redirect("/");
+    return res.redirect("/");
 });
 
 app.get("/", function (req, res, next) {
 
     if (req.hostname !== config.appHostname) {
 
+        if (req.headers.accept.match(/^image/)) {
+
+            return res.json({image: 1});
+        }
 
         return next();
     }
 
-    res.send("Tady bude prezentační stránka systému!");
+    return res.send("Tady bude prezentační stránka systému!");
 });
 
 app.use("/", pageRoutes);
@@ -90,6 +94,5 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

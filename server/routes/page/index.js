@@ -5,6 +5,8 @@ var router = express.Router();
 var ImageReq = require("./../../Page/ImageReq");
 var IconReq = require("./../../Page/IconReq");
 
+var appBuilder = require("./../../../client/Page.js");
+
 require("ractive-require-templates")(".tpl");
 //var Ractive = require("ractive");
 
@@ -22,11 +24,11 @@ router.get("/", function (req, res) {
         }
     };
 
-    var App = require("./../../../client/Page.js")({
+    var App = appBuilder({
         data: data
     });
 
-    res.render("index", {
+    return res.render("index", {
         title: req.Page.name,
         ractiveHtml: App.toHTML(),
         ractiveCss: App.toCSS(),
