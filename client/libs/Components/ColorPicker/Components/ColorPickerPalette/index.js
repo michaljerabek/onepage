@@ -19,6 +19,8 @@
 
 }(this, function (Ractive, Spectra, Vibrant, template, on) {
 
+    var colorCache = {};
+
     return Ractive.extend({
 
         template: template,
@@ -84,6 +86,24 @@
                     this.set("inputType", value);
 
                 }.bind(this));
+
+                if (!this.get("image") && this.get("images")) {
+
+                    this.set("image", this.get("images.0.src"));
+                }
+
+                this.observe("image", this.handleImageChange, {init: false});
+
+                this.observe("lastColors", function (colors, prevColors) {
+
+                    if (!colors.length || !prevColors || colors.length < prevColors.length) {
+
+                        return;
+                    }
+
+                    colorCache[this.get("image")] = colors;
+
+                }, {init: false});
             }
         },
 
@@ -91,7 +111,7 @@
 
             var image = this.get("image");
 
-            if (on.client && image && image !== "none") {
+            if (on.client && image && image !== "none" && this.get("colors").length < 5) {
 
                 //cross-origin
                 if (image.match(/^http/) && !image.match(new RegExp("^" + window.location.origin))) {
@@ -109,6 +129,19 @@
 
         onteardown: function () {
 
+            this.stopProcessing();
+        },
+
+        stopProcessing: function () {
+
+            if (this.image) {
+
+                this.image.src = "";
+                this.image = null;
+            }
+
+            this.set("processing", false);
+
             clearTimeout(this.loadImageTimeout);
             clearTimeout(this.stopVibrantTimeout);
             clearTimeout(this.stopVibrant2Timeout);
@@ -116,12 +149,36 @@
             if (this.stopVibrant) {
 
                 this.stopVibrant();
+
+                this.stopVibrant = null;
             }
 
             if (this.stopVibrant2) {
 
                 this.stopVibrant2();
+
+                this.stopVibrant2 = null;
             }
+        },
+
+        handleImageChange:  function (image) {
+
+            if (!image || image === "none") {
+
+                return;
+            }
+
+            this.stopProcessing();
+
+            this.set("lastColors", []);
+
+            //cross-origin
+            if (image.match(/^http/) && !image.match(new RegExp("^" + window.location.origin))) {
+
+                return;
+            }
+
+            this.getPaletteFromImage();
         },
 
         getUniqueRgbs: function (vibrantPalette) {
@@ -209,7 +266,21 @@
 
         getPaletteFromImage: function () {
 
+            var src = this.get("image");
+
+            if (src && colorCache[src]) {
+
+                this.merge("colors", colorCache[src]);
+
+                if (colorCache[src].length === 5) {
+
+                    return;
+                }
+            }
+
             this.image = new Image();
+
+            this.set("processing", true);
 
             this.image.onload = function () {
 
@@ -241,26 +312,36 @@
 
                             var rgbs2 = this.getUniqueRgbs(palette),
 
-                                leastSimilar = this.findTheLeastSimilarColors(rgbs2, rgbs, 5 - rgbs.length);
+                                leastSimilar = this.findTheLeastSimilarColors(rgbs2, rgbs, 5 - rgbs.length),
 
-                            this.merge("colors", this.get("colors").concat(leastSimilar));
+                                concat = this.get("colors").concat(leastSimilar);
+
+                            this.merge("colors", concat);
+
+                            this.set("lastColors", concat);
 
                             this.image = null;
+
+                            this.set("processing", false);
 
                         }.bind(this));
 
                     } else {
 
                         this.image = null;
+
+                        this.set("processing", false);
                     }
 
-                    this.set("colors", rgbs);
+                    this.merge("colors", rgbs);
+
+                    this.set("lastColors", rgbs);
 
                 }.bind(this));
 
             }.bind(this);
 
-            this.image.src = this.get("image");
+            this.image.src = src;
         }
     });
 

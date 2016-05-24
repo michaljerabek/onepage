@@ -38,7 +38,8 @@
             return {
                 openTab: 1,
 
-                imageColors: {}
+                imageColors: {},
+                _image: ""
             };
         },
 
@@ -67,9 +68,12 @@
 
             this.superOnconfig();
 
+            this.set("_image", this.get("image"));
+
             this.Page = this.findParent("Page");
 
             this.set("mostUsedColors", this.Page.findMostUsedColors());
+            this.set("sectionsBgImages", this.Page.findSectionsBgImages());
 
             this.imageColorsObservers = [];
         },

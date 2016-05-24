@@ -18,6 +18,10 @@
 
     </style>
 
+    <link rel="stylesheet" href="../../../../css/reset.css">
+    <link rel="stylesheet" href="../../../../css/main.css">
+    <link rel="stylesheet" href="../../../../css/settings.css">
+    <link rel="stylesheet" href="../../../../css/colors.css">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../Components/ColorPickerPalette/styles.css">
 
@@ -32,6 +36,66 @@
             <ColorPickerPalette title="RGB" colors="['red', '#0f0', 'blue']" />
             <ColorPickerPalette title="CMYK" colors="['rgb(0, 255, 255)', 'rgb(255, 0, 255)', 'rgb(255, 255, 0)', 'rgb(0, 0, 0)']" />
             <ColorPickerPalette title="Obrázek" image="img18.jpg" />
+            <ColorPickerPalette title="Obrázek" image="img18.jpg"
+                images="[
+                    {
+                        src: 'img18.jpg',
+                        name: 'Obrázek 18'
+                    },
+                    {
+                        src: 'img19.jpg',
+                        name: 'Obrázek 19'
+                    },
+                    {
+                        src: 'img20.jpg',
+                        name: 'Obrázek 20'
+                    },
+                    {
+                        src: 'img21.jpg',
+                        name: 'Obrázek 21'
+                    }
+                ]"
+            />
+            <ColorPickerPalette title="Obrázek Obrázek" image="img18.jpg"
+                images="[
+                    {
+                        src: 'img18.jpg',
+                        name: 'Obrázek Obrázek Obrázek 18'
+                    },
+                    {
+                        src: 'img19.jpg',
+                        name: 'Obrázek Obrázek Obrázek 19'
+                    },
+                    {
+                        src: 'img20.jpg',
+                        name: 'Obrázek Obrázek Obrázek 20'
+                    },
+                    {
+                        src: 'img21.jpg',
+                        name: 'Obrázek Obrázek Obrázek 21'
+                    }
+                ]"
+            />
+            <ColorPickerPalette title="Obrázek"
+                images="[
+                    {
+                        src: 'img18.jpg',
+                        name: 'Obrázek 18'
+                    },
+                    {
+                        src: 'img19.jpg',
+                        name: 'Obrázek 19'
+                    },
+                    {
+                        src: 'img20.jpg',
+                        name: 'Obrázek 20'
+                    },
+                    {
+                        src: 'img21.jpg',
+                        name: 'Obrázek 21'
+                    }
+                ]"
+            />
         </ColorPicker>
 
         <div class="wrapper">
@@ -79,6 +143,12 @@
 /*global Ractive, Spectra, $, U, Vibrant, ColorPickerPalette, ColorPicker*/
 
         Vibrant.workerPath = "VibrantWorker.js";
+
+    $.get("../../../../../public/img/icons/app/symbol/svg/sprite.symbol.svg", function (svg) {
+
+        $("body").append(svg.firstChild);
+
+    });
 
 var app;
 

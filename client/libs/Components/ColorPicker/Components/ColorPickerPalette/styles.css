@@ -41,8 +41,150 @@
 
     margin: 0;
     margin-bottom: 6px;
+    position: relative;
 
     color: var(--color-text-1);
+
+    display: flex;
+    justify-content: space-between;
+
+    transform: translateZ(0);
+}
+
+.ColorPickerPalette--title-self {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    padding-right: 8px;
+    max-width: 60%;
+
+    order: 1;
+    flex-grow: 1;
+    flex-shrink: 4;
+
+    overflow: hidden;
+    will-change: width, min-width, max-width, flex;
+    transition: var(--default-transition);
+    transition-duration: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.ColorPickerPalette--title-image {
+    text-align: right;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+	margin-left: auto;
+
+    min-width: 40%;
+	max-width: 60%;
+    padding-right: 12px;
+
+    color: var(--color-text-3);
+
+    order: 2;
+    flex-shrink: 1;
+    flex-grow: 1;
+
+    overflow: hidden;
+    will-change: width, min-width, max-width, flex;
+    transition: var(--default-transition);
+    transition-duration: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.ColorPickerPalette--title-image__processing {
+    animation: ColorPicker--image-processing 0.5s linear infinite alternate;
+}
+
+@keyframes ColorPicker--image-processing {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.25;
+    }
+}
+
+.ColorPickerPalette--image-selector:hover ~ .ColorPickerPalette--title-image {
+    max-width: 80%;
+
+    transition: var(--default-transition-hover);
+    transition-delay: 0.2s;
+}
+
+.ColorPickerPalette--image-selector:hover ~ .ColorPickerPalette--title-image ~ .ColorPickerPalette--title-self {
+    min-width: 20%;
+
+    transition: var(--default-transition-hover);
+    transition-delay: 0.2s;
+}
+
+.ColorPickerPalette--image-selector {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    color: rgba(0, 0, 0, 0);
+    background: transparent;
+    border: none;
+    opacity: 0;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.ColorPickerPalette--image-selector::-ms-expand {
+    display: none;
+}
+
+.ColorPickerPalette--image-selector option {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+
+    color: var(--color-text-1);
+}
+
+.ColorPickerPalette--icon {
+    position:absolute;
+    top: 6px;
+    right: 0px;
+
+    width: 8px;
+    height: 8px;
+
+    fill: var(--color-text-1);
+    opacity: 0.5;
+
+    transform: rotate(-90deg) translateZ(0);
+
+    transition: var(--default-transition);
+
+    pointer-events: none;
+}
+
+.ColorPickerPalette--title:hover .ColorPickerPalette--icon {
+    opacity: 1;
+
+    transition: var(--default-transition-hover);
+}
+
+.ColorPickerPalette--image-selector:focus ~ .ColorPickerPalette--icon {
+    opacity: 1;
+
+    transform: rotate(-180deg) translateZ(0);
+
+    transition: var(--default-transition-hover);
 }
 
 /*---------------------------- COLORS ----------------------------*/

@@ -594,6 +594,26 @@ module.exports = Ractive.extend({
             return colorUsed[b] - colorUsed[a];
 
         }).splice(0, maxCount || 5);
+    },
+
+    findSectionsBgImages: function () {
+
+        var images = [];
+
+        this.forEachPageSection(function (pageSection) {
+
+            var src = pageSection.get("section.backgroundImage.src");
+
+            if (src && src !== "none") {
+
+                images.unshift({
+                    src: src,
+                    name: pageSection.get("section.name")
+                });
+            }
+        });
+
+        return images;
     }
 
 });

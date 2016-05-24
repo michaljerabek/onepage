@@ -2,7 +2,36 @@
 
 <div intro="fade" class="ColorPickerPalette">
 
-    <h6 class="ColorPickerPalette--title">{{.title}}</h6>
+    {{#if .images}}
+
+        {{#with Date.now() + (Math.random() * 10000).toFixed() as selectId}}
+
+        <label class="ColorPickerPalette--title" for="ColorPickerPalette--{{selectId}}">
+            <select id="ColorPickerPalette--{{selectId}}" class="ColorPickerPalette--image-selector" value="{{.image}}">
+                {{#each .images}}
+                    <option value="{{.src}}">{{.name}}</option>
+                {{/each}}
+            </select>
+            {{#each .images}}
+                {{#if .src === ~/image}}
+                    <span class="
+                            ColorPickerPalette--title-image
+                            {{#if ~/processing}}ColorPickerPalette--title-image__processing{{/if}}
+                        "
+                    >{{.name}}</span>
+                {{/if}}
+            {{/each}}
+            <span class="ColorPickerPalette--title-self">{{.title}}</span>
+            <svg class="ColorPickerPalette--icon"><use xlink:href="#icon-triangle"></use></svg>
+        </label>
+
+        {{/with}}
+
+    {{else}}
+
+        <h6 class="ColorPickerPalette--title">{{.title}}</h6>
+
+    {{/if}}
 
     <div class="ColorPickerPalette--colors">
 

@@ -36,6 +36,7 @@ var instaceCounter = 0,
     ensureVisibilityTimeout = null,
     
     shouldBeHidden = false,
+    shouldBeHiddenBecauseHasSettings = false,
 
     //sníží (nebo vrátí zpět) opacity menu, aby bylo vidět stránku
     toggleShowPage = function (e) {
@@ -151,13 +152,19 @@ var instaceCounter = 0,
 
         shouldBeHidden = this.Page.get("sortableActive") && !this.Page.get("draggableActive");
 
+        shouldBeHiddenBecauseHasSettings = false;
+
         if (!shouldBeHidden) {
 
             this.Page.forEachPageSection(function () {
 
-                if (this.get("hasSettings") || this.get("hasOutline")) {
+                var hasSettings = this.get("hasSettings");
+
+                if (hasSettings || this.get("hasOutline")) {
 
                     shouldBeHidden = true;
+
+                    shouldBeHiddenBecauseHasSettings = hasSettings;
 
                     return false;
                 }
@@ -175,7 +182,7 @@ var instaceCounter = 0,
 
             checkIfShoudBeHidden.call(this);
 
-            this[shouldBeHidden ? "hide": "show"]();
+            this[shouldBeHidden ? "hide": "show"](shouldBeHiddenBecauseHasSettings);
 
         }.bind(this), 250);
     },
