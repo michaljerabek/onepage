@@ -92,7 +92,9 @@
             EventEmitter.off(".Dialog");
         },
 
-        handleNewDialog: function (message) {
+        handleNewDialog: function (message, _message) {
+
+            message = _message || message;
 
             this.push("messages", message);
 

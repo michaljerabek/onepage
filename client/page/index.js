@@ -60,9 +60,9 @@ module.exports = Ractive.extend({
     },
 
     partials: {
-        PageSectionA: "<PageSectionA section='{{this}}' />",
-        PageSectionB: "<PageSectionB section='{{this}}' />",
-        PageSectionC: "<PageSectionC section='{{this}}' />",
+        PageSectionA: "<PageSectionA section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
+        PageSectionB: "<PageSectionB section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
+        PageSectionC: "<PageSectionC section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
 
         pageMenu: Ractive.EDIT_MODE ? require("./PageMenu/index.tpl") : null,
 
@@ -127,6 +127,43 @@ module.exports = Ractive.extend({
             }
 
             this.loadPage(pageId);
+
+        } else {
+
+            var page = this.get("page");
+
+            this.changeLang(page.lang, page);
+        }
+
+        this.on("*.changeCurrentLang changeCurrentLang", this.changeLang.bind(this));
+    },
+
+    changeLang: function (lang, page) {
+
+        //první argument je objekt události
+        if (typeof lang !== "string") {
+
+            lang = page;
+            page = arguments[2];
+        }
+
+        page = page || this.get("page");
+
+        lang = page.settings.lang.langs[lang] ? lang : page.settings.lang.defaultLang || Object.keys(page.settings.lang.langs)[0] || "cs";
+
+        var tplLang = page.settings.lang.langs[lang] ? page.settings.lang.langs[lang].template : "cs";
+
+        this.root.set("page.lang", lang);
+        this.root.set("page.tplLang", tplLang);
+
+        if (this.scrollToSection) {
+
+            if (Ractive.EDIT_MODE) {
+
+                EventEmitter.trigger("langChanged.PageSection", lang);
+            }
+
+            this.scrollToSection.refresh();
         }
     },
 
@@ -206,11 +243,13 @@ module.exports = Ractive.extend({
 
         this.titleEditor = new TitleEditor(
             "." + this.CLASS.titleEditor,
-            this.get.bind(this, "page.sections")
+            this.get.bind(this, "page.sections"),
+            this.get.bind(this, "page.lang")
         );
         this.contentEditor = new ContentEditor(
             "." + this.CLASS.contentEditor,
-            this.get.bind(this, "page.sections")
+            this.get.bind(this, "page.sections"),
+            this.get.bind(this, "page.lang")
         );
 
         this.off("sectionInserted.complete").on("sectionInserted.complete", this.refreshEditors.bind(this, true));
@@ -317,12 +356,19 @@ module.exports = Ractive.extend({
             _id: pageId
         });
 
+
         loadReq.then(function (page) {
+
+            var lang = page.settings.lang.defaultLang || Object.keys(page.settings.lang.langs)[0] || "cs",
+
+                tplLang = page.settings.lang.langs[lang] ? page.settings.lang.langs[lang].template : "cs";
 
             this.root.set("page.name", page.name);
             this.root.set("page.settings", page.settings);
             this.root.set("page.sections", page.sections);
             this.root.set("page._id", page._id);
+            this.root.set("page.lang", lang);
+            this.root.set("page.tplLang", tplLang);
 
         }.bind(this));
 
@@ -363,7 +409,11 @@ module.exports = Ractive.extend({
                 _id: this.get("page._id")
             };
 
+        this.skipRegenerateId = true;
+
         this.merge("page.sections", sortedSections);
+
+        this.skipRegenerateId = false;
 
         var saveReq = this.req("page.save", params);
 
@@ -615,5 +665,4 @@ module.exports = Ractive.extend({
 
         return images;
     }
-
 });

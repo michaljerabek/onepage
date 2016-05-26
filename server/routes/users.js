@@ -35,7 +35,7 @@ router.get("/logout", function (req, res, next) {
     res.redirect("/users/login");
 });
 
-//?name=n&databaseName=n
+//?name=n&databaseName=n?host
 router.get("/createTestData", function (req, res, next) {
 
     User.findOne({name: req.query.name}, function (err, user) {
@@ -47,12 +47,12 @@ router.get("/createTestData", function (req, res, next) {
                 email: req.query.name + "@" + req.query.name + ".cz",
                 databaseName: req.query.databaseName,
                 password: bcrypt.hashSync(req.query.databaseName, bcrypt.genSaltSync(10), null),
-                hostnames: [ req.headers.host.split(":").shift() ]
+                hostnames: [ req.query.host || req.headers.host.split(":").shift() ]
             });
 
         } else {
 
-            user.hostnames.push(req.headers.host.split(":").shift());
+            user.hostnames.push(req.query.host || req.headers.host.split(":").shift());
         }
 
         user.save(function () {
@@ -60,8 +60,8 @@ router.get("/createTestData", function (req, res, next) {
             var userDb = mongoose.createConnection("mongodb://localhost/" + user.databaseName);
 
             var page = Page(userDb)({
-                name: "User: " + user.name + "; Web: " + req.headers.host.split(":").shift(),
-                hostnames: [ req.headers.host.split(":").shift() ]
+                name: "User: " + user.name + "; Web: " + req.query.host || req.headers.host.split(":").shift(),
+                hostnames: [ req.query.host || req.headers.host.split(":").shift() ]
             });
 
             page.save(function () {

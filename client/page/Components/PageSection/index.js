@@ -100,7 +100,7 @@
             if (Ractive.EDIT_MODE) {
 
                 //při změně jména sekce změnit id
-                this.observe("section.name", this.regenerateId, {init: false, defer: true});
+                this.nameObserver = this.observe("section.name", this.regenerateId, {init: false, defer: true});
 
                 this.initPageElementSettings();
                 this.initPageSectionSettings();
@@ -128,6 +128,9 @@
                 }.bind(this));
 
                 if (on.client) {
+
+                    EventEmitter.on("removeLang.PageSection." + this.get("section.internalId"), this.removeLang.bind(this));
+                    EventEmitter.on("langChanged.PageSection." + this.get("section.internalId"), this.handleLangChanged.bind(this));
 
                     /************************************/
                     /*ZMĚNA BAREV*/
@@ -226,6 +229,8 @@
 
                 this.initEditUI();
             }
+
+            this.Page = this.findParent("Page");
         },
 
         superOncomplete: function () {
@@ -312,6 +317,8 @@
             this.off("*.sectionHasOutline");
 
             EventEmitter.off("change.DefaultColorsGenerator." + this.get("section.internalId"));
+            EventEmitter.off("removeLang.PageSection." + this.get("section.internalId"));
+            EventEmitter.off("langChanged.PageSection." + this.get("section.internalId"));
 
         },
 
@@ -349,23 +356,30 @@
 
         regenerateId: function (newName) {
 
-            if (typeof newName === "undefined") {
+            if (this.skipRegenerateId || this.Page.skipRegenerateId) {
 
                 return;
             }
 
-            var builder = this.findParent("Page").pageSectionBuilder;
+            var lang = this.get("lang");
 
-            if (!newName) {
-
-                this.set("section.name", builder.getDefaultName(this.get("section.type")));
+            if (typeof newName === "undefined" || typeof newName[lang] === "undefined") {
 
                 return;
             }
 
-            this.set("section.id", builder.generateId(newName));
+            var builder = this.Page.pageSectionBuilder;
 
-            this.rewriteNameReferences(newName);
+            if (!newName[lang]) {
+
+                this.set("section.name." + lang, builder.getDefaultName(this.get("section.type")));
+
+                return;
+            }
+
+            this.set("section.id." + lang, builder.generateId(newName[lang], lang));
+
+            this.rewriteNameReferences(newName[lang]);
         },
 
         rewriteNameReferences: function (name) {
@@ -651,6 +665,29 @@
             }
         },
 
+        removeLang: function (e, lang) {
+
+            var paths = this.getTextPaths(),
+                p = paths.length - 1;
+
+            for (p; p >= 0; p--) {
+
+                var data = this.get("section." + paths[p]);
+
+                if (typeof data === "object") {
+
+                    delete data[lang];
+                }
+            }
+        },
+
+        getTextPaths: function () {
+
+            var paths = ["name"];
+
+            return paths;
+        },
+
         getColorPaths: function () {
 
             var paths = ["backgroundColor", "textColor"];
@@ -679,8 +716,61 @@
             }
 
             return colors;
-        }
+        },
 
+        findLangToCopy: function (data, lang, defLang, lastUsed) {
+
+            if (data[defLang]) {
+
+                return defLang;
+            }
+
+            if (data[lastUsed]) {
+
+                return lastUsed;
+            }
+
+            var langs = Object.keys(data),
+                l = langs.length - 1;
+
+            for (l; l >= 0; l--) {
+
+                if (data[langs[l]]) {
+
+                    return langs[l];
+                }
+            }
+
+            return "cs";
+        },
+
+        handleLangChanged: function (e, lang) {
+
+            var defLang = this.findParent("Page").get("page.settings.lang.defaultLang"),
+                lastLang = "",
+
+                paths = this.getTextPaths(),
+                p = paths.length - 1;
+
+            for (p; p >= 0; p--) {
+
+                var data = this.get("section." + paths[p]);
+
+                if (typeof data === "object" && !data[lang]) {
+
+                    var copyLang = this.findLangToCopy(data, lang, defLang, lastLang);
+
+                    lastLang = copyLang;
+
+                    data[lang] = data[copyLang];
+
+                    if (paths[p] === "name") {
+
+                        this.regenerateId(data);
+                    }
+                }
+            }
+        }
     });
 
 }));

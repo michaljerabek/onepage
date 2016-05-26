@@ -1,6 +1,6 @@
 <div class="E_GlobalPageSettings" outro="attr:{duration: 300}">
 
-    <h2 class="E_PageMenu--title">Nastavení stránky</h2>
+    <h2 class="E_PageMenu--title">Nastavení vzhledu</h2>
 
     <section class="E_PageMenu--section E_GlobalPageSettings--font-settings">
 
@@ -155,16 +155,20 @@
             }
         }}
 
-        <div>
             {{#with .settings.colorPalette || @ractive.set('settings.colorPalette', @ractive.findParent("Page").get("defaults.settings.colorPalette")) as __def}}
 
+                <div>
                 {{#if .openGlobalSettingsWidget === "colors"}}
 
                     <PageMenuInlineWidget initMaxHeight="320" close=".openGlobalSettingsWidget" connectWith="{id:'colors', opener: 'openGlobalSettingsWidget'}">
                         {{> colorPaletteSettings}}
                     </PageMenuInlineWidget>
 
-                {{elseif typeof .openGlobalSettingsWidget === "object" && typeof .openGlobalSettingsWidget.colorKey !== "undefined"}}
+                {{/if}}
+                </div>
+
+                <div>
+                {{#if typeof .openGlobalSettingsWidget === "object" && typeof .openGlobalSettingsWidget.colorKey !== "undefined"}}
 
                     <PageMenuInlineWidget initMaxHeight="400" close=".openGlobalSettingsWidget" connectWith="{id:'colors', opener: 'openGlobalSettingsWidget'}">
 
@@ -177,10 +181,10 @@
                     </PageMenuInlineWidget>
 
                 {{/if}}
+                </div>
 
             {{/with}}
 
-        </div>
 
         {{> Button {
                 size: "small",
@@ -193,6 +197,138 @@
                 className: "E_GlobalColorPaletteSettings--regenerate-button"
             }
         }}
+
+    </section>
+
+    <h2 class="E_PageMenu--title">Nastavení jazyků</h2>
+
+    <section class="E_PageMenu--section E_GlobalPageSettings--language E_GlobalLanguagesSettings">
+
+        <h3 class="
+                E_PageMenu--sub-title
+                E_PageMenu--sub-title__interactive
+                {{#if .openGlobalSettingsWidget === 'currentLang'}}E_PageMenu--sub-title__active{{/if}}
+            "
+            on-tap="set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'currentLang' ? null : 'currentLang')"
+        >
+            Aktuální jazyk
+            {{#if .lang === .settings.lang.defaultLang}}
+                <svg intro-outro="fade:{duration: 100}" class="E_GlobalLanguagesSettings--default-lang-icon" title="Jazky je nastaven jako výchozí"><use xlink:href="#icon-flag"></use></svg>
+            {{/if}}
+
+            {{> dropDownIcon}}
+
+            <span class="E_PageMenu--sub-title-value">
+                {{.languages.getName(.lang || "cs")}} ({{.lang || "cs"}})
+            </span>
+        </h3>
+
+        <div>
+        {{#if .openGlobalSettingsWidget === "currentLang"}}
+
+            <PageMenuInlineWidget initMaxHeight="320" close=".openGlobalSettingsWidget">
+                {{> languageSelector {
+                    languages: Object.keys(.settings.lang.langs),
+                    fire: "changeCurrentLang",
+                    selected: .lang
+                }}}
+            </PageMenuInlineWidget>
+
+        {{/if}}
+        </div>
+
+        <h3 class="
+                E_PageMenu--sub-title
+                E_PageMenu--sub-title__2
+                E_PageMenu--sub-title__interactive
+                {{#if .openGlobalSettingsWidget === 'templateLang'}}E_PageMenu--sub-title__active{{/if}}
+            "
+            on-tap="set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'templateLang' ? null : 'templateLang')"
+        >
+            Jazyk šablony
+
+            {{> dropDownIcon}}
+
+            <span class="E_PageMenu--sub-title-value">
+                {{.languages.getName(.tplLang || 'cs')}} ({{.tplLang || 'cs'}})
+            </span>
+        </h3>
+
+        <div>
+        {{#if .openGlobalSettingsWidget === "templateLang"}}
+
+            <PageMenuInlineWidget initMaxHeight="320" close=".openGlobalSettingsWidget">
+                {{> languageSelector {
+                    languages: .tplLangs,
+                    fire: "changeTplLang",
+                    selected: .tplLang
+                }}}
+            </PageMenuInlineWidget>
+
+        {{/if}}
+        </div>
+
+        <div class="E_GlobalLanguagesSettings--buttons">
+
+            {{> Button {
+                    size: "small",
+                    text: "Nastavit jako výchozí",
+                    set: "settings.lang.defaultLang",
+                    value: .lang,
+                    state: .lang === .settings.lang.defaultLang ? "disabled" : "",
+                    icon: "#icon-flag",
+                    iconR: -6
+                }
+            }}
+
+            {{> Button {
+                    size: "small",
+                    title: "Přidat jazyk",
+                    set: "openGlobalSettingsWidget",
+                    value: .openGlobalSettingsWidget === "newLang" ? null : "newLang",
+                    state: .openGlobalSettingsWidget === "newLang" ? "active" : "",
+                    icon: "#icon-plus"
+                }
+            }}
+
+            {{> Button {
+                    type: "danger",
+                    state: .lang === .settings.lang.defaultLang || !(Object.keys(.settings.lang.langs).length - 1) ? "disabled": "",
+                    size: "small",
+                    title: "Odstranit jazyk",
+                    fire: "showDialog",
+                    event: {
+                        title: "Odstranit jazyk",
+                        text: "Opravdu chcete odstranit jazyk: " + .languages.getName(.lang) + "?",
+                        type: "warn",
+                        confirm: {
+                            text: "Odstranit",
+                            fire: "removeLang",
+                            event: .lang,
+                            context: @ractive
+                        },
+                        dismiss: {
+                            active: 1
+                        }
+                    },
+                    icon: "#icon-trash"
+                }
+            }}
+        </div>
+
+        <div>
+        {{#if .openGlobalSettingsWidget === "newLang"}}
+
+            <PageMenuInlineWidget initMaxHeight="320" close=".openGlobalSettingsWidget">
+                {{> languageSelector {
+                    languages: .languages.getCodes(),
+                    fire: "createLang",
+                    selected: Object.keys(.settings.lang.langs)
+                }}}
+            </PageMenuInlineWidget>
+
+        {{/if}}
+        </div>
 
     </section>
 

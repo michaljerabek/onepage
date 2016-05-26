@@ -102,6 +102,7 @@
 
             //získání sekcí stránky
             var options = this.getSections ? this.getSections() : [],
+                lang = this.getLang ? this.getLang() : "cs",
 
                 optionsTemplate = [
                     '<option value="">nevybráno...</option>'
@@ -111,15 +112,14 @@
                     '<div id="', this.customSelectorId, '" class="medium-editor-form-selector">'
                 ];
 
-
             options.forEach(function (section) {
 
                 optionsTemplate.push(
-                    '<option value="#', section.internalId, '">', section.name, '</option>'
+                    '<option value="#', section.internalId, '">', section.name[lang], '</option>'
                 );
 
                 customSelectorTemplate.push(
-                    '<div class="medium-editor-form-selector-option" data-value="#', section.internalId, '">', $("<span>").html(section.name).text(), '</div>'
+                    '<div class="medium-editor-form-selector-option" data-value="#', section.internalId, '">', section.name[lang], '</div>'
                 );
             });
 

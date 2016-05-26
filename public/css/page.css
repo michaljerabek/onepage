@@ -3560,9 +3560,10 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 .E_PageMenu--title {
     font-family: "Encode Sans", sans-serif;
     font-size: 19px;
+    line-height: 1.21;
     font-weight: 500;
 
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 
     color: #0f758b;
 
@@ -3572,12 +3573,13 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 .E_PageMenu--sub-title {
     font-family: "Encode Sans", sans-serif;
     font-size: 14px;
+    line-height: 1.21;
     font-weight: 600;
     white-space: nowrap;
 
     position: relative;
 
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 
     color: #404040;
 
@@ -3599,15 +3601,24 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     cursor: default;
 }
 
+.E_PageMenu--section + .E_PageMenu--title {
+    margin-top: 12px;
+}
+
+.E_PageMenu--sub-title:nth-of-type(1n + 2) {
+    margin-top: 8px;
+}
+
 .E_PageMenu--sub-title__interactive {
     cursor: pointer;
 }
 
 .E_PageMenu--sub-title-value {
+    font-weight: 400;
+    line-height: inherit;
     white-space: nowrap;
     -o-text-overflow: ellipsis;
        text-overflow: ellipsis;
-    font-weight: 400;
 
     padding-left: 32px;
 
@@ -3618,7 +3629,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 .E_PageMenu--sub-title-dropdown {
     position: absolute;
-    top: -2px;
+    top: -1px;
     right: -16px;
 
     width: 16px;
@@ -5432,8 +5443,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_GlobalPageSettings--color-palette .E_GlobalColorPaletteSettings--palettes-button {
-    position:absolute;
-    top: 38px;
+    position: absolute;
+    top: 40px;
     right: 0px;
 }
 
@@ -5446,7 +5457,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_GlobalPageSettings--color-palette .InlineWidget {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title .E_GlobalColorPaletteSettings--color {
@@ -5465,6 +5476,103 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title-dropdown svg {
     width: 14px;
     height: 14px;
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- LANGUAGE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.E_GlobalLanguagesSettings--default-lang-icon {
+    margin-right: auto;
+    margin-left: 4px;
+
+    width: 12px;
+    height: 12px;
+
+    fill: #ef6737;
+
+    -webkit-transform: rotate(-6deg) translateY(1px);
+
+       -moz-transform: rotate(-6deg) translateY(1px);
+
+        -ms-transform: rotate(-6deg) translateY(1px);
+
+         -o-transform: rotate(-6deg) translateY(1px);
+
+            transform: rotate(-6deg) translateY(1px);
+}
+
+.E_GlobalLanguagesSettings--buttons {
+    margin-top: 8px;
+    margin-bottom: 10px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.E_GlobalLanguagesSettings--buttons .Button:nth-of-type(2) {
+    margin-left: auto;
+}
+
+.E_GlobalLanguagesSettings--buttons .Button:not(:last-child) {
+    margin-right: 8px;
+}
+
+.E_GlobalPageSettings--language .InlineWidget {
+    z-index: 2;
+    margin-bottom: 16px;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:nth-of-type(2):before, .E_GlobalLanguagesSettings .E_PageMenu--sub-title:nth-of-type(2):after, .E_GlobalLanguagesSettings .E_PageMenu--sub-title:first-of-type:before, .E_GlobalLanguagesSettings .E_PageMenu--sub-title:first-of-type:after {
+    content: "";
+
+    position: absolute;
+
+    background-color: #ccc;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:first-of-type:before {
+    top: 6px;
+    left: -10px;
+
+    width: 5px;
+    height: 1px;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:first-of-type:after {
+    top: 6px;
+    left: -11px;
+
+    width: 1px;
+    height: 32px;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:nth-of-type(2):before {
+    top: 8px;
+    left: -10px;
+
+    width: 5px;
+    height: 1px;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:nth-of-type(2):after {
+    bottom: 17px;
+    left: -11px;
+
+    width: 1px;
+    height: 32px;
 }
 
 .E_NewPageSectionSelector {
@@ -6659,6 +6767,149 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     font-weight: normal;
 }
 
+
+/*====================================================================*/
+/*-------------- GlobalPageSettings - language-selector --------------*/
+/*====================================================================*/
+
+.E_GlobalLanguagesSettings--inline-widget-content {
+    padding: 4px 0;
+}
+
+.E_GlobalLanguagesSettings--language {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 34px;
+
+    position: relative;
+    margin: 0;
+
+    padding: 0 20px;
+
+    color: #404040;
+    border-bottom: 1px solid #d7d7d7;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+    cursor: default;
+}
+
+.E_GlobalLanguagesSettings--language:first-child {
+    border-top: 1px solid #d7d7d7;
+}
+
+.E_GlobalLanguagesSettings--language:hover {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: #404040;
+    border-bottom-color: #323232;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_GlobalLanguagesSettings--language:active {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: #e85a27;
+    border-bottom-color: #dc6135;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.E_GlobalLanguagesSettings--language__selected:hover, .E_GlobalLanguagesSettings--language__selected {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: #e85a27;
+    border-bottom-color: #dc6135;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.E_GlobalLanguagesSettings--language svg {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 4px;
+
+    width: 12px;
+    height: 12px;
+
+    fill: #404040;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.E_GlobalLanguagesSettings--language:hover svg {
+    fill: #fff;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_GlobalLanguagesSettings--language:active svg {
+    fill: #fff;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
 
 /*====================================================================*/
 /*--------------------------- SECTION-THUMB --------------------------*/
@@ -10604,38 +10855,6 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 
-/*====================================================================*/
-/*-------------------- BACKGROUND IMAGE SETTINGS ---------------------*/
-/*====================================================================*/
-
-.E_BackgroundImageSettings {
-    width: 100%;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-}
-
-.E_BackgroundImageSettings--background-settings {
-    text-align: left;
-
-    padding: 12px 0;
-}
-
-.E_BackgroundImageSettings--ImageBrowser {
-    position: relative;
-}
-
-.E_BackgroundImageSettings--ImageBrowser .ResizableBox--scrolling-content {
-    position: static;
-}
-
 .E_ColorSettings {
     width: 100%;
 
@@ -10712,6 +10931,38 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     display: -ms-flexbox;
 
     display: flex;
+}
+
+/*====================================================================*/
+/*-------------------- BACKGROUND IMAGE SETTINGS ---------------------*/
+/*====================================================================*/
+
+.E_BackgroundImageSettings {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.E_BackgroundImageSettings--background-settings {
+    text-align: left;
+
+    padding: 12px 0;
+}
+
+.E_BackgroundImageSettings--ImageBrowser {
+    position: relative;
+}
+
+.E_BackgroundImageSettings--ImageBrowser .ResizableBox--scrolling-content {
+    position: static;
 }
 
 /*====================================================================*/
@@ -11279,6 +11530,305 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 
 .ColorPicker--input-text:not(:first-child) {
     margin-left: 4px;
+}
+
+/*====================================================================*/
+/*------------------------------ DIALOG ------------------------------*/
+/*====================================================================*/
+
+.Dialog--overlay {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.65);
+
+    will-change: opacity;
+}
+
+.Dialog--box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    min-width: 300px;
+    max-width: 480px;
+    padding: 24px 32px;
+
+    background-color: #fcfcfc;
+    border: 2px solid #888;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
+       -moz-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
+            box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
+
+    -webkit-transform: translate(-50%, -50%) scale(0);
+
+       -moz-transform: translate(-50%, -50%) scale(0);
+
+        -ms-transform: translate(-50%, -50%) scale(0);
+
+         -o-transform: translate(-50%, -50%) scale(0);
+
+            transform: translate(-50%, -50%) scale(0);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    will-change: transform, opacity;
+}
+
+.Dialog--box__success {
+    border-color: #36b73c;
+}
+
+.Dialog--box__error {
+    border-color: #e32d39;
+}
+
+.Dialog--box__warn {
+    border-color: #ef6737;
+}
+
+.Dialog--box__info {
+    border-color: #08a1c2;
+}
+
+.Dialog--box[data-ractive-transition="intro"] {
+    -webkit-animation: Dialog--toggle 0.2s linear 0.3s forwards;
+       -moz-animation: Dialog--toggle 0.2s linear 0.3s forwards;
+         -o-animation: Dialog--toggle 0.2s linear 0.3s forwards;
+            animation: Dialog--toggle 0.2s linear 0.3s forwards;
+}
+
+.Dialog--box[data-ractive-transition="intro-complete"] {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+       -moz-transform: translate(-50%, -50%) scale(1);
+        -ms-transform: translate(-50%, -50%) scale(1);
+         -o-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+}
+
+.Dialog--box[data-ractive-transition="outro"] {
+    -webkit-animation: Dialog--toggle 0.2s linear 0s reverse;
+       -moz-animation: Dialog--toggle 0.2s linear 0s reverse;
+         -o-animation: Dialog--toggle 0.2s linear 0s reverse;
+            animation: Dialog--toggle 0.2s linear 0s reverse;
+}
+
+.Dialog--box[data-ractive-transition="outro-complete"] {
+    -webkit-transform: translate(-50%, -50%) scale(0);
+       -moz-transform: translate(-50%, -50%) scale(0);
+        -ms-transform: translate(-50%, -50%) scale(0);
+         -o-transform: translate(-50%, -50%) scale(0);
+            transform: translate(-50%, -50%) scale(0);
+}
+
+@-webkit-keyframes Dialog--toggle {
+    from {
+        -webkit-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes Dialog--toggle {
+    from {
+        -moz-transform: translate(-50%, -50%) scale(0);
+             transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(-50%, -50%) scale(1);
+             transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+@-o-keyframes Dialog--toggle {
+    from {
+        -o-transform: translate(-50%, -50%) scale(0);
+           transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(-50%, -50%) scale(1);
+           transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+@keyframes Dialog--toggle {
+    from {
+        -webkit-transform: translate(-50%, -50%) scale(0);
+           -moz-transform: translate(-50%, -50%) scale(0);
+             -o-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+           -moz-transform: translate(-50%, -50%) scale(1);
+             -o-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+.Dialog--title {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.19;
+    text-align: center;
+
+    margin-top: 4px;
+    margin-bottom: 12px;
+
+    width: 100%;
+
+    color: #404040;
+}
+
+.Dialog--text {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.64;
+    text-align: center;
+
+    margin-bottom: 16px;
+
+    width: 100%;
+
+    color: #5c5c5c;
+}
+
+.Dialog--text:last-child {
+    margin-bottom: 4px;
+}
+
+.Dialog--close {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.Dialog .Button {
+    margin: 0 12px;
+}
+
+.Dialog--close svg {
+    width: 12px;
+    height: 12px;
+
+    fill: #404040;
+    opacity: 0.5;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Dialog--close:focus svg, .Dialog--close:hover svg {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.Dialog--close:active svg {
+    -webkit-transform: scale(0.9);
+       -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+         -o-transform: scale(0.9);
+            transform: scale(0.9);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+@media (pointer: coarse) {
+
+    .Dialog--close {
+        width: 32px;
+        height: 32px;
+    }
+
+    .Dialog--close svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 .FileBrowser {
@@ -13056,305 +13606,6 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
         -webkit-box-shadow: 0 8px 0 0;
            -moz-box-shadow: 0 8px 0 0;
                 box-shadow: 0 8px 0 0;
-    }
-}
-
-/*====================================================================*/
-/*------------------------------ DIALOG ------------------------------*/
-/*====================================================================*/
-
-.Dialog--overlay {
-    z-index: 99999;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: rgba(0, 0, 0, 0.65);
-
-    will-change: opacity;
-}
-
-.Dialog--box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    min-width: 300px;
-    max-width: 480px;
-    padding: 24px 32px;
-
-    background-color: #fcfcfc;
-    border: 2px solid #888;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    -webkit-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-       -moz-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-            box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-
-    -webkit-transform: translate(-50%, -50%) scale(0);
-
-       -moz-transform: translate(-50%, -50%) scale(0);
-
-        -ms-transform: translate(-50%, -50%) scale(0);
-
-         -o-transform: translate(-50%, -50%) scale(0);
-
-            transform: translate(-50%, -50%) scale(0);
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-
-    will-change: transform, opacity;
-}
-
-.Dialog--box__success {
-    border-color: #36b73c;
-}
-
-.Dialog--box__error {
-    border-color: #e32d39;
-}
-
-.Dialog--box__warn {
-    border-color: #ef6737;
-}
-
-.Dialog--box__info {
-    border-color: #08a1c2;
-}
-
-.Dialog--box[data-ractive-transition="intro"] {
-    -webkit-animation: Dialog--toggle 0.2s linear 0.3s forwards;
-       -moz-animation: Dialog--toggle 0.2s linear 0.3s forwards;
-         -o-animation: Dialog--toggle 0.2s linear 0.3s forwards;
-            animation: Dialog--toggle 0.2s linear 0.3s forwards;
-}
-
-.Dialog--box[data-ractive-transition="intro-complete"] {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-       -moz-transform: translate(-50%, -50%) scale(1);
-        -ms-transform: translate(-50%, -50%) scale(1);
-         -o-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1);
-}
-
-.Dialog--box[data-ractive-transition="outro"] {
-    -webkit-animation: Dialog--toggle 0.2s linear 0s reverse;
-       -moz-animation: Dialog--toggle 0.2s linear 0s reverse;
-         -o-animation: Dialog--toggle 0.2s linear 0s reverse;
-            animation: Dialog--toggle 0.2s linear 0s reverse;
-}
-
-.Dialog--box[data-ractive-transition="outro-complete"] {
-    -webkit-transform: translate(-50%, -50%) scale(0);
-       -moz-transform: translate(-50%, -50%) scale(0);
-        -ms-transform: translate(-50%, -50%) scale(0);
-         -o-transform: translate(-50%, -50%) scale(0);
-            transform: translate(-50%, -50%) scale(0);
-}
-
-@-webkit-keyframes Dialog--toggle {
-    from {
-        -webkit-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -webkit-transform: translate(-50%, -50%) scale(1);
-                transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes Dialog--toggle {
-    from {
-        -moz-transform: translate(-50%, -50%) scale(0);
-             transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -moz-transform: translate(-50%, -50%) scale(1);
-             transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-@-o-keyframes Dialog--toggle {
-    from {
-        -o-transform: translate(-50%, -50%) scale(0);
-           transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -o-transform: translate(-50%, -50%) scale(1);
-           transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-@keyframes Dialog--toggle {
-    from {
-        -webkit-transform: translate(-50%, -50%) scale(0);
-           -moz-transform: translate(-50%, -50%) scale(0);
-             -o-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -webkit-transform: translate(-50%, -50%) scale(1);
-           -moz-transform: translate(-50%, -50%) scale(1);
-             -o-transform: translate(-50%, -50%) scale(1);
-                transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-.Dialog--title {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 21px;
-    font-weight: 600;
-    line-height: 1.19;
-    text-align: center;
-
-    margin-top: 4px;
-    margin-bottom: 12px;
-
-    width: 100%;
-
-    color: #404040;
-}
-
-.Dialog--text {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 14px;
-    line-height: 1.64;
-    text-align: center;
-
-    margin-bottom: 16px;
-
-    width: 100%;
-
-    color: #5c5c5c;
-}
-
-.Dialog--text:last-child {
-    margin-bottom: 4px;
-}
-
-.Dialog--close {
-    position:absolute;
-    top: 0px;
-    right: 0px;
-
-    width: 24px;
-    height: 24px;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
-.Dialog .Button {
-    margin: 0 12px;
-}
-
-.Dialog--close svg {
-    width: 12px;
-    height: 12px;
-
-    fill: #404040;
-    opacity: 0.5;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.Dialog--close:focus svg, .Dialog--close:hover svg {
-    opacity: 1;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.Dialog--close:active svg {
-    -webkit-transform: scale(0.9);
-       -moz-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-         -o-transform: scale(0.9);
-            transform: scale(0.9);
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-@media (pointer: coarse) {
-
-    .Dialog--close {
-        width: 32px;
-        height: 32px;
-    }
-
-    .Dialog--close svg {
-        width: 16px;
-        height: 16px;
     }
 }
 

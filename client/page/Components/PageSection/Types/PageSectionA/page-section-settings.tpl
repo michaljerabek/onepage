@@ -1,13 +1,23 @@
+<div>
 {{#if .openPageSectionSettings === 'colors'}}
 
     {{> ColorSettings}}
 
-{{elseif .openPageSectionSettings === 'background'}}
+{{/if}}
+</div>
+
+<div>
+{{#if .openPageSectionSettings === 'background'}}
 
     <BackgroundImageSettings data="{{.section}}" multipleTabs="[[true]]"/>
 
-{{elseif .openPageSectionSettings === 'section'}}
+{{/if}}
+</div>
 
-    <SectionSettings data="{{.section}}" />
+<div>
+{{#if .openPageSectionSettings === 'section'}}
+
+    <SectionSettings data="{{.section}}" lang="{{.lang}}" />
 
 {{/if}}
+</div>

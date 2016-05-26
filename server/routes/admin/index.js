@@ -4,8 +4,6 @@ var router = express.Router();
 var Page = require("./../../models/Page");
 
 require("ractive-require-templates")(".tpl");
-var Ractive = require("ractive");
-
 
 var isAuthenticated = function (req, res, next) {
 
@@ -19,7 +17,7 @@ var isAuthenticated = function (req, res, next) {
 
 router.get("/", isAuthenticated, function (req, res, next) {
 
-    Page(req.userDb).find({}, "name", function (err, pages) {
+    Page(req.userDb).find({}, {name: 1, hostnames: 1}, function (err, pages) {
 
         var data = {
             user: req.user.name,
