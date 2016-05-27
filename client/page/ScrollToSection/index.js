@@ -130,17 +130,14 @@ ScrollToSection.prototype.getIdFromURL = function (URL) {
 };
 
 ScrollToSection.prototype.isInternalId = function (hash) {
-
     return hash.indexOf(this.internalSectionPrefix) === 0;
 };
 
 ScrollToSection.prototype.findSectionById = function (id) {
-
     return $("#" + id);
 };
 
 ScrollToSection.prototype.findSectionByInternalId = function (id) {
-
     return $("[data-page-section-internal-id='" + id + "']");
 };
 

@@ -8,7 +8,8 @@
         var on = require("./../../../../helpers/on");
         var EventEmitter = require("./../../../libs/EventEmitter")();
 
-        var Ractive = require("ractive");
+        var Ractive = require("ractive"),
+            Spectra = require("spectra");
 
         var components = {
                 PageSectionMessage: Ractive.EDIT_MODE ? require("./PageSectionMessage") : null,
@@ -30,14 +31,14 @@
 
             template = require("./index.tpl");
 
-        module.exports = factory(Ractive, template, components, EventEmitter, on);
+        module.exports = factory(Ractive, Spectra, template, components, EventEmitter, on);
 
     } else {
 
-        root.PageSection = factory(root.Ractive, null, $({}), {client: true});
+        root.PageSection = factory(root.Ractive, root.Spectra, null, $({}), {client: true});
     }
 
-}(this, function (Ractive, template, components, EventEmitter, on) {
+}(this, function (Ractive, Spectra, template, components, EventEmitter, on) {
 
     /*
      * Abstraktní komponent pro vytváření sekcí.
@@ -126,6 +127,22 @@
                     }
 
                 }.bind(this));
+
+                //změnit barvu outlinu podle barvy pozadí
+                this.outlineSpectra = Spectra("#ef6737");
+
+                this.observe("section.backgroundColor section.defaultColors.backgroundColor", function () {
+
+                    clearTimeout(this.backgroundColorTimeout);
+
+                    this.backgroundColorTimeout = setTimeout(function() {
+
+                        var bg = this.get("section.backgroundColor") || this.get("section.defaultColors.backgroundColor");
+
+                        this.set("changeOutlineColor", bg && this.outlineSpectra.near(Spectra(bg), 50));
+
+                    }.bind(this), 100);
+                });
 
                 if (on.client) {
 
@@ -311,6 +328,8 @@
         },
 
         superOnteardown: function () {
+
+            clearTimeout(this.backgroundColorTimeout);
 
             this.off("PageSectionSettings.closeThisSettings");
             this.off("PageSectionEditUI.openPageSectionSettings");
@@ -762,12 +781,12 @@
 
                     lastLang = copyLang;
 
-                    data[lang] = data[copyLang];
-
                     if (paths[p] === "name") {
 
-                        this.regenerateId(data);
+                        this.regenerateId(data[copyLang]);
                     }
+
+                    this.set("section." + paths[p] + "." + lang, data[copyLang]);
                 }
             }
         }

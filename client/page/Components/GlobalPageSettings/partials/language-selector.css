@@ -78,6 +78,7 @@
     transition: var(--default-transition);
 }
 
+.E_GlobalLanguagesSettings--language__selected svg,
 .E_GlobalLanguagesSettings--language:hover svg {
     fill: #fff;
 

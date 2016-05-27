@@ -1,5 +1,5 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
-/*global $, MutationObserver*/
+/*global $*/
 (function (root, factory) {
 
     if (typeof module === 'object' && module.exports) {
@@ -31,10 +31,9 @@
     var instanceCounter = 0;
 
     /*
-     * Komponent nastavení sekce. Komponent by měl obsahovat konkrétní komponenty (jako "partial" - "content")
-     * s nastavením. Tyto komponenty se registrují zde (a nachází se ve složce "/Types").
-     *
-     * Komponenty uvnitř "PageSectionSettings" by měli být element s dekorátorem "PageSectionSettingsBox",
+     * Komponent nastavení sekce.
+     * *
+     * Komponenty odvozené od "PageSectionSettings" by měly mít element s dekorátorem "PageSectionSettingsBox",
      * který zajistí správné zvětšovaní/zmenšování nastavení a přidá posuvníky.
      */
 
@@ -44,6 +43,7 @@
 
         CLASS: {
             self: "E_PageSectionSettings",
+            transitionWrapper: "E_PageSectionSettings--transition-wrapper",
             multipleTabs: "E_PageSectionSettings__multiple-tabs",
 
             wrapper: "E_PageSectionSettings--wrapper",
@@ -106,6 +106,7 @@
 
                 this.self = this.find("." + this.CLASS.self);
                 this.$self = $(this.self);
+                this.$transitionWrapper = this.$self.closest("." + this.CLASS.transitionWrapper);
             }
         },
 
@@ -117,6 +118,8 @@
         },
 
         superOnteardown: function () {
+
+            clearTimeout(this.scrollToViewTimeout);
 
             Ractive.$win.off("." + this.EVENT_NS);
         },
@@ -139,64 +142,69 @@
 
         scrollToView: function (expectedRect, isMaximized) {
 
-            var height = (expectedRect && expectedRect.height) || parseFloat(this.$resizableElement.css("height")),
-                prevSettingsHeight = 0,
+            var delay = this.get("delayOpening") && !isMaximized ? 300 : 0;
 
-                top = this.$self[0].getBoundingClientRect().top,
+            clearTimeout(this.scrollToViewTimeout);
 
-                pageSection = !isMaximized && this.getPageSection(),
+            this.scrollToViewTimeout = setTimeout(function() {
 
-                $prevSettings = !isMaximized && this.$self.prevAll("." + this.CLASS.self),
-                $prevSections = pageSection && pageSection.get$SectionElement().prevAll("." + pageSection.CLASS.self),
+                var height = (expectedRect && expectedRect.height) || parseFloat(this.$resizableElement.css("height")),
+                    prevSettingsHeight = 0,
 
-                $temp = $([null]);
+                    top = this.$self[0].getBoundingClientRect().top,
 
-            //pokud je otevřeno nastavení v předchozí sekci, pak bude zavřeno,
-            //takže je potřeba jeho výšku odečíst
-            if ($prevSections && $prevSections.length) {
+                    pageSection = !isMaximized && this.getPageSection(),
 
-                var instance = this;
+                    $prevSettings = !isMaximized && this.$transitionWrapper.siblings("." + this.CLASS.transitionWrapper),
+                    $prevSections = pageSection && pageSection.get$SectionElement().prevAll("." + pageSection.CLASS.self),
 
-                $prevSections.each(function () {
+                    $temp = $([null]);
 
-                    $temp[0] = this;
+                //pokud je otevřeno nastavení v předchozí sekci, pak bude zavřeno,
+                //takže je potřeba jeho výšku odečíst
+                if ($prevSections && $prevSections.length) {
 
-                    var $settings = $temp.find("." + instance.CLASS.self);
+                    var instance = this;
 
-                    if ($settings.length) {
+                    $prevSections.each(function () {
 
-                        prevSettingsHeight += parseFloat($settings.css("height"));
-                    }
-                });
-            }
+                        $temp[0] = this;
 
-            //pokud je otevřeno jiné nastavení ve stejné sekci, pak bude zavřeno,
-            //takže je potřeba jeho výšku odečíst
-            if ($prevSettings && $prevSettings.length) {
+                        var $settings = $temp.find("." + instance.CLASS.self);
 
-                $prevSettings.each(function () {
+                        if ($settings.length) {
 
-                    $temp[0] = this;
+                            prevSettingsHeight += parseFloat($settings.css("height"));
+                        }
+                    });
+                }
 
-                    prevSettingsHeight += parseFloat($temp.css("height"));
-                });
-            }
+                //pokud je otevřeno jiné nastavení ve stejné sekci, pak bude zavřeno,
+                //takže je potřeba jeho výšku odečíst
+                if ($prevSettings && $prevSettings.length) {
 
-            //pokud by bylo nastavení pod dolním okrajem okna -> seskrolovat dolu
-            if (top + height - prevSettingsHeight > window.innerHeight) {
+                    $prevSettings.each(function () {
 
-                var scrollTop = this.$self.offset().top + (height > window.innerHeight ? window.innerHeight : height) - prevSettingsHeight - window.innerHeight;
+                        $temp[0] = this;
 
-                Ractive.$scrollElement
-                    .stop()
-                    //zdržet, pokud je potřeba počkat na zavření jiného nastavení
-                    .delay(this.get("delayOpening") && !isMaximized ? 300 : 0)
-                    .animate({
-                        scrollTop: scrollTop
-                    }, this.OPTIONS.SCROLL_DURATION, this.OPTIONS.SCROLL_EASING);
-            }
+                        prevSettingsHeight += parseFloat($temp.css("height"));
+                    });
+                }
+
+                //pokud by bylo nastavení pod dolním okrajem okna -> seskrolovat dolu
+                if (top + height - prevSettingsHeight > window.innerHeight) {
+
+                    var scrollTop = this.$self.offset().top + (height > window.innerHeight ? window.innerHeight : height) - prevSettingsHeight - window.innerHeight;
+
+                    Ractive.$scrollElement
+                        .stop()
+                        //zdržet, pokud je potřeba počkat na zavření jiného nastavení
+                        .animate({
+                            scrollTop: scrollTop
+                        }, this.OPTIONS.SCROLL_DURATION, this.OPTIONS.SCROLL_EASING);
+                }
+            }.bind(this), delay);
         }
-
     });
 
 }));

@@ -46,6 +46,8 @@
 
     --color-element-outline: #ef6737;
     --color-element-outline-glow: rgba(239, 103, 55, 0.75);
+    --color-element-outline-2: #37deef;
+    --color-element-outline-2-glow: rgba(55, 222, 239, 0.75);
 
     --color-title-1: #0f758b;
     --color-title-2: #404040;

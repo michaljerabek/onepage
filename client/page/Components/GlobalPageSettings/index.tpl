@@ -230,7 +230,9 @@
                 {{> languageSelector {
                     languages: Object.keys(.settings.lang.langs),
                     fire: "changeCurrentLang",
-                    selected: .lang
+                    selected: .lang,
+                    icon: "#icon-flag",
+                    iconIf: .settings.lang.defaultLang
                 }}}
             </PageMenuInlineWidget>
 
@@ -261,7 +263,8 @@
                 {{> languageSelector {
                     languages: .tplLangs,
                     fire: "changeTplLang",
-                    selected: .tplLang
+                    selected: .tplLang,
+                    icon: false
                 }}}
             </PageMenuInlineWidget>
 

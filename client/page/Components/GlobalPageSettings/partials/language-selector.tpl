@@ -11,8 +11,8 @@
                 on-tap="{{../../fire}}:{{.}}"
                 outro="{{#if ~/openGlobalSettingsWidget}}slide{{/if}}"
             >
-                {{#if ../../selected instanceof Array && ../../selected.indexOf(.) > -1}}
-                    <svg intro-outro="fade:{duration: 100}"><use xlink:href="#icon-check-mark"></use></svg>
+                {{#if (../../selected && !../../iconIf && ../../icon !== false && ../../selected.indexOf(.) > -1) || (../../iconIf === .)}}
+                    <svg data-icon="{{../../icon || '#icon-check-mark'}}" intro-outro="fade:{duration: 100}"><use xlink:href="{{../../icon || '#icon-check-mark'}}"></use></svg>
                 {{/if}}
                 {{~/languages.getName(.)}} ({{.}})
             </li>
@@ -31,8 +31,8 @@
                 on-tap="set(../../set, .)"
                 outro="{{#if ~/openGlobalSettingsWidget}}slide{{/if}}"
             >
-                {{#if ../../selected instanceof Array && ../../selected.indexOf(.) > -1}}
-                    <svg intro-outro="fade:{duration: 100}"><use xlink:href="#icon-check-mark"></use></svg>
+                {{#if (../../selected && !../../iconIf && ../../icon !== false && ../../selected.indexOf(.) > -1) || (../../iconIf === .)}}
+                    <svg data-icon="{{../../icon || '#icon-check-mark'}}" intro-outro="fade:{duration: 100}"><use xlink:href="{{../../icon || '#icon-check-mark'}}"></use></svg>
                 {{/if}}
                 {{~/languages.getName(.)}} ({{.}})
             </li>

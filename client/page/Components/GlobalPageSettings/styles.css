@@ -75,6 +75,10 @@
     transform: rotate(-6deg) translateY(1px);
 }
 
+.E_GlobalPageSettings--language svg[data-icon*="flag"] {
+    transform: rotate(-6deg);
+}
+
 .E_GlobalLanguagesSettings--buttons {
     margin-top: 8px;
     margin-bottom: 10px;

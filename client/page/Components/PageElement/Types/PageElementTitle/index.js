@@ -107,7 +107,7 @@
 
         isEmpty: function () {
 
-            return (this.get("element.title") || "").replace(/(?:<[^>]*>)/g, "").match(/^\s*$/);
+            return (this.get("element.title." + this.get("lang")) || "").replace(/(?:<[^>]*>)/g, "").match(/^\s*$/);
         }
 
     });

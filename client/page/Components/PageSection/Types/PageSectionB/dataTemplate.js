@@ -1,11 +1,19 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 
-module.exports = function () {
+module.exports = function (lang) {
 
-    return {
-        type: "PageSectionB",
-        name: "Sekce B",
-        title: "Titulek",
-        content: "obsah"
+    var data = {
+        type: "PageSectionB"
     };
+
+    data.name = {};
+    data.name[lang] = "Sekce B";
+
+    data.title = {};
+    data.title[lang] = "Titulek";
+
+    data.content = {};
+    data.content[lang] = "Obsah";
+
+    return data;
 };

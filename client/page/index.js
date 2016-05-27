@@ -151,9 +151,10 @@ module.exports = Ractive.extend({
 
         lang = page.settings.lang.langs[lang] ? lang : page.settings.lang.defaultLang || Object.keys(page.settings.lang.langs)[0] || "cs";
 
-        var tplLang = page.settings.lang.langs[lang] ? page.settings.lang.langs[lang].template : "cs";
+        var tplLang = page.settings.lang.langs[lang] ? page.settings.lang.langs[lang].template : "cs",
 
-        this.root.set("page.lang", lang);
+            langPromise = this.root.set("page.lang", lang);
+
         this.root.set("page.tplLang", tplLang);
 
         if (this.scrollToSection) {
@@ -165,6 +166,8 @@ module.exports = Ractive.extend({
 
             this.scrollToSection.refresh();
         }
+
+        return langPromise;
     },
 
     onrender: function () {
@@ -264,7 +267,7 @@ module.exports = Ractive.extend({
 
             mode = Ractive.EDIT_MODE ? ScrollToSection.MODES.EDIT : ScrollToSection.MODES.PAGE;
 
-        this.scrollToSection = new ScrollToSection(mode, "section-");
+        this.scrollToSection = new ScrollToSection(mode, "__section-");
     },
 
     refreshEditors: function (elementsOnly) {
@@ -332,8 +335,8 @@ module.exports = Ractive.extend({
         //sledovat změny stránky -> označit jako neuložené
         this.observe("page.settings page.sections", this.handlePageChanged, {init: false});
         this.on("*.sectionOrderChanged", this.handlePageChanged, {init: false});
-        this.on("savePage", this.savePage);
-        this.on("closePage", this.closePage);
+        this.on("savePage", this.handleSavePage);
+        this.on("closePage", this.handleClosePage);
     },
 
     handlePageChanged: function () {
@@ -356,7 +359,6 @@ module.exports = Ractive.extend({
             _id: pageId
         });
 
-
         loadReq.then(function (page) {
 
             var lang = page.settings.lang.defaultLang || Object.keys(page.settings.lang.langs)[0] || "cs",
@@ -375,7 +377,7 @@ module.exports = Ractive.extend({
         loadReq.then(this.initPage.bind(this));
     },
 
-    savePage: function (skipDialog) {
+    handleSavePage: function (skipDialog) {
 
         clearTimeout(this.changesSavedTimeout);
 
@@ -387,7 +389,7 @@ module.exports = Ractive.extend({
                 text: "Chcete uložit a publikovat provedené změny?",
                 confirm: {
                     text: "Uložit",
-                    exec: this.savePage.bind(this, true)
+                    exec: this.handleSavePage.bind(this, true)
                 },
                 dismiss: {
                     active: 1
@@ -399,6 +401,33 @@ module.exports = Ractive.extend({
 
         this.set("changesSaved", false);
         this.set("pageIsSaving", true);
+
+        this.copyLangsOnSave(this.savePage);
+    },
+
+    copyLangsOnSave: function (cb, currentLang, langs) {
+
+        currentLang = currentLang || this.get("page.lang");
+
+        langs = langs || Object.keys(this.get("page.settings.lang.langs"));
+
+        this.changeLang(langs.pop()).then(function () {
+
+            if (!langs.length) {
+
+                this.changeLang(currentLang);
+
+                cb.call(this);
+
+                return;
+            }
+
+            this.copyLangsOnSave(cb, currentLang, langs);
+
+        }.bind(this));
+    },
+
+    savePage: function () {
 
         var sortedSections = this.pageSectionsManager.getSectionsSortedByIndex(),
 
@@ -443,7 +472,7 @@ module.exports = Ractive.extend({
         }.bind(this));
     },
 
-    closePage: function () {
+    handleClosePage: function () {
 
         if (this.get("unsavedChanges")) {
 
@@ -648,7 +677,9 @@ module.exports = Ractive.extend({
 
     findSectionsBgImages: function () {
 
-        var images = [];
+        var images = [],
+
+            lang = this.get("page.lang");
 
         this.forEachPageSection(function (pageSection) {
 
@@ -658,7 +689,7 @@ module.exports = Ractive.extend({
 
                 images.unshift({
                     src: src,
-                    name: pageSection.get("section.name")
+                    name: pageSection.get("section.name." + lang)
                 });
             }
         });
