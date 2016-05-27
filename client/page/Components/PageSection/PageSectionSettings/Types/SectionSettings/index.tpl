@@ -17,7 +17,7 @@
                             adaptive: true,
                             id: "E_SectionSettings--name",
                             size: "small",
-                            value: "data.name",
+                            value: "data.name." + .lang,
                             required: true
                         }
                     }}

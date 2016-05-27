@@ -14,6 +14,10 @@ module.exports = Ractive.extend({
 
     },
 
+    onconfig: function () {
+
+    },
+
     onrender: function () {
 
         this.observe("selectedPage", function (page) {
@@ -29,10 +33,12 @@ module.exports = Ractive.extend({
     },
 
     oncomplete: function () {
+
         this.observe("editPage", function (state) {
 
             state && console.time("pageLoaded");
-        }, {init: false})
+
+        }, {init: false});
     },
 
     loadPage: function (pageId) {

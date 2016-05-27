@@ -11,9 +11,10 @@
 .E_PageMenu--title {
     font-family: "Encode Sans", sans-serif;
     font-size: 19px;
+    line-height: 1.21;
     font-weight: 500;
 
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 
     color: var(--color-title-1);
 
@@ -23,12 +24,13 @@
 .E_PageMenu--sub-title {
     font-family: "Encode Sans", sans-serif;
     font-size: 14px;
+    line-height: 1.21;
     font-weight: 600;
     white-space: nowrap;
 
     position: relative;
 
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 
     color: var(--color-title-2);
 
@@ -38,14 +40,23 @@
     cursor: default;
 }
 
+.E_PageMenu--section + .E_PageMenu--title {
+    margin-top: 12px;
+}
+
+.E_PageMenu--sub-title:nth-of-type(1n + 2) {
+    margin-top: 8px;
+}
+
 .E_PageMenu--sub-title__interactive {
     cursor: pointer;
 }
 
 .E_PageMenu--sub-title-value {
+    font-weight: 400;
+    line-height: inherit;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-weight: 400;
 
     padding-left: 32px;
 
@@ -56,7 +67,7 @@
 
 .E_PageMenu--sub-title-dropdown {
     position: absolute;
-    top: -2px;
+    top: -1px;
     right: -16px;
 
     width: 16px;

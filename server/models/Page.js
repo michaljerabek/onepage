@@ -11,7 +11,23 @@ var PageSchema = new Schema({
     sections: Array,
 
     settings: {
-        type: Object
+        type: Object,
+        default: {
+            lang: {
+                defaultLang: {
+                    type: String,
+                    default: "cs"
+                },
+                langs: {
+                    type: Object,
+                    default: {
+                        cs: {
+                            template: "cs"
+                        }
+                    }
+                }
+            }
+        }
     },
 
     hostnames: [String]

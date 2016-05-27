@@ -1,13 +1,23 @@
+<div class="E_PageSectionSettings--transition-wrapper">
 {{#if .openPageSectionSettings === 'colors'}}
 
     {{> ColorSettings}}
 
-{{elseif .openPageSectionSettings === 'background'}}
+{{/if}}
+</div>
+
+<div class="E_PageSectionSettings--transition-wrapper">
+{{#if .openPageSectionSettings === 'background'}}
 
     <BackgroundImageSettings data="{{.section}}" multipleTabs="[[true]]"/>
 
-{{elseif .openPageSectionSettings === 'section'}}
+{{/if}}
+</div>
 
-    <SectionSettings data="{{.section}}" />
+<div class="E_PageSectionSettings--transition-wrapper">
+{{#if .openPageSectionSettings === 'section'}}
+
+    <SectionSettings data="{{.section}}" lang="{{.lang}}" />
 
 {{/if}}
+</div>

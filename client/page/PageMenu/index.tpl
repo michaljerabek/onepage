@@ -36,7 +36,7 @@
 
                 <div class="E_PageMenu--content-wrapper">
                     {{#if .openPageMenu === 'settings'}}
-                    <GlobalPageSettings settings="{{.page.settings}}" />
+                    <GlobalPageSettings settings="{{.page.settings}}" lang="{{.page.lang}}" tplLang="{{.page.tplLang}}" />
                     {{/if}}
                 </div>
             </div>

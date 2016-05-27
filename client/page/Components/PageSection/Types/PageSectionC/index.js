@@ -27,6 +27,15 @@ module.exports = PageSection.extend({
 
     onconfig: function () {
         this.superOnconfig();
+    },
+
+    getTextPaths: function () {
+
+        var paths = PageSection.prototype.getTextPaths.apply(this);
+
+        paths = paths.concat(["title", "content"]);
+
+        return paths;
     }
 
 });

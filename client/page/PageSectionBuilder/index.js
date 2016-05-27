@@ -4,7 +4,7 @@
 var slug = require("slugg");
 
 var DEF_SECTION_NAME = "sekce";
-var DEF_SECTION_INT_ID_PREFIX = "section-";
+var DEF_SECTION_INT_ID_PREFIX = "__section-";
 
 module.exports = (function () {
 
@@ -12,7 +12,7 @@ module.exports = (function () {
 
         counter = 0,
 
-        generateId = function (name, counter) {
+        generateId = function (name, lang, counter) {
 
             name = name || DEF_SECTION_NAME;
 
@@ -25,16 +25,16 @@ module.exports = (function () {
 
             for (s; s >= 0; s--) {
 
-                if (sections[s].get("id") === id) {
+                if (sections[s].get("id." + lang) === id) {
 
-                    return generateId(name, ++counter);
+                    return generateId(name, lang, ++counter);
                 }
             }
 
             return id;
         },
 
-        generateName = function (name, counter, originalName) {
+        generateName = function (name, lang, counter, originalName) {
 
             var sections = page.findAllPageSections(),
                 s = sections.length - 1;
@@ -43,9 +43,9 @@ module.exports = (function () {
 
             for (s; s >= 0; s--) {
 
-                if (sections[s].get("name") === name) {
+                if (sections[s].get("name")[lang] === name) {
 
-                    return generateName((originalName || name) + " " + counter, ++counter, originalName || name);
+                    return generateName((originalName || name) + " " + counter, lang, ++counter, originalName || name);
                 }
             }
 
@@ -59,24 +59,29 @@ module.exports = (function () {
 
         create = function (type, rewriteData) {
 
-            var superDataTemplate = require("./../Components/PageSection/dataTemplate.js")(),
-                dataTemplate = require("./../Components/PageSection/Types/" + type + "/dataTemplate.js")();
+            var lang = page.get("page.lang"),
 
-            dataTemplate.name = generateName(dataTemplate.name);
+                superDataTemplate = require("./../Components/PageSection/dataTemplate.js")(lang),
+                dataTemplate = require("./../Components/PageSection/Types/" + type + "/dataTemplate.js")(lang);
+
+            dataTemplate.name[lang] = generateName(dataTemplate.name[lang], lang);
 
             var base = {
-                id: generateId(dataTemplate.name),
+                id: {},
                 internalId: generateInternalId()
             };
+
+            base.id[lang] = generateId(dataTemplate.name[lang], lang);
 
             return $.extend(true, base, superDataTemplate, dataTemplate, rewriteData);
         },
 
         getDefaultName = function (sectionType) {
 
-            var dataTemplate = require("./../Components/PageSection/Types/" + sectionType + "/dataTemplate.js")();
+            var lang = page.get("page.lang"),
+                dataTemplate = require("./../Components/PageSection/Types/" + sectionType + "/dataTemplate.js")(lang);
 
-            return generateName(dataTemplate.name);
+            return generateName(dataTemplate.name[lang], lang);
         };
 
     return function PageSectionBuilder(_page) {

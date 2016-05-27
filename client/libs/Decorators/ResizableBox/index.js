@@ -347,7 +347,7 @@ ResizableBox.contentMutationObserver = function (mutations) {
 
     for (m; m >= 0; m--) {
 
-        if (mutations[m].target && mutations[m].target.className && mutations[m].target.className.match("ps-scrollbar")) {
+        if (mutations[m].target && typeof mutations[m].target.className === "string" && mutations[m].target.className.match("ps-scrollbar")) {
 
             scrollbarMutations++;
         }

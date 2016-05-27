@@ -10,7 +10,7 @@ var appBuilder = require("./../../../client/Page.js");
 require("ractive-require-templates")(".tpl");
 //var Ractive = require("ractive");
 
-router.get("/", function (req, res) {
+router.get(/^\/?(js|css|img){0,0}[a-zA-Z]{0,2}\/?$/, function (req, res) {
 
     var data = {
         userId: req.userId || req.user._id,
@@ -20,7 +20,9 @@ router.get("/", function (req, res) {
             name: req.Page.name,
             sections: req.Page.sections,
             settings: req.Page.settings,
-            editMode: req.query.editMode !== undefined
+            hostnames: req.Page.hostnames,
+            editMode: req.query.editMode !== undefined,
+            lang: req.pageLang || req.Page.settings.lang.defaultLang || Object.keys(req.Page.settings.lang.langs)[0] || "cs"
         }
     };
 

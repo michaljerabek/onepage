@@ -48,11 +48,6 @@ app.get("/", function (req, res, next) {
 
     if (req.hostname !== config.appHostname) {
 
-        if (req.headers.accept.match(/^image/)) {
-
-            return res.json({image: 1});
-        }
-
         return next();
     }
 

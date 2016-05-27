@@ -1,0 +1,92 @@
+/*====================================================================*/
+/*-------------- GlobalPageSettings - language-selector --------------*/
+/*====================================================================*/
+
+.E_GlobalLanguagesSettings--inline-widget-content {
+    padding: 4px 0;
+}
+
+.E_GlobalLanguagesSettings--language {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 34px;
+
+    position: relative;
+    margin: 0;
+
+    padding: 0 20px;
+
+    color: var(--color-text-1);
+    border-bottom: 1px solid #d7d7d7;
+
+    transition: var(--default-transition);
+
+    touch-action: manipulation;
+    cursor: default;
+}
+
+.E_GlobalLanguagesSettings--language:first-child {
+    border-top: 1px solid #d7d7d7;
+}
+
+.E_GlobalLanguagesSettings--language:hover {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: var(--color-hover);
+    border-bottom-color: var(--color-hover-border);
+
+    transition: var(--default-transition-hover);
+}
+
+.E_GlobalLanguagesSettings--language:active {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: var(--color-selected-active);
+    border-bottom-color: var(--color-selected-border);
+
+    transition: var(--default-transition-active);
+}
+
+.E_GlobalLanguagesSettings--language__selected:hover,
+.E_GlobalLanguagesSettings--language__selected {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: var(--color-selected-active);
+    border-bottom-color: var(--color-selected-border);
+
+    transition: var(--default-transition-active);
+}
+
+.E_GlobalLanguagesSettings--language svg {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 4px;
+
+    width: 12px;
+    height: 12px;
+
+    fill: var(--color-text-1);
+
+    display: inline-flex;
+
+    transition: var(--default-transition);
+}
+
+.E_GlobalLanguagesSettings--language__selected svg,
+.E_GlobalLanguagesSettings--language:hover svg {
+    fill: #fff;
+
+    transition: var(--default-transition-hover);
+}
+
+.E_GlobalLanguagesSettings--language:active svg {
+    fill: #fff;
+
+    transition: var(--default-transition-active);
+}

@@ -24,8 +24,8 @@
 }
 
 .E_GlobalPageSettings--color-palette .E_GlobalColorPaletteSettings--palettes-button {
-    position:absolute;
-    top: 38px;
+    position: absolute;
+    top: 40px;
     right: 0px;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .E_GlobalPageSettings--color-palette .InlineWidget {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title .E_GlobalColorPaletteSettings--color {
@@ -57,4 +57,88 @@
 .E_GlobalPageSettings--color-palette .E_PageMenu--sub-title-dropdown svg {
     width: 14px;
     height: 14px;
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- LANGUAGE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.E_GlobalLanguagesSettings--default-lang-icon {
+    margin-right: auto;
+    margin-left: 4px;
+
+    width: 12px;
+    height: 12px;
+
+    fill: var(--color-selected);
+
+    transform: rotate(-6deg) translateY(1px);
+}
+
+.E_GlobalPageSettings--language svg[data-icon*="flag"] {
+    transform: rotate(-6deg);
+}
+
+.E_GlobalLanguagesSettings--buttons {
+    margin-top: 8px;
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+}
+
+.E_GlobalLanguagesSettings--buttons .Button:nth-of-type(2) {
+    margin-left: auto;
+}
+
+.E_GlobalLanguagesSettings--buttons .Button:not(:last-child) {
+    margin-right: 8px;
+}
+
+.E_GlobalPageSettings--language .InlineWidget {
+    z-index: 2;
+    margin-bottom: 16px;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:nth-of-type(2):before,
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:nth-of-type(2):after,
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:first-of-type:before,
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:first-of-type:after {
+    content: "";
+
+    position: absolute;
+
+    background-color: #ccc;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:first-of-type:before {
+    top: 6px;
+    left: -10px;
+
+    width: 5px;
+    height: 1px;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:first-of-type:after {
+    top: 6px;
+    left: -11px;
+
+    width: 1px;
+    height: 32px;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:nth-of-type(2):before {
+    top: 8px;
+    left: -10px;
+
+    width: 5px;
+    height: 1px;
+}
+
+.E_GlobalLanguagesSettings .E_PageMenu--sub-title:nth-of-type(2):after {
+    bottom: 17px;
+    left: -11px;
+
+    width: 1px;
+    height: 32px;
 }

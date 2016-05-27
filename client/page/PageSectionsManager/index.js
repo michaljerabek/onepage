@@ -91,10 +91,14 @@ module.exports = (function () {
 
                 pageSection;
 
+            page.skipRegenerateId = true;
+
             page.push("page.sections", data).then(function () {
 
                 pageSection.generateRandomColors(true, true);
             });
+
+            page.skipRegenerateId = false;
 
             pageSection = page.findAllPageSections().pop();
 
@@ -166,7 +170,11 @@ module.exports = (function () {
 
                         if (sections[s] === pageSection) {
 
+                            page.skipRegenerateId = true;
+
                             page.splice("page.sections", s, 1);
+
+                            page.skipRegenerateId = false;
 
                             break;
                         }

@@ -25,6 +25,8 @@ var assignUserDbForPage = function (req, res, next) {
 
         if (user) {
 
+            req.defaultPage = user.defaultPage ? user.defaultPage[req.hostname.replace(/\./g, "_")] : null;
+
             req.requestForPage = true;
 
             req.userDb = mongoose.createConnection(

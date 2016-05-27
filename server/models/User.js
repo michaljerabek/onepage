@@ -30,7 +30,11 @@ var UserSchema = new Schema({
     hostnames: [{
         type: String,
         unique: true
-    }]
+    }],
+
+    defaultPage: {
+        type: Object
+    }
 
 });
 
