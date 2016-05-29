@@ -28,7 +28,7 @@
                     E_GlobalLanguagesSettings--language
                     {{#if typeof ../../selected === 'string' && . === ../../selected}}E_GlobalLanguagesSettings--language__selected{{/if}}
                 "
-                on-tap="set(../../set, .)"
+                on-tap="@this.set(../../set, .)"
                 outro="{{#if ~/openGlobalSettingsWidget}}slide{{/if}}"
             >
                 {{#if (../../selected && !../../iconIf && ../../icon !== false && ../../selected.indexOf(.) > -1) || (../../iconIf === .)}}

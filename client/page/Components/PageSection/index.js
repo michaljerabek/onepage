@@ -25,6 +25,7 @@
                 PageElement: require("./../PageElement"),
                 PageElementTitle: require("./../PageElement/Types/PageElementTitle"),
                 PageElementTextContent: require("./../PageElement/Types/PageElementTextContent"),
+                ButtonElement: require("./../PageElement/Types/ButtonElement"),
 
                 BackgroundImage: require("./Components/BackgroundImage")
             },

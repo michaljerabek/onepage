@@ -10,7 +10,7 @@
     {{#with {
             id: .id || "Select--" + Date.now(),
           data: this,
-          link: @ractive.link(.value.replace(/^\./, ""), "__Select." + .value.replace(/\./g, "_")),
+          link: @this.link(.value.replace(/^\./, ""), "__Select." + .value.replace(/\./g, "_")),
         _value: .value.replace(/\./g, '_')
     }}}
 

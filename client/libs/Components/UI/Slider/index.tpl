@@ -16,7 +16,7 @@
     {{#with {
             id: .id || "Slider--" + Date.now(),
           data: this,
-          link: @ractive.link(.value.replace(/^\./, ""), "__Slider." + .value.replace(/\./g, "_")),
+          link: @this.link(.value.replace(/^\./, ""), "__Slider." + .value.replace(/\./g, "_")),
         _value: .value.replace(/\./g, '_'),
         middle: ((.data.max || 100) - (.data.min || 0)) / 2
     }}}

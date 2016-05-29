@@ -4,7 +4,7 @@
         title: "Nastavení barev sekce",
         fire: "openPageSectionSettings",
         event: "colors",
-        state: @ractive.parent.get("openPageSectionSettings") === "colors" ? "active" : ""
+        state: @this.parent.get("openPageSectionSettings") === "colors" ? "active" : ""
     }
 }}
 
@@ -15,7 +15,7 @@
         title: "Nastavení pozadí sekce",
         fire: "openPageSectionSettings",
         event: "background",
-        state: @ractive.parent.get("openPageSectionSettings") === "background" ? "active" : ""
+        state: @this.parent.get("openPageSectionSettings") === "background" ? "active" : ""
     }
 }}
 
@@ -25,6 +25,6 @@
         title: "Obecné nastavení sekce",
         fire: "openPageSectionSettings",
         event: "section",
-        state: @ractive.parent.get("openPageSectionSettings") === "section" ? "active" : ""
+        state: @this.parent.get("openPageSectionSettings") === "section" ? "active" : ""
     }
 }}

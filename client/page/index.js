@@ -227,6 +227,7 @@ module.exports = Ractive.extend({
 
             this.pageMenu.destroy();
 
+            clearTimeout(this.loadedTimeout);
             clearTimeout(this.unsavedChangesTimeout);
         }
     },
@@ -337,6 +338,8 @@ module.exports = Ractive.extend({
         this.on("*.sectionOrderChanged", this.handlePageChanged, {init: false});
         this.on("savePage", this.handleSavePage);
         this.on("closePage", this.handleClosePage);
+
+        this.loadedTimeout = setTimeout(this.set.bind(this, "loaded", true), 0);
     },
 
     handlePageChanged: function () {

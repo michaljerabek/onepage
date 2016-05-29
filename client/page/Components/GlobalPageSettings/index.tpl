@@ -4,7 +4,7 @@
 
     <section class="E_PageMenu--section E_GlobalPageSettings--font-settings">
 
-        {{#with @ractive.findParent("Page").get("defaults.settings.fontType") as defaultFontType}}
+        {{#with @this.findParent("Page").get("defaults.settings.fontType") as defaultFontType}}
 
         <h3 class="
                 E_PageMenu--sub-title
@@ -53,7 +53,7 @@
                 adaptive: true,
                 size: "small",
                 value: "settings.roundness",
-                defaultValue: @ractive.findParent("Page").get("defaults.settings.roundness"),
+                defaultValue: @this.findParent("Page").get("defaults.settings.roundness"),
                 options: [
                     {
                         text: "Žádné",
@@ -94,7 +94,7 @@
                 adaptive: true,
                 size: "small",
                 value: "settings.animations",
-                defaultValue: @ractive.findParent("Page").get("defaults.settings.animations"),
+                defaultValue: @this.findParent("Page").get("defaults.settings.animations"),
                 options: [
                     {
                         text: "Jemné",
@@ -155,7 +155,7 @@
             }
         }}
 
-            {{#with .settings.colorPalette || @ractive.set('settings.colorPalette', @ractive.findParent("Page").get("defaults.settings.colorPalette")) as __def}}
+            {{#with .settings.colorPalette || @this.set('settings.colorPalette', @this.findParent("Page").get("defaults.settings.colorPalette")) as __def}}
 
                 <div>
                 {{#if .openGlobalSettingsWidget === "colors"}}
@@ -308,7 +308,7 @@
                             text: "Odstranit",
                             fire: "removeLang",
                             event: .lang,
-                            context: @ractive
+                            context: @this
                         },
                         dismiss: {
                             active: 1

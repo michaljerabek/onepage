@@ -10,7 +10,7 @@
     {{#with {
             id: .id || "Toggle--" + Date.now(),
           data: this,
-          link: @ractive.link(.value.replace(/^\./, ""), "__Toggle." + .value.replace(/\./g, "_")),
+          link: @this.link(.value.replace(/^\./, ""), "__Toggle." + .value.replace(/\./g, "_")),
         _value: .value.replace(/\./g, '_')
     }}}
 
@@ -23,7 +23,7 @@
 
         <label class="Toggle--event" for="{{.id}}">
 
-            {{#if .data.state === "disabled" || !@ractive.root.events.windowMousemove}}
+            {{#if .data.state === "disabled" || !@this.root.events.windowMousemove}}
 
                 <span class="Toggle--handle"></span>
 
@@ -42,27 +42,27 @@
                         {{/if}}
                         {{#if ~/__Toggle[._value + '-move']}}transition: none;{{/if}}
                     "
-                    on-mousedown="set('__Toggle.' + ._value + '-move', {
+                    on-mousedown="@this.set('__Toggle.' + ._value + '-move', {
                         initX: event.original.clientX,
                         lastX: event.original.clientX,
                         beforeLastX: event.original.clientX,
                         maxHMove: event.node.offsetParent.offsetWidth - event.node.offsetWidth - 2,
                         handleW: event.node.offsetWidth
                     })"
-                    on-touchstart="set('__Toggle.' + ._value + '-move', {
+                    on-touchstart="@this.set('__Toggle.' + ._value + '-move', {
                         initX: event.original.changedTouches[0].clientX,
                         lastX: event.original.changedTouches[0].clientX,
                         beforeLastX: event.original.changedTouches[0].clientX,
                         maxHMove: event.node.offsetParent.offsetWidth - event.node.offsetWidth - 2,
                         handleW: event.node.offsetWidth
                     })"
-                    on-windowMousemove-windowTouchmove="set('__Toggle.' + ._value + '-transform',
-                        ~/__Toggle[._value + '-move'] ? (event.original.type.match(/touch/) && event.original.stopPropagation() || event.original.preventDefault()) || (@ractive.set('__Toggle.' + ._value + '-move.beforeLastX', ~/__Toggle[._value + '-move'].lastX) && @ractive.set('__Toggle.' + ._value + '-move.lastX', event.clientX) && event.clientX - ~/__Toggle[._value + '-move'].initX) : ''
+                    on-windowMousemove-windowTouchmove="@this.set('__Toggle.' + ._value + '-transform',
+                        ~/__Toggle[._value + '-move'] ? (event.original.type.match(/touch/) && event.original.stopPropagation() || event.original.preventDefault()) || (@this.set('__Toggle.' + ._value + '-move.beforeLastX', ~/__Toggle[._value + '-move'].lastX) && @this.set('__Toggle.' + ._value + '-move.lastX', event.clientX) && event.clientX - ~/__Toggle[._value + '-move'].initX) : ''
                         )
                     "
                     on-mouseup-touchend-click="set('__Toggle.__X', event.original.preventDefault())"
-                    on-windowMouseup-windowTouchend="set(
-                        '__Toggle.' + ._value + '-move', ~/__Toggle[._value + '-move'] ? @ractive.set(
+                    on-windowMouseup-windowTouchend="@this.set(
+                        '__Toggle.' + ._value + '-move', ~/__Toggle[._value + '-move'] ? @this.set(
                             '__Toggle.' + ._value, ~/__Toggle[._value] ? ~/__Toggle[._value + '-move'].beforeLastX < event.clientX : ~/__Toggle[._value + '-move'].beforeLastX <= event.clientX
                         ) && false : false
                     )"

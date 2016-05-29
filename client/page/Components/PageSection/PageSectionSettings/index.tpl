@@ -15,7 +15,7 @@
 
         <div class="E_PageSectionSettings--wrapper-2">
 
-            {{#if @ractive.partials.pageSectionSettingsContent}}
+            {{#if @this.partials.pageSectionSettingsContent}}
 
                 {{> pageSectionSettingsContent}}
 

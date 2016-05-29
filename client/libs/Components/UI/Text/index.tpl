@@ -12,7 +12,7 @@
     {{#with {
             id: .id || "Text--" + Date.now() + (Math.random() * 1000000000).toFixed(),
           data: this,
-          link: @ractive.link(.value.replace(/^\./, ""), "__Text." + .value.replace(/\./g, "_")),
+          link: @this.link(.value.replace(/^\./, ""), "__Text." + .value.replace(/\./g, "_")),
         _value: .value.replace(/\./g, '_')
     }}}
 

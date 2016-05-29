@@ -11,11 +11,11 @@
         id: "Switch--" + Date.now() + "__",
         data: this,
 
-        link: @ractive.link(.value.replace(/^\./, ""), "__Switch." + .value.replace(/\./g, "_")),
+        link: @this.link(.value.replace(/^\./, ""), "__Switch." + .value.replace(/\./g, "_")),
 
         _default: typeof .defaultValue !== "undefined" &&
-           typeof @ractive.get(.value.replace(/^\./, "")) === "undefined" &&
-           @ractive.set(.value.replace(/^\./, ""), .defaultValue),
+           typeof @this.get(.value.replace(/^\./, "")) === "undefined" &&
+           @this.set(.value.replace(/^\./, ""), .defaultValue),
 
         _value: .value.replace(/\./g, '_')
     }}}

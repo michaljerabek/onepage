@@ -77,7 +77,7 @@
 
             <div class="ColorPicker--type-selector-wrapper">
 
-                {{#if @ractive.partials.Select}}
+                {{#if @this.partials.Select}}
 
                     {{>Select {
                             size: "small",
@@ -108,7 +108,7 @@
 
             <div class="ColorPicker--input-text-wrapper">
 
-                {{#if @ractive.partials.Text}}
+                {{#if @this.partials.Text}}
 
                     {{#if .inputType === .TYPE_HEX}}
 

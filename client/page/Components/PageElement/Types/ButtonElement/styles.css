@@ -1,0 +1,90 @@
+/*====================================================================*/
+/*--------------------------- BUTTONELEMENT --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__button {
+    font-size: 0;
+    line-height: 0;
+
+    display: inline-block;
+}
+
+.P_ButtonElement {
+    vertical-align: middle;
+    white-space: nowrap;
+
+    margin: 0;
+
+    width: auto;
+    height: 56px;
+    padding: 0 24px;
+
+    border: 2px solid currentColor;
+
+    display: inline-block;
+    overflow: hidden;
+
+    transition: var(--default-transition);
+}
+
+.P_PageElement:not([class*="E_PageElement"]) .P_ButtonElement:hover {
+    transform: scale(1.1);
+
+    transition: var(--default-transition-hover);
+}
+
+.P_PageElement:not([class*="E_PageElement"]) .P_ButtonElement:active {
+    transform: scale(1.05);
+
+    transition: var(--default-transition-active);
+}
+
+.P_PageElement:not([class*="E_PageElement"]) .P_ButtonElement {
+    cursor: pointer;
+}
+
+.P_ButtonElement--text {
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 52px;
+    vertical-align: middle;
+
+    top: 1px;
+    position: relative;
+
+    min-width: 64px;
+    max-height: 56px;
+
+    display: inline-block;
+
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    -o-user-select: text;
+    user-select: text;
+}
+
+.P_ButtonElement--icon {
+    vertical-align: middle;
+
+    margin-right: 10px;
+    margin-left: -10px;
+
+    width: 32px;
+    height: 32px;
+    max-height: 56px;
+
+    -webkit-background-size: 100%;
+    background-size: 100%;
+
+    display: inline-block;
+}
+
+.P_ButtonElement--icon svg {
+    width: 32px;
+    height: 32px;
+
+    fill: currentColor;
+
+    display: inline-block;
+}
