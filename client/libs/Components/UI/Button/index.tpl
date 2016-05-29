@@ -16,14 +16,14 @@
 
         <span class="Button--event"
             tabindex="{{.tabindex || 0}}"
-            on-tap-enter-space="{{.fire}}:{{.event}}"
+            on-tap-enter-space="@this.fire(.fire, event, .event)"
         ></span>
 
     {{elseif .set && .state !== "disabled"}}
 
         <span class="Button--event"
             tabindex="{{.tabindex || 0}}"
-            on-tap-enter-space="set(.set.replace(/^\./, ''), .value)"
+            on-tap-enter-space="@this.set(.set.replace(/^\./, ''), .value)"
         ></span>
 
     {{/if}}

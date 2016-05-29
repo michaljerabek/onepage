@@ -36,7 +36,7 @@
 
 {{#partial SVBox}}
 <div class="ColorPicker--SV-box"
-    on-mousedown-touchstart="activateSelector(event, 'SV')"
+    on-mousedown-touchstart="@this.activateSelector(event, 'SV')"
     style="
         background-image:
             linear-gradient(to bottom, rgba(0, 0, 0, 0), #000),
@@ -44,7 +44,7 @@
     "
 >
     <div class="ColorPicker--SV-selector"
-        on-mousedown-touchstart="activateSelector(event, 'SV')"
+        on-mousedown-touchstart="@this.activateSelector(event, 'SV')"
         style="
             transform: translate({{SVSelector.x}}px, {{SVSelector.y}}px);
             transition: {{.animate ? '' : 'none'}};
@@ -56,10 +56,10 @@
 
 {{#partial HBox}}
 <div class="ColorPicker--H-box"
-     on-mousedown-touchstart="activateSelector(event, 'H')"
+     on-mousedown-touchstart="@this.activateSelector(event, 'H')"
  >
     <div class="ColorPicker--H-selector"
-        on-mousedown-touchstart="activateSelector(event, 'H')"
+        on-mousedown-touchstart="@this.activateSelector(event, 'H')"
         style="
             transform: translateY({{HSelector.y}}px);
             transition: {{.animate ? '' : 'none'}};
@@ -158,11 +158,11 @@
                 {{else}}
 
                     {{#if .inputType === .TYPE_HEX}}
-                        <input type="text" value="{{.inputTextHEX}}" class="ColorPicker--input-text ColorPicker--input-text__hex" on-keyup="inputTextHEXChanged()" placeholder="RRGGBB">
+                        <input type="text" value="{{.inputTextHEX}}" class="ColorPicker--input-text ColorPicker--input-text__hex" on-keyup="@this.inputTextHEXChanged()" placeholder="RRGGBB">
                     {{else}}
-                        <input type="text" value="{{.inputTextR}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="inputTextRGBChanged()" placeholder="R" title="Červená [0–255]">
-                        <input type="text" value="{{.inputTextG}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="inputTextRGBChanged()" placeholder="G" title="Zelená [0–255]">
-                        <input type="text" value="{{.inputTextB}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="inputTextRGBChanged()" placeholder="B" title="Modrá [0–255]">
+                        <input type="text" value="{{.inputTextR}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="@this.inputTextRGBChanged()" placeholder="R" title="Červená [0–255]">
+                        <input type="text" value="{{.inputTextG}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="@this.inputTextRGBChanged()" placeholder="G" title="Zelená [0–255]">
+                        <input type="text" value="{{.inputTextB}}" class="ColorPicker--input-text ColorPicker--input-text-rgb" on-keyup="@this.inputTextRGBChanged()" placeholder="B" title="Modrá [0–255]">
                     {{/if}}
 
                 {{/if}}

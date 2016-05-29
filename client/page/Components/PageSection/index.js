@@ -154,9 +154,9 @@
                     /*ZMĚNA BAREV*/
                     this.on("*.generateRandomColors", this.generateRandomColors.bind(this));
 
-                    this.on("ColorPickerPalette.setColor", function (event) {
+                    this.on("ColorPickerPalette.setColor", function (event, x, x, palette) {
 
-                        var pathName = (event.component.container || event.component.parent).get("pathName");
+                        var pathName = (palette.container || palette.parent).get("pathName");
 
                         if (!pathName) {
 
@@ -164,7 +164,7 @@
                         }
 
                         //uživatel nastavuje vlastní barvu z výchozích -> uložit odkaz na barvu, aby se měnila v případě změny v paletě
-                        if (event.component.get("id") === "defaultColors") {
+                        if (palette.get("id") === "defaultColors") {
 
                             this.set("section.defaultColors." + pathName + "Ref", event.index.i);
 

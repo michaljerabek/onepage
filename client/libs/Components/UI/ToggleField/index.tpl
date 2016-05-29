@@ -11,7 +11,7 @@
         {{.data.className}}
     "
     {{#if .data.state !== 'disabled'}}tabindex="{{.data.tabindex || 0}}"{{/if}}
-    on-space-enter="toggle(.data.state !== 'disabled' ? .data.value.replace(/^\./, '') : undefined)"
+    on-space-enter="@this.toggle(.data.state !== 'disabled' ? .data.value.replace(/^\./, '') : undefined)"
 >
 
     <span class="ToggleField--text">{{.data.text}}</span>

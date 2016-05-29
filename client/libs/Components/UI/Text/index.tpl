@@ -25,9 +25,9 @@
                 {{#if .data.required}}required{{/if}}
                 {{#if .data.pattern}}pattern="{{.data.pattern}}"{{/if}}
                 placeholder="{{.placeholder}}"
-                on-keydown="{{.data.keydown}}:{{.data.keydownEvent}}"
-                on-keyup="{{.data.keyup}}:{{.data.keyupEvent}}"
-                on-keypress="{{.data.keypress}}:{{.data.keypressEvent}}"
+                on-keydown=" @this.fire(.data.keydown , event, .data.keydownEvent)"
+                on-keyup="   @this.fire(.data.keyup   , event, .data.keyupEvent)"
+                on-keypress="@this.fire(.data.keypress, event, .data.keypressEvent)"
                 title="{{.title}}"
             >
             {{#if .data.units}}

@@ -30,27 +30,27 @@
 
         {{#if .close}}
 
-            <span class="InlineWidget--close ResizableBox--close" on-tap="setOnParent(.close.replace(/^\./, ''), null)" title="Zavřít">
+            <span class="InlineWidget--close ResizableBox--close" on-tap="@this.setOnParent(.close.replace(/^\./, ''), null)" title="Zavřít">
                 <svg><use xlink:href="#icon-x"></use></svg>
             </span>
 
         {{else}}
 
-            <span class="InlineWidget--close ResizableBox--close" on-tap="InlineWidget--close" title="Zavřít">
+            <span class="InlineWidget--close ResizableBox--close" on-tap="@this.fire('InlineWidget--close')" title="Zavřít">
                 <svg><use xlink:href="#icon-x"></use></svg>
             </span>
 
         {{/if}}
 
 
-        <span class="InlineWidget--min-max ResizableBox--min-max" on-tap="minmax(event)" title="Zvětšovat podle obsahu">
+        <span class="InlineWidget--min-max ResizableBox--min-max" on-tap="@this.minmax(event)" title="Zvětšovat podle obsahu">
             <svg><use xlink:href="#icon-maximize"></use></svg>
         </span>
 
     </div>
 
     <div class="InlineWidget--resizer ResizableBox--resizer"
-        on-mousedown-touchstart="activateResizer(event, 'bottom')"
+        on-mousedown-touchstart="@this.activateResizer(event, 'bottom')"
     ></div>
 
 </section>

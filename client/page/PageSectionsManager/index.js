@@ -150,9 +150,9 @@ module.exports = (function () {
             return pageSection;
         },
 
-        removeSection = function (e) {
+        removeSection = function (e, e2, editUI) {
 
-            var pageSection = e.component.getPageSection(),
+            var pageSection = editUI.getPageSection(),
                 $sectionElement = pageSection.get$SectionElement();
 
             pageSection.set("isRemoved", true);

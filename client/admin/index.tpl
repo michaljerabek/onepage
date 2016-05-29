@@ -14,8 +14,8 @@
     {{#if .selectedPage}}
 
         <br>
-        <button on-tap="set('selectedPage', null)">Zrušit výběr</button>
-        <button on-tap="set('editPage', .selectedPage._id)">Upravit: {{.pageId}}</button>
+        <button on-tap="@this.set('selectedPage', null)">Zrušit výběr</button>
+        <button on-tap="@this.set('editPage', .selectedPage._id)">Upravit: {{.pageId}}</button>
 
     {{/if}}
 </div>

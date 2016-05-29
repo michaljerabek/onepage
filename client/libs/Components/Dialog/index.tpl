@@ -34,18 +34,18 @@
     intro-outro="attr:{
         duration: 500
     }"
-    on-escape="
-        {{~/messages[0].close || ~/messages[0].dismiss ? 'handleUserInput' : 'closeDialog'}}:{{
+    on-tap-escape="
+        @this.fire(~/messages[0].close || ~/messages[0].dismiss ? 'handleUserInput' : 'closeDialog',
             ~/messages[0].close   ? [~/messages[0].close.fire  , ~/messages[0].close.event  , ~/messages[0].close.context] :
             ~/messages[0].dismiss ? [~/messages[0].dismiss.fire, ~/messages[0].dismiss.event, ~/messages[0].dismiss.context] : undefined
-        }}
+        )
     "
 >
     <div class="Dialog--close" tabindex="1003" on-tap-space-enter="
-            {{~/messages[0].close || ~/messages[0].dismiss ? 'handleUserInput' : 'closeDialog'}}:{{
+            @this.fire(~/messages[0].close || ~/messages[0].dismiss ? 'handleUserInput' : 'closeDialog',
                 ~/messages[0].close   ? [~/messages[0].close.fire  , ~/messages[0].close.event  , ~/messages[0].close.context] :
                 ~/messages[0].dismiss ? [~/messages[0].dismiss.fire, ~/messages[0].dismiss.event, ~/messages[0].dismiss.context] : undefined
-            }}
+            )
         "
     >
         <svg><use xlink:href="#icon-x"></use></svg>

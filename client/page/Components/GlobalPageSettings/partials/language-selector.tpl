@@ -8,7 +8,7 @@
                     E_GlobalLanguagesSettings--language
                     {{#if typeof ../../selected === 'string' && . === ../../selected}}E_GlobalLanguagesSettings--language__selected{{/if}}
                 "
-                on-tap="{{../../fire}}:{{.}}"
+                on-tap="@this.fire(../../fire, event, .)"
                 outro="{{#if ~/openGlobalSettingsWidget}}slide{{/if}}"
             >
                 {{#if (../../selected && !../../iconIf && ../../icon !== false && ../../selected.indexOf(.) > -1) || (../../iconIf === .)}}

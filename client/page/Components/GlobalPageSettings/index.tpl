@@ -11,7 +11,7 @@
                 E_PageMenu--sub-title__interactive
                 {{#if .openGlobalSettingsWidget === 'font'}}E_PageMenu--sub-title__active{{/if}}
             "
-            on-tap="set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'font' ? null : 'font')"
+            on-tap="@this.set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'font' ? null : 'font')"
         >
             Písmo
 
@@ -133,7 +133,7 @@
                 {{#each .settings.colorPalette.colors}}
                     <li class="E_GlobalColorPaletteSettings--color"
                         style="background-color: {{.}}"
-                        on-tap="set('openGlobalSettingsWidget', ~/openGlobalSettingsWidget && ~/openGlobalSettingsWidget.colorKey === @key ? null : { colorKey: @key })"
+                        on-tap="@this.set('openGlobalSettingsWidget', ~/openGlobalSettingsWidget && ~/openGlobalSettingsWidget.colorKey === @key ? null : { colorKey: @key })"
                     ></li>
                 {{/each}}
 
@@ -209,7 +209,7 @@
                 E_PageMenu--sub-title__interactive
                 {{#if .openGlobalSettingsWidget === 'currentLang'}}E_PageMenu--sub-title__active{{/if}}
             "
-            on-tap="set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'currentLang' ? null : 'currentLang')"
+            on-tap="@this.set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'currentLang' ? null : 'currentLang')"
         >
             Aktuální jazyk
             {{#if .lang === .settings.lang.defaultLang}}
@@ -245,7 +245,7 @@
                 E_PageMenu--sub-title__interactive
                 {{#if .openGlobalSettingsWidget === 'templateLang'}}E_PageMenu--sub-title__active{{/if}}
             "
-            on-tap="set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'templateLang' ? null : 'templateLang')"
+            on-tap="@this.set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'templateLang' ? null : 'templateLang')"
         >
             Jazyk šablony
 

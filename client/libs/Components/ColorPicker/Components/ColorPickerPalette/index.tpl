@@ -60,7 +60,7 @@
             ColorPickerPalette--color__remove{{#if ~/nearToBlack}}-black{{/if}}
         {{/if}}
     "
-    on-click-touchend="setColor:{{.color}},{{true}}"
+    on-click-touchend="@this.fire('setColor', event, .color, true, @this)"
     intro="fade"
     style="
         background-color: {{.color}};
@@ -83,7 +83,7 @@
 {{#partial NoColor}}
 <div class="ColorPickerPalette--color ColorPickerPalette--color__remove"
      intro="fade"
-     on-click-touchend="setColor:{{NO_COLOR}}"
+     on-click-touchend="@this.fire('setColor', event, NO_COLOR, false, @this)"
      title="Odstranit / Výchozí"
 ></div>
 {{/partial}}

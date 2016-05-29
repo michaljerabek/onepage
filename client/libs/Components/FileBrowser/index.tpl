@@ -30,11 +30,11 @@
 
                     <div class="FileBrowser--search">
 
-                        <span class="FileBrowser--icon FileBrowser--icon__search" on-tap="set('openDirectory', ~/openDirectory === d ? null : d)">
+                        <span class="FileBrowser--icon FileBrowser--icon__search" on-tap="@this.set('openDirectory', ~/openDirectory === d ? null : d)">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.172 24l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/></svg>
                         </span>
 
-                        <input type="text" class="FileBrowser--search-input" name="search" value="{{~/searchText}}" placeholder="{{.name}}" on-focus-touchend="set('openDirectory', d)">
+                        <input type="text" class="FileBrowser--search-input" name="search" value="{{~/searchText}}" placeholder="{{.name}}" on-focus-touchend="@this.set('openDirectory', d)">
 
                         {{#if ~/searching}}
                             <span intro-outro="fade" class="FileBrowser--loader FileBrowser--loader__searching">(Načítá se...)</span>
@@ -47,7 +47,7 @@
                     <span class="
                             FileBrowser--directory-name
                         "
-                        on-tap="set('openDirectory', ~/openDirectory === d ? null : d)"
+                        on-tap="@this.set('openDirectory', ~/openDirectory === d ? null : d)"
                     >
 
                         <span class="FileBrowser--icon FileBrowser--icon__directory">
@@ -96,12 +96,12 @@
                                 {{#if deletable && !.uploading && !.uploadError}}
 
                                     {{#if ~/showRemoveConfirmation === .path}}
-                                        <span intro-outro="fade:{duration: 100}" class="FileBrowser--delete-file-confirm" on-tap="deleteFile:{{.}}">
+                                        <span intro-outro="fade:{duration: 100}" class="FileBrowser--delete-file-confirm" on-tap="@this.fire('deleteFile', event, .)">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                                         </span>
                                     {{/if}}
 
-                                    <span class="FileBrowser--delete-file" on-tap="set('showRemoveConfirmation', ~/showRemoveConfirmation === .path ? null : .path)">
+                                    <span class="FileBrowser--delete-file" on-tap="@this.set('showRemoveConfirmation', ~/showRemoveConfirmation === .path ? null : .path)">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M0 9h24v6h-24z"/>
                                             <path d="M0 9h24v6h-24z"/>
@@ -118,7 +118,7 @@
                                     <span class="FileBrowser--overlay"></span>
                                 {{/if}}
 
-                                <div class="FileBrowser--file-wrapper" on-tap="selectFile:{{.}}">
+                                <div class="FileBrowser--file-wrapper" on-tap="@this.fire('selectFile', event, .)">
                                     {{> ~/filesType + "File"}}
                                 </div>
                             </li>
