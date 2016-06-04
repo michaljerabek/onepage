@@ -16,7 +16,7 @@
                         <span class="E_PageElementSettings--title-self">{{settingsTitle}}</span>
                     {{/if}}
 
-                    <span class="E_PageElementSettings--title-section">{{section.name}}</span>
+                    <span class="E_PageElementSettings--title-section">{{section.name[.lang]}}</span>
                 </div>
 
                 <span class="E_PageElementSettings--close ResizableBox--close" on-tap="@this.fire('closeThisSettings')" title="Zavřít">

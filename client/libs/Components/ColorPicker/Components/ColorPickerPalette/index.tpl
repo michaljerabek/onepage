@@ -55,8 +55,7 @@
 
 {{#partial Color}}
 <div class="ColorPickerPalette--color
-
-        {{#if ~/type === ~/TYPE_DEFAULT && .i === 0 && .output === ''}}
+        {{#if ~/type === ~/TYPE_DEFAULT && .i === 0 && !.output}}
             ColorPickerPalette--color__remove{{#if ~/nearToBlack}}-black{{/if}}
         {{/if}}
     "

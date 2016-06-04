@@ -98,22 +98,22 @@
                 options: [
                     {
                         text: "Jemné",
-                        value: 0,
+                        value: 10,
                         icon: "#icon-magic-1"
                     },
                     {
                         text: "Normální",
-                        value: 10,
+                        value: 20,
                         icon: "#icon-magic-2"
                     },
                     {
                         text: "Rychlé",
-                        value: 20,
+                        value: 30,
                         icon: "#icon-magic-3"
                     },
                     {
                         text: "Zábavné",
-                        value: 30,
+                        value: 40,
                         icon: "#icon-magic-4"
                     }
                 ]

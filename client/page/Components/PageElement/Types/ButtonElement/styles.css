@@ -5,86 +5,455 @@
 .P_PageElement__button {
     font-size: 0;
     line-height: 0;
+    text-align: center;
+
+    margin: 0 8px;
+    margin-bottom: 16px;
 
     display: inline-block;
+}
+
+.E.P_Page__loaded .P_PageElement__button[data-ractive-transition="intro"] {
+    animation: P_PageElement__button-show 0.3s ease-in-out forwards;
+}
+
+.E.P_Page__loaded .P_PageElement__button[data-ractive-transition^="outro"] {
+    animation: P_PageElement__button-hide 0.3s ease-in-out forwards;
+}
+
+@keyframes P_PageElement__button-show {
+    from {
+        margin: 0;
+    }
+    to {
+        margin: 0 8px;
+        margin-bottom: 16px;
+    }
+}
+
+@keyframes P_PageElement__button-hide {
+    from {
+        margin: 0 8px;
+        margin-bottom: 16px;
+    }
+    to {
+        margin: 0;
+    }
 }
 
 .P_ButtonElement {
-    vertical-align: middle;
-    white-space: nowrap;
-
     margin: 0;
 
-    width: auto;
     height: 56px;
-    padding: 0 24px;
+    max-width: 300px;
 
-    border: 2px solid currentColor;
+    border: 2px solid;
 
     display: inline-block;
     overflow: hidden;
-
-    transition: var(--default-transition);
 }
 
-.P_PageElement:not([class*="E_PageElement"]) .P_ButtonElement:hover {
-    transform: scale(1.1);
-
-    transition: var(--default-transition-hover);
+.P_PageElement:not(.E_PageElement) .P_ButtonElement:focus,
+.P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
+    transform: scale(1.07);
 }
 
-.P_PageElement:not([class*="E_PageElement"]) .P_ButtonElement:active {
-    transform: scale(1.05);
-
-    transition: var(--default-transition-active);
+.P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+    transform: scale(1.03);
 }
 
-.P_PageElement:not([class*="E_PageElement"]) .P_ButtonElement {
+.P_PageElement:not(.E_PageElement) .P_ButtonElement {
     cursor: pointer;
 }
 
-.P_ButtonElement--text {
-    font-size: 19px;
-    font-weight: bold;
-    line-height: 52px;
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_ButtonElement {
+    transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_ButtonElement:focus,
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
+    transition: all 0.2s cubic-bezier(.5, .2, .6, .8) 0s;
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+    transition: all 0.05s ease-in 0s;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_ButtonElement {
+    transition: all 0.25s cubic-bezier(.5, .1, .7, .9) 0s;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_ButtonElement:focus,
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
+    transition: all 0.125s cubic-bezier(.1, .1, .5, 1) 0s;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+    transition: all 0.05s ease-in 0s;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_ButtonElement {
+    transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_ButtonElement:focus,
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
+    transition: all 0.1s cubic-bezier(.2, .1, .3, 1) 0s;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+    transition: all 0.035s ease-in 0s;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_ButtonElement {
+    transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_ButtonElement:focus,
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
+    transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+    transition: all 0.035s ease-in 0s;
+}
+
+.P_roundness-0 .P_ButtonElement {
+	border-radius: 0;
+}
+
+.P_roundness-10 .P_ButtonElement {
+	border-radius: 4px;
+}
+
+.P_roundness-20 .P_ButtonElement {
+	border-radius: 8px;
+}
+
+.P_roundness-30 .P_ButtonElement,
+.P_roundness-40 .P_ButtonElement {
+	border-radius: 28px;
+}
+
+@-moz-document url-prefix() {
+
+    .E .P_ButtonElement {
+        width: 100%;
+
+        animation: P_ButtonElement--width-auto 0.001s linear forwards;
+    }
+}
+
+@keyframes P_ButtonElement--width-auto {
+    from { width: 100%; }
+    to { width: auto; }
+}
+
+.P_ButtonElement--content-wrapper {
     vertical-align: middle;
+    white-space: nowrap;
+
+    height: 52px;
+    min-height: 52px;
+    max-height: 52px;
+    max-width: 296px;
+
+    display: inline-table;
+    table-layout: fixed;
+
+    transition: padding 0.3s ease-in-out 0s,
+        width 0.3s ease-in-out 0s;
+}
+
+.P_ButtonElement--text-wrapper {
+    font-size: 19px;
+    line-height: 52px;
+    text-align: center;
+
+    padding: 0;
+    max-height: 52px;
+
+    display: table-cell;
+}
+
+.P_ButtonElement--text {
+    line-height: 22px;
+    font-weight: bold;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    vertical-align: middle;
+    text-align: center;
+    text-wrap: balance;
 
     top: 1px;
     position: relative;
 
-    min-width: 64px;
-    max-height: 56px;
+    padding: 4px 20px;
+    min-width: 96px;
+    max-height: 52px;
+    height: 52px;
 
-    display: inline-block;
+    display: table-cell;
 
     -webkit-user-select: text;
     -moz-user-select: text;
     -ms-user-select: text;
     -o-user-select: text;
     user-select: text;
+
+    transition: padding 0.3s ease-in-out 0s,
+        color 0.1s linear 0s;
+}
+
+.P_roundness-30 .P_ButtonElement--text,
+.P_roundness-40 .P_ButtonElement--text {
+	padding-left: 24px;
+	padding-right: 24px;
+}
+
+.E_PageSection__stop-color-transitions .P_ButtonElement--text {
+    transition: padding 0.3s ease-in-out 0s;
+}
+
+.P_ButtonElement__long-text .P_ButtonElement--text-wrapper {
+    font-size: 17px;
+}
+
+.P_ButtonElement__long-text .P_ButtonElement--text {
+    top: 0px;
 }
 
 .P_ButtonElement--icon {
+    line-height: 0;
     vertical-align: middle;
 
-    margin-right: 10px;
-    margin-left: -10px;
+    position: relative;
 
-    width: 32px;
+    width: 56px;
     height: 32px;
-    max-height: 56px;
+    max-height: 52px;
 
     -webkit-background-size: 100%;
     background-size: 100%;
 
-    display: inline-block;
+    display: table-cell;
+    overflow: hidden;
+
+    transition: width 0.3s ease-in-out;
+}
+
+.P_roundness-30 .P_ButtonElement--icon,
+.P_roundness-40 .P_ButtonElement--icon {
+    width: 60px;
+}
+
+.P_ButtonElement__has-icon .P_ButtonElement--text {
+    padding-left: 0;
 }
 
 .P_ButtonElement--icon svg {
+    margin: auto;
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    right: 0;
+
     width: 32px;
     height: 32px;
 
     fill: currentColor;
 
     display: inline-block;
+    transition:
+        color 0.1s linear 0s,
+        fill 0.1s linear 0s,
+        left 0.3s ease-in-out;
+}
+
+.P_roundness-30 .P_ButtonElement--icon svg,
+.P_roundness-40 .P_ButtonElement--icon svg {
+    left: 4px;
+}
+
+.E_PageSection__stop-color-transitions .P_ButtonElement--icon svg {
+    transition: none;
+}
+
+
+.E.P_Page__loaded .P_ButtonElement--icon[data-ractive-transition="intro"] {
+    animation: P_ButtonElement--icon-width-0-56 0.3s ease-in-out forwards;
+}
+
+.E.P_Page__loaded .P_ButtonElement--icon[data-ractive-transition^="outro"] {
+    animation: P_ButtonElement--icon-width-56-0 0.3s ease-in-out forwards;
+}
+
+.E.P_Page__loaded.P_roundness-30 .P_ButtonElement--icon[data-ractive-transition="intro"],
+.E.P_Page__loaded.P_roundness-40 .P_ButtonElement--icon[data-ractive-transition="intro"] {
+    animation: P_ButtonElement--icon-width-0-60 0.3s ease-in-out forwards;
+}
+
+.E.P_Page__loaded.P_roundness-30 .P_ButtonElement--icon[data-ractive-transition^="outro"],
+.E.P_Page__loaded.P_roundness-40 .P_ButtonElement--icon[data-ractive-transition^="outro"] {
+    animation: P_ButtonElement--icon-width-60-0 0.3s ease-in-out forwards;
+}
+
+@keyframes P_ButtonElement--icon-width-0-56 {
+    from { width: 0; }
+    to { width: 56px; }
+}
+
+@keyframes P_ButtonElement--icon-width-0-60 {
+    from { width: 0; }
+    to { width: 60px; }
+}
+
+@keyframes P_ButtonElement--icon-width-0-64 {
+    from { width: 0; }
+    to { width: 64px; }
+}
+
+@keyframes P_ButtonElement--icon-width-56-0 {
+    from { width: 56px; }
+    to { width: 0px; }
+}
+
+@keyframes P_ButtonElement--icon-width-60-0 {
+    from { width: 60px; }
+    to { width: 0px; }
+}
+
+@keyframes P_ButtonElement--icon-width-64-0 {
+    from { width: 64px; }
+    to { width: 0px; }
+}
+
+@media (max-width: 360px) {
+
+    .P_PageElement__button {
+        width: 288px;
+    }
+
+    .P_ButtonElement {
+        max-width: auto;
+        width: 100%;
+    }
+
+    .P_ButtonElement__has-icon .P_ButtonElement--content-wrapper,
+    .P_ButtonElement__has-icon .P_ButtonElement--text-wrapper {
+        width: 100%;
+    }
+
+    .P_ButtonElement__has-icon .P_ButtonElement--content-wrapper {
+        padding-left: 64px;
+        padding-right: 16px;
+    }
+
+    .P_roundness-30 .P_ButtonElement--text,
+    .P_roundness-40 .P_ButtonElement--text,
+    .P_ButtonElement--text {
+        padding: 4px 16px;
+    }
+
+    .P_roundness-30 .P_ButtonElement__has-icon .P_ButtonElement--text,
+    .P_roundness-40 .P_ButtonElement__has-icon .P_ButtonElement--text,
+    .P_ButtonElement__has-icon .P_ButtonElement--text {
+        padding-left: 0;
+    }
+
+    .P_ButtonElement__has-icon .P_ButtonElement--text {
+        padding-right: 0;
+        width: 300px;
+        max-width: 100%;
+    }
+    .P_ButtonElement--icon {
+        position:absolute;
+        left: 0px;
+
+        height: 100%;
+    }
+
+    .P_roundness-30 .P_ButtonElement--icon,
+    .P_roundness-40 .P_ButtonElement--icon,
+    .P_ButtonElement--icon {
+        width: 64px;
+    }
+
+    .P_roundness-30 .P_ButtonElement--icon svg,
+    .P_roundness-40 .P_ButtonElement--icon svg {
+        left: 0px;
+    }
+
+    .E.P_Page__loaded.P_roundness-30 .P_ButtonElement--icon[data-ractive-transition="intro"],
+    .E.P_Page__loaded.P_roundness-40 .P_ButtonElement--icon[data-ractive-transition="intro"],
+    .E.P_Page__loaded .P_ButtonElement--icon[data-ractive-transition="intro"] {
+        animation: P_ButtonElement--icon-width-0-64 0.3s ease-in-out forwards;
+    }
+
+    .E.P_Page__loaded.P_roundness-30 .P_ButtonElement--icon[data-ractive-transition^="outro"],
+    .E.P_Page__loaded.P_roundness-40 .P_ButtonElement--icon[data-ractive-transition^="outro"],
+    .E.P_Page__loaded .P_ButtonElement--icon[data-ractive-transition^="outro"] {
+        animation: P_ButtonElement--icon-width-64-0 0.3s ease-in-out forwards;
+    }
+
+}
+
+/*--------------------------------------------------------------------*/
+/*--------------------------- PAGESECTION ----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageSection--buttons {
+    text-align: center;
+    line-height: 0;
+    font-size: 0;
+
+    position: relative;
+    margin: 0px auto;
+
+    padding: 0 8px;
+
+    display: table;
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSection--buttons {
+        width: 100%;
+    }
+}
+
+.P_PageSection--buttons-wrapper {
+    line-height: 0;
+    font-size: 0;
+
+    margin: 0px auto;
+    position: relative;
+}
+
+.P_PageSection--buttons-wrapper > * {
+    vertical-align: top;
+}
+
+.P_PageSection--buttons [id*="__ph"] {
+    margin: 0 8px;
+    margin-bottom: 16px;
+
+    display: inline-block !important;
+}
+
+.E_ButtonElements--add-button  {
+    margin: auto;
+    z-index: 30;
+    position: absolute;
+    top: -16px;
+    bottom: 0px;
+    right: -40px;
+}
+
+.E_ButtonElements--add-button__bottom {
+    top: auto;
+    bottom: -32px;
+    right: 0px;
+    left: 0px;
 }

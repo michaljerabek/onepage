@@ -8,6 +8,7 @@
             Ractive = require("ractive"),
 
             U = require("./../../../../../libs/U"),
+            EventEmitter = require("./../../../../../libs/EventEmitter")(),
             on = require("./../../../../../../helpers/on"),
 
             partials = {
@@ -17,6 +18,7 @@
 
         module.exports = factory(
             PageElement,
+            EventEmitter,
             Ractive,
             U,
             partials,
@@ -27,6 +29,7 @@
 
         root.ButtonElement = factory(
             root.PageElement,
+            root.EventEmitter,
             root.Ractive,
             root.U,
             {},
@@ -34,9 +37,29 @@
         );
     }
 
-}(this, function (PageElement, Ractive, U, partials, on) {
+}(this, function (PageElement, EventEmitter, Ractive, U, partials, on) {
 
     return PageElement.extend({
+
+        getNewItem: function () {
+
+            var lang = this.get("lang"),
+
+                button = {
+                    text: {}
+                };
+
+            button.text[lang] = "Tlačítko";
+
+            return button;
+        },
+
+        hasEditor: false,
+
+        MAX_LENGTH: 48,
+        MAX_LENGTH_NO_ICON: 56,
+
+        MIN_TEXT_CONTRAST: 5,
 
         components: {
         },
@@ -48,85 +71,43 @@
             return {
                 type: "button",
                 hasEditUI: true,
-                settingsTitle: "Nastavení tlačítka"
+                settingsTitle: "Nastavení tlačítka",
+                transitionName: "slidevh"
             };
         },
 
         onconfig: function () {
 
             this.CLASS.text = "P_ButtonElement--text";
+            this.CLASS.icon = "P_ButtonElement--icon";
 
             this.superOnconfig();
 
             if (Ractive.EDIT_MODE) {
 
-                this.observe("element.text.*", function (currentValue, prevValue, path) {
+                if (on.client) {
 
-                    if (this.skipTextObserver) {
-
-                        return;
-                    }
-
-                    var inputValue = currentValue;
-
-                    if (currentValue && currentValue.match(/(<([^>]+)>)/ig)) {
-
-                        currentValue = currentValue.replace(/(<([^>]+)>)/ig, "");
-                    }
-
-                    if (currentValue && currentValue.length > 30) {
-
-                        currentValue = prevValue;
-                    }
-
-                    if (currentValue !== inputValue) {
+                    EventEmitter.on("saving:lang:start.Page." + this.EVENT_NS, function () {
 
                         this.skipTextObserver = true;
 
-                        clearTimeout(this.fixTextTimeout);
+                    }.bind(this));
 
-                        this.fixTextTimeout = setTimeout(function () {
+                    EventEmitter.on("saving:lang:end.Page." + this.EVENT_NS, function () {
 
-                            this.set(path, currentValue);
+                        this.skipTextObserver = false;
 
-                            this.placeCaretAtEnd(this.textElement);
+                    }.bind(this));
+                }
+            }
 
-                            this.skipTextObserver = false;
+            this.PageSection = this.getPageSection();
 
-                        }.bind(this), 0);
-                    }
+            this.Page = this.findParent("Page");
 
-                }, {init: false});
+            if (this.Page.saving) {
 
-//                this.on("stateChange", function (state) {
-//
-//                    if (state && (this.hasFocusedEditor() || this.focusin)) {
-//
-//                        this.set("state", "active");
-//
-//                    } else {
-//
-//                        this.set("state", "inactive");
-//                    }
-//                });
-//
-//                this.on("activate", function (event) {
-//
-//                    event.original.preventDefault();
-//
-//                    setTimeout(function() {
-//
-//                        var editable = this.find("[data-medium-editor-element='true']");
-//
-//                        if (editable) {
-//
-//                            editable.focus();
-//
-//                            this.fire("stateChange", this.get("showOutline"));
-//                        }
-//
-//                    }.bind(this), 0);
-//                });
+                this.set("stopTransition", true);
             }
         },
 
@@ -134,54 +115,128 @@
 
             this.superOnrender();
 
+            this.$text = this.$self.find("." + this.CLASS.text);
+            this.$icon = this.$self.find("." + this.CLASS.icon);
+
+
             if (Ractive.EDIT_MODE) {
 
-                this.Page = this.findParent("Page");
+                this.on("stateChange", function (state) {
 
-                this.textElement = this.find("." + this.CLASS.text);
+                    if (state && (this.hasFocusedElement() || this.focusin)) {
 
-//                this.set("mostUsedColors", this.Page.findMostUsedColors());
+                        this.set("state", "active");
 
-                this.observe("element.link", function (value) {
+                    } else {
 
-                    if (value) {
-
-                        if (value.match(/^(?:https?:\/\/)?(?:www\.)?itunes\.apple\.com\/[a-zA-Z0-9\-]+\/app/i)) {
-
-                            this.set("element.icon", "<svg><use xlink:href='#icon-apple'></use></svg>");
-
-                        } else if (value.match(/^(?:https?:\/\/)?(?:www\.)?play\.google\.com\/store\/apps/i)) {
-
-                            this.set("element.icon", "<svg><use xlink:href='#icon-android'></use></svg>");
-
-                        } else if (value.match(/^(?:https?:\/\/)?(?:www\.)?(?:windowsphone|microsoft)\.com\/[a-zA-Z0-9\-]+\/store\/apps/i)) {
-
-                            this.set("element.icon", "<svg><use xlink:href='#icon-windows'></use></svg>");
-
-                        } else if (value.match(/\.(?=[a-zA-Z0-9]+$)(?=(?!html$|htm$|php$|py$|asp$))/i)) {
-
-                            this.set("element.icon", "<svg><use xlink:href='#icon-download'></use></svg>");
-
-                        } else {
-
-                            this.set("element.icon", null);
-                        }
+                        this.set("state", "inactive");
                     }
                 });
 
+//                this.set("mostUsedColors", this.Page.findMostUsedColors());
+
+                this.initObservers();
+
+                this.on("touchstart", function () {
+
+                    if (!this.get("focus")) {
+
+                        this.placeCaretAtEnd(this.$text[0]);
+                    }
+                });
+
+            } else {
+
+                this.$text.balanceText();
             }
         },
 
         oncomplete: function () {
 
             this.superOncomplete();
+
+            if (Ractive.EDIT_MODE) {
+
+                this.balanceText();
+            }
+        },
+
+        initObservers: function () {
+
+            this.linkObserver = this.observe("element.link", this.setIconForLink);
+
+            this.iconObserver = this.observe("element.icon", function () {
+
+                this.balanceText(400, this.get("lang"));
+
+            }, {init: false});
+
+            this.fillObserver = this.observe("element.fill", function (state) {
+
+                this.PageSection.set("stopColorTransitions", false);
+
+                var generator = this.Page.defaultColorsGenerator,
+
+                    color = this.get("element.color") || this.get("defaultColors.specialColor");
+
+                if (generator && color) {
+
+                    this.set("element.textColor", state ? generator.getBlackWhite(color, this.MIN_TEXT_CONTRAST, true) : null);
+                }
+
+            }, {init: false});
+
+            this.colorObserver = this.observe("element.color", function (color) {
+
+                var generator = this.Page.defaultColorsGenerator;
+
+                if (this.get("element.fill") && generator) {
+
+                    this.set("element.textColor", generator.getBlackWhite(color || this.get("defaultColors.specialColor"), this.MIN_TEXT_CONTRAST, true));
+                }
+            }, {init: false});
+
+            this.defColorObserver = this.observe("defaultColors.specialColor", function (color) {
+
+                var generator = this.Page.defaultColorsGenerator;
+
+                if (this.get("element.fill") && generator && color && !this.get("element.color")) {
+
+                    this.set("element.textColor", generator.getBlackWhite(color, this.MIN_TEXT_CONTRAST, true));
+                }
+            }, {init: false});
+
+            this.textObserver = this.observe("element.text.*", this.checkText, {init: false});
+        },
+
+        cancelObservers: function () {
+
+            if (this.textObserver) {
+
+                this.linkObserver.cancel();
+                this.fillObserver.cancel();
+                this.iconObserver.cancel();
+                this.colorObserver.cancel();
+                this.defColorObserver.cancel();
+                this.textObserver.cancel();
+            }
         },
 
         onteardown: function () {
 
-            this.superOnteardown();
+            this.cancelObservers();
+
+            if (Ractive.EDIT_MODE) {
+
+                if (on.client) {
+
+                    EventEmitter.off("." + this.EVENT_NS);
+                }
+            }
 
             clearTimeout(this.fixTextTimeout);
+
+            this.superOnteardown();
         },
 
 //        isEmpty: function () {
@@ -189,14 +244,185 @@
 //            return (this.get("element.text." + this.get("lang")) || "").replace(/(?:<[^>]*>)/g, "").match(/^(\s|\&nbsp\;)*$/);
 //        },
 //
+        checkText: function (currentValue, prevValue, path, lang) {
+
+            if (this.skipTextObserver) {
+
+                return;
+            }
+
+            var inputValue = currentValue,
+
+                moveCaret = 0;
+
+            if (currentValue && currentValue.match(/^(?:\s+|\&nbsp\;)+/ig)) {
+
+                currentValue = currentValue.replace(/^(?:\s+|\&nbsp\;)+/ig, "");
+
+                moveCaret--;
+            }
+
+            if (currentValue && currentValue.match(/(<([^>]+)>)/ig)) {
+
+                currentValue = currentValue.replace(/(\s{0}<(br[^>]+)>\s{0})/ig, " ");
+
+                currentValue = currentValue.replace(/(<([^>]+)>)/ig, "");
+            }
+
+            if (currentValue && currentValue.match(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig)) {
+
+                currentValue = currentValue.replace(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig, " ");
+
+                moveCaret--;
+            }
+
+            if (currentValue) {
+
+                var nbsp = currentValue.match(/\&nbsp\;/ig),
+
+                    length = currentValue.length - (nbsp ? nbsp.length * 5 : 0);
+
+                if (length > (this.get("element.icon") ? this.MAX_LENGTH : this.MAX_LENGTH_NO_ICON)) {
+
+                    currentValue = prevValue;
+                }
+            }
+
+            if (currentValue !== inputValue) {
+
+                var caret = this.getSelection().endOffset + moveCaret;
+
+                this.skipTextObserver = true;
+
+                clearTimeout(this.fixTextTimeout);
+
+                this.fixTextTimeout = setTimeout(function () {
+
+                    this.skipTextObserver = true;
+
+                    this.set("element.text." + lang, currentValue);
+
+                    try {
+
+                        this.setCaretPosition(this.$text[0], caret);
+
+                    } catch (e) {
+
+                        this.placeCaretAtEnd(this.$text[0]);
+                    }
+
+                    this.skipTextObserver = false;
+
+                }.bind(this), 0);
+            }
+        },
+
+        getSelection: function () {
+
+            var savedRange;
+
+            if (window.getSelection && window.getSelection().rangeCount > 0) {
+
+                savedRange = window.getSelection().getRangeAt(0).cloneRange();
+
+            } else if (document.selection) {
+
+                savedRange = document.selection.createRange();
+            }
+
+            return savedRange;
+        },
+
+        setCaretPosition: function (node, pos) {
+
+            node.focus();
+
+            var textNode = node.firstChild,
+                range = document.createRange();
+
+            range.setStart(textNode, pos);
+            range.setEnd(textNode, pos);
+
+            var sel = window.getSelection();
+
+            sel.removeAllRanges();
+            sel.addRange(range);
+        },
+
+        setIconForLink: function (value) {
+
+            if (value) {
+
+                //iOS aplikace
+                if (value.match(/^\s*(?:https?:\/\/)?(?:www\.)?itunes\.apple\.com\/[a-zA-Z0-9\-]+\/app/i)) {
+
+                    this.set("element.icon", "<svg style='margin-top: -1px;'><use xlink:href='#icon-apple'></use></svg>");
+
+                //Android aplikace
+                } else if (value.match(/^\s*(?:https?:\/\/)?(?:www\.)?play\.google\.com\/store\/apps/i)) {
+
+                    this.set("element.icon", "<svg><use xlink:href='#icon-android'></use></svg>");
+
+                //Windows aplikace
+                } else if (value.match(/^\s*(?:https?:\/\/)?(?:www\.)?(?:windowsphone|microsoft)\.com\/[a-zA-Z0-9\-]+\/store\/apps/i)) {
+
+                    this.set("element.icon", "<svg><use xlink:href='#icon-windows'></use></svg>");
+
+                //Stahovatelný soubor
+                } else if (value.match(/\.(?=[a-zA-Z0-9]+$)(?=(?!html$|htm$|php$|py$|asp$))/i)) {
+
+                    this.set("element.icon", "<svg><use xlink:href='#icon-download'></use></svg>");
+
+                } else {
+
+                    this.set("element.icon", null);
+                }
+            }
+        },
+
         removeIfEmpty: function () {
 
             var empty = (this.get("element.text." + this.get("lang")) || "").replace(/(?:<[^>]*>)/g, "").match(/^(\s|\&nbsp\;)*$/);
 
             if (empty) {
 
-                this.getPageSection().set("section.button", null);
+                clearTimeout(this.balanceTextTimeout);
+
+                clearTimeout(this.fixTextTimeout);
+
+                if (this.removing) {
+
+                    return;
+                }
+
+                this.fire("removeButton", {}, this.get("element"), this);
+
+            } else {
+
+                this.balanceText();
             }
+        },
+
+        balanceText: function (timeout, lang) {
+
+            clearTimeout(this.balanceTextTimeout);
+
+            if (this.removing) {
+
+                return;
+            }
+
+            this.balanceTextTimeout = setTimeout(function () {
+
+                this.$text.balanceText();
+
+                this.skipTextObserver = true;
+
+                this.set("element.text." + (lang || this.get("lang")), this.$text.html());
+
+                this.skipTextObserver = false;
+
+            }.bind(this), timeout || 0);
         },
 
         placeCaretAtEnd: function (el) {
@@ -226,9 +452,19 @@
 
         action: function (event, editMode) {
 
-            if (editMode) {
+            if (!editMode || (event.original.srcEvent || event.original).ctrlKey) {
 
-                event.original.preventDefault();
+                var link    = this.get("element.link")    || "",
+                    product = this.get("element.product") || "";
+
+                if (link && this.Page.scrollToSection.isInternalId(link.replace(/^#/, ""))) {
+
+                    this.Page.scrollToSection.scrollToSectionById(link.replace(/^#/, ""));
+
+                } else if (link) {
+
+                    window.open(link, "_blank");
+                }
             }
         }
     });

@@ -126,9 +126,12 @@
         this.origin.offset.y = rect.top + (window.scrollY || window.pageYOffset) - this.origin.y
         this.origin.scrollX = (window.scrollX || window.pageXOffset)
         this.origin.scrollY = (window.scrollY || window.pageYOffset)
-            // the draged element is going to stick right under the cursor
+        // the draged element is going to stick right under the cursor
             // setting the css property `pointer-events` to `none` will let
             // the pointer events fire on the elements underneath the helper
+
+        this.last = this.el
+
         el[0].style.pointerEvents = 'none'
         this.windows.forEach(function (win) {
             $(win).on(MOVE_EVENT, $.proxy(this.move, this))
@@ -136,6 +139,7 @@
         }, this)
         transition(el[0], '')
         trigger(this.eventHandler, 'dragging:start', e)
+
         return this.el
     }
 
@@ -156,6 +160,7 @@
     };
 
     Dragging.prototype.stop = function (e) {
+
         var dropEvent = null
         var revert = true
 
@@ -172,11 +177,13 @@
                 dropEvent = trigger($(last), 'dragging:drop', e)
                 revert = !dropEvent.isDefaultPrevented()
             }
+
         }
 
         if (!this.el) {
             return
         }
+
 
         for (var prop in this.originalCss) {
             this.el.css(prop, this.originalCss[prop])
@@ -187,6 +194,7 @@
         if (!this.handle) {
             this.adjustPlacement(e)
         }
+
         this.placeholder = null
 
         var el = this.el
@@ -284,6 +292,14 @@
                 !this.parent.opts.onlyYDir && deltaX > 0 && 'up' ||
                 !this.parent.opts.onlyYDir && deltaX < 0 && 'down' ||
                 this.lastDirection
+
+            if (this.parent.opts.keepDir) {
+
+                if ((Math.abs(deltaX) < 4 && Math.abs(deltaY) > 2) || (Math.abs(deltaY) < 4 && Math.abs(deltaX) > 2)) {
+
+                    direction = this.lastDirection || direction;
+                }
+            }
 
             if (!dragging.currentTarget) {
                 this.setCurrent(over)
@@ -1271,7 +1287,7 @@
         stopClass: 'draggable-stop',
         onlyXDir: false,
         onlyYDir: false,
-        fixdX: false,
+        fixedX: false,
         fixedY: false
     })
 
@@ -1287,7 +1303,7 @@
         alwaysShowPlaceholder: false,
         onlyXDir: false,
         onlyYDir: false,
-        fixdX: false,
+        fixedX: false,
         fixedY: false
     })
 
@@ -1309,7 +1325,8 @@
         stopClass: 'draggable-stop',
         onlyXDir: false,
         onlyYDir: false,
-        fixdX: false,
+        fixedX: false,
         fixedY: false
     })
+
 })(window.Zepto || window.jQuery);

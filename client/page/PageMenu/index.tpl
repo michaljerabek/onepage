@@ -30,7 +30,7 @@
                     <svg><use xlink:href="#icon-x"></use></svg>
                 </span>
 
-                <span class="E_PageMenu--show-page" on-touchstart-touchend-hover="@this.fire('showPage')">
+                <span class="E_PageMenu--show-page" on-touchstart-touchend-hover="@this.fire('showPage', event)">
                     <svg><use xlink:href="#icon-eye"></use></svg>
                 </span>
 

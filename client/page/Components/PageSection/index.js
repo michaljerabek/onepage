@@ -81,12 +81,20 @@
 
         components: components || {},
 
+        decorators: {
+            Sortable: require("./Decorators/Sortable"),
+
+            ButtonElements: require("./../PageElement/Types/ButtonElement/PageSectionDecorators/ButtonElements")
+        },
+
         partials: {
             pageSectionEditUI: "",
             pageSectionContent: "",
             pageSectionSettings: "",
 
-            ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null
+            ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null,
+
+            ButtonElements: require("./../PageElement/Types/ButtonElement/PageSectionPartials/button-elements.tpl")
         },
 
         data: function () {
@@ -122,9 +130,9 @@
 
                 this.on("ColorPicker.*", function (data) {
 
-                    if (data && typeof data === "object" && data.key === "current") {
+                    if ((data && typeof data === "object" && data.key === "current") || data === "") {
 
-                        this.set("stopColorTransitions", !data.context.get("animate"));
+                        this.set("stopColorTransitions", data ? !data.context.get("animate") : false);
                     }
 
                 }.bind(this));
@@ -705,12 +713,32 @@
 
             var paths = ["name"];
 
+            var buttons = (this.get("section.buttons") || []).length;
+
+            if (buttons) {
+
+                for (--buttons; buttons >= 0; buttons--) {
+
+                    paths.push("buttons." + buttons + ".text");
+                }
+            }
+
             return paths;
         },
 
         getColorPaths: function () {
 
             var paths = ["backgroundColor", "textColor"];
+
+            var buttons = (this.get("section.buttons") || []).length;
+
+            if (buttons) {
+
+                for (--buttons; buttons >= 0; buttons--) {
+
+                    paths.push("buttons." + buttons + ".color");
+                }
+            }
 
             //pokud je barva v poli -> přidat, každou cestu zvlášť ???
 

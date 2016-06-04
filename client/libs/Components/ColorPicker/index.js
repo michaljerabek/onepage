@@ -176,7 +176,6 @@
 
                 this.currentColor.hue(this.HBoxColor.hue());
             }
-
             if (!this.waitForUserInteraction) {
 
                 this.set("output", this.getCurrentRGB());
@@ -325,7 +324,11 @@
 
             this.windowResizeThrottle = setTimeout(function() {
 
+                this.skipUpdateCurrent = true;
+
                 this.moveSelectorsToCurrentColorPosition();
+
+                this.skipUpdateCurrent = false;
 
             }.bind(this), 100);
         },

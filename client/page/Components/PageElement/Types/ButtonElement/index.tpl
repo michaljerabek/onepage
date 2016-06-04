@@ -4,36 +4,59 @@
     class="
         P_ButtonElement
         {{#if .element.fill}}P_ButtonElement__fill{{else}}P_ButtonElement__stroke{{/if}}
-        E_Editor__button
+        {{#if (.element.text[.lang] || '').replace(/\&nbsp\;/ig, ' ').length > (.element.icon ? 20 : 24)}}P_ButtonElement__long-text{{/if}}
+        {{#if .element.icon}}P_ButtonElement__has-icon{{/if}}
     "
-    style="color: {{.element.color || .defaultColors.specialColor}}"
-    on-tap="@this.action(event, editMode)"
-    intro-outro="{{#if .editMode && @this.findParent('Page').get('loaded')}}slideh{{/if}}"
+    style="
+        border-color: {{.element.color || .defaultColors.specialColor}};
+        {{#if .element.fill}}background-color: {{.element.color || .defaultColors.specialColor}};{{/if}}
+    "
+    on-enter-tap="@this.action(event, .editMode)"
+    intro-outro="{{#if .editMode && @this.findParent('Page').get('loaded') && !.stopTransition}}slidevh{{/if}}"
+    tabindex="0"
  >
-    {{#if .element.icon}}
 
-        {{#if .element.icon.match(/\/svg>/)}}
+    <span class="P_ButtonElement--content-wrapper"
+        on-touchstart="@this.fire(.editMode ? 'touchstart' : '')"
+    >
 
-            <span class="
-                    P_ButtonElement--icon P_ButtonElement--icon__svg
-                "
-                intro-outro="{{#if .editMode && @this.findParent('Page').get('loaded')}}slideh{{/if}}"
-            >
-                {{{.element.icon}}}
-            </span>
+        {{#if .element.icon}}
 
-        {{else}}
+            {{#if .element.icon.match(/\/svg>/)}}
 
-            <span class="
-                    P_ButtonElement--icon P_ButtonElement--icon__image
-                "
-                style="background-image: url('{{.element.icon}}');"
-                intro-outro="{{#if .editMode && @this.findParent('Page').get('loaded')}}slideh{{/if}}"
-            ></span>
+                <span class="
+                        P_ButtonElement--icon P_ButtonElement--icon__svg
+                    "
+                      intro-outro="{{#if .editMode && @this.findParent('Page').get('loaded') && !.stopTransition}}attr{{/if}}"
+                      style="color: {{.element.textColor || .element.color || .defaultColors.specialColor}};"
+                >
+                    {{{.element.icon}}}
+                </span>
+
+            {{else}}
+
+                <span class="
+                        P_ButtonElement--icon P_ButtonElement--icon__image
+                    "
+                    style="background-image: url('{{.element.icon}}');"
+                    intro-outro="{{#if .editMode && !.stopTransition && @this.findParent('Page').get('loaded')}}attr{{/if}}"
+                ></span>
+
+            {{/if}}
 
         {{/if}}
 
-    {{/if}}
+        <span class="P_ButtonElement--text-wrapper">
+            <span class="
+                    P_ButtonElement--text
+                "
+                contenteditable="{{!!.editMode}}"
+                on-blur="@this.removeIfEmpty()"
+                value="{{.element.text[.lang]}}"
+                style="color: {{.element.textColor || .element.color || .defaultColors.specialColor}};"
+            >
+            </span>
+        </span>
 
-    <span class="P_ButtonElement--text" contenteditable="{{!!editMode}}" on-blur="@this.removeIfEmpty()" value="{{.element.text[.lang]}}"></span>
+    </span>
  </span>

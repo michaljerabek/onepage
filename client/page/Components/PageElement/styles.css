@@ -5,6 +5,20 @@
     touch-action: manipulation;
 }
 
+.P_PageElement__active {
+    z-index: 15;
+}
+
+.P_PageElement:active,
+.P_PageElement:focus,
+.P_PageElement:hover {
+    z-index: 20;
+}
+
+.E_PageElement__sorting {
+    z-index: 25;
+}
+
 .E_Page__sortable-active .P_PageElement,
 .E_Page__sortable-active .P_PageElement * {
     pointer-events: none;
@@ -47,6 +61,13 @@
     border-color: var(--color-element-outline-2);
 }
 
+.E_Sortable__active .P_PageElement:not(.E_PageElement__sorting):not(.E_PageElement__empty) .E_PageElement--outline__active,
+.E_Sortable__active .P_PageElement:not(.E_PageElement__sorting).E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active,
+.E_Sortable__active .E_PageSection__change-outline .P_PageElement:not(.E_PageElement__sorting):not(.E_PageElement__empty) .E_PageElement--outline__active,
+.E_Sortable__active .E_PageSection__change-outline .P_PageElement:not(.E_PageElement__sorting).E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active {
+    border-color: transparent;
+}
+
 .E_PageElement--outline:after {
     content: "";
 
@@ -72,6 +93,13 @@
 .E_PageSection__change-outline .P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active:after,
 .E_PageSection__change-outline .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active:after {
     box-shadow: 0px 0px 8px 0px var(--color-element-outline-2-glow);
+}
+
+.E_Sortable__active .P_PageElement:not(.E_PageElement__sorting):not(.E_PageElement__empty) .E_PageElement--outline__active:after,
+.E_Sortable__active .P_PageElement:not(.E_PageElement__sorting).E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active:after,
+.E_Sortable__active .E_PageSection__change-outline .P_PageElement:not(.E_PageElement__sorting):not(.E_PageElement__empty) .E_PageElement--outline__active:after,
+.E_Sortable__active .E_PageSection__change-outline .P_PageElement:not(.E_PageElement__sorting).E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active:after {
+    box-shadow: 0px 0px 8px 0px transparent;
 }
 
 .P_PageElement .P_PageElement .E_PageElement--outline {
@@ -113,10 +141,8 @@
     top: -11px;
     right: -11px;
 
-    padding-bottom: 6px;
-    padding-left: 6px;
-
-    display: flex;
+    width: calc(100% + 22px);
+    height: calc(100% + 22px);
 
     overflow: hidden;
     pointer-events: none;
@@ -134,11 +160,17 @@
 .P_PageElement .P_PageElement .E_PageElementEditUI {
     top: -5px;
     right: -5px;
+
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
 }
 
 .P_PageElement .P_PageElement .P_PageElement .E_PageElementEditUI {
     top: 1px;
     right: 1px;
+
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
 }
 
 .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI,
@@ -146,6 +178,9 @@
 .P_PageElement .P_PageElement .E_PageElement--outline__limited ~ .E_PageElementEditUI {
     top: 1px;
     right: 1px;
+
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
 }
 
 .E_PageElementEditUI {
@@ -167,8 +202,18 @@
     transition-property: opacity;
 }
 
-.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI *,
-.P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI * {
+.P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI > :hover,
+.P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI > :hover {
+    z-index: 2;
+}
+
+.E_Sortable__active .P_PageElement:not(.E_PageElement__sorting):not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI,
+.E_Sortable__active .P_PageElement:not(.E_PageElement__sorting).E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI {
+    opacity: 0;
+}
+
+.P_PageElement:not(.E_PageElement__sorting):not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI *,
+.P_PageElement:not(.E_PageElement__sorting).E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI * {
     pointer-events: all;
 }
 
@@ -176,26 +221,95 @@
     display: none;
 }
 
-.E_PageElementEditUI > * {
-    font-size: 12px;
-    line-height: 1;
-    word-break: break-all;
+.E_PageElementEditUI__left,
+.E_PageElementEditUI__bottom-left,
+.E_PageElementEditUI__top-left,
+.E_PageElementEditUI__top-right,
+.E_PageElementEditUI__bottom-right,
+.E_PageElementEditUI__right {
+    position: absolute;
 
-    width: 32px;
-    height: 32px;
+    display: inline-flex;
 
-    color: #404040;
-    background-color: #f5f5f5;
-    border: none;
+    overflow: hidden;
+}
+
+.E_PageElementEditUI__top-left,
+.E_PageElementEditUI__top-right,
+.E_PageElementEditUI__left,
+.E_PageElementEditUI__right {
+    top: 0;
+
+    padding-bottom: 6px;
+}
+
+.E_PageElementEditUI__bottom-left,
+.E_PageElementEditUI__bottom-right {
+    bottom: 0;
+
+    padding-top: 6px;
+}
+
+.E_PageElementEditUI__top-left,
+.E_PageElementEditUI__bottom-left,
+.E_PageElementEditUI__left {
+    left: 0;
+
+    padding-right: 6px;
+}
+
+.E_PageElementEditUI__top-right,
+.E_PageElementEditUI__bottom-right,
+.E_PageElementEditUI__right {
+    right: 0;
+
+    padding-left: 6px;
+}
+
+.E_PageElementEditUI__left:after,
+.E_PageElementEditUI__right:after,
+.E_PageElementEditUI__bottom-left:after,
+.E_PageElementEditUI__bottom-right:after,
+.E_PageElementEditUI__top-left:after,
+.E_PageElementEditUI__top-right:after {
+    content: "";
+
+    position: absolute;
+
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    pointer-events: none;
+}
 
-    cursor: default;
-    touch-action: manipulation;
+.E_PageElementEditUI__left:after,
+.E_PageElementEditUI__top-left:after,
+.E_PageElementEditUI__top-right:after,
+.E_PageElementEditUI__right:after {
+    top: 0px;
+}
+
+.E_PageElementEditUI__bottom-left:after,
+.E_PageElementEditUI__bottom-right:after {
+    bottom: 0px;
+}
+
+.E_PageElementEditUI__bottom-right:after,
+.E_PageElementEditUI__top-right:after,
+.E_PageElementEditUI__right:after {
+    right: 0px;
+}
+
+.E_PageElementEditUI__bottom-left:after,
+.E_PageElementEditUI__top-left:after,
+.E_PageElementEditUI__left:after {
+    left: 0px;
+}
+
+.E_PageElement .E_PageElementEditUI--sort {
+    cursor: grab;
 }
 
 /*---------------------------- ACTIVATE ----------------------------*/

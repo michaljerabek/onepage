@@ -4,8 +4,9 @@
         FlatButton__{{.state || 'normal'}}
         {{#if !.text}}FlatButton__no-text{{/if}}
         {{.className}}
-   "
-   title="{{.title}}"
+    "
+    title="{{.title}}"
+    on-mousedown-touchstart=".preventDefault && event.original.preventDefault()"
 >
 
     {{#if .fire}}

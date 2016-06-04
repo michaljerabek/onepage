@@ -7,6 +7,10 @@ var MODES = {
         ADMIN: 2
     },
 
+    CLASS = {
+        BUTTON: "P_ButtonElement"
+    },
+
     EVENT_NS = "ScrollToSection",
 
     $scrollElement,
@@ -57,7 +61,7 @@ var initScrollAnim = function (requireCtrl) {
 
 var initMouseOver = function () {
 
-    var selector = getAnchorSelector(),
+    var selector = getAnchorSelector() + ", ." + CLASS.BUTTON,
         mouseEvents = "mouseover." + EVENT_NS + " mouseout." + EVENT_NS,
         keyEvents = "keydown." + EVENT_NS + " keyup." + EVENT_NS,
 

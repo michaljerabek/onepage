@@ -205,6 +205,11 @@ module.exports = (function () {
         
         onSortableActivate = function (e, ui) {
 
+            if (!e.target.classList.contains(CLASS.PageSection.parentOfSortable)) {
+
+                return;
+            }
+
             page.set("sortableActive", CLASS.Page.sortableActive);
 
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionThumb)) {
@@ -244,6 +249,11 @@ module.exports = (function () {
 
         onSortableStart = function (e, ui) {
 
+            if (!e.target.classList.contains(CLASS.PageSection.parentOfSortable)) {
+
+                return;
+            }
+
             if (ui.item.hasClass(CLASS.NewPageSectionSelector.sectionThumb)) {
 
                 return;
@@ -276,6 +286,11 @@ module.exports = (function () {
         },
 
         onSortableChange = function (e, ui) {
+
+            if (!e.target.classList.contains(CLASS.PageSection.parentOfSortable)) {
+
+                return;
+            }
 
             $placeholder = $placeholder && $placeholder.length ? $placeholder : $sortable.find("." + CLASS.PageSection.placeholder);
 
@@ -345,6 +360,11 @@ module.exports = (function () {
         },
 
         onSortableStop = function (e, ui) {
+
+            if (!e.target.classList.contains(CLASS.PageSection.parentOfSortable)) {
+
+                return;
+            }
 
             $body.removeClass(CLASS.cursorGrabbing);
 

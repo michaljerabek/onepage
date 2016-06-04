@@ -127,9 +127,12 @@
 
         CLASS: {
             self: "P_PageElement",
+            customFocus: "P_PageElement__focused",
 
             outline: "E_PageElement--outline", //při změně změnit i výše v "setMouseTouchStyles()"
-            outlineActive: "E_PageElement--outline__active"
+            outlineActive: "E_PageElement--outline__active",
+
+            sortButton: "E_PageElementEditUI--sort"
         },
 
         components: {
@@ -138,7 +141,9 @@
 
         partials: {
             pageElementEditUI: "",
-            pageElementContent: ""
+            pageElementContent: "",
+
+            FlatButton: require("./../../Components/UI/FlatButton/index.tpl")
         },
 
         data: function () {
@@ -159,10 +164,26 @@
 
                 this.$temp = $([null]);
 
+                this.set("id", this.EVENT_NS);
+
                 if (Ractive.EDIT_MODE) {
 
                     //umožnit otevřít nastavení elementu
                     this.initPageElementSettings();
+
+                    this.on("sortable", function () {
+
+                        this.set("sorting", true);
+
+                        Ractive.$win.one("mouseup.sorting-" + this.EVENT_NS + " touchend.sorting-" + this.EVENT_NS, function () {
+
+                            this.set("sorting", false);
+
+                            Ractive.$win.off(".sorting-" + this.EVENT_NS);
+
+                        }.bind(this));
+
+                    });
                 }
             }
         },
@@ -172,7 +193,7 @@
             if (on.client) {
 
                 //otevírá se nastavení elementu v sekci -> zavřít nastavení v ostatních sekcích
-                EventEmitter.on("openPageElementSettings.PageElement sortPageSection.PageSectionManager", function (e, state, pageSectionType) {
+                EventEmitter.on("openPageElementSettings.PageElement." + this.EVENT_NS + "sortPageSection.PageSectionManager." + this.EVENT_NS, function (e, state, pageSectionType) {
 
                     if (pageSectionType !== this) {
 
@@ -229,6 +250,8 @@
 
                     this.set("hover", false);
 
+                    this.set("focus", false);
+
                     this.fire("stateChange", this.get("showOutline"));
 
                     clearTimeout(this.focusoutTimeout);
@@ -237,7 +260,7 @@
 
                 }.bind(this))
                 //zobrazit outline např při tabu nebo označení
-                .on("focusin." + this.EVENT_NS, function (e) {
+                .on("focusin." + this.EVENT_NS, function () {
 
                     //pouze nejvnitřnější elmenet
                     var children = this.findAllComponents(),
@@ -253,6 +276,8 @@
                     }
 
                     this.set("hover", true);
+
+                    this.set("focus", true);
 
                     this.focusin = true;
 
@@ -276,6 +301,8 @@
                 if (!state) {
 
                     this.focusin = false;
+
+                    this.set("focus", false);
 
                     this.set("restoreHover", false);
 
@@ -307,6 +334,7 @@
                         this.set("hover", restore);
 
                         this.fire("stateChange", this.get("showOutline"));
+
                     }
                 }
             });
@@ -321,6 +349,8 @@
             clearTimeout(this.focusoutTimeout);
 
             this.$self.off("." + this.EVENT_NS);
+
+            EventEmitter.off("." + this.EVENT_NS);
 
             Ractive.$win
                 .off("touchstart.hover-" + this.EVENT_NS)
@@ -425,7 +455,7 @@
         //jinak ui skryje
         updateOutlineState: function () {
 
-            var state = (this.get("hover") || this.get("openPageElementSettings") || this.hasFocusedEditor());
+            var state = (this.get("hover") || this.get("sorting") || this.get("openPageElementSettings") || this.hasFocusedEditor() || this.hasFocusedElement());
 
             this.set("showOutline", state);
 
@@ -437,6 +467,11 @@
         },
 
         hasFocusedEditor: function () {
+
+            if (this.hasEditor === false) {
+
+                return false;
+            }
 
             var editors = this.findAll("[data-medium-focused='true']"),
                 e = editors.length - 1;
@@ -452,6 +487,11 @@
             }
 
             return false;
+        },
+
+        hasFocusedElement: function () {
+
+            return this.$self.find(":focus").closest("." + this.CLASS.self)[0] === this.self;
         },
 
         hasChildPageElementHoverState: function () {

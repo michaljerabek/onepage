@@ -4,10 +4,13 @@
             E_PageElement
             {{#if @this.isEmpty && @this.isEmpty()}}E_PageElement__empty{{/if}}
             E_PageElement__{{.state}}
+            {{#if .sorting}}E_PageElement__sorting{{/if}}
         {{/if}}
         P_PageElement__[[.type || 'unknown-type']]
     "
     on-hover="@this.handleHover(event)"
+    id="{{.id}}"
+    intro-outro="{{#if @this.findParent('Page').get('loaded') && !.stopTransition}}attr{{/if}}"
 >
 
     {{#if .editMode}}

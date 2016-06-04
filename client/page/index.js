@@ -83,10 +83,11 @@ module.exports = Ractive.extend({
             openPageMenu: null,
             cancelAddSection: false,
             unsavedChanges: false,
+            loaded: false,
 
             defaults: {
                 settings: {
-                    animations: 10,
+                    animations: 20,
                     roundness: 0,
                     fontType: "P_font-type-1",
                     colorPalette: {
@@ -335,7 +336,7 @@ module.exports = Ractive.extend({
 
         //sledovat změny stránky -> označit jako neuložené
         this.observe("page.settings page.sections", this.handlePageChanged, {init: false});
-        this.on("*.sectionOrderChanged", this.handlePageChanged, {init: false});
+        this.on("*.sectionOrderChanged *.elementOrderChanged", this.handlePageChanged, {init: false});
         this.on("savePage", this.handleSavePage);
         this.on("closePage", this.handleClosePage);
 
@@ -405,6 +406,12 @@ module.exports = Ractive.extend({
         this.set("changesSaved", false);
         this.set("pageIsSaving", true);
 
+        this.saving = true;
+
+        EventEmitter.trigger("saving.Page", [this]);
+
+        EventEmitter.trigger("saving:lang:start.Page", [this]);
+
         this.copyLangsOnSave(this.savePage);
     },
 
@@ -419,6 +426,8 @@ module.exports = Ractive.extend({
             if (!langs.length) {
 
                 this.changeLang(currentLang);
+
+                EventEmitter.trigger("saving:lang:end.Page", [this]);
 
                 cb.call(this);
 
@@ -469,6 +478,10 @@ module.exports = Ractive.extend({
                 clearTimeout(this.changesSavedTimeout);
 
                 this.changesSavedTimeout = setTimeout(this.set.bind(this, "changesSaved", false), 3000);
+
+                this.saving = false;
+
+                EventEmitter.trigger("saved.Page", [this]);
 
                 console.log("Uloženo!");
             }
