@@ -1,6 +1,4 @@
-<span role="{{#if .element.link}}link{{else}}button{{/if}}"
-    data-link="{{.element.link}}"
-    data-product="{{.element.product}}"
+<span role="{{#if .element.type !== 'button'}}link{{else}}button{{/if}}"
     class="
         P_ButtonElement
         {{#if .element.fill}}P_ButtonElement__fill{{else}}P_ButtonElement__stroke{{/if}}
@@ -20,29 +18,16 @@
         on-touchstart="@this.fire(.editMode ? 'touchstart' : '')"
     >
 
-        {{#if .element.icon}}
+        {{#if .element.icon && .element.icon.match(/\/svg>/)}}
 
-            {{#if .element.icon.match(/\/svg>/)}}
-
-                <span class="
-                        P_ButtonElement--icon P_ButtonElement--icon__svg
-                    "
-                      intro-outro="{{#if .editMode && @this.findParent('Page').get('loaded') && !.stopTransition}}attr{{/if}}"
-                      style="color: {{.element.textColor || .element.color || .defaultColors.specialColor}};"
-                >
-                    {{{.element.icon}}}
-                </span>
-
-            {{else}}
-
-                <span class="
-                        P_ButtonElement--icon P_ButtonElement--icon__image
-                    "
-                    style="background-image: url('{{.element.icon}}');"
-                    intro-outro="{{#if .editMode && !.stopTransition && @this.findParent('Page').get('loaded')}}attr{{/if}}"
-                ></span>
-
-            {{/if}}
+            <span class="
+                    P_ButtonElement--icon P_ButtonElement--icon__svg
+                "
+                  intro-outro="{{#if .editMode && @this.findParent('Page').get('loaded') && !.stopTransition}}attr{{/if}}"
+                  style="color: {{.element.textColor || .element.color || .defaultColors.specialColor}};"
+            >
+                {{{.element.icon}}}
+            </span>
 
         {{/if}}
 

@@ -21,6 +21,7 @@
                 SectionSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings/Types/SectionSettings") : null,
 
                 PageElementSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings") : null,
+                ButtonElementSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings/Types/ButtonElementSettings") : null,
 
                 PageElement: require("./../PageElement"),
                 PageElementTitle: require("./../PageElement/Types/PageElementTitle"),

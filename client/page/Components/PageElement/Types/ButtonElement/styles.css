@@ -5,8 +5,8 @@
 .P_PageElement__button {
     font-size: 0;
     line-height: 0;
-    text-align: center;
 
+    position: relative;
     margin: 0 8px;
     margin-bottom: 16px;
 
@@ -42,6 +42,7 @@
 }
 
 .P_ButtonElement {
+    position: relative;
     margin: 0;
 
     height: 56px;
@@ -52,6 +53,7 @@
     display: inline-block;
     overflow: hidden;
 }
+
 
 .P_PageElement:not(.E_PageElement) .P_ButtonElement:focus,
 .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
@@ -137,10 +139,10 @@
 
 @-moz-document url-prefix() {
 
-    .E .P_ButtonElement {
+    .E.P_Page__loaded .P_ButtonElement {
         width: 100%;
 
-        animation: P_ButtonElement--width-auto 0.001s linear forwards;
+/*        animation: P_ButtonElement--width-auto 0.001s linear 0s forwards;*/
     }
 }
 
@@ -160,6 +162,8 @@
 
     display: inline-table;
     table-layout: fixed;
+
+    overflow: hidden;
 
     transition: padding 0.3s ease-in-out 0s,
         width 0.3s ease-in-out 0s;
@@ -370,6 +374,7 @@
     .P_ButtonElement--icon {
         position:absolute;
         left: 0px;
+        top: 0;
 
         height: 100%;
     }

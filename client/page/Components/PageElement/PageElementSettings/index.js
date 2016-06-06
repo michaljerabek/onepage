@@ -77,7 +77,7 @@
         },
 
         partials: {
-
+            Tabs: require("./tabs.tpl")
         },
 
         decorators: {
@@ -91,7 +91,7 @@
             };
         },
 
-        onconfig: function () {
+        superOnconfig: function () {
 
             this.EVENT_NS = "PageElementSettings-" + (++instanceCounter);
 
@@ -99,6 +99,8 @@
 
                 Ractive.$win = Ractive.$win || $(window);
             }
+
+            this.PageSection = this.getPageSection();
 
             this.onresizableboxend = function (offset, selfRect) {
 
@@ -119,7 +121,7 @@
             };
         },
 
-        onrender: function () {
+        superOnrender: function () {
 
             if (on.client) {
 
@@ -144,7 +146,7 @@
             }
         },
 
-        oncomplete: function () {
+        superOncomplete: function () {
 
             if (on.client) {
 
@@ -154,9 +156,25 @@
             }
         },
 
-        onteardown: function () {
+        superOnteardown: function () {
 
             Ractive.$win.off("." + this.EVENT_NS);
+        },
+
+        onconfig: function () {
+            this.superOnconfig();
+        },
+
+        onrender: function () {
+            this.superOnrender();
+        },
+
+        oncomplete: function () {
+            this.superOncomplete();
+        },
+
+        onteardown: function () {
+            this.superOnteardown();
         },
 
         activateMover: function (e) {

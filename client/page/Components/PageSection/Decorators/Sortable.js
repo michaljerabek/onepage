@@ -17,6 +17,13 @@
 
 }(this, function (Ractive, EventEmitter) {
 
+    /**
+     * Dekorátor pro přeřazování PageElementů. Použije se na rodičovský element položek.
+     *
+     * componentName - název přeřazovaných PageElementů ("ButtonElement", ...)
+     * elementType - typ PageElementů ("button", "title", ...)
+     */
+
     return function (node, path, componentName, elementType) {
 
         Ractive.$body = Ractive.$body || $("body");
@@ -43,7 +50,14 @@
 
         var $placeholder;
 
-        this.$sortableWrapper.on("sortable:update", function () {
+        this.$sortableWrapper.on("sortable:update", function (e, ui) {
+
+            //neoznamovat změnu pořadí, pokud byl element odstraněn
+            //změna se projeví v příslušném poli
+            if (ui.index === -1) {
+
+                return;
+            }
 
             this.fire("elementOrderChanged");
 
@@ -86,6 +100,7 @@
 
         EventEmitter.on("saving.Page." + this.EVENT_NS, function () {
 
+            //při ukládání stránky je potřeba přeřadit pole podle elementů
             var order = this.$sortableWrapper.sortable("toArray");
 
             if (order.length > 1) {
@@ -108,10 +123,13 @@
 
                             buttons[b].set("stopTransition", true);
 
+                            //nejspíš chyba v Ractivu, ale je nutné nejdříve odstranit všechny observery
                             buttons[b].cancelObservers();
 
                             sorted.push(buttons[b].get("element"));
 
+                            //nastavit elementy podle pořadí, protože byly přetažením nastaveny na jiných pozicích,
+                            //takže při přeřazení dat v poli by se zobrazovaly nesprávně
                             this.$sortableWrapper.append(this.$sortableWrapper.find("#" + current));
                         }
                     }

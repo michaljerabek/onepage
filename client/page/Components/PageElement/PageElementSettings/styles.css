@@ -48,14 +48,20 @@
 
     position: absolute;
     top: 0px;
-    left: -4px;
+    left: -5px;
 
-    width: calc(100% + 8px);
-    height: calc(100% + 4px);
+    width: calc(100% + 10px);
+    height: calc(100% + 5px);
 
-    box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
 
     pointer-events: none;
+}
+
+.E_PageElementSettings--content__has-tabs:after {
+    top: 41px;
+
+    height: calc(100% + 5px - 41px);
 }
 
 .E_PageElementSettings .ResizableBox--self,
@@ -68,6 +74,10 @@
 .E_PageElementSettings--scrollable {
     will-change: scroll-position;
     transform: translateZ(0);
+}
+
+.E_PageElementSettings--offset {
+    padding: 12px;
 }
 
 .E_PageElementSettings--resizer {
@@ -525,4 +535,32 @@
 .E_PageElementSettings .ResizableBox--min-max__max:hover svg,
 .E_PageElementSettings .ResizableBox--min-max__max svg {
     fill: var(--color-selected);
+}
+
+/*---------------------------- NOTE ----------------------------*/
+
+/*---------------------------- NOTE ----------------------------*/
+
+.E_PageElementSettings--note q:after {
+    content: close-quote;
+
+    color: var(--color-text-3);
+}
+
+.E_PageElementSettings--note q:before {
+    content: open-quote;
+
+    color: var(--color-text-3);
+}
+
+.E_PageElementSettings--note {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 400;
+
+    margin-top: 8px;
+    margin-bottom: 4px;
+
+    color: var(--color-text-3);
 }

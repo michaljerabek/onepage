@@ -69,6 +69,7 @@
                 this.set("showAddButton", !buttons || buttons.length < (this.MAX_BUTTONS || 3));
             });
 
+            //upravit pozici přidávacího tlačítka podle velikosti okna
             var changeButtonPositionTimeout = null,
 
                 checkButtonPosition = function () {

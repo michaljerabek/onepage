@@ -66,12 +66,13 @@ module.exports = Ractive.extend({
 
         pageMenu: Ractive.EDIT_MODE ? require("./PageMenu/index.tpl") : null,
 
-        FlatButton: Ractive.EDIT_MODE ? require("./Components/UI/FlatButton/index.tpl") : null,
-        Button: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Button/index.tpl") : null,
-        Switch: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Switch/index.tpl") : null,
-        Slider: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Slider/index.tpl") : null,
-        Select: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Select/index.tpl") : null,
-        Toggle: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Toggle/index.tpl") : null,
+        Button     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Button/index.tpl")      : null,
+        Switch     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Switch/index.tpl")      : null,
+        Slider     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Slider/index.tpl")      : null,
+        Select     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Select/index.tpl")      : null,
+        Toggle     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Toggle/index.tpl")      : null,
+        Text       : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Text/index.tpl")        : null,
+        FlatButton : Ractive.EDIT_MODE ? require("./Components/UI/FlatButton/index.tpl")          : null,
         ToggleField: Ractive.EDIT_MODE ? require("./../libs/Components/UI/ToggleField/index.tpl") : null
     },
 
@@ -336,7 +337,7 @@ module.exports = Ractive.extend({
 
         //sledovat změny stránky -> označit jako neuložené
         this.observe("page.settings page.sections", this.handlePageChanged, {init: false});
-        this.on("*.sectionOrderChanged *.elementOrderChanged", this.handlePageChanged, {init: false});
+        this.on("*.sectionOrderChanged *.elementOrderChanged", this.handlePageChanged.bind(this), {init: false});
         this.on("savePage", this.handleSavePage);
         this.on("closePage", this.handleClosePage);
 
@@ -347,7 +348,7 @@ module.exports = Ractive.extend({
 
         clearTimeout(this.unsavedChangesTimeout);
 
-        if (this.get("pageIsSaving")) {
+        if (this.get("pageIsSaving") || this.saving) {
 
             return;
         }

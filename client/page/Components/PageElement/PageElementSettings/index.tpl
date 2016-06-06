@@ -12,11 +12,11 @@
 
                 <div class="E_PageElementSettings--title" on-mousedown-touchstart="@this.activateMover(event)">
 
-                    {{#if settingsTitle}}
-                        <span class="E_PageElementSettings--title-self">{{settingsTitle}}</span>
+                    {{#if .settingsTitle}}
+                        <span class="E_PageElementSettings--title-self">{{.settingsTitle}}</span>
                     {{/if}}
 
-                    <span class="E_PageElementSettings--title-section">{{section.name[.lang]}}</span>
+                    <span class="E_PageElementSettings--title-section">{{@this.PageSection.get('section.name.' + .lang)}}</span>
                 </div>
 
                 <span class="E_PageElementSettings--close ResizableBox--close" on-tap="@this.fire('closeThisSettings')" title="Zavřít">
@@ -29,7 +29,7 @@
 
             </div>
 
-            <div class="E_PageElementSettings--content ResizableBox ResizableBox__floating">
+            <div class="E_PageElementSettings--content {{#if typeof .openTab !== 'undefined'}}E_PageElementSettings--content__has-tabs{{/if}} ResizableBox ResizableBox__floating">
 
                 {{#if @this.partials.pageElementSettingsContent}}
 

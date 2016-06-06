@@ -71,7 +71,6 @@
             return {
                 type: "button",
                 hasEditUI: true,
-                settingsTitle: "Nastavení tlačítka",
                 transitionName: "slidevh"
             };
         },
@@ -105,6 +104,8 @@
 
             this.Page = this.findParent("Page");
 
+            //při ukládání stránky se přeřazují elementy, což způsobí jejich odstranění a znovuvytvoření,
+            //proto je potřeba transitions vypnout
             if (this.Page.saving) {
 
                 this.set("stopTransition", true);
@@ -116,8 +117,8 @@
             this.superOnrender();
 
             this.$text = this.$self.find("." + this.CLASS.text);
-            this.$icon = this.$self.find("." + this.CLASS.icon);
 
+            this.setDefaultValues();
 
             if (Ractive.EDIT_MODE) {
 
@@ -133,10 +134,9 @@
                     }
                 });
 
-//                this.set("mostUsedColors", this.Page.findMostUsedColors());
-
                 this.initObservers();
 
+                //na iPadu nedostal element focus při tapnutí
                 this.on("touchstart", function () {
 
                     if (!this.get("focus")) {
@@ -159,6 +159,15 @@
 
                 this.balanceText();
             }
+        },
+
+        setDefaultValues: function () {
+
+            if (!this.get("element.type")) {
+
+                this.set("element.type", "button");
+            }
+
         },
 
         initObservers: function () {
@@ -239,11 +248,6 @@
             this.superOnteardown();
         },
 
-//        isEmpty: function () {
-//
-//            return (this.get("element.text." + this.get("lang")) || "").replace(/(?:<[^>]*>)/g, "").match(/^(\s|\&nbsp\;)*$/);
-//        },
-//
         checkText: function (currentValue, prevValue, path, lang) {
 
             if (this.skipTextObserver) {
@@ -255,6 +259,7 @@
 
                 moveCaret = 0;
 
+            //odstranit počáteční mezery
             if (currentValue && currentValue.match(/^(?:\s+|\&nbsp\;)+/ig)) {
 
                 currentValue = currentValue.replace(/^(?:\s+|\&nbsp\;)+/ig, "");
@@ -264,13 +269,16 @@
 
             if (currentValue && currentValue.match(/(<([^>]+)>)/ig)) {
 
+                //nahradit <br> mezerou
                 currentValue = currentValue.replace(/(\s{0}<(br[^>]+)>\s{0})/ig, " ");
 
+                //odstranit všechny tagy
                 currentValue = currentValue.replace(/(<([^>]+)>)/ig, "");
             }
 
             if (currentValue && currentValue.match(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig)) {
 
+                //dvě mezery nahradit jednou
                 currentValue = currentValue.replace(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig, " ");
 
                 moveCaret--;
@@ -278,6 +286,7 @@
 
             if (currentValue) {
 
+                //omezit maximállní délku textu, $nbsp; je potřeba počítat jako 1 znak
                 var nbsp = currentValue.match(/\&nbsp\;/ig),
 
                     length = currentValue.length - (nbsp ? nbsp.length * 5 : 0);
@@ -353,8 +362,13 @@
 
             if (value) {
 
+                //email
+                if (value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+
+                    this.set("element.icon", "<svg><use xlink:href='#icon-email'></use></svg>");
+
                 //iOS aplikace
-                if (value.match(/^\s*(?:https?:\/\/)?(?:www\.)?itunes\.apple\.com\/[a-zA-Z0-9\-]+\/app/i)) {
+                } else if (value.match(/^\s*(?:https?:\/\/)?(?:www\.)?itunes\.apple\.com\/[a-zA-Z0-9\-]+\/app/i)) {
 
                     this.set("element.icon", "<svg style='margin-top: -1px;'><use xlink:href='#icon-apple'></use></svg>");
 
@@ -369,7 +383,7 @@
                     this.set("element.icon", "<svg><use xlink:href='#icon-windows'></use></svg>");
 
                 //Stahovatelný soubor
-                } else if (value.match(/\.(?=[a-zA-Z0-9]+$)(?=(?!html$|htm$|php$|py$|asp$))/i)) {
+                } else if (value.match(/^(?=[^@]+)\.(?=[a-zA-Z0-9]+$)(?=(?!html$|htm$|php$|py$|asp$))/i)) {
 
                     this.set("element.icon", "<svg><use xlink:href='#icon-download'></use></svg>");
 
@@ -377,6 +391,15 @@
 
                     this.set("element.icon", null);
                 }
+
+            } else if (!this.get("element.download")) {
+
+                this.set("element.icon", null);
+
+            //Stahovatelný soubor
+            } else {
+
+                this.set("element.icon", "<svg><use xlink:href='#icon-download'></use></svg>");
             }
         },
 
@@ -455,16 +478,49 @@
             if (!editMode || (event.original.srcEvent || event.original).ctrlKey) {
 
                 var link    = this.get("element.link")    || "",
-                    product = this.get("element.product") || "";
+                    product = this.get("element.product") || "",
 
-                if (link && this.Page.scrollToSection.isInternalId(link.replace(/^#/, ""))) {
+                    type = this.get("element.type");
 
-                    this.Page.scrollToSection.scrollToSectionById(link.replace(/^#/, ""));
+                if (type !== "button") {
 
-                } else if (link) {
+                    if (link && this.Page.scrollToSection.isInternalId(link.replace(/^#/, ""))) {
 
-                    window.open(link, "_blank");
+                        this.Page.scrollToSection.scrollToSectionById(link.replace(/^#/, ""));
+
+                    } else if (link) {
+
+                        var target = "_blank";
+
+                        //pokud je odkaz email -> přidat mailto:
+                        if (link.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+
+                            link = "mailto:" + link;
+
+                            target = null;
+                        }
+
+                        window.open(link, target);
+                    }
+
+                } else {
+
+                    if (this.get("element.scrollToSection")) {
+
+                        this.Page.scrollToSection.scrollToSectionById(this.get("element.section"));
+                    }
+
+                    if (this.get("element.addToCart")) {
+
+                    }
+
+                    if (this.get("element.download")) {
+
+                        window.open(this.get("element.file"));
+                    }
+
                 }
+
             }
         }
     });

@@ -171,6 +171,7 @@
                     //umožnit otevřít nastavení elementu
                     this.initPageElementSettings();
 
+                    //zachovat outline i při přetahování elementu
                     this.on("sortable", function () {
 
                         this.set("sorting", true);
@@ -216,7 +217,7 @@
             });
 
             //Uživatel kliknul na "zavřít" v nastavení.
-            this.on("PageElementSettings.closeThisSettings", function () {
+            this.on("*.closeThisSettings closeThisSettings", function () {
 
                 this.togglePageElementSettings(false);
 
