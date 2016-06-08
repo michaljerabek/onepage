@@ -12,7 +12,7 @@
                     {{/if}}
                 "
                 data-font-type="{{@key}}"
-                on-tap="set('settings.fontType', @key)"
+                on-tap="@this.set('settings.fontType', @key)"
             >
 
                 <div class="E_GlobalFontSettings--font-preview">

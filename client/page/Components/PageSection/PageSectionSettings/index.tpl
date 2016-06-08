@@ -15,7 +15,7 @@
 
         <div class="E_PageSectionSettings--wrapper-2">
 
-            {{#if @ractive.partials.pageSectionSettingsContent}}
+            {{#if @this.partials.pageSectionSettingsContent}}
 
                 {{> pageSectionSettingsContent}}
 
@@ -27,12 +27,12 @@
 
         </div>
 
-        <span class="E_PageSectionSettings--close ResizableBox--close" on-tap="closeThisSectionSettings" title="Zavřít">
+        <span class="E_PageSectionSettings--close ResizableBox--close" on-tap="@this.fire('closeThisSectionSettings')" title="Zavřít">
             <svg><use xlink:href="#icon-x"></use></svg>
         </span>
 
         {{#if !.notResizable}}
-            <span class="E_PageSectionSettings--min-max ResizableBox--min-max" on-tap="minmax(event)" title="Zvětšovat podle obsahu">
+            <span class="E_PageSectionSettings--min-max ResizableBox--min-max" on-tap="@this.minmax(event)" title="Zvětšovat podle obsahu">
                 <svg><use xlink:href="#icon-maximize"></use></svg>
             </span>
         {{/if}}
@@ -40,7 +40,7 @@
     </div>
 
     <div class="E_PageSectionSettings--resizer ResizableBox--resizer"
-        on-mousedown-touchstart="activateResizer(event, 'bottom')"
+        on-mousedown-touchstart="@this.activateResizer(event, 'bottom')"
     ></div>
 
 </section>

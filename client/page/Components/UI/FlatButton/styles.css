@@ -465,6 +465,41 @@
 .FlatButton__warn:active {
 	background-color: var(--color-warn-active);
 }
+/*---------------------------- TYPE - DEFAULT-WARN ----------------------------*/
+
+.FlatButton__default-warn:hover {
+    background-color: var(--color-warn);
+}
+
+.FlatButton__default-warn:hover .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default-warn:active .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default-warn.FlatButton__active .FlatButton--icon ~ .FlatButton--wrapper .FlatButton--text,
+.FlatButton__default-warn:active .FlatButton--text,
+.FlatButton__default-warn.FlatButton__active .FlatButton--text,
+.FlatButton__default-warn:hover .FlatButton--text {
+    font-weight: 600;
+
+    color: #fff;
+}
+
+.FlatButton__default-warn.FlatButton__active:hover {
+    background-color: var(--color-warn-over);
+}
+
+.FlatButton__default-warn:active .FlatButton--icon svg,
+.FlatButton__default-warn.FlatButton__active .FlatButton--icon svg,
+.FlatButton__default-warn:hover .FlatButton--icon svg {
+    fill: var(--color-flat-button-icon-hover);
+}
+
+.FlatButton__default-warn.FlatButton__active {
+    background-color: var(--color-warn);
+}
+
+.FlatButton__default-warn:active,
+.FlatButton__default-warn.FlatButton__active:active {
+    background-color: var(--color-warn-active);
+}
 
 /*--------------------------------------------------------------------*/
 /*---------------------------- ANIMATIONS ----------------------------*/

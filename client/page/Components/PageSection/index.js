@@ -21,10 +21,12 @@
                 SectionSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings/Types/SectionSettings") : null,
 
                 PageElementSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings") : null,
+                PageElementButtonSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings/Types/PageElementButtonSettings") : null,
 
                 PageElement: require("./../PageElement"),
                 PageElementTitle: require("./../PageElement/Types/PageElementTitle"),
                 PageElementTextContent: require("./../PageElement/Types/PageElementTextContent"),
+                PageElementButton: require("./../PageElement/Types/PageElementButton"),
 
                 BackgroundImage: require("./Components/BackgroundImage")
             },
@@ -80,12 +82,20 @@
 
         components: components || {},
 
+        decorators: {
+            Sortable: require("./Decorators/Sortable"),
+
+            PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionDecorators/PageElementButtons")
+        },
+
         partials: {
             pageSectionEditUI: "",
             pageSectionContent: "",
             pageSectionSettings: "",
 
-            ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null
+            ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null,
+
+            PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionPartials/button-elements.tpl")
         },
 
         data: function () {
@@ -121,9 +131,9 @@
 
                 this.on("ColorPicker.*", function (data) {
 
-                    if (data && typeof data === "object" && data.key === "current") {
+                    if ((data && typeof data === "object" && data.key === "current") || data === "") {
 
-                        this.set("stopColorTransitions", !data.context.get("animate"));
+                        this.set("stopColorTransitions", data ? !data.context.get("animate") : false);
                     }
 
                 }.bind(this));
@@ -153,9 +163,9 @@
                     /*ZMĚNA BAREV*/
                     this.on("*.generateRandomColors", this.generateRandomColors.bind(this));
 
-                    this.on("ColorPickerPalette.setColor", function (event) {
+                    this.on("ColorPickerPalette.setColor", function (event, x, x, palette) {
 
-                        var pathName = (event.component.container || event.component.parent).get("pathName");
+                        var pathName = (palette.container || palette.parent).get("pathName");
 
                         if (!pathName) {
 
@@ -163,7 +173,7 @@
                         }
 
                         //uživatel nastavuje vlastní barvu z výchozích -> uložit odkaz na barvu, aby se měnila v případě změny v paletě
-                        if (event.component.get("id") === "defaultColors") {
+                        if (palette.get("id") === "defaultColors") {
 
                             this.set("section.defaultColors." + pathName + "Ref", event.index.i);
 
@@ -704,12 +714,32 @@
 
             var paths = ["name"];
 
+            var buttons = (this.get("section.buttons") || []).length;
+
+            if (buttons) {
+
+                for (--buttons; buttons >= 0; buttons--) {
+
+                    paths.push("buttons." + buttons + ".text");
+                }
+            }
+
             return paths;
         },
 
         getColorPaths: function () {
 
             var paths = ["backgroundColor", "textColor"];
+
+            var buttons = (this.get("section.buttons") || []).length;
+
+            if (buttons) {
+
+                for (--buttons; buttons >= 0; buttons--) {
+
+                    paths.push("buttons." + buttons + ".color");
+                }
+            }
 
             //pokud je barva v poli -> přidat, každou cestu zvlášť ???
 

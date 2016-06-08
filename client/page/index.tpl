@@ -11,11 +11,13 @@
     {{/if}}
 
     <div id="page" class="{{#if .editMode}}E{{/if}}
+            {{.sortableActive}}
+            {{#if .loaded}}P_Page__loaded{{/if}}
+
             {{.page.settings.fontType || .defaults.settings.fontType}}
             P_roundness-{{.page.settings.roundness || .defaults.settings.roundness}}
             P_animations-{{.page.settings.animations || .defaults.settings.animations}}
             {{#if .page.settings.underlineTitles}}P_underline-titles{{/if}}
-            {{.sortableActive}}
         "
     >
 

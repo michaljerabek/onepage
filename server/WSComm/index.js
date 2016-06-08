@@ -7,6 +7,7 @@ var mongoose = require("mongoose");
 
 var ImageReq = require("./../Page/ImageReq");
 var IconReq = require("./../Page/IconReq");
+var FileReq = require("./../Page/FileReq");
 
 var getHostFromSocket = function (socket) {
 
@@ -79,6 +80,7 @@ io.on("connection", function (socket) {
 
         ImageReq.registerWSComm(req, userId);
         IconReq.registerWSComm(req, userId);
+        FileReq.registerWSComm(req, userId);
 
     });
 

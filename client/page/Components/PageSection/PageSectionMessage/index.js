@@ -41,7 +41,9 @@ module.exports = Ractive.extend({
         return {
             messageStatusClass: "",
 
-            message: null
+            message: null,
+
+            showMessage: false
         };
     },
 
@@ -64,7 +66,7 @@ module.exports = Ractive.extend({
 
                 this.messageTimeout = setTimeout(function() {
 
-                    this.set("message", null);
+                    this.set("showMessage", false);
 
                 }.bind(this), message.timeout);
             }
@@ -72,13 +74,13 @@ module.exports = Ractive.extend({
             switch (message.status) {
                 case "success": this.set("messageStatusClass", this.CLASS.success);
                     break;
-                case "error": this.set("messageStatusClass", this.CLASS.error);
+                case "error"  : this.set("messageStatusClass", this.CLASS.error);
                     break;
-                case "warn": this.set("messageStatusClass", this.CLASS.warn);
+                case "warn"   : this.set("messageStatusClass", this.CLASS.warn);
                     break;
-                case "info": this.set("messageStatusClass", this.CLASS.info);
+                case "info"   : this.set("messageStatusClass", this.CLASS.info);
                     break;
-                default: this.set("messageStatusClass", "");
+                default       : this.set("messageStatusClass", "");
             }
         });
 
@@ -86,12 +88,24 @@ module.exports = Ractive.extend({
 
         this.PageSection.on("pageSectionMessage *.pageSectionMessage", function (message) {
 
-            this.set("message", message);
+            clearTimeout(this.messageTimeout);
+
+            if (message) {
+
+                this.set("message", message);
+            }
+
+            this.set("showMessage", !!message);
 
         }.bind(this));
     },
 
     oncomplete: function () {
+    },
+
+    onteardown: function () {
+
+        clearTimeout(this.messageTimeout);
     }
 
 });

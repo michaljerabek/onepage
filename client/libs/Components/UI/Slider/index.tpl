@@ -9,14 +9,14 @@
         min-width: {{.minWidth}};
         max-width: {{.maxWidth}};
     "
-    on-mouseup-touchend-keyup="set('__Slider.' + .value.replace(/\./g, '_') + '-no-transition', false)"
+    on-mouseup-touchend-keyup="@this.set('__Slider.' + .value.replace(/\./g, '_') + '-no-transition', false)"
     title="{{.title}}"
 >
 
     {{#with {
             id: .id || "Slider--" + Date.now(),
           data: this,
-          link: @ractive.link(.value.replace(/^\./, ""), "__Slider." + .value.replace(/\./g, "_")),
+          link: @this.link(.value.replace(/^\./, ""), "__Slider." + .value.replace(/\./g, "_")),
         _value: .value.replace(/\./g, '_'),
         middle: ((.data.max || 100) - (.data.min || 0)) / 2
     }}}
@@ -25,8 +25,8 @@
         <span class="Slider--text Slider--text__min">{{typeof .data.minText === "undefined" ? .data.min : .data.minText}}</span>
         <span class="Slider--text Slider--text__max">{{typeof .data.maxText === "undefined" ? .data.max : .data.maxText}}</span>
         {{else}}
-        <span class="Slider--text Slider--text__min" on-tap="set('__Slider.' + ._value, .data.min)">{{typeof .data.minText === "undefined" ? .data.min : .data.minText}}</span>
-        <span class="Slider--text Slider--text__max" on-tap="set('__Slider.' + ._value, .data.max)">{{typeof .data.maxText === "undefined" ? .data.max : .data.maxText}}</span>
+        <span class="Slider--text Slider--text__min" on-tap="@this.set('__Slider.' + ._value, .data.min)">{{typeof .data.minText === "undefined" ? .data.min : .data.minText}}</span>
+        <span class="Slider--text Slider--text__max" on-tap="@this.set('__Slider.' + ._value, .data.max)">{{typeof .data.maxText === "undefined" ? .data.max : .data.maxText}}</span>
         {{/if}}
 
         <input type="range"
@@ -36,9 +36,9 @@
             min="{{.data.min || 0}}"
             max="{{.data.max || 100}}"
             {{#if .data.state === "disabled"}}disabled{{/if}}
-            on-mousemove-touchmove="set('__Slider.' + ._value + '-no-transition', event.original.stopPropagation() || !!event.original.buttons || event.original.type === 'touchmove')"
-            on-keydown="set('__Slider.' + ._value + '-no-transition', true)"
-            on-mousedown-touchstart="set('__Slider.' + ._value + '-no-transition', false)"
+            on-mousemove-touchmove="@this.set('__Slider.' + ._value + '-no-transition', event.original.stopPropagation() || !!event.original.buttons || event.original.type === 'touchmove')"
+            on-keydown="@this.set('__Slider.' + ._value + '-no-transition', true)"
+            on-mousedown-touchstart="@this.set('__Slider.' + ._value + '-no-transition', false)"
         >
 
         <span class="Slider--custom-track">

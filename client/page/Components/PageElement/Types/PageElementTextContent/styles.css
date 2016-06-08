@@ -46,3 +46,5 @@
 .P_PageElement__text-content.E_PageElement__empty.E_PageElement__active > .P_PageElementTextContent {
     transition: var(--default-transition);
 }
+
+

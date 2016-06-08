@@ -12,7 +12,7 @@
     {{#with {
             id: .id || "Text--" + Date.now() + (Math.random() * 1000000000).toFixed(),
           data: this,
-          link: @ractive.link(.value.replace(/^\./, ""), "__Text." + .value.replace(/\./g, "_")),
+          link: @this.link(.value.replace(/^\./, ""), "__Text." + .value.replace(/\./g, "_")),
         _value: .value.replace(/\./g, '_')
     }}}
 
@@ -25,9 +25,9 @@
                 {{#if .data.required}}required{{/if}}
                 {{#if .data.pattern}}pattern="{{.data.pattern}}"{{/if}}
                 placeholder="{{.placeholder}}"
-                on-keydown="{{.data.keydown}}:{{.data.keydownEvent}}"
-                on-keyup="{{.data.keyup}}:{{.data.keyupEvent}}"
-                on-keypress="{{.data.keypress}}:{{.data.keypressEvent}}"
+                on-keydown=" @this.fire(.data.keydown , event, .data.keydownEvent)"
+                on-keyup="   @this.fire(.data.keyup   , event, .data.keyupEvent)"
+                on-keypress="@this.fire(.data.keypress, event, .data.keypressEvent)"
                 title="{{.title}}"
             >
             {{#if .data.units}}

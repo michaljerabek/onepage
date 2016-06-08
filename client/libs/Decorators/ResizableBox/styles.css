@@ -2,14 +2,16 @@
 /*--------------------------- ResizableBox ---------------------------*/
 /*====================================================================*/
 
-.ResizableBox:not(.ResizableBox__floating) {
+.ResizableBox {
     position: relative;
-
-    min-height: 32px;
 
     overflow: hidden;
 
-    will-change: height, max-height;
+    will-change: height, max-height, width, max-width;
+}
+
+.ResizableBox:not(.ResizableBox__floating) {
+    min-height: 32px;
 }
 
 .ResizableBox:not(.ResizableBox__floating) .ResizableBox--self {

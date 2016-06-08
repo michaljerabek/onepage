@@ -26,11 +26,11 @@
 
             <div class="E_PageMenu--content">
 
-                <span class="E_PageMenu--hide-content" on-tap="set('openPageMenu', null)">
+                <span class="E_PageMenu--hide-content" on-tap="@this.set('openPageMenu', null)">
                     <svg><use xlink:href="#icon-x"></use></svg>
                 </span>
 
-                <span class="E_PageMenu--show-page" on-touchstart-touchend-hover="showPage">
+                <span class="E_PageMenu--show-page" on-touchstart-touchend-hover="@this.fire('showPage', event)">
                     <svg><use xlink:href="#icon-eye"></use></svg>
                 </span>
 
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="E_PageMenu--resizer" on-mousedown-touchstart="activateResizer"></div>
+            <div class="E_PageMenu--resizer" on-mousedown-touchstart="@this.fire('activateResizer')"></div>
 
         </li>
 

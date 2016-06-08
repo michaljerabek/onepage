@@ -4,27 +4,28 @@
         FlatButton__{{.state || 'normal'}}
         {{#if !.text}}FlatButton__no-text{{/if}}
         {{.className}}
-   "
-   title="{{.title}}"
+    "
+    title="{{.title}}"
+    on-mousedown-touchstart=".preventDefault && event.original.preventDefault()"
 >
 
     {{#if .fire}}
 
-        <span class="FlatButton--event" on-tap="{{.fire}}:{{.event}}"></span>
+        <span class="FlatButton--event" on-tap="@this.fire(.fire, event, .event, @this)"></span>
 
     {{elseif .mousedown || .mouseup || .touchstart || .touchend || .click}}
 
         <span class="FlatButton--event"
-            on-touchstart="{{.touchstart}}:{{.touchstartEvent || .event}}"
-            on-touchend="{{.touchend}}:{{.touchendEvent || .event}}"
-            on-mousedown="{{.mousedown}}:{{.mousedownEvent || .event}}"
-            on-mouseup="{{.mouseup}}:{{.mouseupEvent || .event}}"
-            on-click="{{.click}}:{{.clickEvent || .event}}"
+            on-touchstart="@this.fire(.touchstart, event, .touchstartEvent || .event)"
+            on-touchend="  @this.fire(.touchend  , event, .touchendEvent   || .event)"
+            on-mousedown=" @this.fire(.mousedown , event, .mousedownEvent  || .event)"
+            on-mouseup="   @this.fire(.mouseup   , event, .mouseupEvent    || .event)"
+            on-click="     @this.fire(.click     , event, .clickEvent      || .event)"
         ></span>
 
     {{elseif .set}}
 
-        <span class="FlatButton--event" on-tap="set(.set, .value)"></span>
+        <span class="FlatButton--event" on-tap="@this.set(.set, .value)"></span>
 
     {{/if}}
 

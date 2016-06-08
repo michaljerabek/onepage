@@ -713,12 +713,12 @@ ResizableBox.minmax = function (event, forceMax, forceMin) {
 
 ResizableBox.getBoxHeight = function () {
 
-    return this.resizableElement.getBoundingClientRect().height;
+    return this.resizableBox.getBoundingClientRect().height;
 };
 
 ResizableBox.getBoxWidth = function () {
 
-    return this.resizableElement.getBoundingClientRect().width;
+    return this.resizableBox.getBoundingClientRect().width;
 };
 
 ResizableBox.oncomplete = function () {

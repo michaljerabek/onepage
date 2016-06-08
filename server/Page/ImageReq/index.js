@@ -4,8 +4,10 @@ var config = require("./../../../config");
 var fse = require("fs-extra");
 var path = require("path");
 var mime = require("mime");
+var getFolderSize = require("get-folder-size");
 
 var gm = require("gm");
+
 
 var multer = require("multer"),
 
@@ -13,24 +15,34 @@ var multer = require("multer"),
 
         destination: function (req, file, cb) {
 
-            var path = "public/" + config.upload.images.path.replace("{{userId}}", req.userId || req.user._id);
+            var path = "public/" + config.upload.images.path.replace("{{userId}}", req.userId || req.user._id),
+                storagePath = "public/" + config.upload.storagePath.replace("{{userId}}", req.userId || req.user._id);
 
-            fse.stat(path, function (err) {
+            getFolderSize(storagePath, function (err, size) {
 
                 if (err) {
 
-                    fse.mkdirs(path + config.upload.images.thumbRelPath, function (err) {
-
-                        if (!err) {
-
-                            cb(null, path);
-                        }
-                    });
-
-                    return;
+                    return cb(err, path);
                 }
 
-                cb(null, path);
+                req.storageSize = size;
+
+                fse.stat(path, function (err) {
+
+                    if (err) {
+
+                        fse.mkdirs(path + config.upload.images.thumbRelPath, function (err) {
+
+                            cb(err, path);
+
+                        });
+
+                        return;
+                    }
+
+                    cb(null, path);
+                });
+
             });
         },
 
@@ -196,6 +208,13 @@ var ImageReq = (function() {
 
         uploadImage = function (req, res) {
 
+            if (req.storageSize + req.file.size > config.upload.storageSize) {
+
+                fse.unlink(req.file.path, function () {});
+
+                return res.status(500).send("MAX_STORAGE");
+            }
+
             createThumbnail(req.file);
 
             res.json({
@@ -209,21 +228,37 @@ var ImageReq = (function() {
 
             var f = req.files.length - 1,
 
-                files = [];
+                files = [],
+
+                MAX_STORAGE = [];
 
             for (f; f >= 0; f--) {
 
-                createThumbnail(req.files[f]);
+                req.storageSize += req.files[f].size;
 
-                files.push({
-                    originalname: req.files[f].originalname,
-                    name: req.files[f].filename,
-                    path: req.files[f].path
-                });
+                if (req.storageSize > config.upload.storageSize) {
+
+                    fse.unlink(req.files[f].path, function () {});
+
+                    MAX_STORAGE.push({
+                        originalname: req.files[f].originalname
+                    });
+
+                } else {
+
+                    createThumbnail(req.files[f]);
+
+                    files.push({
+                        originalname: req.files[f].originalname,
+                        name: req.files[f].filename,
+                        path: req.files[f].path
+                    });
+                }
             }
 
             res.json({
-                files: files
+                files: files,
+                MAX_STORAGE: MAX_STORAGE
             });
         },
 

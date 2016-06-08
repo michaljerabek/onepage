@@ -4,14 +4,14 @@
 
     <section class="E_PageMenu--section E_GlobalPageSettings--font-settings">
 
-        {{#with @ractive.findParent("Page").get("defaults.settings.fontType") as defaultFontType}}
+        {{#with @this.findParent("Page").get("defaults.settings.fontType") as defaultFontType}}
 
         <h3 class="
                 E_PageMenu--sub-title
                 E_PageMenu--sub-title__interactive
                 {{#if .openGlobalSettingsWidget === 'font'}}E_PageMenu--sub-title__active{{/if}}
             "
-            on-tap="set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'font' ? null : 'font')"
+            on-tap="@this.set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'font' ? null : 'font')"
         >
             Písmo
 
@@ -53,7 +53,7 @@
                 adaptive: true,
                 size: "small",
                 value: "settings.roundness",
-                defaultValue: @ractive.findParent("Page").get("defaults.settings.roundness"),
+                defaultValue: @this.findParent("Page").get("defaults.settings.roundness"),
                 options: [
                     {
                         text: "Žádné",
@@ -94,26 +94,26 @@
                 adaptive: true,
                 size: "small",
                 value: "settings.animations",
-                defaultValue: @ractive.findParent("Page").get("defaults.settings.animations"),
+                defaultValue: @this.findParent("Page").get("defaults.settings.animations"),
                 options: [
                     {
                         text: "Jemné",
-                        value: 0,
+                        value: 10,
                         icon: "#icon-magic-1"
                     },
                     {
                         text: "Normální",
-                        value: 10,
+                        value: 20,
                         icon: "#icon-magic-2"
                     },
                     {
                         text: "Rychlé",
-                        value: 20,
+                        value: 30,
                         icon: "#icon-magic-3"
                     },
                     {
                         text: "Zábavné",
-                        value: 30,
+                        value: 40,
                         icon: "#icon-magic-4"
                     }
                 ]
@@ -133,7 +133,7 @@
                 {{#each .settings.colorPalette.colors}}
                     <li class="E_GlobalColorPaletteSettings--color"
                         style="background-color: {{.}}"
-                        on-tap="set('openGlobalSettingsWidget', ~/openGlobalSettingsWidget && ~/openGlobalSettingsWidget.colorKey === @key ? null : { colorKey: @key })"
+                        on-tap="@this.set('openGlobalSettingsWidget', ~/openGlobalSettingsWidget && ~/openGlobalSettingsWidget.colorKey === @key ? null : { colorKey: @key })"
                     ></li>
                 {{/each}}
 
@@ -155,7 +155,7 @@
             }
         }}
 
-            {{#with .settings.colorPalette || @ractive.set('settings.colorPalette', @ractive.findParent("Page").get("defaults.settings.colorPalette")) as __def}}
+            {{#with .settings.colorPalette || @this.set('settings.colorPalette', @this.findParent("Page").get("defaults.settings.colorPalette")) as __def}}
 
                 <div>
                 {{#if .openGlobalSettingsWidget === "colors"}}
@@ -209,7 +209,7 @@
                 E_PageMenu--sub-title__interactive
                 {{#if .openGlobalSettingsWidget === 'currentLang'}}E_PageMenu--sub-title__active{{/if}}
             "
-            on-tap="set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'currentLang' ? null : 'currentLang')"
+            on-tap="@this.set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'currentLang' ? null : 'currentLang')"
         >
             Aktuální jazyk
             {{#if .lang === .settings.lang.defaultLang}}
@@ -245,7 +245,7 @@
                 E_PageMenu--sub-title__interactive
                 {{#if .openGlobalSettingsWidget === 'templateLang'}}E_PageMenu--sub-title__active{{/if}}
             "
-            on-tap="set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'templateLang' ? null : 'templateLang')"
+            on-tap="@this.set('openGlobalSettingsWidget', .openGlobalSettingsWidget === 'templateLang' ? null : 'templateLang')"
         >
             Jazyk šablony
 
@@ -308,7 +308,7 @@
                             text: "Odstranit",
                             fire: "removeLang",
                             event: .lang,
-                            context: @ractive
+                            context: @this
                         },
                         dismiss: {
                             active: 1

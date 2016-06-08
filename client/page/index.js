@@ -66,12 +66,13 @@ module.exports = Ractive.extend({
 
         pageMenu: Ractive.EDIT_MODE ? require("./PageMenu/index.tpl") : null,
 
-        FlatButton: Ractive.EDIT_MODE ? require("./Components/UI/FlatButton/index.tpl") : null,
-        Button: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Button/index.tpl") : null,
-        Switch: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Switch/index.tpl") : null,
-        Slider: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Slider/index.tpl") : null,
-        Select: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Select/index.tpl") : null,
-        Toggle: Ractive.EDIT_MODE ? require("./../libs/Components/UI/Toggle/index.tpl") : null,
+        Button     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Button/index.tpl")      : null,
+        Switch     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Switch/index.tpl")      : null,
+        Slider     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Slider/index.tpl")      : null,
+        Select     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Select/index.tpl")      : null,
+        Toggle     : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Toggle/index.tpl")      : null,
+        Text       : Ractive.EDIT_MODE ? require("./../libs/Components/UI/Text/index.tpl")        : null,
+        FlatButton : Ractive.EDIT_MODE ? require("./Components/UI/FlatButton/index.tpl")          : null,
         ToggleField: Ractive.EDIT_MODE ? require("./../libs/Components/UI/ToggleField/index.tpl") : null
     },
 
@@ -83,10 +84,11 @@ module.exports = Ractive.extend({
             openPageMenu: null,
             cancelAddSection: false,
             unsavedChanges: false,
+            loaded: false,
 
             defaults: {
                 settings: {
-                    animations: 10,
+                    animations: 20,
                     roundness: 0,
                     fontType: "P_font-type-1",
                     colorPalette: {
@@ -136,6 +138,49 @@ module.exports = Ractive.extend({
         }
 
         this.on("*.changeCurrentLang changeCurrentLang", this.changeLang.bind(this));
+
+        if (Ractive.EDIT_MODE) {
+
+            this.on("loadFiles *.loadFiles", this.loadFiles);
+
+            this.on("fileUploaded *.fileUploaded", function (fileData) {
+
+                if (fileData && fileData.path) {
+
+                    if (this.get("page.files")) {
+
+                        return this.unshift("page.files", fileData);
+                    }
+
+                    this.set("page.files", [fileData]);
+                }
+
+            }.bind(this));
+        }
+    },
+
+    loadFiles: function (cb) {
+
+        if (this.fileReq) {
+
+            this.fileReq.then(cb);
+
+            return;
+        }
+
+        this.fileReq = this.req("files");
+
+        this.fileReq
+            .then(function (res) {
+
+            if (res && !res.error && res.files) {
+
+                this.set("page.files", res.files);
+            }
+
+        }.bind(this))
+            .then(cb)
+            .catch(function () {});
     },
 
     changeLang: function (lang, page) {
@@ -216,6 +261,13 @@ module.exports = Ractive.extend({
 
         if (Ractive.EDIT_MODE) {
 
+            if (this.fileReq) {
+
+                this.fileReq.cancelReq();
+
+                this.fileReq = null;
+            }
+
             Ractive.$win.off(".Page");
             
             this.contentEditor.destroy();
@@ -227,6 +279,7 @@ module.exports = Ractive.extend({
 
             this.pageMenu.destroy();
 
+            clearTimeout(this.loadedTimeout);
             clearTimeout(this.unsavedChangesTimeout);
         }
     },
@@ -334,16 +387,18 @@ module.exports = Ractive.extend({
 
         //sledovat změny stránky -> označit jako neuložené
         this.observe("page.settings page.sections", this.handlePageChanged, {init: false});
-        this.on("*.sectionOrderChanged", this.handlePageChanged, {init: false});
+        this.on("*.sectionOrderChanged *.elementOrderChanged", this.handlePageChanged.bind(this), {init: false});
         this.on("savePage", this.handleSavePage);
         this.on("closePage", this.handleClosePage);
+
+        this.loadedTimeout = setTimeout(this.set.bind(this, "loaded", true), 0);
     },
 
     handlePageChanged: function () {
 
         clearTimeout(this.unsavedChangesTimeout);
 
-        if (this.get("pageIsSaving")) {
+        if (this.get("pageIsSaving") || this.saving) {
 
             return;
         }
@@ -402,6 +457,12 @@ module.exports = Ractive.extend({
         this.set("changesSaved", false);
         this.set("pageIsSaving", true);
 
+        this.saving = true;
+
+        EventEmitter.trigger("saving.Page", [this]);
+
+        EventEmitter.trigger("saving:lang:start.Page", [this]);
+
         this.copyLangsOnSave(this.savePage);
     },
 
@@ -416,6 +477,8 @@ module.exports = Ractive.extend({
             if (!langs.length) {
 
                 this.changeLang(currentLang);
+
+                EventEmitter.trigger("saving:lang:end.Page", [this]);
 
                 cb.call(this);
 
@@ -466,6 +529,10 @@ module.exports = Ractive.extend({
                 clearTimeout(this.changesSavedTimeout);
 
                 this.changesSavedTimeout = setTimeout(this.set.bind(this, "changesSaved", false), 3000);
+
+                this.saving = false;
+
+                EventEmitter.trigger("saved.Page", [this]);
 
                 console.log("Uloženo!");
             }

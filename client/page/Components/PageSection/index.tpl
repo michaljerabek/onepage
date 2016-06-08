@@ -7,9 +7,9 @@
     <div class="P_PageSection--inner-wrapper">
 
         <div class="P_PageSection--section"
-            on-hover="handleHover(event)"
-            on-touchend="handleTouchend(event)"
-            on-touchstart="handleTouchstart(event)"
+            on-hover="@this.handleHover(event)"
+            on-touchend="@this.handleTouchend(event)"
+            on-touchstart="@this.handleTouchstart(event)"
         >
 
             {{#if .editMode}}

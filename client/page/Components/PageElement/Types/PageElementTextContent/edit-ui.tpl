@@ -1,4 +1,4 @@
-<span on-tap="openPageElementSettings:{{'edit1'}}">upravit</span>
+<span on-tap="@this.fire('openPageElementSettings', event, 'edit1')">upravit</span>
 
 {{#if .openPageElementSettings === 'edit1'}}
     <PageElementSettings

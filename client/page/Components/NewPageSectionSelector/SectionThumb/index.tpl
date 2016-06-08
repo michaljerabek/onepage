@@ -3,7 +3,7 @@
     "
     data-page-section-type="{{.type}}"
     tabindex="{{.tabindex || 0}}"
-    on-tap-enter-space="{{#if .state !== 'disabled'}}insertSection{{/if}}:{{.type}}"
+    on-tap-enter-space="@this.fire(.state !== 'disabled' ? 'insertSection' : '', event, .type)"
 >
 
     <span class="E_SectionThumb--content">

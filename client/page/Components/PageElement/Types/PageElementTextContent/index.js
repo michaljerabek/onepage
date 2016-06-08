@@ -114,7 +114,7 @@
 
         isEmpty: function () {
 
-            return (this.get("element.content." + this.get("lang")) || "").replace(/(?:<[^>]*>)/g, "").match(/^\s*$/);
+            return (this.get("element.content." + this.get("lang")) || "").replace(/(?:<[^>]*>)/g, "").match(/^(\s|\&nbsp\;)*$/);
         }
 
     });

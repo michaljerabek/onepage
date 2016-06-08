@@ -61,8 +61,8 @@
                     thumbnailWidth: 100,
                     thumbnailHeight: 100,
 
-                    dictInvalidFileType: "Nepodporovaný formát.",
-                    dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
+                    dictInvalidFileType: "Soubor se nepodařilo nahrát. Nepodporovaný formát.",
+                    dictFileTooBig: "Soubor se nepodařilo nahrát. Soubor je příliš velký ({{filesize}} MB), velikost souboru může být maximálně {{maxFilesize}} MB.",
                     dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})"
                 };
             }
@@ -456,6 +456,7 @@
                 p,
                 f = filesInDir.length - 1;
 
+            //úspěšně nahrané soubory
             for (f; f >= 0; f--) {
 
                 p = paths.files.length - 1;
@@ -478,6 +479,50 @@
                     }
                 }
             }
+
+            //soubory, které se nepodařilo nahrát kvůli omezení velikosti prostoru pro nahraná data
+            if (paths.MAX_STORAGE && paths.MAX_STORAGE.length) {
+
+                var f2 = files.length - 1,
+
+                    errorText = "";
+
+                for (f2; f2 >= 0; f2--) {
+
+                    var file = files[f2],
+
+                        m = paths.MAX_STORAGE.length - 1;
+
+                    for (m; m >= 0; m--) {
+
+                        if (paths.MAX_STORAGE[m].originalname === file.name) {
+
+                            break;
+                        }
+
+                        if (m === 0) {
+
+                            file = null;
+                        }
+                    }
+
+                    if (file) {
+
+                        this.removeFileOnUploadError(file);
+
+                        this.fire(this.get("progressBarId") + "ProgressBarError", {
+                            id: file.name.replace(".", "_")
+                        });
+
+                        errorText = errorText ? errorText + ", " + file.name : file.name;
+                    }
+                }
+
+                errorText = errorText.replace(/,([^,]*)$/, " a" + "$1");
+                errorText = paths.MAX_STORAGE.length > 1 ? "Soubory " + errorText : "Soubor" + errorText;
+
+                this.showMessage("Nahrát soubory", errorText + " se nepodařilo nahrát. Váš prostor pro data je plný.");
+            }
         },
 
         handleUploadError: function (file, error) {
@@ -487,12 +532,25 @@
                 return;
             }
 
+            this.removeFileOnUploadError(file);
+
+            this.fire(this.get("progressBarId") + "ProgressBarError", {
+                id: file.name.replace(".", "_")
+            });
+
+            var errorText = error === "MAX_STORAGE" ? "Soubor " + file.name + " se nepodařilo nahrát. Váš prostor pro data je plný." : error;
+
+            this.showMessage(file.name, errorText);
+        },
+
+        removeFileOnUploadError: function (file) {
+
             if (file.fileBrowserId) {
 
                 var directoryIndex = this.getDirectoryIndexByName(this.get("uploadDirectory")),
                     fileIndex = this.getFileIndexByUploadingId(file.fileBrowserId);
 
-                this.set("directories." + directoryIndex + ".files." + fileIndex + ".uploadError", error);
+                this.set("directories." + directoryIndex + ".files." + fileIndex + ".uploadError", true);
                 this.set("directories." + directoryIndex + ".files." + fileIndex + ".uploading", false);
 
                 //odstranit chybné soubory ze složky
@@ -510,12 +568,6 @@
 
                 }.bind(this), directoryIndex === this.get("openDirectory") ? 2000 : 0));
             }
-
-            this.fire(this.get("progressBarId") + "ProgressBarError", {
-                id: file.name.replace(".", "_")
-            });
-
-            this.showMessage(file.name, "Soubor se nepodařilo nahrát: " + error);
         },
 
         handleUploadComplete: function (file) {

@@ -7,6 +7,10 @@ var MODES = {
         ADMIN: 2
     },
 
+    CLASS = {
+        BUTTON: "P_PageElementButton"
+    },
+
     EVENT_NS = "ScrollToSection",
 
     $scrollElement,
@@ -57,7 +61,7 @@ var initScrollAnim = function (requireCtrl) {
 
 var initMouseOver = function () {
 
-    var selector = getAnchorSelector(),
+    var selector = getAnchorSelector() + ", ." + CLASS.BUTTON,
         mouseEvents = "mouseover." + EVENT_NS + " mouseout." + EVENT_NS,
         keyEvents = "keydown." + EVENT_NS + " keyup." + EVENT_NS,
 
@@ -95,6 +99,11 @@ var initMouseOver = function () {
 };
 
 var init = function () {
+
+    if (!window.location.origin) {
+
+        window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port: "");
+    }
 
     if (this.mode === MODES.PAGE) {
 

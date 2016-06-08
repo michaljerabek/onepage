@@ -143,6 +143,8 @@
 .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .E_PageElement--outline ~ * {
     transition:
         color 0.1s linear,
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
         background-color 0.1s linear;
 }
 
@@ -168,3 +170,75 @@
     color: inherit;
 }
 
+/*--------------------------------------------------------------------*/
+/*---------------------------- EDIT MODE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.E_PageSection--add-button {
+    width: 40px;
+    height: 40px;
+
+    background-color: var(--color-button-bg);
+    border-radius: 50%;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+
+    transition: var(--default-transition);
+    transition-property: background-color, box-shadow, opacity;
+}
+
+.E_PageSection--add-button svg {
+    width: 20px;
+    height: 20px;
+
+    fill: var(--color-button-icon);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: var(--default-transition);
+}
+
+.E_PageSection--add-button:hover {
+    background-color: var(--color-hover);
+
+    transition: var(--default-transition-hover);
+    transition-property: background-color, box-shadow, opacity;
+}
+
+.E_PageSection--add-button:hover svg {
+    fill: var(--color-button-icon-active);
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageSectionEditUI__hover ~ .P_PageSection--content .E_PageSection--add-button,
+.E_PageSectionEditUI__hidden-by-user ~ .P_PageSection--content .E_PageSection--add-button {
+    opacity: 1;
+}
+
+.E_PageSectionEditUI__hover ~ .P_PageSection--content .E_PageSection--add-button[data-ractive-transition="intro"],
+.E_PageSectionEditUI__hidden-by-user ~ .P_PageSection--content .E_PageSection--add-button[data-ractive-transition="intro"] {
+    animation: E_PageSection--show-add-button 0.3s var(--default-transition-easing) forwards;
+}
+
+.E_PageSectionEditUI__hover ~ .P_PageSection--content .E_PageSection--add-button[data-ractive-transition^="outro"],
+.E_PageSectionEditUI__hidden-by-user ~ .P_PageSection--content .E_PageSection--add-button[data-ractive-transition^="outro"] {
+    animation: E_PageSection--hide-add-button 0.3s var(--default-transition-easing) forwards;
+}
+
+@keyframes E_PageSection--show-add-button {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes E_PageSection--hide-add-button {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

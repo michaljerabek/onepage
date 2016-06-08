@@ -26,6 +26,8 @@ Ractive.$scrollingElement = Ractive.$scrollingElement || $("html, body");
 var loadLibs = function () {
 
     require("ractive-touch");
+    require("ractive-transitions-slidehorizontal");
+    require("ractive-transitions-slidevh");
 
     require("jquery-bez");
 

@@ -2,7 +2,7 @@
 
     {{> FlatButton {
             text: "Přesunout",
-            title: "Přesunout secki",
+            title: "Přesunout sekci",
             icon: "#icon-up-down",
             className: "P_PageSection--sort-handle"
         }

@@ -1,0 +1,84 @@
+/*====================================================================*/
+/*-------------------- PageElementSettings - Tabs --------------------*/
+/*====================================================================*/
+
+.E_PageElementSettings--tabs {
+    border-bottom: 1px solid #d7d7d7;
+
+    display: flex;
+}
+
+.E_PageElementSettings--tab {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 14px;
+
+    position: relative;
+
+    height: 40px;
+
+    color: var(--color-button-text);
+    background-color: var(--color-button-bg);
+
+    flex-basis: 50%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    transition: var(--default-transition);
+}
+
+.E_PageElementSettings--tab:not(:first-child):after {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    box-shadow: -1px 0px 0px 0px rgba(34, 34, 34, 0.15);
+
+    pointer-events: none;
+}
+
+.E_PageElementSettings--tab__active {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: var(--color-temp-selected-light);
+}
+
+.E_PageElementSettings--tab:hover {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: var(--color-hover);
+
+    transition: var(--default-transition-hover);
+}
+
+.E_PageElementSettings--tab__active:hover {
+    background-color: var(--color-temp-selected-light-over);
+}
+
+.E_PageElementSettings--tab:active,
+.E_PageElementSettings--tab__active:active {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: var(--color-temp-selected-light-active);
+
+    transition: var(--default-transition-active);
+}
+
+
+

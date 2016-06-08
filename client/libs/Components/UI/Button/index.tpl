@@ -10,20 +10,21 @@
     "
     title={{.title}}
     {{#if !.fire && !.set && .state !== 'disabled'}}tabindex="{{.tabindex || 0}}"{{/if}}
+    style="{{.width ? 'width: ' + .width + 'px' : ''}}"
 >
 
     {{#if .fire && .state !== "disabled"}}
 
         <span class="Button--event"
             tabindex="{{.tabindex || 0}}"
-            on-tap-enter-space="{{.fire}}:{{.event}}"
+            on-tap-enter-space="@this.fire(.fire, event, .event)"
         ></span>
 
     {{elseif .set && .state !== "disabled"}}
 
         <span class="Button--event"
             tabindex="{{.tabindex || 0}}"
-            on-tap-enter-space="set(.set.replace(/^\./, ''), .value)"
+            on-tap-enter-space="@this.set(.set.replace(/^\./, ''), .value)"
         ></span>
 
     {{/if}}
@@ -45,7 +46,7 @@
         {{/if}}
 
         {{#if .text}}
-            <span class="Button--text">{{.text}}</span>
+            <span class="Button--text {{#if typeof .progress === 'number'}}Button--text__show-progress{{/if}}" data-progress="{{.progress}}">{{.text}}</span>
         {{/if}}
 
     </span>
