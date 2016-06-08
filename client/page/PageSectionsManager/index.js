@@ -157,6 +157,12 @@ module.exports = (function () {
 
             pageSection.set("isRemoved", true);
 
+            pageSection.removing = true;
+
+            pageSection.forEachPageElement(function () {
+                this.removing = true;
+            });
+
             page.fire("sectionRemoved", pageSection);
 
             $sectionElement

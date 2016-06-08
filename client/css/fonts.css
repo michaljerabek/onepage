@@ -13,15 +13,53 @@
     --P_font-type-2-body-font-family: sans-serif;
     --P_font-type-2-body-font-weight: normal;
 
-    --P_font-type-3-title-font-family: serif;
+    --P_font-type-3-title-font-family: "Open Sans";
     --P_font-type-3-title-font-weight: bold;
-    --P_font-type-3-body-font-family: serif;
+    --P_font-type-3-body-font-family: "Open Sans";
     --P_font-type-3-body-font-weight: normal;
 
     --P_font-type-4-title-font-family: sans-serif;
     --P_font-type-4-title-font-weight: bold;
     --P_font-type-4-body-font-family: sans-serif;
     --P_font-type-4-body-font-weight: normal;
+}
+
+/*--------------------------------------------------------------------*/
+/*-------------------------------- PAGE ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+/*---------------------------- OPEN SANS ----------------------------*/
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: normal;
+
+    src: url("../fonts/open-sans/OpenSans-Light.ttf");
+}
+
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: normal;
+    font-style: italic;
+
+    src: url("../fonts/open-sans/OpenSans-LightItalic.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+
+    src: url("../fonts/open-sans/OpenSans-Semibold.ttf");
+}
+
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-style: italic;
+
+    src: url("../fonts/open-sans/OpenSans-SemiboldItalic.ttf");
 }
 
 /*--------------------------------------------------------------------*/

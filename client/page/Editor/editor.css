@@ -140,7 +140,7 @@
               0px 4px 16px rgba(34, 34, 34, 0.5);
 }
 
-.csspointerevents .medium-editor-toolbar ul:before {
+.medium-editor-toolbar ul:before {
     content: "";
 
     margin: auto;
@@ -166,7 +166,7 @@
     transition: inherit;
 }
 
-.csspointerevents .medium-toolbar-arrow-under.medium-editor-toolbar ul:before {
+.medium-toolbar-arrow-under.medium-editor-toolbar ul:before {
     top: 1px;
 
     border-radius: 4px;
@@ -333,7 +333,7 @@
     color: inherit;
 }
 
-.csspointerevents .medium-editor-toolbar li button:after {
+.medium-editor-toolbar li button:after {
     content: "";
 
     position: absolute;
@@ -391,7 +391,7 @@
         inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
 }
 
-.csspointerevents .medium-editor-toolbar li .medium-editor-button-active:after {
+.medium-editor-toolbar li .medium-editor-button-active:after {
     box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
 }
 
@@ -660,7 +660,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     overflow: hidden;
 }
 
-.csspointerevents .medium-editor-use-touch.medium-editor-toolbar ul:before {
+.medium-editor-use-touch.medium-editor-toolbar ul:before {
     top: 0px;
 
     height: 100%;
@@ -672,7 +672,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         inset -1px -1px  1px rgba(34, 34, 34, 0.15);
 }
 
-.csspointerevents .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul:before {
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul:before {
     box-shadow:
         inset  0px  0px 12px rgba(34, 34, 34, 0.05),
         inset  1px  1px  1px rgba(34, 34, 34, 0.15),
@@ -795,19 +795,19 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     line-height: 56px;
 }
 
-.csspointerevents .medium-editor-toolbar li button:after {
+.medium-editor-toolbar li button:after {
     box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
 }
 
-.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:after {
+.medium-editor-toolbar.medium-editor-force-right li button:after {
     box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
 }
 
-.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:not(:disabled):hover:after {
+.medium-editor-toolbar.medium-editor-force-right li button:not(:disabled):hover:after {
     box-shadow: inset 1px -1px 0px rgba(239, 103, 55, 0.08);
 }
 
-.csspointerevents .medium-editor-toolbar li button.medium-editor-button-active:after {
+.medium-editor-toolbar li button.medium-editor-button-active:after {
     box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
 }
 

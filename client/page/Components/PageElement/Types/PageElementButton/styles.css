@@ -54,70 +54,89 @@
     overflow: hidden;
 }
 
-
 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus,
-.P_PageElement:not(.E_PageElement) .P_PageElementButton:hover {
+.P_PageElement:not(.E_PageElement) .P_PageElementButton:hover,
+body.E_actions-active .P_PageElement .P_PageElementButton:focus,
+body.E_actions-active .P_PageElement .P_PageElementButton:hover {
     transform: scale(1.07);
 }
 
-.P_PageElement:not(.E_PageElement) .P_PageElementButton:active {
+.P_PageElement:not(.E_PageElement) .P_PageElementButton:active,
+body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
     transform: scale(1.03);
 }
 
-.P_PageElement:not(.E_PageElement) .P_PageElementButton {
+.P_PageElement:not(.E_PageElement) .P_PageElementButton,
+body.E_actions-active .P_PageElement .P_PageElementButton {
     cursor: pointer;
 }
 
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton {
-    transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton,
+body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton {
+    transition: var(--P_animations-10);
 }
 
 .P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus,
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover {
-    transition: all 0.2s cubic-bezier(.5, .2, .6, .8) 0s;
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover,
+body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:focus,
+body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:hover {
+    transition: var(--P_animations-10-hover);
 }
 
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active {
-    transition: all 0.05s ease-in 0s;
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active,
+body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:active {
+    transition: var(--P_animations-10-active);
 }
 
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton {
-    transition: all 0.25s cubic-bezier(.5, .1, .7, .9) 0s;
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton,
+body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton {
+    transition: var(--P_animations-20);
 }
 
 .P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus,
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover {
-    transition: all 0.125s cubic-bezier(.1, .1, .5, 1) 0s;
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover,
+body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:focus,
+body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:hover {
+    transition: var(--P_animations-20-hover);
 }
 
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active {
-    transition: all 0.05s ease-in 0s;
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active,
+body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:active {
+    transition: var(--P_animations-20-active);
 }
 
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton {
-    transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton,
+body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton {
+    transition: var(--P_animations-30);
 }
 
 .P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus,
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover {
-    transition: all 0.1s cubic-bezier(.2, .1, .3, 1) 0s;
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover,
+body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:focus,
+body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:hover {
+    transition: var(--P_animations-30-hover);
 }
 
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active {
-    transition: all 0.035s ease-in 0s;
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active,
+body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:active {
+    transition: var(--P_animations-30-active);
 }
 
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton {
-    transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton,
+body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton {
+    transition: var(--P_animations-40);
 }
 
 .P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus,
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover {
-    transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover,
+body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:focus,
+body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:hover {
+    transition: var(--P_animations-40-hover);
 }
 
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active {
-    transition: all 0.035s ease-in 0s;
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active,
+body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:active {
+    transition: var(--P_animations-40-active);
 }
 
 .P_roundness-0 .P_PageElementButton {

@@ -29,7 +29,7 @@
         height     0.2s linear                       0.2s;
 }
 
-.csspointerevents .medium-editor-toolbar-form:after {
+.medium-editor-toolbar-form:after {
     content: "";
 
     z-index: 5;
@@ -48,7 +48,7 @@
     pointer-events: none;
 }
 
-.csspointerevents .medium-toolbar-arrow-under .medium-editor-toolbar-form:after {
+.medium-toolbar-arrow-under .medium-editor-toolbar-form:after {
     box-shadow:
         inset -1px -1px  1px rgba(34, 34, 34, 0.1),
         inset  1px  1px  1px rgba(34, 34, 34, 0.15),
@@ -153,7 +153,7 @@
     transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
 }
 
-.csspointerevents .medium-editor-form-nav:after {
+.medium-editor-form-nav:after {
     content: "";
 
     position: absolute;
@@ -260,7 +260,7 @@
         visibility 0s   linear                       0.3s;
 }
 
-.csspointerevents .medium-editor-form-tab:after {
+.medium-editor-form-tab:after {
     content: "";
 
     position: absolute;
@@ -270,13 +270,13 @@
     width: 100%;
     height: 100%;
 
-    box-shadow: inset 0px 1px 5px rgba(34, 34, 34, 0.10);
+    box-shadow: inset 0px 1px 5px rgba(34, 34, 34, 0.15);
 
     pointer-events: none;
 }
 
-.csspointerevents .medium-toolbar-arrow-over .medium-editor-form-tab:after {
-    box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
+.medium-toolbar-arrow-over .medium-editor-form-tab:after {
+    box-shadow: inset 0px -1px 5px rgba(34, 34, 34, 0.15);
 }
 
 /*---------------------------- ANCHOR TAB ----------------------------*/
@@ -299,22 +299,6 @@
         visibility 0s     linear                       0s;
 }
 
-.medium-editor-toolbar-form .medium-editor-toolbar-input {
-    font-size: 14px;
-    line-height: 34px;
-
-    margin-bottom: 8px;
-
-    height: 34px;
-    width: 100%;
-    padding: 0 12px;
-
-    border-radius: 4px;
-    border: 1px solid #d7d7d7;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
 .medium-editor-form-tab-anchor label {
     font-size: 14px;
     line-height: 17px;
@@ -327,7 +311,6 @@
     display: block;
 }
 
-.medium-editor-toolbar-form .medium-editor-toolbar-input:focus,
 .medium-editor-toolbar-form label:focus {
     box-shadow: none;
     outline: 0;
@@ -464,7 +447,7 @@
         width      0.2s linear 0.4s;
 }
 
-.csspointerevents .medium-editor-use-touch .medium-editor-toolbar-form:before {
+.medium-editor-use-touch .medium-editor-toolbar-form:before {
     border-radius: inherit;
 
     box-shadow:
@@ -473,7 +456,7 @@
         inset -1px -1px  1px rgba(34, 34, 34, 0.15);
 }
 
-.csspointerevents .medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form:before {
+.medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form:before {
     box-shadow:
         inset  0px  0px 12px rgba(34, 34, 34, 0.05),
         inset  1px  1px  1px rgba(34, 34, 34, 0.15),

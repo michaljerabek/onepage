@@ -10,8 +10,8 @@ module.exports = {
         body: "Sans Serif"
     },
     "P_font-type-3" : {
-        title: "Serif",
-        body: "Serif"
+        title: "Open Sans",
+        body: "Open Sans"
     },
     "P_font-type-4" : {
         title: "Sans Serif",

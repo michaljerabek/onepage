@@ -25,7 +25,7 @@
                 addButton: "E_PageElementButtons--add-button"
             };
 
-            this.on("*.removeButton", function (event, element, button) {
+            this.removeButtonListener = this.on("*.removeButton", function (event, element, button) {
 
                 button.removing = true;
 
@@ -33,6 +33,8 @@
                     b = buttons.length - 1;
 
                 for (b; b >= 0; b--) {
+
+                    buttons[b].updateOutlineState(false);
 
                     buttons[b].cancelObservers();
                 }
@@ -53,18 +55,27 @@
 
                 for (b; b >= 0; b--) {
 
+                    buttons[b].updateOutlineState();
+
                     buttons[b].initObservers();
                 }
 
+                this.fire("pageChange");
+
             }.bind(this));
 
-            this.on("addButton", function () {
+            this.addButtonListener = this.on("addButton", function () {
 
                 this.push("section.buttons", this.components.PageElementButton.prototype.getNewItem.call(this));
 
             }.bind(this));
 
-            this.observe("section.buttons", function (buttons) {
+            this.buttonsObserver = this.observe("section.buttons", function (buttons) {
+
+                if (this.removing) {
+
+                    return;
+                }
 
                 this.set("showAddButton", !buttons || buttons.length < (this.MAX_BUTTONS || 3));
             });
@@ -90,7 +101,12 @@
 
                 }.bind(this);
 
-            this.observe("section.buttons", function () {
+            this.buttonsObserverDefered = this.observe("section.buttons", function () {
+
+                if (this.removing) {
+
+                    return;
+                }
 
                 clearTimeout(changeButtonPositionTimeout);
 
@@ -110,6 +126,11 @@
             teardown: function () {
 
                 if (Ractive.EDIT_MODE) {
+
+                    this.removeButtonListener.cancel();
+                    this.addButtonListener.cancel();
+                    this.buttonsObserver.cancel();
+                    this.buttonsObserverDefered.cancel();
 
                     Ractive.$win.off(".PageElementButtons-" + this.EVENT_NS);
 

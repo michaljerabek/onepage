@@ -8,7 +8,9 @@ var MODES = {
     },
 
     CLASS = {
-        BUTTON: "P_PageElementButton"
+        BUTTON: "P_PageElementButton",
+
+        actionsActive: "E_actions-active"
     },
 
     EVENT_NS = "ScrollToSection",
@@ -95,6 +97,11 @@ var initMouseOver = function () {
                     cursor: $a && e.ctrlKey ? "pointer": ""
                 });
             }
+
+            if (e.which === 17) {
+
+                $eventElement[e.type === "keydown" ? "addClass" : "removeClass"](CLASS.actionsActive);
+            }
         });
 };
 
@@ -118,12 +125,12 @@ var init = function () {
     initScrollAnim.call(this, this.mode >= MODES.EDIT);
 };
 
-var ScrollToSection = function ScrollToSection(mode, internalSectionPrefix, duration, easing) {
+var ScrollToSection = function ScrollToSection(mode, internalSectionPrefix, easing, duration) {
 
     this.mode = mode || MODES.PAGE;
     this.internalSectionPrefix = internalSectionPrefix || "section-";
-    this.duration = duration || 300;
-    this.easing = easing || $.easing.easeOutSine ? "easeOutSine" : "swing";
+
+    this.setAnimation(easing || "easeOutSine", duration || 300);
 
     $scrollElement = $("html, body");
     $eventElement = $("body");
@@ -132,6 +139,20 @@ var ScrollToSection = function ScrollToSection(mode, internalSectionPrefix, dura
 };
 
 ScrollToSection.MODES = MODES;
+
+ScrollToSection.prototype.setAnimation = function (easing, duration) {
+
+    if ($.isArray(easing)) {
+
+        this.easing = $.bez(easing);
+
+    } else {
+
+        this.easing = $.easing[easing] ? easing : "swing";
+    }
+
+    this.duration = duration || 300;
+};
 
 ScrollToSection.prototype.getIdFromURL = function (URL) {
 

@@ -51,8 +51,50 @@ blockquote, q {
 .cf { display: block; }
 
 /*====================================================================*/
+/*----------------------- ANIMATIONS SETTINGS ------------------------*/
+/*====================================================================*/
+
+/*====================================================================*/
 /*------------------------------ FONTS -------------------------------*/
 /*====================================================================*/
+
+/*--------------------------------------------------------------------*/
+/*-------------------------------- PAGE ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+/*---------------------------- OPEN SANS ----------------------------*/
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: normal;
+
+    src: url("../fonts/open-sans/OpenSans-Light.ttf");
+}
+
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: normal;
+    font-style: italic;
+
+    src: url("../fonts/open-sans/OpenSans-LightItalic.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+
+    src: url("../fonts/open-sans/OpenSans-Semibold.ttf");
+}
+
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-style: italic;
+
+    src: url("../fonts/open-sans/OpenSans-SemiboldItalic.ttf");
+}
 
 /*--------------------------------------------------------------------*/
 /*-------------------------------- APP -------------------------------*/
@@ -588,581 +630,6 @@ body {
 }
 
 :root { /*ease-out*/
-}
-
-/*====================================================================*/
-/*--------------------------- ResizableBox ---------------------------*/
-/*====================================================================*/
-
-.ResizableBox {
-    position: relative;
-
-    overflow: hidden;
-
-    will-change: height, max-height, width, max-width;
-}
-
-.ResizableBox:not(.ResizableBox__floating) {
-    min-height: 32px;
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--self {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-
-    width: 100%;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -webkit-transition-property: height;
-    -moz-transition-property: height;
-    -o-transition-property: height;
-    transition-property: height;
-}
-
-.ResizableBox--scrollable {
-    position: relative;
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--scrollable {
-    width: 100%;
-}
-
-/*---------------------------- CLOSE | MINMAX ----------------------------*/
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
-    z-index: 1100;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-
-    width: 24px;
-    height: 24px;
-    padding-top: 2px;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-
-    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
-    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
-    padding-right: 2px;
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
-    padding-left: 4px;
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max svg, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close svg {
-    width: 12px;
-    height: 12px;
-
-    fill: #404040;
-    opacity: 0.4;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
-    right: 24px;
-}
-
-@media (pointer: coarse) {
-
-    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
-        width: 30px;
-        height: 30px;
-        padding-top: 0;
-    }
-
-    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
-        padding-right: 2px;
-    }
-
-    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
-        padding-left: 8px;
-    }
-
-    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max svg, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close svg {
-        width: 14px;
-        height: 14px;
-    }
-
-    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
-        right: 30px;
-    }
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max__max {
-    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max__max svg {
-    fill: #ef6737;
-    opacity: 1;
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max:hover, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close:hover {
-    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max:hover svg, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close:hover svg {
-    opacity: 1;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max:active svg, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close:active svg {
-    -webkit-transform: scale(0.9);
-       -moz-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-         -o-transform: scale(0.9);
-            transform: scale(0.9);
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-/*---------------------------- RESIZER ----------------------------*/
-
-.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer {
-    z-index: 100;
-    position: absolute;
-    bottom: -7px;
-    left: 0px;
-
-    width: 100%;
-    height: 12px;
-
-    cursor: ns-resize;
-}
-
-@media (pointer: coarse) {
-
-    .ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer {
-        bottom: -13px;
-
-        height: 24px;
-    }
-}
-
-.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer:after {
-    content: "";
-
-    position: absolute;
-    top: -webkit-calc(50% - 1px);
-    top: -moz-calc(50% - 1px);
-    top: calc(50% - 1px);
-    left: 0px;
-
-    width: 100%;
-    height: 0px;
-
-    border-bottom: 1px solid transparent;
-
-    cursor: ns-resize;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -webkit-transform: translateZ(0);
-
-       -moz-transform: translateZ(0);
-
-            transform: translateZ(0);
-}
-
-.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer:hover:after {
-    border-bottom-color: #ef6737;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer__active:after, .ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer:active:after {
-    border-bottom-color: #36b73c;
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-/*====================================================================*/
-/*------------------------------ DIALOG ------------------------------*/
-/*====================================================================*/
-
-.Dialog--overlay {
-    z-index: 99999;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: rgba(0, 0, 0, 0.65);
-
-    will-change: opacity;
-}
-
-.Dialog--box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    min-width: 300px;
-    max-width: 480px;
-    padding: 24px 32px;
-
-    background-color: #fcfcfc;
-    border: 2px solid #888;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    -webkit-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-       -moz-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-            box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-
-    -webkit-transform: translate(-50%, -50%) scale(0);
-
-       -moz-transform: translate(-50%, -50%) scale(0);
-
-        -ms-transform: translate(-50%, -50%) scale(0);
-
-         -o-transform: translate(-50%, -50%) scale(0);
-
-            transform: translate(-50%, -50%) scale(0);
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-
-    will-change: transform, opacity;
-}
-
-.Dialog--box__success {
-    border-color: #36b73c;
-}
-
-.Dialog--box__error {
-    border-color: #e32d39;
-}
-
-.Dialog--box__warn {
-    border-color: #ef6737;
-}
-
-.Dialog--box__info {
-    border-color: #08a1c2;
-}
-
-.Dialog--box[data-ractive-transition="intro"] {
-    -webkit-animation: Dialog--toggle 0.2s linear 0.3s forwards;
-       -moz-animation: Dialog--toggle 0.2s linear 0.3s forwards;
-         -o-animation: Dialog--toggle 0.2s linear 0.3s forwards;
-            animation: Dialog--toggle 0.2s linear 0.3s forwards;
-}
-
-.Dialog--box[data-ractive-transition="intro-complete"] {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-       -moz-transform: translate(-50%, -50%) scale(1);
-        -ms-transform: translate(-50%, -50%) scale(1);
-         -o-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1);
-}
-
-.Dialog--box[data-ractive-transition="outro"] {
-    -webkit-animation: Dialog--toggle 0.2s linear 0s reverse;
-       -moz-animation: Dialog--toggle 0.2s linear 0s reverse;
-         -o-animation: Dialog--toggle 0.2s linear 0s reverse;
-            animation: Dialog--toggle 0.2s linear 0s reverse;
-}
-
-.Dialog--box[data-ractive-transition="outro-complete"] {
-    -webkit-transform: translate(-50%, -50%) scale(0);
-       -moz-transform: translate(-50%, -50%) scale(0);
-        -ms-transform: translate(-50%, -50%) scale(0);
-         -o-transform: translate(-50%, -50%) scale(0);
-            transform: translate(-50%, -50%) scale(0);
-}
-
-@-webkit-keyframes Dialog--toggle {
-    from {
-        -webkit-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -webkit-transform: translate(-50%, -50%) scale(1);
-                transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes Dialog--toggle {
-    from {
-        -moz-transform: translate(-50%, -50%) scale(0);
-             transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -moz-transform: translate(-50%, -50%) scale(1);
-             transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-@-o-keyframes Dialog--toggle {
-    from {
-        -o-transform: translate(-50%, -50%) scale(0);
-           transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -o-transform: translate(-50%, -50%) scale(1);
-           transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-@keyframes Dialog--toggle {
-    from {
-        -webkit-transform: translate(-50%, -50%) scale(0);
-           -moz-transform: translate(-50%, -50%) scale(0);
-             -o-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -webkit-transform: translate(-50%, -50%) scale(1);
-           -moz-transform: translate(-50%, -50%) scale(1);
-             -o-transform: translate(-50%, -50%) scale(1);
-                transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-.Dialog--title {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 21px;
-    font-weight: 600;
-    line-height: 1.19;
-    text-align: center;
-
-    margin-top: 4px;
-    margin-bottom: 12px;
-
-    width: 100%;
-
-    color: #404040;
-}
-
-.Dialog--text {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 14px;
-    line-height: 1.64;
-    text-align: center;
-
-    margin-bottom: 16px;
-
-    width: 100%;
-
-    color: #5c5c5c;
-}
-
-.Dialog--text:last-child {
-    margin-bottom: 4px;
-}
-
-.Dialog--close {
-    position:absolute;
-    top: 0px;
-    right: 0px;
-
-    width: 24px;
-    height: 24px;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
-.Dialog .Button {
-    margin: 0 12px;
-}
-
-.Dialog--close svg {
-    width: 12px;
-    height: 12px;
-
-    fill: #404040;
-    opacity: 0.5;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.Dialog--close:focus svg, .Dialog--close:hover svg {
-    opacity: 1;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.Dialog--close:active svg {
-    -webkit-transform: scale(0.9);
-       -moz-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-         -o-transform: scale(0.9);
-            transform: scale(0.9);
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-@media (pointer: coarse) {
-
-    .Dialog--close {
-        width: 32px;
-        height: 32px;
-    }
-
-    .Dialog--close svg {
-        width: 16px;
-        height: 16px;
-    }
 }
 
 /*====================================================================*/
@@ -1730,6 +1197,305 @@ body {
 
 .ColorPicker--input-text:not(:first-child) {
     margin-left: 4px;
+}
+
+/*====================================================================*/
+/*------------------------------ DIALOG ------------------------------*/
+/*====================================================================*/
+
+.Dialog--overlay {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.65);
+
+    will-change: opacity;
+}
+
+.Dialog--box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    min-width: 300px;
+    max-width: 480px;
+    padding: 24px 32px;
+
+    background-color: #fcfcfc;
+    border: 2px solid #888;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
+       -moz-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
+            box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
+
+    -webkit-transform: translate(-50%, -50%) scale(0);
+
+       -moz-transform: translate(-50%, -50%) scale(0);
+
+        -ms-transform: translate(-50%, -50%) scale(0);
+
+         -o-transform: translate(-50%, -50%) scale(0);
+
+            transform: translate(-50%, -50%) scale(0);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    will-change: transform, opacity;
+}
+
+.Dialog--box__success {
+    border-color: #36b73c;
+}
+
+.Dialog--box__error {
+    border-color: #e32d39;
+}
+
+.Dialog--box__warn {
+    border-color: #ef6737;
+}
+
+.Dialog--box__info {
+    border-color: #08a1c2;
+}
+
+.Dialog--box[data-ractive-transition="intro"] {
+    -webkit-animation: Dialog--toggle 0.2s linear 0.3s forwards;
+       -moz-animation: Dialog--toggle 0.2s linear 0.3s forwards;
+         -o-animation: Dialog--toggle 0.2s linear 0.3s forwards;
+            animation: Dialog--toggle 0.2s linear 0.3s forwards;
+}
+
+.Dialog--box[data-ractive-transition="intro-complete"] {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+       -moz-transform: translate(-50%, -50%) scale(1);
+        -ms-transform: translate(-50%, -50%) scale(1);
+         -o-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+}
+
+.Dialog--box[data-ractive-transition="outro"] {
+    -webkit-animation: Dialog--toggle 0.2s linear 0s reverse;
+       -moz-animation: Dialog--toggle 0.2s linear 0s reverse;
+         -o-animation: Dialog--toggle 0.2s linear 0s reverse;
+            animation: Dialog--toggle 0.2s linear 0s reverse;
+}
+
+.Dialog--box[data-ractive-transition="outro-complete"] {
+    -webkit-transform: translate(-50%, -50%) scale(0);
+       -moz-transform: translate(-50%, -50%) scale(0);
+        -ms-transform: translate(-50%, -50%) scale(0);
+         -o-transform: translate(-50%, -50%) scale(0);
+            transform: translate(-50%, -50%) scale(0);
+}
+
+@-webkit-keyframes Dialog--toggle {
+    from {
+        -webkit-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes Dialog--toggle {
+    from {
+        -moz-transform: translate(-50%, -50%) scale(0);
+             transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(-50%, -50%) scale(1);
+             transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+@-o-keyframes Dialog--toggle {
+    from {
+        -o-transform: translate(-50%, -50%) scale(0);
+           transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(-50%, -50%) scale(1);
+           transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+@keyframes Dialog--toggle {
+    from {
+        -webkit-transform: translate(-50%, -50%) scale(0);
+           -moz-transform: translate(-50%, -50%) scale(0);
+             -o-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+           -moz-transform: translate(-50%, -50%) scale(1);
+             -o-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+.Dialog--title {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.19;
+    text-align: center;
+
+    margin-top: 4px;
+    margin-bottom: 12px;
+
+    width: 100%;
+
+    color: #404040;
+}
+
+.Dialog--text {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.64;
+    text-align: center;
+
+    margin-bottom: 16px;
+
+    width: 100%;
+
+    color: #5c5c5c;
+}
+
+.Dialog--text:last-child {
+    margin-bottom: 4px;
+}
+
+.Dialog--close {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.Dialog .Button {
+    margin: 0 12px;
+}
+
+.Dialog--close svg {
+    width: 12px;
+    height: 12px;
+
+    fill: #404040;
+    opacity: 0.5;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Dialog--close:focus svg, .Dialog--close:hover svg {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.Dialog--close:active svg {
+    -webkit-transform: scale(0.9);
+       -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+         -o-transform: scale(0.9);
+            transform: scale(0.9);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+@media (pointer: coarse) {
+
+    .Dialog--close {
+        width: 32px;
+        height: 32px;
+    }
+
+    .Dialog--close svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 .FileBrowser {
@@ -3645,6 +3411,282 @@ body {
     -webkit-box-shadow: 0px 0px 4px 1px #fb7241;
        -moz-box-shadow: 0px 0px 4px 1px #fb7241;
             box-shadow: 0px 0px 4px 1px #fb7241;
+}
+
+/*====================================================================*/
+/*--------------------------- ResizableBox ---------------------------*/
+/*====================================================================*/
+
+.ResizableBox {
+    position: relative;
+
+    overflow: hidden;
+
+    will-change: height, max-height, width, max-width;
+}
+
+.ResizableBox:not(.ResizableBox__floating) {
+    min-height: 32px;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--self {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+
+    width: 100%;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: height;
+    -moz-transition-property: height;
+    -o-transition-property: height;
+    transition-property: height;
+}
+
+.ResizableBox--scrollable {
+    position: relative;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--scrollable {
+    width: 100%;
+}
+
+/*---------------------------- CLOSE | MINMAX ----------------------------*/
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
+    z-index: 1100;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+    padding-top: 2px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
+    padding-right: 2px;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
+    padding-left: 4px;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max svg, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close svg {
+    width: 12px;
+    height: 12px;
+
+    fill: #404040;
+    opacity: 0.4;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
+    right: 24px;
+}
+
+@media (pointer: coarse) {
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
+        width: 30px;
+        height: 30px;
+        padding-top: 0;
+    }
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close {
+        padding-right: 2px;
+    }
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
+        padding-left: 8px;
+    }
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max svg, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max {
+        right: 30px;
+    }
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max__max {
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max__max svg {
+    fill: #ef6737;
+    opacity: 1;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max:hover, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close:hover {
+    -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    -moz-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max:hover svg, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close:hover svg {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.ResizableBox:not(.ResizableBox__floating) .ResizableBox--min-max:active svg, .ResizableBox:not(.ResizableBox__floating) .ResizableBox--close:active svg {
+    -webkit-transform: scale(0.9);
+       -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+         -o-transform: scale(0.9);
+            transform: scale(0.9);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+/*---------------------------- RESIZER ----------------------------*/
+
+.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer {
+    z-index: 100;
+    position: absolute;
+    bottom: -7px;
+    left: 0px;
+
+    width: 100%;
+    height: 12px;
+
+    cursor: ns-resize;
+}
+
+@media (pointer: coarse) {
+
+    .ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer {
+        bottom: -13px;
+
+        height: 24px;
+    }
+}
+
+.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer:after {
+    content: "";
+
+    position: absolute;
+    top: -webkit-calc(50% - 1px);
+    top: -moz-calc(50% - 1px);
+    top: calc(50% - 1px);
+    left: 0px;
+
+    width: 100%;
+    height: 0px;
+
+    border-bottom: 1px solid transparent;
+
+    cursor: ns-resize;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+}
+
+.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer:hover:after {
+    border-bottom-color: #ef6737;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer__active:after, .ResizableBox:not(.ResizableBox__floating) ~ .ResizableBox--resizer:active:after {
+    border-bottom-color: #36b73c;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
 /*====================================================================*/
@@ -10203,14 +10245,14 @@ body {
 }
 
 /*====================================================================*/
-/*----------------------- ButtonElementSettings ----------------------*/
+/*----------------------- PageElementButtonSettings ----------------------*/
 /*====================================================================*/
 
-.E_ButtonElementSettings--type {
+.E_PageElementButtonSettings--type {
     margin-bottom: 16px;
 }
 
-.E_ButtonElementSettings--label {
+.E_PageElementButtonSettings--label {
     font-family: "Encode Sans", sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -10222,7 +10264,7 @@ body {
     display: block;
 }
 
-.E_ButtonElementSettings--input__file {
+.E_PageElementButtonSettings--input__file {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -10230,7 +10272,7 @@ body {
     display: flex;
 }
 
-.E_ButtonElementSettings--input__file .Select {
+.E_PageElementButtonSettings--input__file .Select {
     margin-right: 8px;
 
     -webkit-box-flex: 1;
@@ -10244,7 +10286,7 @@ body {
             flex-grow: 1;
 }
 
-.E_ButtonElementSettings--input__file .Button {
+.E_PageElementButtonSettings--input__file .Button {
     -webkit-flex-shrink: 0;
         -ms-flex-negative: 0;
             flex-shrink: 0;
@@ -10255,16 +10297,16 @@ body {
             flex-grow: 0;
 }
 
-.E_ButtonElementSettings--input {
+.E_PageElementButtonSettings--input {
     position: relative;
     margin-bottom: 8px;
 }
 
-.E_ButtonElementSettings--input__select:not(:last-child) {
+.E_PageElementButtonSettings--input__select:not(:last-child) {
     margin-bottom: 16px;
 }
 
-.E_ButtonElementSettings--button .E_ButtonElementSettings--input__select:before, .E_ButtonElementSettings--button .E_ButtonElementSettings--input__select:after, .E_ButtonElementSettings--button .E_ButtonElementSettings--input__toggle:before, .E_ButtonElementSettings--button .E_ButtonElementSettings--input__toggle:after {
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__select:before, .E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__select:after, .E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__toggle:before, .E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__toggle:after {
     content: "";
 
     margin: auto;
@@ -10284,7 +10326,7 @@ body {
     transition: opacity 0.1s linear;
 }
 
-.E_ButtonElementSettings--button .E_ButtonElementSettings--input__on:after, .E_ButtonElementSettings--button .E_ButtonElementSettings--input__on:before, .E_ButtonElementSettings--button .E_ButtonElementSettings--input__on + .E_ButtonElementSettings--input__select:after, .E_ButtonElementSettings--button .E_ButtonElementSettings--input__on + .E_ButtonElementSettings--input__select:before {
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__on:after, .E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__on:before, .E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__on + .E_PageElementButtonSettings--input__select:after, .E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__on + .E_PageElementButtonSettings--input__select:before {
     opacity: 1;
 
     -webkit-transition: opacity 0.1s linear 0.3s;
@@ -10296,14 +10338,14 @@ body {
     transition: opacity 0.1s linear 0.3s;
 }
 
-.E_ButtonElementSettings--button .E_ButtonElementSettings--input__toggle:before {
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__toggle:before {
     left: -5px;
 
     width: 5px;
     height: 1px;
 }
 
-.E_ButtonElementSettings--button .E_ButtonElementSettings--input__toggle:after {
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__toggle:after {
     top: 50%;
     bottom: auto;
     left: -6px;
@@ -10312,14 +10354,14 @@ body {
     height: 32px;
 }
 
-.E_ButtonElementSettings--button .E_ButtonElementSettings--input__select:before {
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__select:before {
     left: -5px;
 
     width: 5px;
     height: 1px;
 }
 
-.E_ButtonElementSettings--button .E_ButtonElementSettings--input__select:after {
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__select:after {
     bottom: -webkit-calc(50% - 1px);
     bottom: -moz-calc(50% - 1px);
     bottom: calc(50% - 1px);
@@ -10755,7 +10797,7 @@ body {
               0px 4px 16px rgba(34, 34, 34, 0.5);
 }
 
-.csspointerevents .medium-editor-toolbar ul:before {
+.medium-editor-toolbar ul:before {
     content: "";
 
     margin: auto;
@@ -10803,7 +10845,7 @@ body {
     transition: inherit;
 }
 
-.csspointerevents .medium-toolbar-arrow-under.medium-editor-toolbar ul:before {
+.medium-toolbar-arrow-under.medium-editor-toolbar ul:before {
     top: 1px;
 
     -webkit-border-radius: 4px;
@@ -11113,7 +11155,7 @@ body {
     color: inherit;
 }
 
-.csspointerevents .medium-editor-toolbar li button:after {
+.medium-editor-toolbar li button:after {
     content: "";
 
     position: absolute;
@@ -11244,7 +11286,7 @@ body {
         inset 0px 0px 4px 0px rgba(34, 34, 34, 0.15);
 }
 
-.csspointerevents .medium-editor-toolbar li .medium-editor-button-active:after {
+.medium-editor-toolbar li .medium-editor-button-active:after {
     -webkit-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
        -moz-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
             box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0);
@@ -11696,7 +11738,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     overflow: hidden;
 }
 
-.csspointerevents .medium-editor-use-touch.medium-editor-toolbar ul:before {
+.medium-editor-use-touch.medium-editor-toolbar ul:before {
     top: 0px;
 
     height: 100%;
@@ -11720,7 +11762,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         inset -1px -1px  1px rgba(34, 34, 34, 0.15);
 }
 
-.csspointerevents .medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul:before {
+.medium-editor-use-touch.medium-editor-force-right.medium-editor-toolbar ul:before {
     -webkit-box-shadow:
         inset  0px  0px 12px rgba(34, 34, 34, 0.05),
         inset  1px  1px  1px rgba(34, 34, 34, 0.15),
@@ -11888,25 +11930,25 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     line-height: 56px;
 }
 
-.csspointerevents .medium-editor-toolbar li button:after {
+.medium-editor-toolbar li button:after {
     -webkit-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
        -moz-box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
             box-shadow: inset -1px -1px 0px rgba(34, 34, 34, 0.04);
 }
 
-.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:after {
+.medium-editor-toolbar.medium-editor-force-right li button:after {
     -webkit-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
        -moz-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
             box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0.04);
 }
 
-.csspointerevents .medium-editor-toolbar.medium-editor-force-right li button:not(:disabled):hover:after {
+.medium-editor-toolbar.medium-editor-force-right li button:not(:disabled):hover:after {
     -webkit-box-shadow: inset 1px -1px 0px rgba(239, 103, 55, 0.08);
        -moz-box-shadow: inset 1px -1px 0px rgba(239, 103, 55, 0.08);
             box-shadow: inset 1px -1px 0px rgba(239, 103, 55, 0.08);
 }
 
-.csspointerevents .medium-editor-toolbar li button.medium-editor-button-active:after {
+.medium-editor-toolbar li button.medium-editor-button-active:after {
     -webkit-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
        -moz-box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
             box-shadow: inset 1px -1px 0px rgba(34, 34, 34, 0);
@@ -12138,7 +12180,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         height     0.2s linear                       0.2s;
 }
 
-.csspointerevents .medium-editor-toolbar-form:after {
+.medium-editor-toolbar-form:after {
     content: "";
 
     z-index: 5;
@@ -12167,7 +12209,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     pointer-events: none;
 }
 
-.csspointerevents .medium-toolbar-arrow-under .medium-editor-toolbar-form:after {
+.medium-toolbar-arrow-under .medium-editor-toolbar-form:after {
     -webkit-box-shadow:
         inset -1px -1px  1px rgba(34, 34, 34, 0.1),
         inset  1px  1px  1px rgba(34, 34, 34, 0.15),
@@ -12367,7 +12409,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     transition: all 0.125s cubic-bezier(.8, .4, .2, .8) 0s;
 }
 
-.csspointerevents .medium-editor-form-nav:after {
+.medium-editor-form-nav:after {
     content: "";
 
     position: absolute;
@@ -12557,7 +12599,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         visibility 0s   linear                       0.3s;
 }
 
-.csspointerevents .medium-editor-form-tab:after {
+.medium-editor-form-tab:after {
     content: "";
 
     position: absolute;
@@ -12567,19 +12609,19 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     width: 100%;
     height: 100%;
 
-    -webkit-box-shadow: inset 0px 1px 5px rgba(34, 34, 34, 0.10);
+    -webkit-box-shadow: inset 0px 1px 5px rgba(34, 34, 34, 0.15);
 
-       -moz-box-shadow: inset 0px 1px 5px rgba(34, 34, 34, 0.10);
+       -moz-box-shadow: inset 0px 1px 5px rgba(34, 34, 34, 0.15);
 
-            box-shadow: inset 0px 1px 5px rgba(34, 34, 34, 0.10);
+            box-shadow: inset 0px 1px 5px rgba(34, 34, 34, 0.15);
 
     pointer-events: none;
 }
 
-.csspointerevents .medium-toolbar-arrow-over .medium-editor-form-tab:after {
-    -webkit-box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
-            box-shadow: inset 0px -1px 4px rgba(34, 34, 34, 0.15);
+.medium-toolbar-arrow-over .medium-editor-form-tab:after {
+    -webkit-box-shadow: inset 0px -1px 5px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow: inset 0px -1px 5px rgba(34, 34, 34, 0.15);
+            box-shadow: inset 0px -1px 5px rgba(34, 34, 34, 0.15);
 }
 
 /*---------------------------- ANCHOR TAB ----------------------------*/
@@ -12613,26 +12655,6 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         visibility 0s     linear                       0s;
 }
 
-.medium-editor-toolbar-form .medium-editor-toolbar-input {
-    font-size: 14px;
-    line-height: 34px;
-
-    margin-bottom: 8px;
-
-    height: 34px;
-    width: 100%;
-    padding: 0 12px;
-
-    -webkit-border-radius: 4px;
-
-       -moz-border-radius: 4px;
-
-            border-radius: 4px;
-    border: 1px solid #d7d7d7;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
 .medium-editor-form-tab-anchor label {
     font-size: 14px;
     line-height: 17px;
@@ -12645,7 +12667,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     display: block;
 }
 
-.medium-editor-toolbar-form .medium-editor-toolbar-input:focus, .medium-editor-toolbar-form label:focus {
+.medium-editor-toolbar-form label:focus {
     -webkit-box-shadow: none;
        -moz-box-shadow: none;
             box-shadow: none;
@@ -12848,7 +12870,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         width      0.2s linear 0.4s;
 }
 
-.csspointerevents .medium-editor-use-touch .medium-editor-toolbar-form:before {
+.medium-editor-use-touch .medium-editor-toolbar-form:before {
     -webkit-border-radius: inherit;
        -moz-border-radius: inherit;
             border-radius: inherit;
@@ -12869,7 +12891,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         inset -1px -1px  1px rgba(34, 34, 34, 0.15);
 }
 
-.csspointerevents .medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form:before {
+.medium-editor-use-touch.medium-editor-force-right .medium-editor-toolbar-form:before {
     -webkit-box-shadow:
         inset  0px  0px 12px rgba(34, 34, 34, 0.05),
         inset  1px  1px  1px rgba(34, 34, 34, 0.15),
@@ -15268,6 +15290,48 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     overflow: hidden;
 }
 
+.E_NewPageSectionSelector {
+}
+
+.E_NewPageSectionSelector--thumbs {
+    width: -webkit-calc(100% + 16px);
+    width: -moz-calc(100% + 16px);
+    width: calc(100% + 16px);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+       -moz-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+       -moz-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+}
+
+.E_NewPageSectionSelector .E_SectionThumb {
+    margin-bottom: 16px;
+    margin-right: 16px;
+}
+
+.P_sortable-sections .E_SectionThumb {
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
 .E_PageMenu--section.E_GlobalPageSettings--font-settings {
     padding-bottom: 0;
 }
@@ -15434,48 +15498,6 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
     width: 1px;
     height: 32px;
-}
-
-.E_NewPageSectionSelector {
-}
-
-.E_NewPageSectionSelector--thumbs {
-    width: -webkit-calc(100% + 16px);
-    width: -moz-calc(100% + 16px);
-    width: calc(100% + 16px);
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-       -moz-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-       -moz-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-}
-
-.E_NewPageSectionSelector .E_SectionThumb {
-    margin-bottom: 16px;
-    margin-right: 16px;
-}
-
-.P_sortable-sections .E_SectionThumb {
-    margin-bottom: 0;
-    margin-right: 0;
 }
 
 .P_PageElement {
@@ -16519,12 +16541,44 @@ ium-editor-toolbar li button:disabled:not(:hover) {
         -moz-border-radius 0.3s ease-in-out;
 }
 
-.P_font-type-1 .P_PageSection--content {
+.P_font-type-1 .P_PageSection--content .P_font-title {
     font-family: serif;
+    font-weight: bold;
 }
 
-.P_font-type-2 .P_PageSection--content {
+.P_font-type-2 .P_PageSection--content .P_font-title {
     font-family: sans-serif;
+    font-weight: bold;
+}
+
+.P_font-type-3 .P_PageSection--content .P_font-title {
+    font-family: "Open Sans";
+    font-weight: bold;
+}
+
+.P_font-type-4 .P_PageSection--content .P_font-title {
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.P_font-type-1 .P_PageSection--content .P_font-body {
+    font-family: serif;
+    font-weight: normal;
+}
+
+.P_font-type-2 .P_PageSection--content .P_font-body {
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+.P_font-type-3 .P_PageSection--content .P_font-body {
+    font-family: "Open Sans";
+    font-weight: normal;
+}
+
+.P_font-type-4 .P_PageSection--content .P_font-body {
+    font-family: sans-serif;
+    font-weight: normal;
 }
 
 .P_PageSection--content sup {
@@ -16715,522 +16769,6 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 @keyframes E_PageSection--hide-add-button {
     from { opacity: 1; }
     to { opacity: 0; }
-}
-
-/*====================================================================*/
-/*------------ GlobalPageSettings - color-palette-settings -----------*/
-/*====================================================================*/
-
-.E_GlobalColorPaletteSettings {
-    padding: 4px 0px;
-}
-
-.E_GlobalColorPaletteSettings--colors {
-    width: 100%;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-       -moz-box-orient: horizontal;
-       -moz-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-}
-
-.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette) {
-    padding: 4px 20px;
-
-    border-bottom: 1px solid #ddd;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette):first-child {
-    border-top: 1px solid #ddd;
-}
-
-.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette):hover {
-    background-color: #404040;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette):active {
-    background-color: #e85a27;
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-.E_GlobalColorPaletteSettings--color {
-    position: relative;
-    margin-right: 4px;
-
-    width: 32px;
-    height: 32px;
-
-    -webkit-border-radius: 4px;
-
-       -moz-border-radius: 4px;
-
-            border-radius: 4px;
-    -webkit-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
-        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
-
-    -webkit-flex-shrink: 0;
-
-        -ms-flex-negative: 0;
-
-            flex-shrink: 0;
-
-    overflow: hidden;
-
-    -webkit-transform: rotateZ(0);
-
-       -moz-transform: rotateZ(0);
-
-        -ms-transform: rotate(0);
-
-         -o-transform: rotateZ(0);
-
-            transform: rotateZ(0);
-    will-change: background, box-shadow;
-    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    -moz-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -moz-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    -o-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -moz-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
-}
-
-.E_GlobalColorPaletteSettings--color:active {
-    -webkit-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
-        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
-       -moz-box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
-        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
-            box-shadow:
-        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
-        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
-        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
-
-    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
-
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
-
-    -moz-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
-        -moz-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
-
-    -o-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
-
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
-
-    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
-        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
-        -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
-        -moz-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
-}
-
-/*====================================================================*/
-/*----------------- GlobalPageSettings - font-settings ---------------*/
-/*====================================================================*/
-
-.E_GlobalFontSettings {
-    position: relative;
-
-    width: 100%;
-
-    overflow: hidden;
-
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-.E_GlobalFontSettings--wrapper {
-    margin-bottom: -1px;
-
-    width: -webkit-calc(100% + 1px);
-
-    width: -moz-calc(100% + 1px);
-
-    width: calc(100% + 1px);
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-
-    overflow: hidden;
-}
-
-.E_GlobalFontSettings--font-type {
-    position: relative;
-
-    width: -webkit-calc(100% / 3);
-
-    width: -moz-calc(100% / 3);
-
-    width: calc(100% / 3);
-    min-width: 100px;
-    max-width: 160px;
-
-    color: #404040;
-    background-color: #f7f7f7;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-
-    cursor: default;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.E_GlobalFontSettings--font-type:hover {
-    color: #fff;
-    background-color: #404040;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.E_GlobalFontSettings--font-type:active, .E_GlobalFontSettings--font-type__active:active {
-    color: #fff;
-    background-color: #e85a27;
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-.E_GlobalFontSettings--font-type__active {
-    color: #fff;
-    background-color: #ef6737;
-}
-
-.E_GlobalFontSettings--font-type__active:hover {
-    color: #fff;
-    background-color: #ef6737;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.E_GlobalFontSettings--font-type .E_GlobalFontSettings--title, .E_GlobalFontSettings--font-type .E_GlobalFontSettings--body-title, .E_GlobalFontSettings--font-type .E_GlobalFontSettings--body-preview, .E_GlobalFontSettings--font-type:hover .E_GlobalFontSettings--title, .E_GlobalFontSettings--font-type:hover .E_GlobalFontSettings--body-title, .E_GlobalFontSettings--font-type:hover .E_GlobalFontSettings--body-preview, .E_GlobalFontSettings--font-type:active .E_GlobalFontSettings--title, .E_GlobalFontSettings--font-type:active .E_GlobalFontSettings--body-title, .E_GlobalFontSettings--font-type:active .E_GlobalFontSettings--body-text, .E_GlobalFontSettings--font-type__active:active .E_GlobalFontSettings--title, .E_GlobalFontSettings--font-type__active:active .E_GlobalFontSettings--body-title, .E_GlobalFontSettings--font-type__active:active .E_GlobalFontSettings--body-text {
-    -webkit-transition: inherit;
-    -moz-transition: inherit;
-    -o-transition: inherit;
-    transition: inherit;
-}
-
-.E_GlobalFontSettings--font-preview {
-    position: relative;
-
-    padding-bottom: 100%;
-    height: 0;
-
-    overflow: hidden;
-}
-
-.E_GlobalFontSettings--font-preview > * {
-    white-space: nowrap;
-
-    position:absolute;
-    top: 0px;
-    left: -webkit-calc(18% - 4px);
-    left: -moz-calc(18% - 4px);
-    left: calc(18% - 4px);
-
-    overflow: hidden;
-}
-
-.E_GlobalFontSettings--title {
-    font-size: 25px;
-
-    top: -webkit-calc(26% - 10px);
-
-    top: -moz-calc(26% - 10px);
-
-    top: calc(26% - 10px);
-}
-
-.E_GlobalFontSettings--body {
-    font-size: 14px;
-    line-height: 1.5;
-
-    top: -webkit-calc(54% - 8px);
-
-    top: -moz-calc(54% - 8px);
-
-    top: calc(54% - 8px);
-}
-/*--------------------------------------------------------------------*/
-/*---------------------------- FONT TYPES ----------------------------*/
-/*--------------------------------------------------------------------*/
-
-.E_GlobalFontSettings--font-type[data-font-type="P_font-type-1"] .E_GlobalFontSettings--title {
-    font-family: serif;
-    font-weight: bold;
-}
-
-.E_GlobalFontSettings--font-type[data-font-type="P_font-type-1"] .E_GlobalFontSettings--body {
-    font-family: serif;
-    font-weight: normal;
-}
-
-.E_GlobalFontSettings--font-type[data-font-type="P_font-type-2"] .E_GlobalFontSettings--title {
-    font-family: sans-serif;
-    font-weight: bold;
-}
-
-.E_GlobalFontSettings--font-type[data-font-type="P_font-type-2"] .E_GlobalFontSettings--body {
-    font-family: sans-serif;
-    font-weight: normal;
-}
-
-.E_GlobalFontSettings--font-type[data-font-type="P_font-type-3"] .E_GlobalFontSettings--title {
-    font-family: serif;
-    font-weight: bold;
-}
-
-.E_GlobalFontSettings--font-type[data-font-type="P_font-type-3"] .E_GlobalFontSettings--body {
-    font-family: serif;
-    font-weight: normal;
-}
-
-.E_GlobalFontSettings--font-type[data-font-type="P_font-type-4"] .E_GlobalFontSettings--title {
-    font-family: sans-serif;
-    font-weight: bold;
-}
-
-.E_GlobalFontSettings--font-type[data-font-type="P_font-type-4"] .E_GlobalFontSettings--body {
-    font-family: sans-serif;
-    font-weight: normal;
-}
-
-
-/*====================================================================*/
-/*-------------- GlobalPageSettings - language-selector --------------*/
-/*====================================================================*/
-
-.E_GlobalLanguagesSettings--inline-widget-content {
-    padding: 4px 0;
-}
-
-.E_GlobalLanguagesSettings--language {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 34px;
-
-    position: relative;
-    margin: 0;
-
-    padding: 0 20px;
-
-    color: #404040;
-    border-bottom: 1px solid #d7d7d7;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -ms-touch-action: manipulation;
-
-        touch-action: manipulation;
-    cursor: default;
-}
-
-.E_GlobalLanguagesSettings--language:first-child {
-    border-top: 1px solid #d7d7d7;
-}
-
-.E_GlobalLanguagesSettings--language:hover {
-    font-weight: 500;
-
-    color: #fff;
-    background-color: #404040;
-    border-bottom-color: #323232;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.E_GlobalLanguagesSettings--language:active {
-    font-weight: 500;
-
-    color: #fff;
-    background-color: #e85a27;
-    border-bottom-color: #dc6135;
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-.E_GlobalLanguagesSettings--language__selected:hover, .E_GlobalLanguagesSettings--language__selected {
-    font-weight: 500;
-
-    color: #fff;
-    background-color: #e85a27;
-    border-bottom-color: #dc6135;
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-.E_GlobalLanguagesSettings--language svg {
-    margin: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 4px;
-
-    width: 12px;
-    height: 12px;
-
-    fill: #404040;
-
-    display: -webkit-inline-box;
-
-    display: -webkit-inline-flex;
-
-    display: -moz-inline-box;
-
-    display: -ms-inline-flexbox;
-
-    display: inline-flex;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.E_GlobalLanguagesSettings--language__selected svg, .E_GlobalLanguagesSettings--language:hover svg {
-    fill: #fff;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.E_GlobalLanguagesSettings--language:active svg {
-    fill: #fff;
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
 /*====================================================================*/
@@ -17927,6 +17465,522 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
              -o-transform: translateX(calc(-100% + 108px));
                 transform: translateX(calc(-100% + 108px));
     }
+}
+
+/*====================================================================*/
+/*------------ GlobalPageSettings - color-palette-settings -----------*/
+/*====================================================================*/
+
+.E_GlobalColorPaletteSettings {
+    padding: 4px 0px;
+}
+
+.E_GlobalColorPaletteSettings--colors {
+    width: 100%;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+       -moz-box-orient: horizontal;
+       -moz-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette) {
+    padding: 4px 20px;
+
+    border-bottom: 1px solid #ddd;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette):first-child {
+    border-top: 1px solid #ddd;
+}
+
+.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette):hover {
+    background-color: #404040;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_GlobalColorPaletteSettings--colors:not(.E_GlobalColorPaletteSettings--selected-palette):active {
+    background-color: #e85a27;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.E_GlobalColorPaletteSettings--color {
+    position: relative;
+    margin-right: 4px;
+
+    width: 32px;
+    height: 32px;
+
+    -webkit-border-radius: 4px;
+
+       -moz-border-radius: 4px;
+
+            border-radius: 4px;
+    -webkit-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 2px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 4px rgba(34, 34, 34, 0.15);
+
+    -webkit-flex-shrink: 0;
+
+        -ms-flex-negative: 0;
+
+            flex-shrink: 0;
+
+    overflow: hidden;
+
+    -webkit-transform: rotateZ(0);
+
+       -moz-transform: rotateZ(0);
+
+        -ms-transform: rotate(0);
+
+         -o-transform: rotateZ(0);
+
+            transform: rotateZ(0);
+    will-change: background, box-shadow;
+    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    -moz-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    -o-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-box-shadow 0.35s cubic-bezier(.1, 1, .4, 1) 0s;
+}
+
+.E_GlobalColorPaletteSettings--color:active {
+    -webkit-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
+       -moz-box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
+            box-shadow:
+        inset 1px 1px 1px rgba(34, 34, 34, 0.10),
+        inset 0px 0px 3px rgba(34, 34, 34, 0.35),
+        inset 1px 1px 6px rgba(34, 34, 34, 0.15);
+
+    -webkit-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    -moz-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    -o-transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+
+    transition: background-color 0.35s cubic-bezier(.1, 1, .4, 1) 0s,
+        box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
+        -webkit-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s,
+        -moz-box-shadow 0.1s cubic-bezier(.1, 1, .4, 1) 0s;
+}
+
+/*====================================================================*/
+/*----------------- GlobalPageSettings - font-settings ---------------*/
+/*====================================================================*/
+
+.E_GlobalFontSettings {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_GlobalFontSettings--wrapper {
+    margin-bottom: -1px;
+
+    width: -webkit-calc(100% + 1px);
+
+    width: -moz-calc(100% + 1px);
+
+    width: calc(100% + 1px);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+
+    overflow: hidden;
+}
+
+.E_GlobalFontSettings--font-type {
+    position: relative;
+
+    width: -webkit-calc(100% / 3);
+
+    width: -moz-calc(100% / 3);
+
+    width: calc(100% / 3);
+    min-width: 100px;
+    max-width: 160px;
+
+    color: #404040;
+    background-color: #f7f7f7;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+    cursor: default;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.E_GlobalFontSettings--font-type:hover {
+    color: #fff;
+    background-color: #404040;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_GlobalFontSettings--font-type:active, .E_GlobalFontSettings--font-type__active:active {
+    color: #fff;
+    background-color: #e85a27;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.E_GlobalFontSettings--font-type__active {
+    color: #fff;
+    background-color: #ef6737;
+}
+
+.E_GlobalFontSettings--font-type__active:hover {
+    color: #fff;
+    background-color: #ef6737;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_GlobalFontSettings--font-type .E_GlobalFontSettings--title, .E_GlobalFontSettings--font-type .E_GlobalFontSettings--body-title, .E_GlobalFontSettings--font-type .E_GlobalFontSettings--body-preview, .E_GlobalFontSettings--font-type:hover .E_GlobalFontSettings--title, .E_GlobalFontSettings--font-type:hover .E_GlobalFontSettings--body-title, .E_GlobalFontSettings--font-type:hover .E_GlobalFontSettings--body-preview, .E_GlobalFontSettings--font-type:active .E_GlobalFontSettings--title, .E_GlobalFontSettings--font-type:active .E_GlobalFontSettings--body-title, .E_GlobalFontSettings--font-type:active .E_GlobalFontSettings--body-text, .E_GlobalFontSettings--font-type__active:active .E_GlobalFontSettings--title, .E_GlobalFontSettings--font-type__active:active .E_GlobalFontSettings--body-title, .E_GlobalFontSettings--font-type__active:active .E_GlobalFontSettings--body-text {
+    -webkit-transition: inherit;
+    -moz-transition: inherit;
+    -o-transition: inherit;
+    transition: inherit;
+}
+
+.E_GlobalFontSettings--font-preview {
+    position: relative;
+
+    padding-bottom: 100%;
+    height: 0;
+
+    overflow: hidden;
+}
+
+.E_GlobalFontSettings--font-preview > * {
+    white-space: nowrap;
+
+    position:absolute;
+    top: 0px;
+    left: -webkit-calc(18% - 4px);
+    left: -moz-calc(18% - 4px);
+    left: calc(18% - 4px);
+
+    overflow: hidden;
+}
+
+.E_GlobalFontSettings--title {
+    font-size: 25px;
+
+    top: -webkit-calc(26% - 10px);
+
+    top: -moz-calc(26% - 10px);
+
+    top: calc(26% - 10px);
+}
+
+.E_GlobalFontSettings--body {
+    font-size: 14px;
+    line-height: 1.5;
+
+    top: -webkit-calc(54% - 8px);
+
+    top: -moz-calc(54% - 8px);
+
+    top: calc(54% - 8px);
+}
+/*--------------------------------------------------------------------*/
+/*---------------------------- FONT TYPES ----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-1"] .E_GlobalFontSettings--title {
+    font-family: serif;
+    font-weight: bold;
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-1"] .E_GlobalFontSettings--body {
+    font-family: serif;
+    font-weight: normal;
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-2"] .E_GlobalFontSettings--title {
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-2"] .E_GlobalFontSettings--body {
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-3"] .E_GlobalFontSettings--title {
+    font-family: "Open Sans";
+    font-weight: bold;
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-3"] .E_GlobalFontSettings--body {
+    font-family: "Open Sans";
+    font-weight: normal;
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-4"] .E_GlobalFontSettings--title {
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.E_GlobalFontSettings--font-type[data-font-type="P_font-type-4"] .E_GlobalFontSettings--body {
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+
+/*====================================================================*/
+/*-------------- GlobalPageSettings - language-selector --------------*/
+/*====================================================================*/
+
+.E_GlobalLanguagesSettings--inline-widget-content {
+    padding: 4px 0;
+}
+
+.E_GlobalLanguagesSettings--language {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 34px;
+
+    position: relative;
+    margin: 0;
+
+    padding: 0 20px;
+
+    color: #404040;
+    border-bottom: 1px solid #d7d7d7;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -ms-touch-action: manipulation;
+
+        touch-action: manipulation;
+    cursor: default;
+}
+
+.E_GlobalLanguagesSettings--language:first-child {
+    border-top: 1px solid #d7d7d7;
+}
+
+.E_GlobalLanguagesSettings--language:hover {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: #404040;
+    border-bottom-color: #323232;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_GlobalLanguagesSettings--language:active {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: #e85a27;
+    border-bottom-color: #dc6135;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.E_GlobalLanguagesSettings--language__selected:hover, .E_GlobalLanguagesSettings--language__selected {
+    font-weight: 500;
+
+    color: #fff;
+    background-color: #e85a27;
+    border-bottom-color: #dc6135;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+.E_GlobalLanguagesSettings--language svg {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 4px;
+
+    width: 12px;
+    height: 12px;
+
+    fill: #404040;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.E_GlobalLanguagesSettings--language__selected svg, .E_GlobalLanguagesSettings--language:hover svg {
+    fill: #fff;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.E_GlobalLanguagesSettings--language:active svg {
+    fill: #fff;
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
 }
 
 .E_PageElementSettings--transition-wrapper {
@@ -21157,7 +21211,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 /*====================================================================*/
-/*--------------------------- BUTTONELEMENT --------------------------*/
+/*--------------------------- PageElementButton --------------------------*/
 /*====================================================================*/
 
 .P_PageElement__button {
@@ -21265,7 +21319,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     }
 }
 
-.P_ButtonElement {
+.P_PageElementButton {
     position: relative;
     margin: 0;
 
@@ -21278,8 +21332,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     overflow: hidden;
 }
 
-
-.P_PageElement:not(.E_PageElement) .P_ButtonElement:focus, .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
+.P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_PageElement .P_PageElementButton:hover {
     -webkit-transform: scale(1.07);
        -moz-transform: scale(1.07);
         -ms-transform: scale(1.07);
@@ -21287,7 +21340,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
             transform: scale(1.07);
 }
 
-.P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+.P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
     -webkit-transform: scale(1.03);
        -moz-transform: scale(1.03);
         -ms-transform: scale(1.03);
@@ -21295,113 +21348,113 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
             transform: scale(1.03);
 }
 
-.P_PageElement:not(.E_PageElement) .P_ButtonElement {
+.P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_PageElement .P_PageElementButton {
     cursor: pointer;
 }
 
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_ButtonElement {
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton {
     -webkit-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
     -moz-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
     -o-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
     transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
 }
 
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_ButtonElement:focus, .P_animations-10 .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:hover {
     -webkit-transition: all 0.2s cubic-bezier(.5, .2, .6, .8) 0s;
     -moz-transition: all 0.2s cubic-bezier(.5, .2, .6, .8) 0s;
     -o-transition: all 0.2s cubic-bezier(.5, .2, .6, .8) 0s;
     transition: all 0.2s cubic-bezier(.5, .2, .6, .8) 0s;
 }
 
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:active {
     -webkit-transition: all 0.05s ease-in 0s;
     -moz-transition: all 0.05s ease-in 0s;
     -o-transition: all 0.05s ease-in 0s;
     transition: all 0.05s ease-in 0s;
 }
 
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_ButtonElement {
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton {
     -webkit-transition: all 0.25s cubic-bezier(.5, .1, .7, .9) 0s;
     -moz-transition: all 0.25s cubic-bezier(.5, .1, .7, .9) 0s;
     -o-transition: all 0.25s cubic-bezier(.5, .1, .7, .9) 0s;
     transition: all 0.25s cubic-bezier(.5, .1, .7, .9) 0s;
 }
 
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_ButtonElement:focus, .P_animations-20 .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
-    -webkit-transition: all 0.125s cubic-bezier(.1, .1, .5, 1) 0s;
-    -moz-transition: all 0.125s cubic-bezier(.1, .1, .5, 1) 0s;
-    -o-transition: all 0.125s cubic-bezier(.1, .1, .5, 1) 0s;
-    transition: all 0.125s cubic-bezier(.1, .1, .5, 1) 0s;
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:hover {
+    -webkit-transition: all 0.125s cubic-bezier(.1, .1, .5, .1) 0s;
+    -moz-transition: all 0.125s cubic-bezier(.1, .1, .5, .1) 0s;
+    -o-transition: all 0.125s cubic-bezier(.1, .1, .5, .1) 0s;
+    transition: all 0.125s cubic-bezier(.1, .1, .5, .1) 0s;
 }
 
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:active {
     -webkit-transition: all 0.05s ease-in 0s;
     -moz-transition: all 0.05s ease-in 0s;
     -o-transition: all 0.05s ease-in 0s;
     transition: all 0.05s ease-in 0s;
 }
 
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_ButtonElement {
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton {
     -webkit-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
     -moz-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
     -o-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
     transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
 }
 
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_ButtonElement:focus, .P_animations-30 .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
-    -webkit-transition: all 0.1s cubic-bezier(.2, .1, .3, 1) 0s;
-    -moz-transition: all 0.1s cubic-bezier(.2, .1, .3, 1) 0s;
-    -o-transition: all 0.1s cubic-bezier(.2, .1, .3, 1) 0s;
-    transition: all 0.1s cubic-bezier(.2, .1, .3, 1) 0s;
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:hover {
+    -webkit-transition: all 0.1s cubic-bezier(.2, .1, .3, .1) 0s;
+    -moz-transition: all 0.1s cubic-bezier(.2, .1, .3, .1) 0s;
+    -o-transition: all 0.1s cubic-bezier(.2, .1, .3, .1) 0s;
+    transition: all 0.1s cubic-bezier(.2, .1, .3, .1) 0s;
 }
 
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:active {
     -webkit-transition: all 0.035s ease-in 0s;
     -moz-transition: all 0.035s ease-in 0s;
     -o-transition: all 0.035s ease-in 0s;
     transition: all 0.035s ease-in 0s;
 }
 
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_ButtonElement {
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton {
     -webkit-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
     -moz-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
     -o-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
     transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
 }
 
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_ButtonElement:focus, .P_animations-40 .P_PageElement:not(.E_PageElement) .P_ButtonElement:hover {
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:hover {
     -webkit-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
     -moz-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
     -o-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
     transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
 }
 
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_ButtonElement:active {
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:active {
     -webkit-transition: all 0.035s ease-in 0s;
     -moz-transition: all 0.035s ease-in 0s;
     -o-transition: all 0.035s ease-in 0s;
     transition: all 0.035s ease-in 0s;
 }
 
-.P_roundness-0 .P_ButtonElement {
+.P_roundness-0 .P_PageElementButton {
 	-webkit-border-radius: 0;
 	   -moz-border-radius: 0;
 	        border-radius: 0;
 }
 
-.P_roundness-10 .P_ButtonElement {
+.P_roundness-10 .P_PageElementButton {
 	-webkit-border-radius: 4px;
 	   -moz-border-radius: 4px;
 	        border-radius: 4px;
 }
 
-.P_roundness-20 .P_ButtonElement {
+.P_roundness-20 .P_PageElementButton {
 	-webkit-border-radius: 8px;
 	   -moz-border-radius: 8px;
 	        border-radius: 8px;
 }
 
-.P_roundness-30 .P_ButtonElement, .P_roundness-40 .P_ButtonElement {
+.P_roundness-30 .P_PageElementButton, .P_roundness-40 .P_PageElementButton {
 	-webkit-border-radius: 28px;
 	   -moz-border-radius: 28px;
 	        border-radius: 28px;
@@ -21410,35 +21463,35 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 /*
 @-moz-document url-prefix() {
 
-    .E.P_Page__loaded .P_ButtonElement {
+    .E.P_Page__loaded .P_PageElementButton {
         width: 100%;
 
-        animation: P_ButtonElement--width-auto 0.001s linear 0s forwards;
+        animation: P_PageElementButton--width-auto 0.001s linear 0s forwards;
     }
 }
 */
 
-@-webkit-keyframes P_ButtonElement--width-auto {
+@-webkit-keyframes P_PageElementButton--width-auto {
     from { width: 100%; }
     to { width: auto; }
 }
 
-@-moz-keyframes P_ButtonElement--width-auto {
+@-moz-keyframes P_PageElementButton--width-auto {
     from { width: 100%; }
     to { width: auto; }
 }
 
-@-o-keyframes P_ButtonElement--width-auto {
+@-o-keyframes P_PageElementButton--width-auto {
     from { width: 100%; }
     to { width: auto; }
 }
 
-@keyframes P_ButtonElement--width-auto {
+@keyframes P_PageElementButton--width-auto {
     from { width: 100%; }
     to { width: auto; }
 }
 
-.P_ButtonElement--content-wrapper {
+.P_PageElementButton--content-wrapper {
     vertical-align: middle;
     white-space: nowrap;
 
@@ -21465,7 +21518,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
         width 0.3s ease-in-out 0s;
 }
 
-.P_ButtonElement--text-wrapper {
+.P_PageElementButton--text-wrapper {
     font-size: 19px;
     line-height: 52px;
     text-align: center;
@@ -21476,7 +21529,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     display: table-cell;
 }
 
-.P_ButtonElement--text {
+.P_PageElementButton--text {
     line-height: 22px;
     font-weight: bold;
     white-space: normal;
@@ -21515,22 +21568,22 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
         color 0.1s linear 0s;
 }
 
-.E_PageSection__stop-color-transitions .P_ButtonElement--text {
+.E_PageSection__stop-color-transitions .P_PageElementButton--text {
     -webkit-transition: padding 0.3s ease-in-out 0s;
     -moz-transition: padding 0.3s ease-in-out 0s;
     -o-transition: padding 0.3s ease-in-out 0s;
     transition: padding 0.3s ease-in-out 0s;
 }
 
-.P_ButtonElement__long-text .P_ButtonElement--text-wrapper {
+.P_PageElementButton__long-text .P_PageElementButton--text-wrapper {
     font-size: 17px;
 }
 
-.P_ButtonElement__long-text .P_ButtonElement--text {
+.P_PageElementButton__long-text .P_PageElementButton--text {
     top: 0px;
 }
 
-.P_ButtonElement--icon {
+.P_PageElementButton--icon {
     line-height: 0;
     vertical-align: middle;
 
@@ -21557,11 +21610,11 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     transition: width 0.3s ease-in-out;
 }
 
-.P_ButtonElement__has-icon .P_ButtonElement--text {
+.P_PageElementButton__has-icon .P_PageElementButton--text {
     padding-left: 0;
 }
 
-.P_ButtonElement--icon svg {
+.P_PageElementButton--icon svg {
     margin: auto;
     position: absolute;
     top: 10px;
@@ -21589,63 +21642,63 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
         left 0.3s ease-in-out;
 }
 
-.E_PageSection__stop-color-transitions .P_ButtonElement--icon svg {
+.E_PageSection__stop-color-transitions .P_PageElementButton--icon svg {
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
     transition: none;
 }
 
-.E.P_Page__loaded .P_ButtonElement--icon[data-ractive-transition="intro"] {
-    -webkit-animation: P_ButtonElement--icon-width-0-56 0.3s ease-in-out forwards;
-       -moz-animation: P_ButtonElement--icon-width-0-56 0.3s ease-in-out forwards;
-         -o-animation: P_ButtonElement--icon-width-0-56 0.3s ease-in-out forwards;
-            animation: P_ButtonElement--icon-width-0-56 0.3s ease-in-out forwards;
+.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition="intro"] {
+    -webkit-animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
+       -moz-animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
+         -o-animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
+            animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
 }
 
-.E.P_Page__loaded .P_ButtonElement--icon[data-ractive-transition^="outro"] {
-    -webkit-animation: P_ButtonElement--icon-width-56-0 0.3s ease-in-out forwards;
-       -moz-animation: P_ButtonElement--icon-width-56-0 0.3s ease-in-out forwards;
-         -o-animation: P_ButtonElement--icon-width-56-0 0.3s ease-in-out forwards;
-            animation: P_ButtonElement--icon-width-56-0 0.3s ease-in-out forwards;
+.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition^="outro"] {
+    -webkit-animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
+       -moz-animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
+         -o-animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
+            animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
 }
 
-@-webkit-keyframes P_ButtonElement--icon-width-0-56 {
+@-webkit-keyframes P_PageElementButton--icon-width-0-56 {
     from { width: 0; }
     to { width: 56px; }
 }
 
-@-moz-keyframes P_ButtonElement--icon-width-0-56 {
+@-moz-keyframes P_PageElementButton--icon-width-0-56 {
     from { width: 0; }
     to { width: 56px; }
 }
 
-@-o-keyframes P_ButtonElement--icon-width-0-56 {
+@-o-keyframes P_PageElementButton--icon-width-0-56 {
     from { width: 0; }
     to { width: 56px; }
 }
 
-@keyframes P_ButtonElement--icon-width-0-56 {
+@keyframes P_PageElementButton--icon-width-0-56 {
     from { width: 0; }
     to { width: 56px; }
 }
 
-@-webkit-keyframes P_ButtonElement--icon-width-56-0 {
+@-webkit-keyframes P_PageElementButton--icon-width-56-0 {
     from { width: 56px; }
     to { width: 0px; }
 }
 
-@-moz-keyframes P_ButtonElement--icon-width-56-0 {
+@-moz-keyframes P_PageElementButton--icon-width-56-0 {
     from { width: 56px; }
     to { width: 0px; }
 }
 
-@-o-keyframes P_ButtonElement--icon-width-56-0 {
+@-o-keyframes P_PageElementButton--icon-width-56-0 {
     from { width: 56px; }
     to { width: 0px; }
 }
 
-@keyframes P_ButtonElement--icon-width-56-0 {
+@keyframes P_PageElementButton--icon-width-56-0 {
     from { width: 56px; }
     to { width: 0px; }
 }
@@ -21656,27 +21709,27 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
         width: 288px;
     }
 
-    .P_ButtonElement {
+    .P_PageElementButton {
         max-width: auto;
         width: 100%;
     }
 
-    .P_ButtonElement__has-icon .P_ButtonElement--content-wrapper, .P_ButtonElement__has-icon .P_ButtonElement--text-wrapper {
+    .P_PageElementButton__has-icon .P_PageElementButton--content-wrapper, .P_PageElementButton__has-icon .P_PageElementButton--text-wrapper {
         width: 100%;
     }
 
-    .P_ButtonElement__has-icon .P_ButtonElement--content-wrapper {
+    .P_PageElementButton__has-icon .P_PageElementButton--content-wrapper {
         padding-left: 56px;
         padding-right: 20px;
     }
 
-    .P_ButtonElement__has-icon .P_ButtonElement--text {
+    .P_PageElementButton__has-icon .P_PageElementButton--text {
         padding-right: 0;
         width: 300px;
         max-width: 100%;
     }
 
-    .P_ButtonElement--icon {
+    .P_PageElementButton--icon {
         position:absolute;
         left: 0px;
         top: 0;
@@ -21729,7 +21782,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     display: inline-block !important;
 }
 
-.E_ButtonElements--add-button  {
+.E_PageElementButtons--add-button  {
     margin: auto;
     z-index: 30;
     position: absolute;
@@ -21738,7 +21791,7 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     right: -40px;
 }
 
-.E_ButtonElements--add-button__bottom {
+.E_PageElementButtons--add-button__bottom {
     top: auto;
     bottom: -32px;
     right: 0px;
@@ -21816,76 +21869,6 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 
-
-.P_PageElement__title {
-    position: relative;
-
-    line-height: 1.4;
-
-    display: inline-block;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.P_PageElementTitle {
-    font-size: 32px;
-    line-height: 1.4;
-
-    margin: 0;
-
-    min-height: 100%;
-    max-height: 100%;
-    min-width: 24px;
-    min-height: 45px;
-    padding: 0;
-
-    display: inline-block;
-}
-
-.P_PageElement__title.E_PageElement__empty:not(.E_PageElement__active) > .P_PageElementTitle {
-    line-height: 0;
-
-    margin: 0;
-
-    min-width: 0px;
-    max-width: 0px;
-    min-height: 0px;
-    max-height: 0px;
-    padding: 0;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.P_PageElement__title.E_PageElement__empty:not(.E_PageElement__active) {
-    line-height: 0;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.P_PageElement__title.E_PageElement__empty.E_PageElement__active > .P_PageElementTitle {
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
 
 .P_BackgroundImage {
     position:absolute;
@@ -21968,5 +21951,75 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     background-attachment: fixed;
 }
 
+
+.P_PageElement__title {
+    position: relative;
+
+    line-height: 1.4;
+
+    display: inline-block;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElementTitle {
+    font-size: 32px;
+    line-height: 1.4;
+
+    margin: 0;
+
+    min-height: 100%;
+    max-height: 100%;
+    min-width: 24px;
+    min-height: 45px;
+    padding: 0;
+
+    display: inline-block;
+}
+
+.P_PageElement__title.E_PageElement__empty:not(.E_PageElement__active) > .P_PageElementTitle {
+    line-height: 0;
+
+    margin: 0;
+
+    min-width: 0px;
+    max-width: 0px;
+    min-height: 0px;
+    max-height: 0px;
+    padding: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElement__title.E_PageElement__empty:not(.E_PageElement__active) {
+    line-height: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElement__title.E_PageElement__empty.E_PageElement__active > .P_PageElementTitle {
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
 
 /*# sourceMappingURL=admin.css.map */

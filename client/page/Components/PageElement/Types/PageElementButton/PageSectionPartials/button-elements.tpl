@@ -1,4 +1,4 @@
-{{#if .section.buttons.length || .editMode}}
+{{#if ~/section.buttons.length || .editMode}}
 
 <div class="
         P_PageSection--buttons
@@ -23,9 +23,16 @@
 
     <div class="P_PageSection--buttons-wrapper" decorator="Sortable:'section.buttons','PageElementButton','button'">
 
-        {{#each .section.buttons}}
+        {{#each ~/section.buttons}}
 
-        <PageElementButton sortable="{{~/section.buttons.length > 1}}" index="{{@index}}" element="{{.}}" defaultColors="{{~/section.defaultColors}}" lang="{{~/lang}}" tplLang="{{~/tplLang}}" />
+            <PageElementButton
+                element="{{.}}"
+                sortable="{{~/section.buttons.length > 1}}"
+                color="{{~/section.specialColor}}"
+                defaultColors="{{~/section.defaultColors}}"
+                lang="{{~/lang}}"
+                tplLang="{{~/tplLang}}"
+            />
 
         {{/each}}
 

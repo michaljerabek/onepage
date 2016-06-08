@@ -105,9 +105,9 @@
 
             if (order.length > 1) {
 
-                var b,
+                var c,
 
-                    buttons = this.findAllComponents(componentName),
+                    components = this.findAllComponents(componentName),
 
                     sorted = [],
 
@@ -115,18 +115,18 @@
 
                 do {
 
-                    b = buttons.length - 1;
+                    c = components.length - 1;
 
-                    for (b; b >= 0; b--) {
+                    for (c; c >= 0; c--) {
 
-                        if (buttons[b].get("id") === current) {
+                        if (components[c].get("id") === current) {
 
-                            buttons[b].set("stopTransition", true);
+                            components[c].set("stopTransition", true);
+
+                            sorted.push(components[c].get("element"));
 
                             //nejspíš chyba v Ractivu, ale je nutné nejdříve odstranit všechny observery
-                            buttons[b].cancelObservers();
-
-                            sorted.push(buttons[b].get("element"));
+                            components[c].cancelObservers();
 
                             //nastavit elementy podle pořadí, protože byly přetažením nastaveny na jiných pozicích,
                             //takže při přeřazení dat v poli by se zobrazovaly nesprávně
@@ -146,13 +146,13 @@
 
         EventEmitter.on("saved.Page." + this.EVENT_NS, function () {
 
-            var buttons = this.findAllComponents(componentName),
+            var components = this.findAllComponents(componentName),
 
-                b = buttons.length - 1;
+                c = components.length - 1;
 
-            for (b; b >= 0; b--) {
+            for (c; c >= 0; c--) {
 
-                buttons[b].set("stopTransition", false);
+                components[c].set("stopTransition", false);
             }
 
         }.bind(this));
