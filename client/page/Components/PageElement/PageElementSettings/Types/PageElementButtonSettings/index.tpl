@@ -54,30 +54,30 @@
                             title: "Nastavit jako hypertextový odkaz na externí stránku nebo email."
                         }
                     ],
-                    className: "E_ButtonElementSettings--type"
+                    className: "E_PageElementButtonSettings--type"
                 }
             }}
 
             {{#if .data.type === "link"}}
 
 
-                <div class="E_ButtonElementSettings--link">
+                <div class="E_PageElementButtonSettings--link">
 
-                    <div class="E_ButtonElementSettings--input">
+                    <div class="E_PageElementButtonSettings--input">
 
-                    <label class="E_ButtonElementSettings--label" for="E_ButtonElementSettings--link">URL adresa, email:</label>
+                    <label class="E_PageElementButtonSettings--label" for="E_PageElementButtonSettings--link">URL adresa, email:</label>
 
                     {{> Text {
                             size: "small",
                             adaptive: true,
                             value: ".data.link",
-                            id: "E_ButtonElementSettings--link"
+                            id: "E_PageElementButtonSettings--link"
                         }
                     }}
 
                     </div>
 
-                    <div class="E_PageElementSettings--note E_ButtonElementSettings--note">
+                    <div class="E_PageElementSettings--note E_PageElementButtonSettings--note">
                         Pro nastavení odkazu na jinou sekci na této stránce, použijte nastavení <q>Tlačítko</q>.
                     </div>
 
@@ -87,9 +87,9 @@
 
             {{#if .data.type === "button"}}
 
-            <div class="E_ButtonElementSettings--button">
+            <div class="E_PageElementButtonSettings--button">
 
-                <div class="E_ButtonElementSettings--input E_ButtonElementSettings--input__toggle {{#if .data.scrollToSection}}E_ButtonElementSettings--input__on{{/if}}">
+                <div class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__toggle {{#if .data.scrollToSection}}E_PageElementButtonSettings--input__on{{/if}}">
 
                 {{> ToggleField {
                         size: "small",
@@ -102,7 +102,7 @@
 
                 {{#if .data.scrollToSection}}
 
-                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_ButtonElementSettings--input E_ButtonElementSettings--input__select">
+                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
 
                     {{> Select {
                             adaptive: true,
@@ -116,7 +116,7 @@
 
                 {{/if}}
 
-                <div class="E_ButtonElementSettings--input E_ButtonElementSettings--input__toggle {{#if .data.addToCart}}E_ButtonElementSettings--input__on{{/if}}">
+                <div class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__toggle {{#if .data.addToCart}}E_PageElementButtonSettings--input__on{{/if}}">
 
                 {{> ToggleField {
                         size: "small",
@@ -129,7 +129,7 @@
 
                 {{#if .data.addToCart}}
 
-                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_ButtonElementSettings--input E_ButtonElementSettings--input__select">
+                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
 
                     {{> Select {
                             adaptive: true,
@@ -146,7 +146,7 @@
 
                 {{/if}}
 
-                <div class="E_ButtonElementSettings--input E_ButtonElementSettings--input__toggle {{#if .data.download}}E_ButtonElementSettings--input__on{{/if}}">
+                <div class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__toggle {{#if .data.download}}E_PageElementButtonSettings--input__on{{/if}}">
 
                 {{> ToggleField {
                         size: "small",
@@ -159,7 +159,7 @@
 
                 {{#if .data.download}}
 
-                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_ButtonElementSettings--input E_ButtonElementSettings--input__select">
+                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_PageElementButtonSettings--input__file E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
 
                     {{> Select {
                             adaptive: true,
@@ -168,7 +168,23 @@
                             options: [{
                                 text: "Vyberte soubor...",
                                 value: ""
-                            }]
+                            }].concat(.files || [])
+                        }
+                    }}
+
+                    <input type="file" name="file" id="E_PageElementButtonSettings--file-input" hidden>
+
+                    {{> Button {
+                            text: "Nahrát",
+                            title: "Nahrát nový soubor",
+                            size: "small",
+                            type: .fileButtonType || "default",
+                            state: .fileButtonState,
+                            icon: "#icon-upload-2",
+                            progress: .fileButtonProgress,
+                            className: "E_PageElementButtonSettings--file-button",
+                            fire: "uploadFile",
+                            event: "#E_PageElementButtonSettings--file-input"
                         }
                     }}
 

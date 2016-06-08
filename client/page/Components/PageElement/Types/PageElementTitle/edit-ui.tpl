@@ -1,4 +1,19 @@
-<span on-tap="@this.fire('openPageElementSettings', event, 'edit1')">upravit</span>
+<div class="E_PageElementEditUI__right">
+
+
+    {{> FlatButton {
+    size: "small",
+    fire: "openPageElementSettings",
+    event: "edit1",
+    icon: "#icon-gear",
+    className: "E_PageElementEditUI--edit1",
+    state: .openPageElementSettings === "edit1" ? "active" : "",
+    title: "Otevřít nastavení tlačítka",
+    preventDefault: true
+    }
+    }}
+
+</div>
 
 {{#if .openPageElementSettings === 'edit1'}}
 <PageElementSettings

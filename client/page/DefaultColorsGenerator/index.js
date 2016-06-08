@@ -624,56 +624,10 @@ DefaultColorsGenerator.prototype.getBlackWhite = function (color, minContrast, p
         color: Spectra(color)
     };
 
-    color.contrastWithBlack       = calcContrastRatio(BLACK, color.color);
-    color.contrastWithBlackColor  = BLACK_RGB;
-    color.contrastWithBlackOk     = color.contrastWithBlack >= minContrast;
+    color.contrastWithBlack = calcContrastRatio(BLACK, color.color);
+    color.contrastWithWhite = calcContrastRatio(WHITE, color.color);
 
-    if (color.contrastWithBlack > minContrast) {
-
-        color.contrastWithBlack2      = calcContrastRatio(BLACK2, color.color);
-        color.contrastWithBlack2Color = BLACK2_RGB;
-        color.contrastWithBlack2Ok    = color.contrastWithBlack2 >= minContrast;
-
-        if (color.contrastWithBlack2 > minContrast) {
-
-            color.contrastWithBlack3      = calcContrastRatio(BLACK3, color.color);
-            color.contrastWithBlack3Color = BLACK3_RGB;
-            color.contrastWithBlack3Ok    = color.contrastWithBlack3 >= minContrast;
-        }
-    }
-
-    color.contrastWithWhite       = calcContrastRatio(WHITE, color.color);
-    color.contrastWithWhiteColor  = WHITE_RGB;
-    color.contrastWithWhiteOk     = color.contrastWithWhite >= minContrast;
-    color.contrastWithWhiteOk2    = color.contrastWithWhite >= TEXT_COLOR_MIN_CONTRAST;
-
-    if (color.contrastWithWhite > minContrast) {
-
-        color.contrastWithWhite2      = calcContrastRatio(WHITE2, color.color);
-        color.contrastWithWhite2Color = WHITE2_RGB;
-        color.contrastWithWhite2Ok    = color.contrastWithWhite2 >= minContrast;
-        color.contrastWithWhite2Ok2   = color.contrastWithWhite2 >= TEXT_COLOR_MIN_CONTRAST;
-
-        if (color.contrastWithWhite2 > minContrast) {
-
-            color.contrastWithWhite3      = calcContrastRatio(WHITE3, color.color);
-            color.contrastWithWhite3Color = WHITE3_RGB;
-            color.contrastWithWhite3Ok    = color.contrastWithWhite3 >= minContrast;
-            color.contrastWithWhite3Ok2   = color.contrastWithWhite3 >= TEXT_COLOR_MIN_CONTRAST;
-        }
-    }
-
-    if (preferWhite) {
-
-        if (color.contrastWithWhite3Ok2) {
-
-            return WHITE3_RGB;
-        }
-
-        if (color.contrastWithWhite2Ok2) {
-
-            return WHITE2_RGB;
-        }
+    if (preferWhite && color.contrastWithWhite >= minContrast) {
 
         if (color.contrastWithWhiteOk) {
 
@@ -681,15 +635,83 @@ DefaultColorsGenerator.prototype.getBlackWhite = function (color, minContrast, p
         }
     }
 
-    var black = (color.contrastWithBlack3Ok && 3) || (color.contrastWithBlack2Ok && 2) || "",
-        white = (color.contrastWithWhite3Ok && 3) || (color.contrastWithWhite2Ok && 2) || "",
-
-        blackContrast = color["contrastWithBlack" + black],
-        whiteContrast = color["contrastWithWhite" + white],
-        blackColor    = color["contrastWithBlack" + black + "Color"],
-        whiteColor    = color["contrastWithWhite" + white + "Color"];
-
-    return blackContrast > whiteContrast ? blackColor : whiteColor;
+    return color.contrastWithBlack > color.contrastWithWhite ? BLACK_RGB : WHITE_RGB;
 };
+//
+//DefaultColorsGenerator.prototype.getBlackWhite = function (color, minContrast, preferWhite) {
+//
+//    minContrast = minContrast || TEXT_COLOR_MIN_CONTRAST;
+//
+//    color = {
+//        color: Spectra(color)
+//    };
+//
+//    color.contrastWithBlack       = calcContrastRatio(BLACK, color.color);
+//    color.contrastWithBlackColor  = BLACK_RGB;
+//    color.contrastWithBlackOk     = color.contrastWithBlack >= minContrast;
+//
+//    if (color.contrastWithBlack > minContrast) {
+//
+//        color.contrastWithBlack2      = calcContrastRatio(BLACK2, color.color);
+//        color.contrastWithBlack2Color = BLACK2_RGB;
+//        color.contrastWithBlack2Ok    = color.contrastWithBlack2 >= minContrast;
+//
+//        if (color.contrastWithBlack2 > minContrast) {
+//
+//            color.contrastWithBlack3      = calcContrastRatio(BLACK3, color.color);
+//            color.contrastWithBlack3Color = BLACK3_RGB;
+//            color.contrastWithBlack3Ok    = color.contrastWithBlack3 >= minContrast;
+//        }
+//    }
+//
+//    color.contrastWithWhite       = calcContrastRatio(WHITE, color.color);
+//    color.contrastWithWhiteColor  = WHITE_RGB;
+//    color.contrastWithWhiteOk     = color.contrastWithWhite >= minContrast;
+//    color.contrastWithWhiteOk2    = color.contrastWithWhite >= TEXT_COLOR_MIN_CONTRAST;
+//
+//    if (color.contrastWithWhite > minContrast) {
+//
+//        color.contrastWithWhite2      = calcContrastRatio(WHITE2, color.color);
+//        color.contrastWithWhite2Color = WHITE2_RGB;
+//        color.contrastWithWhite2Ok    = color.contrastWithWhite2 >= minContrast;
+//        color.contrastWithWhite2Ok2   = color.contrastWithWhite2 >= TEXT_COLOR_MIN_CONTRAST;
+//
+//        if (color.contrastWithWhite2 > minContrast) {
+//
+//            color.contrastWithWhite3      = calcContrastRatio(WHITE3, color.color);
+//            color.contrastWithWhite3Color = WHITE3_RGB;
+//            color.contrastWithWhite3Ok    = color.contrastWithWhite3 >= minContrast;
+//            color.contrastWithWhite3Ok2   = color.contrastWithWhite3 >= TEXT_COLOR_MIN_CONTRAST;
+//        }
+//    }
+//
+//    if (preferWhite) {
+//
+//        if (color.contrastWithWhite3Ok2) {
+//
+//            return WHITE3_RGB;
+//        }
+//
+//        if (color.contrastWithWhite2Ok2) {
+//
+//            return WHITE2_RGB;
+//        }
+//
+//        if (color.contrastWithWhiteOk) {
+//
+//            return WHITE_RGB;
+//        }
+//    }
+//
+//    var black = (color.contrastWithBlack3Ok && 3) || (color.contrastWithBlack2Ok && 2) || "",
+//        white = (color.contrastWithWhite3Ok && 3) || (color.contrastWithWhite2Ok && 2) || "",
+//
+//        blackContrast = color["contrastWithBlack" + black],
+//        whiteContrast = color["contrastWithWhite" + white],
+//        blackColor    = color["contrastWithBlack" + black + "Color"],
+//        whiteColor    = color["contrastWithWhite" + white + "Color"];
+//
+//    return blackContrast > whiteContrast ? blackColor : whiteColor;
+//};
 
 module.exports = DefaultColorsGenerator;

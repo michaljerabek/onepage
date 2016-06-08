@@ -27,7 +27,7 @@
 
     } else {
 
-        root.ButtonElement = factory(
+        root.PageElementButton = factory(
             root.PageElement,
             root.EventEmitter,
             root.Ractive,
@@ -61,6 +61,8 @@
 
         MIN_TEXT_CONTRAST: 5,
 
+        MAX_FILESIZE: 64,
+
         components: {
         },
 
@@ -69,22 +71,42 @@
         data: function () {
 
             return {
+                uploadable: true,
                 type: "button",
                 hasEditUI: true,
                 transitionName: "slidevh"
             };
         },
-
         onconfig: function () {
 
-            this.CLASS.text = "P_ButtonElement--text";
-            this.CLASS.icon = "P_ButtonElement--icon";
+            this.CLASS.element = "P_PageElementButton";
+
+            this.CLASS.text = "P_PageElementButton--text";
+            this.CLASS.icon = "P_PageElementButton--icon";
 
             this.superOnconfig();
 
             if (Ractive.EDIT_MODE) {
 
                 if (on.client) {
+
+                    this.OPTIONS.DROPZONE = function () {
+
+                        return {
+                            url: "/upload-file",
+                            paramName: "file",
+
+                            uploadMultiple: false,
+                            acceptedFiles: "",
+                            maxFilesize: this.MAX_FILESIZE,
+
+                            clickable: false,
+
+                            dictInvalidFileType: "Nepodporovaný formát.",
+                            dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
+                            dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})"
+                        };
+                    };
 
                     EventEmitter.on("saving:lang:start.Page." + this.EVENT_NS, function () {
 
@@ -145,6 +167,15 @@
                     }
                 });
 
+                /*ie fix*/
+                this.ieFixBorderWidthTimeout = setTimeout(function() {
+
+                    this.$self.find("." + this.CLASS.element).css({
+                        borderWidth: ""
+                    });
+
+                }.bind(this), 0);
+
             } else {
 
                 this.$text.balanceText();
@@ -172,7 +203,25 @@
 
         initObservers: function () {
 
-            this.linkObserver = this.observe("element.link", this.setIconForLink);
+            this.linkObserver = this.observe("element.link", this.setIcon, {init: false});
+
+            this.typeObserver = this.observe("element.type", function () {
+
+                this.setIcon(this.get("element.link"));
+
+            }, {init: false});
+
+            this.addToCartObserver = this.observe("element.addToCart", function () {
+
+                this.setIcon(this.get("element.link"));
+
+            }, {init: false});
+
+            this.fileObserver = this.observe("element.file element.download", function () {
+
+                this.setIcon(this.get("element.link"));
+
+            }, {init: false});
 
             this.iconObserver = this.observe("element.icon", function () {
 
@@ -223,6 +272,9 @@
             if (this.textObserver) {
 
                 this.linkObserver.cancel();
+                this.fileObserver.cancel();
+                this.typeObserver.cancel();
+                this.addToCartObserver.cancel();
                 this.fillObserver.cancel();
                 this.iconObserver.cancel();
                 this.colorObserver.cancel();
@@ -243,6 +295,7 @@
                 }
             }
 
+            clearTimeout(this.ieFixBorderWidthTimeout);
             clearTimeout(this.fixTextTimeout);
 
             this.superOnteardown();
@@ -358,32 +411,32 @@
             sel.addRange(range);
         },
 
-        setIconForLink: function (value) {
+        setIcon: function (linkValue) {
 
-            if (value) {
+            if (this.get("element.type") === "link") {
 
                 //email
-                if (value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+                if (linkValue && linkValue.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
 
                     this.set("element.icon", "<svg><use xlink:href='#icon-email'></use></svg>");
 
                 //iOS aplikace
-                } else if (value.match(/^\s*(?:https?:\/\/)?(?:www\.)?itunes\.apple\.com\/[a-zA-Z0-9\-]+\/app/i)) {
+                } else if (linkValue && linkValue.match(/^\s*(?:https?:\/\/)?(?:www\.)?itunes\.apple\.com\/[a-zA-Z0-9\-]+\/app/i)) {
 
                     this.set("element.icon", "<svg style='margin-top: -1px;'><use xlink:href='#icon-apple'></use></svg>");
 
                 //Android aplikace
-                } else if (value.match(/^\s*(?:https?:\/\/)?(?:www\.)?play\.google\.com\/store\/apps/i)) {
+                } else if (linkValue && linkValue.match(/^\s*(?:https?:\/\/)?(?:www\.)?play\.google\.com\/store\/apps/i)) {
 
                     this.set("element.icon", "<svg><use xlink:href='#icon-android'></use></svg>");
 
                 //Windows aplikace
-                } else if (value.match(/^\s*(?:https?:\/\/)?(?:www\.)?(?:windowsphone|microsoft)\.com\/[a-zA-Z0-9\-]+\/store\/apps/i)) {
+                } else if (linkValue && linkValue.match(/^\s*(?:https?:\/\/)?(?:www\.)?(?:windowsphone|microsoft)\.com\/[a-zA-Z0-9\-]+\/store\/apps/i)) {
 
                     this.set("element.icon", "<svg><use xlink:href='#icon-windows'></use></svg>");
 
                 //Stahovatelný soubor
-                } else if (value.match(/^(?=[^@]+)\.(?=[a-zA-Z0-9]+$)(?=(?!html$|htm$|php$|py$|asp$))/i)) {
+                } else if (linkValue && linkValue.match(/(\/[^\/.]+|\\[^\\.]+)\.(?=[a-zA-Z0-9]+$)(?=(?!html$|htm$|php$|py$|asp$))/i)) {
 
                     this.set("element.icon", "<svg><use xlink:href='#icon-download'></use></svg>");
 
@@ -392,14 +445,19 @@
                     this.set("element.icon", null);
                 }
 
-            } else if (!this.get("element.download")) {
-
-                this.set("element.icon", null);
-
             //Stahovatelný soubor
-            } else {
+            } else if (this.get("element.download") && this.get("element.file")) {
 
                 this.set("element.icon", "<svg><use xlink:href='#icon-download'></use></svg>");
+
+            //produkt do košíku
+            } else if (this.get("element.addToCart") && this.get("element.product")) {
+
+                this.set("element.icon", "<svg><use xlink:href='#icon-cart'></use></svg>");
+
+            } else {
+
+                this.set("element.icon", null);
             }
         },
 
@@ -437,9 +495,9 @@
 
             this.balanceTextTimeout = setTimeout(function () {
 
-                this.$text.balanceText();
-
                 this.skipTextObserver = true;
+
+                this.$text.balanceText();
 
                 this.set("element.text." + (lang || this.get("lang")), this.$text.html());
 
@@ -473,6 +531,16 @@
             }
         },
 
+        handleUploadSuccess: function (file, res) {
+
+            this.set("element.type", "button");
+
+            this.set("element.file", res.path.replace(/^(?:\\|\/)?public/, ""));
+            this.set("element.download", true);
+
+            this.fire("fileUploaded", res);
+        },
+
         action: function (event, editMode) {
 
             if (!editMode || (event.original.srcEvent || event.original).ctrlKey) {
@@ -480,7 +548,9 @@
                 var link    = this.get("element.link")    || "",
                     product = this.get("element.product") || "",
 
-                    type = this.get("element.type");
+                    type = this.get("element.type"),
+
+                    $a;
 
                 if (type !== "button") {
 
@@ -500,7 +570,14 @@
                             target = null;
                         }
 
-                        window.open(link, target);
+                        $a = $("<a/>")
+                            .attr("href", link)
+                            .attr("target", target)
+                            .appendTo("body");
+
+                        $a.get(0).click();
+
+                        $a.remove();
                     }
 
                 } else {
@@ -516,7 +593,16 @@
 
                     if (this.get("element.download")) {
 
-                        window.open(this.get("element.file"));
+                        var file = this.get("element.file");
+
+                        $a = $("<a/>")
+                            .attr("href",file)
+                            .attr("download", file.match(/[^\\\/]+$/i)[0].replace(/[0-9]+-/, ""))
+                            .appendTo("body");
+
+                        $a.get(0).click();
+
+                        $a.remove();
                     }
 
                 }

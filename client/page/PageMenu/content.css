@@ -58,6 +58,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 
+    margin-left: auto;
+
     padding-left: 32px;
 
     color: var(--color-text-2);

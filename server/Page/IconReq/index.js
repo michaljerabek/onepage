@@ -4,6 +4,7 @@ var config = require("./../../../config");
 var fse = require("fs-extra");
 var path = require("path");
 var mime = require("mime");
+var getFolderSize = require("get-folder-size");
 
 var Icon = require("./../../models/Icon");
 
@@ -17,24 +18,34 @@ var multer = require("multer"),
 
         destination: function (req, file, cb) {
 
-            var path = "public/" + config.upload.icons.path.replace("{{userId}}", req.userId || req.user._id);
+            var path = "public/" + config.upload.icons.path.replace("{{userId}}", req.userId || req.user._id),
+                storagePath = "public/" + config.upload.storagePath.replace("{{userId}}", req.userId || req.user._id);
 
-            fse.stat(path, function (err) {
+            getFolderSize(storagePath, function (err, size) {
 
                 if (err) {
 
-                    fse.mkdirs(path + config.upload.icons.thumbRelPath, function (err) {
-
-                        if (!err) {
-
-                            cb(null, path);
-                        }
-                    });
-
-                    return;
+                    return cb(err, path);
                 }
 
-                cb(null, path);
+                req.storageSize = size;
+
+                fse.stat(path, function (err) {
+
+                    if (err) {
+
+                        fse.mkdirs(path + config.upload.icons.thumbRelPath, function (err) {
+
+                            cb(err, path);
+
+                        });
+
+                        return;
+                    }
+
+                    cb(null, path);
+                });
+
             });
         },
 
@@ -149,18 +160,32 @@ var IconReq = (function() {
             });
         },
 
-        processAndSendIconsUploadReq = function (files, req, res) {
+        processAndSendIconsUploadReq = function (files, MAX_STORAGE, req, res) {
 
             if (!req.files.length) {
 
                 return res.json({
-                    files: files
+                    files: files,
+                    MAX_STORAGE: MAX_STORAGE
                 });
             }
 
             var currentFile = req.files.shift(),
 
                 mimeType = mime.lookup(currentFile.path);
+
+            req.storageSize += currentFile.size;
+
+            if (req.storageSize > config.upload.storageSize) {
+
+                fse.unlink(currentFile.path, function () {});
+
+                MAX_STORAGE.push({
+                    originalname: currentFile.originalname
+                });
+
+                return processAndSendIconsUploadReq(files, MAX_STORAGE, req, res);
+            }
 
             //nahraný soubor je typu svg
             if (mimeType.match(/svg|xml/)) {
@@ -169,7 +194,7 @@ var IconReq = (function() {
 
                     if (err) {
 
-                        return processAndSendIconsUploadReq(files, req, res);
+                        return processAndSendIconsUploadReq(files, MAX_STORAGE, req, res);
                     }
 
                     var content = buffer.toString(),
@@ -192,7 +217,7 @@ var IconReq = (function() {
                             fse.unlink(currentFile.path, function () {});
                         }
 
-                        processAndSendIconsUploadReq(files, req, res);
+                        processAndSendIconsUploadReq(files, MAX_STORAGE, req, res);
                     });
                 });
 
@@ -208,7 +233,7 @@ var IconReq = (function() {
                 path: currentFile.path
             });
 
-            processAndSendIconsUploadReq(files, req, res);
+            processAndSendIconsUploadReq(files, MAX_STORAGE, req, res);
         },
 
         findIconsDirs = function (req, res) {
@@ -315,7 +340,7 @@ var IconReq = (function() {
 
         uploadIcons = function (req, res) {
 
-            processAndSendIconsUploadReq([], req, res);
+            processAndSendIconsUploadReq([], [], req, res);
         },
 
         searchIcons = function (req, res) {

@@ -4,6 +4,7 @@ var router = express.Router();
 
 var ImageReq = require("./../../Page/ImageReq");
 var IconReq = require("./../../Page/IconReq");
+var FileReq = require("./../../Page/FileReq");
 
 var appBuilder = require("./../../../client/Page.js");
 
@@ -67,5 +68,6 @@ router.post("/create-icon", function (req, res) {
 
 ImageReq.registerRoutes(router);
 IconReq.registerRoutes(router);
+FileReq.registerRoutes(router);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 
 <div class="E_PageSectionMessage
-       {{#if .message}}E_PageSectionMessage__active{{/if}}
+       {{#if .showMessage}}E_PageSectionMessage__active{{/if}}
     "
 >
     <div class="E_PageSectionMessage--message {{.messageStatusClass}}">

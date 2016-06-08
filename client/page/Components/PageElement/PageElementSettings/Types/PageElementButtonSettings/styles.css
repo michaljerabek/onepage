@@ -1,0 +1,101 @@
+/*====================================================================*/
+/*----------------------- PageElementButtonSettings ----------------------*/
+/*====================================================================*/
+
+.E_PageElementButtonSettings--type {
+    margin-bottom: 16px;
+}
+
+.E_PageElementButtonSettings--label {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    margin-bottom: 6px;
+
+    color: var(--color-text-1);
+
+    display: block;
+}
+
+.E_PageElementButtonSettings--input__file {
+    display: flex;
+}
+
+.E_PageElementButtonSettings--input__file .Select {
+    margin-right: 8px;
+
+    flex-grow: 1;
+}
+
+.E_PageElementButtonSettings--input__file .Button {
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.E_PageElementButtonSettings--input {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.E_PageElementButtonSettings--input__select:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__select:before,
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__select:after,
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__toggle:before,
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__toggle:after {
+    content: "";
+
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    background-color: #ccc;
+    opacity: 0;
+
+    transition: opacity 0.1s linear;
+}
+
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__on:after,
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__on:before,
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__on + .E_PageElementButtonSettings--input__select:after,
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__on + .E_PageElementButtonSettings--input__select:before {
+    opacity: 1;
+
+    transition: opacity 0.1s linear 0.3s;
+}
+
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__toggle:before {
+    left: -5px;
+
+    width: 5px;
+    height: 1px;
+}
+
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__toggle:after {
+    top: 50%;
+    bottom: auto;
+    left: -6px;
+
+    width: 1px;
+    height: 32px;
+}
+
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__select:before {
+    left: -5px;
+
+    width: 5px;
+    height: 1px;
+}
+
+.E_PageElementButtonSettings--button .E_PageElementButtonSettings--input__select:after {
+    bottom: calc(50% - 1px);
+    top: auto;
+    left: -6px;
+
+    width: 1px;
+    height: 32px;
+}

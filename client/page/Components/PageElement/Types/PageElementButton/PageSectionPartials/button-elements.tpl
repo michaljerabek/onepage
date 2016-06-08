@@ -6,13 +6,13 @@
         P_PageSection--buttons__{{.section.buttons.length}}
         cf
     "
-    decorator="ButtonElements"
+    decorator="PageElementButtons"
 >
 
     {{#if .editMode && .showAddButton}}
     <div class="E_PageSection--add-button
-            E_ButtonElements--add-button
-            {{#if .addButtonBottom}}E_ButtonElements--add-button__bottom{{/if}}
+            E_PageElementButtons--add-button
+            {{#if .addButtonBottom}}E_PageElementButtons--add-button__bottom{{/if}}
         "
         on-tap="@this.fire('addButton')"
         intro-outro="attr:{duration: 300}"
@@ -21,11 +21,11 @@
     </div>
     {{/if}}
 
-    <div class="P_PageSection--buttons-wrapper" decorator="Sortable:'section.buttons','ButtonElement','button'">
+    <div class="P_PageSection--buttons-wrapper" decorator="Sortable:'section.buttons','PageElementButton','button'">
 
         {{#each .section.buttons}}
 
-        <ButtonElement sortable="{{~/section.buttons.length > 1}}" index="{{@index}}" element="{{.}}" defaultColors="{{~/section.defaultColors}}" lang="{{~/lang}}" tplLang="{{~/tplLang}}" />
+        <PageElementButton sortable="{{~/section.buttons.length > 1}}" index="{{@index}}" element="{{.}}" defaultColors="{{~/section.defaultColors}}" lang="{{~/lang}}" tplLang="{{~/tplLang}}" />
 
         {{/each}}
 

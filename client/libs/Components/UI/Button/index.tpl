@@ -10,6 +10,7 @@
     "
     title={{.title}}
     {{#if !.fire && !.set && .state !== 'disabled'}}tabindex="{{.tabindex || 0}}"{{/if}}
+    style="{{.width ? 'width: ' + .width + 'px' : ''}}"
 >
 
     {{#if .fire && .state !== "disabled"}}
@@ -45,7 +46,7 @@
         {{/if}}
 
         {{#if .text}}
-            <span class="Button--text">{{.text}}</span>
+            <span class="Button--text {{#if typeof .progress === 'number'}}Button--text__show-progress{{/if}}" data-progress="{{.progress}}">{{.text}}</span>
         {{/if}}
 
     </span>

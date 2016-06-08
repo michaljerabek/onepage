@@ -10,7 +10,7 @@
 
     } else {
 
-        root.ButtonElements = factory(root.Ractive);
+        root.PageElementButtons = factory(root.Ractive);
     }
 
 }(this, function (Ractive) {
@@ -22,14 +22,14 @@
             Ractive.$win = Ractive.$win || $(window);
 
             var CLASS = {
-                addButton: "E_ButtonElements--add-button"
+                addButton: "E_PageElementButtons--add-button"
             };
 
             this.on("*.removeButton", function (event, element, button) {
 
                 button.removing = true;
 
-                var buttons = this.findAllComponents("ButtonElement"),
+                var buttons = this.findAllComponents("PageElementButton"),
                     b = buttons.length - 1;
 
                 for (b; b >= 0; b--) {
@@ -48,7 +48,7 @@
                     }
                 }
 
-                buttons = this.findAllComponents("ButtonElement");
+                buttons = this.findAllComponents("PageElementButton");
                 b = buttons.length - 1;
 
                 for (b; b >= 0; b--) {
@@ -60,7 +60,7 @@
 
             this.on("addButton", function () {
 
-                this.push("section.buttons", this.components.ButtonElement.prototype.getNewItem.call(this));
+                this.push("section.buttons", this.components.PageElementButton.prototype.getNewItem.call(this));
 
             }.bind(this));
 
@@ -98,7 +98,7 @@
 
             }, {defer: true});
 
-            Ractive.$win.on("resize.ButtonElements-" + this.EVENT_NS, function () {
+            Ractive.$win.on("resize.PageElementButtons-" + this.EVENT_NS, function () {
 
                 clearTimeout(changeButtonPositionTimeout);
 
@@ -111,7 +111,7 @@
 
                 if (Ractive.EDIT_MODE) {
 
-                    Ractive.$win.off(".ButtonElements-" + this.EVENT_NS);
+                    Ractive.$win.off(".PageElementButtons-" + this.EVENT_NS);
 
                     clearTimeout(changeButtonPositionTimeout);
 

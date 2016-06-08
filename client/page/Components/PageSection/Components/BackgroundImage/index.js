@@ -384,13 +384,15 @@
                 return;
             }
 
+            var errorText = error === "MAX_STORAGE" ? "Soubor " + file.name + " se nepodařilo nahrát. Váš prostor pro data je plný." : error;
+
             this.fire("progressBarError", {
                 id: file.name.replace(".", "_")
             });
 
             this.fire("pageSectionMessage", {
                 title: "Nahrát obrázek",
-                text: error,
+                text: errorText,
                 timeout: 3000,
                 status: "error"
             });

@@ -3,4 +3,4 @@
 <PageElementTitle element="{{.section}}" activateButton="true" lang="{{.lang}}" tplLang="{{.tplLang}}"/>
 
 
-{{>ButtonElements}}
+{{>PageElementButtons}}

@@ -21,12 +21,12 @@
                 SectionSettings: Ractive.EDIT_MODE ? require("./PageSectionSettings/Types/SectionSettings") : null,
 
                 PageElementSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings") : null,
-                ButtonElementSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings/Types/ButtonElementSettings") : null,
+                PageElementButtonSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings/Types/PageElementButtonSettings") : null,
 
                 PageElement: require("./../PageElement"),
                 PageElementTitle: require("./../PageElement/Types/PageElementTitle"),
                 PageElementTextContent: require("./../PageElement/Types/PageElementTextContent"),
-                ButtonElement: require("./../PageElement/Types/ButtonElement"),
+                PageElementButton: require("./../PageElement/Types/PageElementButton"),
 
                 BackgroundImage: require("./Components/BackgroundImage")
             },
@@ -85,7 +85,7 @@
         decorators: {
             Sortable: require("./Decorators/Sortable"),
 
-            ButtonElements: require("./../PageElement/Types/ButtonElement/PageSectionDecorators/ButtonElements")
+            PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionDecorators/PageElementButtons")
         },
 
         partials: {
@@ -95,7 +95,7 @@
 
             ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null,
 
-            ButtonElements: require("./../PageElement/Types/ButtonElement/PageSectionPartials/button-elements.tpl")
+            PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionPartials/button-elements.tpl")
         },
 
         data: function () {

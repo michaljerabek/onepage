@@ -4,17 +4,21 @@
 
     if (typeof module === 'object' && module.exports) {
 
-        var Ractive = require("ractive"),
+        var on = require("./../../../../helpers/on"),
+
+            Ractive = require("ractive"),
 
             PageElementSettings = require("./PageElementSettings"),
 
+            Dropzone = on.client ? require("dropzone") : function () {},
+
             U = require("./../../../libs/U"),
-            EventEmitter = require("./../../../libs/EventEmitter")(),
-            on = require("./../../../../helpers/on");
+            EventEmitter = require("./../../../libs/EventEmitter")();
 
         module.exports = factory(
             Ractive,
             PageElementSettings,
+            Dropzone,
             U,
             require("./index.tpl"),
             EventEmitter,
@@ -26,6 +30,7 @@
         root.PageElement = factory(
             root.Ractive,
             root.PageElementSettings,
+            root.Dropzone,
             root.U,
             "",
             $([]),
@@ -33,7 +38,7 @@
         );
     }
 
-}(this, function (Ractive, PageElementSettings, U, template, EventEmitter, on) {
+}(this, function (Ractive, PageElementSettings, Dropzone, U, template, EventEmitter, on) {
 
     /*
      * Abstraktní (!) component pro vytváření editovatelných prvků na stránce.
@@ -132,7 +137,31 @@
             outline: "E_PageElement--outline", //při změně změnit i výše v "setMouseTouchStyles()"
             outlineActive: "E_PageElement--outline__active",
 
-            sortButton: "E_PageElementEditUI--sort"
+            sortButton: "E_PageElementEditUI--sort",
+
+            notFileDragged: "dz-not-file"
+        },
+
+        OPTIONS: {
+
+            DROPZONE: function () {
+
+                return {
+                    url: "/upload-file",
+                    paramName: "file",
+
+                    uploadMultiple: false,
+                    acceptedFiles: "",
+                    maxFilesize: 1,
+                    parallelUploads: 5,
+
+                    clickable: false,
+
+                    dictInvalidFileType: "Nepodporovaný formát.",
+                    dictFileTooBig: "Soubor je příliš velký ({{filesize}} MB). Velikost souboru může být maximálně {{maxFilesize}} MB.",
+                    dictResponseError: "Soubor se nepodařilo nahrát (chyba: {{statusCode}})"
+                };
+            }
         },
 
         components: {
@@ -150,7 +179,8 @@
 
             return {
                 hover: false,
-                editMode: Ractive.EDIT_MODE
+                editMode: Ractive.EDIT_MODE,
+                stopTransition: false
             };
         },
 
@@ -236,8 +266,68 @@
                 if (Ractive.EDIT_MODE) {
 
                     this.initOutline();
+
+                    if (on.client && this.get("uploadable")) {
+
+                        this.initDragDropUpload();
+                    }
                 }
             }
+        },
+
+        initDragDropUpload: function () {
+
+            Dropzone.autoDiscover = false;
+
+            var options = this.OPTIONS.DROPZONE();
+
+            //element pro uložení náhledů (nelze v Dropzone zrušit)
+            this.$dropzonePreview = $("<div/>");
+            options.previewsContainer = this.$dropzonePreview[0];
+
+
+            options.addedfile = this.superHandleAddedfile.bind(this);
+
+            if (this.handleResize) {
+
+                options.resize = this.handleResize.bind(this);
+            }
+
+            if (this.handleThumbnail) {
+
+                options.thumbnail = this.handleThumbnail.bind(this);
+            }
+
+            options.uploadprogress = this.superHandleUploadProgress.bind(this);
+            options.successmultiple = this.superHandleUploadSuccessmultiple.bind(this);
+            options.success = this.superHandleUploadSuccess.bind(this);
+            options.error = this.superHandleUploadError.bind(this);
+            options.complete = this.superHandleUploadComplete.bind(this);
+
+            if (this.onInitDragDropUpload) {
+
+                this.onInitDragDropUpload(options);
+            }
+
+            this.dropzone = this.$self.dropzone(options);
+
+            this.dropzoneInstance = Dropzone.forElement(this.self);
+
+            this.uploadFilesLoaded = true;
+
+            this.dropzone.on("dragenter", function (event) {
+
+                if (!event.originalEvent.dataTransfer.types[0] ||
+                    !event.originalEvent.dataTransfer.types[0].match(/file/i)) {
+
+                    this.self.classList.add(this.CLASS.notFileDragged);
+
+                    return;
+                }
+
+                this.self.classList.remove(this.CLASS.notFileDragged);
+
+            }.bind(this));
         },
 
         //spustí zobrazování ui při najetí myší
@@ -347,6 +437,20 @@
 
         superOnteardown: function () {
 
+            this.torndown = true;
+
+            if (this.dropzone) {
+
+                this.dropzone.off("*");
+
+                this.dropzoneInstance.removeAllFiles(true);
+                this.dropzoneInstance.destroy();
+
+                this.$dropzonePreview.remove();
+                this.$dropzonePreview = null;
+            }
+
+            clearTimeout(this.hideEditUITimeout);
             clearTimeout(this.focusoutTimeout);
 
             this.$self.off("." + this.EVENT_NS);
@@ -535,7 +639,99 @@
 
                 this.set("limitSize", true);
             }
+        },
+
+        superHandleAddedfile : function () {
+
+            if (!this.handleAddedfile || this.handleAddedfile.apply(this, arguments) !== false) {
+
+            }
+        },
+
+        superHandleUploadProgress : function (file, progress) {
+
+            if (!this.handleUploadProgress || this.handleUploadProgress.apply(this, arguments) !== false) {
+
+                if (this.torndown) {
+
+                    return;
+                }
+
+                this.fire("progressBarProgress", {
+                    id: file.name.replace(".", "_"),
+                    progress: progress
+                });
+
+                this.fire("pageSectionMessage", {
+                    title: "Soubor se nahrává...",
+                    text: progress.toFixed() + " %",
+                    status: "info"
+                });
+            }
+        },
+
+        superHandleUploadSuccessmultiple : function () {
+
+            if (!this.handleUploadSuccessmultiple || this.handleUploadSuccessmultiple.apply(this, arguments) !== false) {
+
+            }
+        },
+
+        superHandleUploadSuccess : function (file, res) {
+
+            if (!this.handleUploadSuccess || this.handleUploadSuccess.apply(this, arguments) !== false) {
+
+                var path = res.path.replace(/^public/, "").replace(/\\/g, "/");
+
+                this.set("data.src", path);
+
+                this.fire("pageSectionMessage", {
+                    title: "Nahrát soubor",
+                    text: "Soubor " + file.name + " se podařilo úspěšně nahrát.",
+                    timeout: 2000,
+                    status: "success"
+                });
+            }
+        },
+
+        superHandleUploadError: function (file, error) {
+
+            if (!this.handleUploadError || this.handleUploadError.apply(this, arguments) !== false) {
+
+                var errorText = error === "MAX_STORAGE" ? "Soubor " + file.name + " se nepodařilo nahrát. Váš prostor pro data je plný." : error;
+
+                this.fire("progressBarError", {
+                    id: file.name.replace(".", "_")
+                });
+
+                this.fire("pageSectionMessage", {
+                    title: "Nahrát soubor",
+                    text: errorText,
+                    timeout: 3000,
+                    status: "error"
+                });
+            }
+        },
+
+        superHandleUploadComplete: function () {
+
+            if (!this.handleUploadComplete || this.handleUploadComplete.apply(this, arguments) !== false) {
+
+            }
+        },
+
+        hideEditUI: function () {
+
+            if (Ractive.EDIT_MODE) {
+
+                clearTimeout(this.hideEditUITimeout);
+
+                this.set("hideEditUI", true);
+
+                this.hideEditUITimeout = setTimeout(this.set.bind(this, "hideEditUI", false), 1000);
+            }
         }
+
     });
 
 }));

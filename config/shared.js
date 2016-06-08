@@ -21,7 +21,14 @@ module.exports = {
             thumbWidth: 40,
             thumbHeight: 40,
             name: "Moje ikony"
-        }
+        },
+        files: {
+            path: "uploads/users/{{userId}}/files",
+            name: "Moje soubory"
+        },
+
+        storagePath: "uploads/users/{{userId}}",
+        storageSize: 1024 * 1024 * 100 //100 MB
     },
     library: {
         path: "library",

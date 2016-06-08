@@ -138,6 +138,49 @@ module.exports = Ractive.extend({
         }
 
         this.on("*.changeCurrentLang changeCurrentLang", this.changeLang.bind(this));
+
+        if (Ractive.EDIT_MODE) {
+
+            this.on("loadFiles *.loadFiles", this.loadFiles);
+
+            this.on("fileUploaded *.fileUploaded", function (fileData) {
+
+                if (fileData && fileData.path) {
+
+                    if (this.get("page.files")) {
+
+                        return this.unshift("page.files", fileData);
+                    }
+
+                    this.set("page.files", [fileData]);
+                }
+
+            }.bind(this));
+        }
+    },
+
+    loadFiles: function (cb) {
+
+        if (this.fileReq) {
+
+            this.fileReq.then(cb);
+
+            return;
+        }
+
+        this.fileReq = this.req("files");
+
+        this.fileReq
+            .then(function (res) {
+
+            if (res && !res.error && res.files) {
+
+                this.set("page.files", res.files);
+            }
+
+        }.bind(this))
+            .then(cb)
+            .catch(function () {});
     },
 
     changeLang: function (lang, page) {
@@ -217,6 +260,13 @@ module.exports = Ractive.extend({
     onteardown: function () {
 
         if (Ractive.EDIT_MODE) {
+
+            if (this.fileReq) {
+
+                this.fileReq.cancelReq();
+
+                this.fileReq = null;
+            }
 
             Ractive.$win.off(".Page");
             

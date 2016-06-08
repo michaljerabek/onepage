@@ -20,7 +20,7 @@
     /**
      * Dekorátor pro přeřazování PageElementů. Použije se na rodičovský element položek.
      *
-     * componentName - název přeřazovaných PageElementů ("ButtonElement", ...)
+     * componentName - název přeřazovaných PageElementů ("PageElementButton", ...)
      * elementType - typ PageElementů ("button", "title", ...)
      */
 

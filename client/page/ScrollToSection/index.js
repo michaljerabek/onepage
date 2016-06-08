@@ -8,7 +8,7 @@ var MODES = {
     },
 
     CLASS = {
-        BUTTON: "P_ButtonElement"
+        BUTTON: "P_PageElementButton"
     },
 
     EVENT_NS = "ScrollToSection",
@@ -99,6 +99,11 @@ var initMouseOver = function () {
 };
 
 var init = function () {
+
+    if (!window.location.origin) {
+
+        window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port: "");
+    }
 
     if (this.mode === MODES.PAGE) {
 

@@ -17,8 +17,11 @@
 <div class="E_PageElementEditUI__bottom-left">
 
     {{> FlatButton {
+            type: "default-warn",
             size: "small",
-            icon: .element.fill ? "#icon-color-stroke" : "#icon-color-fill",
+            icon: .element.fill ? "#icon-circle-line" : "#icon-circle",
+            iconW: 18,
+            iconH: 18,
             set: "element.fill",
             value: !.element.fill,
             className: "E_PageElementEditUI--fill",
@@ -26,6 +29,25 @@
             preventDefault: true
         }
     }}
+
+    {{#if .element.icon}}
+
+        <span intro-outro="{{#if @this.findParent('Page').get('loaded')}}slideh{{/if}}">
+            {{> FlatButton {
+                    size: "small",
+                    icon: .element.icon && .element.icon.match(/\#[^\"\']+/)[0],
+                    text: "Ikona",
+                    set: "element.hideIcon",
+                    value: !.element.hideIcon,
+                    className: "E_PageElementEditUI--hide-icon",
+                    title: .element.hideIcon ? "Zobrazit ikonu" : "Skrýt ikonu",
+                    preventDefault: true,
+                    state: !.element.hideIcon ? "active" : ""
+                }
+            }}
+        </span>
+
+    {{/if}}
 
 </div>
 
@@ -60,11 +82,11 @@
 </div>
 
 {{#if .openPageElementSettings === "settings"}}
-    <ButtonElementSettings
+    <PageElementButtonSettings
         data="{{.element}}"
         positionElement="{{.pageElementSettingsPositionElement}}"
         lang="{{.lang}}"
         defaultColors="{{.defaultColors}}"
-    ></ButtonElementSettings>
+    ></PageElementButtonSettings>
 {{/if}}
 

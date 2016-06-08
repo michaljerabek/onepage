@@ -34,9 +34,15 @@
         </div>
 
         {{#if .hasEditUI}}
-            <div class="E_PageElement--EditUI E_PageElementEditUI">
+            <div class="E_PageElement--EditUI E_PageElementEditUI {{#if .hideEditUI}}E_PageElementEditUI__hidden{{/if}}">
                 {{> pageElementEditUI}}
             </div>
+        {{/if}}
+
+        {{#if .uploadable}}
+
+            <div class="E_PageElement--upload-overlay"></div>
+
         {{/if}}
 
     {{/if}}
