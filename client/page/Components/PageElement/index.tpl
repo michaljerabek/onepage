@@ -10,7 +10,7 @@
     "
     on-hover="@this.handleHover(event)"
     id="{{.id}}"
-    intro-outro="{{#if @this.findParent('Page').get('loaded') && !.stopTransition}}attr{{/if}}"
+    intro-outro="{{#if @this.Page.get('loaded') && !.stopTransition}}attr{{/if}}"
 >
 
     {{#if .editMode}}

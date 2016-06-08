@@ -47,7 +47,11 @@
 
             template.push(
                 '<label for="', inputId, '">Odkaz, email, telefon:</label>',
-                '<input type="text" id="', inputId, '" class="medium-editor-toolbar-input" placeholder="blog.cz, email@web.cz, &hellip;">'
+                '<span class="Text Text__text Text__small Text__normal Text__adaptive"',
+                    '<span class="Text--input-wrapper">',
+                    '<input type="text" class="Text--input medium-editor-toolbar-input" id="', inputId, '" placeholder="blog.cz, email@web.cz, &hellip;">',
+                    '</span>',
+                '</span>'
             );
 
             /*Tlačítka*/

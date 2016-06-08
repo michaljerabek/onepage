@@ -15,6 +15,8 @@ if (on.client) {
     PageMenu = require("./PageMenu");
 }
 
+var ANIMATIONS = require("./PAGE_SETTINGS/ANIMATIONS");
+
 Ractive.defaults.getPageSection = function () {
 
     if (this.PAGE_SECTION) {
@@ -44,6 +46,8 @@ module.exports = Ractive.extend({
             self: "E_PageMenu"
         }
     },
+
+    ANIMATIONS: ANIMATIONS,
 
     components: {
         PageSection: require("./Components/PageSection"),
@@ -321,6 +325,12 @@ module.exports = Ractive.extend({
             mode = Ractive.EDIT_MODE ? ScrollToSection.MODES.EDIT : ScrollToSection.MODES.PAGE;
 
         this.scrollToSection = new ScrollToSection(mode, "__section-");
+
+        this.observe("page.settings.animations", function (value) {
+
+            this.scrollToSection.setAnimation(this.ANIMATIONS[value].SCROLL.easing, this.ANIMATIONS[value].SCROLL.duration);
+
+        });
     },
 
     refreshEditors: function (elementsOnly) {
@@ -387,7 +397,7 @@ module.exports = Ractive.extend({
 
         //sledovat změny stránky -> označit jako neuložené
         this.observe("page.settings page.sections", this.handlePageChanged, {init: false});
-        this.on("*.sectionOrderChanged *.elementOrderChanged", this.handlePageChanged.bind(this), {init: false});
+        this.on("*.pageChange *.sectionOrderChanged *.elementOrderChanged", this.handlePageChanged.bind(this), {init: false});
         this.on("savePage", this.handleSavePage);
         this.on("closePage", this.handleClosePage);
 

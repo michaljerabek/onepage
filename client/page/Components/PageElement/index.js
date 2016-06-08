@@ -188,6 +188,9 @@
 
             this.EVENT_NS = "PageElement-" + (++instanceCounter);
 
+            this.Page = this.findParent("Page");
+            this.PageSection = this.getPageSection();
+
             if (on.client) {
 
                 Ractive.$win = Ractive.$win || $(window);
@@ -379,7 +382,12 @@
                 }.bind(this));
 
             //při najetí myší zbrazit outline
-            this.observe("hover", function (state) {
+            this.hoverObserver = this.observe("hover", function (state) {
+
+                if (this.removing) {
+
+                    return;
+                }
 
                 if (!hoverByTouch) {
 
@@ -558,9 +566,9 @@
 
         //zobrazí ui, pokud je stav "hover" nebo je otevřeno nastavení nebo má Editor focus,
         //jinak ui skryje
-        updateOutlineState: function () {
+        updateOutlineState: function (forceState) {
 
-            var state = (this.get("hover") || this.get("sorting") || this.get("openPageElementSettings") || this.hasFocusedEditor() || this.hasFocusedElement());
+            var state = typeof forceState === "boolean" ? forceState : (this.get("hover") || this.get("sorting") || this.get("openPageElementSettings") || this.hasFocusedEditor() || this.hasFocusedElement());
 
             this.set("showOutline", state);
 
@@ -688,7 +696,7 @@
                 this.fire("pageSectionMessage", {
                     title: "Nahrát soubor",
                     text: "Soubor " + file.name + " se podařilo úspěšně nahrát.",
-                    timeout: 2000,
+                    timeout: 3000,
                     status: "success"
                 });
             }
@@ -707,7 +715,7 @@
                 this.fire("pageSectionMessage", {
                     title: "Nahrát soubor",
                     text: errorText,
-                    timeout: 3000,
+                    timeout: 5000,
                     status: "error"
                 });
             }

@@ -72,9 +72,8 @@
 
             return {
                 uploadable: true,
-                type: "button",
                 hasEditUI: true,
-                transitionName: "slidevh"
+                type: "button"
             };
         },
         onconfig: function () {
@@ -122,10 +121,6 @@
                 }
             }
 
-            this.PageSection = this.getPageSection();
-
-            this.Page = this.findParent("Page");
-
             //při ukládání stránky se přeřazují elementy, což způsobí jejich odstranění a znovuvytvoření,
             //proto je potřeba transitions vypnout
             if (this.Page.saving) {
@@ -140,7 +135,10 @@
 
             this.$text = this.$self.find("." + this.CLASS.text);
 
-            this.setDefaultValues();
+            if (!this.Page.saving) {
+
+                this.setDefaultValues();
+            }
 
             if (Ractive.EDIT_MODE) {
 
@@ -167,29 +165,23 @@
                     }
                 });
 
-                /*ie fix*/
-                this.ieFixBorderWidthTimeout = setTimeout(function() {
+                if (!this.Page.saving) {
 
-                    this.$self.find("." + this.CLASS.element).css({
-                        borderWidth: ""
-                    });
+                    /*ie fix*/
+                    this.ieFixBorderWidthTimeout = setTimeout(function() {
 
-                }.bind(this), 0);
+                        this.$self.find("." + this.CLASS.element).css({
+                            borderWidth: ""
+                        });
 
-            } else {
-
-                this.$text.balanceText();
+                    }.bind(this), 0);
+                }
             }
         },
 
         oncomplete: function () {
 
             this.superOncomplete();
-
-            if (Ractive.EDIT_MODE) {
-
-                this.balanceText();
-            }
         },
 
         setDefaultValues: function () {
@@ -198,7 +190,6 @@
 
                 this.set("element.type", "button");
             }
-
         },
 
         initObservers: function () {
@@ -206,6 +197,11 @@
             this.linkObserver = this.observe("element.link", this.setIcon, {init: false});
 
             this.typeObserver = this.observe("element.type", function () {
+
+                if (this.removing) {
+
+                    return;
+                }
 
                 this.setIcon(this.get("element.link"));
 
@@ -235,7 +231,7 @@
 
                 var generator = this.Page.defaultColorsGenerator,
 
-                    color = this.get("element.color") || this.get("defaultColors.specialColor");
+                    color = this.get("element.color") || this.get("color") || this.get("defaultColors.specialColor");
 
                 if (generator && color) {
 
@@ -250,18 +246,26 @@
 
                 if (this.get("element.fill") && generator) {
 
-                    this.set("element.textColor", generator.getBlackWhite(color || this.get("defaultColors.specialColor"), this.MIN_TEXT_CONTRAST, true));
+                    this.set("element.textColor", generator.getBlackWhite(color || this.get("color") || this.get("defaultColors.specialColor"), this.MIN_TEXT_CONTRAST, true));
                 }
             }, {init: false});
 
-            this.defColorObserver = this.observe("defaultColors.specialColor", function (color) {
+            this.defColorObserver = this.observe("defaultColors.specialColor color", function (color) {
+
+                if (this.get("element.color")) {
+
+                    return;
+                }
 
                 var generator = this.Page.defaultColorsGenerator;
 
-                if (this.get("element.fill") && generator && color && !this.get("element.color")) {
+                color = color || this.get("color") || this.get("defaultColors.specialColor");
+
+                if (this.get("element.fill") && generator && color) {
 
                     this.set("element.textColor", generator.getBlackWhite(color, this.MIN_TEXT_CONTRAST, true));
                 }
+
             }, {init: false});
 
             this.textObserver = this.observe("element.text.*", this.checkText, {init: false});
@@ -285,6 +289,8 @@
 
         onteardown: function () {
 
+            this.skipTextObserver = true;
+
             this.cancelObservers();
 
             if (Ractive.EDIT_MODE) {
@@ -303,7 +309,7 @@
 
         checkText: function (currentValue, prevValue, path, lang) {
 
-            if (this.skipTextObserver) {
+            if (this.skipTextObserver || this.removing) {
 
                 return;
             }
@@ -413,6 +419,11 @@
 
         setIcon: function (linkValue) {
 
+            if (this.removing) {
+
+                return;
+            }
+
             if (this.get("element.type") === "link") {
 
                 //email
@@ -463,6 +474,11 @@
 
         removeIfEmpty: function () {
 
+            if (this.removing) {
+
+                return;
+            }
+
             var empty = (this.get("element.text." + this.get("lang")) || "").replace(/(?:<[^>]*>)/g, "").match(/^(\s|\&nbsp\;)*$/);
 
             if (empty) {
@@ -470,11 +486,6 @@
                 clearTimeout(this.balanceTextTimeout);
 
                 clearTimeout(this.fixTextTimeout);
-
-                if (this.removing) {
-
-                    return;
-                }
 
                 this.fire("removeButton", {}, this.get("element"), this);
 

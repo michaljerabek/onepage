@@ -1,8 +1,8 @@
 <span class="
-    P_PageElementTextContent E_Editor__content
-"
-style="color: {{.element.textColor || .element.defaultColors.textColor}}"
- contenteditable="{{!!editMode}}" value="{{.element.content[.lang]}}"
+        P_PageElementTextContent E_Editor__content P_font-body
+    "
+    style="color: {{.element.textColor || .element.defaultColors.textColor}}"
+    contenteditable="{{!!editMode}}" value="{{.element.content[.lang]}}"
  ></span>
 <!--
  <span class="P_PageElementTextContent E_Editor__content"

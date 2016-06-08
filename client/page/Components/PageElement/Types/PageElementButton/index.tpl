@@ -2,13 +2,16 @@
     class="
         P_PageElementButton
         {{#if .element.fill}}P_PageElementButton__fill{{else}}P_PageElementButton__stroke{{/if}}
-        {{#if (.element.text[.lang] || '').replace(/\&nbsp\;/ig, ' ').length > (.element.icon ? 20 : 24)}}P_PageElementButton__long-text{{/if}}
+        {{#if ((.element.text && .element.text[.lang]) || '').replace(/\&nbsp\;/ig, ' ').length > (.element.icon ? 20 : 24)}}P_PageElementButton__long-text{{/if}}
         {{#if .element.icon && !.element.hideIcon}}P_PageElementButton__has-icon{{/if}}
+        P_font-title
     "
-    style-borderColor="{{.element.color || .defaultColors.specialColor}}"
-    style-backgroundColor="{{#if .element.fill}}{{.element.color || .defaultColors.specialColor}}{{/if}}"
+    style="
+        border-color: {{.element.color || .color || .defaultColors.specialColor}};
+        {{#if .element.fill}}background-color: {{.element.color || .color || .defaultColors.specialColor}};{{/if}}
+    "
     on-enter-tap="@this.action(event, .editMode)"
-    intro-outro="{{#if .editMode && @this.findParent('Page').get('loaded') && !.stopTransition}}slidevh{{/if}}"
+    intro-outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slidevh{{/if}}"
     tabindex="0"
  >
 
@@ -21,8 +24,8 @@
             <span class="
                     P_PageElementButton--icon P_PageElementButton--icon__svg
                 "
-                  intro-outro="{{#if .editMode && @this.findParent('Page').get('loaded') && !.stopTransition}}attr{{/if}}"
-                  style="color: {{.element.textColor || .element.color || .defaultColors.specialColor}};"
+                  intro-outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}attr{{/if}}"
+                  style="color: {{.element.textColor || .element.color || .color || .defaultColors.specialColor}};"
             >
                 {{{.element.icon}}}
             </span>
@@ -37,7 +40,7 @@
                 on-blur="@this.removeIfEmpty()"
                 on-keydown="@this.hideEditUI()"
                 value="{{.element.text[.lang]}}"
-                style="color: {{.element.textColor || .element.color || .defaultColors.specialColor}};"
+                style="color: {{.element.textColor || .element.color || .color || .defaultColors.specialColor}};"
             >
             </span>
         </span>
