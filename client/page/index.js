@@ -52,6 +52,7 @@ module.exports = Ractive.extend({
     components: {
         PageSection: require("./Components/PageSection"),
 
+        PageSectionHeader: require("./Components/PageSection/Types/PageSectionHeader"),
         PageSectionA: require("./Components/PageSection/Types/PageSectionA"),
         PageSectionB: require("./Components/PageSection/Types/PageSectionB"),
         PageSectionC: require("./Components/PageSection/Types/PageSectionC"),
@@ -64,6 +65,7 @@ module.exports = Ractive.extend({
     },
 
     partials: {
+        PageSectionHeader: "<PageSectionHeader section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionA: "<PageSectionA section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionB: "<PageSectionB section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionC: "<PageSectionC section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
@@ -256,6 +258,11 @@ module.exports = Ractive.extend({
         if (!Ractive.EDIT_MODE && !this.Admin) {
 
             this.initScrollToSection();
+
+            if (on.client) {
+
+                this.loadedTimeout = setTimeout(this.set.bind(this, "loaded", true), 0);
+            }
         }
 
         console.timeEnd("pageLoaded");
@@ -401,7 +408,10 @@ module.exports = Ractive.extend({
         this.on("savePage", this.handleSavePage);
         this.on("closePage", this.handleClosePage);
 
-        this.loadedTimeout = setTimeout(this.set.bind(this, "loaded", true), 0);
+        if (on.client) {
+
+            this.loadedTimeout = setTimeout(this.set.bind(this, "loaded", true), 0);
+        }
     },
 
     handlePageChanged: function () {

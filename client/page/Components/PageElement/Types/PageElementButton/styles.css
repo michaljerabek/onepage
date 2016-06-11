@@ -41,6 +41,46 @@
     }
 }
 
+@keyframes P_PageElement__button-show__480 {
+    from {
+        margin: 0;
+    }
+    to {
+        margin: 0 6px;
+        margin-bottom: 12px;
+    }
+}
+
+@keyframes P_PageElement__button-hide__480 {
+    from {
+        margin: 0 6px;
+        margin-bottom: 12px;
+    }
+    to {
+        margin: 0;
+    }
+}
+
+@keyframes P_PageElement__button-show__360 {
+    from {
+        margin: 0;
+    }
+    to {
+        margin: 0 4px;
+        margin-bottom: 8px;
+    }
+}
+
+@keyframes P_PageElement__button-hide__360 {
+    from {
+        margin: 0 4px;
+        margin-bottom: 8px;
+    }
+    to {
+        margin: 0;
+    }
+}
+
 .P_PageElementButton {
     position: relative;
     margin: 0;
@@ -58,12 +98,78 @@
 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover,
 body.E_actions-active .P_PageElement .P_PageElementButton:focus,
 body.E_actions-active .P_PageElement .P_PageElementButton:hover {
-    transform: scale(1.07);
+    transform: scale(1.07142);
 }
 
 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active,
 body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
-    transform: scale(1.03);
+    transform: scale(1.03571);
+}
+
+
+@media (max-width: 480px) {
+
+    .P_PageElement__button {
+        margin: 0 6px;
+        margin-bottom: 12px;
+    }
+
+    .E.P_Page__loaded .P_PageElement__button[data-ractive-transition="intro"] {
+        animation-name: P_PageElement__button-show__480;
+    }
+
+    .E.P_Page__loaded .P_PageElement__button[data-ractive-transition^="outro"] {
+        animation-name: P_PageElement__button-hide__480;
+    }
+
+    .P_PageElementButton {
+        transform: scale(0.92857);
+    }
+
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus,
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover,
+    body.E_actions-active .P_PageElement .P_PageElementButton:focus,
+    body.E_actions-active .P_PageElement .P_PageElementButton:hover {
+        transform: scale(1);
+    }
+
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:active,
+    body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
+        transform: scale(0.96429);
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageElement__button {
+        margin: 0 4px;
+        margin-bottom: 8px;
+    }
+
+    .E.P_Page__loaded .P_PageElement__button[data-ractive-transition="intro"] {
+        animation-name: P_PageElement__button-show__360;
+    }
+
+    .E.P_Page__loaded .P_PageElement__button[data-ractive-transition^="outro"] {
+        animation-name: P_PageElement__button-hide__360;
+    }
+
+    .P_PageElementButton {
+        transform: scale(0.85714);
+    }
+
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus,
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover,
+    body.E_actions-active .P_PageElement .P_PageElementButton:focus,
+    body.E_actions-active .P_PageElement .P_PageElementButton:hover {
+        transform: scale(0.92857);
+    }
+
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:active,
+    body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
+        transform: scale(0.89286);
+    }
 }
 
 .P_PageElement:not(.E_PageElement) .P_PageElementButton,
@@ -344,6 +450,7 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
 
 }
 
+
 /*--------------------------------------------------------------------*/
 /*--------------------------- PAGESECTION ----------------------------*/
 /*--------------------------------------------------------------------*/
@@ -364,6 +471,9 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
 @media (max-width: 360px) {
 
     .P_PageSection--buttons {
+        margin-left: -20px;
+
+
         width: 100%;
     }
 }

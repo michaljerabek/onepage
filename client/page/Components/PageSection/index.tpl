@@ -1,8 +1,13 @@
-<section class="P_PageSection"
+<section class="
+        P_PageSection
+        P_{{.section.type || 'PageSectionType'}}
+        P_{{.section.type || 'PageSectionType'}}__{{.section.layout || 'default'}}
+        {{#if .section.fullSize || .fullSize}}P_PageSection__full-size{{/if}}
+    "
     id="{{.section.id[.lang]}}"
     data-page-section-internal-id="{{.section.internalId}}"
     data-page-section-name="{{.section.name[.lang]}}"
-    style="background: white;position: relative; text-align: center; line-height: 200px; font-size: 32px;">
+>
 
     <div class="P_PageSection--inner-wrapper">
 

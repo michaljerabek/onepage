@@ -21,7 +21,7 @@
         "
     >
 
-        <div class="P_nonsortable-sections" style="overflow: hidden">
+        <div class="P_nonsortable-sections">
 
             {{#each .page.sections}}
 

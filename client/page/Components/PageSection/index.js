@@ -31,16 +31,32 @@
                 BackgroundImage: require("./Components/BackgroundImage")
             },
 
+            partials = {
+                pageSectionEditUI: "",
+                pageSectionContent: "",
+                pageSectionSettings: "",
+
+                ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null,
+
+                PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionPartials/button-elements.tpl")
+            },
+
+            decorators = {
+                Sortable: require("./Decorators/Sortable"),
+
+                PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionDecorators/PageElementButtons")
+            },
+
             template = require("./index.tpl");
 
-        module.exports = factory(Ractive, Spectra, template, components, EventEmitter, on);
+        module.exports = factory(Ractive, Spectra, template, components, partials, decorators, EventEmitter, on);
 
     } else {
 
-        root.PageSection = factory(root.Ractive, root.Spectra, null, $({}), {client: true});
+        root.PageSection = factory(root.Ractive, root.Spectra, null, null, null, $({}), {client: true});
     }
 
-}(this, function (Ractive, Spectra, template, components, EventEmitter, on) {
+}(this, function (Ractive, Spectra, template, components, partials, decorators, EventEmitter, on) {
 
     /*
      * Abstraktní komponent pro vytváření sekcí.
@@ -82,21 +98,9 @@
 
         components: components || {},
 
-        decorators: {
-            Sortable: require("./Decorators/Sortable"),
+        decorators: decorators || {},
 
-            PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionDecorators/PageElementButtons")
-        },
-
-        partials: {
-            pageSectionEditUI: "",
-            pageSectionContent: "",
-            pageSectionSettings: "",
-
-            ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null,
-
-            PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionPartials/button-elements.tpl")
-        },
+        partials: partials || {},
 
         data: function () {
 

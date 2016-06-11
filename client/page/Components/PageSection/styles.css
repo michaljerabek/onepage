@@ -148,6 +148,85 @@
         background-color 0.1s linear;
 }
 
+.P_PageSection--background-color {
+    width: 100%;
+
+    display: table;
+    table-layout: fixed;
+}
+
+.P_PageSection--content-wrapper {
+    margin: 0px auto;
+
+    width: 100%;
+    max-width: var(--P_PageSection__max-width);
+
+    display: table;
+}
+
+.P_PageSection--center {
+    padding: 80px 88px;
+    width: 100%;
+    height: 100%;
+
+    display: table-cell;
+}
+
+@media (max-width: 1440px) {
+
+    .P_PageSection--center {
+        padding: 80px 80px;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .P_PageSection--center {
+        padding: 80px 72px;
+    }
+}
+
+@media (max-width: 1000px) {
+
+    .P_PageSection--center {
+        padding: 80px 64px;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .P_PageSection--center {
+        padding: 80px 44px;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .P_PageSection--center {
+        padding: 80px 32px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .P_PageSection--center {
+        padding: 80px 24px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSection--center {
+        padding: 80px 20px;
+    }
+}
+
+.P_PageSection__full-size .P_PageSection--center,
+.P_PageSection__full-size .P_PageSection--content-wrapper {
+    height: 100vm;
+    height: 100vmin;
+}
+
 .P_font-type-1 .P_PageSection--content .P_font-title {
     font-family: var(--P_font-type-1-title-font-family);
     font-weight: var(--P_font-type-1-title-font-weight);

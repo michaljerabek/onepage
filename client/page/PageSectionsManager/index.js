@@ -93,10 +93,7 @@ module.exports = (function () {
 
             page.skipRegenerateId = true;
 
-            page.push("page.sections", data).then(function () {
-
-                pageSection.generateRandomColors(true, true);
-            });
+            page.push("page.sections", data);
 
             page.skipRegenerateId = false;
 
@@ -141,6 +138,8 @@ module.exports = (function () {
             }
 
             page.fire("sectionInserted", pageSection);
+
+            pageSection.generateRandomColors(true, true);
 
             pageSection.once("complete", function () {
 

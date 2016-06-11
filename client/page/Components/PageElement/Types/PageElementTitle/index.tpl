@@ -1,11 +1,10 @@
 <span class="
-        P_PageElementTitle E_Editor__title P_font-title
+        P_PageElementTitle P_PageElementTitle_{{.source || 'title'}} E_Editor__title P_font-title
+        lines-{{.lines || 1}}
+        scale-{{.scale || 1}}
     "
-     style='color: {{.element.textColor || .element.defaultColors.textColor}};'
-     contenteditable='{{!!editMode}}' value='{{.element.title[.lang]}}'></span>
-<!--
-
-<span class='P_PageElementTitle E_Editor__title'
- style='color: {{.element.specialColor || .element.defaultColors.specialColor}};' >s. barva</span>
-
--->
+    style="color: {{.element.textColor || .element.defaultColors.textColor}};"
+    contenteditable="{{!!editMode}}"
+    on-blur="@this.handleBlur(event)"
+    value="{{.element[.source || 'title'][.lang]}}"
+></span>

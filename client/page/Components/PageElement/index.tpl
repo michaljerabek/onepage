@@ -2,11 +2,13 @@
         P_PageElement
         {{#if .editMode}}
             E_PageElement
-            {{#if @this.isEmpty && @this.isEmpty()}}E_PageElement__empty{{/if}}
             E_PageElement__{{.state}}
             {{#if .sorting}}E_PageElement__sorting{{/if}}
+            {{#if @this.isEmpty && @this.isEmpty()}}E_PageElement__empty{{/if}}
         {{/if}}
+        {{#if @this.isEmpty && @this.isEmpty()}}P_PageElement__empty{{/if}}
         P_PageElement__[[.type || 'unknown-type']]
+        {{.specialClass1}} {{.specialClass2}} {{.specialClass3}}
     "
     on-hover="@this.handleHover(event)"
     id="{{.id}}"

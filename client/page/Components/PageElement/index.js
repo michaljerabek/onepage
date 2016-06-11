@@ -128,6 +128,8 @@
 
         PAGE_ELEMENT: true,
 
+        EventEmitter: EventEmitter,
+
         template: template,
 
         CLASS: {
@@ -139,7 +141,10 @@
 
             sortButton: "E_PageElementEditUI--sort",
 
-            notFileDragged: "dz-not-file"
+            notFileDragged: "dz-not-file",
+
+            emptyParent: "has-empty-PageElement",
+            activeParent: "has-active-PageElement"
         },
 
         OPTIONS: {
@@ -172,7 +177,7 @@
             pageElementEditUI: "",
             pageElementContent: "",
 
-            FlatButton: require("./../../Components/UI/FlatButton/index.tpl")
+            FlatButton: Ractive.EDIT_MODE ? require("./../../Components/UI/FlatButton/index.tpl") : null
         },
 
         data: function () {
@@ -266,6 +271,8 @@
                 this.self = this.find("." + this.CLASS.self);
                 this.$self = $(this.self);
 
+                this.emptyStateToParent = this.get("emptyStateTo");
+
                 if (Ractive.EDIT_MODE) {
 
                     this.initOutline();
@@ -274,7 +281,29 @@
 
                         this.initDragDropUpload();
                     }
+
+                    if (this.emptyStateToParent && this.isEmpty) {
+
+                        this.observe("state", function (state) {
+
+                            this.$self.closest(this.emptyStateToParent)[state === "active" ? "addClass" : "removeClass"](this.CLASS.activeParent);
+                        });
+
+                    }
                 }
+
+                if (this.emptyStateToParent && this.isEmpty) {
+
+                    this.addEmptyStateToParent(this.isEmpty());
+                }
+            }
+        },
+
+        addEmptyStateToParent: function (state) {
+
+            if (this.$self && this.emptyStateToParent) {
+
+                this.$self.closest(this.emptyStateToParent)[state ? "addClass" : "removeClass"](this.CLASS.emptyParent);
             }
         },
 

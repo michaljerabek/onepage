@@ -1,5 +1,3 @@
-{{#if ~/section.buttons.length || .editMode}}
-
 <div class="
         P_PageSection--buttons
         {{#if !.section.buttons.length}}P_PageSection--buttons__empty{{/if}}
@@ -39,5 +37,3 @@
     </div>
 
 </div>
-
-{{/if}}

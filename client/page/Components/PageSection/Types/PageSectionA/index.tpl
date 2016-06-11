@@ -1,6 +1,10 @@
 <BackgroundImage data="{{.section.backgroundImage}}" />
 
-<PageElementTitle element="{{.section}}" activateButton="true" lang="{{.lang}}" tplLang="{{.tplLang}}"/>
+<div class="P_PageSection--content-wrapper P_PageSection--content-wrapper__center">
+
+    <PageElementTitle element="{{.section}}" activateButton="true" lang="{{.lang}}" tplLang="{{.tplLang}}"/>
+
+</div>
 
 
 {{>PageElementButtons}}
