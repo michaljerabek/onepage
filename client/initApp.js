@@ -25,6 +25,10 @@ Ractive.$scrollingElement = Ractive.$scrollingElement || $("html, body");
 
 var loadLibs = function () {
 
+//    require("viewport-units-buggyfill").init({
+//        hacks: require("viewport-units-buggyfill/viewport-units-buggyfill.hacks")
+//    });
+
     require("ractive-touch");
     require("ractive-transitions-slidehorizontal");
     require("ractive-transitions-slidevh");

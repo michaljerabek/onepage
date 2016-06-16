@@ -1,0 +1,300 @@
+.P_PageElement__text {
+    position: relative;
+
+    display: inline-block;
+
+    transition: var(--default-transition);
+}
+
+.P_PageElementText {
+    margin: 0;
+
+    min-height: 100%;
+    max-height: 100%;
+    min-width: 24px;
+    padding: 0;
+
+    display: inline-block;
+}
+
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText,
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .E_PageElement--outline ~ * .P_PageElementText {
+    transition:
+        padding 0.3s ease-in-out,
+        color 0.1s linear,
+        text-shadow 0.1s linear;
+}
+
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText,
+.P_PageSection--content.E_PageSection__stop-color-transitions .E_PageElement--outline ~ * .P_PageElementText {
+    transition:
+        padding 0.3s ease-in-out,
+        text-shadow 0.1s linear;
+}
+
+.P_PageSection__shadow-10 .P_PageElementText {
+    text-shadow: var(--P_PageSection--shadow-10__text);
+}
+
+.P_PageSection__shadow-20 .P_PageElementText {
+    text-shadow: var(--P_PageSection--shadow-20__text);
+}
+
+.P_PageSection__shadow-30 .P_PageElementText {
+    text-shadow: var(--P_PageSection--shadow-30__text);
+}
+
+.P_PageElementText a {
+    text-decoration: none;
+
+    background-repeat: repeat-y;
+
+    transform: translateZ(0);
+    will-change: color, text-shadow, background;
+}
+
+.P_Page__loaded .P_PageElementText a {
+    background-image: linear-gradient(to top, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor calc(0.135em + 1px), rgba(0,0,0,0) calc(0.135em + 1px), rgba(0,0,0,0));
+    background-position: 0px 0px;
+}
+
+.P_PageElement:not(.E_PageElement) .P_PageElementText a:hover,
+body.E_actions-active .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    background-position: 0px 0.075em;
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementText a,
+body.E_actions-active .P_animations-10 .P_PageElement.E_PageElement .P_PageElementText a {
+    transition: var(--P_animations-10);
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover,
+body.E_actions-active .P_animations-10 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    transition: var(--P_animations-10-hover);
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementText a,
+body.E_actions-active .P_animations-20 .P_PageElement.E_PageElement .P_PageElementText a {
+    transition: var(--P_animations-20);
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover,
+body.E_actions-active .P_animations-20 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    transition: var(--P_animations-20-hover);
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementText a,
+body.E_actions-active .P_animations-30 .P_PageElement.E_PageElement .P_PageElementText a {
+    transition: var(--P_animations-30);
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover,
+body.E_actions-active .P_animations-30 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    transition: var(--P_animations-30-hover);
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementText a,
+body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageElementText a {
+    transition: var(--P_animations-40);
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover,
+body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    transition: var(--P_animations-40-hover);
+}
+
+.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active) > .P_PageElementText:nth-of-type(1n) {
+    line-height: 0;
+    font-size: 0;
+
+    margin: 0;
+
+    width: 0px;
+    min-width: 0px;
+    max-width: 0px;
+    height: 0px;
+    min-height: 0px;
+    max-height: 0px;
+    padding: 0;
+
+    transition: var(--default-transition);
+}
+
+.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):nth-of-type(1n) {
+    font-size: 0;
+    line-height: 0;
+
+    transition: var(--default-transition);
+}
+
+.P_PageElement__text.P_PageElement__empty.E_PageElement__active > .P_PageElementText {
+    transition: var(--default-transition);
+}
+
+/*---------------------------- UNDERLINE ----------------------------*/
+
+.P_PageElementText--underline-element,
+.P_PageElementText--underline:before,
+.P_PageElementText--underline:after,
+.P_PageElementText--underline {
+    margin: auto;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    background-color: currentColor;
+    opacity: 0;
+}
+
+.P_PageElementText--underline {
+    margin: auto;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%);
+
+    background-color: currentColor;
+    opacity: 0;
+}
+
+.P_underline-titles .P_PageElementText--underline-element {
+    background-color: transparent;
+}
+
+.P_underline-titles .P_PageElementText--underline-element:after {
+    content: "";
+
+    text-align: center;
+    line-height: 1;
+
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element:after,
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element:before,
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element {
+    transition:
+        opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s,
+        color 0.1s linear 0s;
+}
+
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline:before,
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline:after,
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline {
+    transition:
+        opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s,
+        background-color 0.1s linear 0s;
+}
+
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:after,
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:before,
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element,
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline:before,
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline:after,
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline {
+    transition:
+        opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s;
+}
+
+.P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline-element:after,
+.P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline-element,
+.P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline:before,
+.P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline:after,
+.P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline {
+    opacity: 1;
+}
+
+.P_PageSection__shadow-10 .P_PageElementText--underline:after,
+.P_PageSection__shadow-10 .P_PageElementText--underline:before,
+.P_PageSection__shadow-10 .P_PageElementText--underline {
+    box-shadow: var(--P_PageSection--shadow-10__box);
+}
+
+.P_PageSection__shadow-20 .P_PageElementText--underline:after,
+.P_PageSection__shadow-20 .P_PageElementText--underline:before,
+.P_PageSection__shadow-20 .P_PageElementText--underline {
+    box-shadow: var(--P_PageSection--shadow-20__box);
+}
+
+.P_PageSection__shadow-30 .P_PageElementText--underline:after,
+.P_PageSection__shadow-30 .P_PageElementText--underline:before,
+.P_PageSection__shadow-30 .P_PageElementText--underline {
+    box-shadow: var(--P_PageSection--shadow-30__box);
+}
+
+.P_PageSection__shadow-10 .P_PageElementText--underline-element {
+    text-shadow: var(--P_PageSection--shadow-10__text);
+}
+
+.P_PageSection__shadow-20 .P_PageElementText--underline-element {
+    text-shadow: var(--P_PageSection--shadow-20__text);
+}
+
+.P_PageSection__shadow-30 .P_PageElementText--underline-element {
+    text-shadow: var(--P_PageSection--shadow-30__text);
+}
+
+/*TYPE - 3*/
+
+.P_underline-titles.P_font-type-3 .P_PageElementText--underline {
+    width: 20%;
+    max-width: 120px;
+    min-width: 48px;
+    height: 0.1em;
+}
+
+/*TYPE - 1*/
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline {
+    width: calc(23.6% + 40px);
+    min-width: 152px;
+    max-width: 184px;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline:after,
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline:before {
+    content: "";
+
+    height: 1px;
+
+    width: calc(50% - 20px);
+    max-width: 72px;
+    min-width: 56px;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline:before {
+    right: auto;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline:after {
+    left: auto;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline-element {
+    bottom: -12px;
+
+    width: 24px;
+    height: 24px;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline-element:after {
+    content: "l";
+
+    font-family: ornament;
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+
+    transform: scaleY(-1) translateY(-3px);
+
+    display: table-cell;
+}

@@ -196,6 +196,10 @@
 
             this.linkObserver = this.observe("element.link", this.setIcon, {init: false});
 
+            this.hideIconObserver = this.observe("element.hideIcon", function () {
+                this.balanceText(400);
+            }, {init: false});
+
             this.typeObserver = this.observe("element.type", function () {
 
                 if (this.removing) {
@@ -350,7 +354,7 @@
 
                     length = currentValue.length - (nbsp ? nbsp.length * 5 : 0);
 
-                if (length > (this.get("element.icon") ? this.MAX_LENGTH : this.MAX_LENGTH_NO_ICON)) {
+                if (length > (this.get("element.icon") && !this.get("element.hideIcon") ? this.MAX_LENGTH : this.MAX_LENGTH_NO_ICON)) {
 
                     currentValue = prevValue;
                 }

@@ -24,6 +24,7 @@
                 PageElementButtonSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings/Types/PageElementButtonSettings") : null,
 
                 PageElement: require("./../PageElement"),
+                PageElementText: require("./../PageElement/Types/PageElementText"),
                 PageElementTitle: require("./../PageElement/Types/PageElementTitle"),
                 PageElementTextContent: require("./../PageElement/Types/PageElementTextContent"),
                 PageElementButton: require("./../PageElement/Types/PageElementButton"),
@@ -64,6 +65,9 @@
      * Konkrétný typ sekce musí v partials zaregistrovat v "pageSectionContent" obsah sekce,
      * v "pageSectionEditUI" ovládací prvky sekce (komponent rozšiřující PageSectionEditUI - registruje
      * se u konkrtétní sekce) a v "pageSectionSettings" šablona obsahující všechny PageSectionSettings.
+     *
+     * Šablona (partial) konkrétní sekce může obsahovat BackgroundImage. Pokud se obsah zarovnává do středu,
+     * obsah (kromě BackgroundImage) by měl být zabalen do elementu "P_PageSection--center". Samotný obsah by pak měl být v "P_PageSection--content-wrapper" (přidává padding, pokud je obsah vycenrovaný).
      **/
 
     return Ractive.extend({
@@ -160,14 +164,26 @@
 
                 if (on.client) {
 
+                    this.observe("section.layout", function (layout) {
+                        this.forEachPageElement(function () {
+                            this.fire("layoutChanged", layout);
+                        });
+                    }, {init: false, defer: true});
+
                     EventEmitter.on("removeLang.PageSection." + this.get("section.internalId"), this.removeLang.bind(this));
-                    EventEmitter.on("langChanged.PageSection." + this.get("section.internalId"), this.handleLangChanged.bind(this));
+                    EventEmitter.on("langChanged.Page." + this.get("section.internalId"), function (e, lang, editMode) {
+
+                        if (editMode) {
+
+                            this.handleLangChanged.call(this, e, lang);
+                        }
+                    }.bind(this));
 
                     /************************************/
                     /*ZMĚNA BAREV*/
                     this.on("*.generateRandomColors", this.generateRandomColors.bind(this));
 
-                    this.on("ColorPickerPalette.setColor", function (event, x, x, palette) {
+                    this.on("ColorPickerPalette.setColor", function (event, x, y, palette) {
 
                         var pathName = (palette.container || palette.parent).get("pathName");
 
@@ -195,7 +211,7 @@
                             this.set("section.defaultColors." + pathName + "Ref", undefined);
 
                             //odkaz na barvu odstraněn -> najít výchozí barvu, která patří k výchozímu pozadí
-                            var colorGenerator = this.findParent("Page").defaultColorsGenerator;
+                            var colorGenerator = this.Page.defaultColorsGenerator;
 
                             if (typeof this.get("section.defaultColors.backgroundColorRef") === "number") {
 
@@ -231,7 +247,7 @@
 
                             this.set("section.defaultColors." + pathName + "Ref", undefined);
 
-                            var colorGenerator = this.findParent("Page").defaultColorsGenerator;
+                            var colorGenerator = this.Page.defaultColorsGenerator;
 
                             if (typeof this.get("section.defaultColors.backgroundColorRef") === "number") {
 
@@ -351,7 +367,7 @@
 
             EventEmitter.off("change.DefaultColorsGenerator." + this.get("section.internalId"));
             EventEmitter.off("removeLang.PageSection." + this.get("section.internalId"));
-            EventEmitter.off("langChanged.PageSection." + this.get("section.internalId"));
+            EventEmitter.off("langChanged.Page." + this.get("section.internalId"));
 
         },
 

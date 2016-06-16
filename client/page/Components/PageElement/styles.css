@@ -315,12 +315,10 @@
 /*---------------------------- ACTIVATE ----------------------------*/
 
 .E_PageElement--activate {
-    margin: auto;
     z-index: 100;
     position: absolute;
     top: -20px;
-    right: 0;
-    left: 0;
+    left: -20px;
 
     width: 40px;
     height: 40px;
@@ -355,12 +353,15 @@
     transition: var(--default-transition);
 }
 
-.E_PageElement__empty:not(.E_PageElement__active) .E_PageElement--activate {
+.E_PageSectionEditUI__hover ~ .P_PageSection--content .E_PageElement__empty:not(.E_PageElement__active) .E_PageElement--activate,
+.E_PageSectionEditUI__hidden-by-user ~ .P_PageSection--content .E_PageElement__empty:not(.E_PageElement__active) .E_PageElement--activate {
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.5);
     opacity: 1;
     visibility: visible;
 
     transition:
+        top              var(--default-transition-duration) var(--default-transition-easing) 0s,
+        margin-top       var(--default-transition-duration) var(--default-transition-easing) 0s,
         background-color var(--default-transition-duration) var(--default-transition-easing) 0s,
         box-shadow       var(--default-transition-duration) var(--default-transition-easing) 0.3s,
         opacity          var(--default-transition-duration) var(--default-transition-easing) 0.3s;
@@ -370,6 +371,8 @@
     background-color: var(--color-hover);
 
     transition:
+        top              var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        margin-top       var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         background-color var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         box-shadow       var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         opacity          var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,

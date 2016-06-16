@@ -27,7 +27,13 @@
 
             {{/if}}
 
-            <div class="P_PageSection--content {{#if .stopColorTransitions}}E_PageSection__stop-color-transitions{{/if}} {{#if .changeOutlineColor}}E_PageSection__change-outline{{/if}}">
+            <div class="
+                    P_PageSection--content
+                    {{#if .section.backgroundImage.src}}P_PageSection__shadow-{{.section.addShadow || 0}}{{/if}}
+                    {{#if .stopColorTransitions}}E_PageSection__stop-color-transitions{{/if}}
+                    {{#if .changeOutlineColor}}E_PageSection__change-outline{{/if}}
+                "
+            >
 
                 <div class="P_PageSection--background-color" style="background-color: {{.section.backgroundColor || .section.defaultColors.backgroundColor}}">
 

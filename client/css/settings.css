@@ -21,4 +21,11 @@
     --P_PageSection--empty_text: "Sem můžete přidat další sekci...";
 
     --E_PageSectionSettings--init-max-height: 320px;
+
+    --P_PageSection--shadow-10__text: 0px 0px  8px rgba(0, 0, 0, 0.2);
+    --P_PageSection--shadow-20__text: 0px 0px 12px rgba(0, 0, 0, 0.4);
+    --P_PageSection--shadow-30__text: 0px 0px 16px rgba(0, 0, 0, 0.6);
+    --P_PageSection--shadow-10__box : 0px 0px  8px rgba(0, 0, 0, 0.1);
+    --P_PageSection--shadow-20__box : 0px 0px 12px rgba(0, 0, 0, 0.2);
+    --P_PageSection--shadow-30__box : 0px 0px 16px rgba(0, 0, 0, 0.3);
 }

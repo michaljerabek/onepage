@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="E_PageMenu--resizer" on-mousedown-touchstart="@this.fire('activateResizer')"></div>
+            <div class="E_PageMenu--resizer" on-mousedown-touchstart="@this.fire('activateResizer', event)"></div>
 
         </li>
 
@@ -150,12 +150,12 @@
     </ul>
 
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__top">
-        <span class="icon" on-tap="switchPosition:{{'top'}}">
+        <span class="icon" on-tap="@this.fire('switchPosition', event, 'top')">
             <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
         </span>
     </div>
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__bottom">
-        <span class="icon" on-tap="switchPosition:{{'bottom'}}">
+        <span class="icon" on-tap="@this.fire('switchPosition', event, 'bottom')">
             <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
         </span>
     </div>

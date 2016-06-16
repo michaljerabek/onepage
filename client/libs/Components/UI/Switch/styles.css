@@ -111,6 +111,7 @@
 .Switch--options {
     position: relative;
 
+    min-width: 100%;
     padding: 1px;
 
     border-radius: inherit;
@@ -653,7 +654,7 @@
     background-color: var(--color-button-bg);
 }
 
-.Switch__small.Switch__default .Switch--input:focus + .Switch--option:before,
+.Switch__small.Switch__default .Switch--input:not(:disabled):focus + .Switch--option:before,
 .Switch__small.Switch__default .Switch--option:hover:before {
     box-shadow:
         inset  0px  0px 12px 0px rgba(239, 103, 55, 0.3),
@@ -662,7 +663,7 @@
                0px  0px  2px 0px rgba(239, 103, 55, 0);
 }
 
-.Switch__medium.Switch__default .Switch--input:focus + .Switch--option:before,
+.Switch__medium.Switch__default .Switch--input:not(:disabled):focus + .Switch--option:before,
 .Switch__medium.Switch__default .Switch--option:hover:before {
     box-shadow:
         inset  0px  0px 14px 0px rgba(239, 103, 55, 0.3),
@@ -671,7 +672,7 @@
                0px  0px  2px 0px rgba(239, 103, 55, 0);
 }
 
-.Switch__large.Switch__default .Switch--input:focus + .Switch--option:before,
+.Switch__large.Switch__default .Switch--input:not(:disabled):focus + .Switch--option:before,
 .Switch__large.Switch__default .Switch--option:hover:before {
     box-shadow:
         inset  0px  0px 16px 0px rgba(239, 103, 55, 0.3),
@@ -681,8 +682,8 @@
 }
 
 .Switch__small.Switch__default .Switch--option:active:before,
-.Switch__small.Switch__default .Switch--input:checked + .Switch--option:before,
-.Switch__small.Switch__default .Switch--input:checked:focus + .Switch--option:before {
+.Switch__small.Switch__default .Switch--input:not(:disabled):checked + .Switch--option:before,
+.Switch__small.Switch__default .Switch--input:not(:disabled):checked:focus + .Switch--option:before {
     box-shadow:
         inset 0px 0px 12px 0px rgba(239, 103, 55, 0.3),
         inset 0px 0px  2px 0px rgba(239, 103, 55, 0),
@@ -691,8 +692,8 @@
 }
 
 .Switch__medium.Switch__default .Switch--option:active:before,
-.Switch__medium.Switch__default .Switch--input:checked + .Switch--option:before,
-.Switch__medium.Switch__default .Switch--input:checked:focus + .Switch--option:before {
+.Switch__medium.Switch__default .Switch--input:not(:disabled):checked + .Switch--option:before,
+.Switch__medium.Switch__default .Switch--input:not(:disabled):checked:focus + .Switch--option:before {
     box-shadow:
         inset 0px 0px 14px 0px rgba(239, 103, 55, 0.3),
         inset 0px 0px  2px 0px rgba(239, 103, 55, 0),
@@ -701,8 +702,8 @@
 }
 
 .Switch__large.Switch__default .Switch--option:active:before,
-.Switch__large.Switch__default .Switch--input:checked + .Switch--option:before,
-.Switch__large.Switch__default .Switch--input:checked:focus + .Switch--option:before {
+.Switch__large.Switch__default .Switch--input:not(:disabled):checked + .Switch--option:before,
+.Switch__large.Switch__default .Switch--input:not(:disabled):checked:focus + .Switch--option:before {
     box-shadow:
         inset 0px 0px 16px 0px rgba(239, 103, 55, 0.3),
         inset 0px 0px  2px 0px rgba(239, 103, 55, 0),
@@ -712,7 +713,7 @@
 
 @-moz-document url-prefix() {
 
-    .Switch__small.Switch__default .Switch--input:focus + .Switch--option:before,
+    .Switch__small.Switch__default .Switch--input:not(:disabled):focus + .Switch--option:before,
     .Switch__small.Switch__default .Switch--option:hover:before {
         box-shadow:
             inset  0px  0px 8px 0px rgba(239, 103, 55, 0.3),
@@ -721,7 +722,7 @@
                    0px  0px  1px 0px rgba(239, 103, 55, 0);
     }
 
-    .Switch__medium.Switch__default .Switch--input:focus + .Switch--option:before,
+    .Switch__medium.Switch__default .Switch--input:not(:disabled):focus + .Switch--option:before,
     .Switch__medium.Switch__default .Switch--option:hover:before {
         box-shadow:
             inset  0px  0px 10px 0px rgba(239, 103, 55, 0.3),
@@ -730,7 +731,7 @@
                    0px  0px  1px 0px rgba(239, 103, 55, 0);
     }
 
-    .Switch__large.Switch__default .Switch--input:focus + .Switch--option:before,
+    .Switch__large.Switch__default .Switch--input:not(:disabled):focus + .Switch--option:before,
     .Switch__large.Switch__default .Switch--option:hover:before {
         box-shadow:
             inset  0px  0px 12px 0px rgba(239, 103, 55, 0.3),
@@ -740,8 +741,8 @@
     }
 
     .Switch__small.Switch__default .Switch--option:active:before,
-    .Switch__small.Switch__default .Switch--input:checked + .Switch--option:before,
-    .Switch__small.Switch__default .Switch--input:checked:focus + .Switch--option:before {
+    .Switch__small.Switch__default .Switch--input:not(:disabled):checked + .Switch--option:before,
+    .Switch__small.Switch__default .Switch--input:not(:disabled):checked:focus + .Switch--option:before {
         box-shadow:
             inset  0px  0px 8px 0px rgba(239, 103, 55, 0.3),
             inset 0px  0px  1px 0px rgba(239, 103, 55, 0),
@@ -750,8 +751,8 @@
     }
 
     .Switch__medium.Switch__default .Switch--option:active:before,
-    .Switch__medium.Switch__default .Switch--input:checked + .Switch--option:before,
-    .Switch__medium.Switch__default .Switch--input:checked:focus + .Switch--option:before {
+    .Switch__medium.Switch__default .Switch--input:not(:disabled):checked + .Switch--option:before,
+    .Switch__medium.Switch__default .Switch--input:not(:disabled):checked:focus + .Switch--option:before {
         box-shadow:
             inset  0px  0px 10px 0px rgba(239, 103, 55, 0.3),
             inset 0px  0px  1px 0px rgba(239, 103, 55, 0),
@@ -760,8 +761,8 @@
     }
 
     .Switch__large.Switch__default .Switch--option:active:before,
-    .Switch__large.Switch__default .Switch--input:checked + .Switch--option:before,
-    .Switch__large.Switch__default .Switch--input:checked:focus + .Switch--option:before {
+    .Switch__large.Switch__default .Switch--input:not(:disabled):checked + .Switch--option:before,
+    .Switch__large.Switch__default .Switch--input:not(:disabled):checked:focus + .Switch--option:before {
         box-shadow:
             inset  0px  0px 12px 0px rgba(239, 103, 55, 0.3),
             inset 0px  0px  1px 0px rgba(239, 103, 55, 0),
@@ -771,22 +772,22 @@
 
 }
 
-.Switch__default .Switch--input:checked + .Switch--option .Switch--text,
+.Switch__default .Switch--input:not(:disabled):checked + .Switch--option .Switch--text,
 .Switch__default .Switch--option:active .Switch--text {
     font-weight: 600;
 }
 
-.Switch__default .Switch--input:checked + .Switch--option .Switch--option-background {
+.Switch__default .Switch--input:not(:disabled):checked + .Switch--option .Switch--option-background {
     background-color: var(--color-selected);
     box-shadow: inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35);
 }
 
-.Switch__default .Switch--input:checked:focus + .Switch--option .Switch--option-background,
-.Switch__default .Switch--input:checked + .Switch--option:hover .Switch--option-background {
+.Switch__default .Switch--input:not(:disabled):checked:focus + .Switch--option .Switch--option-background,
+.Switch__default .Switch--input:not(:disabled):checked + .Switch--option:hover .Switch--option-background {
     background-color: var(--color-selected-over);
 }
 
-.Switch__default .Switch--input:checked + .Switch--option:active .Switch--option-background,
+.Switch__default .Switch--input:not(:disabled):checked + .Switch--option:active .Switch--option-background,
 .Switch__default .Switch--option:active .Switch--option-background {
     background-color: var(--color-selected-active);
     box-shadow: inset 1px 1px 6px 0px rgba(34, 34, 34, 0.35);
@@ -794,20 +795,27 @@
 
 /*---------------------------- STATE - DISABLED ----------------------------*/
 
+.Switch--input:disabled:checked + .Switch--option,
 .Switch--input:disabled + .Switch--option {
     background-color: #fff;
     mix-blend-mode: multiply;
 }
 
+.Switch--input:disabled:checked + .Switch--option:hover .Switch--option-background,
+.Switch--input:disabled:checked + .Switch--option:focus .Switch--option-background,
+.Switch--input:disabled:checked + .Switch--option .Switch--option-background,
 .Switch--input:disabled + .Switch--option .Switch--option-background {
     background-color: var(--color-button-bg-disabled);
 }
 
+.Switch--input:disabled:checked + .Switch--option:active .Switch--option-background,
 .Switch--input:disabled + .Switch--option:active .Switch--option-background {
     background-color: var(--color-button-bg-disabled-active);
     box-shadow: none;
 }
 
+.Switch--input:disabled:checked + .Switch--option .Switch--text,
+.Switch--input:disabled:checked + .Switch--option:active .Switch--tex,
 .Switch--input:disabled + .Switch--option:active .Switch--text,
 .Switch--input:disabled + .Switch--option .Switch--text {
     font-weight: 500;
@@ -815,10 +823,12 @@
     color: var(--color-button-text-disabled);
 }
 
+.Switch--input:disabled:checked + .Switch--option .Switch--icon svg,
 .Switch--input:disabled + .Switch--option .Switch--icon svg {
     fill: var(--color-button-icon-disabled);
 }
 
+.Switch--input:disabled:checked + .Switch--option:before,
 .Switch--input:disabled + .Switch--option:before {
     display: none;
 }

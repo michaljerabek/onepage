@@ -19,9 +19,7 @@
     {{> FlatButton {
             type: "default-warn",
             size: "small",
-            icon: .element.fill ? "#icon-circle-line" : "#icon-circle",
-            iconW: 18,
-            iconH: 18,
+            icon: .element.fill ? "#icon-button-stroke" : "#icon-button-fill",
             set: "element.fill",
             value: !.element.fill,
             className: "E_PageElementEditUI--fill",

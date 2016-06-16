@@ -3,14 +3,14 @@
 /*====================================================================*/
 
 :root {
-    --P_font-type-1-title-font-family: serif;
+    --P_font-type-1-title-font-family: "DejaVu Serif";
     --P_font-type-1-title-font-weight: bold;
-    --P_font-type-1-body-font-family: serif;
+    --P_font-type-1-body-font-family: "DejaVu Serif";
     --P_font-type-1-body-font-weight: normal;
 
-    --P_font-type-2-title-font-family: sans-serif;
+    --P_font-type-2-title-font-family: serif;
     --P_font-type-2-title-font-weight: bold;
-    --P_font-type-2-body-font-family: sans-serif;
+    --P_font-type-2-body-font-family: serif;
     --P_font-type-2-body-font-weight: normal;
 
     --P_font-type-3-title-font-family: "Open Sans";
@@ -27,6 +27,15 @@
 /*--------------------------------------------------------------------*/
 /*-------------------------------- PAGE ------------------------------*/
 /*--------------------------------------------------------------------*/
+
+/*---------------------------- ORNAMENT (FLORALIA) ----------------------------*/
+
+@font-face {
+    font-family: "ornament";
+
+    src: url("../fonts/kingthings-flourishes/Kingthings_Flourishes.ttf");
+}
+
 
 /*---------------------------- OPEN SANS ----------------------------*/
 
@@ -60,6 +69,40 @@
     font-style: italic;
 
     src: url("../fonts/open-sans/OpenSans-SemiboldItalic.ttf");
+}
+
+/*---------------------------- DEJAVU SERIF ----------------------------*/
+
+@font-face {
+    font-family: "DejaVu Serif";
+    font-weight: normal;
+
+    src: url("../fonts/dejavu-serif/DejaVuSerif.ttf");
+}
+
+
+@font-face {
+    font-family: "DejaVu Serif";
+    font-weight: normal;
+    font-style: italic;
+
+    src: url("../fonts/dejavu-serif/DejaVuSerif-Italic.ttf");
+}
+
+@font-face {
+    font-family: "DejaVu Serif";
+    font-weight: bold;
+
+    src: url("../fonts/dejavu-serif/DejaVuSerif-Bold.ttf");
+}
+
+
+@font-face {
+    font-family: "DejaVu Serif";
+    font-weight: bold;
+    font-style: italic;
+
+    src: url("../fonts/dejavu-serif/DejaVuSerif-BoldItalic.ttf");
 }
 
 /*--------------------------------------------------------------------*/

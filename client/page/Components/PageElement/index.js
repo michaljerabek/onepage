@@ -271,7 +271,7 @@
                 this.self = this.find("." + this.CLASS.self);
                 this.$self = $(this.self);
 
-                this.emptyStateToParent = this.get("emptyStateTo");
+                this.stateToParent = this.get("stateTo");
 
                 if (Ractive.EDIT_MODE) {
 
@@ -282,28 +282,28 @@
                         this.initDragDropUpload();
                     }
 
-                    if (this.emptyStateToParent && this.isEmpty) {
+                    if (this.stateToParent && this.isEmpty) {
 
                         this.observe("state", function (state) {
 
-                            this.$self.closest(this.emptyStateToParent)[state === "active" ? "addClass" : "removeClass"](this.CLASS.activeParent);
+                            this.$self.closest(this.stateToParent)[state === "active" ? "addClass" : "removeClass"](this.CLASS.activeParent);
                         });
 
                     }
                 }
 
-                if (this.emptyStateToParent && this.isEmpty) {
+                if (this.isEmpty) {
 
-                    this.addEmptyStateToParent(this.isEmpty());
+                    this.isEmpty();
                 }
             }
         },
 
         addEmptyStateToParent: function (state) {
 
-            if (this.$self && this.emptyStateToParent) {
+            if (this.$self && this.stateToParent) {
 
-                this.$self.closest(this.emptyStateToParent)[state ? "addClass" : "removeClass"](this.CLASS.emptyParent);
+                this.$self.closest(this.stateToParent)[state ? "addClass" : "removeClass"](this.CLASS.emptyParent);
             }
         },
 

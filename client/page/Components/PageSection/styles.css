@@ -144,6 +144,8 @@
     transition:
         color 0.1s linear,
         border-color 0.1s linear,
+        text-shadow 0.1s linear,
+        box-shadow 0.1s linear,
         border-radius 0.3s ease-in-out,
         background-color 0.1s linear;
 }
@@ -155,68 +157,83 @@
     table-layout: fixed;
 }
 
-.P_PageSection--content-wrapper {
+.P_PageSection--center {
     margin: 0px auto;
 
     width: 100%;
     max-width: var(--P_PageSection__max-width);
 
     display: table;
+
+/*    pointer-events: none;*/
 }
 
-.P_PageSection--center {
-    padding: 80px 88px;
+.P_PageSection--center :not(.P_PageSection--content-wrapper) {
+/*    pointer-events: auto;*/
+}
+
+.P_PageSection--content-wrapper {
     width: 100%;
     height: 100%;
 
     display: table-cell;
+
+/*    pointer-events: none;*/
+}
+
+.P_PageSection--content-wrapper * {
+/*    pointer-events: auto;*/
+}
+
+.P_PageSection--center .P_PageSection--content-wrapper {
+    padding: 80px 88px;
 }
 
 @media (max-width: 1440px) {
 
-    .P_PageSection--center {
+    .P_PageSection--center .P_PageSection--content-wrapper {
         padding: 80px 80px;
     }
 }
 
 @media (max-width: 1200px) {
 
-    .P_PageSection--center {
+    .P_PageSection--center .P_PageSection--content-wrapper {
         padding: 80px 72px;
     }
 }
 
 @media (max-width: 1000px) {
 
-    .P_PageSection--center {
+    .P_PageSection--center .P_PageSection--content-wrapper {
         padding: 80px 64px;
     }
 }
 
 @media (max-width: 800px) {
 
-    .P_PageSection--center {
+    .P_PageSection--center .P_PageSection--content-wrapper {
         padding: 80px 44px;
     }
 }
 
 @media (max-width: 640px) {
 
-    .P_PageSection--center {
+    .P_PageSection--center .P_PageSection--content-wrapper {
         padding: 80px 32px;
     }
 }
 
 @media (max-width: 480px) {
 
-    .P_PageSection--center {
+    .P_PageSection--center .P_PageSection--content-wrapper {
         padding: 80px 24px;
     }
 }
 
 @media (max-width: 360px) {
 
-    .P_PageSection--center {
+    .P_PageSection--center .P_PageSection--content-wrapper {
         padding: 80px 20px;
     }
 }
@@ -300,7 +317,7 @@
     opacity: 0;
 
     transition: var(--default-transition);
-    transition-property: background-color, box-shadow, opacity;
+    transition-property: background-color, box-shadow, opacity, top, margin-top, margin-bottom, bottom;
 }
 
 .E_PageSection--add-button svg {
@@ -320,7 +337,7 @@
     background-color: var(--color-hover);
 
     transition: var(--default-transition-hover);
-    transition-property: background-color, box-shadow, opacity;
+    transition-property: background-color, box-shadow, opacity, top, margin-top, margin-bottom, bottom;
 }
 
 .E_PageSection--add-button:hover svg {
@@ -332,6 +349,15 @@
 .E_PageSectionEditUI__hover ~ .P_PageSection--content .E_PageSection--add-button,
 .E_PageSectionEditUI__hidden-by-user ~ .P_PageSection--content .E_PageSection--add-button {
     opacity: 1;
+
+    transition:
+        top              var(--default-transition-duration) var(--default-transition-easing) 0s,
+        margin-top       var(--default-transition-duration) var(--default-transition-easing) 0s,
+        bottom           var(--default-transition-duration) var(--default-transition-easing) 0s,
+        margin-bottom    var(--default-transition-duration) var(--default-transition-easing) 0s,
+        background-color var(--default-transition-duration) var(--default-transition-easing) 0s,
+        box-shadow       var(--default-transition-duration) var(--default-transition-easing) 0.3s,
+        opacity          var(--default-transition-duration) var(--default-transition-easing) 0.3s;
 }
 
 .E_PageSectionEditUI__hover ~ .P_PageSection--content .E_PageSection--add-button[data-ractive-transition="intro"],

@@ -1,5 +1,8 @@
 <span class="
-             P_PageElementTitle P_PageElementTitle_{{.source || 'title'}} E_Editor__title P_font-title
+             P_PageElementText
+             P_PageElementText_{{.source ? .source.replace(/\./g, '-') : 'title'}}
+             E_Editor__{{.editor || 'title'}}
+             P_font-{{.font || 'title'}}
              lines-{{.lines || 1}}
              scale-{{.scale || 1}}
              "
@@ -8,9 +11,12 @@
       on-blur="@this.handleBlur(event)"
       value="{{.element[.source || 'title'][.lang]}}"
       ></span>
+{{#if .hasUnderline}}
 <span
-      class="P_PageElementTitle--underline"
+      class="P_PageElementText--underline"
       style="color: {{.element.specialColor || .element.defaultColors.specialColor}};"
       >
-    <span class="P_PageElementTitle--underline-element"></span>
+    <span class="P_PageElementText--underline-element"></span>
 </span>
+{{/if}}
+

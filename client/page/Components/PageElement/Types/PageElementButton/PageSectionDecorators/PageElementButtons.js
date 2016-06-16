@@ -77,6 +77,8 @@
                     return;
                 }
 
+                this.fire("emptyButtons", !buttons || !buttons.length, "PageElementButtons");
+
                 this.set("showAddButton", !buttons || buttons.length < (this.MAX_BUTTONS || 3));
             });
 

@@ -66,14 +66,12 @@
         margin: 0;
     }
     to {
-        margin: 0 4px;
         margin-bottom: 8px;
     }
 }
 
 @keyframes P_PageElement__button-hide__360 {
     from {
-        margin: 0 4px;
         margin-bottom: 8px;
     }
     to {
@@ -92,6 +90,21 @@
 
     display: inline-block;
     overflow: hidden;
+
+    transition:
+        color 0.1s linear 0s,
+        background 0.1s linear 0s,
+        border 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        box-shadow 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
+}
+
+.E_PageSection__stop-color-transitions .P_PageElementButton {
+    transition:
+        box-shadow 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
 }
 
 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus,
@@ -105,7 +118,6 @@ body.E_actions-active .P_PageElement .P_PageElementButton:hover {
 body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
     transform: scale(1.03571);
 }
-
 
 @media (max-width: 480px) {
 
@@ -143,7 +155,7 @@ body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
 @media (max-width: 360px) {
 
     .P_PageElement__button {
-        margin: 0 4px;
+        margin: 0;
         margin-bottom: 8px;
     }
 
@@ -262,6 +274,36 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
 	border-radius: 28px;
 }
 
+.P_PageSection__shadow-10 .P_PageElementButton {
+    box-shadow: var(--P_PageSection--shadow-10__box);
+}
+
+.P_PageSection__shadow-20 .P_PageElementButton {
+    box-shadow: var(--P_PageSection--shadow-20__box);
+}
+
+.P_PageSection__shadow-30 .P_PageElementButton {
+    box-shadow: var(--P_PageSection--shadow-30__box);
+}
+
+.P_PageSection__shadow-10 .P_PageElementButton.P_PageElementButton__stroke {
+    text-shadow: var(--P_PageSection--shadow-10__text);
+    box-shadow: inset var(--P_PageSection--shadow-10__box),
+        var(--P_PageSection--shadow-10__box);
+}
+
+.P_PageSection__shadow-20 .P_PageElementButton.P_PageElementButton__stroke {
+    text-shadow: var(--P_PageSection--shadow-20__text);
+    box-shadow: inset var(--P_PageSection--shadow-20__box),
+        var(--P_PageSection--shadow-20__box);
+}
+
+.P_PageSection__shadow-30 .P_PageElementButton.P_PageElementButton__stroke {
+    text-shadow: var(--P_PageSection--shadow-30__text);
+    box-shadow: inset var(--P_PageSection--shadow-30__box),
+        var(--P_PageSection--shadow-30__box);
+}
+
 /*
 @-moz-document url-prefix() {
 
@@ -334,7 +376,8 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     user-select: text;
 
     transition: padding 0.3s ease-in-out 0s,
-        color 0.1s linear 0s;
+        color 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
 }
 
 .E_PageSection__stop-color-transitions .P_PageElementButton--text {
@@ -462,7 +505,6 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
 
     position: relative;
     margin: 0px auto;
-
     padding: 0 8px;
 
     display: table;
@@ -473,8 +515,13 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     .P_PageSection--buttons {
         margin-left: -20px;
 
+        padding: 0;
+        width: calc(100% + 36px);
+    }
 
-        width: 100%;
+    .P_PageSection--buttons .P_PageElement__button {
+        margin-right: auto;
+        margin-left: auto;
     }
 }
 
@@ -483,6 +530,7 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     font-size: 0;
 
     margin: 0px auto;
+    margin-top: 16px;
     position: relative;
 }
 
@@ -497,18 +545,76 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     display: inline-block !important;
 }
 
+
+@media (max-width: 480px) {
+
+    .P_PageSection--buttons-wrapper {
+        margin-top: 12px;
+    }
+
+    .P_PageSection--buttons [id*="__ph"]  {
+        margin: 0 6px;
+        margin-bottom: 12px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSection--buttons-wrapper {
+        margin-top: 8px;
+    }
+
+    .P_PageSection--buttons [id*="__ph"] {
+        margin: 0;
+        margin-bottom: 8px;
+    }
+}
+
+/*---------------------------- ADD-BUTTON ----------------------------*/
+
 .E_PageElementButtons--add-button  {
-    margin: auto;
     z-index: 30;
     position: absolute;
-    top: -16px;
-    bottom: 0px;
+    top: 24px;
     right: -40px;
 }
 
+.P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
+    top: -20px;
+    right: -12px;
+}
+
+.P_PageSection--buttons__empty .P_PageSection--buttons-wrapper  {
+    margin-top: 0;
+}
+
 .E_PageElementButtons--add-button__bottom {
-    top: auto;
+    margin: auto;
+    top: 100%;
     bottom: -32px;
-    right: 0px;
-    left: 0px;
+    right: 0;
+    left: 0;
+}
+
+@media (max-width: 480px) {
+
+    .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+        top: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+        top: 16px;
+    }
+
+    .P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
+        margin: auto;
+        top: 100%;
+        bottom: -20px;
+        right: 0;
+        left: 0px;
+    }
 }

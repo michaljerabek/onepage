@@ -69,7 +69,8 @@
         },
 
         partials: {
-            Text: require("./../../../../libs/Components/UI/Text/index.tpl")
+            Text: require("./../../../../libs/Components/UI/Text/index.tpl"),
+            titleLangIcon: require("./partials/title-lang-icon.tpl")
         },
 
         decorators: {
@@ -111,6 +112,8 @@
         },
 
         superOncomplete: function () {
+
+            this.set("completed", true);
 
             if (on.client) {
 

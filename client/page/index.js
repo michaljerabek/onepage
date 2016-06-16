@@ -210,10 +210,7 @@ module.exports = Ractive.extend({
 
         if (this.scrollToSection) {
 
-            if (Ractive.EDIT_MODE) {
-
-                EventEmitter.trigger("langChanged.PageSection", lang);
-            }
+            EventEmitter.trigger("langChanged.PageSection", [lang, Ractive.EDIT_MODE]);
 
             this.scrollToSection.refresh();
         }
@@ -335,8 +332,9 @@ module.exports = Ractive.extend({
 
         this.observe("page.settings.animations", function (value) {
 
-            this.scrollToSection.setAnimation(this.ANIMATIONS[value].SCROLL.easing, this.ANIMATIONS[value].SCROLL.duration);
+            value = value || Object.keys(this.ANIMATIONS)[1];
 
+            this.scrollToSection.setAnimation(this.ANIMATIONS[value].SCROLL.easing, this.ANIMATIONS[value].SCROLL.duration);
         });
     },
 
@@ -492,22 +490,37 @@ module.exports = Ractive.extend({
 
         langs = langs || Object.keys(this.get("page.settings.lang.langs"));
 
-        this.changeLang(langs.pop()).then(function () {
+        var lang = langs.pop();
 
-            if (!langs.length) {
+        while (lang) {
 
-                this.changeLang(currentLang);
+            this.changeLang(lang);
 
-                EventEmitter.trigger("saving:lang:end.Page", [this]);
+            lang = langs.pop();
+        }
 
-                cb.call(this);
+        this.changeLang(currentLang);
 
-                return;
-            }
+        EventEmitter.trigger("saving:lang:end.Page", [this]);
 
-            this.copyLangsOnSave(cb, currentLang, langs);
-
-        }.bind(this));
+        cb.call(this);
+//
+//        this.changeLang(langs.pop()).then(function () {
+//
+//            if (!langs.length) {
+//
+//                this.changeLang(currentLang);
+//
+//                EventEmitter.trigger("saving:lang:end.Page", [this]);
+//
+//                cb.call(this);
+//
+//                return;
+//            }
+//
+//            this.copyLangsOnSave(cb, currentLang, langs);
+//
+//        }.bind(this));
     },
 
     savePage: function () {

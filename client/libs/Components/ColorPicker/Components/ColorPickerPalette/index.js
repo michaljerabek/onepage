@@ -270,7 +270,7 @@
 
             if (src && colorCache[src]) {
 
-                this.merge("colors", colorCache[src]);
+                this.merge("colors", Array.prototype.slice.call(colorCache[src]));
 
                 if (colorCache[src].length === 5) {
 

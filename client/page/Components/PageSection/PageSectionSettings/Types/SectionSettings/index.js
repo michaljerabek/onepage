@@ -24,7 +24,8 @@
         },
 
         partials: {
-            pageSectionSettingsContent: template
+            pageSectionSettingsContent: template,
+            layoutHeader: require("./partials/layout-header.tpl")
         },
 
         data: function () {

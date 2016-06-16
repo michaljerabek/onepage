@@ -36,6 +36,10 @@
 
 }(this, function (PageElement, Ractive, U, partials, on) {
 
+    var CLASS = {
+        textElement: "P_PageElementText"
+    };
+
     return PageElement.extend({
 
         components: {
@@ -46,14 +50,16 @@
         data: function () {
 
             return {
-                type: "title",
-                hasEditUI: true
+                type: "text",
+                hasEditUI: true,
+                balanceText: true,
+                removeNbsp: true,
+                editor: "content",
+                source: "text"
             };
         },
 
         onconfig: function () {
-
-            this.CLASS.selfElement = "P_PageElementTitle";
 
             this.superOnconfig();
 
@@ -101,9 +107,12 @@
 
             this.superOnrender();
 
-            this.$text = this.$self.find("." + this.CLASS.selfElement);
+            this.$text = this.$self.find("." + CLASS.textElement);
 
-            this.$text.balanceText();
+            if (this.get("balanceText")) {
+
+                this.$text.balanceText();
+            }
 
             Ractive.$win = Ractive.$win || $(window);
 
@@ -136,6 +145,11 @@
 
                     maxLength = this.get("maxLength");
 
+                if (!maxLength) {
+
+                    return;
+                }
+
                 text = text.replace(/\&nbsp;/ig, " ");
 
                 //nahradit <br> mezerou
@@ -144,7 +158,7 @@
                 //odstranit všechny tagy
                 text = text.replace(/(<([^>]+)>)/ig, "");
 
-                if (text.length > (maxLength || 100)) {
+                if (text.length > maxLength) {
 
                     this.skipTextObserver = true;
 
@@ -294,27 +308,36 @@
                 return;
             }
 
-            //odstranit &nbsp;
-            var source = this.get("source") || "title",
-                lang = this.get("lang"),
+            if (this.get("removeNbsp")) {
 
-                text = this.get("element." + source + "." + lang);
+                var source = this.get("source") || "title",
+                    lang = this.get("lang"),
 
-            text = text.replace(/\&nbsp;/ig, " ");
+                    text = this.get("element." + source + "." + lang),
 
-            clearTimeout(this.nbspTimeout);
+                    noNbsp = text.replace(/\&nbsp;/ig, " ");
 
-            this.nbspTimeout = setTimeout(function() {
+                clearTimeout(this.nbspTimeout);
 
-                this.set("element." + source + "." + lang, text)
-                    .then(this.handleModified.bind(this));
+                this.nbspTimeout = setTimeout(function() {
 
-            }.bind(this), 0);
+                    this.set("element." + source + "." + lang, noNbsp)
+                        .then(this.handleModified.bind(this));
+
+                }.bind(this), 0);
+
+            } else {
+
+                this.handleModified();
+            }
         },
 
         handleModified: function () {
 
-            this.$text.balanceText();
+            if (this.get("balanceText")) {
+
+                this.$text.balanceText();
+            }
 
             this.countLines();
 

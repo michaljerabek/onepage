@@ -2,7 +2,7 @@
     class="
         P_PageElementButton
         {{#if .element.fill}}P_PageElementButton__fill{{else}}P_PageElementButton__stroke{{/if}}
-        {{#if ((.element.text && .element.text[.lang]) || '').replace(/\&nbsp\;/ig, ' ').length > (.element.icon ? 20 : 24)}}P_PageElementButton__long-text{{/if}}
+        {{#if ((.element.text && .element.text[.lang]) || '').replace(/\&nbsp\;/ig, ' ').length > (.element.icon && !.element.hideIcon ? 20 : 24)}}P_PageElementButton__long-text{{/if}}
         {{#if .element.icon && !.element.hideIcon}}P_PageElementButton__has-icon{{/if}}
         P_font-title
     "

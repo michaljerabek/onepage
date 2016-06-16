@@ -32,23 +32,104 @@
 
         components: components || {},
 
+        data: function () {
+
+            return {
+                elementsStates: []
+            };
+        },
+
         onconfig: function () {
 
             this.superOnconfig();
 
             this.setDefaultValues();
+
+
+//            this.on("emptyElement *.emptyElement emptyButtons", function (empty, element) {
+//
+//                var emptyClass,
+//                    notEmptyClass;
+//
+//                if (element === "PageElementButtons") {
+//
+//                    emptyClass = "has-empty-Buttons";
+//                    notEmptyClass = "has-not-empty-Buttons";
+//                }
+//
+//                if (element === this.Title) {
+//
+//                    emptyClass = "has-empty-Title";
+//                    notEmptyClass = "has-not-empty-Title";
+//                }
+//
+//                if (element === this.Subtitle) {
+//
+//                    emptyClass = "has-empty-Subtitle";
+//                    notEmptyClass = "has-not-empty-Subtitle";
+//                }
+//
+//                if (!emptyClass) {
+//
+//                    return;
+//                }
+//
+//                var states = this.get("elementsStates"),
+//
+//                    emptyIndex = states.indexOf(emptyClass);
+//
+//                if (~emptyIndex && !empty) {
+//
+//                    states.splice(emptyIndex, 1);
+//                }
+//
+//                var notEmptyIndex = states.indexOf(notEmptyClass);
+//
+//                if (~notEmptyIndex && empty) {
+//
+//                    states.splice(notEmptyIndex, 1);
+//                }
+//
+//                if ((empty && !~emptyIndex) || (!empty && !~notEmptyIndex)) {
+//
+//                    states.push(empty ? emptyClass : notEmptyClass);
+//                }
+//
+//            }.bind(this));
         },
 
         onrender: function () {
 
             this.superOnrender();
 
+            var titles = this.findAllComponents("PageElementText");
+
+            this.Title = titles[0];
+            this.Subtitle = titles[1];
+
+            this.set("titlesEmpty", this.Title.empty && this.Subtitle.empty);
+
+            this.on("*.emptyText", function () {
+
+                this.set("titlesEmpty", this.Title.empty && this.Subtitle.empty);
+                this.set("titleNotSubtitle", !this.Title.empty && this.Subtitle.empty);
+
+            }.bind(this));
+
             if (Ractive.EDIT_MODE) {
 
-                var titles = this.findAllComponents("PageElementTitle");
+                this.on("*.elementState", function () {
 
-                this.Title = titles[0];
-                this.Subtitle = titles[1];
+                    var titleState = this.Title.get("state"),
+                        subtitleState = this.Subtitle.get("state");
+
+                    this.set("titleActive", titleState === "active" || subtitleState === "active");
+                    this.set("subtitleActive", subtitleState === "active");
+
+                }.bind(this));
+            }
+
+            if (Ractive.EDIT_MODE) {
 
                 if (this.Title && this.Subtitle) {
 
@@ -59,6 +140,7 @@
                     }.bind(this), {init: false, defer: true});
                 }
             }
+
         },
 
         oncomplete: function () {
@@ -76,6 +158,11 @@
         },
 
         setDefaultValues: function () {
+
+            if (!this.get("section.layout")) {
+
+                this.set("section.layout", "center");
+            }
         },
 
         getTextPaths: function () {

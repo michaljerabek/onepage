@@ -15,7 +15,7 @@
         on-tap="@this.fire('addButton')"
         intro-outro="attr:{duration: 300}"
     >
-        <svg><use xlink:href="#icon-plus"></use></svg>
+        <svg><use xlink:href="{{#if ~/section.buttons.length}}#icon-plus{{else}}#icon-add-button{{/if}}"></use></svg>
     </div>
     {{/if}}
 

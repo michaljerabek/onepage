@@ -17,7 +17,7 @@
 <div class="E_PageSectionSettings--transition-wrapper">
 {{#if .openPageSectionSettings === 'section'}}
 
-    <SectionSettings data="{{.section}}" lang="{{.lang}}" />
+    <SectionSettings data="{{.section}}" layoutTemplate="layoutHeader" lang="{{.lang}}" />
 
 {{/if}}
 </div>
