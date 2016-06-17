@@ -154,6 +154,8 @@
                     transition: ""
                 });
             }
+
+            this.set("completed", true);
         },
 
         superOnteardown: function () {

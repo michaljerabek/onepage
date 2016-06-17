@@ -8,7 +8,9 @@
             PageSection = require("./../../"),
 
             components = {
-                HeaderEditUI: require("./../../PageSectionEditUI/Types/HeaderEditUI")
+                HeaderEditUI: require("./../../PageSectionEditUI/Types/HeaderEditUI"),
+                PageElementMenu: require("./../../../PageElement/Types/PageElementMenu"),
+                PageElementMenuSettings: Ractive.EDIT_MODE ? require("./../../../PageElement/PageElementSettings/Types/PageElementMenuSettings") : null,
             },
 
             partials = {
@@ -35,7 +37,7 @@
         data: function () {
 
             return {
-                elementsStates: []
+
             };
         },
 
@@ -159,9 +161,16 @@
 
         setDefaultValues: function () {
 
-            if (!this.get("section.layout")) {
+            var section = this.get("section");
+
+            if (!section.layout) {
 
                 this.set("section.layout", "center");
+            }
+
+            if (!section.menu) {
+
+                this.set("section.menu", {});
             }
         },
 
@@ -169,7 +178,27 @@
 
             var paths = PageSection.prototype.getTextPaths.apply(this);
 
-            paths = paths.concat(["title", "subtitle"]);
+            paths = paths.concat(["name", "title", "subtitle"]);
+
+            var buttons = (this.get("section.buttons") || []).length;
+
+            if (buttons) {
+
+                for (--buttons; buttons >= 0; buttons--) {
+
+                    paths.push("buttons." + buttons + ".text");
+                }
+            }
+
+            return paths;
+        },
+
+        getColorPaths: function () {
+
+            var paths = this.superGetColorPaths();
+
+            paths.push("section.menu.backgroundColor");
+            paths.push("section.menu.textColor");
 
             return paths;
         }

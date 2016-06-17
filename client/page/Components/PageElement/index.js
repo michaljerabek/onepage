@@ -193,7 +193,6 @@
 
             this.EVENT_NS = "PageElement-" + (++instanceCounter);
 
-            this.Page = this.findParent("Page");
             this.PageSection = this.getPageSection();
 
             if (on.client) {

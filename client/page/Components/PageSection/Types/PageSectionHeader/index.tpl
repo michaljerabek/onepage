@@ -1,5 +1,14 @@
 <BackgroundImage data="{{.section.backgroundImage}}" />
 
+<PageElementMenu
+    lang="{{.lang}}"
+    tplLang="{{.tplLang}}"
+    element="{{.section.menu}}"
+    textColor="{{.section.textColor}}"
+    backgroundColor="{{.section.backgroundColor}}"
+    defaultColors="{{.section.defaultColors}}"
+/>
+
 <div class="P_PageSection--center">
 
     <div class="P_PageSection--content-wrapper

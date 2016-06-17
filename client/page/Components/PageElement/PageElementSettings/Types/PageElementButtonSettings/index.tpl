@@ -1,8 +1,12 @@
 {{> Tabs [
         {
             name: "color",
-            text: "Barva"
+            text: .data.fill ? "Pozadí" : "Barva"
         },
+        .data.fill ? {
+            name: "userTextColor",
+            text: "Text"
+        } : null,
         {
             name: "action",
             text: "Akce"
@@ -22,7 +26,19 @@
 
         {{#if !.openTab || .openTab === "color"}}
 
-            <ColorPicker pathName="color" output="{{.data.color}}" input="{{.data.color || .defaultColors.specialColor}}" defer="true" noColor="true">
+            <ColorPicker pathName="color" output="{{.data.color}}" input="{{.data.color || .color || .defaultColors.specialColor}}" defer="true" noColor="true">
+
+                <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
+                <ColorPickerPalette title="Výchozí" colors="{{@this.findParent('Page').get('page.settings.colorPalette.colors')}}" id="defaultColors" />
+                <ColorPickerPalette title="Pozadí" image="{{.image}}"  images="{{.sectionsBgImages}}"/>
+
+            </ColorPicker>
+
+        {{/if}}
+
+        {{#if .data.fill && .openTab === "userTextColor"}}
+
+            <ColorPicker pathName="userTextColor" output="{{.data.userTextColor}}" input="{{.data.userTextColor || .data.textColor || .data.color}}" defer="true" noColor="true">
 
                 <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
                 <ColorPickerPalette title="Výchozí" colors="{{@this.findParent('Page').get('page.settings.colorPalette.colors')}}" id="defaultColors" />

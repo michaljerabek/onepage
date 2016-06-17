@@ -112,6 +112,11 @@ module.exports = Ractive.extend({
         };
     },
 
+    onconstruct: function () {
+
+        Ractive.defaults.Page = this;
+    },
+
     onconfig: function () {
 
         if (this.get("isAdmin")) {

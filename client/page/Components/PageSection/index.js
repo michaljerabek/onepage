@@ -276,8 +276,6 @@
 
                 this.initEditUI();
             }
-
-            this.Page = this.findParent("Page");
         },
 
         superOncomplete: function () {
@@ -525,6 +523,17 @@
                 this.set("section.backgroundColor", "");
             }
 
+            if (defaultColors) {
+
+                this.forEachPageElement(function () {
+
+                    if (this.removeColorRefs) {
+
+                        this.removeColorRefs();
+                    }
+                });
+            }
+
             /**************************************/
             //pokud má předcházející sekce stejnou barvu pozadí, vybrat jinou
             var colors, thisRef,
@@ -747,7 +756,7 @@
             return paths;
         },
 
-        getColorPaths: function () {
+        superGetColorPaths: function () {
 
             var paths = ["backgroundColor", "textColor"];
 
@@ -758,12 +767,16 @@
                 for (--buttons; buttons >= 0; buttons--) {
 
                     paths.push("buttons." + buttons + ".color");
+                    paths.push("buttons." + buttons + ".userTextColor");
                 }
             }
 
-            //pokud je barva v poli -> přidat, každou cestu zvlášť ???
-
             return paths;
+        },
+
+        getColorPaths: function () {
+
+            return this.superGetColorPaths();
         },
 
         getColors: function () {
