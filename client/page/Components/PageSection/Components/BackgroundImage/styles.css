@@ -29,7 +29,7 @@
 }
 
 .E .P_BackgroundImage:not(.dz-not-file).dz-drag-hover:after {
-    opacity: 0.5;
+    opacity: 0.35;
 
     transition: var(--default-transition-hover);
 }

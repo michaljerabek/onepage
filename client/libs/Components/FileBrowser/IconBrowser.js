@@ -30,6 +30,7 @@
             return {
 
                 type: "icon",
+                browserType: "IconBrowser",
 
                 //název requestu odesílaného na server
                 reqName: "icons",

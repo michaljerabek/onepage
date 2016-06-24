@@ -30,8 +30,11 @@
             <div class="
                     P_PageSection--content
                     {{#if .section.backgroundImage.src}}P_PageSection__shadow-{{.section.addShadow || 0}}{{/if}}
-                    {{#if .stopColorTransitions}}E_PageSection__stop-color-transitions{{/if}}
-                    {{#if .changeOutlineColor}}E_PageSection__change-outline{{/if}}
+                    {{#if .editMode}}
+                        {{#if .stopColorTransitions}}E_PageSection__stop-color-transitions{{else}}E_PageSection__color-transitions{{/if}}
+                        {{#if .changeOutlineColor}}E_PageSection__change-outline{{/if}}
+                        {{#if .dragover}}E_PageSection__dragover{{/if}}
+                    {{/if}}
                 "
             >
 

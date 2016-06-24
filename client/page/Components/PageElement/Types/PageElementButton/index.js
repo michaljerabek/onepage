@@ -440,6 +440,8 @@
                 if (length > (this.get("element.icon") && !this.get("element.hideIcon") ? this.MAX_LENGTH : this.MAX_LENGTH_NO_ICON)) {
 
                     currentValue = prevValue;
+
+                    moveCaret--;
                 }
             }
 

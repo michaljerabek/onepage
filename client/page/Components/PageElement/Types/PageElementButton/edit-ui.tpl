@@ -30,7 +30,7 @@
 
     {{#if .element.icon}}
 
-        <span intro-outro="{{#if @this.findParent('Page').get('loaded')}}slideh{{/if}}">
+        <span intro-outro="{{#if @this.Page.get('loaded')}}slideh{{/if}}">
             {{> FlatButton {
                     size: "small",
                     icon: .element.icon && .element.icon.match(/\#[^\"\']+/)[0],

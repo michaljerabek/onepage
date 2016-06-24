@@ -32,6 +32,9 @@ body {
 
 #page {
     overflow: hidden;
+
+    display: table-row;
+    width: 100%;
 }
 
 /*---------------------------- CURSOR ----------------------------*/

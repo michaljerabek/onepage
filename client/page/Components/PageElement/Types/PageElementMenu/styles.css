@@ -3,20 +3,2266 @@
 /*====================================================================*/
 
 .P_PageElement__menu {
-    z-index: 80;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
 
     width: 100%;
-    height: 80px;
+}
+
+.P_PageElement__menu:not(:hover) {
+    z-index: 1;
+}
+
+.P .P_PageElement__menu {
+    z-index: 119;
+}
+
+.P_PageElement__menu.P_PageElement__menu-fixed {
+    z-index: 119;
+    position: fixed;
 }
 
 .P_PageElementMenu {
-    text-align: center;
-    line-height: 80px;
-    font-size: 24px;
+    font-size: 0;
 
     width: 100%;
+
+    background-color: transparent;
+
+    will-change: background-color, box-shadow;
+}
+
+.P_PageElementMenu * {
+    transition: none;
+}
+
+.P_PageElementMenu .P_PageSection--center-content {
+    position: relative;
+}
+
+.P_PageElementMenu--items {
+    line-height: 100px;
+    text-align: right;
+    white-space: nowrap;
+
+    position: relative;
+
+    height: 100px;
+    width: 100%;
+    padding-left: 200px;
+
+    will-change: height, line-height;
+}
+
+
+@media (max-width: 599px) {
+
+    .P_PageElementMenu--items {
+        padding-left: 160px;
+    }
+}
+
+@media (max-width: 559px) {
+
+    .P_PageElementMenu--items {
+        padding-left: 120px;
+    }
+
+}
+
+.P_PageElementMenu__fixed .P_PageElementMenu--items {
+    line-height: 80px;
+
     height: 80px;
 }
+
+.P_PageElementMenu--items > * {
+    vertical-align: top;
+
+    height: 100%;
+
+    display: inline-block;
+}
+
+.P_PageElementMenu--logo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 100%;
+}
+
+.P_PageElementMenu--selected-currency,
+.P_PageElementMenu--selected-lang,
+.P_PageElementMenu--show-hidden-text,
+.P_PageElementMenu--link-self {
+    font-size: 19px;
+    text-decoration: none;
+
+    color: inherit;
+}
+
+.P_PageElementMenu--cart,
+.P_PageElementMenu--show-hidden-menu,
+.P_PageElementMenu--currency,
+.P_PageElementMenu--lang {
+    padding: 0 32px;
+}
+
+.P_PageElementMenu--links:nth-last-child(2) .P_PageElementMenu--link:last-child .P_PageElementMenu--link-self,
+.P_PageElementMenu--show-hidden-menu:last-child,
+.P_PageElementMenu--cart:last-child,
+.P_PageElementMenu--currency:nth-last-child(2),
+.P_PageElementMenu--lang:nth-last-child(2) {
+    padding-right: 0;
+}
+
+.P_PageElementMenu--icon svg {
+    vertical-align: middle;
+
+    width: 24px;
+    height: 24px;
+
+    fill: currentColor;
+
+    display: inline-block;
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- DROPDOWN -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElementMenu--dropdown {
+    position: relative;
+
+    cursor: default;
+}
+
+.P_PageElementMenu--dropdown-selected {
+    position: relative;
+
+    padding-right: 14px;
+
+    color: inherit;
+}
+
+.P_PageElementMenu--dropdown-icon {
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0;
+
+    width: 8px;
+    height: 8px;
+
+    color: inherit;
+
+    transform: rotate(-90deg);
+    transition-property: transform;
+}
+
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-icon {
+    transform: rotate(-180deg);
+}
+
+.P_PageElementMenu--dropdown-icon svg {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    fill: currentColor;
+}
+
+.P_PageElementMenu--dropdown-close {
+    line-height: 0;
+
+    margin: 0;
+    z-index: 149;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    max-width: 40px;
+
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+
+    transform: rotate(90deg);
+
+    display: none;
+}
+
+.P_PageElementMenu--dropdown-close__active {
+    opacity: 1;
+    visibility: visible;
+
+    transform: rotate(0deg);
+}
+
+.P_PageElementMenu--dropdown-close svg {
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0;
+    bottom: 0;
+
+    width: 12px;
+    height: 12px;
+
+    fill: currentColor;
+}
+
+.P_PageElementMenu--dropdown-list {
+    text-align: center;
+
+    z-index: 10;
+    position: absolute;
+    top: 100%;
+    right: 0px;
+
+    width: max-content;
+    min-width: 100%;
+    max-width: 320px;
+
+    backdrop-filter: blur(0px);
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-14px);
+    clip-path: inset(0px 0px 0px 0px);
+
+    display: inline-block;
+
+    will-change: transform, backdrop-filter;
+}
+
+.P_PageElementMenu--dropdown-list-bg {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0.2;
+
+    pointer-events: none;
+}
+
+.P_PageElementMenu__fill .P_PageElementMenu--dropdown-list-bg,
+.P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list-bg {
+    opacity: 0;
+}
+
+@media (max-width: 639px) {
+
+    .P_PageElementMenu--dropdown-close {
+        display: inline-block;
+    }
+
+    .P_PageElement__menu:hover {
+	    z-index: 120;
+    }
+
+    .P_PageElementMenu--dropdown-list {
+        z-index: 119;
+
+        position: fixed;
+        top: 0;
+        right: auto;
+        left: 0px;
+
+        padding: 16px 0;
+        max-width: none;
+        width: 100%;
+        height: 100%;
+
+        transform: translateY(0px);
+
+        overflow: auto;
+        display: block;
+    }
+
+    .P_PageElementMenu--dropdown-list:after {
+        display: none;
+    }
+
+    .P_PageElementMenu--dropdown-sublist {
+        float: left;
+        position: relative;
+
+        width: 50%;
+        min-width: 240px;
+    }
+
+    .P_PageElementMenu--dropdown-sublist:not(:last-child):after {
+        content: "";
+
+        position: absolute;
+        bottom: 0px;
+        left: 32px;
+
+        width: calc(100% - 64px);
+        height: 1px;
+
+        background-color: currentColor;
+        opacity: 0.35;
+    }
+
+    .P_PageElementMenu--dropdown-list-bg {
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 479px) {
+
+    .P_PageElementMenu--dropdown-sublist:before,
+    .P_PageElementMenu--dropdown-list:after {
+        display: none;
+    }
+
+    .P_PageElementMenu--dropdown-sublist {
+        width: 100%;
+    }
+
+}
+
+/*---------------------------- ROUNDNESS ----------------------------*/
+
+@media (min-width: 640px) {
+
+    .P_roundness-10 .P_PageElementMenu--dropdown-list-bg,
+    .P_roundness-10 .P_PageElementMenu--dropdown-list:after,
+    .P_roundness-10 .P_PageElementMenu--dropdown-list {
+        border-radius: 4px;
+    }
+
+    .P_roundness-20 .P_PageElementMenu--dropdown-list-bg,
+    .P_roundness-20 .P_PageElementMenu--dropdown-list:after,
+    .P_roundness-20 .P_PageElementMenu--dropdown-list {
+        border-radius: 6px;
+    }
+
+    .P_roundness-30 .P_PageElementMenu--dropdown-list-bg,
+    .P_roundness-30 .P_PageElementMenu--dropdown-list:after,
+    .P_roundness-30 .P_PageElementMenu--dropdown-list {
+        border-radius: 8px;
+    }
+}
+
+.P_roundness-0  .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-10 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-20 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-30 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-40 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-0  .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-10 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-20 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-30 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-40 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list-bg,
+.P_roundness-0  .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list:after,
+.P_roundness-10 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list:after,
+.P_roundness-20 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list:after,
+.P_roundness-30 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list:after,
+.P_roundness-40 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list:after,
+.P_roundness-0  .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list:after,
+.P_roundness-10 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list:after,
+.P_roundness-20 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list:after,
+.P_roundness-30 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list:after,
+.P_roundness-40 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list:after,
+.P_roundness-0  .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list,
+.P_roundness-10 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list,
+.P_roundness-20 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list,
+.P_roundness-30 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list,
+.P_roundness-40 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-list,
+.P_roundness-0  .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list,
+.P_roundness-10 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list,
+.P_roundness-20 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list,
+.P_roundness-30 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list,
+.P_roundness-40 .P_PageElementMenu__fill .P_PageElementMenu--dropdown-list {
+	border-radius: 0;
+}
+
+/*//////////////////////////// ROUNDNESS ////////////////////////////*/
+
+/*---------------------------- ANIMATiONS ----------------------------*/
+
+.P.P_animations-10 .P_PageElementMenu--dropdown-close,
+.P.P_animations-10 .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-10-l-duration),
+       background-color var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+        backdrop-filter var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+          border-radius var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+             box-shadow var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+              transform var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+              clip-path var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+                opacity var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+                  color var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s;
+}
+
+.P.P_animations-10 .P_PageElementMenu--dropdown-close__active,
+.P.P_animations-10 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter var(--P_animations-10-l-duration)       var(--P_animations-10-l-easing)       0s,
+       background-color var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+          border-radius var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+             box-shadow var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+              transform var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+              clip-path var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+                opacity var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+                  color var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s;
+}
+
+.E.P_animations-10 .P_PageElementMenu--dropdown-close,
+.E.P_animations-10 .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-10-l-duration),
+        backdrop-filter var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+          border-radius var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+             box-shadow var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+              transform var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+              clip-path var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+                opacity var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+       background-color 0.1s linear 0s,
+                 border 0.1s linear 0s,
+                  color 0.1s linear 0s;
+}
+
+.E.P_animations-10 .P_PageElementMenu--dropdown-close__active,
+.E.P_animations-10 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter var(--P_animations-10-l-duration)       var(--P_animations-10-l-easing)       0s,
+          border-radius var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+             box-shadow var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+              transform var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+              clip-path var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+                opacity var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+       background-color 0.1s linear 0s,
+                 border 0.1s linear 0s,
+                  color 0.1s linear 0s;
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-close,
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-10-l-duration),
+        backdrop-filter var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+             box-shadow var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+              transform var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+              clip-path var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+                opacity var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+          border-radius var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s;
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-close__active,
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter var(--P_animations-10-l-duration)       var(--P_animations-10-l-easing)       0s,
+             box-shadow var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+              transform var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+              clip-path var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+                opacity var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+          border-radius var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s;
+}
+
+.P.P_animations-20 .P_PageElementMenu--dropdown-close,
+.P.P_animations-20 .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-20-l-duration),
+       background-color var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+        backdrop-filter var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+          border-radius var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+             box-shadow var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+              transform var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+              clip-path var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+                opacity var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+                  color var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s;
+}
+
+.P.P_animations-20 .P_PageElementMenu--dropdown-close__active,
+.P.P_animations-20 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter 0.25s var(--P_animations-20-l-easing) 0s,
+       background-color var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+          border-radius var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+             box-shadow var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+              transform var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+              clip-path var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+                opacity var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+                  color var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s;
+}
+
+.E.P_animations-20 .P_PageElementMenu--dropdown-close,
+.E.P_animations-20 .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-20-l-duration),
+        backdrop-filter var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+          border-radius var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+             box-shadow var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+              transform var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+              clip-path var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+                opacity var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+       background-color 0.1s linear 0s,
+                 border 0.1s linear 0s,
+                  color 0.1s linear 0s;
+}
+
+.E.P_animations-20 .P_PageElementMenu--dropdown-close__active,
+.E.P_animations-20 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter 0.25s var(--P_animations-20-l-easing) 0s,
+          border-radius var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+             box-shadow var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+              transform var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+              clip-path var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+                opacity var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+       background-color 0.1s linear 0s,
+                 border 0.1s linear 0s,
+                  color 0.1s linear 0s;
+}
+
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-close,
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-20-l-duration),
+        backdrop-filter var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+             box-shadow var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+              transform var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+              clip-path var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+                opacity var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+          border-radius var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s;
+}
+
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-close__active,
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter 0.25s var(--P_animations-20-l-easing) 0s,
+             box-shadow var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+              transform var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+              clip-path var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+                opacity var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+          border-radius var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s;
+}
+
+.P.P_animations-30 .P_PageElementMenu--dropdown-close,
+.P.P_animations-30 .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-30-l-duration),
+       background-color var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+        backdrop-filter var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+          border-radius var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+             box-shadow var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+              transform var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+              clip-path var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+                opacity var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+                  color var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s;
+}
+
+.P.P_animations-30 .P_PageElementMenu--dropdown-close__active,
+.P.P_animations-30 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter 0.2s var(--P_animations-30-l-easing) 0s,
+       background-color var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+          border-radius var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+             box-shadow var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+              transform var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+              clip-path var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+                opacity var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+                  color var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s;
+}
+
+.E.P_animations-30 .P_PageElementMenu--dropdown-close,
+.E.P_animations-30 .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-30-l-duration),
+        backdrop-filter var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+          border-radius var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+             box-shadow var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+              transform var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+              clip-path var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+                opacity var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+       background-color 0.1s linear 0s,
+                 border 0.1s linear 0s,
+                  color 0.1s linear 0s;
+}
+
+.E.P_animations-30 .P_PageElementMenu--dropdown-close__active,
+.E.P_animations-30 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter 0.2s var(--P_animations-30-l-easing) 0s,
+          border-radius var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+             box-shadow var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+              transform var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+              clip-path var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+                opacity var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+       background-color 0.1s linear 0s,
+                 border 0.1s linear 0s,
+                  color 0.1s linear 0s;
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-close,
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-30-l-duration),
+        backdrop-filter var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+             box-shadow var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+              transform var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+              clip-path var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+                opacity var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+          border-radius var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s;
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-close__active,
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter 0.2s var(--P_animations-30-l-easing) 0s,
+             box-shadow var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+              transform var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+              clip-path var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+                opacity var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+          border-radius var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s;
+}
+
+.P.P_animations-40 .P_PageElementMenu--dropdown-close,
+.P.P_animations-40 .P_PageElementMenu--dropdown-list {
+	transition:
+             visibility 0s linear var(--P_animations-40-l-duration),
+       background-color var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+        backdrop-filter var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+          border-radius var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+             box-shadow var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+              transform var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+              clip-path var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+                opacity var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+                  color var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s;
+}
+
+.P.P_animations-40 .P_PageElementMenu--dropdown-close__active,
+.P.P_animations-40 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+        backdrop-filter 0.65s var(--P_animations-40-l-easing-hover__2) 0s,
+       background-color var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+          border-radius var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+             box-shadow var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+              transform var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing-hover) 0s,
+              clip-path var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+                opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+                  color var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s;
+}
+
+.E.P_animations-40 .P_PageElementMenu--dropdown-close,
+.E.P_animations-40 .P_PageElementMenu--dropdown-list {
+	transition:
+              visibility 0s linear var(--P_animations-40-l-duration),
+         backdrop-filter var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+           border-radius var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+              box-shadow var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+               transform var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+               clip-path var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+                 opacity var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+        background-color 0.1s linear 0s,
+                  border 0.1s linear 0s,
+                   color 0.1s linear 0s;
+}
+
+.E.P_animations-40 .P_PageElementMenu--dropdown-close__active,
+.E.P_animations-40 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+         backdrop-filter 0.65s var(--P_animations-40-l-easing-hover__2) 0s,
+           border-radius var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+              box-shadow var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+               transform var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing-hover) 0s,
+               clip-path var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+                 opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+        background-color 0.1s linear 0s,
+                  border 0.1s linear 0s,
+                   color 0.1s linear 0s;
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-close,
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list {
+	transition:
+              visibility 0s linear var(--P_animations-40-l-duration),
+         backdrop-filter var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+              box-shadow var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+               transform var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+               clip-path var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+                 opacity var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+           border-radius var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s;
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-close__active,
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+	transition:
+         backdrop-filter 0.65s var(--P_animations-40-l-easing-hover__2) 0s,
+              box-shadow var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+               transform var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing-hover) 0s,
+               clip-path var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+                 opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+           border-radius var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s;
+}
+
+.P.P_animations-10 .P_PageElementMenu--dropdown-list-bg,
+.P.P_animations-10 .P_PageElementMenu--dropdown-list:after {
+	transition:
+        border-radius var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+              opacity var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s;
+}
+
+.P.P_animations-10 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.P.P_animations-10 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+        border-radius var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+              opacity var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s;
+}
+
+.E .P_animations-10 .P_PageElementMenu--dropdown-list-bg,
+.E .P_animations-10 .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+        border-radius var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s;
+}
+
+.E .P_animations-10 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.E .P_animations-10 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+        border-radius var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s;
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s,
+        border-radius var(--P_animations-10-l-duration) var(--P_animations-10-l-easing) 0s;
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s,
+        border-radius var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover) 0s;
+}
+
+.P.P_animations-20 .P_PageElementMenu--dropdown-list-bg,
+.P.P_animations-20 .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+        border-radius var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s;
+}
+
+.P.P_animations-20 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.P.P_animations-20 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+        border-radius var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s;
+}
+
+.E.P_animations-20 .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-20 .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+        border-radius var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s;
+}
+
+.E.P_animations-20 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-20 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+        border-radius var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s;
+}
+
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s,
+        border-radius var(--P_animations-20-l-duration) var(--P_animations-20-l-easing) 0s;
+}
+
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s,
+        border-radius var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover) 0s;
+}
+
+.P.P_animations-30 .P_PageElementMenu--dropdown-list-bg,
+.P.P_animations-30 .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+        border-radius var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s;
+}
+
+.P.P_animations-30 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.P.P_animations-30 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+        border-radius var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s;
+}
+
+.E.P_animations-30 .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-30 .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+        border-radius var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s;
+}
+
+.E.P_animations-30 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-30 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+        border-radius var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s;
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s,
+        border-radius var(--P_animations-30-l-duration) var(--P_animations-30-l-easing) 0s;
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s,
+        border-radius var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover) 0s;
+}
+
+.P.P_animations-40 .P_PageElementMenu--dropdown-list-bg,
+.P.P_animations-40 .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+        border-radius var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s;
+}
+
+.P.P_animations-40 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.P.P_animations-40 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+        border-radius var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s;
+}
+
+.E.P_animations-40 .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-40 .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+        border-radius var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s;
+}
+
+.E.P_animations-40 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-40 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+        border-radius var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s;
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s,
+        border-radius var(--P_animations-40-l-duration) var(--P_animations-40-l-easing) 0s;
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg,
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list:after {
+	transition:
+              opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s,
+        border-radius var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing) 0s;
+}
+
+/*//////////////////////////// ANIMATIONS ////////////////////////////*/
+
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+    backdrop-filter: blur(5px);
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0px);
+}
+
+.P_PageElementMenu__fixed .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list,
+.P_PageElementMenu__fill .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+    backdrop-filter: blur(0px);
+}
+
+.P_PageElementMenu__shadow .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list,
+.P_PageElementMenu__fixed .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.35);
+
+    clip-path: inset(24px 0px 0px 0px);
+}
+
+
+@media (max-width: 639px) {
+
+    .P_PageElementMenu__shadow .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list,
+    .P_PageElementMenu__fixed .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list {
+        box-shadow: none;
+
+        clip-path: none;
+    }
+}
+
+.P_PageElementMenu--dropdown .P_PageElementMenu--dropdown-list:after {
+    content: "";
+
+    z-index: -1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    border: 1px solid currentColor;
+    opacity: 0.35;
+}
+
+.P_PageElementMenu__fixed .P_PageElementMenu--dropdown .P_PageElementMenu--dropdown-list:after,
+.P_PageElementMenu__fill .P_PageElementMenu--dropdown .P_PageElementMenu--dropdown-list:after {
+    opacity: 0;
+}
+
+.P_PageElementMenu--dropdown-item {
+    font-size: 19px;
+    line-height: 0;
+    text-align: left;
+    text-decoration: none;
+
+    position: relative;
+
+    padding: 0 32px;
+
+    color: inherit;
+    opacity: 0;
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+.P_PageElementMenu--dropdown-item-text {
+    white-space: normal;
+    line-height: 0;
+
+    width: max-content;
+    max-width: 100%;
+    padding: 0px 32px;
+
+    display: table-cell;
+}
+
+/*---------------------------- ANIMATiONS ----------------------------*/
+
+.P_animations-10 .P_PageElementMenu--dropdown-item-text,
+.P_animations-10 .P_PageElementMenu--dropdown-item {
+    transition: var(--P_animations-10-l);
+    transition-property: opacity, line-height, padding;
+}
+
+.P_animations-10 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item-text,
+.P_animations-10 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item {
+    transition: var(--P_animations-10-l-hover);
+    transition-property: opacity, line-height, padding;
+}
+
+.P_animations-20 .P_PageElementMenu--dropdown-item-text,
+.P_animations-20 .P_PageElementMenu--dropdown-item {
+    transition: var(--P_animations-20-l);
+    transition-property: opacity, line-height, padding;
+}
+
+.P_animations-20 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item-text,
+.P_animations-20 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item {
+    transition: var(--P_animations-20-l-hover);
+    transition-property: opacity, line-height, padding;
+}
+
+.P_animations-30 .P_PageElementMenu--dropdown-item-text,
+.P_animations-30 .P_PageElementMenu--dropdown-item {
+    transition: var(--P_animations-30-l);
+    transition-property: opacity, line-height, padding;
+}
+
+.P_animations-30 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item-text,
+.P_animations-30 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item {
+    transition: var(--P_animations-30-l-hover);
+    transition-property: opacity, line-height, padding;
+}
+
+.P_animations-40 .P_PageElementMenu--dropdown-item-text,
+.P_animations-40 .P_PageElementMenu--dropdown-item {
+    transition: var(--P_animations-40-l);
+    transition-property: opacity, line-height, padding;
+}
+
+.P_animations-40 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item-text,
+.P_animations-40 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item {
+    transition:
+            opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing),
+        line-height var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing-hover__2);
+}
+
+/*//////////////////////////// ANIMATIONS ////////////////////////////*/
+
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item {
+    line-height: 2.16;
+
+    opacity: 1;
+}
+
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg:first-child + .P_PageElementMenu--dropdown-item,
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item:first-child {
+    padding-top: 11px;
+}
+
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item:last-child {
+    padding-bottom: 11px;
+}
+
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item-text {
+    line-height: 1.32;
+
+    padding: 8px 32px;
+}
+
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-list-bg:first-child + .P_PageElementMenu--dropdown-item .P_PageElementMenu--dropdown-item-text,
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item:first-child .P_PageElementMenu--dropdown-item-text {
+    padding-top: 19px;
+}
+
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-item:last-child .P_PageElementMenu--dropdown-item-text {
+    padding-bottom: 19px;
+}
+
+.P_PageElementMenu--dropdown-item:after {
+    content: "";
+
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    bottom: 0;
+
+    width: 4px;
+    height: 4px;
+
+    background-color: currentColor;
+
+    border-radius: 50%;
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.P_PageElementMenu--dropdown-list-bg:first-child + .P_PageElementMenu--dropdown-item:after,
+.P_PageElementMenu--dropdown-item:first-child:after {
+    top: 11px;
+}
+
+.P_PageElementMenu--dropdown-item:last-child:after {
+    bottom: 11px;
+}
+
+/*---------------------------- ANIMATIONS ----------------------------*/
+
+.P.P_animations-10 .P_PageElementMenu--dropdown-item:after {
+	transition: var(--P_animations-10-l);
+    transition-property: background-color, opacity, transform;
+}
+
+.P.P_animations-10 .P_PageElementMenu--dropdown-item:hover:after {
+    transition: var(--P_animations-10-l-hover);
+    transition-property: background-color, opacity, transform;
+}
+
+.E.P_animations-10 .P_PageElementMenu--dropdown-item:after {
+    transition:
+              transform var(--P_animations-10-l-duration) var(--P_animations-10-l-easing),
+                opacity var(--P_animations-10-l-duration) var(--P_animations-10-l-easing),
+        background-color 0.1s linear;
+}
+
+.E.P_animations-10 .P_PageElementMenu--dropdown-item:hover:after {
+    transition:
+               transform var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover),
+                 opacity var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover),
+        background-color 0.1s linear;
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-item:after {
+    transition:
+              transform var(--P_animations-10-l-duration) var(--P_animations-10-l-easing),
+                opacity var(--P_animations-10-l-duration) var(--P_animations-10-l-easing);
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-item:hover:after {
+    transition:
+               transform var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover),
+                 opacity var(--P_animations-10-l-duration-hover) var(--P_animations-10-l-easing-hover);
+}
+
+.P.P_animations-20 .P_PageElementMenu--dropdown-item:after {
+	transition: var(--P_animations-20-l);
+    transition-property: background-color, opacity, transform;
+}
+
+.P.P_animations-20 .P_PageElementMenu--dropdown-item:hover:after {
+    transition: var(--P_animations-20-l-hover);
+    transition-property: background-color, opacity, transform;
+}
+
+.E.P_animations-20 .P_PageElementMenu--dropdown-item:after {
+    transition:
+              transform var(--P_animations-20-l-duration) var(--P_animations-20-l-easing),
+                opacity var(--P_animations-20-l-duration) var(--P_animations-20-l-easing),
+        background-color 0.1s linear;
+}
+
+.E.P_animations-20 .P_PageElementMenu--dropdown-item:hover:after {
+    transition:
+               transform var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover),
+                 opacity var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover),
+        background-color 0.1s linear;
+}
+
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-item:after {
+    transition:
+              transform var(--P_animations-20-l-duration) var(--P_animations-20-l-easing),
+                opacity var(--P_animations-20-l-duration) var(--P_animations-20-l-easing);
+}
+
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-item:hover:after {
+    transition:
+               transform var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover),
+                 opacity var(--P_animations-20-l-duration-hover) var(--P_animations-20-l-easing-hover);
+}
+
+.P.P_animations-30 .P_PageElementMenu--dropdown-item:after {
+	transition: var(--P_animations-30-l);
+    transition-property: background-color, opacity, transform;
+}
+
+.P.P_animations-30 .P_PageElementMenu--dropdown-item:hover:after {
+    transition: var(--P_animations-30-l-hover);
+    transition-property: background-color, opacity, transform;
+}
+
+.E.P_animations-30 .P_PageElementMenu--dropdown-item:after {
+    transition:
+              transform var(--P_animations-30-l-duration) var(--P_animations-30-l-easing),
+                opacity var(--P_animations-30-l-duration) var(--P_animations-30-l-easing),
+        background-color 0.1s linear;
+}
+
+.E.P_animations-30 .P_PageElementMenu--dropdown-item:hover:after {
+    transition:
+               transform var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover),
+                 opacity var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover),
+        background-color 0.1s linear;
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-item:after {
+    transition:
+              transform var(--P_animations-30-l-duration) var(--P_animations-30-l-easing),
+                opacity var(--P_animations-30-l-duration) var(--P_animations-30-l-easing);
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-item:hover:after {
+    transition:
+               transform var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover),
+                 opacity var(--P_animations-30-l-duration-hover) var(--P_animations-30-l-easing-hover);
+}
+
+.P.P_animations-40 .P_PageElementMenu--dropdown-item:after {
+	transition: var(--P_animations-40-l);
+    transition-property: background-color, opacity, transform;
+}
+
+.P.P_animations-40 .P_PageElementMenu--dropdown-item:hover:after {
+    transition:
+        background-color var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing),
+                 opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing),
+               transform var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing-hover);
+}
+
+.E.P_animations-40 .P_PageElementMenu--dropdown-item:after {
+    transition:
+              transform var(--P_animations-40-l-duration) var(--P_animations-40-l-easing),
+                opacity var(--P_animations-40-l-duration) var(--P_animations-40-l-easing),
+        background-color 0.1s linear;
+}
+
+.E.P_animations-40 .P_PageElementMenu--dropdown-item:hover:after {
+    transition:
+               transform var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing-hover),
+                 opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing),
+        background-color 0.1s linear;
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-item:after {
+    transition:
+              transform var(--P_animations-40-l-duration) var(--P_animations-40-l-easing),
+                opacity var(--P_animations-40-l-duration) var(--P_animations-40-l-easing);
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--dropdown-item:hover:after {
+    transition:
+               transform var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing-hover),
+                 opacity var(--P_animations-40-l-duration-hover) var(--P_animations-40-l-easing);
+}
+
+/*//////////////////////////// ANIMATIONS ////////////////////////////*/
+
+.P_PageElementMenu--dropdown-list:not(:hover) .P_PageElementMenu--dropdown-item__active:after,
+.P_PageElementMenu--dropdown-list:hover > .P_PageElementMenu--dropdown-sublist:not(:hover) .P_PageElementMenu--dropdown-item__active:after,
+.P_PageElementMenu--dropdown-item:hover:after {
+    transform: translateX(8px);
+
+    opacity: 1;
+}
+
+.E.P_animations-10 .P_PageElementMenu .P_PageElementMenu--dropdown-icon,
+.P.P_animations-10 .P_PageElementMenu--dropdown-icon {
+    transition: var(--P_animations-10);
+    transition-property: transform;
+}
+
+.E.P_animations-10 .P_PageElementMenu .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-icon,
+.P.P_animations-10 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-icon {
+    transition: var(--P_animations-10-hover);
+    transition-property: transform;
+}
+
+.E.P_animations-20 .P_PageElementMenu .P_PageElementMenu--dropdown-icon,
+.P.P_animations-20 .P_PageElementMenu--dropdown-icon {
+    transition: var(--P_animations-20);
+    transition-property: transform;
+}
+
+.E.P_animations-20 .P_PageElementMenu .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-icon,
+.P.P_animations-20 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-icon {
+    transition: var(--P_animations-20-hover);
+    transition-property: transform;
+}
+
+.E.P_animations-30 .P_PageElementMenu .P_PageElementMenu--dropdown-icon,
+.P.P_animations-30 .P_PageElementMenu--dropdown-icon {
+    transition: var(--P_animations-30);
+    transition-property: transform;
+}
+
+.E.P_animations-30 .P_PageElementMenu .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-icon,
+.P.P_animations-30 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-icon {
+    transition: var(--P_animations-30-hover);
+    transition-property: transform;
+}
+
+.E.P_animations-40 .P_PageElementMenu .P_PageElementMenu--dropdown-icon,
+.P.P_animations-40 .P_PageElementMenu--dropdown-icon {
+    transition: var(--P_animations-40);
+    transition-property: transform;
+}
+
+.E.P_animations-40 .P_PageElementMenu .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-icon,
+.P.P_animations-40 .P_PageElementMenu--dropdown.open .P_PageElementMenu--dropdown-icon {
+    transition: var(--P_animations-40-hover);
+    transition-property: transform;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- LINKS ------------------------------*/
+/*--------------------------------------------------------------------*/
+
+/*---------------------------- MENU-ICON ANIM ----------------------------*/
+
+.P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon svg,
+.P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon rect {
+    transform-origin: center center;
+}
+
+.P_animations-10 .P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon svg,
+.P_animations-10 .P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon rect {
+    transition: var(--P_animations-10);
+    transition-property: transform, opacity;
+}
+
+.P_animations-10 .P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon svg,
+.P_animations-10 .P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect {
+    transition: var(--P_animations-10-hover);
+    transition-property: transform, opacity;
+}
+
+.P_animations-20 .P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon svg,
+.P_animations-20 .P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon rect {
+    transition: var(--P_animations-20);
+    transition-property: transform, opacity;
+}
+
+.P_animations-20 .P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon svg,
+.P_animations-20 .P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect {
+    transition: var(--P_animations-20-hover);
+    transition-property: transform, opacity;
+}
+
+.P_animations-30 .P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon svg,
+.P_animations-30 .P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon rect {
+    transition: var(--P_animations-30);
+    transition-property: transform, opacity;
+}
+
+.P_animations-30 .P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon svg,
+.P_animations-30 .P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect {
+    transition: var(--P_animations-30-hover);
+    transition-property: transform, opacity;
+}
+
+.P_animations-40 .P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon svg,
+.P_animations-40 .P_PageElementMenu--show-hidden-menu .P_PageElementMenu--show-hidden-icon rect {
+    transition: var(--P_animations-40);
+    transition-property: transform, opacity;
+}
+
+.P_animations-40 .P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon svg,
+.P_animations-40 .P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect {
+    transition: var(--P_animations-40-hover);
+    transition-property: transform, opacity;
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon svg {
+    transform: rotate(-45deg);
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect:nth-of-type(1) {
+    transform: translate(2px, 2px);
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect:nth-of-type(2) {
+    opacity: 0;
+
+    transform: translate(0px, 2px);
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect:nth-of-type(3) {
+    opacity: 0;
+
+    transform: translate(-2px, 2px);
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect:nth-of-type(4) {
+    transform: translate(2px, 0px);
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect:nth-of-type(5) {
+    opacity: 0;
+
+    transform: translate(0px, 0px);
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect:nth-of-type(6) {
+    opacity: 0;
+
+    transform: translate(-2px, 0px);
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect:nth-of-type(7) {
+    transform: translate(2px, -2px);
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect:nth-of-type(8) {
+    transform: translate(0px, -2px);
+}
+
+.P_PageElementMenu--show-hidden-menu.open .P_PageElementMenu--show-hidden-icon rect:nth-of-type(9) {
+    transform: translate(-2px, -2px);
+}
+
+/*//////////////////////////// MENU-ICON ANIM ////////////////////////////*/
+
+.P_PageElementMenu--links-wrapper {
+    display: table;
+    table-layout: fixed;
+}
+
+.P_PageElementMenu__hidden .P_PageElementMenu--links-wrapper {
+    display: none;
+}
+
+@media (max-width: 1439px) {
+
+    .P_PageElementMenu--links-wrapper {
+        display: none;
+    }
+}
+
+.P_PageElementMenu--link {
+    vertical-align: middle;
+
+    position: relative;
+
+    display: table-cell;
+}
+
+.E_actions-active .P_PageElementMenu--hidden-link,
+.E_actions-active .P_PageElementMenu--link {
+    cursor: pointer;
+}
+
+.P_PageElementMenu--link-dot {
+    margin: auto;
+    position: absolute;
+    bottom: 20%;
+    left: 0px;
+    right: 0px;
+
+    width: 4px;
+    height: 4px;
+
+    color: inherit;
+    background-color: currentColor;
+    border-radius: 50%;
+
+    opacity: 0;
+}
+
+.P_PageElementMenu--links:nth-last-child(2) .P_PageElementMenu--link:last-child .P_PageElementMenu--link-dot {
+    left: 32px;
+}
+
+.P_PageElementMenu--link-dot:last-of-type {
+    transform: translateX(-16px);
+}
+
+.P_PageElementMenu--link-dot:first-of-type {
+    transform: translateX(16px);
+}
+
+/*---------------------------- ANIMATIONS ----------------------------*/
+
+.P.P_animations-10 .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition: var(--P_animations-10);
+    transition-property: opacity, color, background-color, transform, box-shadow;
+}
+
+.E.P_animations-10 .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-10-duration) var(--P_animations-10-easing),
+                 opacity var(--P_animations-10-duration) var(--P_animations-10-easing),
+              box-shadow 0.1s linear,
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-10-duration) var(--P_animations-10-easing),
+                 opacity var(--P_animations-10-duration) var(--P_animations-10-easing),
+              box-shadow 0.1s linear;
+}
+
+.P.P_animations-10 .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition: var(--P_animations-10-hover);
+    transition-property: opacity, color, background-color, transform, box-shadow;
+}
+
+.E.P_animations-10 .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover),
+                 opacity var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover),
+              box-shadow 0.1s linear,
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover),
+                 opacity var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover),
+              box-shadow 0.1s linear;
+}
+
+.P.P_animations-20 .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition: var(--P_animations-20);
+    transition-property: opacity, color, background-color, transform, box-shadow;
+}
+
+.E.P_animations-20 .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-20-duration) var(--P_animations-20-easing),
+                 opacity var(--P_animations-20-duration) var(--P_animations-20-easing),
+              box-shadow 0.1s linear,
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E .E_PageSection__stop-color-transitions P_animations-20 .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-20-duration) var(--P_animations-20-easing),
+                 opacity var(--P_animations-20-duration) var(--P_animations-20-easing),
+              box-shadow 0.1s linear;
+}
+
+.P.P_animations-20 .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition: var(--P_animations-20-hover);
+    transition-property: opacity, color, background-color, transform, box-shadow;
+}
+
+.E.P_animations-20 .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover),
+                 opacity var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover),
+              box-shadow 0.1s linear,
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E .E_PageSection__stop-color-transitions P_animations-20 .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover),
+                 opacity var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover),
+              box-shadow 0.1s linear;
+}
+
+.P.P_animations-30 .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition: var(--P_animations-30);
+    transition-property: opacity, color, background-color, transform, box-shadow;
+}
+
+.E.P_animations-30 .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-30-duration) var(--P_animations-30-easing),
+                 opacity var(--P_animations-30-duration) var(--P_animations-30-easing),
+              box-shadow 0.1s linear,
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-30-duration) var(--P_animations-30-easing),
+                 opacity var(--P_animations-30-duration) var(--P_animations-30-easing),
+              box-shadow 0.1s linear;
+}
+
+.P.P_animations-30 .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition: var(--P_animations-30-hover);
+    transition-property: opacity, color, background-color, transform, box-shadow;
+}
+
+.E.P_animations-30 .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover),
+                 opacity var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover),
+              box-shadow 0.1s linear,
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover),
+                 opacity var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover),
+              box-shadow 0.1s linear;
+}
+
+.P_animations-40 .P_PageElementMenu--link-dot:first-of-type,
+.P_animations-40 .P_PageElementMenu--link-dot:last-of-type {
+    transform: translateX(0px);
+}
+
+.P.P_animations-40 .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition: var(--P_animations-40);
+    transition-property: opacity, color, background-color, transform, box-shadow;
+}
+
+.E.P_animations-40 .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-40-duration) var(--P_animations-40-easing),
+                 opacity var(--P_animations-40-duration) var(--P_animations-40-easing),
+              box-shadow 0.1s linear,
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-40-duration) var(--P_animations-40-easing),
+                 opacity var(--P_animations-40-duration) var(--P_animations-40-easing),
+              box-shadow 0.1s linear;
+}
+
+.P.P_animations-40 .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover),
+                 opacity var(--P_animations-40-duration-hover) var(--P_animations-40-easing),
+              box-shadow var(--P_animations-40-duration-hover) var(--P_animations-40-easing),
+                   color var(--P_animations-40-duration-hover) var(--P_animations-40-easing),
+        background-color var(--P_animations-40-duration-hover) var(--P_animations-40-easing);
+}
+
+.E.P_animations-40 .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover),
+                 opacity var(--P_animations-40-duration-hover) var(--P_animations-40-easing),
+              box-shadow 0.1s linear,
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot {
+    transition:
+               transform var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover),
+                 opacity var(--P_animations-40-duration-hover) var(--P_animations-40-easing),
+              box-shadow 0.1s linear;
+}
+
+/*//////////////////////////// ANIMATIONS ////////////////////////////*/
+
+.P_PageElementMenu--links-wrapper:not(:hover) .P_PageElementMenu--link__active .P_PageElementMenu--link-dot:first-of-type,
+.P_PageElementMenu--link:hover .P_PageElementMenu--link-dot:first-of-type {
+    transform: translateX(12px);
+}
+
+.P_PageElementMenu--links-wrapper:not(:hover) .P_PageElementMenu--link__active .P_PageElementMenu--link-dot:last-of-type,
+.P_PageElementMenu--link:hover .P_PageElementMenu--link-dot:last-of-type {
+    transform: translateX(-12px);
+}
+
+.P_PageElementMenu--link:hover .P_PageElementMenu--link-dot,
+.P_PageElementMenu--links-wrapper:not(:hover) .P_PageElementMenu--link__active .P_PageElementMenu--link-dot {
+    opacity: 1;
+}
+
+body:not(.E_actions-active) .E .P_PageElementMenu--link:hover .P_PageElementMenu--link-dot,
+body:not(.E_actions-active) .E .P_PageElementMenu--links-wrapper:not(:hover) .P_PageElementMenu--link__active .P_PageElementMenu--link-dot {
+    opacity: 0;
+}
+
+.P_PageElementMenu--show-hidden-menu {
+    position: relative;
+
+    padding-right: 0;
+
+    cursor: pointer;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageElementMenu--show-hidden-menu {
+        display: none;
+    }
+}
+
+.P_PageElementMenu__hidden .P_PageElementMenu--show-hidden-menu {
+    display: inline-block;
+}
+
+.P_PageElementMenu--link-self {
+    white-space: nowrap;
+    position: relative;
+
+    padding: 0 32px;
+    height: 100%;
+
+    display: block;
+    user-select: auto;
+    touch-action: manipulation;
+}
+
+.P_PageElementMenu--show-hidden-menu .P_PageElementMenu--icon svg {
+    width: 18px;
+    height: 18px;
+
+    overflow: visible;
+}
+
+.P_PageElementMenu--show-hidden-menu .P_PageElementMenu--dropdown-list {
+    right: -56px;
+}
+
+.P_PageElementMenu--show-hidden-menu:last-child .P_PageElementMenu--dropdown-list {
+    right: 0px;
+}
+
+.P_PageElementMenu--hidden-link.P_PageElementMenu--dropdown-item {
+    padding: 0;
+}
+
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--hidden-link.P_PageElementMenu--dropdown-item:first-child,
+.P_PageElementMenu--dropdown.open .P_PageElementMenu--hidden-link.P_PageElementMenu--dropdown-item:last-child,
+.P_PageElementMenu--hidden-link.P_PageElementMenu--dropdown-item:first-child,
+.P_PageElementMenu--hidden-link.P_PageElementMenu--dropdown-item:last-child {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after,
+body:not(.E_actions-active) .E .P_PageElementMenu--dropdown-list:not(:hover) > .P_PageElementMenu--hidden-link.P_PageElementMenu--dropdown-item__active:after,
+body:not(.E_actions-active) .E .P_PageElementMenu--dropdown-list:hover .P_PageElementMenu--dropdown-sublist:not(:hover) .P_PageElementMenu--hidden-link.P_PageElementMenu--dropdown-item__active:after {
+    opacity: 0;
+}
+
+.P_PageElementMenu--hidden-link-self {
+    text-decoration: none;
+
+    min-width: 100%;
+
+    color: inherit;
+
+    user-select: auto;
+    touch-action: manipulation;
+}
+
+.E .P_PageElementMenu--hidden-link-self {
+    cursor: auto;
+}
+
+@media (min-width: 640px) {
+
+    .P_PageElementMenu--show-hidden-menu .P_PageElementMenu--dropdown-sublist + .P_PageElementMenu--dropdown-sublist {
+        display: none;
+    }
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- CURRENCY -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElementMenu--currency {
+    text-transform: uppercase;
+}
+
+.P_PageElementMenu__hidden .P_PageElementMenu--currency {
+    padding-right: 0;
+}
+
+@media (max-width: 1439px) {
+
+    .P_PageElementMenu--currency {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 639px) {
+
+    .P_PageElementMenu--currency {
+        display: none;
+    }
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- LANG -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElementMenu__hidden .P_PageElementMenu--lang {
+    padding-right: 0;
+}
+
+@media (max-width: 1439px) {
+
+    .P_PageElementMenu--lang {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 639px) {
+
+    .P_PageElementMenu--lang {
+        padding-right: 0;
+
+        display: none;
+    }
+
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------- CART -------------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElementMenu--cart {
+    position: relative;
+}
+
+.P_PageElementMenu--cart:before,
+.P_PageElementMenu--cart:after {
+    content: "";
+
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+
+    width: 4px;
+    height: 4px;
+
+    background-color: currentColor;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.P_PageElementMenu--cart:before,
+.P_PageElementMenu--cart:after {
+    transform: translateY(-28px);
+}
+
+@media (max-width: 639px) {
+
+    .P_PageElementMenu--cart:before,
+    .P_PageElementMenu--cart:after {
+        display: none;
+    }
+
+}
+
+/*---------------------------- CART - ANIMATIONS ----------------------------*/
+
+.P.P_animations-10 .P_PageElementMenu--cart:before,
+.P.P_animations-10 .P_PageElementMenu--cart:after {
+    transition: var(--P_animations-10);
+}
+
+.P.P_animations-10 .P_PageElementMenu--cart.open:before,
+.P.P_animations-10 .P_PageElementMenu--cart.open:after {
+    transition: var(--P_animations-10-hover);
+}
+
+.E.P_animations-10 .P_PageElementMenu--cart:before,
+.E.P_animations-10 .P_PageElementMenu--cart:after {
+    transition:
+               transform var(--P_animations-10-duration) var(--P_animations-10-easing),
+                 opacity var(--P_animations-10-duration) var(--P_animations-10-easing),
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-10 .P_PageElementMenu--cart.open:before,
+.E.P_animations-10 .P_PageElementMenu--cart.open:after {
+    transition:
+               transform var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover),
+                 opacity var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover),
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart:before,
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart:after {
+    transition:
+        transform var(--P_animations-10-duration) var(--P_animations-10-easing),
+          opacity var(--P_animations-10-duration) var(--P_animations-10-easing);
+}
+
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart.open:before,
+.E.P_animations-10 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart.open:after {
+    transition:
+        transform var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover),
+          opacity var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover);
+}
+
+.P.P_animations-20 .P_PageElementMenu--cart:before,
+.P.P_animations-20 .P_PageElementMenu--cart:after {
+    transition: var(--P_animations-20);
+}
+
+.P.P_animations-20 .P_PageElementMenu--cart.open:before,
+.P.P_animations-20 .P_PageElementMenu--cart.open:after {
+    transition: var(--P_animations-20-hover);
+}
+
+.E.P_animations-20 .P_PageElementMenu--cart:before,
+.E.P_animations-20 .P_PageElementMenu--cart:after {
+    transition:
+               transform var(--P_animations-20-duration) var(--P_animations-20-easing),
+                 opacity var(--P_animations-20-duration) var(--P_animations-20-easing),
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-20 .P_PageElementMenu--cart.open:before,
+.E.P_animations-20 .P_PageElementMenu--cart.open:after {
+    transition:
+               transform var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover),
+                 opacity var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover),
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart:before,
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart:after {
+    transition:
+        transform var(--P_animations-20-duration) var(--P_animations-20-easing),
+          opacity var(--P_animations-20-duration) var(--P_animations-20-easing);
+}
+
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart.open:before,
+.E.P_animations-20 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart.open:after {
+    transition:
+        transform var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover),
+          opacity var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover);
+}
+
+.P.P_animations-30 .P_PageElementMenu--cart:before,
+.P.P_animations-30 .P_PageElementMenu--cart:after {
+    transition: var(--P_animations-30);
+}
+
+.P.P_animations-30 .P_PageElementMenu--cart.open:before,
+.P.P_animations-30 .P_PageElementMenu--cart.open:after {
+    transition: var(--P_animations-30-hover);
+}
+
+.E.P_animations-30 .P_PageElementMenu--cart:before,
+.E.P_animations-30 .P_PageElementMenu--cart:after {
+    transition:
+               transform var(--P_animations-30-duration) var(--P_animations-30-easing),
+                 opacity var(--P_animations-30-duration) var(--P_animations-30-easing),
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-30 .P_PageElementMenu--cart.open:before,
+.E.P_animations-30 .P_PageElementMenu--cart.open:after {
+    transition:
+               transform var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover),
+                 opacity var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover),
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart:before,
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart:after {
+    transition:
+        transform var(--P_animations-30-duration) var(--P_animations-30-easing),
+          opacity var(--P_animations-30-duration) var(--P_animations-30-easing);
+}
+
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart.open:before,
+.E.P_animations-30 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart.open:after {
+    transition:
+        transform var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover),
+          opacity var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover);
+}
+
+.P_animations-40 .P_PageElementMenu--cart:after {
+    transform: translateY(0px);
+}
+
+.P.P_animations-40 .P_PageElementMenu--cart:before,
+.P.P_animations-40 .P_PageElementMenu--cart:after {
+    transition: var(--P_animations-40);
+}
+
+.P.P_animations-40 .P_PageElementMenu--cart.open:before,
+.P.P_animations-40 .P_PageElementMenu--cart.open:after {
+    transition:
+               transform var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover),
+                 opacity var(--P_animations-40-duration-hover) var(--P_animations-40-easing),
+                   color var(--P_animations-40-duration-hover) var(--P_animations-40-easing),
+        background-color var(--P_animations-40-duration-hover) var(--P_animations-40-easing);
+}
+
+.E.P_animations-40 .P_PageElementMenu--cart:before,
+.E.P_animations-40 .P_PageElementMenu--cart:after {
+    transition:
+               transform var(--P_animations-40-duration) var(--P_animations-40-easing),
+                 opacity var(--P_animations-40-duration) var(--P_animations-40-easing),
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-40 .P_PageElementMenu--cart.open:before,
+.E.P_animations-40 .P_PageElementMenu--cart.open:after {
+    transition:
+               transform var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover),
+                 opacity var(--P_animations-40-duration-hover) var(--P_animations-40-easing),
+                   color 0.1s linear,
+        background-color 0.1s linear;
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart:before,
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart:after {
+    transition:
+        transform var(--P_animations-40-duration) var(--P_animations-40-easing),
+          opacity var(--P_animations-40-duration) var(--P_animations-40-easing);
+}
+
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart.open:before,
+.E.P_animations-40 .E_PageSection__stop-color-transitions .P_PageElementMenu--cart.open:after {
+    transition:
+        transform var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover),
+          opacity var(--P_animations-40-duration-hover) var(--P_animations-40-easing);
+}
+
+/*//////////////////////////// CART - ANIMATIONS ////////////////////////////*/
+
+.P_PageElementMenu--cart.open:before,
+.P_PageElementMenu--cart.open:after {
+    opacity: 1;
+}
+
+.P_PageElementMenu--cart.open:before {
+    transform: translateY(-20px);
+}
+
+.P_PageElementMenu--cart.open:after {
+    transform: translateY(-8px);
+}
+
+.P_PageElementMenu--cart-count {
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
+
+    position: absolute;
+    top: 20%;
+    right: 0px;
+
+    width: 24px;
+}
+
+.P_PageElementMenu__fixed .P_PageElementMenu--cart-count {
+    transform: translateY(-2px);
+}
+
+/*---------------------------- SHADOWS ----------------------------*/
+
+.P_PageElementMenu__shadow,
+.P_PageElementMenu__fixed {
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.35);
+}
+
+.P_PageSection__shadow-10 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--cart-count,
+.P_PageSection__shadow-10 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--link-self,
+.P_PageSection__shadow-10 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--selected-currency,
+.P_PageSection__shadow-10 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--selected-lang,
+.P_PageSection__shadow-10 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--show-hidden-text {
+    text-shadow: var(--P_PageSection--shadow-10__text);
+}
+
+.P_PageSection__shadow-20 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--cart-count,
+.P_PageSection__shadow-20 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--link-self,
+.P_PageSection__shadow-20 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--selected-currency,
+.P_PageSection__shadow-20 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--selected-lang,
+.P_PageSection__shadow-20 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--show-hidden-text {
+    text-shadow: var(--P_PageSection--shadow-20__text);
+}
+
+.P_PageSection__shadow-30 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--cart-count,
+.P_PageSection__shadow-30 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--link-self,
+.P_PageSection__shadow-30 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--selected-currency,
+.P_PageSection__shadow-30 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--selected-lang,
+.P_PageSection__shadow-30 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--show-hidden-text {
+    text-shadow: var(--P_PageSection--shadow-30__text);
+}
+
+.P_PageSection__shadow-10 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--link-dot {
+    box-shadow: var(--P_PageSection--shadow-10__box);
+}
+
+.P_PageSection__shadow-20 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--link-dot {
+    box-shadow: var(--P_PageSection--shadow-20__box);
+}
+
+.P_PageSection__shadow-30 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--link-dot {
+    box-shadow: var(--P_PageSection--shadow-30__box);
+}
+
+.P_PageSection__shadow-10 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--dropdown-icon,
+.P_PageSection__shadow-10 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--show-hidden-icon,
+.P_PageSection__shadow-10 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--cart-icon {
+    filter: drop-shadow(var(--P_PageSection--shadow-10__filter)) ;
+}
+
+.P_PageSection__shadow-20 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--dropdown-icon,
+.P_PageSection__shadow-20 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--show-hidden-icon,
+.P_PageSection__shadow-20 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--cart-icon {
+    filter: drop-shadow(var(--P_PageSection--shadow-20__filter)) ;
+}
+
+.P_PageSection__shadow-30 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--dropdown-icon,
+.P_PageSection__shadow-30 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--show-hidden-icon,
+.P_PageSection__shadow-30 .P_PageElementMenu:not(.P_PageElementMenu__fill):not(.P_PageElementMenu__fixed) .P_PageElementMenu--cart-icon {
+    filter: drop-shadow(var(--P_PageSection--shadow-30__filter)) ;
+}
+
+/*---------------------------- ANIMATIONS ----------------------------*/
+
+.P_PageElementMenu {
+    transition-property: background-color, box-shadow;
+}
+
+.P .P_PageElementMenu--items {
+    transition-property: line-height, height;
+}
+
+.P .P_PageElementMenu--cart-count,
+.P .P_PageElementMenu--cart-icon,
+.P .P_PageElementMenu--show-hidden-icon,
+.P .P_PageElementMenu--link-self,
+.P .P_PageElementMenu--selected-currency,
+.P .P_PageElementMenu--selected-lang,
+.P .P_PageElementMenu--show-hidden-text {
+    transition-property: transform, color, filter, background-color, text-shadow, box-shadow;
+}
+
+.P.P_animations-10 .P_PageElementMenu--cart-count,
+.P.P_animations-10 .P_PageElementMenu--cart-icon,
+.P.P_animations-10 .P_PageElementMenu--dropdown-icon,
+.P.P_animations-10 .P_PageElementMenu--show-hidden-icon,
+.P.P_animations-10 .P_PageElementMenu--link-self,
+.P.P_animations-10 .P_PageElementMenu--selected-currency,
+.P.P_animations-10 .P_PageElementMenu--selected-lang,
+.P.P_animations-10 .P_PageElementMenu--show-hidden-text,
+.P.P_animations-10 .P_PageElementMenu--items,
+.P.P_animations-10 .P_PageElementMenu {
+    transition-duration: var(--P_animations-10-duration);
+    transition-timing-function: var(--P_animations-10-easing);
+}
+
+.P.P_animations-20 .P_PageElementMenu--cart-count,
+.P.P_animations-20 .P_PageElementMenu--cart-icon,
+.P.P_animations-20 .P_PageElementMenu--dropdown-icon,
+.P.P_animations-20 .P_PageElementMenu--show-hidden-icon,
+.P.P_animations-20 .P_PageElementMenu--link-self,
+.P.P_animations-20 .P_PageElementMenu--selected-currency,
+.P.P_animations-20 .P_PageElementMenu--selected-lang,
+.P.P_animations-20 .P_PageElementMenu--show-hidden-text,
+.P.P_animations-20 .P_PageElementMenu--items,
+.P.P_animations-20 .P_PageElementMenu {
+    transition-duration: var(--P_animations-20-duration);
+    transition-timing-function: var(--P_animations-20-easing);
+}
+
+.P.P_animations-30 .P_PageElementMenu--cart-count,
+.P.P_animations-30 .P_PageElementMenu--cart-icon,
+.P.P_animations-30 .P_PageElementMenu--dropdown-icon,
+.P.P_animations-30 .P_PageElementMenu--show-hidden-icon,
+.P.P_animations-30 .P_PageElementMenu--link-self,
+.P.P_animations-30 .P_PageElementMenu--selected-currency,
+.P.P_animations-30 .P_PageElementMenu--selected-lang,
+.P.P_animations-30 .P_PageElementMenu--show-hidden-text,
+.P.P_animations-30 .P_PageElementMenu--items,
+.P.P_animations-30 .P_PageElementMenu {
+    transition-duration: var(--P_animations-30-duration);
+    transition-timing-function: var(--P_animations-30-easing);
+}
+
+.P.P_animations-40 .P_PageElementMenu--cart-count,
+.P.P_animations-40 .P_PageElementMenu--cart-icon,
+.P.P_animations-40 .P_PageElementMenu--show-hidden-icon,
+.P.P_animations-40 .P_PageElementMenu--link-self,
+.P.P_animations-40 .P_PageElementMenu--selected-currency,
+.P.P_animations-40 .P_PageElementMenu--selected-lang,
+.P.P_animations-40 .P_PageElementMenu--show-hidden-text,
+.P.P_animations-40 .P_PageElementMenu--items,
+.P.P_animations-40 .P_PageElementMenu {
+    transition-duration: var(--P_animations-40-duration);
+    transition-timing-function: var(--P_animations-40-easing);
+}
+
+.P.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--items {
+    transition:
+        line-height var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover__2) 0s,
+             height var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover__2) 0s;
+}
+
+.E.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-icon,
+.P.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--dropdown-icon {
+    transition:
+        transform var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover) 0s;
+}
+
+.P.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--cart-count,
+.P.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--cart-icon,
+.P.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--show-hidden-icon,
+.P.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--link-self,
+.P.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--selected-currency,
+.P.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--selected-lang,
+.P.P_animations-40 .P_PageElementMenu__fixed .P_PageElementMenu--show-hidden-text {
+    transition:
+               transform var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover__2) 0s,
+                  filter var(--P_animations-40-duration-hover) linear 0s,
+             text-shadow var(--P_animations-40-duration-hover) linear 0s,
+                   color var(--P_animations-40-duration-hover) linear 0s,
+        background-color var(--P_animations-40-duration-hover) linear 0s,
+              box-shadow var(--P_animations-40-duration-hover) linear 0s;
+}
+
+.P.P_animations-40 .P_PageElementMenu__fixed {
+    transition:
+        background-color var(--P_animations-40-duration-hover) linear 0s,
+              box-shadow var(--P_animations-40-duration-hover) linear 0s;
+}
+
+.E .P_PageElementMenu .P_PageElementMenu--cart-count,
+.E .P_PageElementMenu .P_PageElementMenu--cart-icon,
+.E .P_PageElementMenu .P_PageElementMenu--show-hidden-icon,
+.E .P_PageElementMenu .P_PageElementMenu--link-self,
+.E .P_PageElementMenu .P_PageElementMenu--selected-currency,
+.E .P_PageElementMenu .P_PageElementMenu--selected-lang,
+.E .P_PageElementMenu .P_PageElementMenu--show-hidden-text {
+    transition:
+        background-color 0.1s linear 0s,
+                   color 0.1s linear 0s,
+             text-shadow 0.1s linear,
+              box-shadow 0.1s linear,
+                  filter 0.1s linear,
+                  height 0.3s ease-in-out;
+}
+
+.E .P_PageElement .P_PageElementMenu {
+    transition:
+        background-color 0.1s linear 0s,
+              box-shadow 0.1s linear;
+}
+
+.E .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--cart-count,
+.E .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--cart-icon,
+.E .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--show-hidden-icon,
+.E .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--link-self,
+.E .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--selected-currency,
+.E .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--selected-lang,
+.E .E_PageSection__stop-color-transitions .P_PageElementMenu .P_PageElementMenu--show-hidden-text,
+.E .E_PageSection__stop-color-transitions .P_PageElementMenu {
+    transition:
+        text-shadow 0.1s linear,
+         box-shadow 0.1s linear,
+             filter 0.1s linear,
+             height 0.3s ease-in-out
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

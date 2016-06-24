@@ -1,0 +1,8 @@
+/*====================================================================*/
+/*---------------------- PAGEELEMENTIMAGEBROWSER ---------------------*/
+/*====================================================================*/
+
+.E_PageElementSettings__image-browser .E_PageElementSettings--content {
+    min-width: 240px;
+    min-height: 320px;
+}

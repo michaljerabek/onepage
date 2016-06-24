@@ -46,6 +46,8 @@
         left 0s linear var(--default-transition-duration);
 }
 
+.E_PageSection__dragover .P_PageElement.E_PageElement__uploadable:not(.E_PageElement__empty) .E_PageElement--outline,
+.E_PageSection__dragover .P_PageElement.E_PageElement__uploadable.E_PageElement__empty .E_PageElement--outline,
 .P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active,
 .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active {
     border-color: var(--color-element-outline);
@@ -56,6 +58,8 @@
     transition-property: border, box-shadow;
 }
 
+.E_PageSection__change-outline .E_PageSection__dragover .P_PageElement.E_PageElement__uploadable:not(.E_PageElement__empty) .E_PageElement--outline,
+.E_PageSection__change-outline .E_PageSection__dragover .P_PageElement.E_PageElement__uploadable.E_PageElement__empty .E_PageElement--outline,
 .E_PageSection__change-outline .P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active,
 .E_PageSection__change-outline .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active {
     border-color: var(--color-element-outline-2);
@@ -85,11 +89,15 @@
     transition: inherit;
 }
 
+.E_PageSection__dragover .P_PageElement.E_PageElement__uploadable:not(.E_PageElement__empty) .E_PageElement--outline:after,
+.E_PageSection__dragover .P_PageElement.E_PageElement__uploadable.E_PageElement__empty .E_PageElement--outline:after,
 .P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active:after,
 .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active:after {
     box-shadow: 0px 0px 8px 0px var(--color-element-outline-glow);
 }
 
+.E_PageSection__change-outline .E_PageSection__dragover .P_PageElement.E_PageElement__uploadable:not(.E_PageElement__empty) .E_PageElement--outline:after,
+.E_PageSection__change-outline .E_PageSection__dragover .P_PageElement.E_PageElement__uploadable.E_PageElement__empty .E_PageElement--outline:after,
 .E_PageSection__change-outline .P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active:after,
 .E_PageSection__change-outline .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active:after {
     box-shadow: 0px 0px 8px 0px var(--color-element-outline-2-glow);
@@ -193,6 +201,7 @@
 }
 
 .P_PageElement:not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI:not(.E_PageElementEditUI__hidden),
+.P_PageElement.E_PageElement__empty .E_PageElement--outline__active ~ .E_PageElementEditUI:not(.E_PageElementEditUI__hidden),
 .P_PageElement.E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI:not(.E_PageElementEditUI__hidden) {
     z-index: 2;
 
@@ -213,12 +222,16 @@
 }
 
 .P_PageElement:not(.E_PageElement__sorting):not(.E_PageElement__empty) .E_PageElement--outline__active ~ .E_PageElementEditUI *,
+.P_PageElement:not(.E_PageElement__sorting).E_PageElement__empty.E_PageElement__force-EditUI .E_PageElement--outline__active ~ .E_PageElementEditUI *,
 .P_PageElement:not(.E_PageElement__sorting).E_PageElement__empty.E_PageElement__active .E_PageElement--outline__active ~ .E_PageElementEditUI * {
     pointer-events: all;
 }
 
-.P_PageElement.E_PageElement__empty .E_PageElement--outline__active ~ .E_PageElementEditUI {
-    display: none;
+.P_PageElement.E_PageElement__empty:not(.E_PageElement__force-EditUI) .E_PageElement--outline__active ~ .E_PageElementEditUI,
+.P_PageElement.E_PageElement__empty.E_PageElement__force-EditUI:not(.E_PageElement__active) .E_PageElement--outline__active ~ .E_PageElementEditUI {
+    opacity: 0;
+
+    pointer-events: none;
 }
 
 .E_PageElementEditUI__left,
@@ -312,6 +325,10 @@
     cursor: grab;
 }
 
+.E_PageElement .E_PageElementEditUI--folder svg {
+    transform: rotate(-3deg);
+}
+
 /*---------------------------- ACTIVATE ----------------------------*/
 
 .E_PageElement--activate {
@@ -387,6 +404,15 @@
 
 /*---------------------------- UPLOADABLE ----------------------------*/
 
+.E_PageSection__dragover .E_PageElement:not(.E_PageElement__uploadable),
+.E_PageSection__dragover .E_PageElement:not(.E_PageElement__uploadable) * {
+    pointer-events: none;
+}
+
+.E_PageSection__dragover .E_PageElement:not(.E_PageElement__uploadable) .E_PageElement__uploadable {
+    pointer-events: auto;
+}
+
 .E_PageElement--upload-overlay {
     z-index: 1000;
     position:absolute;
@@ -456,8 +482,10 @@
     font-family: "Encode Sans", sans-serif;
     font-size: 14px;
     font-weight: 500;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.21;
+    text-align: center;
+/*    text-overflow: ellipsis;*/
+/*    white-space: nowrap;*/
 
     top: 0px;
     left: 0px;

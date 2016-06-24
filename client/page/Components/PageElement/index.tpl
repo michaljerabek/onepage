@@ -3,6 +3,8 @@
         {{#if .editMode}}
             E_PageElement
             E_PageElement__{{.state}}
+            {{#if .uploadable}}E_PageElement__uploadable{{/if}}
+            {{#if .forceEditUI}}E_PageElement__force-EditUI{{/if}}
             {{#if .sorting}}E_PageElement__sorting{{/if}}
             {{#if @this.isEmpty && @this.isEmpty()}}E_PageElement__empty{{/if}}
         {{/if}}

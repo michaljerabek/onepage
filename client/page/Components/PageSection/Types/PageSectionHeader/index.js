@@ -47,57 +47,6 @@
 
             this.setDefaultValues();
 
-
-//            this.on("emptyElement *.emptyElement emptyButtons", function (empty, element) {
-//
-//                var emptyClass,
-//                    notEmptyClass;
-//
-//                if (element === "PageElementButtons") {
-//
-//                    emptyClass = "has-empty-Buttons";
-//                    notEmptyClass = "has-not-empty-Buttons";
-//                }
-//
-//                if (element === this.Title) {
-//
-//                    emptyClass = "has-empty-Title";
-//                    notEmptyClass = "has-not-empty-Title";
-//                }
-//
-//                if (element === this.Subtitle) {
-//
-//                    emptyClass = "has-empty-Subtitle";
-//                    notEmptyClass = "has-not-empty-Subtitle";
-//                }
-//
-//                if (!emptyClass) {
-//
-//                    return;
-//                }
-//
-//                var states = this.get("elementsStates"),
-//
-//                    emptyIndex = states.indexOf(emptyClass);
-//
-//                if (~emptyIndex && !empty) {
-//
-//                    states.splice(emptyIndex, 1);
-//                }
-//
-//                var notEmptyIndex = states.indexOf(notEmptyClass);
-//
-//                if (~notEmptyIndex && empty) {
-//
-//                    states.splice(notEmptyIndex, 1);
-//                }
-//
-//                if ((empty && !~emptyIndex) || (!empty && !~notEmptyIndex)) {
-//
-//                    states.push(empty ? emptyClass : notEmptyClass);
-//                }
-//
-//            }.bind(this));
         },
 
         onrender: function () {
@@ -178,15 +127,15 @@
 
             var paths = PageSection.prototype.getTextPaths.apply(this);
 
-            paths = paths.concat(["name", "title", "subtitle"]);
+            paths = paths.concat(["title", "subtitle"]);
 
-            var buttons = (this.get("section.buttons") || []).length;
+            var menuLinks = (this.get("section.menu.links") || []).length;
 
-            if (buttons) {
+            if (menuLinks) {
 
-                for (--buttons; buttons >= 0; buttons--) {
+                for (--menuLinks; menuLinks >= 0; menuLinks--) {
 
-                    paths.push("buttons." + buttons + ".text");
+                    paths.push("menu.links." + menuLinks + ".text");
                 }
             }
 
@@ -195,7 +144,8 @@
 
         getColorPaths: function () {
 
-            var paths = this.superGetColorPaths();
+//            var paths = this.superGetColorPaths();
+            var paths = PageSection.prototype.getColorPaths.apply(this);
 
             paths.push("section.menu.backgroundColor");
             paths.push("section.menu.textColor");

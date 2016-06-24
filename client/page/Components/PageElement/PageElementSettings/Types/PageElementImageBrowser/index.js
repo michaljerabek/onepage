@@ -1,5 +1,5 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
-
+/*global $, FormData*/
 (function (root, factory) {
 
     if (typeof module === 'object' && module.exports) {
@@ -12,7 +12,7 @@
 
     } else {
 
-        root.ColorSettings = factory(root.PageElementSettings, "");
+        root.PageElementImageBrowser = factory(root.PageElementSettings, "");
     }
 
 }(this, function (PageElementSettings, template) {
@@ -29,8 +29,8 @@
         data: function () {
 
             return {
-                openTab: "backgroundColor",
-                settingsTitle: "Nastavení menu"
+                settingsTitle: "Vybrat obrázek",
+                type: "image-browser"
             };
         },
 
@@ -42,9 +42,6 @@
         onconfig: function () {
 
             this.superOnconfig();
-
-            this.set("mostUsedColors", this.Page.findMostUsedColors());
-            this.set("sectionsBgImages", this.Page.findSectionsBgImages());
 
         },
 

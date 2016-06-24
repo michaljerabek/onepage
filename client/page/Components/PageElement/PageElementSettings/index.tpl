@@ -4,7 +4,7 @@
         easing  : 'linear'
     }"
 >
-    <div class="E_PageElementSettings">
+    <div class="E_PageElementSettings E_PageElementSettings__{{.type}}">
 
         <div class="E_PageElementSettings--wrapper">
 

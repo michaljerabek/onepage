@@ -22,20 +22,29 @@ var getAnchorSelector = function (prefix) {
 
     prefix = prefix || "";
 
-    return "a[href^='#" + prefix + "'], " + "a[href^='" + window.location.origin.replace(/\/$|\\$/, "") + "/#" + prefix + "']";
+    return "a[href^='#" + prefix + "'], " + "a[href^='" + window.location.origin.replace(/\/$|\\$/, "") + "/#" + prefix + "'], a[data-href^='#" + prefix + "']";
 };
 
 var rewriteInternalRefs = function () {
 
     var selector = getAnchorSelector(this.internalSectionPrefix);
 
-    $(selector).each(function () {
+    $(selector).each(function (i, a) {
 
-        var sectionInternalId = this.href.split("#")[1],
-            sectionId = $("[data-page-section-internal-id='" + sectionInternalId + "']").attr("id");
+        var href = (a.href || "").split("#")[1],
 
-        this.href = "#" + sectionId;
-    });
+            sectionInternalId = href || "";
+
+        if (!this.isInternalId(sectionInternalId)) {
+
+            sectionInternalId = (a.getAttribute("data-href") || "").split("#")[1];
+        }
+
+        var sectionId = $("[data-page-section-internal-id='" + sectionInternalId + "']").attr("id");
+
+        a.href = "#" + sectionId;
+
+    }.bind(this));
 };
 
 var initScrollAnim = function (requireCtrl) {
@@ -198,20 +207,36 @@ ScrollToSection.prototype.scrollToSection = function ($section, cb) {
 
     if ($section.length) {
 
-         var id = $section.attr("id");
-         $section.attr("id", "");
+        this.scrolling = true;
 
-         $scrollElement.stop().animate({
-             scrollTop: Math.min(document.documentElement.scrollHeight - window.innerHeight, $section.offset().top)
-         }, this.duration, this.easing, cb);
+        var id = $section.attr("id");
+        $section.attr("id", "");
 
-         window.location.href = "#" + id;
-         $section.attr("id", id);
+        $scrollElement.stop().animate({
+            scrollTop: Math.min(document.documentElement.scrollHeight - window.innerHeight, $section.offset().top)
+        }, this.duration, this.easing, function () {
 
-         return true;
+            this.scrolling = false;
+
+            if (cb) {
+
+                cb();
+            }
+
+        }.bind(this));
+
+        window.location.href = "#" + id;
+        $section.attr("id", id);
+
+        return true;
     }
 
     return false;
+};
+
+ScrollToSection.prototype.isScrolling = function () {
+
+    return this.scrolling;
 };
 
 ScrollToSection.prototype.destroy = function () {

@@ -266,7 +266,7 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
 }
 
 .P_roundness-20 .P_PageElementButton {
-	border-radius: 8px;
+	border-radius: 6px;
 }
 
 .P_roundness-30 .P_PageElementButton,
@@ -617,4 +617,12 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
         right: 0;
         left: 0px;
     }
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- EDITMODE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElement__button .E_PageElement--upload-overlay:after {
+    content: "Nahrát stahovatelný soubor";
 }

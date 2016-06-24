@@ -124,6 +124,14 @@
                 this.initPageElementSettings();
                 this.initPageSectionSettings();
 
+                this.on("*.dragenter dragenter", function () {
+                    this.set("dragover", true);
+                });
+
+                this.on("*.dragleave dragleave", function () {
+                    this.set("dragover", false);
+                });
+
                 //pokud je nastaven obrázek na pozadí, ale uživatel nevybral žádnou barvu pozadí,
                 //nastavit jako pozadí výchozí, aby při změně výchozí palety nedošlo ke změně barvy
                 //(barva bude vidět, než se načte obrázek)
@@ -185,6 +193,19 @@
 
                     this.on("ColorPickerPalette.setColor", function (event, x, y, palette) {
 
+                        //pouze ColorPicker v nastavení sekce
+                        var parent = palette.container || palette.parent;
+
+                        while (parent) {
+
+                            if (parent.PAGE_ELEMENT) {
+
+                                return;
+                            }
+
+                            parent = parent.parent;
+                        }
+
                         var pathName = (palette.container || palette.parent).get("pathName");
 
                         if (!pathName) {
@@ -234,6 +255,19 @@
                     //"ruční" nastavení barvy
                     this.on("ColorPicker.activated", function (colorPicker) {
 
+                        //pouze ColorPicker v nastavení sekce
+                        var parent = colorPicker.parent;
+
+                        while (parent) {
+
+                            if (parent.PAGE_ELEMENT) {
+
+                                return;
+                            }
+
+                            parent = parent.parent;
+                        }
+
                         var pathName = colorPicker.get("pathName");
 
                         if (!pathName) {
@@ -275,6 +309,11 @@
             if (Ractive.EDIT_MODE) {
 
                 this.initEditUI();
+
+                this.get$SectionElement()
+                    .on("dragenter.PageSection", function () {
+                        this.fire("dragenter");
+                    }.bind(this));
             }
         },
 
@@ -367,6 +406,8 @@
             EventEmitter.off("removeLang.PageSection." + this.get("section.internalId"));
             EventEmitter.off("langChanged.Page." + this.get("section.internalId"));
 
+            this.get$SectionElement()
+                .off(".PageSection");
         },
 
         updateHasSettingsState: function (pageElement) {
@@ -625,7 +666,7 @@
         //uživatel se dotknul sekce -> zobrazit EditUI? -> handleTouchend
         handleTouchstart: function (event) {
 
-            if (event.original.touches.length > 1 || this.EditUI.get("hover")) {
+            if (event.original.touches.length > 1 || !this.EditUI || this.EditUI.get("hover")) {
 
                 return;
             }

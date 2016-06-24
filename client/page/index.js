@@ -215,7 +215,7 @@ module.exports = Ractive.extend({
 
         if (this.scrollToSection) {
 
-            EventEmitter.trigger("langChanged.PageSection", [lang, Ractive.EDIT_MODE]);
+            EventEmitter.trigger("langChanged.Page", [lang, Ractive.EDIT_MODE, langPromise]);
 
             this.scrollToSection.refresh();
         }

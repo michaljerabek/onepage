@@ -11,16 +11,14 @@
 
             components = {
                 IconBrowser: require("./../../../../libs/Components/FileBrowser/IconBrowser"),
+                ImageBrowser: require("./../../../../libs/Components/FileBrowser/ImageBrowser"),
                 ColorPicker: require("./../../../../libs/Components/ColorPicker"),
                 ColorPickerPalette: require("./../../../../libs/Components/ColorPicker/Components/ColorPickerPalette")
-            }/*,
-
-            ColorSettings = require("./Types/ColorSettings")*/;
+            };
 
         module.exports = factory(
             Ractive,
             U,
-            //            "ColorSettings",
             components,
             require("./index.tpl"),
             on
@@ -31,13 +29,12 @@
         root.PageElementSettings = factory(
             root.Ractive,
             root.U,
-            root.ColorSettings,
             "",
             {client: true}
         );
     }
 
-}(this, function (Ractive, U/*, ColorSettings*/, components, template, on) {
+}(this, function (Ractive, U, components, template, on) {
 
     /*
      * Komponent s nastavením elementu v sekci. Obsah by měl tvořit komponent s konkrtétním nastavením
@@ -73,7 +70,6 @@
         },
 
         components: components || {
-            //            ColorSettings: ColorSettings
         },
 
         partials: {

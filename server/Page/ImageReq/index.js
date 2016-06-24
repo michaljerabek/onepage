@@ -100,10 +100,11 @@ var ImageReq = (function() {
 
                                 response.files.unshift({
                                     name: currentFilename,
-                                    path: path.join(req.params.directory, currentFilename),
-                                    directory: req.params.directory,
+                                    path: path.join(req.params.directory, currentFilename).replace(/\\/g, "/"),
+                                    directory: req.params.directory.replace(/\\/g, "/"),
                                     width: err ? null : size.width,
-                                    height: err ? null : size.height
+                                    height: err ? null : size.height,
+                                    size: (stat.size / 1024).toFixed()
                                 });
 
                                 processAndSendImages(files, directoryPath, response, req, res);
@@ -217,11 +218,23 @@ var ImageReq = (function() {
 
             createThumbnail(req.file);
 
-            res.json({
-                originalname: req.file.originalname,
-                path: req.file.path,
-                name: req.file.filename
+            gm(req.file.path).size(function (err, size) {
+
+                if (err) {
+
+                    return res.status(500).json({error: 1});
+                }
+
+                res.json({
+                    originalname: req.file.originalname,
+                    path: req.file.path,
+                    name: req.file.filename,
+                    width: err ? null : size.width,
+                    height: err ? null : size.height,
+                    size: (req.file.size / 1024).toFixed()
+                });
             });
+
         },
 
         uploadImages = function (req, res) {
@@ -250,8 +263,10 @@ var ImageReq = (function() {
 
                     files.push({
                         originalname: req.files[f].originalname,
+                        size: (req.files[f].size / 1024).toFixed(),
                         name: req.files[f].filename,
                         path: req.files[f].path
+                        //PŘIDAT VELIKOSTI SOUBORŮ
                     });
                 }
             }

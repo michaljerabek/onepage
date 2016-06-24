@@ -112,7 +112,7 @@
                         icon: "#icon-magic-3"
                     },
                     {
-                        text: "Zábavné",
+                        text: "Elastické",
                         value: 40,
                         icon: "#icon-magic-4"
                     }

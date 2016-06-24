@@ -87,7 +87,9 @@
                                     {{#if .uploading}}FileBrowser--file__uploading{{/if}}
                                     {{#if .svg}}FileBrowser--file__svg{{/if}}
                                     {{#if .uploadError}}FileBrowser--file__error{{/if}}
-                                    {{#if ~/selectedPath.length && ~/selectedPath === .path}}FileBrowser--file__selected{{/if}}
+                                    {{#if ~/selectedPath.length && (~/selectedPath === .path || ~/selectedPath === @global.encodeURIComponent(.path))}}
+                                        FileBrowser--file__selected
+                                    {{/if}}
                                 "
                                 intro-outro="attr:{
                                     duration: 450

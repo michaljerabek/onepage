@@ -310,7 +310,7 @@
 
             Dropzone.autoDiscover = false;
 
-            var options = this.OPTIONS.DROPZONE();
+            var options = this.OPTIONS.DROPZONE.call(this);
 
             //element pro uložení náhledů (nelze v Dropzone zrušit)
             this.$dropzonePreview = $("<div/>");
@@ -324,12 +324,8 @@
                 options.resize = this.handleResize.bind(this);
             }
 
-            if (this.handleThumbnail) {
-
-                options.thumbnail = this.handleThumbnail.bind(this);
-            }
-
             options.uploadprogress = this.superHandleUploadProgress.bind(this);
+            options.thumbnail = this.superHandleThumbnail.bind(this);
             options.successmultiple = this.superHandleUploadSuccessmultiple.bind(this);
             options.success = this.superHandleUploadSuccess.bind(this);
             options.error = this.superHandleUploadError.bind(this);
@@ -510,22 +506,22 @@
             this.touchstartTime = +new Date();
             this.cancelTouchend = false;
 
-            var initX = event.original.touches[0].pageX,
-                initY = event.original.touches[0].pageY;
+            var initX = event.original.changedTouches[0].pageX,
+                initY = event.original.changedTouches[0].pageY;
 
             Ractive.$win
                 .off("touchstart.hover-" + this.EVENT_NS)
                 .on( "touchmove.hover-" + this.EVENT_NS, function (event) {
 
-                    this.cancelTouchend = Math.abs(initX - event.originalEvent.touches[0].pageX) > 5 ||
-                        Math.abs(initY - event.originalEvent.touches[0].pageY) > 5;
+                    this.cancelTouchend = Math.abs(initX - event.originalEvent.changedTouches[0].pageX) > 5 ||
+                        Math.abs(initY - event.originalEvent.changedTouches[0].pageY) > 5;
 
                 }.bind(this))
                 .on( "touchstart.hover-" + this.EVENT_NS, function (event) {
 
                     throttleHoverByTouch();
 
-                    this.hideOutlineTouches = event.originalEvent.touches.length;
+                    this.hideOutlineTouches = event.originalEvent.changedTouches.length;
 
                     clearTimeout(this.hideOutlineTimeout);
 
@@ -684,6 +680,24 @@
             }
         },
 
+        superHandleThumbnail : function (file) {
+
+            if (!this.handleThumbnail || this.handleThumbnail.apply(this, arguments) !== false) {
+
+                if (file.uploaded) {
+
+                    return;
+                }
+
+                this.fire("pageSectionMessage", {
+                    title: "Nahrát soubor",
+                    text: "Počkejte prosím...",
+                    status: "info",
+                    timeout: 3000
+                });
+            }
+        },
+
         superHandleUploadProgress : function (file, progress) {
 
             if (!this.handleUploadProgress || this.handleUploadProgress.apply(this, arguments) !== false) {
@@ -716,6 +730,8 @@
         superHandleUploadSuccess : function (file, res) {
 
             if (!this.handleUploadSuccess || this.handleUploadSuccess.apply(this, arguments) !== false) {
+
+                file.uploaded = true;
 
                 var path = res.path.replace(/^public/, "").replace(/\\/g, "/");
 

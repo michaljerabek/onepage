@@ -10,7 +10,7 @@
 
     {{/if}}
 
-    <div id="page" class="{{#if .editMode}}E{{/if}}
+    <div id="page" class="{{#if .editMode}}E{{else}}P{{/if}}
             {{.sortableActive}}
             {{#if .loaded}}P_Page__loaded{{/if}}
 
@@ -19,6 +19,8 @@
             P_animations-{{.page.settings.animations || .defaults.settings.animations}}
             {{#if .page.settings.underlineTitles}}P_underline-titles{{/if}}
         "
+        on-windowTouchstart="@this.root.set('touchmove', false)"
+        on-windowTouchmove="!@this.root.get('touchmove') && @this.root.set('touchmove', true)"
     >
 
         <div class="P_nonsortable-sections">

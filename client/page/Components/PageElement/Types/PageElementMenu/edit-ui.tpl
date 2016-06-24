@@ -13,6 +13,26 @@
         }
     }}
 
+    {{#if .element.fill && !.restoreFill}}
+
+        <span intro-outro="{{#if @this.Page.get('loaded')}}slideh{{/if}}">
+
+            {{> FlatButton {
+                    state: .element.shadow ? "active" : "",
+                    size: "small",
+                    icon: "#icon-box-shadow",
+                    set: "element.shadow",
+                    value: !.element.shadow,
+                    className: "E_PageElementEditUI--shadow",
+                    title: "Vždy zobrazovat stín pod menu.",
+                    preventDefault: true
+                }
+            }}
+        </span>
+
+    {{/if}}
+
+
 </div>
 
 <div class="E_PageElementEditUI__right">

@@ -361,7 +361,8 @@
     bottom: -32px;
 }
 
-.P_underline-titles.P_font-type-3 .P_PageSectionHeader--subtitle .P_PageElementText--underline {
+.P_underline-titles.P_font-type-3 .P_PageSectionHeader--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline,
+.P_underline-titles.P_font-type-3 .P_PageSectionHeader--subtitle .P_PageElement .P_PageElementText--underline {
     opacity: 0;
 
     pointer-events: none;
@@ -369,6 +370,7 @@
 
 /*FONT - 1*/
 
+.P_underline-titles.P_font-type-1 .P_PageSectionHeader--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline,
 .P_underline-titles.P_font-type-1 .P_PageSectionHeader--title .P_PageElementText--underline {
     opacity: 0;
 
@@ -445,7 +447,7 @@
 /*--------------------------- LAYOUT - LEFT --------------------------*/
 /*--------------------------------------------------------------------*/
 
-@media (min-width: 639px) {
+@media (min-width: 640px) {
 
     .P_PageSectionHeader__left .P_PageSection--content-wrapper {
         text-align: left;
@@ -473,7 +475,7 @@
 }
 /****************/
 
-@media (min-width: 639px) {
+@media (min-width: 640px) {
 
     /**prázdný title*/
     .P_PageSectionHeader__left .P_PageSectionHeader--title.has-empty-PageElement:not(.has-active-PageElement) {
@@ -491,7 +493,7 @@
 
 /*****************/
 
-@media (min-width: 639px) {
+@media (min-width: 640px) {
 
     /**subtitle první*/
     .P_PageSectionHeader__left .P_PageSectionHeader--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionHeader--subtitle {
@@ -507,7 +509,7 @@
 
 /*************/
 
-@media (min-width: 639px) {
+@media (min-width: 640px) {
 
     /*subtitle s titlem nad a tlačítky pod */
     .P_underline-titles.P_font-type-1 .P_PageSectionHeader__left .P_PageSectionHeader--subtitle,
@@ -549,7 +551,7 @@
     }
 }
 
-@media (min-width: 639px) {
+@media (min-width: 640px) {
 
     /*Zarovnat tlačítka vlevo, pouze pokud sekce obsahuje alespoň jeden titulek*/
 
@@ -568,7 +570,7 @@
 
 }
 
-@media (min-width: 639px) and (max-width: 767px) and (max-height: 767px) {
+@media (min-width: 640px) and (max-width: 767px) and (max-height: 767px) {
 
     /*title - ne -> title*/
     .P_PageSectionHeader__left .P_PageSectionHeader--title.has-empty-PageElement:not(.has-active-PageElement),
@@ -599,6 +601,7 @@
         padding-bottom: 0px;
     }
 
+    .P_underline-titles .P_PageSectionHeader__left .P_PageSectionHeader--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline,
     .P_underline-titles .P_PageSectionHeader__left .P_PageSectionHeader--title .P_PageElementText--underline {
         opacity: 1;
     }
@@ -617,6 +620,7 @@
         padding-bottom: 0;
     }
 
+    .P_underline-titles .P_PageSectionHeader__left .P_PageSectionHeader--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline,
     .P_underline-titles .P_PageSectionHeader__left .P_PageSectionHeader--subtitle .P_PageElementText--underline {
         opacity: 0;
 
@@ -625,7 +629,7 @@
 }
 
 
-@media (min-width: 639px) {
+@media (min-width: 640px) {
 
     .P_underline-titles .P_PageSectionHeader__left .P_PageSectionHeader--title .P_PageElementText--underline {
         right: auto;
@@ -633,6 +637,7 @@
         transform: none;
     }
 
+    .P_underline-titles .P_PageSectionHeader__left .P_PageSectionHeader--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline,
     .P_underline-titles .P_PageSectionHeader__left .P_PageSectionHeader--title .P_PageElementText--underline {
         opacity: 1;
     }
@@ -659,6 +664,7 @@
         padding-bottom: 0px;
     }
 
+    .P_underline-titles .P_PageSectionHeader__left .P_PageSectionHeader--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline,
     .P_underline-titles .P_PageSectionHeader__left .P_PageSectionHeader--subtitle .P_PageElementText--underline {
         opacity: 0;
 
@@ -673,7 +679,7 @@
 
 /*---------------------------- ADD BUTTONS ----------------------------*/
 
-@media (min-width: 639px) {
+@media (min-width: 640px) {
 
     /*title - ne -> title*/
     .P_PageSectionHeader__left .P_PageSectionHeader--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {

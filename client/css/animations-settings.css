@@ -17,7 +17,7 @@
     --P_animations-10-active         : all var(--P_animations-10-duration-active) var(--P_animations-10-easing-active) var(--P_animations-10-delay-active);
 
     --P_animations-20-duration       : 0.25s;
-    --P_animations-20-easing         : cubic-bezier(.5, .1, .7, .9);
+    --P_animations-20-easing         : cubic-bezier(.1, .2, .6, .8);
     --P_animations-20-delay          : 0s;
     --P_animations-20                : all var(--P_animations-20-duration) var(--P_animations-20-easing) var(--P_animations-20-delay);
     --P_animations-20-duration-hover : 0.1s;
@@ -48,10 +48,65 @@
     --P_animations-40                : all var(--P_animations-40-duration) var(--P_animations-40-easing) var(--P_animations-40-delay);
     --P_animations-40-duration-hover : 0.2s;
     --P_animations-40-easing-hover   : cubic-bezier(.35, .1, .3, 2.85);
+    --P_animations-40-easing-hover__2: cubic-bezier(.35, .3, .3, 1.85);
     --P_animations-40-delay-hover    : 0s;
     --P_animations-40-hover          : all var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover) var(--P_animations-40-delay-hover);
     --P_animations-40-duration-active: 0.035s;
     --P_animations-40-easing-active  : ease-in;
     --P_animations-40-delay-active   : 0s;
     --P_animations-40-active         : all var(--P_animations-40-duration-active) var(--P_animations-40-easing-active) var(--P_animations-40-delay-active);
+
+    /*delší verze*/
+    --P_animations-10-l-duration       : 0.7875s;
+    --P_animations-10-l-easing         : cubic-bezier(.3, .2, .1, .9);
+    --P_animations-10-l-delay          : 0s;
+    --P_animations-10-l                : all var(--P_animations-10-duration) var(--P_animations-10-easing) var(--P_animations-10-delay);
+    --P_animations-10-l-duration-hover : 0.306s;
+    --P_animations-10-l-easing-hover   : cubic-bezier(.5, .2, .6, .8);
+    --P_animations-10-l-delay-hover    : 0s;
+    --P_animations-10-l-hover          : all var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover) var(--P_animations-10-delay-hover);
+    --P_animations-10-l-duration-active: 0.05s;
+    --P_animations-10-l-easing-active  : ease-in;
+    --P_animations-10-l-delay-active   : 0s;
+    --P_animations-10-l-active         : all var(--P_animations-10-duration-active) var(--P_animations-10-easing-active) var(--P_animations-10-delay-active);
+
+    --P_animations-20-l-duration       : 0.4375s;
+    --P_animations-20-l-easing         : cubic-bezier(.1, .2, .6, .8);
+    --P_animations-20-l-delay          : 0s;
+    --P_animations-20-l                : all var(--P_animations-20-duration) var(--P_animations-20-easing) var(--P_animations-20-delay);
+    --P_animations-20-l-duration-hover : 0.175s;
+    --P_animations-20-l-easing-hover   : cubic-bezier(.2, .1, .5, .3);
+    --P_animations-20-l-delay-hover    : 0s;
+    --P_animations-20-l-hover          : all var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover) var(--P_animations-20-delay-hover);
+    --P_animations-20-l-duration-active: 0.05s;
+    --P_animations-20-l-easing-active  : ease-in;
+    --P_animations-20-l-delay-active   : 0s;
+    --P_animations-20-l-active         : all var(--P_animations-20-duration-active) var(--P_animations-20-easing-active) var(--P_animations-20-delay-active);
+
+    --P_animations-30-l-duration       : 0.30625s;
+    --P_animations-30-l-easing         : cubic-bezier(0, .3, .9, .8);
+    --P_animations-30-l-delay          : 0s;
+    --P_animations-30-l                : all var(--P_animations-30-duration) var(--P_animations-30-easing) var(--P_animations-30-delay);
+    --P_animations-30-l-duration-hover : 0.14875s;
+    --P_animations-30-l-easing-hover   : cubic-bezier(.2, .1, .3, .1);
+    --P_animations-30-l-delay-hover    : 0s;
+    --P_animations-30-l-hover          : all var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover) var(--P_animations-30-delay-hover);
+    --P_animations-30-l-duration-active: 0.035s;
+    --P_animations-30-l-easing-active  : ease-in;
+    --P_animations-30-l-delay-active   : 0s;
+    --P_animations-30-l-active         : all var(--P_animations-30-duration-active) var(--P_animations-30-easing-active) var(--P_animations-30-delay-active);
+
+    --P_animations-40-l-duration       : 0.2625s;
+    --P_animations-40-l-easing         : cubic-bezier(.7, .3, .4, .8);
+    --P_animations-40-l-delay          : 0s;
+    --P_animations-40-l                : all var(--P_animations-40-duration) var(--P_animations-40-easing) var(--P_animations-40-delay);
+    --P_animations-40-l-duration-hover : 0.35s;
+    --P_animations-40-l-easing-hover   : cubic-bezier(.35, .1, .3, 2.85);
+    --P_animations-40-l-easing-hover__2: cubic-bezier(.35, .3, .3, 1.85);
+    --P_animations-40-l-delay-hover    : 0s;
+    --P_animations-40-l-hover          : all var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover) var(--P_animations-40-delay-hover);
+    --P_animations-40-l-duration-active: 0.035s;
+    --P_animations-40-l-easing-active  : ease-in;
+    --P_animations-40-l-delay-active   : 0s;
+    --P_animations-40-l-active         : all var(--P_animations-40-duration-active) var(--P_animations-40-easing-active) var(--P_animations-40-delay-active);
 }

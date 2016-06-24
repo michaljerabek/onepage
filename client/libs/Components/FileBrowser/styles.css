@@ -535,6 +535,11 @@
     height: 96px;
 
     background-color: #fff;
+    background:
+        linear-gradient(45deg, rgba(0,0,0,0.1) 25%, rgba(0,0,0,0.015) 25%, rgba(0,0,0,0.015) 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1) 0),
+        linear-gradient(45deg, rgba(0,0,0,0.1) 25%, rgba(0,0,0,0.015) 25%, rgba(0,0,0,0.015) 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1) 0);
+    background-position: 0 0, 8px 8px;
+    background-size: 16px 16px;
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
 }
 
