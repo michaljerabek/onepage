@@ -3,22 +3,14 @@
 /*====================================================================*/
 
 :root {
-    --P_PageSectionHeader_title-top-margin-vmax       : 20.0416vmax;
-    --P_PageSectionHeader_title-top-margin-pct        : 20.0416%;
-    /*    --P_PageSectionHeader_title-top-margin-vmax       : 23.5833vmax;*/
-/*    --P_PageSectionHeader_title-top-margin-pct        : 23.5833%;*/
-/*    --P_PageSectionHeader_title-top-margin-vmax       : 18.0219vmax;*/
-/*    --P_PageSectionHeader_title-top-margin-pct        : 18.0219%;*/
-/*    --P_PageSectionHeader_title-top-margin-vmax       : 14.5128vmax;*/
-/*    --P_PageSectionHeader_title-top-margin-pct        : 14.5128%;*/
+    --P_PageSectionHeader_title-top-margin-vmax             : 20.0416vmax;
+    --P_PageSectionHeader_title-top-margin-pct              : 20.0416%;
 
-    --P_PageSectionHeader_title-subtitle-top-margin   : 24px;
-    --P_PageSectionHeader_title-subtitle-top-margin__S: 12px;
+    --P_PageSectionHeader_title-subtitle-top-margin         : 24px;
+    --P_PageSectionHeader_title-subtitle-top-margin__S      : 12px;
 
-    --P_PageSectionHeader_button-title-top-margin-vmax: 11.3536vmax;
-    --P_PageSectionHeader_button-title-top-margin-pct : 11.3536%;
-/*    --P_PageSectionHeader_button-title-top-margin-vmax: 14.5128vmax;*/
-/*    --P_PageSectionHeader_button-title-top-margin-pct : 14.5128%;*/
+    --P_PageSectionHeader_button-title-top-margin-vmax      : 11.3536vmax;
+    --P_PageSectionHeader_button-title-top-margin-pct       : 11.3536%;
 
     --P_PageSectionHeader__left_title-top-margin-vmax       : 14.5128vmax;
     --P_PageSectionHeader__left_title-top-margin-pct        : 14.5128%;
@@ -27,6 +19,10 @@
 
     --P_PageSectionHeader__left_button-title-top-margin-vmax: 5.5614vmax;
     --P_PageSectionHeader__left_button-title-top-margin-pct : 5.5614%;
+}
+
+.P .P_PageSectionHeader {
+    z-index: 2;
 }
 
 .P_PageSectionHeader.P_PageSection__full-size .P_PageSection--center {

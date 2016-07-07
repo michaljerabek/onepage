@@ -24,7 +24,11 @@
      * elementType - typ PageElementů ("button", "title", ...)
      */
 
+    var counter = 0;
+
     return function (node, path, componentName, elementType) {
+
+        var id = counter++;
 
         Ractive.$body = Ractive.$body || $("body");
 
@@ -37,10 +41,12 @@
             active: "E_Sortable__active"
         };
 
-        this.sortableWrapper = node;
-        this.$sortableWrapper = $(node);
+        this[elementType + "SortableWrapper" + id] = node;
+        this["$" + elementType + "SortableWrapper" + id] = $(node);
 
-        this.$sortableWrapper.sortable({
+        var $sortableWrapper = this["$" + elementType + "SortableWrapper" + id];
+
+        $sortableWrapper.sortable({
             forcePlaceholderSize: true,
             handle: "." + CLASS.sortHandle,
             items: "." + CLASS.item,
@@ -48,9 +54,10 @@
             activeClass: CLASS.active
         });
 
-        var $placeholder;
+        var $placeholder,
+            initIndex;
 
-        this.$sortableWrapper.on("sortable:update", function (e, ui) {
+        $sortableWrapper.on("sortable:update", function (e, ui) {
 
             //neoznamovat změnu pořadí, pokud byl element odstraněn
             //změna se projeví v příslušném poli
@@ -63,7 +70,7 @@
 
         }.bind(this));
 
-        this.$sortableWrapper.on("sortable:activate", function (e, ui) {
+        $sortableWrapper.on("sortable:activate", function (e, ui) {
 
             if ($placeholder) {
 
@@ -78,15 +85,17 @@
 
         }.bind(this));
 
-        this.$sortableWrapper.on("sortable:start", function () {
+        $sortableWrapper.on("sortable:start", function (e, ui) {
 
             Ractive.$body.addClass(CLASS.cursorGrabbing);
 
+            initIndex = ui.item.index() - 1;
+
         }.bind(this));
 
-        this.$sortableWrapper.on("sortable:beforeStop", function (e, ui) {
+        $sortableWrapper.on("sortable:beforeStop", function (e, ui) {
 
-            $placeholder = this.$sortableWrapper.find("[id*='__ph']").css("position", "absolute");
+            $placeholder = $sortableWrapper.find("[id*='__ph']").css("position", "absolute");
 
             ui.item.css({
                 position: "",
@@ -98,10 +107,34 @@
 
         }.bind(this));
 
+        $sortableWrapper.on("sortable:stop", function (e, ui) {
+
+            if ($placeholder) {
+
+                $placeholder.remove();
+            }
+
+            var currentIndex = ui.item.index();
+
+            if (currentIndex === initIndex) {
+
+                return;
+            }
+
+//            ui.item.parent().children(":nth-child(" + (initIndex + 1) + ")")[currentIndex < initIndex ? "after" : "before"](ui.item);
+
+            var items = this.get(path).slice();
+
+            items.splice(currentIndex, 0, items.splice(initIndex, 1)[0]);
+
+            this.merge(path, items);
+
+        }.bind(this));
+
         EventEmitter.on("saving.Page." + this.EVENT_NS, function () {
 
             //při ukládání stránky je potřeba přeřadit pole podle elementů
-            var order = this.$sortableWrapper.sortable("toArray");
+            var order = $sortableWrapper.sortable("toArray");
 
             if (order.length > 1) {
 
@@ -121,16 +154,18 @@
 
                         if (components[c].get("id") === current) {
 
+                            var element = components[c].get("element");
+
                             components[c].set("stopTransition", true);
 
-                            sorted.push(components[c].get("element"));
+                            sorted.push(element);
 
                             //nejspíš chyba v Ractivu, ale je nutné nejdříve odstranit všechny observery
                             components[c].cancelObservers();
 
                             //nastavit elementy podle pořadí, protože byly přetažením nastaveny na jiných pozicích,
                             //takže při přeřazení dat v poli by se zobrazovaly nesprávně
-                            this.$sortableWrapper.append(this.$sortableWrapper.find("#" + current));
+                            $sortableWrapper.append($sortableWrapper.find("#" + current));
                         }
                     }
 
@@ -138,13 +173,16 @@
 
                 } while (current);
 
+//                $sortableWrapper.find(".P_PageElement").hide();
+
                 this.set(path, []);
-                this.set(path, sorted);
+                this.merge(path, sorted);
+
             }
 
         }.bind(this));
 
-        EventEmitter.on("saved.Page." + this.EVENT_NS, function () {
+        EventEmitter.on("saved.Page." + this.EVENT_NS + " sortElementsDone.PageSection." + this.EVENT_NS, function () {
 
             var components = this.findAllComponents(componentName),
 
@@ -153,6 +191,8 @@
             for (c; c >= 0; c--) {
 
                 components[c].set("stopTransition", false);
+
+                components[c].initObservers();
             }
 
         }.bind(this));
@@ -164,7 +204,7 @@
                     .off("saving.Page." + this.EVENT_NS)
                     .off("saved.Page." + this.EVENT_NS);
 
-                this.$sortableWrapper
+                $sortableWrapper
                     .off("sortable:update")
                     .off("sortable:start")
                     .off("sortable:beforeStop")

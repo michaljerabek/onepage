@@ -1,3 +1,8 @@
+.P_PageSection:not([class*='Header']) .P_PageSection--content {
+    font-size: 20px;
+    line-height: 20;
+}
+
 .P_PageSection {
     position: relative;
 
@@ -17,7 +22,7 @@
         height var(--P_PageSection_sorting-transition-duration) var(--P_PageSection_sorting-transition-easing) 0s;
 }
 
-.P_PageSection:hover {
+.E .P_PageSection:hover {
     z-index: 2;
 }
 

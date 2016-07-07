@@ -231,7 +231,7 @@
 
                         var src = this.get("data.src");
 
-                        if (src && encodeURIComponent(file.path.replace(/(^\/|^\\)(?:public)?/, "")) === src.replace(/(^\/|^\\)(?:public)?/, "")) {
+                        if (src && encodeURIComponent(file.path) === src) {
 
                             this.set("data.src", "");
                         }
@@ -357,9 +357,7 @@
 
         handleUploadSuccess: function (file, res) {
 
-            var path = res.path.replace(/^public/, "").replace(/\\/g, "/");
-            
-            this.set("data.src", encodeURIComponent(path));
+            this.set("data.src", encodeURIComponent(res.path));
 
             this.fire("pageSectionMessage", {
                 title: "Nahrát obrázek",
@@ -378,7 +376,7 @@
 
                     browsers[b].addFileToUploadDirectory({
                         name: res.name,
-                        path: path,
+                        path: res.path,
                         size: res.size,
                         width: file.width,
                         height: file.height

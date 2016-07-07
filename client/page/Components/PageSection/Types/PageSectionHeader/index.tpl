@@ -7,6 +7,7 @@
     textColor="{{.section.textColor}}"
     backgroundColor="{{.section.backgroundColor}}"
     defaultColors="{{.section.defaultColors}}"
+    sections="{{.sections}}"
 />
 
 <div class="P_PageSection--center">

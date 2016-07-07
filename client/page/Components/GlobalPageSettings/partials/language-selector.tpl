@@ -9,10 +9,10 @@
                     {{#if typeof ../../selected === 'string' && . === ../../selected}}E_GlobalLanguagesSettings--language__selected{{/if}}
                 "
                 on-tap="@this.fire(../../fire, event, .)"
-                outro="{{#if ~/openGlobalSettingsWidget}}slide{{/if}}"
+                slide-out="{duration:  ~/openGlobalSettingsWidget ? 300 : 0}"
             >
                 {{#if (../../selected && !../../iconIf && ../../icon !== false && ../../selected.indexOf(.) > -1) || (../../iconIf === .)}}
-                    <svg data-icon="{{../../icon || '#icon-check-mark'}}" intro-outro="fade:{duration: 100}"><use xlink:href="{{../../icon || '#icon-check-mark'}}"></use></svg>
+                    <svg data-icon="{{../../icon || '#icon-check-mark'}}" fade-in="{duration: 100}" fade-out="{duration: 100}"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{../../icon || '#icon-check-mark'}}"></use></svg>
                 {{/if}}
                 {{~/languages.getName(.)}} ({{.}})
             </li>
@@ -29,10 +29,10 @@
                     {{#if typeof ../../selected === 'string' && . === ../../selected}}E_GlobalLanguagesSettings--language__selected{{/if}}
                 "
                 on-tap="@this.set(../../set, .)"
-                outro="{{#if ~/openGlobalSettingsWidget}}slide{{/if}}"
+                slide-out="{duration:  ~/openGlobalSettingsWidget ? 300 : 0}"
             >
                 {{#if (../../selected && !../../iconIf && ../../icon !== false && ../../selected.indexOf(.) > -1) || (../../iconIf === .)}}
-                    <svg data-icon="{{../../icon || '#icon-check-mark'}}" intro-outro="fade:{duration: 100}"><use xlink:href="{{../../icon || '#icon-check-mark'}}"></use></svg>
+                    <svg data-icon="{{../../icon || '#icon-check-mark'}}" fade-in="{duration: 100}" fade-out="{duration: 100}"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{../../icon || '#icon-check-mark'}}"></use></svg>
                 {{/if}}
                 {{~/languages.getName(.)}} ({{.}})
             </li>

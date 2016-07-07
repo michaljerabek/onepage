@@ -46,6 +46,11 @@
             this.set("mostUsedColors", this.Page.findMostUsedColors());
             this.set("sectionsBgImages", this.Page.findSectionsBgImages());
 
+            this.addToMenuObserver = this.observe("sections.*.addToMenu", function () {
+
+                this.parent.updateLinks();
+
+            }, {init: false});
         },
 
         oncomplete: function () {
@@ -55,9 +60,21 @@
 
         onteardown: function () {
 
+            this.addToMenuObserver.cancel();
+
             this.torndown = true;
 
             this.superOnteardown();
+        },
+
+        calcLinks: function (count, link) {
+
+            if (link.addToMenu) {
+
+                return count + 1;
+            }
+
+            return count;
         }
     });
 

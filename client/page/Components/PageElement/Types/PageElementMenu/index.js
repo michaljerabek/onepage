@@ -7,6 +7,8 @@
         var PageElement = require("./../../"),
             Ractive = require("ractive"),
 
+            TextCleaner = require("./../../TextCleaner"),
+
             on =        require("./../../../../../../helpers/on"),
             U =         require("./../../../../../libs/U"),
             Languages = require("./../../../../../libs/Languages.js"),
@@ -23,6 +25,7 @@
         module.exports = factory(
             PageElement,
             Ractive,
+            TextCleaner,
             components,
             partials,
             Languages,
@@ -35,6 +38,7 @@
         root.PageElementMenu = factory(
             root.PageElement,
             root.Ractive,
+            root.TextCleaner,
             {},
             {},
             root.Languages,
@@ -43,15 +47,18 @@
         );
     }
 
-}(this, function (PageElement, Ractive, components, partials, Languages, U, on) {
+}(this, function (PageElement, Ractive, TextCleaner, components, partials, Languages, U, on) {
 
     var CLASS = {
         menuElement: "P_PageSectionMenu",
         fixed: "P_PageElement__menu-fixed",
-        items: "P_PageElementMenu--items"
+        items: "P_PageElementMenu--items",
+        hasSettings: "E_PageElementMenu__has-settings"
     };
 
     return PageElement.extend({
+
+        COLORABLE: true,
 
         MIN_TEXT_CONTRAST: 5,
 
@@ -79,62 +86,7 @@
 
             if (Ractive.EDIT_MODE) {
 
-                this.on("ColorPickerPalette.setColor", function (event, x, y, palette) {
-
-                    var pathName = (palette.container || palette.parent).get("pathName");
-
-                    if (!pathName) {
-
-                        return;
-                    }
-
-                    //uživatel nastavuje vlastní barvu z výchozích -> uložit odkaz na barvu, aby se měnila v případě změny v paletě
-                    if (pathName === "backgroundColor") {
-
-                        if (palette.get("id") === "defaultColors") {
-
-                            this.set("element.backgroundColorRef", event.index.i);
-
-                        } else {
-
-                            this.set("element.backgroundColorRef", null);
-                        }
-
-                    } else if (pathName === "textColor") {
-
-                        if (palette.get("id") === "defaultColors") {
-
-                            this.set("element.textColorRef", event.index.i);
-
-                        } else {
-
-                            this.set("element.textColorRef", null);
-                        }
-                    }
-
-                }.bind(this));
-
-                //"ruční" nastavení barvy
-                this.on("ColorPicker.activated", function (colorPicker) {
-
-                    var pathName = colorPicker.get("pathName");
-
-                    if (!pathName) {
-
-                        return;
-                    }
-
-                    if (pathName === "backgroundColor") {
-
-                        this.set("element.backgroundColorRef", null);
-
-                    } else if (pathName === "textColor") {
-
-                        this.set("element.textColorRef", null);
-
-                    }
-
-                }.bind(this));
+                this.textCleaner = new TextCleaner(this, this.MAX_LENGTH);
 
                 this.observe("openPageElementSettings", function (current, prev) {
 
@@ -159,157 +111,9 @@
 
                         this.set("focusedElement", event.node);
 
-                        this.placeCaretAtEnd(event.node);
+                        TextCleaner.placeCaretAtEnd(event.node);
                     }
                 });
-            }
-        },
-
-        checkText: function (currentValue, prevValue, path, item, lang) {
-
-            if (this.skipTextObserver || this.removing) {
-
-                return;
-            }
-
-            var inputValue = currentValue,
-
-                moveCaret = 0;
-
-            //odstranit počáteční mezery
-            if (currentValue && currentValue.match(/^(?:\s+|\&nbsp\;)+/ig)) {
-
-                currentValue = currentValue.replace(/^(?:\s+|\&nbsp\;)+/ig, "");
-
-                moveCaret--;
-            }
-
-            if (currentValue && currentValue.match(/(<([^>]+)>)/ig)) {
-
-                //nahradit <br> mezerou
-                currentValue = currentValue.replace(/(\s{0}<(br[^>]+)>\s{0})/ig, " ");
-
-                //odstranit všechny tagy
-                currentValue = currentValue.replace(/(<([^>]+)>)/ig, "");
-            }
-
-            if (currentValue && currentValue.match(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig)) {
-
-                //dvě mezery nahradit jednou
-                currentValue = currentValue.replace(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig, " ");
-
-                moveCaret--;
-            }
-
-            if (currentValue) {
-
-                //omezit maximállní délku textu, $nbsp; je potřeba počítat jako 1 znak
-                var nbsp = currentValue.match(/\&nbsp\;/ig),
-
-                    length = currentValue.length - (nbsp ? nbsp.length * 5 : 0);
-
-                if (length > this.MAX_LENGTH) {
-
-                    currentValue = prevValue;
-
-                    moveCaret--;
-                }
-            }
-
-            if (currentValue !== inputValue) {
-
-                var caret = this.getSelection().endOffset + moveCaret,
-                    element = this.find(":focus");
-
-                this.skipTextObserver = true;
-
-                clearTimeout(this.fixTextTimeout);
-
-                this.fixTextTimeout = setTimeout(function () {
-
-                    this.skipTextObserver = true;
-
-                    this.set("element.links." + item + ".text." + lang, currentValue);
-
-                    try {
-
-                        this.setCaretPosition(element, caret);
-
-                    } catch (e) {
-
-                        this.placeCaretAtEnd(element);
-                    }
-
-                    this.skipTextObserver = false;
-
-                }.bind(this), 0);
-            }
-        },
-
-        getSelection: function () {
-
-            var savedRange;
-
-            if (window.getSelection && window.getSelection().rangeCount > 0) {
-
-                savedRange = window.getSelection().getRangeAt(0).cloneRange();
-
-            } else if (document.selection) {
-
-                savedRange = document.selection.createRange();
-            }
-
-            return savedRange;
-        },
-
-        setCaretPosition: function (node, pos) {
-
-            if (!node) {
-
-                return;
-            }
-
-            node.focus();
-
-            var textNode = node.firstChild,
-                range = document.createRange();
-
-            range.setStart(textNode, pos);
-            range.setEnd(textNode, pos);
-
-            var sel = window.getSelection();
-
-            sel.removeAllRanges();
-            sel.addRange(range);
-        },
-
-        placeCaretAtEnd: function (node) {
-
-            if (!node) {
-
-                return;
-            }
-
-            node.focus();
-
-            if (typeof window.getSelection !== "undefined" && typeof document.createRange !== "undefined") {
-
-                var range = document.createRange();
-                range.selectNodeContents(node);
-                range.collapse(false);
-
-                var sel = window.getSelection();
-
-                sel.removeAllRanges();
-                sel.addRange(range);
-
-            } else if (typeof document.body.createTextRange !== "undefined") {
-
-                var textRange = document.body.createTextRange();
-
-                textRange.moveToElementText(node);
-                textRange.collapse(false);
-                textRange.select();
             }
         },
 
@@ -343,11 +147,50 @@
                 this.fontChangedTimeout = setTimeout(this.checkMenuOverflow.bind(this), 300);
 
             }.bind(this));
+
+            this.EventEmitter
+                .on("addToMenuChanged.PageSection." + this.EVENT_NS, this.updateLinks.bind(this))
+                .on("sectionRemoved.PageSectionManager." + this.EVENT_NS, this.updateLinks.bind(this))
+                .on("sectionOrderChanged.PageSectionManager." + this.EVENT_NS, this.updateLinks.bind(this));
+
+            this.observe("openPageElementSettings", function (state) {
+
+                this.set("specialClass1", state ? CLASS.hasSettings : "");
+
+            }, {init: false});
+
+            if (Ractive.EDIT_MODE && on.client) {
+
+                if (!this.get("element.blurBackgroundColor")) {
+
+                    this.completeTimeout = setTimeout(this.findBlurBackgroundColor.bind(this), 0);
+                }
+            }
+
+            if (!this.get("element.hidden")) {
+
+                this.checkMenuOverflow();
+            }
+
+            this.fixMenu();
+
+            this.findActiveLink();
         },
 
         initObservers: function () {
 
-            this.textObserver = this.observe("element.links.*.text.*", this.checkText, {init: false});
+            this.textObserver = this.observe("links.*.menuText.*", function () {
+
+                if (this.Page.saving) {
+
+                    return;
+                }
+
+                this.fire("pageChange");
+
+                this.textCleaner.observer.apply(this, arguments);
+
+            }, {init: false});
 
             this.defPaletteObserver = this.Page.observe("page.settings.colorPalette.colors", function (current) {
 
@@ -389,28 +232,13 @@
             }, {init: false});
 
             this.textColorObserver = this.observe("textColor defaultColors.textColor", this.findBlurBackgroundColor, {init: false});
+
         },
 
         oncomplete: function () {
 
             this.superOncomplete();
 
-            if (Ractive.EDIT_MODE && on.client) {
-
-                if (!this.get("element.blurBackgroundColor")) {
-
-                    this.completeTimeout = setTimeout(this.findBlurBackgroundColor.bind(this), 0);
-                }
-            }
-
-            if (!this.get("element.hidden")) {
-
-                this.checkMenuOverflow();
-            }
-
-            this.fixMenu();
-
-            this.findActiveLink();
         },
 
         checkMenuOverflow: function () {
@@ -448,12 +276,14 @@
 
             if (color) {
 
-                this.set("element.blurBackgroundColor", generator.getBlackWhite(color));
+                this.set("element.blurBackgroundColor", generator.getBlackWhite(color, null, false, true));
             }
         },
 
         onteardown: function () {
 
+            clearTimeout(this.updateLinksTimeout);
+            clearTimeout(this.checkMenuOverflowTimeout);
             clearTimeout(this.skipFindActiveLinkTimeout);
             clearTimeout(this.fixTextTimeout);
             clearTimeout(this.completeTimeout);
@@ -462,6 +292,10 @@
             Ractive.$win.off("." + this.EVENT_NS);
 
             this.EventEmitter
+                .off("sectionOrderChanged.PageSectionManager." + this.EVENT_NS)
+                .off("sectionRemoved.PageSectionManager." + this.EVENT_NS)
+                .off("addToMenuChanged.PageSection." + this.EVENT_NS)
+                .off("orderChanged.Page." + this.EVENT_NS)
                 .off("langChanged.Page." + this.EVENT_NS)
                 .off("fontChanged.Page." + this.EVENT_NS);
 
@@ -540,7 +374,7 @@
 
             if (!this.sectionsCache) {
 
-                var links = this.get("element.links") || [],
+                var links = this.get("links") || [],
 
                     l = links.length - 1,
 
@@ -548,7 +382,12 @@
 
                 for (l; l >= 0; l--) {
 
-                    selector.unshift("[data-page-section-internal-id='" + links[l].link + "']");
+                    selector.unshift("[data-page-section-internal-id='" + links[l].internalId + "']");
+                }
+
+                if (!selector.length) {
+
+                    return;
                 }
 
                 this.sectionsCache = this.Page.findAll(selector.join(","));
@@ -585,48 +424,64 @@
 
         setDefaultValues: function () {
 
-            if (!this.get("element.links")) {
+            var links = [];
 
-                this.set("element.links", [
-                    {
-                        link: "__section-14654025500600",
-                        text: {
-                            cs: "sdfsdf"
-                        }
-                    },
-                    {
-                        link: "__section-14643478567983",
-                        text: {
-                            cs: "sdfsdf"
-                        }
-                    },
-                    {
-                        link: "__section-14644596502321",
-                        text: {
-                            cs: "sdfsdf"
-                        }
-                    },
-                    {
-                        link: "__section-14644596496200",
-                        text: {
-                            cs: "sdfsdf"
-                        }
-                    },
-                    {
-                        link: "__section-14643478362410",
-                        text: {
-                            cs: "sdfsdf"
-                        }
-                    },
-                    {
-                        link: "__section-14643478368081",
-                        text: {
-                            cs: "sdfsdf"
-                        }
+            (this.Page.get("page.sections") || []).forEach(function (section) {
+
+                if (section.addToMenu) {
+
+                    links.push(section);
+                }
+            });
+
+            this.set("links", links);
+        },
+
+        removeIfEmpty: function (id, text) {
+
+            if (!text || !!text.replace(/(?:<[^>]*>)/g, "").match(/^(\s|\&nbsp\;)*$/)) {
+
+                var menu = this;
+
+                this.Page.forEachPageSection(function () {
+
+                    if (this.get("section.internalId") === id) {
+
+                        this.set("section.addToMenu", false);
+                        this.set("section.menuText", undefined);
+
+                        menu.updateLinks();
+
+                        return false;
                     }
-                ]);
+                });
             }
+        },
 
+        updateLinks: function () {
+
+            clearTimeout(this.checkMenuOverflowTimeout);
+            clearTimeout(this.updateLinksTimeout);
+
+            this.updateLinksTimeout = setTimeout(function() {
+
+                var links = [];
+
+                this.Page.forEachPageSectionByIndex(function () {
+
+                    if (this.get("section.addToMenu")) {
+
+                        links.unshift(this.get("section"));
+                    }
+                });
+
+                this.merge("links", links);
+
+                clearTimeout(this.checkMenuOverflowTimeout);
+
+                this.checkMenuOverflowTimeout = setTimeout(this.checkMenuOverflow.bind(this), 400);
+
+            }.bind(this), 0);
         },
 
         removeColorRefs: function () {

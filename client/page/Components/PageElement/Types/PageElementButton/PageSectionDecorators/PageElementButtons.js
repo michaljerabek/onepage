@@ -4,16 +4,17 @@
 
     if (typeof module === 'object' && module.exports) {
 
-        var Ractive = require("ractive");
+        var Ractive = require("ractive"),
+            EventEmitter = require("./../../../../../../libs/EventEmitter")();
 
-        module.exports = factory(Ractive);
+        module.exports = factory(Ractive, EventEmitter);
 
     } else {
 
         root.PageElementButtons = factory(root.Ractive);
     }
 
-}(this, function (Ractive) {
+}(this, function (Ractive, EventEmitter) {
 
     return  function () {
 
@@ -29,15 +30,7 @@
 
                 button.removing = true;
 
-                var buttons = this.findAllComponents("PageElementButton"),
-                    b = buttons.length - 1;
-
-                for (b; b >= 0; b--) {
-
-                    buttons[b].updateOutlineState(false);
-
-                    buttons[b].cancelObservers();
-                }
+                button.$text.blur();
 
                 var dataButtons = this.get("section.buttons"),
                     d = dataButtons.length - 1;
@@ -47,17 +40,9 @@
                     if (dataButtons[d] === element) {
 
                         this.splice("section.buttons", d, 1);
+
+                        break;
                     }
-                }
-
-                buttons = this.findAllComponents("PageElementButton");
-                b = buttons.length - 1;
-
-                for (b; b >= 0; b--) {
-
-                    buttons[b].updateOutlineState();
-
-                    buttons[b].initObservers();
                 }
 
                 this.fire("pageChange");
@@ -80,6 +65,11 @@
                 this.fire("emptyButtons", !buttons || !buttons.length, "PageElementButtons");
 
                 this.set("showAddButton", !buttons || buttons.length < (this.MAX_BUTTONS || 3));
+
+                if ((!buttons || !buttons.length) && this.get("pageElementSettings") === "button") {
+
+                    this.set("pageElementSettings", null);
+                }
             });
 
             //upravit pozici přidávacího tlačítka podle velikosti okna

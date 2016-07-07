@@ -77,12 +77,6 @@
             ResizableBox: require("./../../../../libs/Decorators/ResizableBox")
         },
 
-        data: function () {
-
-            return {
-            };
-        },
-
         superOnconfig: function () {
 
             this.EVENT_NS = "PageSectionSettings-" + (++instanceCounter);

@@ -65,7 +65,7 @@ module.exports = Ractive.extend({
     },
 
     partials: {
-        PageSectionHeader: "<PageSectionHeader section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
+        PageSectionHeader: "<PageSectionHeader section='{{this}}' sections='{{~/page.sections}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionA: "<PageSectionA section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionB: "<PageSectionB section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionC: "<PageSectionC section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
@@ -248,9 +248,6 @@ module.exports = Ractive.extend({
                 }
             });
         }
-    },
-
-    oncomplete: function () {
 
         if (Ractive.EDIT_MODE && (!this.Admin || this.alreadyLoaded)) {
 
@@ -268,6 +265,10 @@ module.exports = Ractive.extend({
         }
 
         console.timeEnd("pageLoaded");
+    },
+
+    oncomplete: function () {
+
     },
 
     onteardown: function () {
@@ -594,7 +595,10 @@ module.exports = Ractive.extend({
 
                                 this.merge("page.sections", this.pageSectionsManager.getSectionsSortedByIndex());
 
-                                this.root.push("unsavedPages", this.get("pageId"));
+                                if (!~(this.root.get("unsavedPages") || []).indexOf(this.get("pageId"))) {
+
+                                    this.root.push("unsavedPages", this.get("pageId"));
+                                }
                             }
 
                             this.Admin.set("editPage", null);

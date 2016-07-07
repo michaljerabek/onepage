@@ -15,7 +15,7 @@
 }}
 
 <div class="ResizableBox--scrollable"
-    decorator="ResizableBox:true"
+    as-ResizableBox="true"
     data-min-resize-width="460"
     data-max-resize-width="460"
     data-max-resize-height="475"
@@ -118,7 +118,7 @@
 
                 {{#if .data.scrollToSection}}
 
-                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
+                    <div slide-in slide-out="{duration: .data.type === 'button' ? 300 : 0, delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
 
                     {{> Select {
                             adaptive: true,
@@ -145,7 +145,7 @@
 
                 {{#if .data.addToCart}}
 
-                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
+                    <div slide-in slide-out="{duration: .data.type === 'button' ? 300 : 0, delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
 
                     {{> Select {
                             adaptive: true,
@@ -175,7 +175,7 @@
 
                 {{#if .data.download}}
 
-                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_PageElementButtonSettings--input__file E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
+                    <div slide-in slide-out="{duration: .data.type === 'button' ? 300 : 0, delay:100}" class="E_PageElementButtonSettings--input__file E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
 
                     {{> Select {
                             adaptive: true,

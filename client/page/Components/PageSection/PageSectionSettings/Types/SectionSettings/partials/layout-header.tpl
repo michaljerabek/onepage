@@ -17,5 +17,5 @@
 }}
 
 {{#if .data.layout === "left"}}
-    <p intro-outro="{{#if .completed}}slide{{/if}}" class="E_PageSectionSettings--section-note">Na mobilních zařízeních bude obsah zarovnán doprostřed.</p>
+    <p slide-in="{duration: .completed ? 300 : 0}" slide-out="{duration: .completed ? 300 : 0}" class="E_PageSectionSettings--section-note">Na mobilních zařízeních bude obsah zarovnán doprostřed.</p>
 {{/if}}

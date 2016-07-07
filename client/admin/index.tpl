@@ -7,7 +7,7 @@
 
     {{#each pages}}
 
-        <button style="{{#if selectedPage._id === this._id}}background: red; border: 1px solid;{{/if}}" on-tap="set('selectedPage', this)">{{this.name}}</button>
+        <button style="{{#if selectedPage._id === this._id}}background: red; border: 1px solid;{{/if}}" on-tap="@this.set('selectedPage', this)">{{this.name}}</button>
 
     {{/each}}
 
@@ -21,8 +21,8 @@
 </div>
 
 {{#if .editPage}}
-    <div id="pageWrapper" style="position:relative;z-index: 200;">
-        <div intro-outro="fade" style="background:white;">
+    <div id="pageWrapper" style="background: white; position: relative; z-index: 200;">
+        <div fade-in fade-out>
             <Page editMode="true" isAdmin="true" pageId={{.editPage}} />
         </div>
     </div>

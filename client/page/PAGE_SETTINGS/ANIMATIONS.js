@@ -4,13 +4,13 @@ module.exports = {
     10: {
         SCROLL: {
             easing: "easeInOutQuart",
-            duration: 1000
+            duration: 900
         }
     },
     20: {
         SCROLL: {
             easing: "easeInOutQuart",
-            duration: 500
+            duration: 600
         }
     },
     30: {
@@ -22,7 +22,7 @@ module.exports = {
     40: {
         SCROLL: {
             easing: "easeInOutBack",
-            duration: 600
+            duration: 800
         }
     }
 };

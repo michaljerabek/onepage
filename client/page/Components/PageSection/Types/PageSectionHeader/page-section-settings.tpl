@@ -1,5 +1,5 @@
 <div class="E_PageSectionSettings--transition-wrapper">
-{{#if .openPageSectionSettings === 'colors'}}
+{{#if ~/openPageSectionSettings === 'colors'}}
 
     {{> ColorSettings}}
 
@@ -7,7 +7,7 @@
 </div>
 
 <div class="E_PageSectionSettings--transition-wrapper">
-{{#if .openPageSectionSettings === 'background'}}
+{{#if ~/openPageSectionSettings === 'background'}}
 
     <BackgroundImageSettings data="{{.section}}" multipleTabs="[[true]]"/>
 
@@ -15,7 +15,7 @@
 </div>
 
 <div class="E_PageSectionSettings--transition-wrapper">
-{{#if .openPageSectionSettings === 'section'}}
+{{#if ~/openPageSectionSettings === 'section'}}
 
     <SectionSettings data="{{.section}}" layoutTemplate="layoutHeader" lang="{{.lang}}" />
 

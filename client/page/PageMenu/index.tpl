@@ -27,11 +27,11 @@
             <div class="E_PageMenu--content">
 
                 <span class="E_PageMenu--hide-content" on-tap="@this.set('openPageMenu', null)">
-                    <svg><use xlink:href="#icon-x"></use></svg>
+                    <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-x"></use></svg>
                 </span>
 
                 <span class="E_PageMenu--show-page" on-touchstart-touchend-hover="@this.fire('showPage', event)">
-                    <svg><use xlink:href="#icon-eye"></use></svg>
+                    <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-eye"></use></svg>
                 </span>
 
                 <div class="E_PageMenu--content-wrapper">
@@ -69,8 +69,8 @@
 
             <div class="E_PageMenu--content">
 
-                <span class="E_PageMenu--hide-content" on-tap="set('openPageMenu', null)">
-                    <svg><use xlink:href="#icon-x"></use></svg>
+                <span class="E_PageMenu--hide-content" on-tap="@this.set('openPageMenu', null)">
+                    <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-x"></use></svg>
                 </span>
 
                 <div class="E_PageMenu--content-wrapper">
@@ -86,15 +86,15 @@
     </ul>
 
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__top">
-        <span class="icon" on-tap="switchPosition:{{'top'}}">
-            <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
-            <svg class="E_PageMenu--icon__touch"><use xlink:href="#icon-touch-move-up-3"></use></svg>
+        <span class="icon" on-tap="@this.fire('switchPosition', event, 'top')">
+            <svg class="E_PageMenu--icon__arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__touch"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-touch-move-up-3"></use></svg>
         </span>
     </div>
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__bottom">
-        <span class="icon" on-tap="switchPosition:{{'bottom'}}">
-            <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
-            <svg class="E_PageMenu--icon__touch"><use xlink:href="#icon-touch-move-down-3"></use></svg>
+        <span class="icon" on-tap="@this.fire('switchPosition', event, 'bottom')">
+            <svg class="E_PageMenu--icon__arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__touch"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-touch-move-down-3"></use></svg>
         </span>
     </div>
 
@@ -151,12 +151,12 @@
 
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__top">
         <span class="icon" on-tap="@this.fire('switchPosition', event, 'top')">
-            <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-2"></use></svg>
         </span>
     </div>
     <div class="E_PageMenu--position-switcher E_PageMenu--position-switcher__bottom">
         <span class="icon" on-tap="@this.fire('switchPosition', event, 'bottom')">
-            <svg class="E_PageMenu--icon__arrow"><use xlink:href="#icon-arrow-2"></use></svg>
+            <svg class="E_PageMenu--icon__arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-2"></use></svg>
         </span>
     </div>
 

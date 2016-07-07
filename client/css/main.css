@@ -31,10 +31,11 @@ body {
 }
 
 #page {
-    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
 
-    display: table-row;
-    width: 100%;
+    overflow: hidden;
+    display: table-cell;
 }
 
 /*---------------------------- CURSOR ----------------------------*/

@@ -81,12 +81,6 @@
             ResizableBox: require("./../../../../libs/Decorators/ResizableBox")
         },
 
-        data: function () {
-
-            return {
-            };
-        },
-
         superOnconfig: function () {
 
             this.EVENT_NS = "PageElementSettings-" + (++instanceCounter);
@@ -140,6 +134,8 @@
 
                 Ractive.$win.on("resize." + this.EVENT_NS, this.setPosition.bind(this, false, null, true));
             }
+
+            this.set("completed", true);
         },
 
         superOncomplete: function () {
@@ -150,8 +146,6 @@
                     transition: ""
                 });
             }
-
-            this.set("completed", true);
         },
 
         superOnteardown: function () {
@@ -168,6 +162,7 @@
         },
 
         oncomplete: function () {
+
             this.superOncomplete();
         },
 

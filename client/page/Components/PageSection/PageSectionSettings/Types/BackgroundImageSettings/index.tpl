@@ -1,9 +1,8 @@
 <div class="E_BackgroundImageSettings"
-    decorator="ResizableBox"
+    as-ResizableBox
     data-max-resize-height="768"
     style="max-height: 320px;"
  >
-<!--    decorator="PageSectionSettingsBox:.E_PageSectionSettings--scrollable"-->
 
     <div class="E_BackgroundImageSettings--background-settings E_PageSectionSettings--scrollable ResizableBox--scrollable">
 

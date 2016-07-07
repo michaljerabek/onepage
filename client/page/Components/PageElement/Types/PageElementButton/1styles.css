@@ -13,72 +13,6 @@
     display: inline-block;
 }
 
-.E.P_Page__loaded .P_PageElement__button[data-ractive-transition="intro"] {
-    animation: P_PageElement__button-show 0.3s ease-in-out forwards;
-}
-
-.E.P_Page__loaded .P_PageElement__button[data-ractive-transition^="outro"] {
-    animation: P_PageElement__button-hide 0.3s ease-in-out forwards;
-}
-
-@keyframes P_PageElement__button-show {
-    from {
-        margin: 0;
-    }
-    to {
-        margin: 0 8px;
-        margin-bottom: 16px;
-    }
-}
-
-@keyframes P_PageElement__button-hide {
-    from {
-        margin: 0 8px;
-        margin-bottom: 16px;
-    }
-    to {
-        margin: 0;
-    }
-}
-
-@keyframes P_PageElement__button-show__480 {
-    from {
-        margin: 0;
-    }
-    to {
-        margin: 0 6px;
-        margin-bottom: 12px;
-    }
-}
-
-@keyframes P_PageElement__button-hide__480 {
-    from {
-        margin: 0 6px;
-        margin-bottom: 12px;
-    }
-    to {
-        margin: 0;
-    }
-}
-
-@keyframes P_PageElement__button-show__360 {
-    from {
-        margin: 0;
-    }
-    to {
-        margin-bottom: 8px;
-    }
-}
-
-@keyframes P_PageElement__button-hide__360 {
-    from {
-        margin-bottom: 8px;
-    }
-    to {
-        margin: 0;
-    }
-}
-
 .P_PageElementButton {
     position: relative;
     margin: 0;
@@ -126,14 +60,6 @@ body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
         margin-bottom: 12px;
     }
 
-    .E.P_Page__loaded .P_PageElement__button[data-ractive-transition="intro"] {
-        animation-name: P_PageElement__button-show__480;
-    }
-
-    .E.P_Page__loaded .P_PageElement__button[data-ractive-transition^="outro"] {
-        animation-name: P_PageElement__button-hide__480;
-    }
-
     .P_PageElementButton {
         transform: scale(0.92857);
     }
@@ -157,14 +83,6 @@ body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
     .P_PageElement__button {
         margin: 0;
         margin-bottom: 8px;
-    }
-
-    .E.P_Page__loaded .P_PageElement__button[data-ractive-transition="intro"] {
-        animation-name: P_PageElement__button-show__360;
-    }
-
-    .E.P_Page__loaded .P_PageElement__button[data-ractive-transition^="outro"] {
-        animation-name: P_PageElement__button-hide__360;
     }
 
     .P_PageElementButton {
@@ -304,22 +222,6 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
         var(--P_PageSection--shadow-30__box);
 }
 
-/*
-@-moz-document url-prefix() {
-
-    .E.P_Page__loaded .P_PageElementButton {
-        width: 100%;
-
-        animation: P_PageElementButton--width-auto 0.001s linear 0s forwards;
-    }
-}
-*/
-
-@keyframes P_PageElementButton--width-auto {
-    from { width: 100%; }
-    to { width: auto; }
-}
-
 .P_PageElementButton--content-wrapper {
     vertical-align: middle;
     white-space: nowrap;
@@ -384,6 +286,13 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     transition: padding 0.3s ease-in-out 0s;
 }
 
+.E .P_PageElement:not([data-ractive-transition="intro-complete"]) .P_PageElementButton--text,
+.P_PageElement[data-ractive-transition="outro"] .P_PageElementButton--text {
+    word-break: normal;
+    word-wrap: normal;
+    text-wrap: normal;
+}
+
 .P_PageElementButton__long-text .P_PageElementButton--text-wrapper {
     font-size: 17px;
 }
@@ -432,28 +341,6 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
         color 0.1s linear 0s,
         fill 0.1s linear 0s,
         left 0.3s ease-in-out;
-}
-
-.E_PageSection__stop-color-transitions .P_PageElementButton--icon svg {
-    transition: none;
-}
-
-.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition="intro"] {
-    animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
-}
-
-.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition^="outro"] {
-    animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
-}
-
-@keyframes P_PageElementButton--icon-width-0-56 {
-    from { width: 0; }
-    to { width: 56px; }
-}
-
-@keyframes P_PageElementButton--icon-width-56-0 {
-    from { width: 56px; }
-    to { width: 0px; }
 }
 
 @media (max-width: 360px) {
@@ -538,23 +425,10 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     vertical-align: top;
 }
 
-.P_PageSection--buttons [id*="__ph"] {
-    margin: 0 8px;
-    margin-bottom: 16px;
-
-    display: inline-block !important;
-}
-
-
 @media (max-width: 480px) {
 
     .P_PageSection--buttons-wrapper {
         margin-top: 12px;
-    }
-
-    .P_PageSection--buttons [id*="__ph"]  {
-        margin: 0 6px;
-        margin-bottom: 12px;
     }
 
 }
@@ -564,65 +438,5 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     .P_PageSection--buttons-wrapper {
         margin-top: 8px;
     }
-
-    .P_PageSection--buttons [id*="__ph"] {
-        margin: 0;
-        margin-bottom: 8px;
-    }
 }
 
-/*---------------------------- ADD-BUTTON ----------------------------*/
-
-.E_PageElementButtons--add-button  {
-    z-index: 30;
-    position: absolute;
-    top: 24px;
-    right: -40px;
-}
-
-.P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
-    top: -20px;
-    right: -12px;
-}
-
-.P_PageSection--buttons__empty .P_PageSection--buttons-wrapper  {
-    margin-top: 0;
-}
-
-.E_PageElementButtons--add-button__bottom {
-    margin: auto;
-    top: 100%;
-    bottom: -32px;
-    right: 0;
-    left: 0;
-}
-
-@media (max-width: 480px) {
-
-    .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
-        top: 20px;
-    }
-}
-
-@media (max-width: 360px) {
-
-    .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
-        top: 16px;
-    }
-
-    .P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
-        margin: auto;
-        top: 100%;
-        bottom: -20px;
-        right: 0;
-        left: 0px;
-    }
-}
-
-/*--------------------------------------------------------------------*/
-/*----------------------------- EDITMODE -----------------------------*/
-/*--------------------------------------------------------------------*/
-
-.P_PageElement__button .E_PageElement--upload-overlay:after {
-    content: "Nahrát stahovatelný soubor";
-}

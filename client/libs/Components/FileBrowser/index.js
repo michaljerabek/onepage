@@ -481,7 +481,7 @@
 
                         var dataFilePath = "directories." + directoryIndex + ".files." + f,
 
-                            path = paths.files[p].path.replace(/\\/g, "/").replace(/^public\//g, "");
+                            path = paths.files[p].path;
 
                         this.set(dataFilePath + ".uploading", false);
                         this.set(dataFilePath + ".uploaded", true);
@@ -689,7 +689,7 @@
 
                     for (f; f < res.files.length; f++) {
 
-                        res.files[f].path = res.files[f].path.replace(/\\/g, "/");
+                        res.files[f].path = res.files[f].path;
 
                         files.push(res.files[f]);
                     }

@@ -25,6 +25,7 @@
         value: .data.value,
         onText: .data.onText,
         offText: .data.offText,
+        context: .data.context,
         tabindex: -1
     }}}
 

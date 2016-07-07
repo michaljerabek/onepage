@@ -99,8 +99,8 @@
         },
 
         onteardown: function () {
-            this.superOnteardown();
 
+            this.superOnteardown();
 
             if (this.titleObserver) {
 

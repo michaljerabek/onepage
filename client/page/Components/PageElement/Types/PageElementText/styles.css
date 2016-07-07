@@ -181,7 +181,7 @@ body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageEleme
 .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element {
     transition:
         opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
+/*        bottom 0.3s ease-in-out 0s,*/
         color 0.1s linear 0s;
 }
 
@@ -194,15 +194,19 @@ body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageEleme
         background-color 0.1s linear 0s;
 }
 
-.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:after,
-.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:before,
-.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element,
 .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline:before,
 .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline:after,
 .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline {
     transition:
         opacity 0.3s ease-in-out 0s,
         bottom 0.3s ease-in-out 0s;
+}
+
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:after,
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:before,
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element {
+    transition:
+        opacity 0.3s ease-in-out 0s;
 }
 
 .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline-element:after,

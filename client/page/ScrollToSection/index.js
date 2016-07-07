@@ -59,7 +59,7 @@ var initScrollAnim = function (requireCtrl) {
             return true;
         }
 
-        var id = this.getIdFromURL(e.target.href);
+        var id = this.getIdFromURL(e.target.href || e.currentTarget.href);
 
         if (this.scrollToSectionById(id)) {
 
@@ -212,9 +212,12 @@ ScrollToSection.prototype.scrollToSection = function ($section, cb) {
         var id = $section.attr("id");
         $section.attr("id", "");
 
+        var scrollTop = $scrollElement.scrollTop(),
+            scrollTo = Math.min(document.documentElement.scrollHeight - window.innerHeight, $section.offset().top);
+
         $scrollElement.stop().animate({
-            scrollTop: Math.min(document.documentElement.scrollHeight - window.innerHeight, $section.offset().top)
-        }, this.duration, this.easing, function () {
+            scrollTop: scrollTo
+        }, this.duration + (Math.abs(scrollTop - scrollTo) / 20), this.easing, function () {
 
             this.scrolling = false;
 

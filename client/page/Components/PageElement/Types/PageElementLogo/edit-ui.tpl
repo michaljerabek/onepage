@@ -2,8 +2,8 @@
 
     <div class="E_PageElementEditUI__left">
 
-        <span intro="{{#if @this.Page.get('loaded')}}slideh{{/if}}"
-              outro="{{#if @this.Page.get('loaded')}}slideh{{/if}}:{delay: 300}"
+        <span slideh-in="{duration: @this.Page.get('loaded') ? 300 : 0}"
+              slideh-out="{delay: 300, duration: @this.Page.get('loaded') ? 300 : 0}"
         >
 
             {{> FlatButton {

@@ -5,7 +5,7 @@
         data="{{.element}}"
         positionElement="{{.pageElementSettingsPositionElement}}"
     >
-        <div class="ResizableBox--scrollable" decorator="ResizableBox:true"
+        <div class="ResizableBox--scrollable" as-ResizableBox="true"
             data-min-resize-width="475"
             data-max-resize-width="475"
             data-max-resize-height="475"

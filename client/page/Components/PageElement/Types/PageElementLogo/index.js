@@ -151,14 +151,9 @@
                         return;
                     }
 
-                    image = image.replace(/^\\|^\//, "");
+                    var filePath = file.path;
 
-                    var filePath = file.path
-                        .replace(/^\\|^\//, "")
-                        .replace(/^public/, "")
-                        .replace(/\\/g, "/");
-
-                    if (filePath === decodeURIComponent(image).replace(/^\\|^\//, "")) {
+                    if (filePath === decodeURIComponent(image)) {
 
                         this.set("element.image", "");
                     }
@@ -198,7 +193,11 @@
 
                 this.on("stateChange", function (state) {
 
-                    this.set("state", state ? "active" : "inactive");
+                    if (!state) {
+
+                        this.set("state", "inactive");
+                    }
+
                 });
 
                 this.initObservers();
@@ -259,10 +258,7 @@
 
                     browsers[b].addFileToUploadDirectory({
                         name: res.name,
-                        path: res.path
-                            .replace(/^\\|^\//, "")
-                            .replace(/^public/, "")
-                            .replace(/\\/g, "/"),
+                        path: res.path,
                         size: res.size,
                         width: file.width,
                         height: file.height
@@ -292,9 +288,7 @@
                 return;
             }
 
-            this.set("element.image", encodeURIComponent(
-                res.path.replace(/^\\|^\//, "").replace(/^public/, "").replace(/\\/g, "/")
-            ));
+            this.set("element.image", encodeURIComponent(res.path));
 
             this.setLogoWidth(res.width, res.height);
         },

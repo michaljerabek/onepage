@@ -1,5 +1,5 @@
 <div class="ResizableBox--scrollable"
-    decorator="ResizableBox:true"
+    as-ResizableBox="true"
     data-min-resize-width="464"
     data-max-resize-width="464"
     data-max-resize-height="480"

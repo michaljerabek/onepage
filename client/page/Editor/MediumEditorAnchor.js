@@ -29,7 +29,7 @@
                 '<div class="medium-editor-form-nav">',
                     '<label class="medium-editor-form-open-tab" for="medium-editor-open-tab-1-', this.base.id, '">Odkaz</label>',
                     '<label class="medium-editor-form-open-tab" for="medium-editor-open-tab-2-', this.base.id, '">Sekce</label>',
-                    '<a class="medium-editor-form-nav-close" href="#"><svg><use xlink:href="#icon-x"></use></svg></a>',
+                    '<a class="medium-editor-form-nav-close" href="#"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-x"></use></svg></a>',
                 '</div>'
             );
 
@@ -65,7 +65,7 @@
                     '<span class="Button Button__small Button__ok Button__normal" tabindex="1" role="button">',
                         '<span class="Button--content">',
                             '<span class="Button--icon">',
-                                '<svg><use xlink:href="#icon-check-mark"></use></svg>',
+                                '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check-mark"></use></svg>',
                             '</span>',
                             '<span class="Button--text">Použít</span> ',
                         '</span>',
@@ -79,7 +79,7 @@
                     '<span class="Button Button__small Button__danger Button__normal" tabindex="2" role="button">',
                         '<span class="Button--content">',
                             '<span class="Button--icon" style="width: 14px; height: 14px;">',
-                                '<svg><use xlink:href="#icon-x"></use></svg>',
+                                '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-x"></use></svg>',
                             '</span>',
                             '<span class="Button--text">Zavřít</span> ',
                         '</span>',

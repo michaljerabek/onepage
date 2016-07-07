@@ -1,0 +1,102 @@
+
+.E_PageSection__stop-color-transitions .P_PageElementButton--icon svg {
+    transition: none;
+}
+
+.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition="intro"] {
+    animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
+}
+
+.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition^="outro"] {
+    animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
+}
+
+@keyframes P_PageElementButton--icon-width-0-56 {
+    from { width: 0; }
+    to { width: 56px; }
+}
+
+@keyframes P_PageElementButton--icon-width-56-0 {
+    from { width: 56px; }
+    to { width: 0px; }
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- EDITMODE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElement__button .E_PageElement--upload-overlay:after {
+    content: "Nahrát stahovatelný soubor";
+}
+
+.P_PageSection--buttons [id*="__ph"] {
+    margin: 0 8px;
+    margin-bottom: 16px;
+
+    display: inline-block !important;
+}
+
+@media (max-width: 480px) {
+
+    .P_PageSection--buttons [id*="__ph"]  {
+        margin: 0 6px;
+        margin-bottom: 12px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSection--buttons [id*="__ph"] {
+        margin: 0;
+        margin-bottom: 8px;
+    }
+}
+
+/*---------------------------- ADD-BUTTON ----------------------------*/
+
+.E_PageElementButtons--add-button  {
+    z-index: 30;
+    position: absolute;
+    top: 24px;
+    right: -40px;
+}
+
+.P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
+    top: -20px;
+    right: -12px;
+}
+
+.P_PageSection--buttons__empty .P_PageSection--buttons-wrapper  {
+    margin-top: 0;
+}
+
+.E_PageElementButtons--add-button__bottom {
+    margin: auto;
+    top: 100%;
+    bottom: -32px;
+    right: 0;
+    left: 0;
+}
+
+@media (max-width: 480px) {
+
+    .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+        top: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+        top: 16px;
+    }
+
+    .P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
+        margin: auto;
+        top: 100%;
+        bottom: -20px;
+        right: 0;
+        left: 0px;
+    }
+}

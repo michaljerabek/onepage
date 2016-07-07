@@ -2,14 +2,15 @@
 
     {{#each this}}
 
-        {{#if .}}
+        {{#if this}}
 
             <li class="
                     E_PageElementSettings--tab
-                    {{#if @this.get('openTab') === .name}}E_PageElementSettings--tab__active{{/if}}
+                    {{#if ~/openTab === .name}}E_PageElementSettings--tab__active{{/if}}
                 "
                 on-tap="@this.set('openTab', .name)"
-                intro-outro="{{#if ~/completed}}attr{{/if}}"
+                attr-in="{duration: ~/completed ? 300 : 0}"
+                attr-out="{duration: ~/completed ? 300 : 0}"
             >
                 <span class="E_PageElementSettings--tab-name">{{.text}}</span>
             </li>

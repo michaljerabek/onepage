@@ -1,5 +1,5 @@
 <div class="E_SectionSettings"
-    decorator="ResizableBox"
+    as-ResizableBox
     data-max-resize-height="768"
     style="max-height: 320px"
 >
@@ -27,7 +27,19 @@
 
                 </div>
 
-                <div class="E_PageSectionSettings--section E_SectionSettings--empty"></div>
+                <div class="E_PageSectionSettings--section E_SectionSettings--add-to-menu">
+
+                    {{> ToggleField
+                        {
+                            size: "small",
+                            value: "data.addToMenu",
+                            text: "Přidat odkaz do hlavního menu"
+                        }
+                    }}
+
+                    <p class="E_PageElementSettings--note">V případě přidání odkazu se jako jeho text použije název sekce. Tento text je ovšem nezávislý na názvu, takže ho můžete změnit beze změny názvu sekce.</p>
+
+                </div>
 
             </div>
 
@@ -81,7 +93,7 @@
                         }}
 
                         {{#if !.data.backgroundImage.src}}
-                            <p intro-outro="{{#if .completed}}slide{{/if}}" class="E_PageSectionSettings--section-note">Stín lze nastavit pouze v případě, že je jako pozadí použit obrázek.</p>
+                        <p slide-in="{duration: .completed ? 300 : 0}" slide-out="{duration: .completed ? 300 : 0}" class="E_PageSectionSettings--section-note">Stín lze nastavit pouze v případě, že je jako pozadí použit obrázek.</p>
                         {{/if}}
 
                     </div>

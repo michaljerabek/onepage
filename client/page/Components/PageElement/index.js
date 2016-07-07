@@ -52,6 +52,9 @@
      *
      * Konkrétní typ může nastavovat stav PageElementu nastavením vlastnosti "state", která by měla vycházet z
      * události "stateChange".
+     *
+     * Pokud element obsahuje nějaké reference na výchozí barvy, měl by implementovat metodu removeColorRefs,
+     * která odkazy odstraní.
      */
 
     var instanceCounter = 0,
@@ -185,7 +188,7 @@
             return {
                 hover: false,
                 editMode: Ractive.EDIT_MODE,
-                stopTransition: false
+                openPageElementSettings: null
             };
         },
 
@@ -222,8 +225,52 @@
                         }.bind(this));
 
                     });
+
+                    if (this.COLORABLE) {
+
+                        this.initColorRefs();
+                    }
                 }
             }
+        },
+
+        initColorRefs: function () {
+
+            this.on("ColorPickerPalette.setColor", function (event, x, y, palette) {
+
+                var pathName = (palette.container || palette.parent).get("pathName");
+
+                if (!pathName) {
+
+                    return;
+                }
+
+                //uživatel nastavuje vlastní barvu z výchozích -> uložit odkaz na barvu, aby se měnila v případě změny v paletě
+                if (palette.get("id") === "defaultColors") {
+
+                    this.set("element." + pathName + "Ref", event.index.i);
+
+                } else {
+
+                    this.set("element." + pathName + "Ref", null);
+                }
+
+            }.bind(this));
+
+            //"ruční" nastavení barvy
+            this.on("ColorPicker.activated", function (colorPicker) {
+
+                var pathName = colorPicker.get("pathName");
+
+                if (!pathName) {
+
+                    return;
+                }
+
+                this.set("element." + pathName + "Ref", null);
+
+            }.bind(this));
+
         },
 
         initPageElementSettings: function () {
@@ -316,7 +363,6 @@
             this.$dropzonePreview = $("<div/>");
             options.previewsContainer = this.$dropzonePreview[0];
 
-
             options.addedfile = this.superHandleAddedfile.bind(this);
 
             if (this.handleResize) {
@@ -400,8 +446,6 @@
                     this.focusin = true;
 
                     this.fire("stateChange", this.get("showOutline"));
-
-//                    e.stopPropagation();
 
                 }.bind(this));
 
@@ -733,9 +777,7 @@
 
                 file.uploaded = true;
 
-                var path = res.path.replace(/^public/, "").replace(/\\/g, "/");
-
-                this.set("data.src", path);
+                this.set("data.src", res.path);
 
                 this.fire("pageSectionMessage", {
                     title: "Nahrát soubor",

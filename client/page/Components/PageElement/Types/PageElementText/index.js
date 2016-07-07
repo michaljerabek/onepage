@@ -7,6 +7,8 @@
         var PageElement = require("./../../"),
             Ractive = require("ractive"),
 
+            TextCleaner = require("./../../TextCleaner"),
+
             U = require("./../../../../../libs/U"),
             on = require("./../../../../../../helpers/on"),
 
@@ -18,6 +20,7 @@
         module.exports = factory(
             PageElement,
             Ractive,
+            TextCleaner,
             U,
             partials,
             on
@@ -28,13 +31,14 @@
         root.PageElementTitle = factory(
             root.PageElement,
             root.Ractive,
+            root.TextCleaner,
             root.U,
             {},
             {client: true}
         );
     }
 
-}(this, function (PageElement, Ractive, U, partials, on) {
+}(this, function (PageElement, Ractive, TextCleaner, U, partials, on) {
 
     var CLASS = {
         textElement: "P_PageElementText"
@@ -109,11 +113,6 @@
 
             this.$text = this.$self.find("." + CLASS.textElement);
 
-            if (this.get("balanceText")) {
-
-                this.$text.balanceText();
-            }
-
             Ractive.$win = Ractive.$win || $(window);
 
             if (this.get("countLines")) {
@@ -132,52 +131,32 @@
                 Ractive.$win.on("resize.lines-" + this.EVENT_NS, this.countLines.bind(this));
 
                 this.lineCounter();
+
+                if (document.fonts) {
+
+                    document.fonts.ready.then(function () {
+
+                        this.lineCounter();
+
+                    }.bind(this));
+                }
             }
 
-            this.observe("element." + (this.get("source") || "title") + ".*", function (value, prevValue) {
+            if (this.get("balanceText")) {
 
-                if (this.Page.saving || this.skipTextObserver) {
+                this.$text.balanceText();
 
-                    return;
+                if (document.fonts) {
+
+                    document.fonts.ready.then(function () {
+
+                        this.$text.balanceText();
+
+                    }.bind(this));
                 }
+            }
 
-                var text = this.$text.text() || "",
-
-                    maxLength = this.get("maxLength");
-
-                if (!maxLength) {
-
-                    return;
-                }
-
-                text = text.replace(/\&nbsp;/ig, " ");
-
-                //nahradit <br> mezerou
-                text = text.replace(/(\s{0}<(br[^>]+)>\s{0})/ig, " ");
-
-                //odstranit všechny tagy
-                text = text.replace(/(<([^>]+)>)/ig, "");
-
-                if (text.length > maxLength) {
-
-                    this.skipTextObserver = true;
-
-                    clearTimeout(this.fixTextTimeout);
-
-                    this.fixTextTimeout = setTimeout(function () {
-
-                        this.skipTextObserver = true;
-
-                        this.set("element." + (this.get("source") || "title") + "." + this.get("lang"), prevValue);
-
-                        this.placeCaretAtEnd(this.$text[0]);
-
-                        this.skipTextObserver = false;
-
-                    }.bind(this), 0);
-                }
-
-            }, {init: false});
+            this.observe("element." + (this.get("source") || "title") + ".*", this.cleanText, {init: false});
 
             this.EventEmitter
                 .on("saved.Page." + this.EVENT_NS, this.handleModified.bind(this))
@@ -186,7 +165,7 @@
 
                     clearTimeout(this.fontChangedTimeout);
 
-                    this.fontChangedTimeout = setTimeout(this.handleModified.bind(this), 300);
+                    this.fontChangedTimeout = setTimeout(this.handleModified.bind(this), 500);
 
                 }.bind(this));
 
@@ -194,68 +173,11 @@
 
                 clearTimeout(this.layoutChangedTimeout);
 
-                this.layoutChangedTimeout = setTimeout(this.handleModified.bind(this, {}), 300);
+                this.layoutChangedTimeout = setTimeout(this.handleModified.bind(this, {}), 500);
 
             });
 
             this.fire("emptyText", this.empty, this);
-        },
-
-        getSelection: function () {
-
-            var savedRange;
-
-            if (window.getSelection && window.getSelection().rangeCount > 0) {
-
-                savedRange = window.getSelection().getRangeAt(0).cloneRange();
-
-            } else if (document.selection) {
-
-                savedRange = document.selection.createRange();
-            }
-
-            return savedRange;
-        },
-
-        setCaretPosition: function (node, pos) {
-
-            node.focus();
-
-            var textNode = node.firstChild,
-                range = document.createRange();
-
-            range.setStart(textNode, pos);
-            range.setEnd(textNode, pos);
-
-            var sel = window.getSelection();
-
-            sel.removeAllRanges();
-            sel.addRange(range);
-        },
-
-        placeCaretAtEnd: function (el) {
-
-            el.focus();
-
-            if (typeof window.getSelection !== "undefined" && typeof document.createRange !== "undefined") {
-
-                var range = document.createRange();
-                range.selectNodeContents(el);
-                range.collapse(false);
-
-                var sel = window.getSelection();
-
-                sel.removeAllRanges();
-                sel.addRange(range);
-
-            } else if (typeof document.body.createTextRange !== "undefined") {
-
-                var textRange = document.body.createTextRange();
-
-                textRange.moveToElementText(el);
-                textRange.collapse(false);
-                textRange.select();
-            }
         },
 
         countLines: function () {
@@ -301,6 +223,56 @@
             }.bind(this));
         },
 
+        cleanText: function (value, prevValue) {
+
+            if (this.Page.saving || this.skipTextObserver) {
+
+                return;
+            }
+
+            var text = this.$text.text() || "",
+
+                maxLength = this.get("maxLength");
+
+            if (!maxLength) {
+
+                return;
+            }
+
+            text = text.replace(/\&nbsp;/ig, " ");
+
+            //nahradit <br> mezerou
+            text = text.replace(/(\s{0}<(br[^>]+)>\s{0})/ig, " ");
+
+            //odstranit všechny tagy
+            text = text.replace(/(<([^>]+)>)/ig, "");
+
+            if (text.length > maxLength) {
+
+                if (U.isIE11()) {
+
+                    prevValue = text.substr(0, maxLength);
+                }
+
+                this.skipTextObserver = true;
+
+                clearTimeout(this.fixTextTimeout);
+
+                this.fixTextTimeout = setTimeout(function () {
+
+                    this.skipTextObserver = true;
+
+                    this.set("element." + (this.get("source") || "title") + "." + this.get("lang"), prevValue);
+
+                    TextCleaner.placeCaretAtEnd(this.$text[0]);
+
+                    this.skipTextObserver = false;
+
+                }.bind(this), 0);
+            }
+
+        },
+
         handleBlur: function (event) {
 
             if (event.original && event.original.relatedTarget && event.original.relatedTarget.className.match(/medium-editor/)) {
@@ -311,9 +283,14 @@
             if (this.get("removeNbsp")) {
 
                 var source = this.get("source") || "title",
-                    lang = this.get("lang"),
+                    lang = this.get("lang");
 
-                    text = this.get("element." + source + "." + lang),
+                if (U.isIE11()) {
+
+                    this.cleanText(this.get("element." + source + "." + lang), this.get("element." + source + "." + lang));
+                }
+
+                var text = this.get("element." + source + "." + lang),
 
                     noNbsp = text.replace(/\&nbsp;/ig, " ");
 
@@ -321,8 +298,9 @@
 
                 this.nbspTimeout = setTimeout(function() {
 
-                    this.set("element." + source + "." + lang, noNbsp)
-                        .then(this.handleModified.bind(this));
+                    var promise = this.set("element." + source + "." + lang, noNbsp);
+
+                    promise.then(this.handleModified.bind(this, true));
 
                 }.bind(this), 0);
 

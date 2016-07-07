@@ -30,7 +30,7 @@
 
     {{#if .element.icon}}
 
-        <span intro-outro="{{#if @this.Page.get('loaded')}}slideh{{/if}}">
+        <span slideh-in="{duration: @this.Page.get('loaded') ? 300 : 0}" slideh-out="{duration: @this.Page.get('loaded') ? 300 : 0}">
             {{> FlatButton {
                     size: "small",
                     icon: .element.icon && .element.icon.match(/\#[^\"\']+/)[0],

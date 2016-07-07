@@ -13,7 +13,7 @@
 
             <div class="ColorPicker--palettes">
 
-                <ColorPickerPalette title="Vybraná / Původní" colors="[{{current}}, {{initial}}]" addNoColor="{{.noColor}}" type="default" />
+                <ColorPickerPalette title="Vybraná / Původní" colors="[{{~/current}}, {{~/initial}}]" addNoColor="{{.noColor}}" type="default" />
 
                 {{yield}}
 
@@ -46,7 +46,7 @@
     <div class="ColorPicker--SV-selector"
         on-mousedown-touchstart="@this.activateSelector(event, 'SV')"
         style="
-            transform: translate({{SVSelector.x}}px, {{SVSelector.y}}px);
+            transform: translate({{~/SVSelector.x}}px, {{~/SVSelector.y}}px);
             transition: {{.animate ? '' : 'none'}};
             background-color: {{.output}};
         "
@@ -61,7 +61,7 @@
     <div class="ColorPicker--H-selector"
         on-mousedown-touchstart="@this.activateSelector(event, 'H')"
         style="
-            transform: translateY({{HSelector.y}}px);
+            transform: translateY({{~/HSelector.y}}px);
             transition: {{.animate ? '' : 'none'}};
             background-color: {{.SVBoxHue}};
         "

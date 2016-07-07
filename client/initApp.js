@@ -106,7 +106,8 @@ module.exports = function (ractive, ractiveData, config) {
                 windowMouseup   : ractiveWindowEvents.windowMouseup,
                 windowTouchstart: ractiveWindowEvents.windowTouchstart,
                 windowTouchmove : ractiveWindowEvents.windowTouchmove,
-                windowTouchend  : ractiveWindowEvents.windowTouchend
+                windowTouchend  : ractiveWindowEvents.windowTouchend,
+                windowResize    : ractiveWindowEvents.windowResize
             },
 
             transitions: {

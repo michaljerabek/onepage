@@ -3,7 +3,8 @@
     <span class="
             P_PageElementLogo
         "
-        intro-outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slidevh{{/if}}"
+        slidevh-in="{duration: .editMode && @this.Page.get('loaded') && !.stopTransition ? 300 : 0}"
+        slidevh-out="{duration: .editMode && @this.Page.get('loaded') && !.stopTransition ? 300 : 0}"
         tabindex="0"
      >
         <div class="P_PageElementLogo--image"
@@ -17,7 +18,8 @@
 
 {{else}}
 
-    <a href="/{{.lang === @this.root.get('page.settings.lang.defaultLang') ? '' : .lang}}"
+    <a href="#{{@this.PageSection.get('internalId')}}"
+       data-href="#{{@this.PageSection.get('internalId')}}"
         class="
             P_PageElementLogo
         "

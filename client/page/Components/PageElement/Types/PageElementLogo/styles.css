@@ -25,6 +25,10 @@
     width: 0;
 }
 
+.P_PageElement__logo.P_PageElement__empty:not(.E_PageElement__active) .E_PageElement--outline {
+    opacity: 0;
+}
+
 .E_PageSection__dragover .P_PageElement__logo.P_PageElement__empty,
 .P_PageElement__logo.P_PageElement__empty.dz-drag-hover,
 .P_PageElement__logo.P_PageElement__empty.E_PageElement__active {

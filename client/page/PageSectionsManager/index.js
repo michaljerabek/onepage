@@ -163,7 +163,6 @@ module.exports = (function () {
             });
 
             page.fire("sectionRemoved", pageSection);
-
             $sectionElement
                 .addClass(CLASS.PageSection.removedSection)
                 .slideUp(OPTIONS.SECTION_SPEED_JQ, OPTIONS.SECTION_EASING_JQ, function () {
@@ -184,6 +183,8 @@ module.exports = (function () {
                             break;
                         }
                     }
+
+                    EventEmitter.trigger("sectionRemoved.PageSectionManager", [pageSection]);
 
                     page.fire("sectionRemoved.complete", pageSection);
 
@@ -598,6 +599,8 @@ module.exports = (function () {
                     
                     page.getPageSectionByElement(ui.item)
                         .fire("sectionOrderChanged", currentIndex, beforeIndex);
+
+                    EventEmitter.trigger("sectionOrderChanged.PageSectionManager");
                 }
                 
                 ui.item.data("index.PageSectionManager", null);

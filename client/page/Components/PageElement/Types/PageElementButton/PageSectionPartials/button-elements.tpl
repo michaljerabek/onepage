@@ -4,22 +4,23 @@
         P_PageSection--buttons__{{.section.buttons.length}}
         cf
     "
-    decorator="PageElementButtons"
+     as-PageElementButtons
 >
 
-    {{#if .editMode && .showAddButton}}
+    {{#if .editMode && .showAddButton && .pageElementSettings !== "button"}}
     <div class="E_PageSection--add-button
             E_PageElementButtons--add-button
             {{#if .addButtonBottom}}E_PageElementButtons--add-button__bottom{{/if}}
         "
         on-tap="@this.fire('addButton')"
-        intro-outro="attr:{duration: 300}"
+        attr-out="{duration: 300}"
+        attr-in="{duration: 300}"
     >
-        <svg><use xlink:href="{{#if ~/section.buttons.length}}#icon-plus{{else}}#icon-add-button{{/if}}"></use></svg>
+        <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{#if ~/section.buttons.length}}#icon-plus{{else}}#icon-add-button{{/if}}"></use></svg>
     </div>
     {{/if}}
 
-    <div class="P_PageSection--buttons-wrapper" decorator="Sortable:'section.buttons','PageElementButton','button'">
+    <div class="P_PageSection--buttons-wrapper" as-Sortable="'section.buttons','PageElementButton','button'">
 
         {{#each ~/section.buttons}}
 

@@ -1,5 +1,6 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 var config = require("./../../../config");
+var PublicPath = require("./../../../helpers/PublicPath");
 
 var fse = require("fs-extra");
 var path = require("path");
@@ -100,8 +101,8 @@ var ImageReq = (function() {
 
                                 response.files.unshift({
                                     name: currentFilename,
-                                    path: path.join(req.params.directory, currentFilename).replace(/\\/g, "/"),
-                                    directory: req.params.directory.replace(/\\/g, "/"),
+                                    path: PublicPath.from(path.join(req.params.directory, currentFilename)),
+                                    directory: PublicPath.from(req.params.director),
                                     width: err ? null : size.width,
                                     height: err ? null : size.height,
                                     size: (stat.size / 1024).toFixed()
@@ -131,7 +132,7 @@ var ImageReq = (function() {
 
             directories.push({
                 name: config.upload.images.name,
-                path: config.upload.images.path.replace("{{userId}}", userId),
+                path: PublicPath.from(config.upload.images.path.replace("{{userId}}", userId)),
                 deletable: true,
                 uploadable: true
             });
@@ -155,7 +156,7 @@ var ImageReq = (function() {
 
                         directories.push({
                             name: data[d],
-                            path: path.join(config.library.images.path, data[d])
+                            path: PublicPath.from(path.join(config.library.images.path, data[d]))
                         });
                     }
                 }
@@ -227,7 +228,7 @@ var ImageReq = (function() {
 
                 res.json({
                     originalname: req.file.originalname,
-                    path: req.file.path,
+                    path: PublicPath.from(req.file.path),
                     name: req.file.filename,
                     width: err ? null : size.width,
                     height: err ? null : size.height,
@@ -235,6 +236,35 @@ var ImageReq = (function() {
                 });
             });
 
+        },
+
+        processUploadedImages = function (req, res, files, MAX_STORAGE) {
+
+            var file = req.files.shift();
+
+            if (file) {
+
+                gm(file.path).size(function (err, size) {
+
+                    files.push({
+                        originalname: file.originalname,
+                        size: (file.size / 1024).toFixed(),
+                        name: file.filename,
+                        path: PublicPath.from(file.path),
+                        width: err ? null : size.width,
+                        height: err ? null : size.height
+                    });
+
+                    processUploadedImages(req, res, files, MAX_STORAGE);
+                });
+
+                return;
+            }
+
+            res.json({
+                files: files,
+                MAX_STORAGE: MAX_STORAGE
+            });
         },
 
         uploadImages = function (req, res) {
@@ -261,20 +291,10 @@ var ImageReq = (function() {
 
                     createThumbnail(req.files[f]);
 
-                    files.push({
-                        originalname: req.files[f].originalname,
-                        size: (req.files[f].size / 1024).toFixed(),
-                        name: req.files[f].filename,
-                        path: req.files[f].path
-                        //PŘIDAT VELIKOSTI SOUBORŮ
-                    });
                 }
             }
 
-            res.json({
-                files: files,
-                MAX_STORAGE: MAX_STORAGE
-            });
+            processUploadedImages(req, res, files, MAX_STORAGE);
         },
 
         registerWSComm = function (req, _userId) {

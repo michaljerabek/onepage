@@ -1,0 +1,6 @@
+{
+    "jscodehints.detectedExclusions": [
+        "Y:/DJ Miki/WEBOVINY/onepage/node_modules/ractive/ractive.runtime.js",
+        "Y:/DJ Miki/WEBOVINY/onepage/node_modules/ractive/ractive-legacy.runtime.js"
+    ]
+}

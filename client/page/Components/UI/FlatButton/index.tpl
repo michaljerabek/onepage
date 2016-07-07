@@ -32,14 +32,14 @@
     {{#if .icon}}
         <span class="FlatButton--icon"
             style="
-                      top: {{.iconY + 'px'}};
-                     left: {{.iconX + 'px'}};
-                    width: {{.iconW + 'px'}};
-                   height: {{.iconH + 'px'}};
+                top: {{.iconY ? .iconY + 'px' : ''}};
+                left: {{.iconX ? .iconX + 'px' : ''}};
+                width: {{.iconW ? .iconW + 'px' : ''}};
+                height: {{.iconH ? .iconH + 'px' : ''}};
                 transform: rotate({{.iconR || 0}}deg);
             "
         >
-            <svg><use xlink:href="{{.icon}}"></use></svg>
+            <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{.icon}}"></use></svg>
         </span>
     {{/if}}
 

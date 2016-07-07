@@ -129,7 +129,7 @@
 
             this.updateInputFields();
 
-            this.observe("input", function (value) {
+//            this.observe("input", function (value) {
 
                 //                                        this.waitForUserInteraction = this.get("defer");
                 //
@@ -139,7 +139,7 @@
                 //
                 //                    this.waitForUserInteraction = false;
 
-            }, {init: false});
+//            }, {init: false});
 
             this.on("inputTextHEXChanged", this.inputTextHEXChanged);
             this.on("inputTextRGBChanged", this.inputTextRGBChanged);
@@ -283,11 +283,11 @@
 
                 Ractive.$win.on("resize." + this.EVENT_NS, this.windowResizeHandler.bind(this));
 
-                var pageElementSettings = this.findParent("PageElementSettings");
+                this.pageElementSettings = this.findParent("PageElementSettings");
 
-                if (pageElementSettings) {
+                if (this.pageElementSettings) {
 
-                    pageElementSettings.observe("resizableElementWidth resizableElementHeight", this.windowResizeHandler.bind(this), {init: false});
+                    this.pageElementSettingsObserver = this.pageElementSettings.observe("resizableElementWidth resizableElementHeight", this.windowResizeHandler.bind(this), {init: false});
                 }
 
                 this.waitForUserInteraction = false;
@@ -313,6 +313,11 @@
         },
 
         onteardown: function () {
+
+            if (this.pageElementSettingsObserver) {
+
+                this.pageElementSettingsObserver.cancel();
+            }
 
             Ractive.$win.off("." + this.EVENT_NS);
             this.$self.off("." + this.EVENT_NS);

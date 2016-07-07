@@ -58,8 +58,10 @@
 
 .FileBrowser--message-title,
 .FileBrowser--drag-drop-overlay-title {
-    font-size: 23px;
+    font-size: 19px;
     font-weight: 600;
+
+    margin-bottom: 8px;
 
     color: var(--color-text-1);
 }

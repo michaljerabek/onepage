@@ -22,6 +22,11 @@
             if (staticM) { for (var i in superO) { subO[i] = superO[i]; }}
         },
 
+        isIE11: function () {
+
+            return !!window.MSInputMethodContext && !!document.documentMode;
+        },
+
         viewportWidth: function () {
 
             return document.documentElement.clientWidth > window.innerWidth || navigator.userAgent.match(/Mobi/) ? window.innerWidth : document.documentElement.clientWidth;

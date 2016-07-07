@@ -15,7 +15,7 @@
 
     {{#if .element.fill && !.restoreFill}}
 
-        <span intro-outro="{{#if @this.Page.get('loaded')}}slideh{{/if}}">
+        <span slideh-in="{duration: @this.Page.get('loaded') ? 300 : 0}" slideh-out="{duration: @this.Page.get('loaded') ? 300 : 0}">
 
             {{> FlatButton {
                     state: .element.shadow ? "active" : "",
@@ -60,6 +60,8 @@
         defaultColors="{{.defaultColors}}"
         backgroundColor="{{.backgroundColor}}"
         textColor="{{.textColor}}"
+        sections="{{.sections}}"
+        links="{{.links}}"
     ></PageElementMenuSettings>
 
 {{/if}}
