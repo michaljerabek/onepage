@@ -1,4 +1,4 @@
-<div class="E_GlobalPageSettings" outro="attr:{duration: 300}">
+<div class="E_GlobalPageSettings" attr-out="{duration: 300}">
 
     <h2 class="E_PageMenu--title">Nastavení vzhledu</h2>
 
@@ -112,7 +112,7 @@
                         icon: "#icon-magic-3"
                     },
                     {
-                        text: "Zábavné",
+                        text: "Elastické",
                         value: 40,
                         icon: "#icon-magic-4"
                     }
@@ -128,12 +128,15 @@
         <h3 class="E_PageMenu--sub-title">
             Výchozí barvy
 
-            <ul class="E_GlobalColorPaletteSettings--colors E_GlobalColorPaletteSettings--selected-palette" on-tap="toggle('toggleColorPicker')">
+            <ul class="E_GlobalColorPaletteSettings--colors E_GlobalColorPaletteSettings--selected-palette">
 
                 {{#each .settings.colorPalette.colors}}
                     <li class="E_GlobalColorPaletteSettings--color"
                         style="background-color: {{.}}"
-                        on-tap="@this.set('openGlobalSettingsWidget', ~/openGlobalSettingsWidget && ~/openGlobalSettingsWidget.colorKey === @key ? null : { colorKey: @key })"
+                        on-tap="
+                            @this.set('openGlobalSettingsWidget', ~/openGlobalSettingsWidget && ~/openGlobalSettingsWidget.colorKey === @key ? null : { colorKey: @key }),
+                            @this.toggle('toggleColorPicker')
+                        "
                     ></li>
                 {{/each}}
 
@@ -213,7 +216,7 @@
         >
             Aktuální jazyk
             {{#if .lang === .settings.lang.defaultLang}}
-                <svg intro-outro="fade:{duration: 100}" class="E_GlobalLanguagesSettings--default-lang-icon" title="Jazky je nastaven jako výchozí"><use xlink:href="#icon-flag"></use></svg>
+                <svg fade-in="{duration: 100}"  fade-out="{duration: 100}" class="E_GlobalLanguagesSettings--default-lang-icon" title="Jazky je nastaven jako výchozí"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-flag"></use></svg>
             {{/if}}
 
             {{> dropDownIcon}}
@@ -339,6 +342,6 @@
 
 {{#partial dropDownIcon}}
     <div class="E_PageMenu--sub-title-dropdown">
-        <svg><use xlink:href="#icon-triangle"></use></svg>
+        <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-triangle"></use></svg>
     </div>
 {{/partial}}

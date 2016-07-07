@@ -91,6 +91,15 @@
                     this.fire("loadFiles", this.addFiles.bind(this));
                 }
             });
+
+            this.observe("data.fill", function (state) {
+
+                if (!state && this.get("openTab") === "userTextColor") {
+
+                    this.set("openTab", "color");
+                }
+
+            }, {init: false});
         },
 
         addFiles: function () {

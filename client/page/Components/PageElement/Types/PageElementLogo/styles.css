@@ -1,0 +1,90 @@
+/*====================================================================*/
+/*------------------------- PAGEELEMENTLOGO --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__logo {
+    vertical-align: middle;
+
+    position: relative;
+    margin-right: 32px;
+
+    min-width: 0px;
+    height: 40px;
+
+    display: inline-block;
+}
+
+.E .P_PageElement__logo {
+    transition:
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+}
+
+.P_PageElement__logo.P_PageElement__empty:not(.E_PageElement__active) {
+    width: 0;
+}
+
+.P_PageElement__logo.P_PageElement__empty:not(.E_PageElement__active) .E_PageElement--outline {
+    opacity: 0;
+}
+
+.E_PageSection__dragover .P_PageElement__logo.P_PageElement__empty,
+.P_PageElement__logo.P_PageElement__empty.dz-drag-hover,
+.P_PageElement__logo.P_PageElement__empty.E_PageElement__active {
+    min-width: 52px;
+}
+
+.P_PageElementLogo--image {
+    max-width: 200px;
+    width: 52px;
+    height: 100%;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+@media (max-width: 599px) {
+
+    .P_PageElementLogo--image {
+        max-width: 160px;
+    }
+}
+
+@media (max-width: 559px) {
+
+    .P_PageElement__logo {
+        margin: 0;
+
+        height: 32px;
+    }
+
+    .P_PageElementLogo--image {
+        max-width: 120px;
+    }
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- EDITMODE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElement__logo .E_PageElement--upload-overlay:after {
+    content: "Nahrát logo";
+
+    font-size: 12px;
+    white-space: normal;
+}
+
+.P_PageElement__logo .E_PageElement--activate {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.E .P_PageElementLogo--image {
+    transition: background-image 0.1s linear,
+        width 0.3s ease-in-out;
+}

@@ -6,6 +6,7 @@
 
         var PageElement = require("./../../"),
             Ractive = require("ractive"),
+            TextCleaner = require("./../../TextCleaner"),
 
             U = require("./../../../../../libs/U"),
             EventEmitter = require("./../../../../../libs/EventEmitter")(),
@@ -20,6 +21,7 @@
             PageElement,
             EventEmitter,
             Ractive,
+            TextCleaner,
             U,
             partials,
             on
@@ -31,13 +33,14 @@
             root.PageElement,
             root.EventEmitter,
             root.Ractive,
+            root.TextCleaner,
             root.U,
             {},
             {client: true}
         );
     }
 
-}(this, function (PageElement, EventEmitter, Ractive, U, partials, on) {
+}(this, function (PageElement, EventEmitter, Ractive, TextCleaner, U, partials, on) {
 
     return PageElement.extend({
 
@@ -53,6 +56,8 @@
 
             return button;
         },
+
+        COLORABLE: true,
 
         hasEditor: false,
 
@@ -76,6 +81,12 @@
                 type: "button"
             };
         },
+
+        checkLength: function (length) {
+
+            return length - (this.get("element.icon") && !this.get("element.hideIcon") ? this.MAX_LENGTH : this.MAX_LENGTH_NO_ICON);
+        },
+
         onconfig: function () {
 
             this.CLASS.element = "P_PageElementButton";
@@ -86,6 +97,8 @@
             this.superOnconfig();
 
             if (Ractive.EDIT_MODE) {
+
+                this.textCleaner = new TextCleaner(this);
 
                 if (on.client) {
 
@@ -119,13 +132,6 @@
 
                     }.bind(this));
                 }
-            }
-
-            //při ukládání stránky se přeřazují elementy, což způsobí jejich odstranění a znovuvytvoření,
-            //proto je potřeba transitions vypnout
-            if (this.Page.saving) {
-
-                this.set("stopTransition", true);
             }
         },
 
@@ -161,7 +167,7 @@
 
                     if (!this.get("focus")) {
 
-                        this.placeCaretAtEnd(this.$text[0]);
+                        TextCleaner.placeCaretAtEnd(this.$text[0]);
                     }
                 });
 
@@ -194,18 +200,52 @@
 
         initObservers: function () {
 
-            this.linkObserver = this.observe("element.link", this.setIcon, {init: false});
+            if (this.observersInited) {
 
-            this.typeObserver = this.observe("element.type", function () {
+                return;
+            }
 
-                if (this.removing) {
+            this.defPaletteObserver = this.Page.observe("page.settings.colorPalette.colors", function (current) {
+
+                if (!current) {
 
                     return;
                 }
 
-                this.setIcon(this.get("element.link"));
+                var colorRef = this.get("element.colorRef"),
+                    color = this.get("element.color"),
 
+                    userTextColorRef = this.get("element.userTextColorRef"),
+                    userTextColor = this.get("element.userTextColor");
+
+                if (typeof colorRef === "number" && color && current[colorRef] && current[colorRef] !== color) {
+
+                    this.set("element.color", current[colorRef]);
+                }
+
+                if (typeof userTextColorRef === "number" && userTextColor && current[userTextColorRef] && current[userTextColorRef] !== userTextColor) {
+
+                    this.set("element.userTextColor", current[userTextColorRef]);
+                }
+
+            }.bind(this), {init: false});
+
+            this.linkObserver = this.observe("element.link", this.setIcon, {init: false});
+
+            this.hideIconObserver = this.observe("element.hideIcon", function () {
+                this.balanceText(400);
             }, {init: false});
+//
+//            this.typeObserver = this.observe("element.type", function () {
+//
+//                if (this.removing) {
+//
+//                    return;
+//                }
+//
+//                this.setIcon(this.get("element.link"));
+//
+//            }, {init: false});
 
             this.addToCartObserver = this.observe("element.addToCart", function () {
 
@@ -268,13 +308,18 @@
 
             }, {init: false});
 
-            this.textObserver = this.observe("element.text.*", this.checkText, {init: false});
+            this.textObserver = this.observe("element.text.*", this.textCleaner.observer, {init: false});
+
+            this.observersInited = true;
         },
 
         cancelObservers: function () {
 
+            this.observersInited = false;
+
             if (this.textObserver) {
 
+                this.defPaletteObserver.cancel();
                 this.linkObserver.cancel();
                 this.fileObserver.cancel();
                 this.typeObserver.cancel();
@@ -307,116 +352,6 @@
             this.superOnteardown();
         },
 
-        checkText: function (currentValue, prevValue, path, lang) {
-
-            if (this.skipTextObserver || this.removing) {
-
-                return;
-            }
-
-            var inputValue = currentValue,
-
-                moveCaret = 0;
-
-            //odstranit počáteční mezery
-            if (currentValue && currentValue.match(/^(?:\s+|\&nbsp\;)+/ig)) {
-
-                currentValue = currentValue.replace(/^(?:\s+|\&nbsp\;)+/ig, "");
-
-                moveCaret--;
-            }
-
-            if (currentValue && currentValue.match(/(<([^>]+)>)/ig)) {
-
-                //nahradit <br> mezerou
-                currentValue = currentValue.replace(/(\s{0}<(br[^>]+)>\s{0})/ig, " ");
-
-                //odstranit všechny tagy
-                currentValue = currentValue.replace(/(<([^>]+)>)/ig, "");
-            }
-
-            if (currentValue && currentValue.match(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig)) {
-
-                //dvě mezery nahradit jednou
-                currentValue = currentValue.replace(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig, " ");
-
-                moveCaret--;
-            }
-
-            if (currentValue) {
-
-                //omezit maximállní délku textu, $nbsp; je potřeba počítat jako 1 znak
-                var nbsp = currentValue.match(/\&nbsp\;/ig),
-
-                    length = currentValue.length - (nbsp ? nbsp.length * 5 : 0);
-
-                if (length > (this.get("element.icon") ? this.MAX_LENGTH : this.MAX_LENGTH_NO_ICON)) {
-
-                    currentValue = prevValue;
-                }
-            }
-
-            if (currentValue !== inputValue) {
-
-                var caret = this.getSelection().endOffset + moveCaret;
-
-                this.skipTextObserver = true;
-
-                clearTimeout(this.fixTextTimeout);
-
-                this.fixTextTimeout = setTimeout(function () {
-
-                    this.skipTextObserver = true;
-
-                    this.set("element.text." + lang, currentValue);
-
-                    try {
-
-                        this.setCaretPosition(this.$text[0], caret);
-
-                    } catch (e) {
-
-                        this.placeCaretAtEnd(this.$text[0]);
-                    }
-
-                    this.skipTextObserver = false;
-
-                }.bind(this), 0);
-            }
-        },
-
-        getSelection: function () {
-
-            var savedRange;
-
-            if (window.getSelection && window.getSelection().rangeCount > 0) {
-
-                savedRange = window.getSelection().getRangeAt(0).cloneRange();
-
-            } else if (document.selection) {
-
-                savedRange = document.selection.createRange();
-            }
-
-            return savedRange;
-        },
-
-        setCaretPosition: function (node, pos) {
-
-            node.focus();
-
-            var textNode = node.firstChild,
-                range = document.createRange();
-
-            range.setStart(textNode, pos);
-            range.setEnd(textNode, pos);
-
-            var sel = window.getSelection();
-
-            sel.removeAllRanges();
-            sel.addRange(range);
-        },
-
         setIcon: function (linkValue) {
 
             if (this.removing) {
@@ -429,27 +364,27 @@
                 //email
                 if (linkValue && linkValue.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
 
-                    this.set("element.icon", "<svg><use xlink:href='#icon-email'></use></svg>");
+                    this.set("element.icon", "<svg><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='#icon-email'></use></svg>");
 
                 //iOS aplikace
                 } else if (linkValue && linkValue.match(/^\s*(?:https?:\/\/)?(?:www\.)?itunes\.apple\.com\/[a-zA-Z0-9\-]+\/app/i)) {
 
-                    this.set("element.icon", "<svg style='margin-top: -1px;'><use xlink:href='#icon-apple'></use></svg>");
+                    this.set("element.icon", "<svg style='margin-top: -1px;'><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='#icon-apple'></use></svg>");
 
                 //Android aplikace
                 } else if (linkValue && linkValue.match(/^\s*(?:https?:\/\/)?(?:www\.)?play\.google\.com\/store\/apps/i)) {
 
-                    this.set("element.icon", "<svg><use xlink:href='#icon-android'></use></svg>");
+                    this.set("element.icon", "<svg><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='#icon-android'></use></svg>");
 
                 //Windows aplikace
                 } else if (linkValue && linkValue.match(/^\s*(?:https?:\/\/)?(?:www\.)?(?:windowsphone|microsoft)\.com\/[a-zA-Z0-9\-]+\/store\/apps/i)) {
 
-                    this.set("element.icon", "<svg><use xlink:href='#icon-windows'></use></svg>");
+                    this.set("element.icon", "<svg><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='#icon-windows'></use></svg>");
 
                 //Stahovatelný soubor
                 } else if (linkValue && linkValue.match(/(\/[^\/.]+|\\[^\\.]+)\.(?=[a-zA-Z0-9]+$)(?=(?!html$|htm$|php$|py$|asp$))/i)) {
 
-                    this.set("element.icon", "<svg><use xlink:href='#icon-download'></use></svg>");
+                    this.set("element.icon", "<svg><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='#icon-download'></use></svg>");
 
                 } else {
 
@@ -459,16 +394,31 @@
             //Stahovatelný soubor
             } else if (this.get("element.download") && this.get("element.file")) {
 
-                this.set("element.icon", "<svg><use xlink:href='#icon-download'></use></svg>");
+                this.set("element.icon", "<svg><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='#icon-download'></use></svg>");
 
             //produkt do košíku
             } else if (this.get("element.addToCart") && this.get("element.product")) {
 
-                this.set("element.icon", "<svg><use xlink:href='#icon-cart'></use></svg>");
+                this.set("element.icon", "<svg><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='#icon-cart'></use></svg>");
 
             } else {
 
                 this.set("element.icon", null);
+            }
+        },
+
+        removeNbsp: function () {
+
+            if (this.removing) {
+
+                return;
+            }
+
+            var text = (this.get("element.text." + this.get("lang")) || "");
+
+            if (text.match(/&nbsp;/)) {
+
+                this.set("element.text." + this.get("lang"), text.replace(/&nbsp;/g, " "));
             }
         },
 
@@ -517,36 +467,11 @@
             }.bind(this), timeout || 0);
         },
 
-        placeCaretAtEnd: function (el) {
-
-            el.focus();
-
-            if (typeof window.getSelection !== "undefined" && typeof document.createRange !== "undefined") {
-
-                var range = document.createRange();
-                range.selectNodeContents(el);
-                range.collapse(false);
-
-                var sel = window.getSelection();
-
-                sel.removeAllRanges();
-                sel.addRange(range);
-
-            } else if (typeof document.body.createTextRange !== "undefined") {
-
-                var textRange = document.body.createTextRange();
-
-                textRange.moveToElementText(el);
-                textRange.collapse(false);
-                textRange.select();
-            }
-        },
-
         handleUploadSuccess: function (file, res) {
 
             this.set("element.type", "button");
 
-            this.set("element.file", res.path.replace(/^(?:\\|\/)?public/, ""));
+            this.set("element.file", res.path);
             this.set("element.download", true);
 
             this.fire("fileUploaded", res);
@@ -619,6 +544,14 @@
                 }
 
             }
+        },
+
+        removeColorRefs: function () {
+
+            this.set("element.userTextColorRef", null);
+            this.set("element.colorRef", null);
+            this.set("element.color", "");
+            this.set("element.userTextColor", "");
         }
     });
 

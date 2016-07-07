@@ -93,23 +93,23 @@
                 }
 
                 this.observe("image", this.handleImageChange, {init: false});
-
-                this.observe("lastColors", function (colors, prevColors) {
-
-                    if (!colors.length || !prevColors || colors.length < prevColors.length) {
-
-                        return;
-                    }
-
-                    colorCache[this.get("image")] = colors;
-
-                }, {init: false});
             }
         },
 
         oncomplete: function () {
 
             var image = this.get("image");
+
+            this.observe("lastColors", function (colors, prevColors) {
+
+                if (!colors.length || !prevColors || colors.length < prevColors.length) {
+
+                    return;
+                }
+
+                colorCache[this.get("image")] = colors;
+
+            }, {init: false});
 
             if (on.client && image && image !== "none" && this.get("colors").length < 5) {
 
@@ -270,7 +270,7 @@
 
             if (src && colorCache[src]) {
 
-                this.merge("colors", colorCache[src]);
+                this.merge("colors", Array.prototype.slice.call(colorCache[src]));
 
                 if (colorCache[src].length === 5) {
 

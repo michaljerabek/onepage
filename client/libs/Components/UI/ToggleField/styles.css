@@ -52,6 +52,7 @@
 .ToggleField--text {
     font-family: "Encode Sans Narrow", sans-serif;
     font-weight: 500;
+    line-height: 1.4;
     text-overflow: ellipsis;
 	white-space: nowrap;
 

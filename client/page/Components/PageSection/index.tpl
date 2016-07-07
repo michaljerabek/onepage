@@ -1,8 +1,13 @@
-<section class="P_PageSection"
+<section class="
+        P_PageSection
+        P_{{.section.type || 'PageSectionType'}}
+        P_{{.section.type || 'PageSectionType'}}__{{.section.layout || 'default'}}
+        {{#if .section.fullSize || .fullSize}}P_PageSection__full-size{{/if}}
+    "
     id="{{.section.id[.lang]}}"
     data-page-section-internal-id="{{.section.internalId}}"
     data-page-section-name="{{.section.name[.lang]}}"
-    style="background: white;position: relative; text-align: center; line-height: 200px; font-size: 32px;">
+>
 
     <div class="P_PageSection--inner-wrapper">
 
@@ -22,7 +27,16 @@
 
             {{/if}}
 
-            <div class="P_PageSection--content {{#if .stopColorTransitions}}E_PageSection__stop-color-transitions{{/if}} {{#if .changeOutlineColor}}E_PageSection__change-outline{{/if}}">
+            <div class="
+                    P_PageSection--content
+                    {{#if .section.backgroundImage.src}}P_PageSection__shadow-{{.section.addShadow || 0}}{{/if}}
+                    {{#if .editMode}}
+                        {{#if .stopColorTransitions}}E_PageSection__stop-color-transitions{{else}}E_PageSection__color-transitions{{/if}}
+                        {{#if .changeOutlineColor}}E_PageSection__change-outline{{/if}}
+                        {{#if .dragover}}E_PageSection__dragover{{/if}}
+                    {{/if}}
+                "
+            >
 
                 <div class="P_PageSection--background-color" style="background-color: {{.section.backgroundColor || .section.defaultColors.backgroundColor}}">
 

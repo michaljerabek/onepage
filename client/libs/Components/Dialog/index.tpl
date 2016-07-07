@@ -1,10 +1,10 @@
 {{#if ~/messages[0]}}
 
     <div class="Dialog Dialog--overlay"
-        intro="fade:{
+        fade-in="{
             duration: 300
         }"
-        outro="fade:{
+        fade-out="{
             delay: 200,
             duration: 300
         }"
@@ -31,7 +31,10 @@
         Dialog--box
         Dialog--box__{{~/messages[0].type}}
     "
-    intro-outro="attr:{
+    attr-in="{
+        duration: 500
+    }"
+    attr-out="{
         duration: 500
     }"
     on-tap-escape="
@@ -48,7 +51,7 @@
             )
         "
     >
-        <svg><use xlink:href="#icon-x"></use></svg>
+        <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-x"></use></svg>
     </div>
 
     <h2 class="Dialog--title">{{~/messages[0].title}}</h2>

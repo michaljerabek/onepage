@@ -2,12 +2,12 @@
 
 module.exports = {
     "P_font-type-1" : {
-        title: "Serif",
-        body: "Serif"
+        title: "DejaVu Serif",
+        body: "DejaVu Serif"
     },
     "P_font-type-2" : {
-        title: "Sans Serif",
-        body: "Sans Serif"
+        title: "Serif",
+        body: "Serif"
     },
     "P_font-type-3" : {
         title: "Open Sans",

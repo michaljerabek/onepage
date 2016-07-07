@@ -25,6 +25,10 @@ Ractive.$scrollingElement = Ractive.$scrollingElement || $("html, body");
 
 var loadLibs = function () {
 
+//    require("viewport-units-buggyfill").init({
+//        hacks: require("viewport-units-buggyfill/viewport-units-buggyfill.hacks")
+//    });
+
     require("ractive-touch");
     require("ractive-transitions-slidehorizontal");
     require("ractive-transitions-slidevh");
@@ -102,7 +106,8 @@ module.exports = function (ractive, ractiveData, config) {
                 windowMouseup   : ractiveWindowEvents.windowMouseup,
                 windowTouchstart: ractiveWindowEvents.windowTouchstart,
                 windowTouchmove : ractiveWindowEvents.windowTouchmove,
-                windowTouchend  : ractiveWindowEvents.windowTouchend
+                windowTouchend  : ractiveWindowEvents.windowTouchend,
+                windowResize    : ractiveWindowEvents.windowResize
             },
 
             transitions: {

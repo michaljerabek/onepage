@@ -1,5 +1,6 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 var config = require("./../../../config");
+var PublicPath = require("./../../../helpers/PublicPath");
 
 var fse = require("fs-extra");
 var path = require("path");
@@ -104,7 +105,7 @@ var IconReq = (function() {
 
                                     response.files.unshift({
                                         name: currentFilename,
-                                        path: path.join(req.params.directory, currentFilename),
+                                        path: PublicPath.from(path.join(req.params.directory, currentFilename)),
                                         directory: req.params.directory,
                                         svg: purified
                                     });
@@ -138,7 +139,7 @@ var IconReq = (function() {
 
                                 response.files.unshift({
                                     name: currentFilename,
-                                    path: path.join(req.params.directory, currentFilename),
+                                    path: PublicPath.from(path.join(req.params.directory, currentFilename)),
                                     directory: req.params.directory,
                                     width: error ? null : size.width,
                                     height: error ? null : size.height
@@ -208,7 +209,7 @@ var IconReq = (function() {
                             files.push({
                                 originalname: currentFile.originalname,
                                 name: currentFile.filename,
-                                path: currentFile.path,
+                                path: PublicPath.from(currentFile.path),
                                 svg: purified
                             });
 
@@ -230,7 +231,7 @@ var IconReq = (function() {
             files.push({
                 originalname: currentFile.originalname,
                 name: currentFile.filename,
-                path: currentFile.path
+                path: PublicPath.from(currentFile.path)
             });
 
             processAndSendIconsUploadReq(files, MAX_STORAGE, req, res);
@@ -321,7 +322,7 @@ var IconReq = (function() {
 
             var parsed = path.parse(req.params.path),
 
-                filePath = path.resolve("public/" + req.params.path),
+                filePath = path.resolve("public" + req.params.path),
                 thumbPath = path.resolve(path.join("public", parsed.dir, config.upload.icons.thumbRelPath, parsed.base));
 
             fse.unlink(filePath, function () {});

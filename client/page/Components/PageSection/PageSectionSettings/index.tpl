@@ -1,9 +1,9 @@
 <section class="E_PageSectionSettings {{#if .multipleTabs}}E_PageSectionSettings__multiple-tabs{{/if}}"
-    intro="slide:{
-        delay   : {{ .delayOpening ? 300 : 0 }},
+    slide-in="{
+        delay   : .delayOpening ? 300 : 0 ,
         easing  : 'cubic-bezier(0.1, 0.4, 0.4, 1)'
     }"
-    outro="slide:{
+    slide-out="{
         easing  : 'cubic-bezier(0.1, 0.4, 0.4, 1)'
     }"
 >
@@ -28,12 +28,12 @@
         </div>
 
         <span class="E_PageSectionSettings--close ResizableBox--close" on-tap="@this.fire('closeThisSectionSettings')" title="Zavřít">
-            <svg><use xlink:href="#icon-x"></use></svg>
+            <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-x"></use></svg>
         </span>
 
         {{#if !.notResizable}}
             <span class="E_PageSectionSettings--min-max ResizableBox--min-max" on-tap="@this.minmax(event)" title="Zvětšovat podle obsahu">
-                <svg><use xlink:href="#icon-maximize"></use></svg>
+                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-maximize"></use></svg>
             </span>
         {{/if}}
 

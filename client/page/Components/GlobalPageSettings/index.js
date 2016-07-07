@@ -74,6 +74,12 @@ module.exports = Ractive.extend({
             }
         }, {init: false});
 
+        this.observe("settings.fontType", function () {
+
+            EventEmitter.trigger("fontChanged.Page");
+
+        }, {init: false, defer: true});
+
         this.on("removeLang", this.removeLang);
         this.on("createLang", this.createLang);
         this.on("changeTplLang", this.changeTplLang);

@@ -26,6 +26,8 @@
 
     return Ractive.extend({
 
+        FILE_BROWSER: true,
+
         template: template,
 
         CLASS: {
@@ -80,6 +82,7 @@
 
             return {
                 type: "default",
+                browserType: "FileBrowser",
 
                 directories: [],
                 openDirectory: null,
@@ -159,6 +162,8 @@
 
                 }, {init: false});
             }
+
+            this.rootDeleteListener = this.root.on("*." + this.get("browserType") + "-deleteFile", this.deleteFile.bind(this));
         },
 
         superOnrender: function () {
@@ -194,6 +199,11 @@
             this.torndown = true;
 
             this.$offsetElement.off(".FileBrowser");
+
+            if (this.rootDeleteListener) {
+
+                this.rootDeleteListener.cancel();
+            }
 
             if (this.dirReq) {
 
@@ -454,7 +464,11 @@
             var directoryIndex = this.getDirectoryIndexByName(this.get("uploadDirectory")),
                 filesInDir = this.get("directories." + directoryIndex + ".files"),
                 p,
-                f = filesInDir.length - 1;
+                f = filesInDir.length - 1,
+
+                components = this.root.findAllComponents(),
+                c,
+                browserType = this.get("browserType");
 
             //úspěšně nahrané soubory
             for (f; f >= 0; f--) {
@@ -465,16 +479,38 @@
 
                     if (filesInDir[f].name === paths.files[p].originalname) {
 
-                        var dataFilePath = "directories." + directoryIndex + ".files." + f;
+                        var dataFilePath = "directories." + directoryIndex + ".files." + f,
+
+                            path = paths.files[p].path;
 
                         this.set(dataFilePath + ".uploading", false);
                         this.set(dataFilePath + ".uploaded", true);
-                        this.set(dataFilePath + ".path", paths.files[p].path.replace(/\\/g, "/").replace(/^public\//g, ""));
+                        this.set(dataFilePath + ".path", path);
                         this.set(dataFilePath + ".name", paths.files[p].name);
+                        this.set(dataFilePath + ".size", paths.files[p].size);
+                        this.set(dataFilePath + ".width", paths.files[p].width);
+                        this.set(dataFilePath + ".height", paths.files[p].height);
 
                         if (paths.files[p].svg) {
 
                             this.set(dataFilePath + ".svg", paths.files[p].svg);
+                        }
+
+                        //přidat soubory do ostatní otevřených instancí
+                        c = components.length - 1;
+
+                        for (c; c >= 0; c--) {
+
+                            if (components[c] !== this && components[c].FILE_BROWSER && browserType === components[c].get("browserType")) {
+
+                                components[c].addFileToUploadDirectory({
+                                    name: paths.files[p].name,
+                                    size: paths.files[p].size,
+                                    width: paths.files[p].width,
+                                    height: paths.files[p].height,
+                                    path: path
+                                });
+                            }
                         }
                     }
                 }
@@ -653,7 +689,7 @@
 
                     for (f; f < res.files.length; f++) {
 
-                        res.files[f].path = res.files[f].path.replace(/\\/g, "/");
+                        res.files[f].path = res.files[f].path;
 
                         files.push(res.files[f]);
                     }
@@ -677,9 +713,9 @@
             }.bind(this)).catch(function () {});
         },
 
-        addFileToUploadDirectory: function (name, path) {
+        addFileToUploadDirectory: function (file) {
 
-            if (path && name) {
+            if (file && file.path && file.name) {
 
                 setTimeout(function() {
 
@@ -694,24 +730,32 @@
 
                         this.set("directories." + directoryIndex + ".initDirContent", false);
 
-                        this.unshift("directories." + directoryIndex + ".files", {
-                            name: name,
-                            path: path,
-                            uploaded: true
-                        });
+                        file.uploaded = true;
+
+                        this.unshift("directories." + directoryIndex + ".files", file);
                     }
 
                 }.bind(this), 1000);
             }
         },
 
-        deleteFile: function (event, file) {
+        deleteFile: function (event, file, instance) {
+
+            if (instance === this) {
+
+                return;
+            }
+
+            if (!instance) {
+
+                this.fire(this.get("browserType") + "-deleteFile", event, file, this);
+            }
 
             var index = event.keypath.match(/[0-9]+$/);
 
             this.splice(event.keypath.replace(/\.[0-9]+$/, ""), index, 1);
 
-            if (file.path) {
+            if (file.path && !instance) {
 
                 this.req(this.get("reqName") + ".delete", {
                     path: file.path

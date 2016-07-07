@@ -214,7 +214,6 @@
                 this.$self = $(this.self);
 
                 this.PageSection = this.getPageSection();
-                this.Page = this.findParent("Page");
 
                 this.initParallax();
 
@@ -222,17 +221,17 @@
 
                     this.initDragDropUpload();
 
-                    this.PageSection.on("BackgroundImageBrowser.selectFile", function (e, file) {
+                    this.selectFileListener = this.PageSection.on("BackgroundImageBrowser.selectFile", function (e, file) {
 
                         this.guessDisplayFromSize(file);
 
                     }.bind(this));
 
-                    this.Page.on("BackgroundImageBrowser.deleteFile", function (e, file) {
+                    this.deleteFileListener = this.Page.on("*.ImageBrowser-deleteFile", function (e, file) {
 
                         var src = this.get("data.src");
 
-                        if (src && file.path.replace(/^\//, "") === src.replace(/^\//, "")) {
+                        if (src && encodeURIComponent(file.path) === src) {
 
                             this.set("data.src", "");
                         }
@@ -295,11 +294,15 @@
                     text: "Maximální velikost souboru: " + options.maxFilesize + " MB. Podporované formáty: .jpg, .png."
                 });
 
+                this.fire("dragenter");
+
             }.bind(this));
 
-            this.dropzone.on("dragleave dragend", function () {
+            this.dropzone.on("dragleave dragend", function (event) {
 
                 this.fire("pageSectionMessage", null);
+
+                this.fire("dragleave");
 
             }.bind(this));
         },
@@ -354,25 +357,30 @@
 
         handleUploadSuccess: function (file, res) {
 
-            var path = res.path.replace(/^public/, "").replace(/\\/g, "/");
-            
-            this.set("data.src", path);
+            this.set("data.src", encodeURIComponent(res.path));
 
             this.fire("pageSectionMessage", {
                 title: "Nahrát obrázek",
                 text: "Obrázek (" + file.name + ") se podařilo úspěšně nahrát.",
-                timeout: 2000,
+                timeout: 3000,
                 status: "success"
             });
             
-            var browsers = this.Page.findAllComponents("BackgroundImageBrowser"),
+            var browsers = this.Page.findAllComponents("BackgroundImageBrowser")
+                    .concat(this.Page.findAllComponents("ImageBrowser")),
                 b = browsers.length - 1;
             
             if (browsers.length) {
                 
                 for (b; b >= 0; b--) {
 
-                    browsers[b].addFileToUploadDirectory(res.name, path);
+                    browsers[b].addFileToUploadDirectory({
+                        name: res.name,
+                        path: res.path,
+                        size: res.size,
+                        width: file.width,
+                        height: file.height
+                    });
                 }
             }
         },
@@ -393,7 +401,7 @@
             this.fire("pageSectionMessage", {
                 title: "Nahrát obrázek",
                 text: errorText,
-                timeout: 3000,
+                timeout: 4000,
                 status: "error"
             });
 
@@ -459,6 +467,16 @@
             this.torndown = true;
 
             clearTimeout(this.sectionChangeThrottle);
+
+            if (this.selectFileListener) {
+
+                this.selectFileListener.cancel();
+            }
+
+            if (this.deleteFileListener) {
+
+                this.deleteFileListener.cancel();
+            }
 
             if (this.dropzone) {
 

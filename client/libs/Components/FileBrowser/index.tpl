@@ -12,7 +12,7 @@
 
     {{#if !.directories.length}}
 
-        <span intro-outro="fade" class="FileBrowser--loader FileBrowser--loader__directories">(Načítá se...)</span>
+        <span fade-in fade-out class="FileBrowser--loader FileBrowser--loader__directories">(Načítá se...)</span>
 
     {{/if}}
 
@@ -23,7 +23,7 @@
                     FileBrowser--directory
                     {{#if  ~/openDirectory === d}}FileBrowser--directory__opened{{/if}}
                 "
-                intro="slide"
+                slide-in
             >
 
                 {{#if .path === ~/searchDirPath}}
@@ -37,7 +37,7 @@
                         <input type="text" class="FileBrowser--search-input" name="search" value="{{~/searchText}}" placeholder="{{.name}}" on-focus-touchend="@this.set('openDirectory', d)">
 
                         {{#if ~/searching}}
-                            <span intro-outro="fade" class="FileBrowser--loader FileBrowser--loader__searching">(Načítá se...)</span>
+                            <span fade-in fade-out class="FileBrowser--loader FileBrowser--loader__searching">(Načítá se...)</span>
                         {{/if}}
 
                     </div>
@@ -63,7 +63,7 @@
                         {{/if}}
 
                         {{#if ~/loadingDirectory === d || (~/uploadDirectory === .name && ~/uploading.length)}}
-                            <span intro-outro="fade" class="FileBrowser--loader FileBrowser--loader__directory">(Načítá se...)</span>
+                            <span fade-in fade-out class="FileBrowser--loader FileBrowser--loader__directory">(Načítá se...)</span>
                         {{/if}}
 
                     </span>
@@ -78,7 +78,7 @@
                                 {{#if .path === ~/searchDirPath}}FileBrowser--files__search{{/if}}
                                 {{#if .initDirContent}}FileBrowser--files__init-dir-content{{/if}}
                             "
-                            intro-outro="slide"
+                            slide-in slide-out
                         >
 
                             {{#each .files}}
@@ -87,16 +87,21 @@
                                     {{#if .uploading}}FileBrowser--file__uploading{{/if}}
                                     {{#if .svg}}FileBrowser--file__svg{{/if}}
                                     {{#if .uploadError}}FileBrowser--file__error{{/if}}
-                                    {{#if ~/selectedPath.length && ~/selectedPath === .path}}FileBrowser--file__selected{{/if}}
+                                    {{#if ~/selectedPath.length && (~/selectedPath === .path || ~/selectedPath === @global.encodeURIComponent(.path))}}
+                                        FileBrowser--file__selected
+                                    {{/if}}
                                 "
-                                intro-outro="attr:{
+                                attr-in="{
+                                    duration: 450
+                                }"
+                                attr-out="{
                                     duration: 450
                                 }"
                             >
                                 {{#if deletable && !.uploading && !.uploadError}}
 
                                     {{#if ~/showRemoveConfirmation === .path}}
-                                        <span intro-outro="fade:{duration: 100}" class="FileBrowser--delete-file-confirm" on-tap="@this.fire('deleteFile', event, .)">
+                                        <span fade-in fade-out="{duration: 100}" class="FileBrowser--delete-file-confirm" on-tap="@this.fire('deleteFile', event, .)">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                                         </span>
                                     {{/if}}
@@ -111,7 +116,7 @@
                                 {{/if}}
 
                                 {{#if .uploading}}
-                                    <span intro-outro="fade" class="FileBrowser--loader FileBrowser--loader__uploading">(Nahrává se...)</span>
+                                    <span fade-in fade-out class="FileBrowser--loader FileBrowser--loader__uploading">(Nahrává se...)</span>
                                 {{/if}}
 
                                 {{#if .uploading || .uploadError}}

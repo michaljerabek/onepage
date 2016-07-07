@@ -1,10 +1,14 @@
 <div class="E_PageElementSettings--transition-wrapper"
-    intro-outro="fade:{
+    fade-in="{
+        duration: 200,
+        easing  : 'linear'
+    }"
+    fade-out="{
         duration: 200,
         easing  : 'linear'
     }"
 >
-    <div class="E_PageElementSettings">
+    <div class="E_PageElementSettings E_PageElementSettings__{{.type}}">
 
         <div class="E_PageElementSettings--wrapper">
 
@@ -20,16 +24,16 @@
                 </div>
 
                 <span class="E_PageElementSettings--close ResizableBox--close" on-tap="@this.fire('closeThisSettings')" title="Zavřít">
-                    <svg><use xlink:href="#icon-x"></use></svg>
+                    <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-x"></use></svg>
                 </span>
 
                 <span class="E_PageElementSettings--min-max ResizableBox--min-max" on-tap="@this.minmax(event)" title="Zvětšovat podle obsahu">
-                    <svg><use xlink:href="#icon-maximize"></use></svg>
+                    <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-maximize"></use></svg>
                 </span>
 
             </div>
 
-            <div class="E_PageElementSettings--content {{#if typeof .openTab !== 'undefined'}}E_PageElementSettings--content__has-tabs{{/if}} ResizableBox ResizableBox__floating">
+            <div class="E_PageElementSettings--content {{#if typeof ~/openTab !== 'undefined'}}E_PageElementSettings--content__has-tabs{{/if}} ResizableBox ResizableBox__floating">
 
                 {{#if @this.partials.pageElementSettingsContent}}
 

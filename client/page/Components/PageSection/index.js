@@ -24,6 +24,7 @@
                 PageElementButtonSettings: Ractive.EDIT_MODE ? require("./../PageElement/PageElementSettings/Types/PageElementButtonSettings") : null,
 
                 PageElement: require("./../PageElement"),
+                PageElementText: require("./../PageElement/Types/PageElementText"),
                 PageElementTitle: require("./../PageElement/Types/PageElementTitle"),
                 PageElementTextContent: require("./../PageElement/Types/PageElementTextContent"),
                 PageElementButton: require("./../PageElement/Types/PageElementButton"),
@@ -31,16 +32,32 @@
                 BackgroundImage: require("./Components/BackgroundImage")
             },
 
+            partials = {
+                pageSectionEditUI: "",
+                pageSectionContent: "",
+                pageSectionSettings: "",
+
+                ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null,
+
+                PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionPartials/button-elements.tpl")
+            },
+
+            decorators = {
+                Sortable: require("./Decorators/Sortable"),
+
+                PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionDecorators/PageElementButtons")
+            },
+
             template = require("./index.tpl");
 
-        module.exports = factory(Ractive, Spectra, template, components, EventEmitter, on);
+        module.exports = factory(Ractive, Spectra, template, components, partials, decorators, EventEmitter, on);
 
     } else {
 
-        root.PageSection = factory(root.Ractive, root.Spectra, null, $({}), {client: true});
+        root.PageSection = factory(root.Ractive, root.Spectra, null, null, null, $({}), {client: true});
     }
 
-}(this, function (Ractive, Spectra, template, components, EventEmitter, on) {
+}(this, function (Ractive, Spectra, template, components, partials, decorators, EventEmitter, on) {
 
     /*
      * Abstraktní komponent pro vytváření sekcí.
@@ -48,6 +65,9 @@
      * Konkrétný typ sekce musí v partials zaregistrovat v "pageSectionContent" obsah sekce,
      * v "pageSectionEditUI" ovládací prvky sekce (komponent rozšiřující PageSectionEditUI - registruje
      * se u konkrtétní sekce) a v "pageSectionSettings" šablona obsahující všechny PageSectionSettings.
+     *
+     * Šablona (partial) konkrétní sekce může obsahovat BackgroundImage. Pokud se obsah zarovnává do středu,
+     * obsah (kromě BackgroundImage) by měl být zabalen do elementu "P_PageSection--center". Samotný obsah by pak měl být v "P_PageSection--content-wrapper" (přidává padding, pokud je obsah vycenrovaný).
      **/
 
     return Ractive.extend({
@@ -82,27 +102,16 @@
 
         components: components || {},
 
-        decorators: {
-            Sortable: require("./Decorators/Sortable"),
+        decorators: decorators || {},
 
-            PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionDecorators/PageElementButtons")
-        },
-
-        partials: {
-            pageSectionEditUI: "",
-            pageSectionContent: "",
-            pageSectionSettings: "",
-
-            ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null,
-
-            PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionPartials/button-elements.tpl")
-        },
+        partials: partials || {},
 
         data: function () {
 
             return {
                 editMode: Ractive.EDIT_MODE,
-                stopColorTransitions: false
+                stopColorTransitions: false,
+                openPageSectionSettings: null
             };
         },
 
@@ -115,6 +124,14 @@
 
                 this.initPageElementSettings();
                 this.initPageSectionSettings();
+
+                this.on("*.dragenter dragenter", function () {
+                    this.set("dragover", true);
+                });
+
+                this.on("*.dragleave dragleave", function () {
+                    this.set("dragover", false);
+                });
 
                 //pokud je nastaven obrázek na pozadí, ale uživatel nevybral žádnou barvu pozadí,
                 //nastavit jako pozadí výchozí, aby při změně výchozí palety nedošlo ke změně barvy
@@ -156,14 +173,39 @@
 
                 if (on.client) {
 
+                    this.observe("section.layout", function (layout) {
+                        this.forEachPageElement(function () {
+                            this.fire("layoutChanged", layout);
+                        });
+                    }, {init: false, defer: true});
+
                     EventEmitter.on("removeLang.PageSection." + this.get("section.internalId"), this.removeLang.bind(this));
-                    EventEmitter.on("langChanged.PageSection." + this.get("section.internalId"), this.handleLangChanged.bind(this));
+                    EventEmitter.on("langChanged.Page." + this.get("section.internalId"), function (e, lang, editMode) {
+
+                        if (editMode) {
+
+                            this.handleLangChanged.call(this, e, lang);
+                        }
+                    }.bind(this));
 
                     /************************************/
                     /*ZMĚNA BAREV*/
                     this.on("*.generateRandomColors", this.generateRandomColors.bind(this));
 
-                    this.on("ColorPickerPalette.setColor", function (event, x, x, palette) {
+                    this.on("ColorPickerPalette.setColor", function (event, x, y, palette) {
+
+                        //pouze ColorPicker v nastavení sekce
+                        var parent = palette.container || palette.parent;
+
+                        while (parent) {
+
+                            if (parent.PAGE_ELEMENT) {
+
+                                return;
+                            }
+
+                            parent = parent.parent;
+                        }
 
                         var pathName = (palette.container || palette.parent).get("pathName");
 
@@ -191,7 +233,7 @@
                             this.set("section.defaultColors." + pathName + "Ref", undefined);
 
                             //odkaz na barvu odstraněn -> najít výchozí barvu, která patří k výchozímu pozadí
-                            var colorGenerator = this.findParent("Page").defaultColorsGenerator;
+                            var colorGenerator = this.Page.defaultColorsGenerator;
 
                             if (typeof this.get("section.defaultColors.backgroundColorRef") === "number") {
 
@@ -214,6 +256,19 @@
                     //"ruční" nastavení barvy
                     this.on("ColorPicker.activated", function (colorPicker) {
 
+                        //pouze ColorPicker v nastavení sekce
+                        var parent = colorPicker.parent;
+
+                        while (parent) {
+
+                            if (parent.PAGE_ELEMENT) {
+
+                                return;
+                            }
+
+                            parent = parent.parent;
+                        }
+
                         var pathName = colorPicker.get("pathName");
 
                         if (!pathName) {
@@ -227,7 +282,7 @@
 
                             this.set("section.defaultColors." + pathName + "Ref", undefined);
 
-                            var colorGenerator = this.findParent("Page").defaultColorsGenerator;
+                            var colorGenerator = this.Page.defaultColorsGenerator;
 
                             if (typeof this.get("section.defaultColors.backgroundColorRef") === "number") {
 
@@ -255,12 +310,53 @@
             if (Ractive.EDIT_MODE) {
 
                 this.initEditUI();
-            }
 
-            this.Page = this.findParent("Page");
+                this.get$SectionElement()
+                    .on("dragenter.PageSection", function (event) {
+
+                        if (!event.originalEvent.dataTransfer.types[0] ||
+                            !event.originalEvent.dataTransfer.types[0].match(/file/i)) {
+
+                            return;
+                        }
+
+                        this.fire("dragenter");
+
+                    }.bind(this));
+
+                //nastavit jako text odkazu hodnotu z name, pokud menuText žádný text neobsahuje
+                this.observe("section.addToMenu", function (state) {
+
+                    if (state) {
+
+                        var menuText = this.get("section.menuText"),
+                            langs = menuText ? Object.keys(menuText) : [];
+
+                        if (!menuText || (langs.length === 1 && !menuText[langs[0]])) {
+
+                            menuText = {};
+
+                            $.each(this.get("section.name"), function (lang, text) {
+
+                                menuText[lang] = text;
+
+                            }.bind(this));
+
+                            this.set("section.menuText", menuText);
+
+                        } else if (!this.get("section.menuText." + this.get("lang"))) {
+
+                            this.handleLangChanged(null, this.get("lang"), "menuText");
+                        }
+                    }
+
+                }, {init: false});
+            }
         },
 
         superOncomplete: function () {
+
+            this.initialized = true;
         },
 
         initEditUI: function () {
@@ -310,31 +406,33 @@
                         this.togglePageSectionSettings(false);
                     }
                 }.bind(this));
+
+
+                //Zjišťuje, jestli je jiné nastavení této sekce otevřené.
+                //Pokud se otevírá nastavení sekce a jiné nastavení té samé sekce je už otevřené, nastavení se otevře až po zavření již otevřeného.
+//                this.observe("openPageSectionSettings", function (now, before) {
+//
+//                    this.set("anotherSettingsOpened", !!before);
+//
+//                }, {init: false});
+
+                //uživatel chce otevřít nastavení sekce
+                this.on("*.openPageSectionSettings", function (event, type) {
+
+                    type = type === this.get("openPageSectionSettings") ? false : type;
+
+                    this.togglePageSectionSettings(type);
+
+                    if (type) {
+
+                        EventEmitter.trigger("openPageSectionSettings.PageSection", this);
+                    }
+                });
+
+                //Uživatel kliknul na "zavřít" v nastavení.
+                this.on("*.closeThisSectionSettings", this.togglePageSectionSettings.bind(this, false));
+
             }
-
-            //Zjišťuje, jestli je jiné nastavení této sekce otevřené.
-            //Pokud se otevírá nastavení sekce a jiné nastavení té samé sekce je už otevřené, nastavení se otevře až po zavření již otevřeného.
-            this.observe("openPageSectionSettings", function (now, before) {
-
-                this.set("anotherSettingsOpened", !!before);
-
-            }, {init: false});
-
-            //uživatel chce otevřít nastavení sekce
-            this.on("*.openPageSectionSettings", function (event, type) {
-
-                type = type === this.get("openPageSectionSettings") ? false : type;
-
-                this.togglePageSectionSettings(type);
-
-                if (type) {
-
-                    EventEmitter.trigger("openPageSectionSettings.PageSection", this);
-                }
-            });
-
-            //Uživatel kliknul na "zavřít" v nastavení.
-            this.on("*.closeThisSectionSettings", this.togglePageSectionSettings.bind(this, false));
         },
 
         superOnteardown: function () {
@@ -347,8 +445,10 @@
 
             EventEmitter.off("change.DefaultColorsGenerator." + this.get("section.internalId"));
             EventEmitter.off("removeLang.PageSection." + this.get("section.internalId"));
-            EventEmitter.off("langChanged.PageSection." + this.get("section.internalId"));
+            EventEmitter.off("langChanged.Page." + this.get("section.internalId"));
 
+            this.get$SectionElement()
+                .off(".PageSection");
         },
 
         updateHasSettingsState: function (pageElement) {
@@ -356,6 +456,8 @@
             var state  = this.get("openPageSectionSettings") || (pageElement && pageElement.get("openPageElementSettings") && pageElement.getPageSection() === this);
 
             this.set("hasSettings", state);
+
+            this.set("pageElementSettings", state && pageElement ? pageElement.get("type") : null);
 
             this.getSectionElement().classList[state ? "add" : "remove"](this.CLASS.hasSettings);
         },
@@ -377,6 +479,8 @@
         },
 
         togglePageSectionSettings: function (state) {
+
+            this.set("anotherSettingsOpened", !!this.get("openPageSectionSettings"));
 
             this.set("openPageSectionSettings", state);
 
@@ -505,6 +609,17 @@
                 this.set("section.backgroundColor", "");
             }
 
+            if (defaultColors) {
+
+                this.forEachPageElement(function () {
+
+                    if (this.removeColorRefs) {
+
+                        this.removeColorRefs();
+                    }
+                });
+            }
+
             /**************************************/
             //pokud má předcházející sekce stejnou barvu pozadí, vybrat jinou
             var colors, thisRef,
@@ -596,7 +711,7 @@
         //uživatel se dotknul sekce -> zobrazit EditUI? -> handleTouchend
         handleTouchstart: function (event) {
 
-            if (event.original.touches.length > 1 || this.EditUI.get("hover")) {
+            if (event.original.touches.length > 1 || !this.EditUI || this.EditUI.get("hover")) {
 
                 return;
             }
@@ -712,7 +827,7 @@
 
         getTextPaths: function () {
 
-            var paths = ["name"];
+            var paths = ["name", "menuText"];
 
             var buttons = (this.get("section.buttons") || []).length;
 
@@ -727,7 +842,7 @@
             return paths;
         },
 
-        getColorPaths: function () {
+        superGetColorPaths: function () {
 
             var paths = ["backgroundColor", "textColor"];
 
@@ -738,12 +853,16 @@
                 for (--buttons; buttons >= 0; buttons--) {
 
                     paths.push("buttons." + buttons + ".color");
+                    paths.push("buttons." + buttons + ".userTextColor");
                 }
             }
 
-            //pokud je barva v poli -> přidat, každou cestu zvlášť ???
-
             return paths;
+        },
+
+        getColorPaths: function () {
+
+            return this.superGetColorPaths();
         },
 
         getColors: function () {
@@ -793,12 +912,12 @@
             return "cs";
         },
 
-        handleLangChanged: function (e, lang) {
+        handleLangChanged: function (e, lang, forPath) {
 
             var defLang = this.findParent("Page").get("page.settings.lang.defaultLang"),
                 lastLang = "",
 
-                paths = this.getTextPaths(),
+                paths = forPath ? [forPath] : this.getTextPaths(),
                 p = paths.length - 1;
 
             for (p; p >= 0; p--) {

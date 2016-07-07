@@ -1,5 +1,6 @@
 /*jslint indent: 4, white: true, nomen: true, regexp: true, unparam: true, node: true, browser: true, devel: true, nomen: true, plusplus: true, regexp: true, sloppy: true, vars: true*/
 var config = require("./../../../config");
+var PublicPath = require("./../../../helpers/PublicPath");
 
 var fse = require("fs-extra");
 var path = require("path");
@@ -74,8 +75,8 @@ var FileReq = (function() {
 
                     response.files.unshift({
                         name: currentFilename,
-                        path: "/" + path.join(relPath, currentFilename).replace(/\\/g, "/").replace(/^\/?public/i, "").replace(/^\//, ""),
-                        directory: relPath,
+                        path: PublicPath.from(path.join(relPath, currentFilename)),
+                        directory: PublicPath.from(relPath),
                         size: stat.size
                     });
 
@@ -129,7 +130,7 @@ var FileReq = (function() {
 
             res.json({
                 originalname: req.file.originalname,
-                path: "/" + req.file.path.replace(/\\/g, "/").replace(/^\/?public/i, "").replace(/^\//, ""),
+                path: PublicPath.from(req.file.path),
                 name: req.file.filename
             });
         },
@@ -159,7 +160,7 @@ var FileReq = (function() {
                     files.push({
                         originalname: req.files[f].originalname,
                         name: req.files[f].filename,
-                        path: "/" + req.files[f].path.replace(/\\/g, "/").replace(/^\/?public/i, "").replace(/^\//, "")
+                        path: PublicPath.from(req.files[f].path)
                     });
                 }
             }

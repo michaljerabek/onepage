@@ -56,7 +56,7 @@
 
                 if (file && file.path) {
 
-                    this.set("data.backgroundImage.src", file.path);
+                    this.set("data.backgroundImage.src", encodeURIComponent(file.path));
                 }
 
             }, {context: this});

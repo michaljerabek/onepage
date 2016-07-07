@@ -1,6 +1,6 @@
 {{#if .colors.length}}
 
-<div intro="fade" class="ColorPickerPalette">
+<div fade-in class="ColorPickerPalette">
 
     {{#if .images}}
 
@@ -22,7 +22,7 @@
                 {{/if}}
             {{/each}}
             <span class="ColorPickerPalette--title-self">{{.title}}</span>
-            <svg class="ColorPickerPalette--icon"><use xlink:href="#icon-triangle"></use></svg>
+            <svg class="ColorPickerPalette--icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-triangle"></use></svg>
         </label>
 
         {{/with}}
@@ -60,7 +60,7 @@
         {{/if}}
     "
     on-click-touchend="@this.fire('setColor', event, .color, true, @this)"
-    intro="fade"
+    fade-in
     style="
         background-color: {{.color}};
         transition: {{animate ? '' : 'none'}};
@@ -81,7 +81,7 @@
 
 {{#partial NoColor}}
 <div class="ColorPickerPalette--color ColorPickerPalette--color__remove"
-     intro="fade"
+     fade-in
      on-click-touchend="@this.fire('setColor', event, NO_COLOR, false, @this)"
      title="Odstranit / Výchozí"
 ></div>

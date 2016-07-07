@@ -52,6 +52,7 @@ module.exports = Ractive.extend({
     components: {
         PageSection: require("./Components/PageSection"),
 
+        PageSectionHeader: require("./Components/PageSection/Types/PageSectionHeader"),
         PageSectionA: require("./Components/PageSection/Types/PageSectionA"),
         PageSectionB: require("./Components/PageSection/Types/PageSectionB"),
         PageSectionC: require("./Components/PageSection/Types/PageSectionC"),
@@ -64,6 +65,7 @@ module.exports = Ractive.extend({
     },
 
     partials: {
+        PageSectionHeader: "<PageSectionHeader section='{{this}}' sections='{{~/page.sections}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionA: "<PageSectionA section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionB: "<PageSectionB section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionC: "<PageSectionC section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
@@ -108,6 +110,11 @@ module.exports = Ractive.extend({
                 }
             }
         };
+    },
+
+    onconstruct: function () {
+
+        Ractive.defaults.Page = this;
     },
 
     onconfig: function () {
@@ -208,10 +215,7 @@ module.exports = Ractive.extend({
 
         if (this.scrollToSection) {
 
-            if (Ractive.EDIT_MODE) {
-
-                EventEmitter.trigger("langChanged.PageSection", lang);
-            }
+            EventEmitter.trigger("langChanged.Page", [lang, Ractive.EDIT_MODE, langPromise]);
 
             this.scrollToSection.refresh();
         }
@@ -244,9 +248,6 @@ module.exports = Ractive.extend({
                 }
             });
         }
-    },
-
-    oncomplete: function () {
 
         if (Ractive.EDIT_MODE && (!this.Admin || this.alreadyLoaded)) {
 
@@ -256,9 +257,18 @@ module.exports = Ractive.extend({
         if (!Ractive.EDIT_MODE && !this.Admin) {
 
             this.initScrollToSection();
+
+            if (on.client) {
+
+                this.loadedTimeout = setTimeout(this.set.bind(this, "loaded", true), 0);
+            }
         }
 
         console.timeEnd("pageLoaded");
+    },
+
+    oncomplete: function () {
+
     },
 
     onteardown: function () {
@@ -328,8 +338,9 @@ module.exports = Ractive.extend({
 
         this.observe("page.settings.animations", function (value) {
 
-            this.scrollToSection.setAnimation(this.ANIMATIONS[value].SCROLL.easing, this.ANIMATIONS[value].SCROLL.duration);
+            value = value || Object.keys(this.ANIMATIONS)[1];
 
+            this.scrollToSection.setAnimation(this.ANIMATIONS[value].SCROLL.easing, this.ANIMATIONS[value].SCROLL.duration);
         });
     },
 
@@ -401,7 +412,10 @@ module.exports = Ractive.extend({
         this.on("savePage", this.handleSavePage);
         this.on("closePage", this.handleClosePage);
 
-        this.loadedTimeout = setTimeout(this.set.bind(this, "loaded", true), 0);
+        if (on.client) {
+
+            this.loadedTimeout = setTimeout(this.set.bind(this, "loaded", true), 0);
+        }
     },
 
     handlePageChanged: function () {
@@ -482,22 +496,37 @@ module.exports = Ractive.extend({
 
         langs = langs || Object.keys(this.get("page.settings.lang.langs"));
 
-        this.changeLang(langs.pop()).then(function () {
+        var lang = langs.pop();
 
-            if (!langs.length) {
+        while (lang) {
 
-                this.changeLang(currentLang);
+            this.changeLang(lang);
 
-                EventEmitter.trigger("saving:lang:end.Page", [this]);
+            lang = langs.pop();
+        }
 
-                cb.call(this);
+        this.changeLang(currentLang);
 
-                return;
-            }
+        EventEmitter.trigger("saving:lang:end.Page", [this]);
 
-            this.copyLangsOnSave(cb, currentLang, langs);
-
-        }.bind(this));
+        cb.call(this);
+//
+//        this.changeLang(langs.pop()).then(function () {
+//
+//            if (!langs.length) {
+//
+//                this.changeLang(currentLang);
+//
+//                EventEmitter.trigger("saving:lang:end.Page", [this]);
+//
+//                cb.call(this);
+//
+//                return;
+//            }
+//
+//            this.copyLangsOnSave(cb, currentLang, langs);
+//
+//        }.bind(this));
     },
 
     savePage: function () {
@@ -566,7 +595,10 @@ module.exports = Ractive.extend({
 
                                 this.merge("page.sections", this.pageSectionsManager.getSectionsSortedByIndex());
 
-                                this.root.push("unsavedPages", this.get("pageId"));
+                                if (!~(this.root.get("unsavedPages") || []).indexOf(this.get("pageId"))) {
+
+                                    this.root.push("unsavedPages", this.get("pageId"));
+                                }
                             }
 
                             this.Admin.set("editPage", null);

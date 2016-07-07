@@ -93,10 +93,7 @@ module.exports = (function () {
 
             page.skipRegenerateId = true;
 
-            page.push("page.sections", data).then(function () {
-
-                pageSection.generateRandomColors(true, true);
-            });
+            page.push("page.sections", data);
 
             page.skipRegenerateId = false;
 
@@ -142,6 +139,8 @@ module.exports = (function () {
 
             page.fire("sectionInserted", pageSection);
 
+            pageSection.generateRandomColors(true, true);
+
             pageSection.once("complete", function () {
 
                 page.fire("sectionInserted.complete", pageSection);
@@ -164,7 +163,6 @@ module.exports = (function () {
             });
 
             page.fire("sectionRemoved", pageSection);
-
             $sectionElement
                 .addClass(CLASS.PageSection.removedSection)
                 .slideUp(OPTIONS.SECTION_SPEED_JQ, OPTIONS.SECTION_EASING_JQ, function () {
@@ -185,6 +183,8 @@ module.exports = (function () {
                             break;
                         }
                     }
+
+                    EventEmitter.trigger("sectionRemoved.PageSectionManager", [pageSection]);
 
                     page.fire("sectionRemoved.complete", pageSection);
 
@@ -599,6 +599,8 @@ module.exports = (function () {
                     
                     page.getPageSectionByElement(ui.item)
                         .fire("sectionOrderChanged", currentIndex, beforeIndex);
+
+                    EventEmitter.trigger("sectionOrderChanged.PageSectionManager");
                 }
                 
                 ui.item.data("index.PageSectionManager", null);

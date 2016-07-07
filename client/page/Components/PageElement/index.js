@@ -52,6 +52,9 @@
      *
      * Konkrétní typ může nastavovat stav PageElementu nastavením vlastnosti "state", která by měla vycházet z
      * události "stateChange".
+     *
+     * Pokud element obsahuje nějaké reference na výchozí barvy, měl by implementovat metodu removeColorRefs,
+     * která odkazy odstraní.
      */
 
     var instanceCounter = 0,
@@ -128,6 +131,8 @@
 
         PAGE_ELEMENT: true,
 
+        EventEmitter: EventEmitter,
+
         template: template,
 
         CLASS: {
@@ -139,7 +144,10 @@
 
             sortButton: "E_PageElementEditUI--sort",
 
-            notFileDragged: "dz-not-file"
+            notFileDragged: "dz-not-file",
+
+            emptyParent: "has-empty-PageElement",
+            activeParent: "has-active-PageElement"
         },
 
         OPTIONS: {
@@ -172,7 +180,7 @@
             pageElementEditUI: "",
             pageElementContent: "",
 
-            FlatButton: require("./../../Components/UI/FlatButton/index.tpl")
+            FlatButton: Ractive.EDIT_MODE ? require("./../../Components/UI/FlatButton/index.tpl") : null
         },
 
         data: function () {
@@ -180,7 +188,7 @@
             return {
                 hover: false,
                 editMode: Ractive.EDIT_MODE,
-                stopTransition: false
+                openPageElementSettings: null
             };
         },
 
@@ -188,7 +196,6 @@
 
             this.EVENT_NS = "PageElement-" + (++instanceCounter);
 
-            this.Page = this.findParent("Page");
             this.PageSection = this.getPageSection();
 
             if (on.client) {
@@ -218,8 +225,52 @@
                         }.bind(this));
 
                     });
+
+                    if (this.COLORABLE) {
+
+                        this.initColorRefs();
+                    }
                 }
             }
+        },
+
+        initColorRefs: function () {
+
+            this.on("ColorPickerPalette.setColor", function (event, x, y, palette) {
+
+                var pathName = (palette.container || palette.parent).get("pathName");
+
+                if (!pathName) {
+
+                    return;
+                }
+
+                //uživatel nastavuje vlastní barvu z výchozích -> uložit odkaz na barvu, aby se měnila v případě změny v paletě
+                if (palette.get("id") === "defaultColors") {
+
+                    this.set("element." + pathName + "Ref", event.index.i);
+
+                } else {
+
+                    this.set("element." + pathName + "Ref", null);
+                }
+
+            }.bind(this));
+
+            //"ruční" nastavení barvy
+            this.on("ColorPicker.activated", function (colorPicker) {
+
+                var pathName = colorPicker.get("pathName");
+
+                if (!pathName) {
+
+                    return;
+                }
+
+                this.set("element." + pathName + "Ref", null);
+
+            }.bind(this));
+
         },
 
         initPageElementSettings: function () {
@@ -266,6 +317,8 @@
                 this.self = this.find("." + this.CLASS.self);
                 this.$self = $(this.self);
 
+                this.stateToParent = this.get("stateTo");
+
                 if (Ractive.EDIT_MODE) {
 
                     this.initOutline();
@@ -274,7 +327,29 @@
 
                         this.initDragDropUpload();
                     }
+
+                    if (this.stateToParent && this.isEmpty) {
+
+                        this.observe("state", function (state) {
+
+                            this.$self.closest(this.stateToParent)[state === "active" ? "addClass" : "removeClass"](this.CLASS.activeParent);
+                        });
+
+                    }
                 }
+
+                if (this.isEmpty) {
+
+                    this.isEmpty();
+                }
+            }
+        },
+
+        addEmptyStateToParent: function (state) {
+
+            if (this.$self && this.stateToParent) {
+
+                this.$self.closest(this.stateToParent)[state ? "addClass" : "removeClass"](this.CLASS.emptyParent);
             }
         },
 
@@ -282,12 +357,11 @@
 
             Dropzone.autoDiscover = false;
 
-            var options = this.OPTIONS.DROPZONE();
+            var options = this.OPTIONS.DROPZONE.call(this);
 
             //element pro uložení náhledů (nelze v Dropzone zrušit)
             this.$dropzonePreview = $("<div/>");
             options.previewsContainer = this.$dropzonePreview[0];
-
 
             options.addedfile = this.superHandleAddedfile.bind(this);
 
@@ -296,12 +370,8 @@
                 options.resize = this.handleResize.bind(this);
             }
 
-            if (this.handleThumbnail) {
-
-                options.thumbnail = this.handleThumbnail.bind(this);
-            }
-
             options.uploadprogress = this.superHandleUploadProgress.bind(this);
+            options.thumbnail = this.superHandleThumbnail.bind(this);
             options.successmultiple = this.superHandleUploadSuccessmultiple.bind(this);
             options.success = this.superHandleUploadSuccess.bind(this);
             options.error = this.superHandleUploadError.bind(this);
@@ -376,8 +446,6 @@
                     this.focusin = true;
 
                     this.fire("stateChange", this.get("showOutline"));
-
-//                    e.stopPropagation();
 
                 }.bind(this));
 
@@ -482,22 +550,22 @@
             this.touchstartTime = +new Date();
             this.cancelTouchend = false;
 
-            var initX = event.original.touches[0].pageX,
-                initY = event.original.touches[0].pageY;
+            var initX = event.original.changedTouches[0].pageX,
+                initY = event.original.changedTouches[0].pageY;
 
             Ractive.$win
                 .off("touchstart.hover-" + this.EVENT_NS)
                 .on( "touchmove.hover-" + this.EVENT_NS, function (event) {
 
-                    this.cancelTouchend = Math.abs(initX - event.originalEvent.touches[0].pageX) > 5 ||
-                        Math.abs(initY - event.originalEvent.touches[0].pageY) > 5;
+                    this.cancelTouchend = Math.abs(initX - event.originalEvent.changedTouches[0].pageX) > 5 ||
+                        Math.abs(initY - event.originalEvent.changedTouches[0].pageY) > 5;
 
                 }.bind(this))
                 .on( "touchstart.hover-" + this.EVENT_NS, function (event) {
 
                     throttleHoverByTouch();
 
-                    this.hideOutlineTouches = event.originalEvent.touches.length;
+                    this.hideOutlineTouches = event.originalEvent.changedTouches.length;
 
                     clearTimeout(this.hideOutlineTimeout);
 
@@ -656,6 +724,24 @@
             }
         },
 
+        superHandleThumbnail : function (file) {
+
+            if (!this.handleThumbnail || this.handleThumbnail.apply(this, arguments) !== false) {
+
+                if (file.uploaded) {
+
+                    return;
+                }
+
+                this.fire("pageSectionMessage", {
+                    title: "Nahrát soubor",
+                    text: "Počkejte prosím...",
+                    status: "info",
+                    timeout: 3000
+                });
+            }
+        },
+
         superHandleUploadProgress : function (file, progress) {
 
             if (!this.handleUploadProgress || this.handleUploadProgress.apply(this, arguments) !== false) {
@@ -689,9 +775,9 @@
 
             if (!this.handleUploadSuccess || this.handleUploadSuccess.apply(this, arguments) !== false) {
 
-                var path = res.path.replace(/^public/, "").replace(/\\/g, "/");
+                file.uploaded = true;
 
-                this.set("data.src", path);
+                this.set("data.src", res.path);
 
                 this.fire("pageSectionMessage", {
                     title: "Nahrát soubor",

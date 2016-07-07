@@ -56,16 +56,17 @@
                         maxHMove: event.node.offsetParent.offsetWidth - event.node.offsetWidth - 2,
                         handleW: event.node.offsetWidth
                     })"
-                    on-windowMousemove-windowTouchmove="@this.set('__Toggle.' + ._value + '-transform',
-                        ~/__Toggle[._value + '-move'] ? (event.original.type.match(/touch/) && event.original.stopPropagation() || event.original.preventDefault()) || (@this.set('__Toggle.' + ._value + '-move.beforeLastX', ~/__Toggle[._value + '-move'].lastX) && @this.set('__Toggle.' + ._value + '-move.lastX', event.clientX) && event.clientX - ~/__Toggle[._value + '-move'].initX) : ''
-                        )
+                   on-windowMousemove-windowTouchmove="
+                        ~/__Toggle[._value + '-move'] && @this.set('__Toggle.' + ._value + '-move.beforeLastX', ~/__Toggle[._value + '-move'].lastX) &&
+                        @this.set('__Toggle.' + ._value + '-transform', event.clientX - ~/__Toggle[._value + '-move'].initX) &&
+                        @this.set('__Toggle.' + ._value + '-move.lastX', event.clientX) &&
+                        event.original.type.match(/touch/) && event.original.stopPropagation() || event.original.preventDefault()
                     "
-                    on-mouseup-touchend-click="set('__Toggle.__X', event.original.preventDefault())"
-                    on-windowMouseup-windowTouchend="@this.set(
-                        '__Toggle.' + ._value + '-move', ~/__Toggle[._value + '-move'] ? @this.set(
-                            '__Toggle.' + ._value, ~/__Toggle[._value] ? ~/__Toggle[._value + '-move'].beforeLastX < event.clientX : ~/__Toggle[._value + '-move'].beforeLastX <= event.clientX
-                        ) && false : false
-                    )"
+                    on-mouseup-touchend-click="event.original.preventDefault()"
+                    on-windowMouseup-windowTouchend="
+                        ~/__Toggle[._value + '-move'] && @this.set('__Toggle.' + ._value, ~/__Toggle[._value] ? ~/__Toggle[._value + '-move'].beforeLastX < event.clientX : ~/__Toggle[._value + '-move'].beforeLastX <= event.clientX),
+                        @this.set('__Toggle.' + ._value + '-move', false)
+                    "
                 >
                 </span>
 

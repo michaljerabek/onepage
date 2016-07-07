@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            position: relative;
+            margin: 40px;
+            display: flex;
+            flex-direction: column;
+            width: 320px;
+            cursor: default;
+        }
+
+        li {
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            line-height: 40px;
+            list-style-type: none;
+            animation: anim 0.5s linear forwards;
+        }
+
+        @keyframes anim {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="app"></div>
+
+    <script id="list" type="text/html">
+
+        <ul>
+
+            {{#each .items}}
+
+                 <Item data="{{.}}" />
+
+            {{/each}}
+
+        </ul>
+
+        <input type="number" value="{{.from}}">
+        <input type="number" value="{{.to}}">
+        <select value="{{.method}}">
+            <option value="set">set</option>
+            <option value="merge">merge</option>
+            <option value="splice">splice</option>
+            <option value="native-splice">native-splice</option>
+        </select>
+        <button on-click="@this.sort(.method, .from, .to)">Change</button>
+
+    </script>
+
+
+    <script id="item" type="text/html">
+
+        <li>
+            <span>{{.data.text}}</span>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d20194.770773307242!2d15.080681999999996!3d50.7506113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1scs!2scz!4v1467735856923" width="320" height="60" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </li>
+
+    </script>
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://cdn.ractivejs.org/edge/ractive.min.js"></script>
+
+
+    <script>
+
+        var Item = Ractive.extend({
+            template: "#item"
+        });
+
+        var app = new Ractive({
+            el: "#app",
+            template: "#list",
+
+            components: {
+                Item: Item
+            },
+
+            data: {
+                from: 0,
+                to: 0,
+                method: "set",
+
+                items: [{
+                    text: "one"
+                },{
+                    text: "two"
+                },{
+                    text: "three"
+                },{
+                    text: "four"
+                },{
+                    text: "five"
+                }],
+            },
+
+            sort: function (method, from, to) {
+
+                var items = this.get("items"),
+                    copy = items.slice(),
+
+                    item,
+
+                    spans = this.findAll("span"),
+
+                    initItems = this.findAllComponents("Item");
+
+                if (method === "set") {
+
+                    item = copy.splice(from, 1)[0];
+
+                    copy.splice(to, 0, item);
+
+                    this.set("items", copy);
+
+                } else if (method === "merge") {
+
+                    item = copy.splice(from, 1)[0];
+
+                    copy.splice(to, 0, item);
+
+                    this.merge("items", copy);
+
+                } else if (method === "splice") {
+
+                    item = items.splice(from, 1)[0];
+
+                    this.splice("items", to, 0, item);
+
+                } else if (method === "native-splice") {
+
+                    item = items.splice(from, 1)[0];
+
+                    items.splice(to, 0, item);
+                }
+
+                setTimeout(function() {
+
+                    var spans2 = this.findAll("span"),
+                        s = spans2.length - 1;
+
+
+                    var currentItems = this.findAllComponents("Item"),
+                        i = currentItems.length - 1;
+
+
+                    for (i; i >= 0; i--) {
+
+                        console.log(initItems.indexOf(currentItems[i]));
+                    }
+
+                    console.log("-------------");
+
+                    for (s; s >= 0; s--) {
+
+                        console.log(spans.indexOf(spans2[s]));
+                    }
+
+                    console.log("-------------");
+
+                }.bind(this), 0);
+
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

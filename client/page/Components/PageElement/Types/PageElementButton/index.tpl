@@ -2,7 +2,7 @@
     class="
         P_PageElementButton
         {{#if .element.fill}}P_PageElementButton__fill{{else}}P_PageElementButton__stroke{{/if}}
-        {{#if ((.element.text && .element.text[.lang]) || '').replace(/\&nbsp\;/ig, ' ').length > (.element.icon ? 20 : 24)}}P_PageElementButton__long-text{{/if}}
+        {{#if ((.element.text && .element.text[.lang]) || '').replace(/\&nbsp\;/ig, ' ').length > (.element.icon && !.element.hideIcon ? 20 : 24)}}P_PageElementButton__long-text{{/if}}
         {{#if .element.icon && !.element.hideIcon}}P_PageElementButton__has-icon{{/if}}
         P_font-title
     "
@@ -11,7 +11,7 @@
         {{#if .element.fill}}background-color: {{.element.color || .color || .defaultColors.specialColor}};{{/if}}
     "
     on-enter-tap="@this.action(event, .editMode)"
-    intro-outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slidevh{{/if}}"
+    intro-outro="{{#if .editMode && @this.Page.get('loaded')}}slidevh{{/if}}"
     tabindex="0"
  >
 
@@ -24,8 +24,14 @@
             <span class="
                     P_PageElementButton--icon P_PageElementButton--icon__svg
                 "
-                  intro-outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}attr{{/if}}"
-                  style="color: {{.element.textColor || .element.color || .color || .defaultColors.specialColor}};"
+                intro-outro="{{#if .editMode && @this.Page.get('loaded')}}attr{{/if}}"
+                style="
+                    {{#if .element.fill}}
+                        color: {{.element.userTextColor || .element.textColor || .element.color || .color || .defaultColors.specialColor}};
+                    {{else}}
+                        color: {{.element.textColor || .element.color || .color || .defaultColors.specialColor}};
+                    {{/if}}
+                "
             >
                 {{{.element.icon}}}
             </span>
@@ -37,10 +43,16 @@
                     P_PageElementButton--text
                 "
                 contenteditable="{{!!.editMode}}"
-                on-blur="@this.removeIfEmpty()"
+                on-blur=".editMode && @this.removeNbsp(), .editMode && @this.removeIfEmpty()"
                 on-keydown="@this.hideEditUI()"
                 value="{{.element.text[.lang]}}"
-                style="color: {{.element.textColor || .element.color || .color || .defaultColors.specialColor}};"
+                style="
+                    {{#if .element.fill}}
+                        color: {{.element.userTextColor || .element.textColor || .element.color || .color || .defaultColors.specialColor}};
+                    {{else}}
+                        color: {{.element.textColor || .element.color || .color || .defaultColors.specialColor}};
+                    {{/if}}
+                "
             >
             </span>
         </span>

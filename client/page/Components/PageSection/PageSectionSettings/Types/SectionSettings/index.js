@@ -5,16 +5,18 @@
 
         var PageSectionSettings = require("./../../../PageSectionSettings"),
 
+            EventEmitter = require("./../../../../../../libs/EventEmitter")(),
+
             template = require("./index.tpl");
 
-        module.exports = factory(PageSectionSettings, template);
+        module.exports = factory(PageSectionSettings, EventEmitter, template);
 
     } else {
 
-        root.ColorSettings = factory(root.PageSectionSettings, root.ColorPicker, root.ColorPickerPalette, "");
+        root.ColorSettings = factory(root.PageSectionSettings, root.EventEmitter, "");
     }
 
-}(this, function (PageSectionSettings, template) {
+}(this, function (PageSectionSettings, EventEmitter, template) {
 
     return PageSectionSettings.extend({
 
@@ -24,7 +26,8 @@
         },
 
         partials: {
-            pageSectionSettingsContent: template
+            pageSectionSettingsContent: template,
+            layoutHeader: require("./partials/layout-header.tpl")
         },
 
         data: function () {
@@ -38,7 +41,14 @@
         },
 
         onconfig: function () {
+
             this.superOnconfig();
+
+            this.observe("data.addToMenu", function (state) {
+
+                EventEmitter.trigger("addToMenuChanged.PageSection", [state, this]);
+
+            }, {init: false});
         },
 
         oncomplete: function () {

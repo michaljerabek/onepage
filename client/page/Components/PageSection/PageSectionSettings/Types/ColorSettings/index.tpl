@@ -1,5 +1,5 @@
 <div class="E_ColorSettings"
-    decorator="ResizableBox"
+    as-ResizableBox
     data-max-resize-height="768"
     style="max-height: 320px"
 >

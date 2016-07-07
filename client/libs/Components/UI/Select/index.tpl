@@ -33,7 +33,7 @@
     </select>
 
     <div class="Select--icon">
-        <svg><use xlink:href="{{.icon || '#icon-triangle'}}"></use></svg>
+        <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{.icon || '#icon-triangle'}}"></use></svg>
     </div>
 
     {{/with}}

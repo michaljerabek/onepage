@@ -31,6 +31,7 @@
 
             return {
                 type: "images",
+                browserType: "ImageBrowser",
 
                 //název requestu odesílaného na server
                 reqName: "images",

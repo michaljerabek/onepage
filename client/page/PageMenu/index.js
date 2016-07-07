@@ -156,19 +156,23 @@ var instaceCounter = 0,
 
         if (!shouldBeHidden) {
 
-            this.Page.forEachPageSection(function () {
+            try {
 
-                var hasSettings = this.get("hasSettings");
+                this.Page.forEachPageSection(function () {
 
-                if (hasSettings || this.get("hasOutline")) {
+                    var hasSettings = this.get("hasSettings");
 
-                    shouldBeHidden = true;
+                    if (hasSettings || this.get("hasOutline")) {
 
-                    shouldBeHiddenBecauseHasSettings = hasSettings;
+                        shouldBeHidden = true;
 
-                    return false;
-                }
-            });
+                        shouldBeHiddenBecauseHasSettings = hasSettings;
+
+                        return false;
+                    }
+                });
+
+            } catch (e) { console.log(e); }
         }
     },
 

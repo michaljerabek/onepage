@@ -1,8 +1,12 @@
 {{> Tabs [
         {
             name: "color",
-            text: "Barva"
+            text: .data.fill ? "Pozadí" : "Barva"
         },
+        .data.fill ? {
+            name: "userTextColor",
+            text: "Text"
+        } : null,
         {
             name: "action",
             text: "Akce"
@@ -11,7 +15,7 @@
 }}
 
 <div class="ResizableBox--scrollable"
-    decorator="ResizableBox:true"
+    as-ResizableBox="true"
     data-min-resize-width="460"
     data-max-resize-width="460"
     data-max-resize-height="475"
@@ -22,7 +26,19 @@
 
         {{#if !.openTab || .openTab === "color"}}
 
-            <ColorPicker pathName="color" output="{{.data.color}}" input="{{.data.color || .defaultColors.specialColor}}" defer="true" noColor="true">
+            <ColorPicker pathName="color" output="{{.data.color}}" input="{{.data.color || .color || .defaultColors.specialColor}}" defer="true" noColor="true">
+
+                <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
+                <ColorPickerPalette title="Výchozí" colors="{{@this.findParent('Page').get('page.settings.colorPalette.colors')}}" id="defaultColors" />
+                <ColorPickerPalette title="Pozadí" image="{{.image}}"  images="{{.sectionsBgImages}}"/>
+
+            </ColorPicker>
+
+        {{/if}}
+
+        {{#if .data.fill && .openTab === "userTextColor"}}
+
+            <ColorPicker pathName="userTextColor" output="{{.data.userTextColor}}" input="{{.data.userTextColor || .data.textColor || .data.color}}" defer="true" noColor="true">
 
                 <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
                 <ColorPickerPalette title="Výchozí" colors="{{@this.findParent('Page').get('page.settings.colorPalette.colors')}}" id="defaultColors" />
@@ -102,7 +118,7 @@
 
                 {{#if .data.scrollToSection}}
 
-                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
+                    <div slide-in slide-out="{duration: .data.type === 'button' ? 300 : 0, delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
 
                     {{> Select {
                             adaptive: true,
@@ -129,7 +145,7 @@
 
                 {{#if .data.addToCart}}
 
-                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
+                    <div slide-in slide-out="{duration: .data.type === 'button' ? 300 : 0, delay:100}" class="E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
 
                     {{> Select {
                             adaptive: true,
@@ -159,7 +175,7 @@
 
                 {{#if .data.download}}
 
-                    <div intro="slide" outro="{{#if .data.type === 'button'}}slide{{/if}}:{delay:100}" class="E_PageElementButtonSettings--input__file E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
+                    <div slide-in slide-out="{duration: .data.type === 'button' ? 300 : 0, delay:100}" class="E_PageElementButtonSettings--input__file E_PageElementButtonSettings--input E_PageElementButtonSettings--input__select">
 
                     {{> Select {
                             adaptive: true,

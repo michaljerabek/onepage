@@ -2,15 +2,19 @@
         P_PageElement
         {{#if .editMode}}
             E_PageElement
-            {{#if @this.isEmpty && @this.isEmpty()}}E_PageElement__empty{{/if}}
             E_PageElement__{{.state}}
+            {{#if .uploadable}}E_PageElement__uploadable{{/if}}
+            {{#if .forceEditUI}}E_PageElement__force-EditUI{{/if}}
             {{#if .sorting}}E_PageElement__sorting{{/if}}
+            {{#if @this.isEmpty && @this.isEmpty()}}E_PageElement__empty{{/if}}
         {{/if}}
+        {{#if @this.isEmpty && @this.isEmpty()}}P_PageElement__empty{{/if}}
         P_PageElement__[[.type || 'unknown-type']]
+        {{.specialClass1}} {{.specialClass2}} {{.specialClass3}}
     "
     on-hover="@this.handleHover(event)"
     id="{{.id}}"
-    intro-outro="{{#if @this.Page.get('loaded') && !.stopTransition}}attr{{/if}}"
+    intro-outro="{{#if @this.Page.get('loaded')}}attr{{/if}}"
 >
 
     {{#if .editMode}}
@@ -18,7 +22,7 @@
         {{#if .activateButton}}
 
             <div class="E_PageElement--activate" on-tap="@this.fire('activate', event)">
-                <svg width="24" height="24"><use xlink:href="{{.activateIcon || '#icon-plus'}}"></use></svg>
+                <svg width="24" height="24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{.activateIcon || '#icon-plus'}}"></use></svg>
             </div>
 
         {{/if}}
