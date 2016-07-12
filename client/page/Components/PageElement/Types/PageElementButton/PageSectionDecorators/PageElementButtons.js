@@ -117,8 +117,10 @@
         return {
             teardown: function () {
 
-                if (Ractive.EDIT_MODE) {
+                console.log(1);
 
+                if (Ractive.EDIT_MODE) {
+//
                     this.removeButtonListener.cancel();
                     this.addButtonListener.cancel();
                     this.buttonsObserver.cancel();

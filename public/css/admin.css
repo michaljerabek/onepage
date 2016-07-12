@@ -96,6 +96,69 @@ blockquote, q {
 
 @font-face {
     font-family: "Open Sans";
+    font-weight: 500;
+
+    src: url("../fonts/open-sans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 500;
+    font-style: italic;
+
+    src: url("../fonts/open-sans/OpenSans-Italic.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+
+    src: url("../fonts/open-sans/OpenSans-Semibold.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-style: italic;
+
+    src: url("../fonts/open-sans/OpenSans-SemiboldItalic.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans Title";
+    font-weight: 300;
+
+    src: url("../fonts/open-sans/OpenSans-Light.ttf");
+}
+
+
+@font-face {
+    font-family: "Open Sans Title";
+    font-weight: 300;
+    font-style: italic;
+
+    src: url("../fonts/open-sans/OpenSans-LightItalic.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans Title";
+    font-weight: normal;
+
+    src: url("../fonts/open-sans/OpenSans-Regular.ttf");
+}
+
+
+@font-face {
+    font-family: "Open Sans Title";
+    font-weight: normal;
+    font-style: italic;
+
+    src: url("../fonts/open-sans/OpenSansItalic.ttf");
+}
+
+
+@font-face {
+    font-family: "Open Sans Title";
     font-weight: bold;
 
     src: url("../fonts/open-sans/OpenSans-Semibold.ttf");
@@ -103,7 +166,7 @@ blockquote, q {
 
 
 @font-face {
-    font-family: "Open Sans";
+    font-family: "Open Sans Title";
     font-weight: bold;
     font-style: italic;
 
@@ -139,6 +202,21 @@ blockquote, q {
 @font-face {
     font-family: "DejaVu Serif";
     font-weight: bold;
+    font-style: italic;
+
+    src: url("../fonts/dejavu-serif/DejaVuSerif-BoldItalic.ttf");
+}
+
+@font-face {
+    font-family: "DejaVu Serif";
+    font-weight: 500;
+
+    src: url("../fonts/dejavu-serif/DejaVuSerif-Bold.ttf");
+}
+
+@font-face {
+    font-family: "DejaVu Serif";
+    font-weight: 500;
     font-style: italic;
 
     src: url("../fonts/dejavu-serif/DejaVuSerif-BoldItalic.ttf");
@@ -1249,305 +1327,6 @@ body {
 
 .ColorPicker--input-text:not(:first-child) {
     margin-left: 4px;
-}
-
-/*====================================================================*/
-/*------------------------------ DIALOG ------------------------------*/
-/*====================================================================*/
-
-.Dialog--overlay {
-    z-index: 99999;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: rgba(0, 0, 0, 0.65);
-
-    will-change: opacity;
-}
-
-.Dialog--box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    min-width: 300px;
-    max-width: 480px;
-    padding: 24px 32px;
-
-    background-color: #fcfcfc;
-    border: 2px solid #888;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    -webkit-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-       -moz-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-            box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-
-    -webkit-transform: translate(-50%, -50%) scale(0);
-
-       -moz-transform: translate(-50%, -50%) scale(0);
-
-        -ms-transform: translate(-50%, -50%) scale(0);
-
-         -o-transform: translate(-50%, -50%) scale(0);
-
-            transform: translate(-50%, -50%) scale(0);
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-
-    will-change: transform, opacity;
-}
-
-.Dialog--box__success {
-    border-color: #36b73c;
-}
-
-.Dialog--box__error {
-    border-color: #e32d39;
-}
-
-.Dialog--box__warn {
-    border-color: #ef6737;
-}
-
-.Dialog--box__info {
-    border-color: #08a1c2;
-}
-
-.Dialog--box[data-ractive-transition="intro"] {
-    -webkit-animation: Dialog--toggle 0.2s linear 0.3s forwards;
-       -moz-animation: Dialog--toggle 0.2s linear 0.3s forwards;
-         -o-animation: Dialog--toggle 0.2s linear 0.3s forwards;
-            animation: Dialog--toggle 0.2s linear 0.3s forwards;
-}
-
-.Dialog--box[data-ractive-transition="intro-complete"] {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-       -moz-transform: translate(-50%, -50%) scale(1);
-        -ms-transform: translate(-50%, -50%) scale(1);
-         -o-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1);
-}
-
-.Dialog--box[data-ractive-transition="outro"] {
-    -webkit-animation: Dialog--toggle 0.2s linear 0s reverse;
-       -moz-animation: Dialog--toggle 0.2s linear 0s reverse;
-         -o-animation: Dialog--toggle 0.2s linear 0s reverse;
-            animation: Dialog--toggle 0.2s linear 0s reverse;
-}
-
-.Dialog--box[data-ractive-transition="outro-complete"] {
-    -webkit-transform: translate(-50%, -50%) scale(0);
-       -moz-transform: translate(-50%, -50%) scale(0);
-        -ms-transform: translate(-50%, -50%) scale(0);
-         -o-transform: translate(-50%, -50%) scale(0);
-            transform: translate(-50%, -50%) scale(0);
-}
-
-@-webkit-keyframes Dialog--toggle {
-    from {
-        -webkit-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -webkit-transform: translate(-50%, -50%) scale(1);
-                transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes Dialog--toggle {
-    from {
-        -moz-transform: translate(-50%, -50%) scale(0);
-             transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -moz-transform: translate(-50%, -50%) scale(1);
-             transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-@-o-keyframes Dialog--toggle {
-    from {
-        -o-transform: translate(-50%, -50%) scale(0);
-           transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -o-transform: translate(-50%, -50%) scale(1);
-           transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-@keyframes Dialog--toggle {
-    from {
-        -webkit-transform: translate(-50%, -50%) scale(0);
-           -moz-transform: translate(-50%, -50%) scale(0);
-             -o-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
-
-        opacity: 0;
-    }
-    to {
-        -webkit-transform: translate(-50%, -50%) scale(1);
-           -moz-transform: translate(-50%, -50%) scale(1);
-             -o-transform: translate(-50%, -50%) scale(1);
-                transform: translate(-50%, -50%) scale(1);
-
-        opacity: 1;
-    }
-}
-
-.Dialog--title {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 21px;
-    font-weight: 600;
-    line-height: 1.19;
-    text-align: center;
-
-    margin-top: 4px;
-    margin-bottom: 12px;
-
-    width: 100%;
-
-    color: #404040;
-}
-
-.Dialog--text {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 14px;
-    line-height: 1.64;
-    text-align: center;
-
-    margin-bottom: 16px;
-
-    width: 100%;
-
-    color: #5c5c5c;
-}
-
-.Dialog--text:last-child {
-    margin-bottom: 4px;
-}
-
-.Dialog--close {
-    position:absolute;
-    top: 0px;
-    right: 0px;
-
-    width: 24px;
-    height: 24px;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
-.Dialog .Button {
-    margin: 0 12px;
-}
-
-.Dialog--close svg {
-    width: 12px;
-    height: 12px;
-
-    fill: #404040;
-    opacity: 0.5;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.Dialog--close:focus svg, .Dialog--close:hover svg {
-    opacity: 1;
-
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-}
-
-.Dialog--close:active svg {
-    -webkit-transform: scale(0.9);
-       -moz-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-         -o-transform: scale(0.9);
-            transform: scale(0.9);
-
-    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-
-    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
-}
-
-@media (pointer: coarse) {
-
-    .Dialog--close {
-        width: 32px;
-        height: 32px;
-    }
-
-    .Dialog--close svg {
-        width: 16px;
-        height: 16px;
-    }
 }
 
 .FileBrowser {
@@ -3344,6 +3123,305 @@ body {
         -webkit-box-shadow: 0 8px 0 0;
            -moz-box-shadow: 0 8px 0 0;
                 box-shadow: 0 8px 0 0;
+    }
+}
+
+/*====================================================================*/
+/*------------------------------ DIALOG ------------------------------*/
+/*====================================================================*/
+
+.Dialog--overlay {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.65);
+
+    will-change: opacity;
+}
+
+.Dialog--box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    min-width: 300px;
+    max-width: 480px;
+    padding: 24px 32px;
+
+    background-color: #fcfcfc;
+    border: 2px solid #888;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
+       -moz-box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
+            box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
+
+    -webkit-transform: translate(-50%, -50%) scale(0);
+
+       -moz-transform: translate(-50%, -50%) scale(0);
+
+        -ms-transform: translate(-50%, -50%) scale(0);
+
+         -o-transform: translate(-50%, -50%) scale(0);
+
+            transform: translate(-50%, -50%) scale(0);
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    will-change: transform, opacity;
+}
+
+.Dialog--box__success {
+    border-color: #36b73c;
+}
+
+.Dialog--box__error {
+    border-color: #e32d39;
+}
+
+.Dialog--box__warn {
+    border-color: #ef6737;
+}
+
+.Dialog--box__info {
+    border-color: #08a1c2;
+}
+
+.Dialog--box[data-ractive-transition="intro"] {
+    -webkit-animation: Dialog--toggle 0.2s linear 0.3s forwards;
+       -moz-animation: Dialog--toggle 0.2s linear 0.3s forwards;
+         -o-animation: Dialog--toggle 0.2s linear 0.3s forwards;
+            animation: Dialog--toggle 0.2s linear 0.3s forwards;
+}
+
+.Dialog--box[data-ractive-transition="intro-complete"] {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+       -moz-transform: translate(-50%, -50%) scale(1);
+        -ms-transform: translate(-50%, -50%) scale(1);
+         -o-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+}
+
+.Dialog--box[data-ractive-transition="outro"] {
+    -webkit-animation: Dialog--toggle 0.2s linear 0s reverse;
+       -moz-animation: Dialog--toggle 0.2s linear 0s reverse;
+         -o-animation: Dialog--toggle 0.2s linear 0s reverse;
+            animation: Dialog--toggle 0.2s linear 0s reverse;
+}
+
+.Dialog--box[data-ractive-transition="outro-complete"] {
+    -webkit-transform: translate(-50%, -50%) scale(0);
+       -moz-transform: translate(-50%, -50%) scale(0);
+        -ms-transform: translate(-50%, -50%) scale(0);
+         -o-transform: translate(-50%, -50%) scale(0);
+            transform: translate(-50%, -50%) scale(0);
+}
+
+@-webkit-keyframes Dialog--toggle {
+    from {
+        -webkit-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes Dialog--toggle {
+    from {
+        -moz-transform: translate(-50%, -50%) scale(0);
+             transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -moz-transform: translate(-50%, -50%) scale(1);
+             transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+@-o-keyframes Dialog--toggle {
+    from {
+        -o-transform: translate(-50%, -50%) scale(0);
+           transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -o-transform: translate(-50%, -50%) scale(1);
+           transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+@keyframes Dialog--toggle {
+    from {
+        -webkit-transform: translate(-50%, -50%) scale(0);
+           -moz-transform: translate(-50%, -50%) scale(0);
+             -o-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+           -moz-transform: translate(-50%, -50%) scale(1);
+             -o-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+
+        opacity: 1;
+    }
+}
+
+.Dialog--title {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.19;
+    text-align: center;
+
+    margin-top: 4px;
+    margin-bottom: 12px;
+
+    width: 100%;
+
+    color: #404040;
+}
+
+.Dialog--text {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.64;
+    text-align: center;
+
+    margin-bottom: 16px;
+
+    width: 100%;
+
+    color: #5c5c5c;
+}
+
+.Dialog--text:last-child {
+    margin-bottom: 4px;
+}
+
+.Dialog--close {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 24px;
+    height: 24px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.Dialog .Button {
+    margin: 0 12px;
+}
+
+.Dialog--close svg {
+    width: 12px;
+    height: 12px;
+
+    fill: #404040;
+    opacity: 0.5;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.Dialog--close:focus svg, .Dialog--close:hover svg {
+    opacity: 1;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+}
+
+.Dialog--close:active svg {
+    -webkit-transform: scale(0.9);
+       -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+         -o-transform: scale(0.9);
+            transform: scale(0.9);
+
+    -webkit-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -moz-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    -o-transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+
+    transition: all 0.075s cubic-bezier(0.5,  0.3, 0.2, 1) 0s;
+}
+
+@media (pointer: coarse) {
+
+    .Dialog--close {
+        width: 32px;
+        height: 32px;
+    }
+
+    .Dialog--close svg {
+        width: 16px;
+        height: 16px;
     }
 }
 
@@ -10458,6 +10536,7 @@ body {
 .E_PageElementMenuSettings--input {
     margin-bottom: 8px;
 }
+
 /*====================================================================*/
 /*-------------------- BACKGROUND IMAGE SETTINGS ---------------------*/
 /*====================================================================*/
@@ -10568,6 +10647,9 @@ body {
     display: flex;
 }
 
+.E_SectionSettings--layout-div {
+    margin-bottom: 12px;
+}
 .medium-editor-toolbar *:not(input)  {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -16406,7 +16488,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
     border: 2px dashed #888;
 }
 
-.P_PageSection:not([class*='Header']) .P_PageSection--content {
+.P_PageSection:not([class*='Header']):not([class*='Feature']) .P_PageSection--content {
     font-size: 20px;
     line-height: 20;
 }
@@ -16809,8 +16891,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .P_font-type-3 .P_PageSection--content .P_font-title {
-    font-family: "Open Sans";
-    font-weight: bold;
+    font-family: "Open Sans Title";
+    font-weight: normal;
 }
 
 .P_font-type-4 .P_PageSection--content .P_font-title {
@@ -17432,8 +17514,8 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 }
 
 .E_GlobalFontSettings--font-type[data-font-type="P_font-type-3"] .E_GlobalFontSettings--title {
-    font-family: "Open Sans";
-    font-weight: bold;
+    font-family: "Open Sans Title";
+    font-weight: normal;
 }
 
 .E_GlobalFontSettings--font-type[data-font-type="P_font-type-3"] .E_GlobalFontSettings--body {
@@ -19229,1075 +19311,6 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 
 
 
-.E_PageSectionEditUI {
-    line-height: 1;
-
-    z-index: 121;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    opacity: 0;
-
-    -webkit-transform-origin: center center;
-
-       -moz-transform-origin: center center;
-
-        -ms-transform-origin: center center;
-
-         -o-transform-origin: center center;
-
-            transform-origin: center center;
-    -webkit-transform: translateY(-12px);
-       -moz-transform: translateY(-12px);
-        -ms-transform: translateY(-12px);
-         -o-transform: translateY(-12px);
-            transform: translateY(-12px);
-
-    visibility: hidden;
-
-    will-change: transform, box-shadow, opacity, visibility;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    pointer-events: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-.E_Page__sortable-active .E_PageSectionEditUI, .E_Page__sortable-active .E_PageSectionEditUI * {
-    pointer-events: none;
-}
-
-.P_PageSection--content:before {
-    content: "";
-
-    z-index: 2;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 100%;
-    height: 100%;
-
-    border: 4px solid #fcfcfc;
-    -webkit-box-shadow:
-        inset 0px 0px 6px 0px rgba(0, 0, 0, 0.3),
-              0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-       -moz-box-shadow:
-        inset 0px 0px 6px 0px rgba(0, 0, 0, 0.3),
-              0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-            box-shadow:
-        inset 0px 0px 6px 0px rgba(0, 0, 0, 0.3),
-              0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-
-    -webkit-transform: translateY(-12px);
-
-       -moz-transform: translateY(-12px);
-
-        -ms-transform: translateY(-12px);
-
-         -o-transform: translateY(-12px);
-
-            transform: translateY(-12px);
-
-    visibility: hidden;
-
-    will-change: transform, box-shadow, opacity, visibility;
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    pointer-events: none;
-}
-
-.E_PageSectionEditUI--controls {
-    position: absolute;
-
-    opacity: 1;
-
-    -webkit-transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-
-    -moz-transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-
-    -o-transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-
-    transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
-}
-
-.E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user), .E .P_PageSection__dragged .E_PageSectionEditUI, .E .P_PageSection__removed .E_PageSectionEditUI, .E .P_PageSection__placed:not(.P_PageSection__new) .E_PageSectionEditUI, .E_PageSectionEditUI__hover, .E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user) ~ .P_PageSection--content:before, .E .P_PageSection__dragged .P_PageSection--content:before, .E .P_PageSection__removed .P_PageSection--content:before, .E .P_PageSection__placed:not(.P_PageSection__new) .P_PageSection--content:before, .E_PageSectionEditUI__hover ~ .P_PageSection--content:before {
-    opacity: 1;
-
-    -webkit-transform: translateY(0px);
-
-       -moz-transform: translateY(0px);
-
-        -ms-transform: translateY(0px);
-
-         -o-transform: translateY(0px);
-
-            transform: translateY(0px);
-
-    visibility: visible;
-
-    -webkit-transition-delay: 0.1s;
-
-       -moz-transition-delay: 0.1s;
-
-         -o-transition-delay: 0.1s;
-
-            transition-delay: 0.1s;
-    -webkit-transition-duration: 0.4s;
-       -moz-transition-duration: 0.4s;
-         -o-transition-duration: 0.4s;
-            transition-duration: 0.4s;
-}
-
-.E_PageSectionEditUI--controls-wrapper {
-    position: relative;
-
-    overflow: hidden;
-    pointer-events: none;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-}
-
-.E_PageSectionEditUI--controls-wrapper * {
-    pointer-events: all;
-}
-
-.E_PageSectionEditUI--controls-shadow {
-    z-index: -1;
-    position: absolute;
-
-    width: -webkit-calc(100% - 4px);
-
-    width: -moz-calc(100% - 4px);
-
-    width: calc(100% - 4px);
-    height: -webkit-calc(100% - 4px);
-    height: -moz-calc(100% - 4px);
-    height: calc(100% - 4px);
-
-    overflow: hidden;
-}
-
-    .E_PageSectionEditUI--controls-shadow:after {
-        content: "";
-
-        position: absolute;
-
-        width: -webkit-calc(100% - 6px);
-
-        width: -moz-calc(100% - 6px);
-
-        width: calc(100% - 6px);
-        height: -webkit-calc(100% - 6px);
-        height: -moz-calc(100% - 6px);
-        height: calc(100% - 6px);
-
-        -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-
-           -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-
-                box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-    }
-
-.E_PageSectionEditUI--controls__top-left {
-    top: 0px;
-    left: 0px;
-}
-
-.E_PageSectionEditUI--controls__top-right {
-    top: 0px;
-    right: 0px;
-}
-
-.E_PageSectionEditUI--controls__bottom-left {
-    bottom: 0px;
-    left: 0px;
-}
-
-.E_PageSectionEditUI--controls__bottom-right {
-    bottom: 0px;
-    right: 0px;
-}
-
-    [class*='E_PageSectionEditUI--controls__top'] .E_PageSectionEditUI--controls-wrapper {
-        padding-bottom: 6px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__bottom'] .E_PageSectionEditUI--controls-wrapper {
-        padding-top: 6px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__'][class*='-left'] .E_PageSectionEditUI--controls-wrapper {
-        padding-right: 6px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__'][class*='-right'] .E_PageSectionEditUI--controls-wrapper {
-        padding-left: 6px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__top'] .E_PageSectionEditUI--controls-shadow {
-        top: 4px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__bottom'] .E_PageSectionEditUI--controls-shadow {
-        bottom: 4px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__'][class*='-left'] .E_PageSectionEditUI--controls-shadow {
-        left: 4px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__'][class*='-right'] .E_PageSectionEditUI--controls-shadow {
-        right: 4px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__top'] .E_PageSectionEditUI--controls-shadow:after {
-        top: 0px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__bottom'] .E_PageSectionEditUI--controls-shadow:after {
-        bottom: 0px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__'][class*='-left'] .E_PageSectionEditUI--controls-shadow:after {
-        left: 0px;
-    }
-
-    [class*='E_PageSectionEditUI--controls__'][class*='-right'] .E_PageSectionEditUI--controls-shadow:after {
-        right: 0px;
-    }
-
-.E_PageSectionEditUI--controls .P_PageSection--sort-handle {
-    z-index: 180;
-
-    cursor: -webkit-grab;
-
-    cursor: -moz-grab;
-
-    cursor: grab;
-
-    -webkit-transform: translateZ(0);
-
-       -moz-transform: translateZ(0);
-
-            transform: translateZ(0);
-}
-
-.P_PageSection__dragged .E_PageSectionEditUI--controls__top-left {
-    opacity: 0;
-}
-
-.P_PageSection__dragged, .P_PageSection__dragged:after, .E_Page__sortable-active * {
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-    cursor: grabbing;
-}
-
-/*--------------------------------------------------------------------*/
-/*---------------------------- REMOVE BTNS ---------------------------*/
-/*--------------------------------------------------------------------*/
-
-.P_PageSection--remove {
-    z-index: 10;
-    -webkit-transform: translateZ(0);
-       -moz-transform: translateZ(0);
-            transform: translateZ(0);
-}
-
-.P_PageSection--remove ~ [class*='P_PageSection--remove'] {
-    z-index: 0;
-    margin-left: -48px;
-}
-
-.P_PageSection--remove__active ~ [class*='P_PageSection--remove'] {
-    z-index: 0;
-    margin-left: 0px;
-}
-
-.P_PageSection--remove__active + [class*='P_PageSection--remove'] + [class*='P_PageSection--remove'] {
-    z-index: -1;
-}
-
-/*====================================================================*/
-/*------------------------------ MESSAGE -----------------------------*/
-/*====================================================================*/
-
-.E_PageSectionMessage {
-    margin: auto;
-    z-index: 10;
-    position: absolute;
-    top: 50%;
-    left: 0px;
-    right: 0;
-    bottom: 0;
-
-    -webkit-transform: translateY(-50%);
-
-       -moz-transform: translateY(-50%);
-
-        -ms-transform: translateY(-50%);
-
-         -o-transform: translateY(-50%);
-
-            transform: translateY(-50%);
-
-    opacity: 0;
-    visibility: hidden;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-
-    pointer-events: none;
-    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        visibility 0s linear 0.3s;
-    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        visibility 0s linear 0.3s;
-    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        visibility 0s linear 0.3s;
-    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
-        visibility 0s linear 0.3s;
-}
-
-.E_PageSectionMessage__active {
-    opacity: 0.9;
-    visibility: visible;
-
-    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
-        visibility 0s linear 0s;
-
-    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
-        visibility 0s linear 0s;
-
-    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
-        visibility 0s linear 0s;
-
-    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
-        visibility 0s linear 0s;
-}
-
-.E_PageSectionMessage--message {
-    font-family: "Encode Sans Narrow", sans-serif;
-    font-size: 17px;
-    line-height: 1.47;
-    text-align: center;
-
-    min-width: 256px;
-    width: auto;
-    max-width: 80%;
-    padding: 12px 24px;
-
-    color: #404040;
-    background-color: #f9f9f9;
-    outline: 2px solid #888;
-    outline-offset: -2px;
-    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-       -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-}
-
-.E_PageSectionMessage--message__success {
-    outline-color: #36b73c;
-}
-
-.E_PageSectionMessage--message__error {
-    outline-color: #e32d39;
-}
-
-.E_PageSectionMessage--message__warn {
-    outline-color: #ef6737;
-}
-
-.E_PageSectionMessage--message__info {
-    outline-color: #08a1c2;
-}
-
-.E_PageSectionMessage--title {
-    font-size: 17px;
-    font-weight: 600;
-}
-
-.E_PageSectionMessage--text {
-    font-size: 12px;
-
-    margin-top: 4px;
-
-    color: #6f6f6f;
-}
-
-/*====================================================================*/
-/*------------------- E_PageSectionSettingsMenu --------------------*/
-/*====================================================================*/
-
-.E_PageSectionSettingsMenu {
-    font-family: "Encode Sans Narrow", sans-serif;
-    font-size: 17px;
-    text-align: left;
-
-    padding: 16px 0;
-
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-.E_PageSectionSettingsMenu--list {
-    border-top: 1px solid #ddd;
-}
-
-.E_PageSectionSettingsMenu--item {
-    line-height: 1.35;
-
-	height: 41px;
-    padding: 0 16px;
-    padding-bottom: 1px;
-
-    border-bottom: 1px solid #ddd;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-       -moz-box-orient: vertical;
-       -moz-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-
-    cursor: pointer;
-}
-
-.E_PageSectionSettingsMenu--item:hover {
-    font-weight: 500;
-
-    background-color: #404040;
-    border-bottom-color: #323232;
-}
-
-.E_PageSectionSettingsMenu--item__active:hover, .E_PageSectionSettingsMenu--item__active {
-    font-weight: 500;
-
-    background-color: #0f758b;
-    border-bottom-color: #075d70;
-
-    cursor: default;
-}
-
-.E_PageSectionSettingsMenu--item, .E_PageSectionSettingsMenu--title, .E_PageSectionSettingsMenu--subtitle {
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -webkit-transition-property: color, background, border;
-    -moz-transition-property: color, background, border;
-    -o-transition-property: color, background, border;
-    transition-property: color, background, border;
-}
-
-.E_PageSectionSettingsMenu--item:hover, .E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--title, .E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--subtitle {
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -webkit-transition-property: color, background, border;
-    -moz-transition-property: color, background, border;
-    -o-transition-property: color, background, border;
-    transition-property: color, background, border;
-}
-
-.E_PageSectionSettingsMenu--title {
-    color: #404040;
-}
-
-.E_PageSectionSettingsMenu--subtitle {
-    font-size: 9px;
-
-    padding-bottom: 1px;
-
-	color: #6f6f6f;
-}
-
-.E_PageSectionSettingsMenu--item__active .E_PageSectionSettingsMenu--title, .E_PageSectionSettingsMenu--item__active .E_PageSectionSettingsMenu--subtitle, .E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--title, .E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--subtitle {
-    color: #fff;
-}
-
-/*====================================================================*/
-/*----------------------- PageSectionSettings ------------------------*/
-/*====================================================================*/
-
-.E_PageSectionSettings {
-    line-height: 1;
-
-    position: relative;
-
-    width: 100%;
-
-    background-color: #f4f4f4;
-    border-top: 1px solid #d7d7d7;
-    border-bottom: 1px solid #d7d7d7;
-}
-
-.E_PageSectionSettings--shadow {
-    content: "";
-
-    z-index: 500;
-    position: absolute;
-    top: 0px;
-    left: -8px;
-
-    width: -webkit-calc(100% + 16px);
-
-    width: -moz-calc(100% + 16px);
-
-    width: calc(100% + 16px);
-    height: 100%;
-
-    -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
-
-       -moz-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
-
-            box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
-
-    pointer-events: none;
-}
-
-.E_PageSectionSettings--wrapper-2 {
-    margin: 0px auto;
-
-    max-width: 1440px;
-
-    background-color: #f7f7f7;
-
-    overflow: hidden;
-}
-
-@media (min-width: 1440px) {
-
-    .E_PageSectionSettings--wrapper-2 {
-        border-left: 1px solid #d7d7d7;
-        border-right: 1px solid #d7d7d7;
-    }
-}
-
-.E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
-    -webkit-flex-basis: 38.08%;
-        -ms-flex-preferred-size: 38.08%;
-            flex-basis: 38.08%;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-
-    will-change: min-width;
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -webkit-transition-property: min-width;
-    -moz-transition-property: min-width;
-    -o-transition-property: min-width;
-    transition-property: min-width;
-    -webkit-transition-duration: 0.2s;
-       -moz-transition-duration: 0.2s;
-         -o-transition-duration: 0.2s;
-            transition-duration: 0.2s;
-}
-
-.E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type {
-    -webkit-flex-basis: 61.92%;
-        -ms-flex-preferred-size: 61.92%;
-            flex-basis: 61.92%;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-
-    border-left: 1px solid #d7d7d7;
-
-    will-change: min-width;
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
-    -webkit-transition-property: min-width;
-    -moz-transition-property: min-width;
-    -o-transition-property: min-width;
-    transition-property: min-width;
-    -webkit-transition-duration: 0.3s;
-       -moz-transition-duration: 0.3s;
-         -o-transition-duration: 0.3s;
-            transition-duration: 0.3s;
-}
-
-.E_PageSectionSettings--scrolling-content {
-    position: relative;
-
-    overflow: hidden;
-}
-
-.E_PageSectionSettings--scrollable {
-    width: 100%;
-}
-
-@media (max-width: 640px) {
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrolling-content:after {
-        content: "";
-
-        z-index: 600;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-
-        width: 100%;
-        height: 100%;
-    }
-
-    .E_PageSectionSettings__multiple-tabs:not(:hover) .E_PageSectionSettings--scrollable:first-of-type:not(:hover) .E_PageSectionSettings--scrolling-content:after, .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:hover .E_PageSectionSettings--scrolling-content:after, .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:last-of-type:hover .E_PageSectionSettings--scrolling-content:after {
-        pointer-events: none;
-
-        -webkit-animation: E_PageSectionSettings--pointer-events-none 0.3s 0s forwards;
-
-           -moz-animation: E_PageSectionSettings--pointer-events-none 0.3s 0s forwards;
-
-             -o-animation: E_PageSectionSettings--pointer-events-none 0.3s 0s forwards;
-
-                animation: E_PageSectionSettings--pointer-events-none 0.3s 0s forwards;
-    }
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
-        min-width: -webkit-calc(100vw - 60px);
-        min-width: -moz-calc(100vw - 60px);
-        min-width: calc(100vw - 60px);
-    }
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type {
-        min-width: 60px;
-
-        -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
-
-           -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
-
-                box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
-    }
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type:hover {
-        min-width: -webkit-calc(100vw - 60px);
-        min-width: -moz-calc(100vw - 60px);
-        min-width: calc(100vw - 60px);
-    }
-
-    .E_PageSectionSettings--scrollable:first-of-type, .E_PageSectionSettings--scrollable:last-of-type {
-        -webkit-transition-delay: 0.5s;
-           -moz-transition-delay: 0.5s;
-             -o-transition-delay: 0.5s;
-                transition-delay: 0.5s;
-    }
-
-    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type, .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:last-of-type {
-        -webkit-transition-delay: 0s;
-           -moz-transition-delay: 0s;
-             -o-transition-delay: 0s;
-                transition-delay: 0s;
-    }
-
-    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:not(:hover) {
-        min-width: 60px;
-    }
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type > .E_PageSectionSettings--scrolling-content {
-        min-width: -webkit-calc(100vw - 60px);
-        min-width: -moz-calc(100vw - 60px);
-        min-width: calc(100vw - 60px);
-    }
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type  > .E_PageSectionSettings--scrolling-content {
-        min-width: -webkit-calc(100vw - 60px - 1px);
-        min-width: -moz-calc(100vw - 60px - 1px);
-        min-width: calc(100vw - 60px - 1px);
-    }
-}
-
-@media (max-width: 480px) {
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
-        min-width: -webkit-calc(100vw - 40px);
-        min-width: -moz-calc(100vw - 40px);
-        min-width: calc(100vw - 40px);
-    }
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type {
-        min-width: 40px;
-    }
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type:hover {
-        min-width: -webkit-calc(100vw - 40px);
-        min-width: -moz-calc(100vw - 40px);
-        min-width: calc(100vw - 40px);
-    }
-
-    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:not(:hover) {
-        min-width: 40px;
-    }
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type > .E_PageSectionSettings--scrolling-content {
-        min-width: -webkit-calc(100vw - 40px);
-        min-width: -moz-calc(100vw - 40px);
-        min-width: calc(100vw - 40px);
-    }
-
-    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type  > .E_PageSectionSettings--scrolling-content {
-        min-width: -webkit-calc(100vw - 40px - 1px);
-        min-width: -moz-calc(100vw - 40px - 1px);
-        min-width: calc(100vw - 40px - 1px);
-    }
-}
-
-/*---------------------------- SECTION ----------------------------*/
-
-.E_PageSectionSettings--sections {
-    position: relative;
-
-    width: -webkit-calc(100% + 12px);
-
-    width: -moz-calc(100% + 12px);
-
-    width: calc(100% + 12px);
-    padding: 16px 12px;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-}
-
-.E_PageSectionSettings--sections:not(.E_PageSectionSettings--sections__full):first-of-type {
-    padding-top: 0;
-}
-
-.E_PageSectionSettings--sections:last-of-type, .E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--sections:last-of-type {
-    padding-bottom: 0;
-}
-
-.E_PageSectionSettings--sections__full, .E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--sections {
-    width: 100%;
-    padding: 20px;
-}
-
-.E_PageSectionSettings--sections:not(:last-of-type) {
-    margin-bottom: 1px;
-}
-
-.E_PageSectionSettings--sections:not(:last-of-type):after {
-    content: "";
-
-    position: absolute;
-    bottom: -1px;
-    left: 12px;
-
-    width: -webkit-calc(100% - 36px);
-
-    width: -moz-calc(100% - 36px);
-
-    width: calc(100% - 36px);
-    height: 0;
-
-    border-bottom: 1px solid #d7d7d7;
-}
-
-.E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--sections:not(:last-of-type):after {
-    left: 20px;
-
-    width: -webkit-calc(100% - 40px);
-
-    width: -moz-calc(100% - 40px);
-
-    width: calc(100% - 40px);
-}
-
-.E_PageSectionSettings--section {
-    margin-right: 20px;
-    margin-bottom: 20px;
-
-    min-width: -webkit-calc(50% - 20px);
-
-    min-width: -moz-calc(50% - 20px);
-
-    min-width: calc(50% - 20px);
-
-    -webkit-flex-basis: -webkit-calc(180px - 20px);
-
-        -ms-flex-preferred-size: calc(180px - 20px);
-
-            flex-basis: -moz-calc(180px - 20px);
-
-            flex-basis: calc(180px - 20px);
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-}
-
-.E_PageSectionSettings--sections__full .E_PageSectionSettings--section {
-    margin-right: 0px;
-
-    min-width: 100%;
-
-    -webkit-flex-basis: 100%;
-
-        -ms-flex-preferred-size: 100%;
-
-            flex-basis: 100%;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-       -moz-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-}
-
-.E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--section:only-child {
-    margin-right: 0;
-}
-
-.E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--section {
-    margin-right: 32px;
-
-    min-width: -webkit-calc(50% - 32px);
-
-    min-width: -moz-calc(50% - 32px);
-
-    min-width: calc(50% - 32px);
-}
-
-@media (max-width: 767px) {
-
-    .E_PageSectionSettings--section + .E_PageSectionSettings--section:empty {
-        margin-right: -20px;
-
-        width: 0;
-        max-width: 0;
-        min-width: 0;
-
-        -webkit-flex-basis: 0;
-
-            -ms-flex-preferred-size: 0;
-
-                flex-basis: 0;
-        -webkit-box-flex: 0;
-        -webkit-flex-grow: 0;
-           -moz-box-flex: 0;
-            -ms-flex-positive: 0;
-                flex-grow: 0;
-    }
-
-    .E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--section + .E_PageSectionSettings--section:empty {
-        margin-right: -32px;
-    }
-}
-
-.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(even):last-of-type {
-    margin-bottom: 0;
-}
-
-.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2), .E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
-    margin-bottom: 0;
-}
-
-/*--------------------------------------------------------------------*/
-/*------------------------------ CONTENT -----------------------------*/
-/*--------------------------------------------------------------------*/
-
-@media (min-width: 767px) {
-
-    .E_PageSectionSettings--sections__full .Text {
-        max-width: -webkit-calc(61.92% - 20px);
-        max-width: -moz-calc(61.92% - 20px);
-        max-width: calc(61.92% - 20px);
-    }
-}
-
-@media (min-width: 1024px) {
-
-    .E_PageSectionSettings--sections__full .Text {
-        max-width: -webkit-calc(38.08% - 20px);
-        max-width: -moz-calc(38.08% - 20px);
-        max-width: calc(38.08% - 20px);
-    }
-}
-/*---------------------------- NOTE ----------------------------*/
-
-.E_PageSectionSettings--section-note q:after {
-    content: close-quote;
-
-    color: #6f6f6f;
-}
-
-.E_PageSectionSettings--section-note q:before {
-    content: open-quote;
-
-    color: #6f6f6f;
-}
-
-.E_PageSectionSettings--section-note {
-    font-family: "Encode Sans Narrow", sans-serif;
-    font-size: 12px;
-    line-height: 17px;
-    font-weight: 400;
-
-    margin-top: 6px;
-
-    color: #6f6f6f;
-}
-
-.E_PageSectionSettings--section-note:first-child {
-    margin-top: 0px;
-}
-
-/*---------------------------- TITLES ----------------------------*/
-
-.E_PageSectionSettings--section-title {
-    font-family: "Encode Sans", sans-serif;
-    font-size: 19px;
-    font-weight: 500;
-    line-height: 1;
-    text-align: left;
-
-    margin-bottom: 12px;
-
-    width: 100%;
-
-    color: #0f758b;
-
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: flex;
-}
-
-.E_PageSectionSettings--section-title-icon {
-    margin-left: 6px;
-
-    width: 16px;
-    height: 16px;
-
-    display: -webkit-inline-box;
-
-    display: -webkit-inline-flex;
-
-    display: -moz-inline-box;
-
-    display: -ms-inline-flexbox;
-
-    display: inline-flex;
-}
-
-.E_PageSectionSettings--section-title-icon svg {
-    width: 100%;
-    height: 100%;
-
-    fill: #6f6f6f;
-}
-
-/*---------------------------- DIVIDER ----------------------------*/
-
-.E_PageSectionSettings--divider {
-    margin: 16px auto;
-
-    width: 100%;
-    height: 1px;
-
-    background-color: #d7d7d7;
-}
-
-@-webkit-keyframes E_PageSectionSettings--pointer-events-none {
-    from { pointer-events: all; }
-    to { pointer-events: none; }
-}
-
-@-moz-keyframes E_PageSectionSettings--pointer-events-none {
-    from { pointer-events: all; }
-    to { pointer-events: none; }
-}
-
-@-o-keyframes E_PageSectionSettings--pointer-events-none {
-    from { pointer-events: all; }
-    to { pointer-events: none; }
-}
-
-@keyframes E_PageSectionSettings--pointer-events-none {
-    from { pointer-events: all; }
-    to { pointer-events: none; }
-}
-
-
 /*====================================================================*/
 /*---------------------------- FLATBUTTON ----------------------------*/
 /*====================================================================*/
@@ -21792,6 +20805,1075 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
              -o-transform: translateX(calc(-100% + 28px));
                 transform: translateX(calc(-100% + 28px));
     }
+}
+
+
+.E_PageSectionEditUI {
+    line-height: 1;
+
+    z-index: 121;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    -webkit-transform-origin: center center;
+
+       -moz-transform-origin: center center;
+
+        -ms-transform-origin: center center;
+
+         -o-transform-origin: center center;
+
+            transform-origin: center center;
+    -webkit-transform: translateY(-12px);
+       -moz-transform: translateY(-12px);
+        -ms-transform: translateY(-12px);
+         -o-transform: translateY(-12px);
+            transform: translateY(-12px);
+
+    visibility: hidden;
+
+    will-change: transform, box-shadow, opacity, visibility;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_Page__sortable-active .E_PageSectionEditUI, .E_Page__sortable-active .E_PageSectionEditUI * {
+    pointer-events: none;
+}
+
+.P_PageSection--content:before {
+    content: "";
+
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    border: 4px solid #fcfcfc;
+    -webkit-box-shadow:
+        inset 0px 0px 6px 0px rgba(0, 0, 0, 0.3),
+              0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow:
+        inset 0px 0px 6px 0px rgba(0, 0, 0, 0.3),
+              0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+            box-shadow:
+        inset 0px 0px 6px 0px rgba(0, 0, 0, 0.3),
+              0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+
+    -webkit-transform: translateY(-12px);
+
+       -moz-transform: translateY(-12px);
+
+        -ms-transform: translateY(-12px);
+
+         -o-transform: translateY(-12px);
+
+            transform: translateY(-12px);
+
+    visibility: hidden;
+
+    will-change: transform, box-shadow, opacity, visibility;
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    pointer-events: none;
+}
+
+.E_PageSectionEditUI--controls {
+    position: absolute;
+
+    opacity: 1;
+
+    -webkit-transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+
+    -moz-transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+
+    -o-transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+
+    transition: opacity 0.35s cubic-bezier(0, 0, .58, 1) 0s;
+}
+
+.E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user), .E .P_PageSection__dragged .E_PageSectionEditUI, .E .P_PageSection__removed .E_PageSectionEditUI, .E .P_PageSection__placed:not(.P_PageSection__new) .E_PageSectionEditUI, .E_PageSectionEditUI__hover, .E .P_PageSection__has-settings .E_PageSectionEditUI:not(.E_PageSectionEditUI__hidden-by-user) ~ .P_PageSection--content:before, .E .P_PageSection__dragged .P_PageSection--content:before, .E .P_PageSection__removed .P_PageSection--content:before, .E .P_PageSection__placed:not(.P_PageSection__new) .P_PageSection--content:before, .E_PageSectionEditUI__hover ~ .P_PageSection--content:before {
+    opacity: 1;
+
+    -webkit-transform: translateY(0px);
+
+       -moz-transform: translateY(0px);
+
+        -ms-transform: translateY(0px);
+
+         -o-transform: translateY(0px);
+
+            transform: translateY(0px);
+
+    visibility: visible;
+
+    -webkit-transition-delay: 0.1s;
+
+       -moz-transition-delay: 0.1s;
+
+         -o-transition-delay: 0.1s;
+
+            transition-delay: 0.1s;
+    -webkit-transition-duration: 0.4s;
+       -moz-transition-duration: 0.4s;
+         -o-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+}
+
+.E_PageSectionEditUI--controls-wrapper {
+    position: relative;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.E_PageSectionEditUI--controls-wrapper * {
+    pointer-events: all;
+}
+
+.E_PageSectionEditUI--controls-shadow {
+    z-index: -1;
+    position: absolute;
+
+    width: -webkit-calc(100% - 4px);
+
+    width: -moz-calc(100% - 4px);
+
+    width: calc(100% - 4px);
+    height: -webkit-calc(100% - 4px);
+    height: -moz-calc(100% - 4px);
+    height: calc(100% - 4px);
+
+    overflow: hidden;
+}
+
+    .E_PageSectionEditUI--controls-shadow:after {
+        content: "";
+
+        position: absolute;
+
+        width: -webkit-calc(100% - 6px);
+
+        width: -moz-calc(100% - 6px);
+
+        width: calc(100% - 6px);
+        height: -webkit-calc(100% - 6px);
+        height: -moz-calc(100% - 6px);
+        height: calc(100% - 6px);
+
+        -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+
+           -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+
+                box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+    }
+
+.E_PageSectionEditUI--controls__top-left {
+    top: 0px;
+    left: 0px;
+}
+
+.E_PageSectionEditUI--controls__top-right {
+    top: 0px;
+    right: 0px;
+}
+
+.E_PageSectionEditUI--controls__bottom-left {
+    bottom: 0px;
+    left: 0px;
+}
+
+.E_PageSectionEditUI--controls__bottom-right {
+    bottom: 0px;
+    right: 0px;
+}
+
+    [class*='E_PageSectionEditUI--controls__top'] .E_PageSectionEditUI--controls-wrapper {
+        padding-bottom: 6px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__bottom'] .E_PageSectionEditUI--controls-wrapper {
+        padding-top: 6px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-left'] .E_PageSectionEditUI--controls-wrapper {
+        padding-right: 6px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-right'] .E_PageSectionEditUI--controls-wrapper {
+        padding-left: 6px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__top'] .E_PageSectionEditUI--controls-shadow {
+        top: 4px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__bottom'] .E_PageSectionEditUI--controls-shadow {
+        bottom: 4px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-left'] .E_PageSectionEditUI--controls-shadow {
+        left: 4px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-right'] .E_PageSectionEditUI--controls-shadow {
+        right: 4px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__top'] .E_PageSectionEditUI--controls-shadow:after {
+        top: 0px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__bottom'] .E_PageSectionEditUI--controls-shadow:after {
+        bottom: 0px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-left'] .E_PageSectionEditUI--controls-shadow:after {
+        left: 0px;
+    }
+
+    [class*='E_PageSectionEditUI--controls__'][class*='-right'] .E_PageSectionEditUI--controls-shadow:after {
+        right: 0px;
+    }
+
+.E_PageSectionEditUI--controls .P_PageSection--sort-handle {
+    z-index: 180;
+
+    cursor: -webkit-grab;
+
+    cursor: -moz-grab;
+
+    cursor: grab;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+}
+
+.P_PageSection__dragged .E_PageSectionEditUI--controls__top-left {
+    opacity: 0;
+}
+
+.P_PageSection__dragged, .P_PageSection__dragged:after, .E_Page__sortable-active * {
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    cursor: grabbing;
+}
+
+/*--------------------------------------------------------------------*/
+/*---------------------------- REMOVE BTNS ---------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageSection--remove {
+    z-index: 10;
+    -webkit-transform: translateZ(0);
+       -moz-transform: translateZ(0);
+            transform: translateZ(0);
+}
+
+.P_PageSection--remove ~ [class*='P_PageSection--remove'] {
+    z-index: 0;
+    margin-left: -48px;
+}
+
+.P_PageSection--remove__active ~ [class*='P_PageSection--remove'] {
+    z-index: 0;
+    margin-left: 0px;
+}
+
+.P_PageSection--remove__active + [class*='P_PageSection--remove'] + [class*='P_PageSection--remove'] {
+    z-index: -1;
+}
+
+/*====================================================================*/
+/*------------------------------ MESSAGE -----------------------------*/
+/*====================================================================*/
+
+.E_PageSectionMessage {
+    margin: auto;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+
+    -webkit-transform: translateY(-50%);
+
+       -moz-transform: translateY(-50%);
+
+        -ms-transform: translateY(-50%);
+
+         -o-transform: translateY(-50%);
+
+            transform: translateY(-50%);
+
+    opacity: 0;
+    visibility: hidden;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    pointer-events: none;
+    -webkit-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+    -moz-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+    -o-transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+    transition: opacity 0.3s cubic-bezier(0.1, 0.4, 0.4, 1) 0s,
+        visibility 0s linear 0.3s;
+}
+
+.E_PageSectionMessage__active {
+    opacity: 0.9;
+    visibility: visible;
+
+    -webkit-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -moz-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    -o-transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+
+    transition: opacity 0.125s cubic-bezier(0.8,  0.4, 0.2, 0.8) 0s,
+        visibility 0s linear 0s;
+}
+
+.E_PageSectionMessage--message {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 17px;
+    line-height: 1.47;
+    text-align: center;
+
+    min-width: 256px;
+    width: auto;
+    max-width: 80%;
+    padding: 12px 24px;
+
+    color: #404040;
+    background-color: #f9f9f9;
+    outline: 2px solid #888;
+    outline-offset: -2px;
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+}
+
+.E_PageSectionMessage--message__success {
+    outline-color: #36b73c;
+}
+
+.E_PageSectionMessage--message__error {
+    outline-color: #e32d39;
+}
+
+.E_PageSectionMessage--message__warn {
+    outline-color: #ef6737;
+}
+
+.E_PageSectionMessage--message__info {
+    outline-color: #08a1c2;
+}
+
+.E_PageSectionMessage--title {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.E_PageSectionMessage--text {
+    font-size: 12px;
+
+    margin-top: 4px;
+
+    color: #6f6f6f;
+}
+
+/*====================================================================*/
+/*------------------- E_PageSectionSettingsMenu --------------------*/
+/*====================================================================*/
+
+.E_PageSectionSettingsMenu {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 17px;
+    text-align: left;
+
+    padding: 16px 0;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.E_PageSectionSettingsMenu--list {
+    border-top: 1px solid #ddd;
+}
+
+.E_PageSectionSettingsMenu--item {
+    line-height: 1.35;
+
+	height: 41px;
+    padding: 0 16px;
+    padding-bottom: 1px;
+
+    border-bottom: 1px solid #ddd;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    cursor: pointer;
+}
+
+.E_PageSectionSettingsMenu--item:hover {
+    font-weight: 500;
+
+    background-color: #404040;
+    border-bottom-color: #323232;
+}
+
+.E_PageSectionSettingsMenu--item__active:hover, .E_PageSectionSettingsMenu--item__active {
+    font-weight: 500;
+
+    background-color: #0f758b;
+    border-bottom-color: #075d70;
+
+    cursor: default;
+}
+
+.E_PageSectionSettingsMenu--item, .E_PageSectionSettingsMenu--title, .E_PageSectionSettingsMenu--subtitle {
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition-property: color, background, border;
+    -moz-transition-property: color, background, border;
+    -o-transition-property: color, background, border;
+    transition-property: color, background, border;
+}
+
+.E_PageSectionSettingsMenu--item:hover, .E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--title, .E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--subtitle {
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -webkit-transition-property: color, background, border;
+    -moz-transition-property: color, background, border;
+    -o-transition-property: color, background, border;
+    transition-property: color, background, border;
+}
+
+.E_PageSectionSettingsMenu--title {
+    color: #404040;
+}
+
+.E_PageSectionSettingsMenu--subtitle {
+    font-size: 9px;
+
+    padding-bottom: 1px;
+
+	color: #6f6f6f;
+}
+
+.E_PageSectionSettingsMenu--item__active .E_PageSectionSettingsMenu--title, .E_PageSectionSettingsMenu--item__active .E_PageSectionSettingsMenu--subtitle, .E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--title, .E_PageSectionSettingsMenu--item:hover .E_PageSectionSettingsMenu--subtitle {
+    color: #fff;
+}
+
+/*====================================================================*/
+/*----------------------- PageSectionSettings ------------------------*/
+/*====================================================================*/
+
+.E_PageSectionSettings {
+    line-height: 1;
+
+    position: relative;
+
+    width: 100%;
+
+    background-color: #f4f4f4;
+    border-top: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.E_PageSectionSettings--shadow {
+    content: "";
+
+    z-index: 500;
+    position: absolute;
+    top: 0px;
+    left: -8px;
+
+    width: -webkit-calc(100% + 16px);
+
+    width: -moz-calc(100% + 16px);
+
+    width: calc(100% + 16px);
+    height: 100%;
+
+    -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
+
+       -moz-box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
+
+            box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
+
+    pointer-events: none;
+}
+
+.E_PageSectionSettings--wrapper-2 {
+    margin: 0px auto;
+
+    max-width: 1440px;
+
+    background-color: #f7f7f7;
+
+    overflow: hidden;
+}
+
+@media (min-width: 1440px) {
+
+    .E_PageSectionSettings--wrapper-2 {
+        border-left: 1px solid #d7d7d7;
+        border-right: 1px solid #d7d7d7;
+    }
+}
+
+.E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
+    -webkit-flex-basis: 38.08%;
+        -ms-flex-preferred-size: 38.08%;
+            flex-basis: 38.08%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+
+    will-change: min-width;
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -webkit-transition-property: min-width;
+    -moz-transition-property: min-width;
+    -o-transition-property: min-width;
+    transition-property: min-width;
+    -webkit-transition-duration: 0.2s;
+       -moz-transition-duration: 0.2s;
+         -o-transition-duration: 0.2s;
+            transition-duration: 0.2s;
+}
+
+.E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type {
+    -webkit-flex-basis: 61.92%;
+        -ms-flex-preferred-size: 61.92%;
+            flex-basis: 61.92%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+
+    border-left: 1px solid #d7d7d7;
+
+    will-change: min-width;
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    -webkit-transition-property: min-width;
+    -moz-transition-property: min-width;
+    -o-transition-property: min-width;
+    transition-property: min-width;
+    -webkit-transition-duration: 0.3s;
+       -moz-transition-duration: 0.3s;
+         -o-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+}
+
+.E_PageSectionSettings--scrolling-content {
+    position: relative;
+
+    overflow: hidden;
+}
+
+.E_PageSectionSettings--scrollable {
+    width: 100%;
+}
+
+@media (max-width: 640px) {
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrolling-content:after {
+        content: "";
+
+        z-index: 600;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .E_PageSectionSettings__multiple-tabs:not(:hover) .E_PageSectionSettings--scrollable:first-of-type:not(:hover) .E_PageSectionSettings--scrolling-content:after, .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:hover .E_PageSectionSettings--scrolling-content:after, .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:last-of-type:hover .E_PageSectionSettings--scrolling-content:after {
+        pointer-events: none;
+
+        -webkit-animation: E_PageSectionSettings--pointer-events-none 0.3s 0s forwards;
+
+           -moz-animation: E_PageSectionSettings--pointer-events-none 0.3s 0s forwards;
+
+             -o-animation: E_PageSectionSettings--pointer-events-none 0.3s 0s forwards;
+
+                animation: E_PageSectionSettings--pointer-events-none 0.3s 0s forwards;
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
+        min-width: -webkit-calc(100vw - 60px);
+        min-width: -moz-calc(100vw - 60px);
+        min-width: calc(100vw - 60px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type {
+        min-width: 60px;
+
+        -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+
+           -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+
+                box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type:hover {
+        min-width: -webkit-calc(100vw - 60px);
+        min-width: -moz-calc(100vw - 60px);
+        min-width: calc(100vw - 60px);
+    }
+
+    .E_PageSectionSettings--scrollable:first-of-type, .E_PageSectionSettings--scrollable:last-of-type {
+        -webkit-transition-delay: 0.5s;
+           -moz-transition-delay: 0.5s;
+             -o-transition-delay: 0.5s;
+                transition-delay: 0.5s;
+    }
+
+    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type, .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:last-of-type {
+        -webkit-transition-delay: 0s;
+           -moz-transition-delay: 0s;
+             -o-transition-delay: 0s;
+                transition-delay: 0s;
+    }
+
+    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:not(:hover) {
+        min-width: 60px;
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type > .E_PageSectionSettings--scrolling-content {
+        min-width: -webkit-calc(100vw - 60px);
+        min-width: -moz-calc(100vw - 60px);
+        min-width: calc(100vw - 60px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type  > .E_PageSectionSettings--scrolling-content {
+        min-width: -webkit-calc(100vw - 60px - 1px);
+        min-width: -moz-calc(100vw - 60px - 1px);
+        min-width: calc(100vw - 60px - 1px);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type {
+        min-width: -webkit-calc(100vw - 40px);
+        min-width: -moz-calc(100vw - 40px);
+        min-width: calc(100vw - 40px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type {
+        min-width: 40px;
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type:hover {
+        min-width: -webkit-calc(100vw - 40px);
+        min-width: -moz-calc(100vw - 40px);
+        min-width: calc(100vw - 40px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs:hover .E_PageSectionSettings--scrollable:first-of-type:not(:hover) {
+        min-width: 40px;
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:first-of-type > .E_PageSectionSettings--scrolling-content {
+        min-width: -webkit-calc(100vw - 40px);
+        min-width: -moz-calc(100vw - 40px);
+        min-width: calc(100vw - 40px);
+    }
+
+    .E_PageSectionSettings__multiple-tabs .E_PageSectionSettings--scrollable:last-of-type  > .E_PageSectionSettings--scrolling-content {
+        min-width: -webkit-calc(100vw - 40px - 1px);
+        min-width: -moz-calc(100vw - 40px - 1px);
+        min-width: calc(100vw - 40px - 1px);
+    }
+}
+
+/*---------------------------- SECTION ----------------------------*/
+
+.E_PageSectionSettings--sections {
+    position: relative;
+
+    width: -webkit-calc(100% + 12px);
+
+    width: -moz-calc(100% + 12px);
+
+    width: calc(100% + 12px);
+    padding: 16px 12px;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+.E_PageSectionSettings--sections:not(.E_PageSectionSettings--sections__full):first-of-type {
+    padding-top: 0;
+}
+
+.E_PageSectionSettings--sections:last-of-type, .E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--sections:last-of-type {
+    padding-bottom: 0;
+}
+
+.E_PageSectionSettings--sections__full, .E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--sections {
+    width: 100%;
+    padding: 20px;
+}
+
+.E_PageSectionSettings--sections:not(:last-of-type) {
+    margin-bottom: 1px;
+}
+
+.E_PageSectionSettings--sections:not(:last-of-type):after {
+    content: "";
+
+    position: absolute;
+    bottom: -1px;
+    left: 12px;
+
+    width: -webkit-calc(100% - 36px);
+
+    width: -moz-calc(100% - 36px);
+
+    width: calc(100% - 36px);
+    height: 0;
+
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--sections:not(:last-of-type):after {
+    left: 20px;
+
+    width: -webkit-calc(100% - 40px);
+
+    width: -moz-calc(100% - 40px);
+
+    width: calc(100% - 40px);
+}
+
+.E_PageSectionSettings--section {
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+    min-width: -webkit-calc(50% - 20px);
+
+    min-width: -moz-calc(50% - 20px);
+
+    min-width: calc(50% - 20px);
+
+    -webkit-flex-basis: -webkit-calc(180px - 20px);
+
+        -ms-flex-preferred-size: calc(180px - 20px);
+
+            flex-basis: -moz-calc(180px - 20px);
+
+            flex-basis: calc(180px - 20px);
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+}
+
+.E_PageSectionSettings--sections__full .E_PageSectionSettings--section {
+    margin-right: 0px;
+
+    min-width: 100%;
+
+    -webkit-flex-basis: 100%;
+
+        -ms-flex-preferred-size: 100%;
+
+            flex-basis: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+       -moz-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+}
+
+.E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--section:only-child {
+    margin-right: 0;
+}
+
+.E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--section {
+    margin-right: 32px;
+
+    min-width: -webkit-calc(50% - 32px);
+
+    min-width: -moz-calc(50% - 32px);
+
+    min-width: calc(50% - 32px);
+}
+
+@media (max-width: 767px) {
+
+    .E_PageSectionSettings--section + .E_PageSectionSettings--section:empty {
+        margin-right: -20px;
+
+        width: 0;
+        max-width: 0;
+        min-width: 0;
+
+        -webkit-flex-basis: 0;
+
+            -ms-flex-preferred-size: 0;
+
+                flex-basis: 0;
+        -webkit-box-flex: 0;
+        -webkit-flex-grow: 0;
+           -moz-box-flex: 0;
+            -ms-flex-positive: 0;
+                flex-grow: 0;
+    }
+
+    .E_PageSectionSettings--scrollable:only-child .E_PageSectionSettings--section + .E_PageSectionSettings--section:empty {
+        margin-right: -32px;
+    }
+}
+
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(even):last-of-type {
+    margin-bottom: 0;
+}
+
+.E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2), .E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
+    margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------------*/
+/*------------------------------ CONTENT -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+@media (min-width: 767px) {
+
+    .E_PageSectionSettings--sections__full .Text {
+        max-width: -webkit-calc(61.92% - 20px);
+        max-width: -moz-calc(61.92% - 20px);
+        max-width: calc(61.92% - 20px);
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .E_PageSectionSettings--sections__full .Text {
+        max-width: -webkit-calc(38.08% - 20px);
+        max-width: -moz-calc(38.08% - 20px);
+        max-width: calc(38.08% - 20px);
+    }
+}
+/*---------------------------- NOTE ----------------------------*/
+
+.E_PageSectionSettings--section-note q:after {
+    content: close-quote;
+
+    color: #6f6f6f;
+}
+
+.E_PageSectionSettings--section-note q:before {
+    content: open-quote;
+
+    color: #6f6f6f;
+}
+
+.E_PageSectionSettings--section-note {
+    font-family: "Encode Sans Narrow", sans-serif;
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 400;
+
+    margin-top: 6px;
+
+    color: #6f6f6f;
+}
+
+.E_PageSectionSettings--section-note:first-child {
+    margin-top: 0px;
+}
+
+/*---------------------------- TITLES ----------------------------*/
+
+.E_PageSectionSettings--section-title {
+    font-family: "Encode Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: left;
+
+    margin-bottom: 12px;
+
+    width: 100%;
+
+    color: #0f758b;
+
+    display: -webkit-box;
+
+    display: -webkit-flex;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+}
+
+.E_PageSectionSettings--section-title-icon {
+    margin-left: 6px;
+
+    width: 16px;
+    height: 16px;
+
+    display: -webkit-inline-box;
+
+    display: -webkit-inline-flex;
+
+    display: -moz-inline-box;
+
+    display: -ms-inline-flexbox;
+
+    display: inline-flex;
+}
+
+.E_PageSectionSettings--section-title-icon svg {
+    width: 100%;
+    height: 100%;
+
+    fill: #6f6f6f;
+}
+
+/*---------------------------- DIVIDER ----------------------------*/
+
+.E_PageSectionSettings--divider {
+    margin: 16px auto;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: #d7d7d7;
+}
+
+@-webkit-keyframes E_PageSectionSettings--pointer-events-none {
+    from { pointer-events: all; }
+    to { pointer-events: none; }
+}
+
+@-moz-keyframes E_PageSectionSettings--pointer-events-none {
+    from { pointer-events: all; }
+    to { pointer-events: none; }
+}
+
+@-o-keyframes E_PageSectionSettings--pointer-events-none {
+    from { pointer-events: all; }
+    to { pointer-events: none; }
+}
+
+@keyframes E_PageSectionSettings--pointer-events-none {
+    from { pointer-events: all; }
+    to { pointer-events: none; }
 }
 
 
@@ -29160,6 +29242,580 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
 
 
 /*====================================================================*/
+/*------------------------ PAGESECTIONFEATURE ------------------------*/
+/*====================================================================*/
+
+.P_PageSectionFeature .P_PageSection--content-wrapper {
+	display: table-cell;
+    vertical-align: bottom;
+}
+
+.P_PageSectionFeature__top .P_PageSection--content-wrapper, .P_PageSectionFeature__bottom .P_PageSection--content-wrapper {
+	text-align: center;
+}
+
+.P_PageSectionFeature--text {
+    width: 50%;
+
+	display: inline-block;
+}
+
+.P_PageSectionFeature--image {
+    width: 50%;
+
+	display: inline-block;
+}
+
+.P_PageSectionFeature .P_PageSection--buttons {
+    margin-bottom: -16px;
+}
+
+[class*="P_PageSectionFeature__right"] .P_PageSectionFeature--text {
+    padding-left: 44px;
+}
+
+[class*="P_PageSectionFeature__right"] .P_PageSectionFeature--image {
+    padding-right: 44px;
+}
+
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--text {
+    padding-right: 44px;
+}
+
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--image {
+    padding-left: 44px;
+}
+
+.P_PageSectionFeature__right-center .P_PageSection--content-wrapper > *, .P_PageSectionFeature__left-center .P_PageSection--content-wrapper > * {
+    vertical-align: middle;
+}
+
+.P_PageSectionFeature__right-top .P_PageSection--content-wrapper > *, .P_PageSectionFeature__left-top .P_PageSection--content-wrapper > * {
+    vertical-align: top;
+}
+
+.P_PageSectionFeature__right-bottom .P_PageSection--content-wrapper > *, .P_PageSectionFeature__left-bottom .P_PageSection--content-wrapper > * {
+    vertical-align: bottom;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--text, [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--image, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--text, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--image {
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 85.627%;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--text {
+    padding-bottom: 44px;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--image {
+    padding-top: 44px;
+}
+
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--text {
+    padding-top: 44px;
+}
+
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--image {
+    padding-bottom: 44px;
+}
+
+[class*="P_PageSectionFeature__left"] .P_PageSection--buttons, [class*="P_PageSectionFeature__right"] .P_PageSection--buttons {
+    text-align: left;
+
+    margin-left: -16px;
+    margin-right: 0;
+}
+
+
+.P_PageSection--content-wrapper.has-empty-texts.has-no-button:not(.has-active-texts) .P_PageSectionFeature--text {
+    padding: 0;
+}
+
+.P_PageSection--content-wrapper.has-empty-texts.has-no-button:not(.has-active-texts) .P_PageSectionFeature--image {
+    padding: 0;
+}
+
+[class*="P_PageSectionFeature__left"] .P_PageSection--buttons-wrapper, [class*="P_PageSectionFeature__right"] .P_PageSection--buttons-wrapper {
+    text-align: left;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.P_PageSectionFeature .P_PageElementText ol {
+    list-style-type: decimal;
+}
+
+.P_PageSectionFeature .P_PageElementText ul {
+    list-style-type: square;
+}
+
+.P_roundness-20 .P_PageSectionFeature .P_PageElementText ul, .P_roundness-30 .P_PageSectionFeature .P_PageElementText ul {
+    list-style-type: disc;
+}
+
+/**Minimální velikost .P_PageElementText -> kvůli animaci*/
+/*font-size krát line-height*/
+.P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    min-height: -webkit-calc((34px + (41 - 34) * (100vw - 320px) / (1440 - 320)) * 1.46);
+    min-height: -moz-calc((34px + (41 - 34) * (100vw - 320px) / (1440 - 320)) * 1.46);
+    min-height: calc((34px + (41 - 34) * (100vw - 320px) / (1440 - 320)) * 1.46);
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    min-height: -webkit-calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 2.11);
+    min-height: -moz-calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 2.11);
+    min-height: calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 2.11);
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        min-height: -webkit-calc(41px * 1.46);
+        min-height: -moz-calc(41px * 1.46);
+        min-height: calc(41px * 1.46);
+    }
+
+    .P_PageSectionFeature .P_PageSectionFeature--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        min-height: -webkit-calc(19px * 2.11);
+        min-height: -moz-calc(19px * 2.11);
+        min-height: calc(19px * 2.11);
+    }
+}
+
+/***************/
+
+.P_PageSectionFeature--text, .P_PageSectionFeature--image, .P_PageSectionFeature--title, .P_PageSectionFeature--content, .P_PageSectionFeature--title .P_PageElement, .P_PageSectionFeature--content .P_PageElement, .P_PageSectionFeature .P_PageSection--buttons, .P_PageSectionFeature .P_PageSection--buttons-wrapper {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition-property: margin, font-size, line-height, width, height, padding;
+    -moz-transition-property: margin, font-size, line-height, width, height, padding;
+    -o-transition-property: margin, font-size, line-height, width, height, padding;
+    transition-property: margin, font-size, line-height, width, height, padding;
+}
+
+.P_PageSectionFeature .P_PageElementText ul, .P_PageSectionFeature .P_PageElementText ol, .P_PageSectionFeature .P_PageElementText p, .P_PageSectionFeature .P_PageElementText h2 {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition-property: margin, padding;
+    -moz-transition-property: margin, padding;
+    -o-transition-property: margin, padding;
+    transition-property: margin, padding;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--title, .P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement, .P_PageSectionFeature .P_PageSectionFeature--title .P_font-title {
+    font-size: 41px;
+    font-size: -webkit-calc(34px + (41 - 34) * (100vw - 320px) / (1440 - 320));
+    font-size: -moz-calc(34px + (41 - 34) * (100vw - 320px) / (1440 - 320));
+    font-size: calc(34px + (41 - 34) * (100vw - 320px) / (1440 - 320));
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement), .P_PageSectionFeature .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) {
+    font-size: 0;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement, .P_PageSectionFeature .P_PageSectionFeature--title .P_font-title {
+    line-height: 1.46;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement, .P_PageSectionFeature .P_PageSectionFeature--title .P_font-title {
+        font-size: 41px;
+    }
+
+}
+
+.P_PageSectionFeature--title:not(.has-empty-PageElement), .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement {
+    margin-bottom: 0.585em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement, .P_PageSectionFeature .P_PageSectionFeature--content .P_font-body {
+    font-size: 19px;
+    font-size: -webkit-calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    font-size: -moz-calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    font-size: calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement, .P_PageSectionFeature .P_PageSectionFeature--content .P_font-body {
+    line-height: 2.11;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement, .P_PageSectionFeature .P_PageSectionFeature--content .P_font-body {
+        font-size: 19px;
+    }
+
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ol, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ul {
+    line-height: 1.79;
+
+    margin-top: 0.421em;
+    margin-bottom: 0.421em;
+
+    padding-left: 40px;
+
+    counter-reset: list-item;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ol, [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ul, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ol, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ul {
+    text-align: center;
+
+    padding-right: 40px;
+
+    overflow: hidden;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ol + ol, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ol + ul, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ul + ul, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ul + ol {
+    margin-top: 1.053em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement li {
+    padding-left: 12px;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement li, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement li {
+    text-align: left;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 12px;
+
+    display: table;
+
+    counter-increment: list-item;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ol li:before, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ol li:before {
+    content: counter(list-item) ". ";
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ul li:before, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ul li:before {
+    content: "• ";
+}
+
+@supports ((display: -webkit-flex) or (display: flex)) {
+
+    [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ul, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ul, [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ol, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ol {
+        margin-left: auto;
+        margin-right: auto;
+
+        display: -webkit-box;
+
+        display: -webkit-flex;
+
+        display: -moz-box;
+
+        display: -ms-flexbox;
+
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+           -moz-box-orient: vertical;
+           -moz-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+
+    [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement li, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement li {
+        padding: 0;
+
+        display: list-item;
+    }
+
+    [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement li:before, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement li:before {
+        display: none;
+    }
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement li {
+    margin-bottom: 0.632em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 {
+    font-size: 23px;
+    font-size: -webkit-calc(19px + (23 - 19) * (100vw - 320px) / (1440 - 320));
+    font-size: -moz-calc(19px + (23 - 19) * (100vw - 320px) / (1440 - 320));
+    font-size: calc(19px + (23 - 19) * (100vw - 320px) / (1440 - 320));
+    line-height: 1.78;
+    font-weight: 500;
+
+    margin-bottom: 0.87em;
+    margin-top: 0.87em;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 {
+        font-size: 23px;
+    }
+
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement {
+    margin-bottom: 1.176em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ p {
+    font-size: 17px;
+    font-size: -webkit-calc(14px + (17 - 14) * (100vw - 320px) / (1440 - 320));
+    font-size: -moz-calc(14px + (17 - 14) * (100vw - 320px) / (1440 - 320));
+    font-size: calc(14px + (17 - 14) * (100vw - 320px) / (1440 - 320));
+    line-height: 1.88;
+    font-weight: normal;
+
+    margin-top: 0.941em;
+    margin-bottom: 0.941em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul {
+    margin-top: 0.235em;
+    margin-bottom: 0.235em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol + ol, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol + ul, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul + ul, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul + ol {
+    margin-top: 0.941em;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ p {
+        font-size: 17px;
+    }
+
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul {
+    margin-top: 0.235em;
+    margin-bottom: 0.235em;
+}
+
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol li, .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul li {
+    margin-bottom: 0.706em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElementText > *:first-child {
+    margin-top: 0;
+}
+
+/*********/
+/*---------------------------- UNDERLINE ----------------------------*/
+
+.P_underline-titles [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title .P_PageElementText--underline:before, .P_underline-titles [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title .P_PageElementText--underline:before {
+    right: auto;
+    left: 0;
+}
+
+.P_underline-titles [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title .P_PageElementText--underline, .P_underline-titles [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title .P_PageElementText--underline {
+    right: auto;
+    left: 0;
+    -webkit-transform: none;
+       -moz-transform: none;
+        -ms-transform: none;
+         -o-transform: none;
+            transform: none;
+}
+
+/*FONT - 3*/
+
+.P_underline-titles.P_font-type-3 .P_PageSectionFeature--title .P_PageElementText--underline, .P_underline-titles.P_font-type-3 .P_PageSectionFeature--title .P_PageElementText--underline {
+    height: 0.07em;
+
+    width: 32%;
+    max-width: 88px;
+}
+
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText, .P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 16px;
+}
+
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText--underline, .P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText--underline {
+    bottom: -0.1em;
+}
+
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText, .P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 16px;
+}
+
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText, .P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 20px;
+}
+
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title:nth-of-type(1n) .P_PageElementText--underline:after, .P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title:nth-of-type(1n) .P_PageElementText--underline-element, .P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title:nth-of-type(1n) .P_PageElementText--underline:after, .P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title:nth-of-type(1n) .P_PageElementText--underline-element {
+    display: none;
+}
+
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title .P_PageElementText--underline:before, .P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title .P_PageElementText--underline:before {
+    width: 50%;
+    max-width: 96px;
+}
+
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText, .P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 16px;
+}
+
+/*---------------------------- ADD BUTTONS ----------------------------*/
+
+/*buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__left"] .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__right"] .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    left: -4px;
+}
+
+/*content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -28px;
+    left: 48px;
+}
+
+/*title - ne | content - ne -> content*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate, [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate {
+    margin-left: 52px;
+}
+
+/*title - ne | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -28px;
+    left: 100px;
+}
+
+/*title - ne -> title*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*content - ne -> content*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -52px;
+    left: 48px;
+}
+
+/*title - ne | content - ne -> content*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate {
+    margin-left: 0px;
+}
+
+/*title - ne | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -56px;
+    left: 40px;
+}
+
+/*content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: 12px;
+}
+
+/*title - ne | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: 16px;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, .P_PageSectionFeature .P_PageSectionFeature--content.has-empty-PageElement.has-active-PageElement ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -16px;
+}
+
+/*title - ne -> title*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -36px;
+    margin-left: -52px;
+}
+
+/*title - ne -> title*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: 36px;
+}
+
+/*title - ne | content - ano -> title*/
+.has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, .has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, .has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, .has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-left: 0px;
+}
+
+/*title - ne | content - ano -> title*/
+[class*="P_PageSectionFeature__left"] .has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, [class*="P_PageSectionFeature__right"] .has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, [class*="P_PageSectionFeature__left"] .has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, [class*="P_PageSectionFeature__right"] .has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -24px;
+}
+
+/*content - ne -> content*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -36px;
+}
+
+/*title - ano | content - ne -> content*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate, [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*title - ano | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -28px;
+}
+
+/*title - ano | content - ano | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement.has-active-PageElement ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content.has-empty-PageElement.has-active-PageElement ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -16px;
+}
+
+/*title - ano | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    left: 40px;
+}
+
+/*content - ne -> content*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: 36px;
+}
+
+/*title - ano - content - ne -> content*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate {
+    margin-top: 0px;
+}
+
+/*title - ano - buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -20px;
+}
+
+/*title - ano | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button, [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    left: 40px;
+}
+
+/*title - ne | content - ano -> title*/
+[class*="P_PageSectionFeature__bottom"] .has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, [class*="P_PageSectionFeature__bottom"] .has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -24px;
+}
+
+/*buttons - ne -> title*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeature--title.has-empty-PageElement .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*buttons - ne -> content*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeature--content.has-empty-PageElement .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*//////////////////////////// ADD BUTTONS ////////////////////////////*/
+
+/*====================================================================*/
 /*------------------------ PAGESECTIONHEADER -------------------------*/
 /*====================================================================*/
 
@@ -29291,7 +29947,7 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
     font-size: -moz-calc(34px + (73 - 34) * (100vw - 320px) / (1440 - 320));
     font-size: calc(34px + (73 - 34) * (100vw - 320px) / (1440 - 320));
     line-height: 1.36;
-    font-weight: normal;
+    font-weight: 300;
 }
 
 .P_PageSectionHeader .P_PageSectionHeader--title .P_PageElement .scale-4, .P_PageSectionHeader .P_PageSectionHeader--title .scale-4.P_font-title, .P_PageSectionHeader .P_PageSectionHeader--title .P_PageElement .scale-3, .P_PageSectionHeader .P_PageSectionHeader--title .scale-3.P_font-title, .P_PageSectionHeader .P_PageSectionHeader--title .P_PageElement .scale-2, .P_PageSectionHeader .P_PageSectionHeader--title .scale-2.P_font-title {

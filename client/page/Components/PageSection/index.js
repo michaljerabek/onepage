@@ -70,6 +70,8 @@
      * obsah (kromě BackgroundImage) by měl být zabalen do elementu "P_PageSection--center". Samotný obsah by pak měl být v "P_PageSection--content-wrapper" (přidává padding, pokud je obsah vycenrovaný).
      **/
 
+    var outlineSpectra = Ractive.EDIT_MODE ? Spectra("#ef6737") : null;
+
     return Ractive.extend({
 
         PAGE_SECTION: true,
@@ -156,8 +158,6 @@
                 }.bind(this));
 
                 //změnit barvu outlinu podle barvy pozadí
-                this.outlineSpectra = Spectra("#ef6737");
-
                 this.observe("section.backgroundColor section.defaultColors.backgroundColor", function () {
 
                     clearTimeout(this.backgroundColorTimeout);
@@ -166,18 +166,12 @@
 
                         var bg = this.get("section.backgroundColor") || this.get("section.defaultColors.backgroundColor");
 
-                        this.set("changeOutlineColor", bg && this.outlineSpectra.near(Spectra(bg), 50));
+                        this.set("changeOutlineColor", bg && outlineSpectra.near(Spectra(bg), 50));
 
                     }.bind(this), 100);
                 });
 
                 if (on.client) {
-
-                    this.observe("section.layout", function (layout) {
-                        this.forEachPageElement(function () {
-                            this.fire("layoutChanged", layout);
-                        });
-                    }, {init: false, defer: true});
 
                     EventEmitter.on("removeLang.PageSection." + this.get("section.internalId"), this.removeLang.bind(this));
                     EventEmitter.on("langChanged.Page." + this.get("section.internalId"), function (e, lang, editMode) {
@@ -311,6 +305,43 @@
 
                 this.initEditUI();
 
+                if (on.client) {
+
+                    this.observe("section.layout", function (layout) {
+
+                        this.forEachPageElement(function () {
+
+                            this.fire("layoutChanged", layout);
+                        });
+
+                        this.layoutObserverTimeout = setTimeout(function() {
+
+                            this.forEachPageElement(function () {
+
+                                this.set("stopTransition", false);
+                            });
+
+                            this.changingLayout = false;
+
+                        }.bind(this), 0);
+
+                    }, {init: false, defer: true});
+
+                    this.observe("section.layout", function (layout) {
+
+                        clearInterval(this.layoutObserverTimeout);
+
+                        this.changingLayout = true;
+
+                        this.forEachPageElement(function () {
+
+                            this.set("stopTransition", true);
+
+                        });
+
+                    }, {init: false});
+                }
+
                 this.get$SectionElement()
                     .on("dragenter.PageSection", function (event) {
 
@@ -437,6 +468,7 @@
 
         superOnteardown: function () {
 
+            clearInterval(this.layoutObserverTimeout);
             clearTimeout(this.backgroundColorTimeout);
 
             this.off("PageSectionSettings.closeThisSettings");

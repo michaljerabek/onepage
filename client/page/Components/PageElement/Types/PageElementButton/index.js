@@ -131,6 +131,7 @@
                         this.skipTextObserver = false;
 
                     }.bind(this));
+
                 }
             }
         },
@@ -236,16 +237,16 @@
                 this.balanceText(400);
             }, {init: false});
 //
-//            this.typeObserver = this.observe("element.type", function () {
-//
-//                if (this.removing) {
-//
-//                    return;
-//                }
-//
-//                this.setIcon(this.get("element.link"));
-//
-//            }, {init: false});
+            this.typeObserver = this.observe("element.type", function () {
+
+                if (this.removing) {
+
+                    return;
+                }
+
+                this.setIcon(this.get("element.link"));
+
+            }, {init: false});
 
             this.addToCartObserver = this.observe("element.addToCart", function () {
 

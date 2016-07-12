@@ -14,7 +14,7 @@
     "
     on-hover="@this.handleHover(event)"
     id="{{.id}}"
-    intro-outro="{{#if @this.Page.get('loaded')}}attr{{/if}}"
+    intro-outro="{{#if @this.Page.get('loaded') && !~/stopTransition}}attr{{/if}}"
 >
 
     {{#if .editMode}}

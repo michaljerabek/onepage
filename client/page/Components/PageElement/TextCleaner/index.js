@@ -180,6 +180,12 @@
         }
     };
 
+    TextCleaner.destroy = function () {
+
+        clearTimeout(this.fixTextTimeout);
+        clearTimeout(this.fixSpansTimeout);
+    };
+
     return TextCleaner;
 
 }));

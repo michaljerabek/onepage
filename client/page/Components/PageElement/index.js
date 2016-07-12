@@ -188,7 +188,9 @@
             return {
                 hover: false,
                 editMode: Ractive.EDIT_MODE,
-                openPageElementSettings: null
+                openPageElementSettings: null,
+
+                stopTransition: false
             };
         },
 
@@ -229,6 +231,11 @@
                     if (this.COLORABLE) {
 
                         this.initColorRefs();
+                    }
+
+                    if (this.PageSection.changingLayout) {
+
+                        this.set("stopTransition", true);
                     }
                 }
             }
@@ -332,10 +339,12 @@
 
                         this.observe("state", function (state) {
 
-                            this.$self.closest(this.stateToParent)[state === "active" ? "addClass" : "removeClass"](this.CLASS.activeParent);
+                            this.stateToParent.split(",").forEach(function (className) {
+                                this.$self.closest(className)[state === "active" ? "addClass" : "removeClass"](this.CLASS.activeParent);
+                            }.bind(this));
                         });
-
                     }
+
                 }
 
                 if (this.isEmpty) {
@@ -349,7 +358,9 @@
 
             if (this.$self && this.stateToParent) {
 
-                this.$self.closest(this.stateToParent)[state ? "addClass" : "removeClass"](this.CLASS.emptyParent);
+                this.stateToParent.split(",").forEach(function (className) {
+                    this.$self.closest(className)[state ? "addClass" : "removeClass"](this.CLASS.emptyParent);
+                }.bind(this));
             }
         },
 
@@ -509,6 +520,10 @@
 
         superOncomplete: function () {
 
+            if (Ractive.EDIT_MODE && on.client) {
+
+                this.set("stopTransition", false);
+            }
         },
 
         superOnteardown: function () {

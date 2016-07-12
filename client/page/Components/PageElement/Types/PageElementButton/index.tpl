@@ -11,7 +11,7 @@
         {{#if .element.fill}}background-color: {{.element.color || .color || .defaultColors.specialColor}};{{/if}}
     "
     on-enter-tap="@this.action(event, .editMode)"
-    intro-outro="{{#if .editMode && @this.Page.get('loaded')}}slidevh{{/if}}"
+    intro-outro="{{#if .editMode && @this.Page.get('loaded') && !~/stopTransition}}slidevh{{/if}}"
     tabindex="0"
  >
 
@@ -24,7 +24,7 @@
             <span class="
                     P_PageElementButton--icon P_PageElementButton--icon__svg
                 "
-                intro-outro="{{#if .editMode && @this.Page.get('loaded')}}attr{{/if}}"
+                intro-outro="{{#if .editMode && @this.Page.get('loaded') && !~/stopTransition}}attr{{/if}}"
                 style="
                     {{#if .element.fill}}
                         color: {{.element.userTextColor || .element.textColor || .element.color || .color || .defaultColors.specialColor}};

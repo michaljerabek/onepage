@@ -1,0 +1,621 @@
+/*====================================================================*/
+/*------------------------ PAGESECTIONFEATURE ------------------------*/
+/*====================================================================*/
+
+.P_PageSectionFeature .P_PageSection--content-wrapper {
+	display: table-cell;
+    vertical-align: bottom;
+}
+
+.P_PageSectionFeature__top .P_PageSection--content-wrapper,
+.P_PageSectionFeature__bottom .P_PageSection--content-wrapper {
+	text-align: center;
+}
+
+.P_PageSectionFeature--text {
+    width: 50%;
+
+	display: inline-block;
+}
+
+.P_PageSectionFeature--image {
+    width: 50%;
+
+	display: inline-block;
+}
+
+.P_PageSectionFeature .P_PageSection--buttons {
+    margin-bottom: -16px;
+}
+
+[class*="P_PageSectionFeature__right"] .P_PageSectionFeature--text {
+    padding-left: 44px;
+}
+
+[class*="P_PageSectionFeature__right"] .P_PageSectionFeature--image {
+    padding-right: 44px;
+}
+
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--text {
+    padding-right: 44px;
+}
+
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--image {
+    padding-left: 44px;
+}
+
+.P_PageSectionFeature__right-center .P_PageSection--content-wrapper > *,
+.P_PageSectionFeature__left-center .P_PageSection--content-wrapper > * {
+    vertical-align: middle;
+}
+
+.P_PageSectionFeature__right-top .P_PageSection--content-wrapper > *,
+.P_PageSectionFeature__left-top .P_PageSection--content-wrapper > * {
+    vertical-align: top;
+}
+
+.P_PageSectionFeature__right-bottom .P_PageSection--content-wrapper > *,
+.P_PageSectionFeature__left-bottom .P_PageSection--content-wrapper > * {
+    vertical-align: bottom;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--text,
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--image,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--text,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--image {
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 85.627%;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--text {
+    padding-bottom: 44px;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--image {
+    padding-top: 44px;
+}
+
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--text {
+    padding-top: 44px;
+}
+
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--image {
+    padding-bottom: 44px;
+}
+
+[class*="P_PageSectionFeature__left"] .P_PageSection--buttons,
+[class*="P_PageSectionFeature__right"] .P_PageSection--buttons {
+    text-align: left;
+
+    margin-left: -16px;
+    margin-right: 0;
+}
+
+
+.P_PageSection--content-wrapper.has-empty-texts.has-no-button:not(.has-active-texts) .P_PageSectionFeature--text {
+    padding: 0;
+}
+
+.P_PageSection--content-wrapper.has-empty-texts.has-no-button:not(.has-active-texts) .P_PageSectionFeature--image {
+    padding: 0;
+}
+
+[class*="P_PageSectionFeature__left"] .P_PageSection--buttons-wrapper,
+[class*="P_PageSectionFeature__right"] .P_PageSection--buttons-wrapper {
+    text-align: left;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.P_PageSectionFeature .P_PageElementText ol {
+    list-style-type: decimal;
+}
+
+.P_PageSectionFeature .P_PageElementText ul {
+    list-style-type: square;
+}
+
+.P_roundness-20 .P_PageSectionFeature .P_PageElementText ul,
+.P_roundness-30 .P_PageSectionFeature .P_PageElementText ul {
+    list-style-type: disc;
+}
+
+/**Minimální velikost .P_PageElementText -> kvůli animaci*/
+/*font-size krát line-height*/
+.P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    min-height: calc((34px + (41 - 34) * (100vw - 320px) / (1440 - 320)) * 1.46);
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    min-height: calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 2.11);
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        min-height: calc(41px * 1.46);
+    }
+
+    .P_PageSectionFeature .P_PageSectionFeature--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        min-height: calc(19px * 2.11);
+    }
+}
+
+/***************/
+
+.P_PageSectionFeature--text,
+.P_PageSectionFeature--image,
+.P_PageSectionFeature--title,
+.P_PageSectionFeature--content,
+.P_PageSectionFeature--title .P_PageElement,
+.P_PageSectionFeature--content .P_PageElement,
+.P_PageSectionFeature .P_PageSection--buttons,
+.P_PageSectionFeature .P_PageSection--buttons-wrapper {
+    transition: all 0.3s ease-in-out;
+    transition-property: margin, font-size, line-height, width, height, padding;
+}
+
+.P_PageSectionFeature .P_PageElementText ul,
+.P_PageSectionFeature .P_PageElementText ol,
+.P_PageSectionFeature .P_PageElementText p,
+.P_PageSectionFeature .P_PageElementText h2 {
+    transition: all 0.3s ease-in-out;
+    transition-property: margin, padding;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--title,
+.P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement,
+.P_PageSectionFeature .P_PageSectionFeature--title .P_font-title {
+    font-size: 41px;
+    font-size: calc(34px + (41 - 34) * (100vw - 320px) / (1440 - 320));
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement),
+.P_PageSectionFeature .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) {
+    font-size: 0;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement,
+.P_PageSectionFeature .P_PageSectionFeature--title .P_font-title {
+    line-height: 1.46;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement,
+    .P_PageSectionFeature .P_PageSectionFeature--title .P_font-title {
+        font-size: 41px;
+    }
+
+}
+
+.P_PageSectionFeature--title:not(.has-empty-PageElement),
+.P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement {
+    margin-bottom: 0.585em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_font-body {
+    font-size: 19px;
+    font-size: calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_font-body {
+    line-height: 2.11;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement,
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_font-body {
+        font-size: 19px;
+    }
+
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ol,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ul {
+    line-height: 1.79;
+
+    margin-top: 0.421em;
+    margin-bottom: 0.421em;
+
+    padding-left: 40px;
+
+    counter-reset: list-item;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ol,
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ul,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ol,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ul {
+    text-align: center;
+
+    padding-right: 40px;
+
+    overflow: hidden;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ol + ol,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ol + ul,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ul + ul,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement ul + ol {
+    margin-top: 1.053em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement li {
+    padding-left: 12px;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement li,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement li {
+    text-align: left;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 12px;
+
+    display: table;
+
+    counter-increment: list-item;
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ol li:before,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ol li:before {
+    content: counter(list-item) ". ";
+}
+
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ul li:before,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ul li:before {
+    content: "• ";
+}
+
+@supports (display: flex) {
+
+    [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ul,
+    [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ul,
+    [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement ol,
+    [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement ol {
+        margin-left: auto;
+        margin-right: auto;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement li,
+    [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement li {
+        padding: 0;
+
+        display: list-item;
+    }
+
+    [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content .P_PageElement li:before,
+    [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content .P_PageElement li:before {
+        display: none;
+    }
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement li {
+    margin-bottom: 0.632em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 {
+    font-size: 23px;
+    font-size: calc(19px + (23 - 19) * (100vw - 320px) / (1440 - 320));
+    line-height: 1.78;
+    font-weight: 500;
+
+    margin-bottom: 0.87em;
+    margin-top: 0.87em;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 {
+        font-size: 23px;
+    }
+
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement {
+    margin-bottom: 1.176em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ p {
+    font-size: 17px;
+    font-size: calc(14px + (17 - 14) * (100vw - 320px) / (1440 - 320));
+    line-height: 1.88;
+    font-weight: normal;
+
+    margin-top: 0.941em;
+    margin-bottom: 0.941em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul {
+    margin-top: 0.235em;
+    margin-bottom: 0.235em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol + ol,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol + ul,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul + ul,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul + ol {
+    margin-top: 0.941em;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol,
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul,
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ p {
+        font-size: 17px;
+    }
+
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul {
+    margin-top: 0.235em;
+    margin-bottom: 0.235em;
+}
+
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ol li,
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement h2 ~ ul li {
+    margin-bottom: 0.706em;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElementText > *:first-child {
+    margin-top: 0;
+}
+
+/*********/
+/*---------------------------- UNDERLINE ----------------------------*/
+
+.P_underline-titles [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title .P_PageElementText--underline:before,
+.P_underline-titles [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title .P_PageElementText--underline:before {
+    right: auto;
+    left: 0;
+}
+
+.P_underline-titles [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title .P_PageElementText--underline,
+.P_underline-titles [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title .P_PageElementText--underline {
+    right: auto;
+    left: 0;
+    transform: none;
+}
+
+/*FONT - 3*/
+
+.P_underline-titles.P_font-type-3 .P_PageSectionFeature--title .P_PageElementText--underline,
+.P_underline-titles.P_font-type-3 .P_PageSectionFeature--title .P_PageElementText--underline {
+    height: 0.07em;
+
+    width: 32%;
+    max-width: 88px;
+}
+
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText,
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 16px;
+}
+
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText--underline,
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText--underline {
+    bottom: -0.1em;
+}
+
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText,
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 16px;
+}
+
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText,
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 20px;
+}
+
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title:nth-of-type(1n) .P_PageElementText--underline:after,
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title:nth-of-type(1n) .P_PageElementText--underline-element,
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title:nth-of-type(1n) .P_PageElementText--underline:after,
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title:nth-of-type(1n) .P_PageElementText--underline-element {
+    display: none;
+}
+
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title .P_PageElementText--underline:before,
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title .P_PageElementText--underline:before {
+    width: 50%;
+    max-width: 96px;
+}
+
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText,
+.P_underline-titles.P_font-type-1 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 16px;
+}
+
+/*---------------------------- ADD BUTTONS ----------------------------*/
+
+/*buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__left"] .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__right"] .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    left: -4px;
+}
+
+/*content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__right"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -28px;
+    left: 48px;
+}
+
+/*title - ne | content - ne -> content*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate,
+[class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate {
+    margin-left: 52px;
+}
+
+/*title - ne | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -28px;
+    left: 100px;
+}
+
+/*title - ne -> title*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+[class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*content - ne -> content*/
+[class*="P_PageSectionFeature__left"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+[class*="P_PageSectionFeature__right"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -52px;
+    left: 48px;
+}
+
+/*title - ne | content - ne -> content*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate {
+    margin-left: 0px;
+}
+
+/*title - ne | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -56px;
+    left: 40px;
+}
+
+/*content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: 12px;
+}
+
+/*title - ne | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: 16px;
+}
+
+.P_PageSectionFeature .P_PageSectionFeature--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+.P_PageSectionFeature .P_PageSectionFeature--content.has-empty-PageElement.has-active-PageElement ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -16px;
+}
+
+/*title - ne -> title*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -36px;
+    margin-left: -52px;
+}
+
+/*title - ne -> title*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: 36px;
+}
+
+/*title - ne | content - ano -> title*/
+.has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+.has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+.has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+.has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-left: 0px;
+}
+
+/*title - ne | content - ano -> title*/
+[class*="P_PageSectionFeature__left"] .has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+[class*="P_PageSectionFeature__right"] .has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+[class*="P_PageSectionFeature__left"] .has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+[class*="P_PageSectionFeature__right"] .has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -24px;
+}
+
+/*content - ne -> content*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -36px;
+}
+
+/*title - ano | content - ne -> content*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate,
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*title - ano | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -28px;
+}
+
+/*title - ano | content - ano | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement.has-active-PageElement ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content.has-empty-PageElement.has-active-PageElement ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -16px;
+}
+
+/*title - ano | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    left: 40px;
+}
+
+/*content - ne -> content*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: 36px;
+}
+
+/*title - ano - content - ne -> content*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate {
+    margin-top: 0px;
+}
+
+/*title - ano - buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    top: -20px;
+}
+
+/*title - ano | content - ne | buttons - ne -> buttons*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+    left: 40px;
+}
+
+/*title - ne | content - ano -> title*/
+[class*="P_PageSectionFeature__bottom"] .has-active-content .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+[class*="P_PageSectionFeature__bottom"] .has-content-not-title .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -24px;
+}
+
+/*buttons - ne -> title*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeature--title.has-empty-PageElement .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*buttons - ne -> content*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeature--content.has-empty-PageElement .E_PageElement--activate {
+    margin-top: -8px;
+}
+
+/*//////////////////////////// ADD BUTTONS ////////////////////////////*/

@@ -125,7 +125,7 @@
     font-size: 73px;
     font-size: calc(34px + (73 - 34) * (100vw - 320px) / (1440 - 320));
     line-height: 1.36;
-    font-weight: normal;
+    font-weight: 300;
 }
 
 .P_PageSectionHeader .P_PageSectionHeader--title .P_PageElement .scale-4,
