@@ -969,6 +969,16 @@
                     this.set("section." + paths[p] + "." + lang, data[copyLang]);
                 }
             }
+        },
+        
+        findSectionImages: function () {
+            
+            var logo = this.Page.get("page.sections.0.menu.image");
+            
+            return [{
+                src: logo,
+                name: "Logo"
+            }];
         }
     });
 

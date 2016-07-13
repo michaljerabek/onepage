@@ -1,7 +1,7 @@
 <div class="E_PageSectionSettings--transition-wrapper">
 {{#if ~/openPageSectionSettings === 'colors'}}
 
-    {{> ColorSettings}}
+    {{> ColorSettings }}
 
 {{/if}}
 </div>

@@ -164,6 +164,23 @@
             paths = paths.concat(["title", "content"]);
 
             return paths;
+        },
+        
+        findSectionImages: function () {
+            
+            var images = PageSection.prototype.findSectionImages.apply(this),
+                
+                image = this.get("section.image.src");
+            
+            if (image) {
+                
+                images.unshift({
+                    src: image,
+                    name: this.get("section.image.alt") || decodeURIComponent(image).split("/").pop().replace(/[0-9]+-/, "")
+                });
+            }
+            
+            return images;
         }
 
     });
