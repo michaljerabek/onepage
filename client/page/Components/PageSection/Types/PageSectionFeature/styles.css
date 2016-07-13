@@ -19,12 +19,17 @@
 }
 
 .P_PageSectionFeature--image {
+    text-align: center;
+    font-size: 0;
+    line-height: 0;
+
     width: 50%;
 
 	display: inline-block;
 }
 
 .P_PageSectionFeature .P_PageSection--buttons {
+    margin-top: -16px;
     margin-bottom: -16px;
 }
 
@@ -97,11 +102,26 @@
 
 
 .P_PageSection--content-wrapper.has-empty-texts.has-no-button:not(.has-active-texts) .P_PageSectionFeature--text {
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .P_PageSection--content-wrapper.has-empty-texts.has-no-button:not(.has-active-texts) .P_PageSectionFeature--image {
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.P_PageSectionFeature .P_PageSection--content-wrapper:not(.has-active-image) .P_PageSectionFeature--image__empty {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.P_PageSectionFeature .P_PageSection--content-wrapper:not(.has-active-image) .P_PageSectionFeature--image__empty ~ .P_PageSectionFeature--text {
+    padding-top: 0;
+}
+
+.has-no-image:not(.has-active-image) .P_PageSectionFeature--text {
+    padding-bottom: 0;
 }
 
 [class*="P_PageSectionFeature__left"] .P_PageSection--buttons-wrapper,
@@ -110,6 +130,17 @@
 
     margin-left: 0;
     margin-right: 0;
+}
+
+.P_PageSectionFeature--image .P_PageElement {
+    max-width: 100%;
+}
+
+.P_PageElementImage--image-wrapper {
+    min-width: 100%;
+    height: 100%;
+
+    display: inline-block;
 }
 
 .P_PageSectionFeature .P_PageElementText ol {
@@ -381,6 +412,17 @@
     margin-top: 0;
 }
 
+.P_PageSectionFeature .P_PageSection--content-wrapper:not(.has-empty-texts) .P_PageSection--buttons,
+.P_PageSectionFeature .has-empty-texts.has-active-texts .P_PageSection--buttons.P_PageSection--buttons {
+    margin-top: -8px;
+}
+
+/*title - ano | content - ne | buttons - ano -> buttons*/
+.P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons,
+.P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons {
+    margin-top: 0;
+}
+
 /*********/
 /*---------------------------- UNDERLINE ----------------------------*/
 
@@ -469,7 +511,7 @@
 /*title - ne | content - ne | buttons - ne -> buttons*/
 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
-    top: -28px;
+    top: -12px;
     left: 100px;
 }
 
@@ -488,7 +530,7 @@
 /*content - ne | buttons - ne -> buttons*/
 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
-    top: -52px;
+    top: -36px;
     left: 48px;
 }
 
@@ -501,7 +543,7 @@
 /*title - ne | content - ne | buttons - ne -> buttons*/
 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
-    top: -56px;
+    top: -40px;
     left: 40px;
 }
 
@@ -512,7 +554,7 @@
 
 /*title - ne | content - ne | buttons - ne -> buttons*/
 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
-    top: 16px;
+    top: 32px;
 }
 
 .P_PageSectionFeature .P_PageSectionFeature--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
@@ -616,6 +658,31 @@
 /*buttons - ne -> content*/
 [class*="P_PageSectionFeature__bottom"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeature--content.has-empty-PageElement .E_PageElement--activate {
     margin-top: -8px;
+}
+
+/*image - ne -> image*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--image .E_PageElement--activate,
+[class*="P_PageSectionFeature__top"]  .P_PageSectionFeature--image .E_PageElement--activate {
+    margin-top: 16px;
+    margin-left: -20px;
+}
+
+/*image - ne -> image*/
+[class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--image .E_PageElement--activate {
+    margin-top: -52px;
+}
+
+/*content - ano | buttons - ne | image - ne -> image*/
+[class*="P_PageSectionFeature__top"] .has-no-button:not(.has-empty-texts):not(.has-title-not-content) .P_PageSectionFeature--image .E_PageElement--activate,
+[class*="P_PageSectionFeature__top"] .has-active-content.has-no-button .P_PageSectionFeature--image .E_PageElement--activate,
+[class*="P_PageSectionFeature__top"] .has-content-not-title.has-no-button .P_PageSectionFeature--image .E_PageElement--activate {
+    left: 56px;
+}
+
+/*content - ano | buttons - ne | image - ne -> image*/
+[class*="P_PageSectionFeature__bottom"] .has-active-content.has-empty-texts .P_PageSectionFeature--image .E_PageElement--activate,
+[class*="P_PageSectionFeature__bottom"] .has-content-not-title .P_PageSectionFeature--image .E_PageElement--activate {
+    left: -56px;
 }
 
 /*//////////////////////////// ADD BUTTONS ////////////////////////////*/

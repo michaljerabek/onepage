@@ -378,7 +378,8 @@
 
     transition:
         top              var(--default-transition-duration) var(--default-transition-easing) 0s,
-        margin-top       var(--default-transition-duration) var(--default-transition-easing) 0s,
+        left             var(--default-transition-duration) var(--default-transition-easing) 0s,
+        margin           var(--default-transition-duration) var(--default-transition-easing) 0s,
         background-color var(--default-transition-duration) var(--default-transition-easing) 0s,
         box-shadow       var(--default-transition-duration) var(--default-transition-easing) 0.3s,
         opacity          var(--default-transition-duration) var(--default-transition-easing) 0.3s;
@@ -389,7 +390,8 @@
 
     transition:
         top              var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
-        margin-top       var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        left             var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        margin           var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         background-color var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         box-shadow       var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         opacity          var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,

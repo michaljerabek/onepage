@@ -12,18 +12,24 @@
             {{#if ~/notTitleContent || (!.section.title[.lang] && .section.content[.lang])}}
                 has-content-not-title
             {{/if}}
-            {{#if !-section.buttons.length}}
+            {{#if !.section.buttons.length}}
                 has-no-button
             {{/if}}
-            {{#if ~/textsActive}}has-active-texts{{/if}}
-            {{#if ~/contentActive}}has-active-content{{/if}}
+            {{#if !.section.image.src}}
+                has-no-image
+            {{/if}}
+            {{#if .editMode}}
+                {{#if ~/imageActive}}has-active-image{{/if}}
+                {{#if ~/textsActive}}has-active-texts{{/if}}
+                {{#if ~/contentActive}}has-active-content{{/if}}
+            {{/if}}
         "
     >
 
         {{#if (.section.layout || "").match(/^right|^bottom/)}}
 
-        <div class="P_PageSectionFeature--image">
-            <img src="http://lorempixel.com/240/240/abstract/10/" alt="">
+        <div class="P_PageSectionFeature--image {{#if !.section.image.src}}P_PageSectionFeature--image__empty{{/if}}">
+            <PageElementImage element="{{.section.image}}" lang="{{~/lang}}" />
         </div>
 
         <div class="P_PageSectionFeature--text">
@@ -115,8 +121,8 @@
         </div>
 
 
-        <div class="P_PageSectionFeature--image">
-            <img src="http://lorempixel.com/240/240/abstract/10/" alt="">
+        <div class="P_PageSectionFeature--image {{#if !.section.image.src}}P_PageSectionFeature--image__empty{{/if}}">
+            <PageElementImage element="{{.section.image}}" lang="{{~/lang}}" />
         </div>
 
         {{/if}}

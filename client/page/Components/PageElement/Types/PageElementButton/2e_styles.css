@@ -60,6 +60,9 @@
     position: absolute;
     top: 24px;
     right: -40px;
+
+    transition: 0.3s ease-in-out;
+    transition-property: margin;
 }
 
 .P_PageSection--buttons__empty .E_PageElementButtons--add-button  {

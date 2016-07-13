@@ -85,7 +85,9 @@
 
         if (currentValue !== inputValue) {
 
-            var caret = TextCleaner.getSelection().endOffset + moveCaret,
+            var selection = TextCleaner.getSelection(),
+
+                caret = selection ? TextCleaner.getSelection().endOffset + moveCaret : 0,
                 element = this.find(":focus");
 
             this.skipTextObserver = true;
@@ -98,13 +100,16 @@
 
                 this.set(path, currentValue);
 
-                try {
+                if (selection) {
 
-                    TextCleaner.setCaretPosition.call(this, element, caret);
+                    try {
 
-                } catch (e) {
+                        TextCleaner.setCaretPosition.call(this, element, caret);
 
-                    TextCleaner.placeCaretAtEnd.call(this, element);
+                    } catch (e) {
+
+                        TextCleaner.placeCaretAtEnd.call(this, element);
+                    }
                 }
 
                 this.skipTextObserver = false;

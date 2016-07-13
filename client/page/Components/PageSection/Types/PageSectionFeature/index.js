@@ -119,6 +119,7 @@
 
                     this.set("textsActive", titleState === "active" || contentState === "active");
                     this.set("contentActive", contentState === "active");
+                    this.set("imageActive", this.findComponent("PageElementImage").get("state") === "active");
 
                 }.bind(this));
             }
