@@ -13,7 +13,7 @@
                 {{/each}}
             </select>
             {{#each .images}}
-                {{#if .src === ~/image}}
+                {{#if .src === ~/image && (!~/selectElement || ~/selectElement.selectedIndex === @index)}}
                     <span class="
                             ColorPickerPalette--title-image
                             {{#if ~/processing}}ColorPickerPalette--title-image__processing{{/if}}

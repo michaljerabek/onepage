@@ -222,7 +222,7 @@
 
     min-width: calc(50% - 20px);
 
-    flex-basis: calc(180px - 20px);
+    flex-basis: calc(240px - 20px);
     flex-grow: 1;
 }
 
@@ -270,6 +270,13 @@
 .E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(2),
 .E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(odd):nth-last-child(1) {
     margin-bottom: 0;
+}
+
+@media (max-width: 560px) {
+
+    .E_PageSectionSettings--sections:not(:last-of-type) .E_PageSectionSettings--section:nth-of-type(even):nth-last-child(1) {
+        margin-top: 20px;
+    }
 }
 
 /*--------------------------------------------------------------------*/

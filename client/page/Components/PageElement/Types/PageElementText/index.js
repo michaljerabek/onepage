@@ -56,7 +56,7 @@
             return {
                 type: "text",
                 hasEditUI: true,
-                balanceText: true,
+                balanceText: false,
                 removeNbsp: true,
                 editor: "content",
                 source: "text"

@@ -1,6 +1,6 @@
 
 {{> Switch {
-        size: "large",
+        size: ~/windowWidth > 767 ? "large" : "small",
         value: "layout.main",
         options: [
             {
@@ -30,7 +30,7 @@
 <div class="E_SectionSettings--layout-div"></div>
 
 {{> Switch {
-        size: "large",
+        size: ~/windowWidth > 767 ? "large" : "small",
         value: "layout.text",
         options: [
             {

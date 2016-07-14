@@ -172,7 +172,10 @@
                 this.checkMenuOverflow();
             }
 
-            this.fixMenu();
+            if (!Ractive.EDIT_MODE && on.client) {
+
+                this.fixMenu();
+            }
 
             this.findActiveLink();
         },
