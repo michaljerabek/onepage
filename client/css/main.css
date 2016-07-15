@@ -38,6 +38,10 @@ body {
     display: table-cell;
 }
 
+#page.E {
+    display: block;
+}
+
 /*---------------------------- CURSOR ----------------------------*/
 
 .cursor-grabbing,

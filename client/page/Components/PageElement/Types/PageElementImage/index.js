@@ -27,7 +27,7 @@
 
     } else {
 
-        root.PageElementButton = factory(
+        root.PageElementImage = factory(
             root.PageElement,
             root.EventEmitter,
             root.Ractive,
@@ -40,18 +40,17 @@
 }(this, function (PageElement, EventEmitter, Ractive, U, partials, on) {
 
     var CLASS = {
-        logoElement: "P_PageElementLogo"
+        imageElement: "P_PageElementImage",
+        imageWrapper: "P_PageElementImage--image-wrapper"
     };
 
     return PageElement.extend({
 
         hasEditor: false,
 
-        MAX_FILESIZE: 0.25,
-        MAX_WIDTH: 512,
-        MAX_HEIGHT: 512,
-
-        MAX_EL_HEIGHT: 40,
+        MAX_FILESIZE: 1,
+        MAX_WIDTH: 2048,
+        MAX_HEIGHT: 2048,
 
         components: {
             PageElementImageBrowser: require("./../../PageElementSettings/Types/PageElementImageBrowser")
@@ -67,8 +66,9 @@
                 forceEditUI: true,
                 activateButton: true,
                 activateIcon: "#icon-add-image",
-                type: "logo",
-                settingsTitle: "Vybrat logo"
+                type: "image",
+                settingsTitle: "Vybrat obrázek",
+                pulseOutline: false
             };
         },
 
@@ -104,25 +104,6 @@
 
                 this.on("*.selectFile", function (event, file) {
 
-                    if (file.width && file.height && (file.width > this.MAX_WIDTH || file.height > this.MAX_HEIGHT)) {
-
-                        this.fire("showDialog", {
-                            type: "error",
-                            title: "Obrázek nelze použít",
-                            text: [
-                                "Obrázek může mít rozměry maximálně ",
-                                this.MAX_WIDTH, "px x ", this.MAX_HEIGHT, "px. ",
-                                "Rozměry vybraného obrázku jsou ",
-                                file.width, "px x ", file.height,  "px."
-                            ].join(""),
-                            dismiss: {
-                                text: "Zavřít"
-                            }
-                        });
-
-                        return;
-                    }
-
                     if (file.size > this.MAX_FILESIZE * 1024) {
 
                         this.fire("showDialog", {
@@ -138,7 +119,6 @@
                     }
 
                     this.currentFilePath = encodeURIComponent(file.path);
-                    this.currentFile = file;
 
                     this.set("pulseOutline", true);
 
@@ -153,8 +133,7 @@
                                 return;
                             }
 
-                            this.set("element.image", this.currentFilePath);
-                            this.setLogoWidth(this.currentFile.width, this.currentFile.height);
+                            this.set("element.src", this.currentFilePath);
 
                             this.set("pulseOutline", false);
 
@@ -167,7 +146,7 @@
 
                 this.deleteFileListener = this.Page.on("*.ImageBrowser-deleteFile", function (event, file) {
 
-                    var image = this.get("element.image");
+                    var image = this.get("element.src");
 
                     if (!image) {
 
@@ -178,14 +157,14 @@
 
                     if (filePath === decodeURIComponent(image)) {
 
-                        this.set("element.image", "");
+                        this.set("element.src", "");
                     }
 
                 }.bind(this));
 
-                this.on("removeLogo", function () {
+                this.on("removeImage", function () {
 
-                    this.set("element.image", "");
+                    this.set("element.src", "");
                 });
             }
         },
@@ -211,16 +190,27 @@
                         });
                     }
 
+                    this.find("." + CLASS.imageElement).focus();
+
                     this.set("state", "active");
+
+                    this.fire("elementState", "active");
                 });
 
                 this.on("stateChange", function (state) {
 
-                    if (!state) {
+                    if (state && this.focusin) {
+
+                        this.set("state", "active");
+
+                        this.fire("elementState", "active");
+
+                    } else if (!state && !this.focusin) {
 
                         this.set("state", "inactive");
-                    }
 
+                        this.fire("elementState", "inactive");
+                    }
                 });
 
                 this.initObservers();
@@ -262,12 +252,17 @@
 
                 this.set("pulseOutline", true);
 
-                this.imageBeforeUpload = this.get("element.image") || "";
+                this.imageBeforeUpload = this.get("element.src") || "";
 
-                this.set("element.image", thumbnail);
+                if (file.size / 1024 / 1024 > this.MAX_FILESIZE) {
 
-                this.setLogoWidth(file.width, file.height);
+                    return false;
+                }
+
+                return this.set("element.src", thumbnail);
             }
+
+            return false;
         },
 
         handleUploadSuccess: function (file, res) {
@@ -291,33 +286,23 @@
                 }
             }
 
-            if (file.width && file.height && (file.width > this.MAX_WIDTH || file.height > this.MAX_HEIGHT)) {
+            if (file.size > this.MAX_FILESIZE * 1024 * 1024) {
 
                 this.fire("showDialog", {
                     type: "error",
                     title: "Obrázek nelze použít",
-                    text: [
-                        "Obrázek může mít rozměry maximálně ",
-                        this.MAX_WIDTH, "px x ", this.MAX_HEIGHT, "px. ",
-                        "Rozměry vybraného obrázku jsou ",
-                        file.width, "px x ", file.height,  "px."
-                    ].join(""),
+                    text: "Obrázek může být maximálně " + this.MAX_FILESIZE + " MB velký. Velikost vybraného obrázku je " + (file.size / 1024 / 1024).toFixed(2) + " MB.",
                     dismiss: {
                         text: "Zavřít"
                     }
                 });
-
-                this.set("element.width", this.widthBeforeUpload);
-                this.set("element.image", this.imageBeforeUpload);
 
                 this.set("pulseOutline", false);
 
                 return;
             }
 
-
-            this.currentFilePath = encodeURIComponent(file.path);
-            this.currentFile = file;
+            this.currentFilePath = encodeURIComponent(res.path);
 
             if (!this.image) {
 
@@ -330,8 +315,7 @@
                         return;
                     }
 
-                    this.set("element.image", this.currentFilePath);
-                    this.setLogoWidth(this.currentFile.width, this.currentFile.height);
+                    this.set("element.src", this.currentFilePath);
 
                     this.set("pulseOutline", false);
 
@@ -339,29 +323,18 @@
             }
 
             this.image.src = this.currentFilePath;
-
         },
 
         handleUploadError: function () {
 
             this.set("pulseOutline", false);
 
-            this.set("element.width", this.widthBeforeUpload);
-            this.set("element.image", this.imageBeforeUpload);
+            this.set("element.src", this.imageBeforeUpload);
         },
 
         isEmpty: function () {
 
-            return !this.get("element.image");
-        },
-
-        setLogoWidth: function (width, height) {
-
-            var realHeight = Math.min(height, this.MAX_EL_HEIGHT),
-
-                useWidth = (realHeight / height) * width;
-
-            this.set("element.width", useWidth);
+            return !this.get("element.src");
         }
     });
 

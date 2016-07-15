@@ -70,10 +70,15 @@
 
             this.set("_image", this.get("image"));
 
-            this.Page = this.findParent("Page");
+            this.set("_image2", this.get("image2"));
 
             this.set("mostUsedColors", this.Page.findMostUsedColors());
             this.set("sectionsBgImages", this.Page.findSectionsBgImages());
+
+            if (this.parent.findSectionImages) {
+
+                this.set("sectionImages", this.parent.findSectionImages());
+            }
 
             this.imageColorsObservers = [];
         },

@@ -27,7 +27,8 @@
 
         partials: {
             pageSectionSettingsContent: template,
-            layoutHeader: require("./partials/layout-header.tpl")
+            layoutHeader: require("./partials/layout-header.tpl"),
+            layoutFeature: require("./partials/layout-feature.tpl")
         },
 
         data: function () {
@@ -44,6 +45,12 @@
 
             this.superOnconfig();
 
+            this.winWidthObserver = this.root.observe("windowWidth", function (width) {
+
+                this.set("windowWidth", width);
+
+            }.bind(this));
+
             this.observe("data.addToMenu", function (state) {
 
                 EventEmitter.trigger("addToMenuChanged.PageSection", [state, this]);
@@ -57,6 +64,8 @@
 
         onteardown: function () {
             this.superOnteardown();
+
+            this.winWidthObserver.cancel();
         }
     });
 

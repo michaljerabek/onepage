@@ -5,6 +5,13 @@
     <div class="E_NewPageSectionSelector--thumbs">
 
         {{> SectionThumb {
+                type: "PageSectionFeature",
+                name: "Text + obrázek",
+                icon: "#icon-feature-right-top"
+            }
+        }}
+
+        {{> SectionThumb {
                 type: "PageSectionA",
                 name: "PageSectionA",
                 icon: "#icon-picture"

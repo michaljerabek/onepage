@@ -72,6 +72,58 @@
     border-color: transparent;
 }
 
+.E_PageElement--outline__pulse {
+    animation: E_PageElement--outline-pulse 1s alternate infinite;
+}
+
+.E_PageSection__change-outline .E_PageElement--outline__pulse {
+    animation: E_PageElement--outline-pulse__2 1s alternate infinite;
+}
+
+.E_PageElement--outline__pulse:after {
+    animation: E_PageElement--outline-pulse-glow 1s alternate infinite;
+}
+
+.E_PageSection__change-outline .E_PageElement--outline__pulse:after {
+    animation: E_PageElement--outline-pulse__2-glow 1s alternate infinite;
+}
+
+@keyframes E_PageElement--outline-pulse {
+    from {
+        border-color: var(--color-element-outline);
+    }
+    to {
+        border-color: transparent;
+    }
+}
+
+@keyframes E_PageElement--outline-pulse-glow {
+    from {
+        box-shadow: 0px 0px 8px 0px var(--color-element-outline-glow);
+    }
+    to {
+        box-shadow: 0px 0px 8px 0px transparent;
+    }
+}
+
+@keyframes E_PageElement--outline-pulse__2 {
+    from {
+        border-color: var(--color-element-outline-2);
+    }
+    to {
+        border-color: transparent;
+    }
+}
+
+@keyframes E_PageElement--outline-pulse__2-glow {
+    from {
+        box-shadow: 0px 0px 8px 0px var(--color-element-outline-2-glow);
+    }
+    to {
+        box-shadow: 0px 0px 8px 0px transparent;
+    }
+}
+
 .E_PageElement--outline:after {
     content: "";
 
@@ -378,7 +430,8 @@
 
     transition:
         top              var(--default-transition-duration) var(--default-transition-easing) 0s,
-        margin-top       var(--default-transition-duration) var(--default-transition-easing) 0s,
+        left             var(--default-transition-duration) var(--default-transition-easing) 0s,
+        margin           var(--default-transition-duration) var(--default-transition-easing) 0s,
         background-color var(--default-transition-duration) var(--default-transition-easing) 0s,
         box-shadow       var(--default-transition-duration) var(--default-transition-easing) 0.3s,
         opacity          var(--default-transition-duration) var(--default-transition-easing) 0.3s;
@@ -389,7 +442,8 @@
 
     transition:
         top              var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
-        margin-top       var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        left             var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
+        margin           var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         background-color var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         box-shadow       var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,
         opacity          var(--default-transition-duration-hover) var(--default-transition-easing-hover) 0s,

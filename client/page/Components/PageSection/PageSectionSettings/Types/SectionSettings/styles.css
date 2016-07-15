@@ -3,3 +3,7 @@
 
     display: flex;
 }
+
+.E_SectionSettings--layout-div {
+    margin-bottom: 12px;
+}

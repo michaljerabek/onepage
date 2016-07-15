@@ -1,0 +1,72 @@
+/*====================================================================*/
+/*------------------------ PAGEELEMENTIMAGE --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__image {
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+
+    position: relative;
+
+    max-width: 0;
+    min-height: 0;
+
+    display: inline-block;
+}
+
+.E .P_PageElement__image {
+    transition:
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+}
+
+.P_PageElement__image.P_PageElement__empty:not(.E_PageElement__active) {
+    width: 0;
+    height: 0;
+}
+
+.P_PageSection--content:not(.E_PageSection__dragover) .P_PageElement__image.P_PageElement__empty:not(.E_PageElement__active) .E_PageElement--outline {
+    opacity: 0;
+}
+
+.P_PageElement__image.P_PageElement__empty.E_PageElement__active .E_PageElement--outline {
+/*    pointer-events: all;*/
+}
+
+.E_PageSection__dragover .P_PageElement__image.P_PageElement__empty,
+.P_PageElement__image.P_PageElement__empty.dz-drag-hover,
+.P_PageElement__image.P_PageElement__empty.E_PageElement__active {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    min-height: 52px;
+}
+
+.P_PageElementImage--image {
+    max-width: 100%;
+    min-width: 100%;
+
+    border: none;
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- EDITMODE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElement__image .E_PageElement--upload-overlay:after {
+    content: "Nahrát obrázek";
+
+    font-size: 12px;
+    white-space: normal;
+}
+
+.P_PageElement__image .E_PageElement--activate {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}

@@ -31,4 +31,8 @@
     --P_PageSection--shadow-10__filter: 0px 0px  3px rgba(0, 0, 0, 0.125);
     --P_PageSection--shadow-20__filter: 0px 0px  4px rgba(0, 0, 0, 0.25);
     --P_PageSection--shadow-30__filter: 0px 0px  6px rgba(0, 0, 0, 0.4);
+
+    --P_PageSection--shadow-10__box-1 : 0px 0px  8px 1px rgba(0, 0, 0, 0.1);
+    --P_PageSection--shadow-20__box-1 : 0px 0px 12px 1px rgba(0, 0, 0, 0.2);
+    --P_PageSection--shadow-30__box-1 : 0px 0px 16px 1px rgba(0, 0, 0, 0.3);
 }

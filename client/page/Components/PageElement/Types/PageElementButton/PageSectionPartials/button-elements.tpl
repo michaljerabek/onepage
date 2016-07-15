@@ -2,7 +2,6 @@
         P_PageSection--buttons
         {{#if !.section.buttons.length}}P_PageSection--buttons__empty{{/if}}
         P_PageSection--buttons__{{.section.buttons.length}}
-        cf
     "
      as-PageElementButtons
 >

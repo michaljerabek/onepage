@@ -337,11 +337,14 @@
 
                     this.set("lastColors", rgbs);
 
+                    this.set("selectElement", this.find("select"));
+
                 }.bind(this));
 
             }.bind(this);
 
             this.image.src = src;
+
         }
     });
 

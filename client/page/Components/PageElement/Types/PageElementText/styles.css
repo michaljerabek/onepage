@@ -275,6 +275,22 @@ body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageEleme
     min-width: 56px;
 }
 
+
+.P_font-type-1 .P_PageSection__shadow-10 .P_PageElementText--underline:after,
+.P_font-type-1 .P_PageSection__shadow-10 .P_PageElementText--underline:before {
+    box-shadow: var(--P_PageSection--shadow-10__box-1);
+}
+
+.P_font-type-1 .P_PageSection__shadow-20 .P_PageElementText--underline:after,
+.P_font-type-1 .P_PageSection__shadow-20 .P_PageElementText--underline:before {
+    box-shadow: var(--P_PageSection--shadow-20__box-1);
+}
+
+.P_font-type-1 .P_PageSection__shadow-30 .P_PageElementText--underline:after,
+.P_font-type-1 .P_PageSection__shadow-30 .P_PageElementText--underline:before {
+    box-shadow: var(--P_PageSection--shadow-30__box-1);
+}
+
 .P_underline-titles.P_font-type-1 .P_PageElementText--underline:before {
     right: auto;
 }

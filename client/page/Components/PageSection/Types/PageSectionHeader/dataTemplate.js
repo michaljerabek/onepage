@@ -11,10 +11,10 @@ module.exports = function (lang) {
     data.name[lang] = "Úvod";
 
     data.title = {};
-    data.title[lang] = "Vítejte na našich stránkách!";
+    data.title[lang] = "Toto je vaše nová stránka!";
 
     data.subtitle = {};
-    data.subtitle[lang] = "Vytvořte si vlastní stránku snadno a rychle a začněte vydělávat miliony!";
+    data.subtitle[lang] = "Pro umístění nové sekce do stránky klikněte na <i>+ Přidat sekci</i>. Obrázky na pozadí je možné nahrát přetažením souboru do okna prohlížeče.";
 
     return data;
 };

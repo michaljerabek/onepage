@@ -53,6 +53,7 @@ module.exports = Ractive.extend({
         PageSection: require("./Components/PageSection"),
 
         PageSectionHeader: require("./Components/PageSection/Types/PageSectionHeader"),
+        PageSectionFeature: require("./Components/PageSection/Types/PageSectionFeature"),
         PageSectionA: require("./Components/PageSection/Types/PageSectionA"),
         PageSectionB: require("./Components/PageSection/Types/PageSectionB"),
         PageSectionC: require("./Components/PageSection/Types/PageSectionC"),
@@ -66,6 +67,7 @@ module.exports = Ractive.extend({
 
     partials: {
         PageSectionHeader: "<PageSectionHeader section='{{this}}' sections='{{~/page.sections}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
+        PageSectionFeature: "<PageSectionFeature section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionA: "<PageSectionA section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionB: "<PageSectionB section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionC: "<PageSectionC section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
@@ -293,6 +295,7 @@ module.exports = Ractive.extend({
 
             this.pageMenu.destroy();
 
+            clearTimeout(this.refreshEditorsTimeout);
             clearTimeout(this.loadedTimeout);
             clearTimeout(this.unsavedChangesTimeout);
         }
@@ -324,6 +327,12 @@ module.exports = Ractive.extend({
 
         this.off("sectionInserted.complete").on("sectionInserted.complete", this.refreshEditors.bind(this, true));
         this.off("sectionRemoved.complete").on("sectionRemoved.complete", this.refreshEditors.bind(this, true));
+        this.off("*.layoutChanged").on("*.layoutChanged", function () {
+
+            clearTimeout(this.refreshEditorsTimeout);
+
+            this.refreshEditorsTimeout = setTimeout(this.refreshEditors.bind(this, true), 50);
+        });
 
         this.editorsLoaded = true;
     },

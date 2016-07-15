@@ -56,7 +56,7 @@
             return {
                 type: "text",
                 hasEditUI: true,
-                balanceText: true,
+                balanceText: false,
                 removeNbsp: true,
                 editor: "content",
                 source: "text"
@@ -98,12 +98,6 @@
 
                     }.bind(this), 0);
                 });
-
-                this.observe("state", function (state) {
-
-                    this.fire("elementState", state, this);
-
-                }, {init: false});
             }
         },
 
@@ -114,7 +108,7 @@
             this.$text = this.$self.find("." + CLASS.textElement);
 
             Ractive.$win = Ractive.$win || $(window);
-
+//
             if (this.get("countLines")) {
 
                 this.observe("element." + (this.get("source") || "title") + ".* lang", function (value, prevValue, path) {
@@ -178,6 +172,15 @@
             });
 
             this.fire("emptyText", this.empty, this);
+
+            if (Ractive.EDIT_MODE) {
+
+                this.observe("state", function (state) {
+
+                    this.fire("elementState", state, this);
+
+                }, {init: false});
+            }
         },
 
         countLines: function () {
@@ -292,13 +295,15 @@
 
                 var text = this.get("element." + source + "." + lang),
 
-                    noNbsp = text.replace(/\&nbsp;/ig, " ");
+                    noNbsp = text.replace(/\&nbsp;/ig, " "),
+
+                    noNbspAndSpans = noNbsp.replace(/(\s{0}<\/?(span[^>]*)>\s{0})/ig, "");
 
                 clearTimeout(this.nbspTimeout);
 
                 this.nbspTimeout = setTimeout(function() {
 
-                    var promise = this.set("element." + source + "." + lang, noNbsp);
+                    var promise = this.set("element." + source + "." + lang, noNbspAndSpans);
 
                     promise.then(this.handleModified.bind(this, true));
 
@@ -311,7 +316,7 @@
         },
 
         handleModified: function () {
-
+//
             if (this.get("balanceText")) {
 
                 this.$text.balanceText();
