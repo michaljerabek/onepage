@@ -21,7 +21,7 @@
         "
         on-windowResize="@this.root.set('windowWidth', event.innerWidth)"
         on-windowTouchstart="@this.root.set('touchmove', false)"
-        on-windowTouchmove="!@this.root.get('touchmove') && @this.root.set('touchmove', true)"
+        on-windowTouchmove="(!@this.root.get('touchmove') && @this.root.set('touchmove', true)) || true"
     >
 
         <div class="P_nonsortable-sections">

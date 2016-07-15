@@ -6,8 +6,8 @@
 
         {{> SectionThumb {
                 type: "PageSectionFeature",
-                name: "Vlastnost",
-                icon: "#icon-picture"
+                name: "Text + obrázek",
+                icon: "#icon-feature-right-top"
             }
         }}
 

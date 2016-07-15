@@ -35,6 +35,7 @@
 
 .E_PageSection__dragover .P_PageElement__logo.P_PageElement__empty,
 .P_PageElement__logo.P_PageElement__empty.dz-drag-hover,
+.P_PageElement__logo.E_PageElement__active,
 .P_PageElement__logo.P_PageElement__empty.E_PageElement__active {
     min-width: 52px;
 }

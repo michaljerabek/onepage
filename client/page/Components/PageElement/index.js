@@ -736,6 +736,7 @@
 
             if (!this.handleAddedfile || this.handleAddedfile.apply(this, arguments) !== false) {
 
+                this.set("pulseOutline", true);
             }
         },
 
@@ -783,6 +784,7 @@
 
             if (!this.handleUploadSuccessmultiple || this.handleUploadSuccessmultiple.apply(this, arguments) !== false) {
 
+                this.set("pulseOutline", false);
             }
         },
 
@@ -800,6 +802,8 @@
                     timeout: 3000,
                     status: "success"
                 });
+
+                this.set("pulseOutline", false);
             }
         },
 
@@ -819,6 +823,8 @@
                     timeout: 5000,
                     status: "error"
                 });
+
+                this.set("pulseOutline", false);
             }
         },
 

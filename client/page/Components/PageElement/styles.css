@@ -72,6 +72,58 @@
     border-color: transparent;
 }
 
+.E_PageElement--outline__pulse {
+    animation: E_PageElement--outline-pulse 1s alternate infinite;
+}
+
+.E_PageSection__change-outline .E_PageElement--outline__pulse {
+    animation: E_PageElement--outline-pulse__2 1s alternate infinite;
+}
+
+.E_PageElement--outline__pulse:after {
+    animation: E_PageElement--outline-pulse-glow 1s alternate infinite;
+}
+
+.E_PageSection__change-outline .E_PageElement--outline__pulse:after {
+    animation: E_PageElement--outline-pulse__2-glow 1s alternate infinite;
+}
+
+@keyframes E_PageElement--outline-pulse {
+    from {
+        border-color: var(--color-element-outline);
+    }
+    to {
+        border-color: transparent;
+    }
+}
+
+@keyframes E_PageElement--outline-pulse-glow {
+    from {
+        box-shadow: 0px 0px 8px 0px var(--color-element-outline-glow);
+    }
+    to {
+        box-shadow: 0px 0px 8px 0px transparent;
+    }
+}
+
+@keyframes E_PageElement--outline-pulse__2 {
+    from {
+        border-color: var(--color-element-outline-2);
+    }
+    to {
+        border-color: transparent;
+    }
+}
+
+@keyframes E_PageElement--outline-pulse__2-glow {
+    from {
+        box-shadow: 0px 0px 8px 0px var(--color-element-outline-2-glow);
+    }
+    to {
+        box-shadow: 0px 0px 8px 0px transparent;
+    }
+}
+
 .E_PageElement--outline:after {
     content: "";
 

@@ -6,13 +6,9 @@
         var Ractive = require("ractive"),
 
             PageSection = require("./../../"),
-            TextCleaner = require("./../../../PageElement/TextCleaner"),
 
             components = {
-                BasicEditUI: require("./../../PageSectionEditUI/"),
-                PageElementText: require("./../../../PageElement/Types/PageElementText")//,
-//                PageElementImage: require("./../../../PageElement/Types/PageElementImage"),
-//                PageElementImageSettings: Ractive.EDIT_MODE ? require("./../../../PageElement/PageElementSettings/Types/PageElementImageSettings") : null
+                BasicEditUI: require("./../../PageSectionEditUI/")
             },
 
             partials = {
@@ -21,14 +17,14 @@
                 pageSectionEditUI: "<BasicEditUI section='{{.section}}' />"
             };
 
-        module.exports = factory(Ractive, PageSection, components, partials, TextCleaner);
+        module.exports = factory(Ractive, PageSection, components, partials);
 
     } else {
 
         root.PageSectionHeader = factory(root.Ractive, root.PageSection);
     }
 
-}(this, function (Ractive, PageSection, components, partials, TextCleaner) {
+}(this, function (Ractive, PageSection, components, partials) {
 
     return PageSection.extend({
 
@@ -56,35 +52,18 @@
 
                         this.Title.set("stopTransition", true);
                         this.Content.set("stopTransition", true);
+                        this.Image.set("stopTransition", true);
 
                         if (state.main === "top" || state.main === "bottom") {
 
-                            this.set("section.layout", state.main).then(function () {
-
-                                var texts = this.findAllComponents("PageElementText");
-
-                                this.Title = texts[0];
-                                this.Content = texts[1];
-
-                                this.update("section.title." + this.get("lang"));
-                                this.update("section.content." + this.get("lang"));
-
-                            }.bind(this));
+                            this.set("section.layout", state.main)
+                                .then(this.updateElements.bind(this));
 
                             return;
                         }
 
-                        this.set("section.layout", state.main + "-" + state.text).then(function () {
-
-                            var texts = this.findAllComponents("PageElementText");
-
-                            this.Title = texts[0];
-                            this.Content = texts[1];
-
-                            this.update("section.title." + this.get("lang"));
-                            this.update("section.content." + this.get("lang"));
-
-                        }.bind(this));
+                        this.set("section.layout", state.main + "-" + state.text)
+                            .then(this.updateElements.bind(this));
                     }
 
                 }, {init: false});
@@ -95,10 +74,7 @@
 
             this.superOnrender();
 
-            var texts = this.findAllComponents("PageElementText");
-
-            this.Title = texts[0];
-            this.Content = texts[1];
+            this.updateElements(false);
 
             this.set("titlesEmpty", this.Title.empty && this.Content.empty);
 
@@ -111,7 +87,7 @@
             }.bind(this));
 
             if (Ractive.EDIT_MODE) {
-//
+
                 this.on("*.elementState", function () {
 
                     var titleState = this.Title.get("state"),
@@ -119,7 +95,7 @@
 
                     this.set("textsActive", titleState === "active" || contentState === "active");
                     this.set("contentActive", contentState === "active");
-                    this.set("imageActive", this.findComponent("PageElementImage").get("state") === "active");
+                    this.set("imageActive", this.Image.get("state") === "active");
 
                 }.bind(this));
             }
@@ -157,6 +133,23 @@
             }
         },
 
+        updateElements: function (updateData) {
+
+            var lang = this.get("lang"),
+
+                texts = this.findAllComponents("PageElementText");
+
+            this.Title = texts[0];
+            this.Content = texts[1];
+            this.Image = this.findComponent("PageElementImage");
+
+            if (updateData !== false) {
+
+                this.update("section.title." + lang);
+                this.update("section.content." + lang);
+            }
+        },
+
         getTextPaths: function () {
 
             var paths = PageSection.prototype.getTextPaths.apply(this);
@@ -170,13 +163,13 @@
             
             var images = PageSection.prototype.findSectionImages.apply(this),
                 
-                image = this.get("section.image.src");
+                image = this.get("section.image");
             
-            if (image) {
+            if (image && image.src) {
                 
                 images.unshift({
-                    src: image,
-                    name: this.get("section.image.alt") || decodeURIComponent(image).split("/").pop().replace(/[0-9]+-/, "")
+                    src: image.src,
+                    name: image.alt || decodeURIComponent(image.src).split("/").pop().replace(/[0-9]+-/, "")
                 });
             }
             

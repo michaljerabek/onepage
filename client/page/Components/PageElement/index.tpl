@@ -30,6 +30,7 @@
         <div class="
                 E_PageElement--outline
                 {{#if .showOutline}}E_PageElement--outline__active{{/if}}
+                {{#if .pulseOutline}}E_PageElement--outline__pulse{{/if}}
                 {{#if .limitSize}}E_PageElement--outline__limited{{/if}}
             "
             on-touchstart="@this.handleTouchstart(event)"

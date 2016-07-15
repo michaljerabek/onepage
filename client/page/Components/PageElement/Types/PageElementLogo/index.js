@@ -137,8 +137,31 @@
                         return;
                     }
 
-                    this.set("element.image", encodeURIComponent(file.path));
-                    this.setLogoWidth(file.width, file.height);
+                    this.currentFilePath = encodeURIComponent(file.path);
+                    this.currentFile = file;
+
+                    this.set("pulseOutline", true);
+
+                    if (!this.image) {
+
+                        this.image = new Image();
+
+                        this.image.onload = function () {
+
+                            if (this.torndown) {
+
+                                return;
+                            }
+
+                            this.set("element.image", this.currentFilePath);
+                            this.setLogoWidth(this.currentFile.width, this.currentFile.height);
+
+                            this.set("pulseOutline", false);
+
+                        }.bind(this);
+                    }
+
+                    this.image.src = this.currentFilePath;
 
                 }.bind(this));
 
@@ -237,6 +260,8 @@
 
             if (file.accepted && !file.uploaded) {
 
+                this.set("pulseOutline", true);
+
                 this.imageBeforeUpload = this.get("element.image") || "";
 
                 this.set("element.image", thumbnail);
@@ -285,15 +310,41 @@
                 this.set("element.width", this.widthBeforeUpload);
                 this.set("element.image", this.imageBeforeUpload);
 
+                this.set("pulseOutline", false);
+
                 return;
             }
 
-            this.set("element.image", encodeURIComponent(res.path));
 
-            this.setLogoWidth(res.width, res.height);
+            this.currentFilePath = encodeURIComponent(file.path);
+            this.currentFile = file;
+
+            if (!this.image) {
+
+                this.image = new Image();
+
+                this.image.onload = function () {
+
+                    if (this.torndown) {
+
+                        return;
+                    }
+
+                    this.set("element.image", this.currentFilePath);
+                    this.setLogoWidth(this.currentFile.width, this.currentFile.height);
+
+                    this.set("pulseOutline", false);
+
+                }.bind(this);
+            }
+
+            this.image.src = this.currentFilePath;
+
         },
 
         handleUploadError: function () {
+
+            this.set("pulseOutline", false);
 
             this.set("element.width", this.widthBeforeUpload);
             this.set("element.image", this.imageBeforeUpload);
