@@ -317,6 +317,11 @@
 
         handleModified: function () {
 //
+            if (this.torndown) {
+
+                return;
+            }
+
             if (this.get("balanceText")) {
 
                 this.$text.balanceText();

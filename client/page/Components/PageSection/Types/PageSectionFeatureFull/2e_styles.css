@@ -1,0 +1,282 @@
+/*====================================================================*/
+/*------------------------ PAGESECTIONFEATURE ------------------------*/
+/*====================================================================*/
+
+/*---------------------------- ADD BUTTONS ----------------------------*/
+
+@media (min-width: 1024px) {
+
+    /*buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: -4px;
+    }
+
+    /*content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -28px;
+        left: 48px;
+    }
+
+    /*content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: -48px;
+    }
+
+    /*content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -28px;
+    }
+
+    /*title - ne | content - ne -> content*/
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content .E_PageElement--activate {
+        margin-left: 52px;
+    }
+
+    /*title - ne | content - ne -> content*/
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content .E_PageElement--activate {
+        margin-left: -52px;
+    }
+
+    /*title - ne | content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -12px;
+        left: 100px;
+    }
+
+    /*title - ne | content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: -124px;
+    }
+
+    /*title - ne | content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -12px;
+    }
+
+    /*title - ne -> title*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-top: -8px;
+    }
+
+    /*content - ne -> content*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-top: -8px;
+    }
+
+    /*title - ano | content - ne -> content*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content .E_PageElement--activate {
+        margin-top: 0px;
+    }
+
+    /*title - ano | content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -20px;
+    }
+
+    /*title - ano | content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: -72px;
+    }
+
+    /*content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: 48px;
+    }
+
+    /*title - ne | content - ne -> content*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content .E_PageElement--activate {
+        margin-left: 0px;
+    }
+
+    /*title - ne | content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: 40px;
+    }
+
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--content.has-empty-PageElement.has-active-PageElement ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -8px;
+    }
+
+    /*title - ne -> title*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-left: -52px;
+    }
+
+    /*title - ne | content - ano -> title*/
+    .has-active-content .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    .has-active-content .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    .has-content-not-title .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    .has-content-not-title .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-left: 0px;
+    }
+
+    /*title - ne | content - ano -> title*/
+    [class*="P_PageSectionFeatureFull__center"] .has-active-content .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__left"] .has-active-content .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__right"] .has-active-content .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__center"] .has-content-not-title .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__left"] .has-content-not-title .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__right"] .has-content-not-title .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-top: -24px;
+    }
+
+    /*title - ano | content - ne | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: 40px;
+    }
+
+    /*content - ano | buttons - ne -> buttons*/
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--content.has-empty-PageElement.has-active-PageElement ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: -20px;
+    }
+
+    /*title - ne | content - ne | buttons - ano -> title*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeatureFull--title.has-empty-PageElement .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeatureFull--title.has-empty-PageElement .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeatureFull--title.has-empty-PageElement .E_PageElement--activate {
+        margin-top: -24px;
+    }
+
+    /*title - ne | content - ne | buttons - ano -> content*/
+    [class*="P_PageSectionFeatureFull__center"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeatureFull--content.has-empty-PageElement .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__left"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeatureFull--content.has-empty-PageElement .E_PageElement--activate,
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeatureFull--content.has-empty-PageElement .E_PageElement--activate {
+        margin-top: -24px;
+    }
+}
+
+@media (max-width: 1023px) {
+
+    /*content - ne | buttons - ne -> buttons*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -28px;
+    }
+
+    /*title - ne | content - ne | buttons - ne -> buttons*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -12px;
+    }
+
+    /*title - ne -> title*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-top: -8px;
+    }
+
+    /*content - ne -> content*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-top: -8px;
+    }
+
+    /*title - ano | content - ne -> content*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content .E_PageElement--activate,
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content .E_PageElement--activate {
+        margin-top: 0px;
+    }
+
+    /*title - ano | content - ne | buttons - ne -> buttons*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -20px;
+    }
+
+
+    /*content - ne | buttons - ne -> buttons*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: 48px;
+    }
+
+    /*title - ne | content - ne -> content*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content .E_PageElement--activate {
+        margin-left: 0px;
+    }
+
+    /*title - ne | content - ne | buttons - ne -> buttons*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: 40px;
+    }
+
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--content:not(.has-empty-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--content.has-empty-PageElement.has-active-PageElement ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -8px;
+    }
+
+    /*title - ne -> title*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-left: -52px;
+    }
+
+    /*title - ne | content - ano -> title*/
+    .has-active-content .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    .has-active-content .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    .has-content-not-title .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    .has-content-not-title .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-left: 0px;
+    }
+
+    /*title - ne | content - ano -> title*/
+    .P_PageSectionFeatureFull .has-active-content .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+    .P_PageSectionFeatureFull .has-content-not-title .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+        margin-top: -24px;
+    }
+
+    /*title - ano | content - ne | buttons - ne -> buttons*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        left: 40px;
+    }
+
+    /*title - ne | content - ne | buttons - ano -> title*/
+    .P_PageSectionFeatureFull .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeatureFull--title.has-empty-PageElement .E_PageElement--activate {
+        margin-top: -24px;
+    }
+
+    /*title - ne | content - ne | buttons - ano -> content*/
+    .P_PageSectionFeatureFull .P_PageSection--content-wrapper.has-empty-texts:not(.has-active-texts):not(.has-no-button) .P_PageSectionFeatureFull--content.has-empty-PageElement .E_PageElement--activate {
+        margin-top: -24px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    /*content - ne | buttons - ne -> buttons*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -4px;
+        left: 116px;
+    }
+
+    /*title - ne | content - ne | buttons - ne -> buttons*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -4px;
+        left: 108px;
+    }
+
+    /*title - ano | content - ne | buttons - ne -> buttons*/
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title:not(.has-empty-PageElement) ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button,
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeatureFull--content.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSection--buttons__empty .E_PageElementButtons--add-button {
+        top: -20px;
+        left: 108px;
+    }
+
+}
+
+/*//////////////////////////// ADD BUTTONS ////////////////////////////*/

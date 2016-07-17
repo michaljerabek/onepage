@@ -1,3 +1,3 @@
-<div class="E_PageSectionEditUI {{.hover ? 'E_PageSectionEditUI__hover' : ''}}">
+<div class="E_PageSectionEditUI {{#if .hover}}E_PageSectionEditUI__hover{{/if}}">
     {{> pageSectionEditUIContent}}
 </div>

@@ -28,7 +28,8 @@
         partials: {
             pageSectionSettingsContent: template,
             layoutHeader: require("./partials/layout-header.tpl"),
-            layoutFeature: require("./partials/layout-feature.tpl")
+            layoutFeature: require("./partials/layout-feature.tpl"),
+            layoutFeatureFull: require("./partials/layout-feature-full.tpl")
         },
 
         data: function () {

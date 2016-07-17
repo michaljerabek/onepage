@@ -1,15 +1,16 @@
 <div class="
         P_PageSection--buttons
-        {{#if !.section.buttons.length}}P_PageSection--buttons__empty{{/if}}
-        P_PageSection--buttons__{{.section.buttons.length}}
+        {{#if !~/section.buttons.length}}P_PageSection--buttons__empty{{/if}}
+        P_PageSection--buttons__{{~/section.buttons.length}}
+        {{#if ~/reverseButtons}}P_PageSection--buttons__reverse{{/if}}
     "
      as-PageElementButtons
 >
 
-    {{#if .editMode && .showAddButton && .pageElementSettings !== "button"}}
+    {{#if ~/editMode && ~/showAddButton && ~/pageElementSettings !== "button"}}
     <div class="E_PageSection--add-button
             E_PageElementButtons--add-button
-            {{#if .addButtonBottom}}E_PageElementButtons--add-button__bottom{{/if}}
+            {{#if ~/addButtonBottom}}E_PageElementButtons--add-button__bottom{{/if}}
         "
         on-tap="@this.fire('addButton')"
         attr-out="{duration: 300}"

@@ -9,11 +9,11 @@
             {{#if @this.isEmpty && @this.isEmpty()}}E_PageElement__empty{{/if}}
         {{/if}}
         {{#if @this.isEmpty && @this.isEmpty()}}P_PageElement__empty{{/if}}
-        P_PageElement__[[.type || 'unknown-type']]
+        P_PageElement__{{.type || 'unknown-type'}}
         {{.specialClass1}} {{.specialClass2}} {{.specialClass3}}
     "
-    on-hover="@this.handleHover(event)"
     id="{{.id}}"
+    on-hover="@this.handleHover(event)"
     intro-outro="{{#if @this.Page.get('loaded') && !~/stopTransition}}attr{{/if}}"
 >
 

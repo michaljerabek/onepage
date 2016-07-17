@@ -85,6 +85,7 @@
         positionElement="{{.pageElementSettingsPositionElement}}"
         lang="{{.lang}}"
         defaultColors="{{.defaultColors}}"
+        color="{{.color}}"
     ></PageElementButtonSettings>
 {{/if}}
 

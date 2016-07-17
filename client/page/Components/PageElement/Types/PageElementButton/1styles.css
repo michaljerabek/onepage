@@ -205,21 +205,30 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
 }
 
 .P_PageSection__shadow-10 .P_PageElementButton.P_PageElementButton__stroke {
-    text-shadow: var(--P_PageSection--shadow-10__text);
     box-shadow: inset var(--P_PageSection--shadow-10__box),
         var(--P_PageSection--shadow-10__box);
 }
 
 .P_PageSection__shadow-20 .P_PageElementButton.P_PageElementButton__stroke {
-    text-shadow: var(--P_PageSection--shadow-20__text);
     box-shadow: inset var(--P_PageSection--shadow-20__box),
         var(--P_PageSection--shadow-20__box);
 }
 
 .P_PageSection__shadow-30 .P_PageElementButton.P_PageElementButton__stroke {
-    text-shadow: var(--P_PageSection--shadow-30__text);
     box-shadow: inset var(--P_PageSection--shadow-30__box),
         var(--P_PageSection--shadow-30__box);
+}
+
+.P_PageSection__shadow-10 .P_PageElementButton__stroke .P_PageElementButton--text {
+    text-shadow: var(--P_PageSection--shadow-10__text);
+}
+
+.P_PageSection__shadow-20 .P_PageElementButton__stroke .P_PageElementButton--text {
+    text-shadow: var(--P_PageSection--shadow-20__text);
+}
+
+.P_PageSection__shadow-30 .P_PageElementButton__stroke .P_PageElementButton--text {
+    text-shadow: var(--P_PageSection--shadow-30__text);
 }
 
 .P_PageElementButton--content-wrapper {

@@ -54,6 +54,7 @@ module.exports = Ractive.extend({
 
         PageSectionHeader: require("./Components/PageSection/Types/PageSectionHeader"),
         PageSectionFeature: require("./Components/PageSection/Types/PageSectionFeature"),
+        PageSectionFeatureFull: require("./Components/PageSection/Types/PageSectionFeatureFull"),
         PageSectionA: require("./Components/PageSection/Types/PageSectionA"),
         PageSectionB: require("./Components/PageSection/Types/PageSectionB"),
         PageSectionC: require("./Components/PageSection/Types/PageSectionC"),
@@ -68,6 +69,7 @@ module.exports = Ractive.extend({
     partials: {
         PageSectionHeader: "<PageSectionHeader section='{{this}}' sections='{{~/page.sections}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionFeature: "<PageSectionFeature section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
+        PageSectionFeatureFull: "<PageSectionFeatureFull section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionA: "<PageSectionA section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionB: "<PageSectionB section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
         PageSectionC: "<PageSectionC section='{{this}}' lang='{{~/page.lang}}' tplLang='{{~/page.tplLang}}' />",
@@ -119,7 +121,7 @@ module.exports = Ractive.extend({
         Ractive.defaults.Page = this;
     },
 
-    onconfig: function () {
+    oninit: function () {
 
         if (this.get("isAdmin")) {
 

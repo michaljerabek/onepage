@@ -22,7 +22,7 @@
                 <PageSectionMessage />
 
                 <ProgressBar />
-               
+
                 {{> pageSectionEditUI}}
 
             {{/if}}

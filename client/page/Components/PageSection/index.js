@@ -298,6 +298,10 @@
             }
         },
 
+        superOninit: function () {
+
+        },
+
         superOnrender: function () {
 
             if (Ractive.EDIT_MODE) {
@@ -466,6 +470,8 @@
         },
 
         superOnteardown: function () {
+
+            this.EditUI = null;
 
             clearInterval(this.layoutObserverTimeout);
             clearTimeout(this.backgroundColorTimeout);

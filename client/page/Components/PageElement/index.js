@@ -189,6 +189,7 @@
                 hover: false,
                 editMode: Ractive.EDIT_MODE,
                 openPageElementSettings: null,
+                state: "inactive",
 
                 stopTransition: false
             };
@@ -423,6 +424,11 @@
                 //pokud uživatel přestane editovat text, je nutné zjistit, jestli má outline zmizet
                 .on("focusout." + this.EVENT_NS, function () {
 
+                    if (this.removing) {
+
+                        return;
+                    }
+
                     this.set("hover", false);
 
                     this.set("focus", false);
@@ -436,6 +442,11 @@
                 }.bind(this))
                 //zobrazit outline např při tabu nebo označení
                 .on("focusin." + this.EVENT_NS, function () {
+
+                    if (this.removing) {
+
+                        return;
+                    }
 
                     //pouze nejvnitřnější elmenet
                     var children = this.findAllComponents(),
@@ -493,6 +504,11 @@
 
             //při najetí na vnitřní outline je potřeba ostatní odstranit
             this.on("*.pageElementHover", function (state) {
+
+                if (this.removing) {
+
+                    return;
+                }
 
                 if (state) {
 
@@ -637,7 +653,7 @@
 
         handleHover: function (event) {
 
-            if (hoverByTouch) {
+            if (hoverByTouch || this.removing) {
 
                 return;
             }
