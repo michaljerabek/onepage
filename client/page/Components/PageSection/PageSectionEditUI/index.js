@@ -104,49 +104,6 @@
 
             }.bind(this));
 
-            this.observe("hover", function (state) {
-
-                if (!state) {
-
-                    this.blockHover = false;
-
-                    this.set("removeSectionConfirmation", false);
-                }
-
-            }, {init: false});
-
-            //událost je spuštěna v příslušné PageSection
-            this.on("hover", function (event/*, pageSection*/) {
-
-                if (this.blockHover && event.hover) {
-
-                    return;
-                }
-
-                //přejetí z PageElementSetitngs -> neměnit stav UI
-                if (event.hover && $(event.original.fromElement).closest("." + this.parent.components.PageElementSettings.prototype.CLASS.self).length) {
-
-                    return;
-                }
-
-                //přejetí do PageElementSettings -> neměnit stav UI
-                if (!event.hover && $(event.original.toElement).closest("." + this.parent.components.PageElementSettings.prototype.CLASS.self).length) {
-
-                    return;
-                }
-
-                if (!event.hover) {
-
-                    this.blockHover = false;
-
-                } else {
-
-                    this.setHiddenByUser(false);
-                }
-
-                this.set("hover", event.hover && !this.Page.get("sortableActive"));
-            });
-
             this.on("pageSectionTouchend", function (event, pageSection, touchmove) {
 
                 if (this.hiddenByUser) {
@@ -197,6 +154,49 @@
         },
 
         superOnrender: function () {
+
+            //událost je spuštěna v příslušné PageSection
+            this.on("hover", function (event/*, pageSection*/) {
+
+                if (this.blockHover && event.hover) {
+
+                    return;
+                }
+
+                //přejetí z PageElementSetitngs -> neměnit stav UI
+                if (event.hover && $(event.original.fromElement).closest("." + this.parent.components.PageElementSettings.prototype.CLASS.self).length) {
+
+                    return;
+                }
+
+                //přejetí do PageElementSettings -> neměnit stav UI
+                if (!event.hover && $(event.original.toElement).closest("." + this.parent.components.PageElementSettings.prototype.CLASS.self).length) {
+
+                    return;
+                }
+
+                if (!event.hover) {
+
+                    this.blockHover = false;
+
+                } else {
+
+                    this.setHiddenByUser(false);
+                }
+
+                this.set("hover", event.hover && !this.Page.get("sortableActive"));
+            });
+
+            this.observe("hover", function (state) {
+
+                if (!state) {
+
+                    this.blockHover = false;
+
+                    this.set("removeSectionConfirmation", false);
+                }
+
+            }, {init: false});
 
             this.self = this.find("." + this.CLASS.self);
             this.$self = $(this.self);

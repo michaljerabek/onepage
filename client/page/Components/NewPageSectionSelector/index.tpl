@@ -12,6 +12,13 @@
         }}
 
         {{> SectionThumb {
+                type: "PageSectionFeatureFull",
+                name: "Celoobrazovková sekce",
+                icon: "#icon-feature-right-top"
+            }
+        }}
+
+        {{> SectionThumb {
                 type: "PageSectionA",
                 name: "PageSectionA",
                 icon: "#icon-picture"

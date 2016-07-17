@@ -356,10 +356,10 @@
 /**Minimální velikost .P_PageElementText -> kvůli animaci*/
 /*font-size krát line-height*/
 .P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
-    min-height: calc((34px + (41 - 34) * (100vw - 320px) / (1440 - 320)) * 1.46);
+    min-height: calc((31px + (41 - 31) * (100vw - 320px) / (1440 - 320)) * 1.46);
 }
 
-.P_PageSectionFeature .P_PageSectionFeature--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+.P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
     min-height: calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 2.11);
 }
 
@@ -369,7 +369,7 @@
         min-height: calc(41px * 1.46);
     }
 
-    .P_PageSectionFeature .P_PageSectionFeature--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    .P_PageSectionFeature .P_PageSectionFeature--content .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
         min-height: calc(19px * 2.11);
     }
 }
@@ -400,7 +400,7 @@
 .P_PageSectionFeature .P_PageSectionFeature--title .P_PageElement,
 .P_PageSectionFeature .P_PageSectionFeature--title .P_font-title {
     font-size: 41px;
-    font-size: calc(34px + (41 - 34) * (100vw - 320px) / (1440 - 320));
+    font-size: calc(31px + (41 - 31) * (100vw - 320px) / (1440 - 320));
 }
 
 .P_PageSectionFeature .P_PageSectionFeature--title.has-empty-PageElement:not(.has-active-PageElement),
@@ -638,12 +638,16 @@
 
 /*FONT - 3*/
 
-.P_underline-titles.P_font-type-3 .P_PageSectionFeature--title .P_PageElementText--underline,
 .P_underline-titles.P_font-type-3 .P_PageSectionFeature--title .P_PageElementText--underline {
     height: 0.07em;
 
     width: 32%;
     max-width: 88px;
+}
+
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeatureFull__top"] .P_PageSectionFeatureFull--title .P_PageElementText--underline,
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeatureFull__bottom"] .P_PageSectionFeatureFull--title .P_PageElementText--underline {
+    width: 20%;
 }
 
 .P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) .P_PageElementText,

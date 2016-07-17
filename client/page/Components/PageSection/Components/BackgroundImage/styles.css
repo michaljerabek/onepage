@@ -44,7 +44,7 @@
 
     background-position: center center;
 
-    transition: background-image 0.1s linear;
+    transition: background-image 0.1s linear, background-position 0.1s linear;
 }
 
 .P_BackgroundImage__parallax .P_BackgroundImage--image {

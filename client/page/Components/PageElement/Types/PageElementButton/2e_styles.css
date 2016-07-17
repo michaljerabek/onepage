@@ -70,11 +70,15 @@
     right: -12px;
 }
 
+.P_PageSection--buttons__reverse .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+    right: calc(100% + 0px);
+}
+
 .P_PageSection--buttons__empty .P_PageSection--buttons-wrapper  {
     margin-top: 0;
 }
 
-.E_PageElementButtons--add-button__bottom {
+.P_PageSection--buttons .E_PageElementButtons--add-button__bottom {
     margin: auto;
     top: 100%;
     bottom: -32px;
@@ -84,18 +88,18 @@
 
 @media (max-width: 480px) {
 
-    .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+    .P_PageSection--buttons .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
         top: 20px;
     }
 }
 
 @media (max-width: 360px) {
 
-    .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+    .P_PageSection--buttons .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
         top: 16px;
     }
 
-    .P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
+    .P_PageSection--buttons.P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
         margin: auto;
         top: 100%;
         bottom: -20px;

@@ -16,7 +16,7 @@
 
 }(this, function (Ractive, EventEmitter) {
 
-    return  function () {
+    return  function (node) {
 
         if (Ractive.EDIT_MODE) {
 
@@ -51,7 +51,7 @@
 
             this.addButtonListener = this.on("addButton", function () {
 
-                this.push("section.buttons", this.components.PageElementButton.prototype.getNewItem.call(this));
+                this[this.get("reverseButtons") ? "unshift": "push"]("section.buttons", this.components.PageElementButton.prototype.getNewItem.call(this));
 
             }.bind(this));
 
@@ -87,7 +87,7 @@
 
                             var rect = button.getBoundingClientRect();
 
-                            this.set("addButtonBottom", rect.right > document.documentElement.clientWidth - 10);
+                            this.set("addButtonBottom", rect.right > document.documentElement.clientWidth - 10 || rect.left < 10);
                         }
                     }
 
