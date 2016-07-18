@@ -62,6 +62,11 @@
 
                 }, {init: false});
 
+                if (window.innerWidth >= 1024 && this.get("layout.hor") === "right") {
+
+                    this.set("reverseButtons", true);
+                }
+
                 this.observe("reverseButtons", function (state) {
 
                     if (state && window.innerWidth < 1024) {

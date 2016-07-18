@@ -14,9 +14,9 @@
         root.PageElementButtons = factory(root.Ractive);
     }
 
-}(this, function (Ractive, EventEmitter) {
+}(this, function (Ractive) {
 
-    return  function (node) {
+    return  function () {
 
         if (Ractive.EDIT_MODE) {
 
@@ -117,10 +117,8 @@
         return {
             teardown: function () {
 
-                console.log(1);
-
                 if (Ractive.EDIT_MODE) {
-//
+
                     this.removeButtonListener.cancel();
                     this.addButtonListener.cancel();
                     this.buttonsObserver.cancel();

@@ -14,7 +14,15 @@
         {{> SectionThumb {
                 type: "PageSectionFeatureFull",
                 name: "Celoobrazovková sekce",
-                icon: "#icon-feature-right-top"
+                icon: "#icon-feature-full-center-center"
+            }
+        }}
+
+
+        {{> SectionThumb {
+                type: "PageSectionClaim",
+                name: "Claim",
+                icon: "#icon-claim-content"
             }
         }}
 
