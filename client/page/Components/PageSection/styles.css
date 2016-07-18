@@ -1,4 +1,6 @@
-.P_PageSection:not([class*='Header']):not([class*='Feature']) .P_PageSection--content {
+.P_PageSectionA .P_PageSection--content,
+.P_PageSectionB .P_PageSection--content,
+.P_PageSectionC .P_PageSection--content {
     font-size: 20px;
     line-height: 20;
 }
