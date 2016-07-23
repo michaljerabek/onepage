@@ -131,78 +131,9 @@
 
         }.bind(this));
 
-        EventEmitter.on("saving.Page." + this.EVENT_NS, function () {
-
-            //při ukládání stránky je potřeba přeřadit pole podle elementů
-            var order = $sortableWrapper.sortable("toArray");
-
-            if (order.length > 1) {
-
-                var c,
-
-                    components = this.findAllComponents(componentName),
-
-                    sorted = [],
-
-                    current = order.shift();
-
-                do {
-
-                    c = components.length - 1;
-
-                    for (c; c >= 0; c--) {
-
-                        if (components[c].get("id") === current) {
-
-                            var element = components[c].get("element");
-
-                            components[c].set("stopTransition", true);
-
-                            sorted.push(element);
-
-                            //nejspíš chyba v Ractivu, ale je nutné nejdříve odstranit všechny observery
-                            components[c].cancelObservers();
-
-                            //nastavit elementy podle pořadí, protože byly přetažením nastaveny na jiných pozicích,
-                            //takže při přeřazení dat v poli by se zobrazovaly nesprávně
-                            $sortableWrapper.append($sortableWrapper.find("#" + current));
-                        }
-                    }
-
-                    current = order.shift();
-
-                } while (current);
-
-//                $sortableWrapper.find(".P_PageElement").hide();
-
-                this.set(path, []);
-                this.merge(path, sorted);
-
-            }
-
-        }.bind(this));
-
-        EventEmitter.on("saved.Page." + this.EVENT_NS + " sortElementsDone.PageSection." + this.EVENT_NS, function () {
-
-            var components = this.findAllComponents(componentName),
-
-                c = components.length - 1;
-
-            for (c; c >= 0; c--) {
-
-                components[c].set("stopTransition", false);
-
-                components[c].initObservers();
-            }
-
-        }.bind(this));
 
         return {
             teardown: function () {
-
-                EventEmitter
-                    .off("saving.Page." + this.EVENT_NS)
-                    .off("saved.Page." + this.EVENT_NS);
 
                 $sortableWrapper
                     .off("sortable:update")

@@ -645,8 +645,8 @@
     max-width: 88px;
 }
 
-.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeatureFull__top"] .P_PageSectionFeatureFull--title .P_PageElementText--underline,
-.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeatureFull__bottom"] .P_PageSectionFeatureFull--title .P_PageElementText--underline {
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__top"] .P_PageSectionFeatureFull--title .P_PageElementText--underline,
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeatureFull--title .P_PageElementText--underline {
     width: 20%;
 }
 

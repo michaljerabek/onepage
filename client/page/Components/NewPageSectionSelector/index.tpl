@@ -26,6 +26,14 @@
             }
         }}
 
+
+        {{> SectionThumb {
+                type: "PageSectionFactsIcons",
+                name: "Fakty — ikony",
+                icon: "#icon-claim-content"
+            }
+        }}
+
         {{> SectionThumb {
                 type: "PageSectionA",
                 name: "PageSectionA",

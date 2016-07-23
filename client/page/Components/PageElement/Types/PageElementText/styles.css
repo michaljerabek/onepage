@@ -103,7 +103,7 @@ body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageEleme
     transition: var(--P_animations-40-hover);
 }
 
-.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active) > .P_PageElementText:nth-of-type(1n) {
+.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):not(.P_PageElement__no-mod-if-empty) > .P_PageElementText:nth-of-type(1n) {
     line-height: 0;
     font-size: 0;
 
@@ -120,7 +120,7 @@ body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageEleme
     transition: var(--default-transition);
 }
 
-.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):nth-of-type(1n) {
+.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):nth-of-type(1n):not(.P_PageElement__no-mod-if-empty) {
     font-size: 0;
     line-height: 0;
 

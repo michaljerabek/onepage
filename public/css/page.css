@@ -7198,7 +7198,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 .P_font-type-1 .P_PageSection--content .P_font-title {
     font-family: "DejaVu Serif";
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .P_font-type-2 .P_PageSection--content .P_font-title {
@@ -7811,7 +7811,7 @@ ium-editor-toolbar li button:disabled:not(:hover) {
 
 .E_GlobalFontSettings--font-type[data-font-type="P_font-type-1"] .E_GlobalFontSettings--title {
     font-family: "DejaVu Serif";
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .E_GlobalFontSettings--font-type[data-font-type="P_font-type-1"] .E_GlobalFontSettings--body {
@@ -12225,778 +12225,781 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 /*====================================================================*/
-/*--------------------------- PageElementButton --------------------------*/
+/*------------------------- PAGEELEMENTICON --------------------------*/
 /*====================================================================*/
 
-.P_PageElement__button {
+.P_PageElement__icon {
     font-size: 0;
     line-height: 0;
+    vertical-align: middle;
 
     position: relative;
-    margin: 0 8px;
-    margin-bottom: 16px;
 
     display: inline-block;
 }
 
-.P_PageElementButton {
-    position: relative;
-    margin: 0;
-
-    height: 56px;
-    max-width: 300px;
-
-    border: 2px solid;
-
-    display: inline-block;
-    overflow: hidden;
-
-    -webkit-transition: color 0.1s linear 0s,
-        background 0.1s linear 0s,
-        border 0.1s linear 0s,
-        text-shadow 0.1s linear 0s,
-        -webkit-border-radius 0.1s linear 0s,
-        -webkit-box-shadow 0.1s linear 0s;
-
-    transition: color 0.1s linear 0s,
-        background 0.1s linear 0s,
-        border 0.1s linear 0s,
-        text-shadow 0.1s linear 0s,
-        -webkit-border-radius 0.1s linear 0s,
-        -webkit-box-shadow 0.1s linear 0s;
-
-    -moz-transition: color 0.1s linear 0s,
-        background 0.1s linear 0s,
-        border 0.1s linear 0s,
-        border-radius 0.1s linear 0s,
-        box-shadow 0.1s linear 0s,
-        text-shadow 0.1s linear 0s,
-        -moz-border-radius 0.1s linear 0s,
-        -moz-box-shadow 0.1s linear 0s;
-
-    -o-transition: color 0.1s linear 0s,
-        background 0.1s linear 0s,
-        border 0.1s linear 0s,
-        border-radius 0.1s linear 0s,
-        box-shadow 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
-
-    transition: color 0.1s linear 0s,
-        background 0.1s linear 0s,
-        border 0.1s linear 0s,
-        border-radius 0.1s linear 0s,
-        box-shadow 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
-
+.E .P_PageElement__icon {
+    -webkit-transition: height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    -moz-transition: height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    -o-transition: height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
     transition:
-        color 0.1s linear 0s,
-        background 0.1s linear 0s,
-        border 0.1s linear 0s,
-        border-radius 0.1s linear 0s,
-        box-shadow 0.1s linear 0s,
-        text-shadow 0.1s linear 0s,
-        -webkit-border-radius 0.1s linear 0s,
-        -moz-border-radius 0.1s linear 0s,
-        -webkit-box-shadow 0.1s linear 0s,
-        -moz-box-shadow 0.1s linear 0s;
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
 }
 
-.E_PageSection__stop-color-transitions .P_PageElementButton {
-    -webkit-transition: text-shadow 0.1s linear 0s,
-        -webkit-box-shadow 0.1s linear 0s,
-        -webkit-border-radius 0.1s linear 0s;
-    transition: text-shadow 0.1s linear 0s,
-        -webkit-box-shadow 0.1s linear 0s,
-        -webkit-border-radius 0.1s linear 0s;
-    -moz-transition: box-shadow 0.1s linear 0s,
-        border-radius 0.1s linear 0s,
-        text-shadow 0.1s linear 0s,
-        -moz-box-shadow 0.1s linear 0s,
-        -moz-border-radius 0.1s linear 0s;
-    -o-transition: box-shadow 0.1s linear 0s,
-        border-radius 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
-    transition: box-shadow 0.1s linear 0s,
-        border-radius 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
-    transition:
-        box-shadow 0.1s linear 0s,
-        border-radius 0.1s linear 0s,
-        text-shadow 0.1s linear 0s,
-        -webkit-box-shadow 0.1s linear 0s,
-        -moz-box-shadow 0.1s linear 0s,
-        -webkit-border-radius 0.1s linear 0s,
-        -moz-border-radius 0.1s linear 0s;
+.P_PageElementIcon svg, .P_PageElementIcon img {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+
+    -webkit-transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, -webkit-filter 0.1s linear;
+
+    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, -webkit-filter 0.1s linear;
+
+    -moz-transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
+
+    -o-transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
+
+    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
+
+    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear, -webkit-filter 0.1s linear;
 }
 
-.P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_PageElement .P_PageElementButton:hover {
-    -webkit-transform: scale(1.07142);
-       -moz-transform: scale(1.07142);
-        -ms-transform: scale(1.07142);
-         -o-transform: scale(1.07142);
-            transform: scale(1.07142);
-}
-
-.P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
-    -webkit-transform: scale(1.03571);
-       -moz-transform: scale(1.03571);
-        -ms-transform: scale(1.03571);
-         -o-transform: scale(1.03571);
-            transform: scale(1.03571);
-}
-
-@media (max-width: 480px) {
-
-    .P_PageElement__button {
-        margin: 0 6px;
-        margin-bottom: 12px;
-    }
-
-    .P_PageElementButton {
-        -webkit-transform: scale(0.92857);
-           -moz-transform: scale(0.92857);
-            -ms-transform: scale(0.92857);
-             -o-transform: scale(0.92857);
-                transform: scale(0.92857);
-    }
-
-    .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_PageElement .P_PageElementButton:hover {
-        -webkit-transform: scale(1);
-           -moz-transform: scale(1);
-            -ms-transform: scale(1);
-             -o-transform: scale(1);
-                transform: scale(1);
-    }
-
-    .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
-        -webkit-transform: scale(0.96429);
-           -moz-transform: scale(0.96429);
-            -ms-transform: scale(0.96429);
-             -o-transform: scale(0.96429);
-                transform: scale(0.96429);
-    }
-
-}
-
-@media (max-width: 360px) {
-
-    .P_PageElement__button {
-        margin: 0;
-        margin-bottom: 8px;
-    }
-
-    .P_PageElementButton {
-        -webkit-transform: scale(0.85714);
-           -moz-transform: scale(0.85714);
-            -ms-transform: scale(0.85714);
-             -o-transform: scale(0.85714);
-                transform: scale(0.85714);
-    }
-
-    .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_PageElement .P_PageElementButton:hover {
-        -webkit-transform: scale(0.92857);
-           -moz-transform: scale(0.92857);
-            -ms-transform: scale(0.92857);
-             -o-transform: scale(0.92857);
-                transform: scale(0.92857);
-    }
-
-    .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
-        -webkit-transform: scale(0.89286);
-           -moz-transform: scale(0.89286);
-            -ms-transform: scale(0.89286);
-             -o-transform: scale(0.89286);
-                transform: scale(0.89286);
-    }
-}
-
-.P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_PageElement .P_PageElementButton {
-    cursor: pointer;
-}
-
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton {
-    -webkit-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
-    -moz-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
-    -o-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
-    transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
-}
-
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:hover {
-    -webkit-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
-    -moz-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
-    -o-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
-    transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
-}
-
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:active {
-    -webkit-transition: all 0.05s ease-in 0s;
-    -moz-transition: all 0.05s ease-in 0s;
-    -o-transition: all 0.05s ease-in 0s;
-    transition: all 0.05s ease-in 0s;
-}
-
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton {
-    -webkit-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
-    -moz-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
-    -o-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
-    transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
-}
-
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:hover {
-    -webkit-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
-    -moz-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
-    -o-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
-    transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
-}
-
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:active {
-    -webkit-transition: all 0.05s ease-in 0s;
-    -moz-transition: all 0.05s ease-in 0s;
-    -o-transition: all 0.05s ease-in 0s;
-    transition: all 0.05s ease-in 0s;
-}
-
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton {
-    -webkit-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
-    -moz-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
-    -o-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
-    transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
-}
-
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:hover {
-    -webkit-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
-    -moz-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
-    -o-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
-    transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
-}
-
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:active {
-    -webkit-transition: all 0.035s ease-in 0s;
-    -moz-transition: all 0.035s ease-in 0s;
-    -o-transition: all 0.035s ease-in 0s;
-    transition: all 0.035s ease-in 0s;
-}
-
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton {
-    -webkit-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
-    -moz-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
-    -o-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
-    transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
-}
-
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:hover {
-    -webkit-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
-    -moz-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
-    -o-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
-    transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
-}
-
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:active {
-    -webkit-transition: all 0.035s ease-in 0s;
-    -moz-transition: all 0.035s ease-in 0s;
-    -o-transition: all 0.035s ease-in 0s;
-    transition: all 0.035s ease-in 0s;
-}
-
-.P_roundness-0 .P_PageElementButton {
-	-webkit-border-radius: 0;
-	   -moz-border-radius: 0;
-	        border-radius: 0;
-}
-
-.P_roundness-10 .P_PageElementButton {
-	-webkit-border-radius: 4px;
-	   -moz-border-radius: 4px;
-	        border-radius: 4px;
-}
-
-.P_roundness-20 .P_PageElementButton {
-	-webkit-border-radius: 6px;
-	   -moz-border-radius: 6px;
-	        border-radius: 6px;
-}
-
-.P_roundness-30 .P_PageElementButton, .P_roundness-40 .P_PageElementButton {
-	-webkit-border-radius: 28px;
-	   -moz-border-radius: 28px;
-	        border-radius: 28px;
-}
-
-.P_PageSection__shadow-10 .P_PageElementButton {
-    -webkit-box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
-       -moz-box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
-            box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
-}
-
-.P_PageSection__shadow-20 .P_PageElementButton {
-    -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
-       -moz-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
-            box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
-}
-
-.P_PageSection__shadow-30 .P_PageElementButton {
-    -webkit-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-       -moz-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-            box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-}
-
-.P_PageSection__shadow-10 .P_PageElementButton.P_PageElementButton__stroke {
-    -webkit-box-shadow: inset 0px 0px  8px rgba(0, 0, 0, 0.1),
-        0px 0px  8px rgba(0, 0, 0, 0.1);
-       -moz-box-shadow: inset 0px 0px  8px rgba(0, 0, 0, 0.1),
-        0px 0px  8px rgba(0, 0, 0, 0.1);
-            box-shadow: inset 0px 0px  8px rgba(0, 0, 0, 0.1),
-        0px 0px  8px rgba(0, 0, 0, 0.1);
-}
-
-.P_PageSection__shadow-20 .P_PageElementButton.P_PageElementButton__stroke {
-    -webkit-box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.175),
-        0px 0px 12px rgba(0, 0, 0, 0.175);
-       -moz-box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.175),
-        0px 0px 12px rgba(0, 0, 0, 0.175);
-            box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.175),
-        0px 0px 12px rgba(0, 0, 0, 0.175);
-}
-
-.P_PageSection__shadow-30 .P_PageElementButton.P_PageElementButton__stroke {
-    -webkit-box-shadow: inset 0px 0px 16px rgba(0, 0, 0, 0.25),
-        0px 0px 16px rgba(0, 0, 0, 0.25);
-       -moz-box-shadow: inset 0px 0px 16px rgba(0, 0, 0, 0.25),
-        0px 0px 16px rgba(0, 0, 0, 0.25);
-            box-shadow: inset 0px 0px 16px rgba(0, 0, 0, 0.25),
-        0px 0px 16px rgba(0, 0, 0, 0.25);
-}
-
-.P_PageSection__shadow-10 .P_PageElementButton__stroke .P_PageElementButton--text {
-    text-shadow: 0px 0px  8px rgba(0, 0, 0, 0.2);
-}
-
-.P_PageSection__shadow-20 .P_PageElementButton__stroke .P_PageElementButton--text {
-    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
-}
-
-.P_PageSection__shadow-30 .P_PageElementButton__stroke .P_PageElementButton--text {
-    text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.6);
-}
-
-.P_PageElementButton--content-wrapper {
-    vertical-align: middle;
-    white-space: nowrap;
-
-    height: 52px;
-    min-height: 52px;
-    max-height: 52px;
-    max-width: 296px;
-
-    display: inline-table;
-    table-layout: fixed;
-
-    overflow: hidden;
-
-    -webkit-transition: padding 0.3s ease-in-out 0s,
-        width 0.3s ease-in-out 0s;
-
-    -moz-transition: padding 0.3s ease-in-out 0s,
-        width 0.3s ease-in-out 0s;
-
-    -o-transition: padding 0.3s ease-in-out 0s,
-        width 0.3s ease-in-out 0s;
-
-    transition: padding 0.3s ease-in-out 0s,
-        width 0.3s ease-in-out 0s;
-}
-
-.P_PageElementButton--text-wrapper {
-    font-size: 19px;
-    line-height: 52px;
-    text-align: center;
-
-    padding: 0;
-    max-height: 52px;
-
-    display: table-cell;
-}
-
-.P_PageElementButton--text {
-    line-height: 22px;
-    font-weight: bold;
-    white-space: normal;
-    word-break: break-all;
-    word-wrap: break-word;
-    vertical-align: middle;
-    text-align: center;
-    text-wrap: balance;
-
-    top: 1px;
+.P_PageElementIcon svg {
     position: relative;
+    top: -2px;
+    left: -2px;
 
-    padding: 4px 20px;
-    min-width: 96px;
-    max-height: 52px;
-    height: 52px;
+    width: -webkit-calc(100% + 4px);
 
-    display: table-cell;
+    width: -moz-calc(100% + 4px);
 
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    -o-user-select: text;
-    user-select: text;
-
-    -webkit-transition: padding 0.3s ease-in-out 0s,
-        color 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
-
-    -moz-transition: padding 0.3s ease-in-out 0s,
-        color 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
-
-    -o-transition: padding 0.3s ease-in-out 0s,
-        color 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
-
-    transition: padding 0.3s ease-in-out 0s,
-        color 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
+    width: calc(100% + 4px);
+    height: -webkit-calc(100% + 4px);
+    height: -moz-calc(100% + 4px);
+    height: calc(100% + 4px);
+    padding: 2px;
 }
 
-.E_PageSection__stop-color-transitions .P_PageElementButton--text {
-    -webkit-transition: padding 0.3s ease-in-out 0s;
-    -moz-transition: padding 0.3s ease-in-out 0s;
-    -o-transition: padding 0.3s ease-in-out 0s;
-    transition: padding 0.3s ease-in-out 0s;
-}
-
-.E .P_PageElement:not([data-ractive-transition="intro-complete"]) .P_PageElementButton--text, .P_PageElement[data-ractive-transition="outro"] .P_PageElementButton--text {
-    word-break: normal;
-    word-wrap: normal;
-    text-wrap: normal;
-}
-
-.P_PageElementButton__long-text .P_PageElementButton--text-wrapper {
-    font-size: 17px;
-}
-
-.P_PageElementButton__long-text .P_PageElementButton--text {
-    top: 0px;
-}
-
-.P_PageElementButton--icon {
-    line-height: 0;
-    vertical-align: middle;
-
-    position: relative;
-
-    width: 56px;
-    height: 32px;
-    max-height: 52px;
-
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-      -o-background-size: 100%;
-         background-size: 100%;
-
-    display: table-cell;
-    overflow: hidden;
-
-    -webkit-transition: width 0.3s ease-in-out;
-
-    -moz-transition: width 0.3s ease-in-out;
-
-    -o-transition: width 0.3s ease-in-out;
-
-    transition: width 0.3s ease-in-out;
-}
-
-.P_PageElementButton__has-icon .P_PageElementButton--text {
-    padding-left: 0;
-}
-
-.P_PageElementButton--icon svg {
-    margin: auto;
-    position: absolute;
-    top: 10px;
-    left: 0px;
-    right: 0;
-
-    width: 32px;
-    height: 32px;
-
+.P_PageElementIcon__fill svg, .P_PageElementIcon__fill svg * {
     fill: currentColor;
-
-    display: inline-block;
-    -webkit-transition: color 0.1s linear 0s,
-        fill 0.1s linear 0s,
-        left 0.3s ease-in-out;
-    -moz-transition: color 0.1s linear 0s,
-        fill 0.1s linear 0s,
-        left 0.3s ease-in-out;
-    -o-transition: color 0.1s linear 0s,
-        fill 0.1s linear 0s,
-        left 0.3s ease-in-out;
-    transition:
-        color 0.1s linear 0s,
-        fill 0.1s linear 0s,
-        left 0.3s ease-in-out;
 }
 
-@media (max-width: 360px) {
-
-    .P_PageElement__button {
-        width: 288px;
-    }
-
-    .P_PageElementButton {
-        max-width: auto;
-        width: 100%;
-    }
-
-    .P_PageElementButton__has-icon .P_PageElementButton--content-wrapper, .P_PageElementButton__has-icon .P_PageElementButton--text-wrapper {
-        width: 100%;
-    }
-
-    .P_PageElementButton__has-icon .P_PageElementButton--content-wrapper {
-        padding-left: 56px;
-        padding-right: 20px;
-    }
-
-    .P_PageElementButton__has-icon .P_PageElementButton--text {
-        padding-right: 0;
-        width: 300px;
-        max-width: 100%;
-    }
-
-    .P_PageElementButton--icon {
-        position:absolute;
-        left: 0px;
-        top: 0;
-
-        height: 100%;
-    }
-
+.P_PageElementIcon__stroke svg, .P_PageElementIcon__stroke svg * {
+    stroke: currentColor;
 }
 
-
-/*--------------------------------------------------------------------*/
-/*--------------------------- PAGESECTION ----------------------------*/
-/*--------------------------------------------------------------------*/
-
-.P_PageSection--buttons {
-    text-align: center;
-    line-height: 0;
-    font-size: 0;
-
-    position: relative;
-    margin: 0px auto;
-    padding: 0 8px;
-
-    display: table;
+.P_PageElementIcon__both svg, .P_PageElementIcon__both svg * {
+    fill: currentColor;
+    stroke: currentColor;
 }
 
-@media (max-width: 360px) {
-
-    .P_PageSection--buttons {
-        margin-left: -20px;
-
-        padding: 0;
-        width: -webkit-calc(100% + 36px);
-        width: -moz-calc(100% + 36px);
-        width: calc(100% + 36px);
-    }
-
-    .P_PageSection--buttons .P_PageElement__button {
-        margin-right: auto;
-        margin-left: auto;
-    }
-}
-
-.P_PageSection--buttons-wrapper {
-    line-height: 0;
-    font-size: 0;
-
-    margin: 0px auto;
-    margin-top: 16px;
-    position: relative;
-}
-
-.P_PageSection--buttons-wrapper > * {
-    vertical-align: top;
-}
-
-@media (max-width: 480px) {
-
-    .P_PageSection--buttons-wrapper {
-        margin-top: 12px;
-    }
-
-}
-
-@media (max-width: 360px) {
-
-    .P_PageSection--buttons-wrapper {
-        margin-top: 8px;
-    }
-}
-
-
-
-.E_PageSection__stop-color-transitions .P_PageElementButton--icon svg {
+.E_PageSection__stop-color-transitions .P_PageElementIcon svg, .E_PageSection__stop-color-transitions .P_PageElementIcon svg * {
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
     transition: none;
 }
 
-.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition="intro"] {
-    -webkit-animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
-       -moz-animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
-         -o-animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
-            animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
+.P_PageSection__shadow-30 .P_PageElementIcon svg, .P_PageSection__shadow-30 .P_PageElementIcon img {
+    -webkit-filter: drop-shadow(0px 0px  6px rgba(0, 0, 0, 0.4));
+            filter: drop-shadow(0px 0px  6px rgba(0, 0, 0, 0.4));
 }
 
-.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition^="outro"] {
-    -webkit-animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
-       -moz-animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
-         -o-animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
-            animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
+.P_PageSection__shadow-20 .P_PageElementIcon svg, .P_PageSection__shadow-20 .P_PageElementIcon img {
+    -webkit-filter: drop-shadow(0px 0px  4px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0px 0px  4px rgba(0, 0, 0, 0.25));
 }
 
-@-webkit-keyframes P_PageElementButton--icon-width-0-56 {
-    from { width: 0; }
-    to { width: 56px; }
+.P_PageSection__shadow-10 .P_PageElementIcon svg, .P_PageSection__shadow-10 .P_PageElementIcon img {
+    -webkit-filter: drop-shadow(0px 0px  3px rgba(0, 0, 0, 0.125));
+            filter: drop-shadow(0px 0px  3px rgba(0, 0, 0, 0.125));
 }
 
-@-moz-keyframes P_PageElementButton--icon-width-0-56 {
-    from { width: 0; }
-    to { width: 56px; }
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- EDITMODE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElement__icon .E_PageElement--upload-overlay:after {
+    content: "Nahrát ikonu";
+
+    font-size: 12px;
+    white-space: normal;
 }
 
-@-o-keyframes P_PageElementButton--icon-width-0-56 {
-    from { width: 0; }
-    to { width: 56px; }
+.P_PageElement__icon .E_PageElement--activate {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
 }
 
-@keyframes P_PageElementButton--icon-width-0-56 {
-    from { width: 0; }
-    to { width: 56px; }
+
+/*====================================================================*/
+/*------------------------- PAGEELEMENTFACT --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__fact {
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+
+    display: inline-block;
 }
 
-@-webkit-keyframes P_PageElementButton--icon-width-56-0 {
-    from { width: 56px; }
-    to { width: 0px; }
+.E .P_PageElement__fact[data-ractive-transition^="outro"] {
+    -webkit-animation: E_PageElementFact--remove-fact 0.3s ease-in-out forwards;
+       -moz-animation: E_PageElementFact--remove-fact 0.3s ease-in-out forwards;
+         -o-animation: E_PageElementFact--remove-fact 0.3s ease-in-out forwards;
+            animation: E_PageElementFact--remove-fact 0.3s ease-in-out forwards;
 }
 
-@-moz-keyframes P_PageElementButton--icon-width-56-0 {
-    from { width: 56px; }
-    to { width: 0px; }
+@-webkit-keyframes E_PageElementFact--remove-fact {
+    to {
+        margin: 0;
+        width: 0;
+        height: 0;
+        min-height: 0;
+        min-width: 0;
+    }
 }
 
-@-o-keyframes P_PageElementButton--icon-width-56-0 {
-    from { width: 56px; }
-    to { width: 0px; }
+@-moz-keyframes E_PageElementFact--remove-fact {
+    to {
+        margin: 0;
+        width: 0;
+        height: 0;
+        min-height: 0;
+        min-width: 0;
+    }
 }
 
-@keyframes P_PageElementButton--icon-width-56-0 {
-    from { width: 56px; }
-    to { width: 0px; }
+@-o-keyframes E_PageElementFact--remove-fact {
+    to {
+        margin: 0;
+        width: 0;
+        height: 0;
+        min-height: 0;
+        min-width: 0;
+    }
+}
+
+@keyframes E_PageElementFact--remove-fact {
+    to {
+        margin: 0;
+        width: 0;
+        height: 0;
+        min-height: 0;
+        min-width: 0;
+    }
+}
+
+.E .P_PageElement__fact {
+    -webkit-transition: margin 0.3s ease-in-out,
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    -moz-transition: margin 0.3s ease-in-out,
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    -o-transition: margin 0.3s ease-in-out,
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    transition:
+           margin 0.3s ease-in-out,
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+}
+
+.P_PageElementFact {
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    min-width: 200px;
+
+    display: block;
+}
+
+.P_PageElementFact .P_PageElement__icon {
+    width: 72px;
+    height: 72px;
+
+    margin: 0px auto;
+    margin-bottom: 20px;
+
+    display: block;
+}
+
+.P_PageElementFact .P_PageElement__text {
+    text-align: center;
+
+    position: relative;
+    margin: 0px auto;
+
+    max-width: 200px;
+
+    display: table;
+}
+
+.P_PageElementFact .P_PageElementText {
+    min-height: -webkit-calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 1.63);
+    min-height: -moz-calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 1.63);
+    min-height: calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 1.63);
+}
+
+.P_PageElementFact .P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active) {
+    margin-bottom: -webkit-calc(((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * -1.63) - 4px);
+    margin-bottom: -moz-calc(((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * -1.63) - 4px);
+    margin-bottom: calc(((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * -1.63) - 4px);
+    margin-top: -16px;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageElementFact .P_PageElementText {
+        min-height: -webkit-calc(19px * 1.63);
+        min-height: -moz-calc(19px * 1.63);
+        min-height: calc(19px * 1.63);
+    }
+
+    .P_PageElementFact .P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active) {
+        margin-bottom: -webkit-calc((-19px * 1.63) - 4px);
+        margin-bottom: -moz-calc((-19px * 1.63) - 4px);
+        margin-bottom: calc((-19px * 1.63) - 4px);
+        margin-top: -16px;
+    }
+
+}
+
+.P_PageElementFact .P_PageElement__text, .P_PageElementFact .P_PageElementText, .P_PageElementFact .P_font-title {
+    font-size: 19px;
+    font-size: -webkit-calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    font-size: -moz-calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    font-size: calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    line-height: 1.63;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageElementFact .P_PageElementText {
+        font-size: 19px;
+    }
+}
+
+/*====================================================================*/
+/*------------------------ PAGEELEMENTIMAGE --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__image {
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+
+    position: relative;
+
+    max-width: 0;
+    min-height: 0;
+
+    display: inline-block;
+}
+
+.E .P_PageElement__image {
+    -webkit-transition: height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    -moz-transition: height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    -o-transition: height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    transition:
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+}
+
+.P_PageElement__image.P_PageElement__empty:not(.E_PageElement__active) {
+    width: 0;
+    height: 0;
+}
+
+.P_PageSection--content:not(.E_PageSection__dragover) .P_PageElement__image.P_PageElement__empty:not(.E_PageElement__active) .E_PageElement--outline {
+    opacity: 0;
+}
+
+.P_PageElement__image.P_PageElement__empty.E_PageElement__active .E_PageElement--outline {
+/*    pointer-events: all;*/
+}
+
+.E_PageSection__dragover .P_PageElement__image.P_PageElement__empty, .P_PageElement__image.P_PageElement__empty.dz-drag-hover, .P_PageElement__image.P_PageElement__empty.E_PageElement__active {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    min-height: 52px;
+}
+
+.P_PageElementImage--image {
+    max-width: 100%;
+    min-width: 100%;
+
+    border: none;
 }
 
 /*--------------------------------------------------------------------*/
 /*----------------------------- EDITMODE -----------------------------*/
 /*--------------------------------------------------------------------*/
 
-.P_PageElement__button .E_PageElement--upload-overlay:after {
-    content: "Nahrát stahovatelný soubor";
+.P_PageElement__image .E_PageElement--upload-overlay:after {
+    content: "Nahrát obrázek";
+
+    font-size: 12px;
+    white-space: normal;
 }
 
-.P_PageSection--buttons [id*="__ph"] {
-    margin: 0 8px;
-    margin-bottom: 16px;
-
-    display: inline-block !important;
-}
-
-@media (max-width: 480px) {
-
-    .P_PageSection--buttons [id*="__ph"]  {
-        margin: 0 6px;
-        margin-bottom: 12px;
-    }
-
-}
-
-@media (max-width: 360px) {
-
-    .P_PageSection--buttons [id*="__ph"] {
-        margin: 0;
-        margin-bottom: 8px;
-    }
-}
-
-/*---------------------------- ADD-BUTTON ----------------------------*/
-
-.E_PageElementButtons--add-button  {
-    z-index: 30;
-    position: absolute;
-    top: 24px;
-    right: -40px;
-
-    -webkit-transition: 0.3s ease-in-out;
-
-    -moz-transition: 0.3s ease-in-out;
-
-    -o-transition: 0.3s ease-in-out;
-
-    transition: 0.3s ease-in-out;
-    -webkit-transition-property: margin;
-    -moz-transition-property: margin;
-    -o-transition-property: margin;
-    transition-property: margin;
-}
-
-.P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
-    top: -20px;
-    right: -12px;
-}
-
-.P_PageSection--buttons__reverse .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
-    right: -webkit-calc(100% + 0px);
-    right: -moz-calc(100% + 0px);
-    right: calc(100% + 0px);
-}
-
-.P_PageSection--buttons__empty .P_PageSection--buttons-wrapper  {
-    margin-top: 0;
-}
-
-.P_PageSection--buttons .E_PageElementButtons--add-button__bottom {
-    margin: auto;
-    top: 100%;
-    bottom: -32px;
-    right: 0;
+.P_PageElement__image .E_PageElement--activate {
+    top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
 }
 
-@media (max-width: 480px) {
+.P_PageElement__text {
+    position: relative;
 
-    .P_PageSection--buttons .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
-        top: 20px;
-    }
+    display: inline-block;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-@media (max-width: 360px) {
+.P_PageElementText {
+    margin: 0;
 
-    .P_PageSection--buttons .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
-        top: 16px;
-    }
+    min-height: 100%;
+    max-height: 100%;
+    min-width: 24px;
+    padding: 0;
 
-    .P_PageSection--buttons.P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
-        margin: auto;
-        top: 100%;
-        bottom: -20px;
-        right: 0;
-        left: 0px;
-    }
+    display: inline-block;
+}
+
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .E_PageElement--outline ~ * .P_PageElementText {
+    -webkit-transition: padding 0.3s ease-in-out,
+        color 0.1s linear,
+        text-shadow 0.1s linear;
+    -moz-transition: padding 0.3s ease-in-out,
+        color 0.1s linear,
+        text-shadow 0.1s linear;
+    -o-transition: padding 0.3s ease-in-out,
+        color 0.1s linear,
+        text-shadow 0.1s linear;
+    transition:
+        padding 0.3s ease-in-out,
+        color 0.1s linear,
+        text-shadow 0.1s linear;
+}
+
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText, .P_PageSection--content.E_PageSection__stop-color-transitions .E_PageElement--outline ~ * .P_PageElementText {
+    -webkit-transition: padding 0.3s ease-in-out,
+        text-shadow 0.1s linear;
+    -moz-transition: padding 0.3s ease-in-out,
+        text-shadow 0.1s linear;
+    -o-transition: padding 0.3s ease-in-out,
+        text-shadow 0.1s linear;
+    transition:
+        padding 0.3s ease-in-out,
+        text-shadow 0.1s linear;
+}
+
+.P_PageSection__shadow-10 .P_PageElementText {
+    text-shadow: 0px 0px  8px rgba(0, 0, 0, 0.2);
+}
+
+.P_PageSection__shadow-20 .P_PageElementText {
+    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+}
+
+.P_PageSection__shadow-30 .P_PageElementText {
+    text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.6);
+}
+
+.P_PageElementText a {
+    text-decoration: none;
+
+    background-repeat: repeat-y;
+
+    -webkit-transform: translateZ(0);
+
+       -moz-transform: translateZ(0);
+
+            transform: translateZ(0);
+    will-change: color, text-shadow, background;
+}
+
+.P_Page__loaded .P_PageElementText a {
+    background-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor -webkit-calc(0.135em + 1px), rgba(0,0,0,0) -webkit-calc(0.135em + 1px), rgba(0,0,0,0));
+    background-image: -moz-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor -moz-calc(0.135em + 1px), rgba(0,0,0,0) -moz-calc(0.135em + 1px), rgba(0,0,0,0));
+    background-image: -o-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor calc(0.135em + 1px), rgba(0,0,0,0) calc(0.135em + 1px), rgba(0,0,0,0));
+    background-image: linear-gradient(to top, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor calc(0.135em + 1px), rgba(0,0,0,0) calc(0.135em + 1px), rgba(0,0,0,0));
+    background-position: 0px 0px;
+}
+
+.P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    background-position: 0px 0.075em;
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementText a, body.E_actions-active .P_animations-10 .P_PageElement.E_PageElement .P_PageElementText a {
+    -webkit-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
+    -moz-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
+    -o-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
+    transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_animations-10 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    -webkit-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
+    -moz-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
+    -o-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
+    transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementText a, body.E_actions-active .P_animations-20 .P_PageElement.E_PageElement .P_PageElementText a {
+    -webkit-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
+    -moz-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
+    -o-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
+    transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_animations-20 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    -webkit-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
+    -moz-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
+    -o-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
+    transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementText a, body.E_actions-active .P_animations-30 .P_PageElement.E_PageElement .P_PageElementText a {
+    -webkit-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
+    -moz-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
+    -o-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
+    transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_animations-30 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    -webkit-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
+    -moz-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
+    -o-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
+    transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementText a, body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageElementText a {
+    -webkit-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
+    -moz-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
+    -o-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
+    transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+    -webkit-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
+    -moz-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
+    -o-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
+    transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
+}
+
+.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):not(.P_PageElement__no-mod-if-empty) > .P_PageElementText:nth-of-type(1n) {
+    line-height: 0;
+    font-size: 0;
+
+    margin: 0;
+
+    width: 0px;
+    min-width: 0px;
+    max-width: 0px;
+    height: 0px;
+    min-height: 0px;
+    max-height: 0px;
+    padding: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):nth-of-type(1n):not(.P_PageElement__no-mod-if-empty) {
+    font-size: 0;
+    line-height: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+.P_PageElement__text.P_PageElement__empty.E_PageElement__active > .P_PageElementText {
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+}
+
+/*---------------------------- UNDERLINE ----------------------------*/
+
+.P_PageElementText--underline-element, .P_PageElementText--underline:before, .P_PageElementText--underline:after, .P_PageElementText--underline {
+    margin: auto;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    background-color: currentColor;
+    opacity: 0;
+}
+
+.P_PageElementText--underline {
+    margin: auto;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    right: auto;
+    -webkit-transform: translate(-50%);
+       -moz-transform: translate(-50%);
+        -ms-transform: translate(-50%);
+         -o-transform: translate(-50%);
+            transform: translate(-50%);
+
+    background-color: currentColor;
+    opacity: 0;
+}
+
+.P_underline-titles .P_PageElementText--underline-element {
+    background-color: transparent;
+}
+
+.P_underline-titles .P_PageElementText--underline-element:after {
+    content: "";
+
+    text-align: center;
+    line-height: 1;
+
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element:after, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element:before, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element {
+    -webkit-transition: opacity 0.3s ease-in-out 0s,
+/*        bottom 0.3s ease-in-out 0s,*/
+        color 0.1s linear 0s;
+    -moz-transition: opacity 0.3s ease-in-out 0s,
+/*        bottom 0.3s ease-in-out 0s,*/
+        color 0.1s linear 0s;
+    -o-transition: opacity 0.3s ease-in-out 0s,
+/*        bottom 0.3s ease-in-out 0s,*/
+        color 0.1s linear 0s;
+    transition:
+        opacity 0.3s ease-in-out 0s,
+/*        bottom 0.3s ease-in-out 0s,*/
+        color 0.1s linear 0s;
+}
+
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline:before, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline:after, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline {
+    -webkit-transition: opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s,
+        background-color 0.1s linear 0s;
+    -moz-transition: opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s,
+        background-color 0.1s linear 0s;
+    -o-transition: opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s,
+        background-color 0.1s linear 0s;
+    transition:
+        opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s,
+        background-color 0.1s linear 0s;
+}
+
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline:before, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline:after, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline {
+    -webkit-transition: opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s;
+    -moz-transition: opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s;
+    -o-transition: opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s;
+    transition:
+        opacity 0.3s ease-in-out 0s,
+        bottom 0.3s ease-in-out 0s;
+}
+
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:after, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:before, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element {
+    -webkit-transition: opacity 0.3s ease-in-out 0s;
+    -moz-transition: opacity 0.3s ease-in-out 0s;
+    -o-transition: opacity 0.3s ease-in-out 0s;
+    transition:
+        opacity 0.3s ease-in-out 0s;
+}
+
+.P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline-element:after, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline-element, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline:before, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline:after, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline {
+    opacity: 1;
+}
+
+.P_PageSection__shadow-10 .P_PageElementText--underline:after, .P_PageSection__shadow-10 .P_PageElementText--underline:before, .P_PageSection__shadow-10 .P_PageElementText--underline {
+    -webkit-box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
+}
+
+.P_PageSection__shadow-20 .P_PageElementText--underline:after, .P_PageSection__shadow-20 .P_PageElementText--underline:before, .P_PageSection__shadow-20 .P_PageElementText--underline {
+    -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
+       -moz-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
+}
+
+.P_PageSection__shadow-30 .P_PageElementText--underline:after, .P_PageSection__shadow-30 .P_PageElementText--underline:before, .P_PageSection__shadow-30 .P_PageElementText--underline {
+    -webkit-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+       -moz-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+}
+
+.P_PageSection__shadow-10 .P_PageElementText--underline-element {
+    text-shadow: 0px 0px  8px rgba(0, 0, 0, 0.2);
+}
+
+.P_PageSection__shadow-20 .P_PageElementText--underline-element {
+    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+}
+
+.P_PageSection__shadow-30 .P_PageElementText--underline-element {
+    text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.6);
+}
+
+/*TYPE - 3*/
+
+.P_underline-titles.P_font-type-3 .P_PageElementText--underline {
+    width: 20%;
+    max-width: 120px;
+    min-width: 48px;
+    height: 0.1em;
+}
+
+/*TYPE - 1*/
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline {
+    width: -webkit-calc(23.6% + 40px);
+    width: -moz-calc(23.6% + 40px);
+    width: calc(23.6% + 40px);
+    min-width: 152px;
+    max-width: 184px;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline:after, .P_underline-titles.P_font-type-1 .P_PageElementText--underline:before {
+    content: "";
+
+    height: 1px;
+
+    width: -webkit-calc(50% - 20px);
+
+    width: -moz-calc(50% - 20px);
+
+    width: calc(50% - 20px);
+    max-width: 72px;
+    min-width: 56px;
+}
+
+
+.P_font-type-1 .P_PageSection__shadow-10 .P_PageElementText--underline:after, .P_font-type-1 .P_PageSection__shadow-10 .P_PageElementText--underline:before {
+    -webkit-box-shadow: 0px 0px  8px 1px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: 0px 0px  8px 1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px  8px 1px rgba(0, 0, 0, 0.1);
+}
+
+.P_font-type-1 .P_PageSection__shadow-20 .P_PageElementText--underline:after, .P_font-type-1 .P_PageSection__shadow-20 .P_PageElementText--underline:before {
+    -webkit-box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.175);
+       -moz-box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.175);
+            box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.175);
+}
+
+.P_font-type-1 .P_PageSection__shadow-30 .P_PageElementText--underline:after, .P_font-type-1 .P_PageSection__shadow-30 .P_PageElementText--underline:before {
+    -webkit-box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.25);
+       -moz-box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.25);
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline:before {
+    right: auto;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline:after {
+    left: auto;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline-element {
+    bottom: -12px;
+
+    width: 24px;
+    height: 24px;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageElementText--underline-element:after {
+    content: "l";
+
+    font-family: ornament;
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+
+    -webkit-transform: scaleY(-1) translateY(-3px);
+
+       -moz-transform: scaleY(-1) translateY(-3px);
+
+        -ms-transform: scaleY(-1) translateY(-3px);
+
+         -o-transform: scaleY(-1) translateY(-3px);
+
+            transform: scaleY(-1) translateY(-3px);
+
+    display: table-cell;
 }
 
 /*====================================================================*/
@@ -13113,88 +13116,88 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
         width 0.3s ease-in-out;
 }
 
-/*====================================================================*/
-/*------------------------ PAGEELEMENTIMAGE --------------------------*/
-/*====================================================================*/
+.P_BackgroundImage {
+    z-index: 1;
+    position:absolute;
+    top: 0px;
+    left: 0px;
 
-.P_PageElement__image {
-    font-size: 0;
-    line-height: 0;
-    vertical-align: middle;
+    width: 100%;
+    height: 100%;
 
-    position: relative;
-
-    max-width: 0;
-    min-height: 0;
-
-    display: inline-block;
+    overflow: hidden;
 }
 
-.E .P_PageElement__image {
-    -webkit-transition: height 0.3s ease-in-out,
-            width 0.3s ease-in-out,
-       min-height 0.3s ease-in-out,
-        min-width 0.3s ease-in-out;
-    -moz-transition: height 0.3s ease-in-out,
-            width 0.3s ease-in-out,
-       min-height 0.3s ease-in-out,
-        min-width 0.3s ease-in-out;
-    -o-transition: height 0.3s ease-in-out,
-            width 0.3s ease-in-out,
-       min-height 0.3s ease-in-out,
-        min-width 0.3s ease-in-out;
-    transition:
-           height 0.3s ease-in-out,
-            width 0.3s ease-in-out,
-       min-height 0.3s ease-in-out,
-        min-width 0.3s ease-in-out;
-}
+.E .P_BackgroundImage:after {
+    content: "";
 
-.P_PageElement__image.P_PageElement__empty:not(.E_PageElement__active) {
-    width: 0;
-    height: 0;
-}
+    position: absolute;
+    top: 0px;
+    left: 0px;
 
-.P_PageSection--content:not(.E_PageSection__dragover) .P_PageElement__image.P_PageElement__empty:not(.E_PageElement__active) .E_PageElement--outline {
+    width: 100%;
+    height: 100%;
+
+    background-color: #fff;
+    outline: 2px dashed #404040;
+    outline-offset: -18px;
     opacity: 0;
+
+    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+
+    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.P_PageElement__image.P_PageElement__empty.E_PageElement__active .E_PageElement--outline {
-/*    pointer-events: all;*/
+.E .P_BackgroundImage:not(.dz-not-file).dz-drag-hover:after {
+    opacity: 0.35;
+
+    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+
+    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
 }
 
-.E_PageSection__dragover .P_PageElement__image.P_PageElement__empty, .P_PageElement__image.P_PageElement__empty.dz-drag-hover, .P_PageElement__image.P_PageElement__empty.E_PageElement__active {
-    width: 52px;
-    height: 52px;
-    min-width: 52px;
-    min-height: 52px;
-}
-
-.P_PageElementImage--image {
-    max-width: 100%;
-    min-width: 100%;
-
-    border: none;
-}
-
-/*--------------------------------------------------------------------*/
-/*----------------------------- EDITMODE -----------------------------*/
-/*--------------------------------------------------------------------*/
-
-.P_PageElement__image .E_PageElement--upload-overlay:after {
-    content: "Nahrát obrázek";
-
-    font-size: 12px;
-    white-space: normal;
-}
-
-.P_PageElement__image .E_PageElement--activate {
+.P_BackgroundImage--image {
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+
+    width: 100%;
+    height: 100%;
+
+    background-position: center center;
+
+    -webkit-transition: background-image 0.1s linear, background-position 0.1s linear;
+
+    -moz-transition: background-image 0.1s linear, background-position 0.1s linear;
+
+    -o-transition: background-image 0.1s linear, background-position 0.1s linear;
+
+    transition: background-image 0.1s linear, background-position 0.1s linear;
 }
+
+.P_BackgroundImage__parallax .P_BackgroundImage--image {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+       -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+         -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+
+    will-change: transform, background, top;
+}
+
+.P_BackgroundImage__fixed .P_BackgroundImage--image {
+    background-attachment: fixed;
+}
+
 
 /*====================================================================*/
 /*------------------------- PAGEELEMENTMENU --------------------------*/
@@ -18747,955 +18750,987 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
 
 
 
-.P_PageElement__text {
+/*====================================================================*/
+/*--------------------------- PageElementButton --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__button {
+    font-size: 0;
+    line-height: 0;
+
     position: relative;
+    margin: 0 8px;
+    margin-bottom: 16px;
 
     display: inline-block;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.P_PageElementText {
+.P_PageElementButton {
+    position: relative;
     margin: 0;
 
-    min-height: 100%;
-    max-height: 100%;
-    min-width: 24px;
-    padding: 0;
+    height: 56px;
+    max-width: 300px;
+
+    border: 2px solid;
 
     display: inline-block;
-}
+    overflow: hidden;
 
-.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .E_PageElement--outline ~ * .P_PageElementText {
-    -webkit-transition: padding 0.3s ease-in-out,
-        color 0.1s linear,
-        text-shadow 0.1s linear;
-    -moz-transition: padding 0.3s ease-in-out,
-        color 0.1s linear,
-        text-shadow 0.1s linear;
-    -o-transition: padding 0.3s ease-in-out,
-        color 0.1s linear,
-        text-shadow 0.1s linear;
+    -webkit-transition: color 0.1s linear 0s,
+        background 0.1s linear 0s,
+        border 0.1s linear 0s,
+        text-shadow 0.1s linear 0s,
+        -webkit-border-radius 0.1s linear 0s,
+        -webkit-box-shadow 0.1s linear 0s;
+
+    transition: color 0.1s linear 0s,
+        background 0.1s linear 0s,
+        border 0.1s linear 0s,
+        text-shadow 0.1s linear 0s,
+        -webkit-border-radius 0.1s linear 0s,
+        -webkit-box-shadow 0.1s linear 0s;
+
+    -moz-transition: color 0.1s linear 0s,
+        background 0.1s linear 0s,
+        border 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        box-shadow 0.1s linear 0s,
+        text-shadow 0.1s linear 0s,
+        -moz-border-radius 0.1s linear 0s,
+        -moz-box-shadow 0.1s linear 0s;
+
+    -o-transition: color 0.1s linear 0s,
+        background 0.1s linear 0s,
+        border 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        box-shadow 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
+
+    transition: color 0.1s linear 0s,
+        background 0.1s linear 0s,
+        border 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        box-shadow 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
+
     transition:
-        padding 0.3s ease-in-out,
-        color 0.1s linear,
-        text-shadow 0.1s linear;
+        color 0.1s linear 0s,
+        background 0.1s linear 0s,
+        border 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        box-shadow 0.1s linear 0s,
+        text-shadow 0.1s linear 0s,
+        -webkit-border-radius 0.1s linear 0s,
+        -moz-border-radius 0.1s linear 0s,
+        -webkit-box-shadow 0.1s linear 0s,
+        -moz-box-shadow 0.1s linear 0s;
 }
 
-.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText, .P_PageSection--content.E_PageSection__stop-color-transitions .E_PageElement--outline ~ * .P_PageElementText {
-    -webkit-transition: padding 0.3s ease-in-out,
-        text-shadow 0.1s linear;
-    -moz-transition: padding 0.3s ease-in-out,
-        text-shadow 0.1s linear;
-    -o-transition: padding 0.3s ease-in-out,
-        text-shadow 0.1s linear;
+.E_PageSection__stop-color-transitions .P_PageElementButton {
+    -webkit-transition: text-shadow 0.1s linear 0s,
+        -webkit-box-shadow 0.1s linear 0s,
+        -webkit-border-radius 0.1s linear 0s;
+    transition: text-shadow 0.1s linear 0s,
+        -webkit-box-shadow 0.1s linear 0s,
+        -webkit-border-radius 0.1s linear 0s;
+    -moz-transition: box-shadow 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        text-shadow 0.1s linear 0s,
+        -moz-box-shadow 0.1s linear 0s,
+        -moz-border-radius 0.1s linear 0s;
+    -o-transition: box-shadow 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
+    transition: box-shadow 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
     transition:
-        padding 0.3s ease-in-out,
-        text-shadow 0.1s linear;
+        box-shadow 0.1s linear 0s,
+        border-radius 0.1s linear 0s,
+        text-shadow 0.1s linear 0s,
+        -webkit-box-shadow 0.1s linear 0s,
+        -moz-box-shadow 0.1s linear 0s,
+        -webkit-border-radius 0.1s linear 0s,
+        -moz-border-radius 0.1s linear 0s;
 }
 
-.P_PageSection__shadow-10 .P_PageElementText {
-    text-shadow: 0px 0px  8px rgba(0, 0, 0, 0.2);
+.P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_PageElement .P_PageElementButton:hover {
+    -webkit-transform: scale(1.07142);
+       -moz-transform: scale(1.07142);
+        -ms-transform: scale(1.07142);
+         -o-transform: scale(1.07142);
+            transform: scale(1.07142);
 }
 
-.P_PageSection__shadow-20 .P_PageElementText {
-    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+.P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
+    -webkit-transform: scale(1.03571);
+       -moz-transform: scale(1.03571);
+        -ms-transform: scale(1.03571);
+         -o-transform: scale(1.03571);
+            transform: scale(1.03571);
 }
 
-.P_PageSection__shadow-30 .P_PageElementText {
-    text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.6);
+@media (max-width: 480px) {
+
+    .P_PageElement__button {
+        margin: 0 6px;
+        margin-bottom: 12px;
+    }
+
+    .P_PageElementButton {
+        -webkit-transform: scale(0.92857);
+           -moz-transform: scale(0.92857);
+            -ms-transform: scale(0.92857);
+             -o-transform: scale(0.92857);
+                transform: scale(0.92857);
+    }
+
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_PageElement .P_PageElementButton:hover {
+        -webkit-transform: scale(1);
+           -moz-transform: scale(1);
+            -ms-transform: scale(1);
+             -o-transform: scale(1);
+                transform: scale(1);
+    }
+
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
+        -webkit-transform: scale(0.96429);
+           -moz-transform: scale(0.96429);
+            -ms-transform: scale(0.96429);
+             -o-transform: scale(0.96429);
+                transform: scale(0.96429);
+    }
+
 }
 
-.P_PageElementText a {
-    text-decoration: none;
+@media (max-width: 360px) {
 
-    background-repeat: repeat-y;
+    .P_PageElement__button {
+        margin: 0;
+        margin-bottom: 8px;
+    }
 
-    -webkit-transform: translateZ(0);
+    .P_PageElementButton {
+        -webkit-transform: scale(0.85714);
+           -moz-transform: scale(0.85714);
+            -ms-transform: scale(0.85714);
+             -o-transform: scale(0.85714);
+                transform: scale(0.85714);
+    }
 
-       -moz-transform: translateZ(0);
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_PageElement .P_PageElementButton:hover {
+        -webkit-transform: scale(0.92857);
+           -moz-transform: scale(0.92857);
+            -ms-transform: scale(0.92857);
+             -o-transform: scale(0.92857);
+                transform: scale(0.92857);
+    }
 
-            transform: translateZ(0);
-    will-change: color, text-shadow, background;
+    .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementButton:active {
+        -webkit-transform: scale(0.89286);
+           -moz-transform: scale(0.89286);
+            -ms-transform: scale(0.89286);
+             -o-transform: scale(0.89286);
+                transform: scale(0.89286);
+    }
 }
 
-.P_Page__loaded .P_PageElementText a {
-    background-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor -webkit-calc(0.135em + 1px), rgba(0,0,0,0) -webkit-calc(0.135em + 1px), rgba(0,0,0,0));
-    background-image: -moz-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor -moz-calc(0.135em + 1px), rgba(0,0,0,0) -moz-calc(0.135em + 1px), rgba(0,0,0,0));
-    background-image: -o-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor calc(0.135em + 1px), rgba(0,0,0,0) calc(0.135em + 1px), rgba(0,0,0,0));
-    background-image: linear-gradient(to top, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor calc(0.135em + 1px), rgba(0,0,0,0) calc(0.135em + 1px), rgba(0,0,0,0));
-    background-position: 0px 0px;
+.P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_PageElement .P_PageElementButton {
+    cursor: pointer;
 }
 
-.P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementText a:hover {
-    background-position: 0px 0.075em;
-}
-
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementText a, body.E_actions-active .P_animations-10 .P_PageElement.E_PageElement .P_PageElementText a {
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton {
     -webkit-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
     -moz-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
     -o-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
     transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
 }
 
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_animations-10 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:hover {
     -webkit-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
     -moz-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
     -o-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
     transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
 }
 
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementText a, body.E_actions-active .P_animations-20 .P_PageElement.E_PageElement .P_PageElementText a {
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementButton:active {
+    -webkit-transition: all 0.05s ease-in 0s;
+    -moz-transition: all 0.05s ease-in 0s;
+    -o-transition: all 0.05s ease-in 0s;
+    transition: all 0.05s ease-in 0s;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton {
     -webkit-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
     -moz-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
     -o-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
     transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
 }
 
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_animations-20 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:hover {
     -webkit-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
     -moz-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
     -o-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
     transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
 }
 
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementText a, body.E_actions-active .P_animations-30 .P_PageElement.E_PageElement .P_PageElementText a {
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementButton:active {
+    -webkit-transition: all 0.05s ease-in 0s;
+    -moz-transition: all 0.05s ease-in 0s;
+    -o-transition: all 0.05s ease-in 0s;
+    transition: all 0.05s ease-in 0s;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton {
     -webkit-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
     -moz-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
     -o-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
     transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
 }
 
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_animations-30 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:hover {
     -webkit-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
     -moz-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
     -o-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
     transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
 }
 
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementText a, body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageElementText a {
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementButton:active {
+    -webkit-transition: all 0.035s ease-in 0s;
+    -moz-transition: all 0.035s ease-in 0s;
+    -o-transition: all 0.035s ease-in 0s;
+    transition: all 0.035s ease-in 0s;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton {
     -webkit-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
     -moz-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
     -o-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
     transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
 }
 
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementText a:hover, body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageElementText a:hover {
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:focus, .P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:hover, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:focus, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:hover {
     -webkit-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
     -moz-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
     -o-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
     transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
 }
 
-.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active) > .P_PageElementText:nth-of-type(1n) {
-    line-height: 0;
-    font-size: 0;
-
-    margin: 0;
-
-    width: 0px;
-    min-width: 0px;
-    max-width: 0px;
-    height: 0px;
-    min-height: 0px;
-    max-height: 0px;
-    padding: 0;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementButton:active, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:active {
+    -webkit-transition: all 0.035s ease-in 0s;
+    -moz-transition: all 0.035s ease-in 0s;
+    -o-transition: all 0.035s ease-in 0s;
+    transition: all 0.035s ease-in 0s;
 }
 
-.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):nth-of-type(1n) {
-    font-size: 0;
-    line-height: 0;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+.P_roundness-0 .P_PageElementButton {
+	-webkit-border-radius: 0;
+	   -moz-border-radius: 0;
+	        border-radius: 0;
 }
 
-.P_PageElement__text.P_PageElement__empty.E_PageElement__active > .P_PageElementText {
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+.P_roundness-10 .P_PageElementButton {
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	        border-radius: 4px;
 }
 
-/*---------------------------- UNDERLINE ----------------------------*/
-
-.P_PageElementText--underline-element, .P_PageElementText--underline:before, .P_PageElementText--underline:after, .P_PageElementText--underline {
-    margin: auto;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-
-    background-color: currentColor;
-    opacity: 0;
+.P_roundness-20 .P_PageElementButton {
+	-webkit-border-radius: 6px;
+	   -moz-border-radius: 6px;
+	        border-radius: 6px;
 }
 
-.P_PageElementText--underline {
-    margin: auto;
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    right: auto;
-    -webkit-transform: translate(-50%);
-       -moz-transform: translate(-50%);
-        -ms-transform: translate(-50%);
-         -o-transform: translate(-50%);
-            transform: translate(-50%);
-
-    background-color: currentColor;
-    opacity: 0;
+.P_roundness-30 .P_PageElementButton, .P_roundness-40 .P_PageElementButton {
+	-webkit-border-radius: 28px;
+	   -moz-border-radius: 28px;
+	        border-radius: 28px;
 }
 
-.P_underline-titles .P_PageElementText--underline-element {
-    background-color: transparent;
-}
-
-.P_underline-titles .P_PageElementText--underline-element:after {
-    content: "";
-
-    text-align: center;
-    line-height: 1;
-
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-}
-
-.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element:after, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element:before, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline-element {
-    -webkit-transition: opacity 0.3s ease-in-out 0s,
-/*        bottom 0.3s ease-in-out 0s,*/
-        color 0.1s linear 0s;
-    -moz-transition: opacity 0.3s ease-in-out 0s,
-/*        bottom 0.3s ease-in-out 0s,*/
-        color 0.1s linear 0s;
-    -o-transition: opacity 0.3s ease-in-out 0s,
-/*        bottom 0.3s ease-in-out 0s,*/
-        color 0.1s linear 0s;
-    transition:
-        opacity 0.3s ease-in-out 0s,
-/*        bottom 0.3s ease-in-out 0s,*/
-        color 0.1s linear 0s;
-}
-
-.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline:before, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline:after, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementText--underline {
-    -webkit-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        background-color 0.1s linear 0s;
-    -moz-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        background-color 0.1s linear 0s;
-    -o-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        background-color 0.1s linear 0s;
-    transition:
-        opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        background-color 0.1s linear 0s;
-}
-
-.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline:before, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline:after, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline {
-    -webkit-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s;
-    -moz-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s;
-    -o-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s;
-    transition:
-        opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s;
-}
-
-.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:after, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element:before, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementText--underline-element {
-    -webkit-transition: opacity 0.3s ease-in-out 0s;
-    -moz-transition: opacity 0.3s ease-in-out 0s;
-    -o-transition: opacity 0.3s ease-in-out 0s;
-    transition:
-        opacity 0.3s ease-in-out 0s;
-}
-
-.P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline-element:after, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline-element, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline:before, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline:after, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementText--underline {
-    opacity: 1;
-}
-
-.P_PageSection__shadow-10 .P_PageElementText--underline:after, .P_PageSection__shadow-10 .P_PageElementText--underline:before, .P_PageSection__shadow-10 .P_PageElementText--underline {
+.P_PageSection__shadow-10 .P_PageElementButton {
     -webkit-box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
        -moz-box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
             box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
 }
 
-.P_PageSection__shadow-20 .P_PageElementText--underline:after, .P_PageSection__shadow-20 .P_PageElementText--underline:before, .P_PageSection__shadow-20 .P_PageElementText--underline {
+.P_PageSection__shadow-20 .P_PageElementButton {
     -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
        -moz-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
             box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
 }
 
-.P_PageSection__shadow-30 .P_PageElementText--underline:after, .P_PageSection__shadow-30 .P_PageElementText--underline:before, .P_PageSection__shadow-30 .P_PageElementText--underline {
+.P_PageSection__shadow-30 .P_PageElementButton {
     -webkit-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
        -moz-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
             box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
 }
 
-.P_PageSection__shadow-10 .P_PageElementText--underline-element {
+.P_PageSection__shadow-10 .P_PageElementButton.P_PageElementButton__stroke {
+    -webkit-box-shadow: inset 0px 0px  8px rgba(0, 0, 0, 0.1),
+        0px 0px  8px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: inset 0px 0px  8px rgba(0, 0, 0, 0.1),
+        0px 0px  8px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0px 0px  8px rgba(0, 0, 0, 0.1),
+        0px 0px  8px rgba(0, 0, 0, 0.1);
+}
+
+.P_PageSection__shadow-20 .P_PageElementButton.P_PageElementButton__stroke {
+    -webkit-box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.175),
+        0px 0px 12px rgba(0, 0, 0, 0.175);
+       -moz-box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.175),
+        0px 0px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.175),
+        0px 0px 12px rgba(0, 0, 0, 0.175);
+}
+
+.P_PageSection__shadow-30 .P_PageElementButton.P_PageElementButton__stroke {
+    -webkit-box-shadow: inset 0px 0px 16px rgba(0, 0, 0, 0.25),
+        0px 0px 16px rgba(0, 0, 0, 0.25);
+       -moz-box-shadow: inset 0px 0px 16px rgba(0, 0, 0, 0.25),
+        0px 0px 16px rgba(0, 0, 0, 0.25);
+            box-shadow: inset 0px 0px 16px rgba(0, 0, 0, 0.25),
+        0px 0px 16px rgba(0, 0, 0, 0.25);
+}
+
+.P_PageSection__shadow-10 .P_PageElementButton__stroke .P_PageElementButton--text {
     text-shadow: 0px 0px  8px rgba(0, 0, 0, 0.2);
 }
 
-.P_PageSection__shadow-20 .P_PageElementText--underline-element {
+.P_PageSection__shadow-20 .P_PageElementButton__stroke .P_PageElementButton--text {
     text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
 }
 
-.P_PageSection__shadow-30 .P_PageElementText--underline-element {
+.P_PageSection__shadow-30 .P_PageElementButton__stroke .P_PageElementButton--text {
     text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.6);
 }
 
-/*TYPE - 3*/
-
-.P_underline-titles.P_font-type-3 .P_PageElementText--underline {
-    width: 20%;
-    max-width: 120px;
-    min-width: 48px;
-    height: 0.1em;
-}
-
-/*TYPE - 1*/
-
-.P_underline-titles.P_font-type-1 .P_PageElementText--underline {
-    width: -webkit-calc(23.6% + 40px);
-    width: -moz-calc(23.6% + 40px);
-    width: calc(23.6% + 40px);
-    min-width: 152px;
-    max-width: 184px;
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementText--underline:after, .P_underline-titles.P_font-type-1 .P_PageElementText--underline:before {
-    content: "";
-
-    height: 1px;
-
-    width: -webkit-calc(50% - 20px);
-
-    width: -moz-calc(50% - 20px);
-
-    width: calc(50% - 20px);
-    max-width: 72px;
-    min-width: 56px;
-}
-
-
-.P_font-type-1 .P_PageSection__shadow-10 .P_PageElementText--underline:after, .P_font-type-1 .P_PageSection__shadow-10 .P_PageElementText--underline:before {
-    -webkit-box-shadow: 0px 0px  8px 1px rgba(0, 0, 0, 0.1);
-       -moz-box-shadow: 0px 0px  8px 1px rgba(0, 0, 0, 0.1);
-            box-shadow: 0px 0px  8px 1px rgba(0, 0, 0, 0.1);
-}
-
-.P_font-type-1 .P_PageSection__shadow-20 .P_PageElementText--underline:after, .P_font-type-1 .P_PageSection__shadow-20 .P_PageElementText--underline:before {
-    -webkit-box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.175);
-       -moz-box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.175);
-            box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.175);
-}
-
-.P_font-type-1 .P_PageSection__shadow-30 .P_PageElementText--underline:after, .P_font-type-1 .P_PageSection__shadow-30 .P_PageElementText--underline:before {
-    -webkit-box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.25);
-       -moz-box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.25);
-            box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.25);
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementText--underline:before {
-    right: auto;
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementText--underline:after {
-    left: auto;
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementText--underline-element {
-    bottom: -12px;
-
-    width: 24px;
-    height: 24px;
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementText--underline-element:after {
-    content: "l";
-
-    font-family: ornament;
-    font-size: 24px;
-    line-height: 24px;
+.P_PageElementButton--content-wrapper {
     vertical-align: middle;
+    white-space: nowrap;
 
-    -webkit-transform: scaleY(-1) translateY(-3px);
+    height: 52px;
+    min-height: 52px;
+    max-height: 52px;
+    max-width: 296px;
 
-       -moz-transform: scaleY(-1) translateY(-3px);
-
-        -ms-transform: scaleY(-1) translateY(-3px);
-
-         -o-transform: scaleY(-1) translateY(-3px);
-
-            transform: scaleY(-1) translateY(-3px);
-
-    display: table-cell;
-}
-
-.P_PageElement__text-content {
-    position: relative;
-
-    line-height: 1.4;
-
-    display: inline-block;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.P_PageElementTextContent {
-    font-size: 32px;
-    line-height: 1.4;
-
-    margin: 0;
-
-    min-height: 100%;
-    max-height: 100%;
-    min-width: 24px;
-    min-height: 45px;
-    padding: 0;
-
-    display: inline-block;
-}
-
-.P_PageElement__text-content.P_PageElement__empty:not(.E_PageElement__active) > .P_PageElementTextContent {
-    line-height: 0;
-
-    margin: 0;
-
-    min-width: 0;
-    max-width: 0;
-    min-height: 0;
-    max-height: 0;
-    padding: 0;
+    display: inline-table;
+    table-layout: fixed;
 
     overflow: hidden;
 
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -webkit-transition: padding 0.3s ease-in-out 0s,
+        width 0.3s ease-in-out 0s;
 
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -moz-transition: padding 0.3s ease-in-out 0s,
+        width 0.3s ease-in-out 0s;
 
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    -o-transition: padding 0.3s ease-in-out 0s,
+        width 0.3s ease-in-out 0s;
 
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    transition: padding 0.3s ease-in-out 0s,
+        width 0.3s ease-in-out 0s;
 }
 
-.P_PageElement__text-content.P_PageElement__empty:not(.E_PageElement__active) {
-    line-height: 0;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.P_PageElement__text-content.P_PageElement__empty.E_PageElement__active > .P_PageElementTextContent {
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-
-
-
-.P_PageElement__title {
-    position: relative;
-
-    display: inline-block;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.P_PageElementTitle {
-    margin: 0;
-
-    min-height: 100%;
-    max-height: 100%;
-    min-width: 24px;
-    padding: 0;
-
-    display: inline-block;
-}
-
-.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementTitle, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .E_PageElement--outline ~ * .P_PageElementTitle {
-    -webkit-transition: padding 0.3s ease-in-out,
-        color 0.1s linear,
-        text-shadow 0.1s linear;
-    -moz-transition: padding 0.3s ease-in-out,
-        color 0.1s linear,
-        text-shadow 0.1s linear;
-    -o-transition: padding 0.3s ease-in-out,
-        color 0.1s linear,
-        text-shadow 0.1s linear;
-    transition:
-        padding 0.3s ease-in-out,
-        color 0.1s linear,
-        text-shadow 0.1s linear;
-}
-
-.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementTitle, .P_PageSection--content.E_PageSection__stop-color-transitions .E_PageElement--outline ~ * .P_PageElementTitle {
-    -webkit-transition: padding 0.3s ease-in-out,
-        text-shadow 0.1s linear;
-    -moz-transition: padding 0.3s ease-in-out,
-        text-shadow 0.1s linear;
-    -o-transition: padding 0.3s ease-in-out,
-        text-shadow 0.1s linear;
-    transition:
-        padding 0.3s ease-in-out,
-        text-shadow 0.1s linear;
-}
-
-
-.P_PageSection__shadow-10 .P_PageElementTitle {
-    text-shadow: 0px 0px  8px rgba(0, 0, 0, 0.2);
-}
-
-.P_PageSection__shadow-20 .P_PageElementTitle {
-    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
-}
-
-.P_PageSection__shadow-30 .P_PageElementTitle {
-    text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.6);
-}
-
-.P_PageElementTitle a {
-    text-decoration: none;
-
-    background-repeat: repeat-y;
-
-    -webkit-transform: translateZ(0);
-
-       -moz-transform: translateZ(0);
-
-            transform: translateZ(0);
-    will-change: color, text-shadow, background;
-}
-
-.P_Page__loaded .P_PageElementTitle a {
-    background-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor -webkit-calc(0.135em + 1px), rgba(0,0,0,0) -webkit-calc(0.135em + 1px), rgba(0,0,0,0));
-    background-image: -moz-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor -moz-calc(0.135em + 1px), rgba(0,0,0,0) -moz-calc(0.135em + 1px), rgba(0,0,0,0));
-    background-image: -o-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor calc(0.135em + 1px), rgba(0,0,0,0) calc(0.135em + 1px), rgba(0,0,0,0));
-    background-image: linear-gradient(to top, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0.135em, currentColor 0.135em, currentColor calc(0.135em + 1px), rgba(0,0,0,0) calc(0.135em + 1px), rgba(0,0,0,0));
-    background-position: 0px 0px;
-}
-
-.P_PageElement:not(.E_PageElement) .P_PageElementTitle a:hover, body.E_actions-active .P_PageElement.E_PageElement .P_PageElementTitle a:hover {
-    background-position: 0px 0.075em;
-}
-
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementTitle a, body.E_actions-active .P_animations-10 .P_PageElement.E_PageElement .P_PageElementTitle a {
-    -webkit-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
-    -moz-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
-    -o-transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
-    transition: all 0.45s cubic-bezier(.3, .2, .1, .9) 0s;
-}
-
-.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementTitle a:hover, body.E_actions-active .P_animations-10 .P_PageElement.E_PageElement .P_PageElementTitle a:hover {
-    -webkit-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
-    -moz-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
-    -o-transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
-    transition: all 0.175s cubic-bezier(.5, .2, .6, .8) 0s;
-}
-
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementTitle a, body.E_actions-active .P_animations-20 .P_PageElement.E_PageElement .P_PageElementTitle a {
-    -webkit-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
-    -moz-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
-    -o-transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
-    transition: all 0.25s cubic-bezier(.1, .2, .6, .8) 0s;
-}
-
-.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementTitle a:hover, body.E_actions-active .P_animations-20 .P_PageElement.E_PageElement .P_PageElementTitle a:hover {
-    -webkit-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
-    -moz-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
-    -o-transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
-    transition: all 0.1s cubic-bezier(.2, .1, .5, .3) 0s;
-}
-
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementTitle a, body.E_actions-active .P_animations-30 .P_PageElement.E_PageElement .P_PageElementTitle a {
-    -webkit-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
-    -moz-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
-    -o-transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
-    transition: all 0.175s cubic-bezier(0, .3, .9, .8) 0s;
-}
-
-.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementTitle a:hover, body.E_actions-active .P_animations-30 .P_PageElement.E_PageElement .P_PageElementTitle a:hover {
-    -webkit-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
-    -moz-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
-    -o-transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
-    transition: all 0.085s cubic-bezier(.2, .1, .3, .1) 0s;
-}
-
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementTitle a, body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageElementTitle a {
-    -webkit-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
-    -moz-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
-    -o-transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
-    transition: all 0.15s cubic-bezier(.7, .3, .4, .8) 0s;
-}
-
-.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementTitle a:hover, body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageElementTitle a:hover {
-    -webkit-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
-    -moz-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
-    -o-transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
-    transition: all 0.2s cubic-bezier(.35, .1, .3, 2.85) 0s;
-}
-
-.P_PageElement__title.P_PageElement__empty:not(.E_PageElement__active) > .P_PageElementTitle:nth-of-type(1n) {
-    line-height: 0;
-    font-size: 0;
-
-    margin: 0;
-
-    width: 0px;
-    min-width: 0px;
-    max-width: 0px;
-    height: 0px;
-    min-height: 0px;
-    max-height: 0px;
-    padding: 0;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.P_PageElement__title.P_PageElement__empty:not(.E_PageElement__active):nth-of-type(1n) {
-    font-size: 0;
-    line-height: 0;
-
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-.P_PageElement__title.P_PageElement__empty.E_PageElement__active > .P_PageElementTitle {
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-}
-
-/*---------------------------- UNDERLINE ----------------------------*/
-
-.P_PageElementTitle--underline-element, .P_PageElementTitle--underline:before, .P_PageElementTitle--underline:after, .P_PageElementTitle--underline {
-    margin: auto;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-
-    background-color: currentColor;
-    opacity: 0;
-}
-
-.P_PageElementTitle--underline {
-    margin: auto;
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    right: auto;
-    -webkit-transform: translate(-50%);
-       -moz-transform: translate(-50%);
-        -ms-transform: translate(-50%);
-         -o-transform: translate(-50%);
-            transform: translate(-50%);
-
-    background-color: currentColor;
-    opacity: 0;
-}
-
-.P_underline-titles .P_PageElementTitle--underline-element {
-    background-color: transparent;
-}
-
-.P_underline-titles .P_PageElementTitle--underline-element:after {
-    content: "";
-
+.P_PageElementButton--text-wrapper {
+    font-size: 19px;
+    line-height: 52px;
     text-align: center;
-    line-height: 1;
 
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-}
-
-.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementTitle--underline-element:after, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementTitle--underline-element:before, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementTitle--underline-element {
-    -webkit-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        color 0.1s linear 0s;
-    -moz-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        color 0.1s linear 0s;
-    -o-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        color 0.1s linear 0s;
-    transition:
-        opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        color 0.1s linear 0s;
-}
-
-.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementTitle--underline:before, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementTitle--underline:after, .P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementTitle--underline {
-    -webkit-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        background-color 0.1s linear 0s;
-    -moz-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        background-color 0.1s linear 0s;
-    -o-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        background-color 0.1s linear 0s;
-    transition:
-        opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s,
-        background-color 0.1s linear 0s;
-}
-
-.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementTitle--underline-element:after, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementTitle--underline-element:before, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementTitle--underline-element, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementTitle--underline:before, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementTitle--underline:after, .P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementTitle--underline {
-    -webkit-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s;
-    -moz-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s;
-    -o-transition: opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s;
-    transition:
-        opacity 0.3s ease-in-out 0s,
-        bottom 0.3s ease-in-out 0s;
-}
-
-.P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementTitle--underline-element:after, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementTitle--underline-element, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementTitle--underline:before, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementTitle--underline:after, .P_underline-titles .P_PageElement:not(.P_PageElement__empty) .P_PageElementTitle--underline {
-    opacity: 1;
-}
-
-.P_PageSection__shadow-10 .P_PageElementTitle--underline:after, .P_PageSection__shadow-10 .P_PageElementTitle--underline:before, .P_PageSection__shadow-10 .P_PageElementTitle--underline {
-    -webkit-box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
-       -moz-box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
-            box-shadow: 0px 0px  8px rgba(0, 0, 0, 0.1);
-}
-
-.P_PageSection__shadow-20 .P_PageElementTitle--underline:after, .P_PageSection__shadow-20 .P_PageElementTitle--underline:before, .P_PageSection__shadow-20 .P_PageElementTitle--underline {
-    -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
-       -moz-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
-            box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.175);
-}
-
-.P_PageSection__shadow-30 .P_PageElementTitle--underline:after, .P_PageSection__shadow-30 .P_PageElementTitle--underline:before, .P_PageSection__shadow-30 .P_PageElementTitle--underline {
-    -webkit-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-       -moz-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-            box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-}
-
-.P_PageSection__shadow-10 .P_PageElementTitle--underline-element {
-    text-shadow: 0px 0px  8px rgba(0, 0, 0, 0.2);
-}
-
-.P_PageSection__shadow-20 .P_PageElementTitle--underline-element {
-    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
-}
-
-.P_PageSection__shadow-30 .P_PageElementTitle--underline-element {
-    text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.6);
-}
-
-/*TYPE - 3*/
-
-.P_underline-titles.P_font-type-3 .P_PageElementTitle--underline {
-    width: 20%;
-    max-width: 120px;
-    min-width: 48px;
-    height: 0.1em;
-}
-
-/*TYPE - 1*/
-
-.P_underline-titles.P_font-type-1 .P_PageElementTitle--underline {
-    width: -webkit-calc(23.6% + 40px);
-    width: -moz-calc(23.6% + 40px);
-    width: calc(23.6% + 40px);
-    min-width: 152px;
-    max-width: 184px;
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementTitle--underline:after, .P_underline-titles.P_font-type-1 .P_PageElementTitle--underline:before {
-    content: "";
-
-    height: 1px;
-
-    width: -webkit-calc(50% - 20px);
-
-    width: -moz-calc(50% - 20px);
-
-    width: calc(50% - 20px);
-    max-width: 72px;
-    min-width: 56px;
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementTitle--underline:before {
-    right: auto;
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementTitle--underline:after {
-    left: auto;
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementTitle--underline-element {
-    bottom: -12px;
-
-    width: 24px;
-    height: 24px;
-}
-
-.P_underline-titles.P_font-type-1 .P_PageElementTitle--underline-element:after {
-    content: "l";
-
-    font-family: ornament;
-    font-size: 24px;
-    line-height: 24px;
-    vertical-align: middle;
-
-    -webkit-transform: scaleY(-1) translateY(-3px);
-
-       -moz-transform: scaleY(-1) translateY(-3px);
-
-        -ms-transform: scaleY(-1) translateY(-3px);
-
-         -o-transform: scaleY(-1) translateY(-3px);
-
-            transform: scaleY(-1) translateY(-3px);
+    padding: 0;
+    max-height: 52px;
 
     display: table-cell;
 }
 
-.P_BackgroundImage {
-    z-index: 1;
-    position:absolute;
+.P_PageElementButton--text {
+    line-height: 22px;
+    font-weight: bold;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    vertical-align: middle;
+    text-align: center;
+    text-wrap: balance;
+
+    top: 1px;
+    position: relative;
+
+    padding: 4px 20px;
+    min-width: 96px;
+    max-height: 52px;
+    height: 52px;
+
+    display: table-cell;
+
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    -o-user-select: text;
+    user-select: text;
+
+    -webkit-transition: padding 0.3s ease-in-out 0s,
+        color 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
+
+    -moz-transition: padding 0.3s ease-in-out 0s,
+        color 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
+
+    -o-transition: padding 0.3s ease-in-out 0s,
+        color 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
+
+    transition: padding 0.3s ease-in-out 0s,
+        color 0.1s linear 0s,
+        text-shadow 0.1s linear 0s;
+}
+
+.E_PageSection__stop-color-transitions .P_PageElementButton--text {
+    -webkit-transition: padding 0.3s ease-in-out 0s;
+    -moz-transition: padding 0.3s ease-in-out 0s;
+    -o-transition: padding 0.3s ease-in-out 0s;
+    transition: padding 0.3s ease-in-out 0s;
+}
+
+.E .P_PageElement:not([data-ractive-transition="intro-complete"]) .P_PageElementButton--text, .P_PageElement[data-ractive-transition="outro"] .P_PageElementButton--text {
+    word-break: normal;
+    word-wrap: normal;
+    text-wrap: normal;
+}
+
+.P_PageElementButton__long-text .P_PageElementButton--text-wrapper {
+    font-size: 17px;
+}
+
+.P_PageElementButton__long-text .P_PageElementButton--text {
     top: 0px;
-    left: 0px;
+}
 
-    width: 100%;
-    height: 100%;
+.P_PageElementButton--icon {
+    line-height: 0;
+    vertical-align: middle;
 
+    position: relative;
+
+    width: 56px;
+    height: 32px;
+    max-height: 52px;
+
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+      -o-background-size: 100%;
+         background-size: 100%;
+
+    display: table-cell;
     overflow: hidden;
+
+    -webkit-transition: width 0.3s ease-in-out;
+
+    -moz-transition: width 0.3s ease-in-out;
+
+    -o-transition: width 0.3s ease-in-out;
+
+    transition: width 0.3s ease-in-out;
 }
 
-.E .P_BackgroundImage:after {
-    content: "";
+.P_PageElementButton__has-icon .P_PageElementButton--text {
+    padding-left: 0;
+}
 
+.P_PageElementButton--icon svg {
+    margin: auto;
     position: absolute;
-    top: 0px;
+    top: 10px;
     left: 0px;
+    right: 0;
 
-    width: 100%;
-    height: 100%;
+    width: 32px;
+    height: 32px;
 
-    background-color: #fff;
-    outline: 2px dashed #404040;
-    outline-offset: -18px;
-    opacity: 0;
+    fill: currentColor;
 
-    -webkit-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -moz-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    -o-transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
-
-    transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
+    display: inline-block;
+    -webkit-transition: color 0.1s linear 0s,
+        fill 0.1s linear 0s,
+        left 0.3s ease-in-out;
+    -moz-transition: color 0.1s linear 0s,
+        fill 0.1s linear 0s,
+        left 0.3s ease-in-out;
+    -o-transition: color 0.1s linear 0s,
+        fill 0.1s linear 0s,
+        left 0.3s ease-in-out;
+    transition:
+        color 0.1s linear 0s,
+        fill 0.1s linear 0s,
+        left 0.3s ease-in-out;
 }
 
-.E .P_BackgroundImage:not(.dz-not-file).dz-drag-hover:after {
-    opacity: 0.35;
+@media (max-width: 360px) {
 
-    -webkit-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    .P_PageElement__button {
+        width: 288px;
+    }
 
-    -moz-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    .P_PageElementButton {
+        max-width: auto;
+        width: 100%;
+    }
 
-    -o-transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    .P_PageElementButton__has-icon .P_PageElementButton--content-wrapper, .P_PageElementButton__has-icon .P_PageElementButton--text-wrapper {
+        width: 100%;
+    }
 
-    transition: all 0.125s  cubic-bezier(0.8,  0.4, 0.2, 0.8)  0s;
+    .P_PageElementButton__has-icon .P_PageElementButton--content-wrapper {
+        padding-left: 56px;
+        padding-right: 20px;
+    }
+
+    .P_PageElementButton__has-icon .P_PageElementButton--text {
+        padding-right: 0;
+        width: 300px;
+        max-width: 100%;
+    }
+
+    .P_PageElementButton--icon {
+        position:absolute;
+        left: 0px;
+        top: 0;
+
+        height: 100%;
+    }
+
 }
 
-.P_BackgroundImage--image {
+
+/*--------------------------------------------------------------------*/
+/*--------------------------- PAGESECTION ----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageSection--buttons {
+    text-align: center;
+    line-height: 0;
+    font-size: 0;
+
+    position: relative;
+    margin: 0px auto;
+    padding: 0 8px;
+
+    display: table;
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSection--buttons {
+        margin-left: -20px;
+
+        padding: 0;
+        width: -webkit-calc(100% + 36px);
+        width: -moz-calc(100% + 36px);
+        width: calc(100% + 36px);
+    }
+
+    .P_PageSection--buttons .P_PageElement__button {
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+.P_PageSection--buttons-wrapper {
+    line-height: 0;
+    font-size: 0;
+
+    margin: 0px auto;
+    margin-top: 16px;
+    position: relative;
+}
+
+.P_PageSection--buttons-wrapper > * {
+    vertical-align: top;
+}
+
+@media (max-width: 480px) {
+
+    .P_PageSection--buttons-wrapper {
+        margin-top: 12px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSection--buttons-wrapper {
+        margin-top: 8px;
+    }
+}
+
+
+
+.E_PageSection__stop-color-transitions .P_PageElementButton--icon svg {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition="intro"] {
+    -webkit-animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
+       -moz-animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
+         -o-animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
+            animation: P_PageElementButton--icon-width-0-56 0.3s ease-in-out forwards;
+}
+
+.E.P_Page__loaded .P_PageElementButton--icon[data-ractive-transition^="outro"] {
+    -webkit-animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
+       -moz-animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
+         -o-animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
+            animation: P_PageElementButton--icon-width-56-0 0.3s ease-in-out forwards;
+}
+
+@-webkit-keyframes P_PageElementButton--icon-width-0-56 {
+    from { width: 0; }
+    to { width: 56px; }
+}
+
+@-moz-keyframes P_PageElementButton--icon-width-0-56 {
+    from { width: 0; }
+    to { width: 56px; }
+}
+
+@-o-keyframes P_PageElementButton--icon-width-0-56 {
+    from { width: 0; }
+    to { width: 56px; }
+}
+
+@keyframes P_PageElementButton--icon-width-0-56 {
+    from { width: 0; }
+    to { width: 56px; }
+}
+
+@-webkit-keyframes P_PageElementButton--icon-width-56-0 {
+    from { width: 56px; }
+    to { width: 0px; }
+}
+
+@-moz-keyframes P_PageElementButton--icon-width-56-0 {
+    from { width: 56px; }
+    to { width: 0px; }
+}
+
+@-o-keyframes P_PageElementButton--icon-width-56-0 {
+    from { width: 56px; }
+    to { width: 0px; }
+}
+
+@keyframes P_PageElementButton--icon-width-56-0 {
+    from { width: 56px; }
+    to { width: 0px; }
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- EDITMODE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElement__button .E_PageElement--upload-overlay:after {
+    content: "Nahrát stahovatelný soubor";
+}
+
+.P_PageSection--buttons [id*="__ph"] {
+    margin: 0 8px;
+    margin-bottom: 16px;
+
+    display: inline-block !important;
+}
+
+@media (max-width: 480px) {
+
+    .P_PageSection--buttons [id*="__ph"]  {
+        margin: 0 6px;
+        margin-bottom: 12px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSection--buttons [id*="__ph"] {
+        margin: 0;
+        margin-bottom: 8px;
+    }
+}
+
+/*---------------------------- ADD-BUTTON ----------------------------*/
+
+.E_PageElementButtons--add-button  {
+    z-index: 30;
     position: absolute;
-    top: 0;
+    top: 24px;
+    right: -40px;
+
+    -webkit-transition: 0.3s ease-in-out;
+
+    -moz-transition: 0.3s ease-in-out;
+
+    -o-transition: 0.3s ease-in-out;
+
+    transition: 0.3s ease-in-out;
+    -webkit-transition-property: margin;
+    -moz-transition-property: margin;
+    -o-transition-property: margin;
+    transition-property: margin;
+}
+
+.P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
+    top: -20px;
+    right: -12px;
+}
+
+.P_PageSection--buttons__reverse .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+    right: -webkit-calc(100% + 0px);
+    right: -moz-calc(100% + 0px);
+    right: calc(100% + 0px);
+}
+
+.P_PageSection--buttons__empty .P_PageSection--buttons-wrapper  {
+    margin-top: 0;
+}
+
+.P_PageSection--buttons .E_PageElementButtons--add-button__bottom {
+    margin: auto;
+    top: 100%;
+    bottom: -32px;
+    right: 0;
     left: 0;
+}
 
+@media (max-width: 480px) {
+
+    .P_PageSection--buttons .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+        top: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSection--buttons .E_PageElementButtons--add-button:not(.E_PageElementButtons--add-button__bottom) {
+        top: 16px;
+    }
+
+    .P_PageSection--buttons.P_PageSection--buttons__empty .E_PageElementButtons--add-button  {
+        margin: auto;
+        top: 100%;
+        bottom: -20px;
+        right: 0;
+        left: 0px;
+    }
+}
+
+/*====================================================================*/
+/*------------------------- PAGESECTIONTITLES ------------------------*/
+/*====================================================================*/
+
+.P_PageSectionTitles {
+    text-align: center;
+
+    margin: 0 auto;
+
+    width: 85.627%;
+}
+
+@media (max-width: 800px) {
+
+    .P_PageSectionTitles {
+        width: 100%;
+    }
+}
+
+.P_PageSectionTitles, .P_PageSectionTitles--title, .P_PageSectionTitles--subtitle, .P_PageSectionTitles--title .P_PageElement, .P_PageSectionTitles--subtitle .P_PageElement {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition-property: margin, font-size, line-height, width, height, padding, min-width;
+    -moz-transition-property: margin, font-size, line-height, width, height, padding, min-width;
+    -o-transition-property: margin, font-size, line-height, width, height, padding, min-width;
+    transition-property: margin, font-size, line-height, width, height, padding, min-width;
+}
+
+.P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    margin-top: -webkit-calc((6px + (9 - 6) * (100vw - 320px) / (1440 - 320)) * -1);
+    margin-top: -moz-calc((6px + (9 - 6) * (100vw - 320px) / (1440 - 320)) * -1);
+    margin-top: calc((6px + (9 - 6) * (100vw - 320px) / (1440 - 320)) * -1);
+}
+
+/**Minimální velikost .P_PageElementText -> kvůli animaci*/
+/*font-size krát line-height*/
+.P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    min-height: -webkit-calc((31px + (41 - 31) * (100vw - 320px) / (1440 - 320)) * 1.46);
+    min-height: -moz-calc((31px + (41 - 31) * (100vw - 320px) / (1440 - 320)) * 1.46);
+    min-height: calc((31px + (41 - 31) * (100vw - 320px) / (1440 - 320)) * 1.46);
+}
+
+.P_PageSectionTitles--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    min-height: -webkit-calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 2.11);
+    min-height: -moz-calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 2.11);
+    min-height: calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 2.11);
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        margin-top: -webkit-calc(-6px);
+        margin-top: -moz-calc(-6px);
+        margin-top: calc(-6px);
+    }
+
+    .P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        min-height: -webkit-calc(41px * 1.46);
+        min-height: -moz-calc(41px * 1.46);
+        min-height: calc(41px * 1.46);
+    }
+
+    .P_PageSectionTitles--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        min-height: -webkit-calc(19px * 2.11);
+        min-height: -moz-calc(19px * 2.11);
+        min-height: calc(19px * 2.11);
+    }
+}
+
+.P_PageSectionTitles--title, .P_PageSectionTitles--title .P_PageElement, .P_PageSectionTitles--title .P_font-title {
+    font-size: 41px;
+    font-size: -webkit-calc(31px + (41 - 31) * (100vw - 320px) / (1440 - 320));
+    font-size: -moz-calc(31px + (41 - 31) * (100vw - 320px) / (1440 - 320));
+    font-size: calc(31px + (41 - 31) * (100vw - 320px) / (1440 - 320));
+    text-wrap: balanced;
+}
+
+.P_PageSectionTitles--title .P_PageElement, .P_PageSectionTitles--title .P_font-title {
+    line-height: 1.46;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionTitles--title .P_PageElement, .P_PageSectionTitles--title .P_font-title {
+        font-size: 41px;
+    }
+
+}
+
+.P_PageSection--content-wrapper:not(.has-title-not-subtitle) .P_PageSectionTitles--title:not(.has-empty-PageElement), .P_PageSection--content-wrapper:not(.has-title-not-subtitle) .P_PageSectionTitles--title.has-empty-PageElement.has-active-PageElement, .has-title-not-subtitle.has-active-subtitle .P_PageSectionTitles--title:not(.has-empty-PageElement), .has-title-not-subtitle.has-active-subtitle .P_PageSectionTitles--title.has-empty-PageElement.has-active-PageElement {
+    margin-bottom: 0.39em;
+}
+
+.P_PageSectionTitles--subtitle, .P_PageSectionTitles--subtitle .P_PageElement, .P_PageSectionTitles--subtitle .P_font-body {
+    font-size: 19px;
+    font-size: -webkit-calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    font-size: -moz-calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    font-size: calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    text-wrap: balanced;
+}
+
+.P_PageSectionTitles--subtitle .P_PageElement, .P_PageSectionTitles--subtitle .P_font-body {
+    line-height: 2.11;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionTitles--subtitle .P_PageElement, .P_PageSectionTitles--subtitle .P_font-body {
+        font-size: 19px;
+    }
+
+}
+
+.P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement), .P_PageSectionTitles--subtitle.has-empty-PageElement:not(.has-active-PageElement) {
+    font-size: 0;
+    line-height: 0;
+}
+
+.P_PageSectionTitles--title .P_PageElement, .P_PageSectionTitles--subtitle .P_PageElement {
+    min-width: 0%;
+}
+
+.P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElement, .P_PageSectionTitles--subtitle:not(.has-empty-PageElement) .P_PageElement {
+    min-width: 85.627%;
+}
+
+.P_PageSectionTitles--title .P_PageElementText, .P_PageSectionTitles--subtitle .P_PageElementText {
     width: 100%;
-    height: 100%;
-
-    background-position: center center;
-
-    -webkit-transition: background-image 0.1s linear, background-position 0.1s linear;
-
-    -moz-transition: background-image 0.1s linear, background-position 0.1s linear;
-
-    -o-transition: background-image 0.1s linear, background-position 0.1s linear;
-
-    transition: background-image 0.1s linear, background-position 0.1s linear;
 }
 
-.P_BackgroundImage__parallax .P_BackgroundImage--image {
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-       -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-         -o-transform: translateY(-50%);
-            transform: translateY(-50%);
+/*---------------------------- UNDERLINE ----------------------------*/
 
-    will-change: transform, background, top;
+/*FONT - 3*/
+
+.P_underline-titles.P_font-type-3 .P_PageSectionTitles--title .P_PageElementText--underline {
+    height: 0.0495em;
+
+    width: 20%;
+    max-width: 76px;
 }
 
-.P_BackgroundImage__fixed .P_BackgroundImage--image {
-    background-attachment: fixed;
+.P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText, .P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 24px;
 }
 
+.P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline, .P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline {
+    bottom: 0.1em;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText, .P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 24px;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline, .P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline {
+    bottom: 0.1em;
+}
+
+@media (max-width: 480px) {
+
+    .P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline, .P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline {
+        -webkit-transform-origin: -200% 50%;
+           -moz-transform-origin: -200% 50%;
+            -ms-transform-origin: -200% 50%;
+             -o-transform-origin: -200% 50%;
+                transform-origin: -200% 50%;
+        -webkit-transform: scale(0.8);
+           -moz-transform: scale(0.8);
+            -ms-transform: scale(0.8);
+             -o-transform: scale(0.8);
+                transform: scale(0.8);
+    }
+
+}
+
+/*====================================================================*/
+/*------------------------- PAGESECTIONTITLES ------------------------*/
+/*====================================================================*/
+
+/*---------------------------- ADD BUTTONS ----------------------------*/
+
+/*title - ne | subtitle - ne -> title*/
+.P_PageSection--content-wrapper.has-empty-titles:not(.has-active-subtitle) .P_PageSectionTitles--title.has-empty-PageElement .E_PageElement--activate {
+    margin-left: -28px;
+}
+
+/*title - ne | subtitle - ne -> subtitle*/
+.P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionTitles--subtitle .E_PageElement--activate, .P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionTitles--subtitle .E_PageElement--activate {
+    margin-left: 28px;
+}
+
+/*title - ne | subtitle - ano -> title*/
+.has-active-subtitle .P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, .has-active-subtitle .P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, .has-subtitle-not-title .P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate, .has-subtitle-not-title .P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -24px;
+}
+
+/*title - active | subtitle - ne -> subtitle */
+.P_PageSectionTitles--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionTitles--subtitle.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: 4px;
+}
+
+/*title - ano | subtitle - ne -> subtitle */
+.P_PageSectionTitles--title:not(.has-empty-PageElement) ~ .P_PageSectionTitles--subtitle.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: 24px;
+}
 
 /*====================================================================*/
 /*------------------------- PageSectionClaim -------------------------*/
@@ -20198,6 +20233,1422 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
 
 /*//////////////////////////// ADD BUTTONS ////////////////////////////*/
 
+
+/*====================================================================*/
+/*----------------------- PAGESECTIONFACTSICONS ----------------------*/
+/*====================================================================*/
+
+.P_PageSectionFactsIcons--items {
+    text-align: center;
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+    margin: auto;
+    margin-top: 64px;
+    margin-bottom: -48px;
+
+    display: table;
+
+    -webkit-transition: all 0.3s ease-in-out;
+
+    -moz-transition: all 0.3s ease-in-out;
+
+    -o-transition: all 0.3s ease-in-out;
+
+    transition: all 0.3s ease-in-out;
+    -webkit-transition-property: margin, font-size, line-height, width, height, padding;
+    -moz-transition-property: margin, font-size, line-height, width, height, padding;
+    -o-transition-property: margin, font-size, line-height, width, height, padding;
+    transition-property: margin, font-size, line-height, width, height, padding;
+}
+
+@media (max-width: 840px) {
+
+    .P_PageSectionFactsIcons--items {
+        margin-top: 48px;
+        margin-bottom: -40px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .P_PageSectionFactsIcons--items {
+        margin-top: 40px;
+        margin-bottom: -32px;
+    }
+}
+
+.P_PageSectionFactsIcons--items-wrapper {
+    vertical-align: top;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: table;
+}
+
+.P_PageSectionFactsIcons--items .P_PageElement__fact {
+    vertical-align: top;
+
+    margin-left: 44px;
+    margin-right: 44px;
+    margin-bottom: 48px;
+
+    width: -webkit-calc(25% - 88px);
+
+    width: -moz-calc(25% - 88px);
+
+    width: calc(25% - 88px);
+    min-width: 200px;
+}
+
+.P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+    -webkit-animation:
+        E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+        E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+        E_PageSectionFactsIcons--add-item 0.3s ease-in-out forwards;
+       -moz-animation:
+        E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+        E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+        E_PageSectionFactsIcons--add-item 0.3s ease-in-out forwards;
+         -o-animation:
+        E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+        E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+        E_PageSectionFactsIcons--add-item 0.3s ease-in-out forwards;
+            animation:
+        E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+        E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+        E_PageSectionFactsIcons--add-item 0.3s ease-in-out forwards;
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__min-width {
+    from {
+        min-width: 0;
+    }
+    to {
+        min-width: 200px;
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__min-width {
+    from {
+        min-width: 0;
+    }
+    to {
+        min-width: 200px;
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__min-width {
+    from {
+        min-width: 0;
+    }
+    to {
+        min-width: 200px;
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__min-width {
+    from {
+        min-width: 0;
+    }
+    to {
+        min-width: 200px;
+    }
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__margin-bottom {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 48px;
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__margin-bottom {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 48px;
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__margin-bottom {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 48px;
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__margin-bottom {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 48px;
+    }
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item {
+    from {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -webkit-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item {
+    from {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -moz-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item {
+    from {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: calc(25% - 88px);
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item {
+    from {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -webkit-calc(25% - 88px);
+
+        width: -moz-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+}
+
+@media (max-width: 1328px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -webkit-calc(25% - 48px);
+
+        width: -moz-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1328 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1328 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1328 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1328 0.3s ease-in-out forwards;
+    }
+
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__1328 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -webkit-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__1328 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -moz-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__1328 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: calc(25% - 48px);
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__1328 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -webkit-calc(25% - 48px);
+
+        width: -moz-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+}
+
+@media (max-width: 1152px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -webkit-calc(25% - 32px);
+
+        width: -moz-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1152 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1152 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1152 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1152 0.3s ease-in-out forwards;
+    }
+
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__1152 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -webkit-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__1152 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -moz-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__1152 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: calc(25% - 32px);
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__1152 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -webkit-calc(25% - 32px);
+
+        width: -moz-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+}
+
+
+@media (max-width: 1088px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -webkit-calc(25% - 88px);
+
+        width: -moz-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1088 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1088 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1088 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1088 0.3s ease-in-out forwards;
+    }
+
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__1088 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -webkit-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__1088 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -moz-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__1088 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: calc(25% - 88px);
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__1088 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -webkit-calc(25% - 88px);
+
+        width: -moz-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+}
+
+
+@media (max-width: 1024px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -webkit-calc(25% - 48px);
+
+        width: -moz-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1024 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1024 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1024 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__1024 0.3s ease-in-out forwards;
+    }
+
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__1024 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -webkit-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__1024 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -moz-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__1024 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: calc(25% - 48px);
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__1024 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -webkit-calc(25% - 48px);
+
+        width: -moz-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+}
+
+@media (max-width: 888px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -webkit-calc(25% - 32px);
+
+        width: -moz-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__888 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__888 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__888 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__888 0.3s ease-in-out forwards;
+    }
+}
+
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__888 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -webkit-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+}
+
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__888 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -moz-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+}
+
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__888 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: calc(25% - 32px);
+    }
+}
+
+
+@keyframes E_PageSectionFactsIcons--add-item__888 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -webkit-calc(25% - 32px);
+
+        width: -moz-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+}
+
+
+@media (max-width: 840px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: 44px;
+        margin-right: 44px;
+        margin-bottom: 40px;
+
+        width: -webkit-calc(25% - 88px);
+
+        width: -moz-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__840 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__840 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__840 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__840 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__840 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__840 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__840 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__840 0.3s ease-in-out forwards;
+    }
+
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__margin-bottom__840 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 40px;
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__margin-bottom__840 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 40px;
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__margin-bottom__840 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 40px;
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__margin-bottom__840 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 40px;
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__margin-bottom__840 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 40px;
+    }
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__840 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -webkit-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__840 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -moz-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__840 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: calc(25% - 88px);
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__840 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 44px;
+        margin-right: 44px;
+
+        width: -webkit-calc(25% - 88px);
+
+        width: -moz-calc(25% - 88px);
+
+        width: calc(25% - 88px);
+    }
+}
+
+@media (max-width: 680px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -webkit-calc(25% - 48px);
+
+        width: -moz-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__840 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__680 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__840 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__680 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__840 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__680 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__840 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__680 0.3s ease-in-out forwards;
+    }
+
+}
+
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__680 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -webkit-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+}
+
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__680 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -moz-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+}
+
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__680 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: calc(25% - 48px);
+    }
+}
+
+
+@keyframes E_PageSectionFactsIcons--add-item__680 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 24px;
+        margin-right: 24px;
+
+        width: -webkit-calc(25% - 48px);
+
+        width: -moz-calc(25% - 48px);
+
+        width: calc(25% - 48px);
+    }
+}
+
+
+@media (max-width: 576px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-bottom: 32px;
+
+        width: -webkit-calc(25% - 32px);
+
+        width: -moz-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__576 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__576 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__576 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__576 0.3s ease-in-out forwards;
+    }
+
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__margin-bottom__576 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 32px;
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__margin-bottom__576 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 32px;
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__margin-bottom__576 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 32px;
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__margin-bottom__576 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 32px;
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__margin-bottom__576 {
+    from {
+        margin-bottom: 0;
+    }
+    to {
+        margin-bottom: 32px;
+    }
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__576 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -webkit-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__576 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -moz-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__576 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: calc(25% - 32px);
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__576 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        width: -webkit-calc(25% - 32px);
+
+        width: -moz-calc(25% - 32px);
+
+        width: calc(25% - 32px);
+    }
+}
+
+@media (max-width: 544px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: 8px;
+        margin-right: 8px;
+
+        width: -webkit-calc(25% - 16px);
+
+        width: -moz-calc(25% - 16px);
+
+        width: calc(25% - 16px);
+    }
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__544 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__544 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__544 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__544 0.3s ease-in-out forwards;
+    }
+}
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__544 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 8px;
+        margin-right: 8px;
+
+        width: -webkit-calc(25% - 16px);
+
+        width: calc(25% - 16px);
+    }
+}
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__544 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 8px;
+        margin-right: 8px;
+
+        width: -moz-calc(25% - 16px);
+
+        width: calc(25% - 16px);
+    }
+}
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__544 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 8px;
+        margin-right: 8px;
+
+        width: calc(25% - 16px);
+    }
+}
+
+@keyframes E_PageSectionFactsIcons--add-item__544 {
+    from {
+        margin-left: 0;
+        margin-right: 0;
+        width: 0;
+    }
+    to {
+        margin-left: 8px;
+        margin-right: 8px;
+
+        width: -webkit-calc(25% - 16px);
+
+        width: -moz-calc(25% - 16px);
+
+        width: calc(25% - 16px);
+    }
+}
+
+@media (max-width: 512px) {
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact {
+        margin-left: auto;
+        margin-right: auto;
+
+        width: -webkit-calc(25% - 0px);
+
+        width: -moz-calc(25% - 0px);
+
+        width: calc(25% - 0px);
+
+        display: block;
+    }
+
+    .P_PageSectionFactsIcons--items .P_PageElement__fact[data-ractive-transition="intro"] {
+        -webkit-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__512 0.3s ease-in-out forwards;
+           -moz-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__512 0.3s ease-in-out forwards;
+             -o-animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__512 0.3s ease-in-out forwards;
+                animation:
+            E_PageSectionFactsIcons--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__margin-bottom__576 0.3s ease-in-out forwards,
+            E_PageSectionFactsIcons--add-item__512 0.3s ease-in-out forwards;
+    }
+}
+
+
+@-webkit-keyframes E_PageSectionFactsIcons--add-item__512 {
+    from {
+        width: -webkit-calc(25% - 0px);
+        width: calc(25% - 0px);
+    }
+    to {
+        width: -webkit-calc(25% - 0px);
+        width: calc(25% - 0px);
+    }
+}
+
+
+@-moz-keyframes E_PageSectionFactsIcons--add-item__512 {
+    from {
+        width: -moz-calc(25% - 0px);
+        width: calc(25% - 0px);
+    }
+    to {
+        width: -moz-calc(25% - 0px);
+        width: calc(25% - 0px);
+    }
+}
+
+
+@-o-keyframes E_PageSectionFactsIcons--add-item__512 {
+    from {
+        width: calc(25% - 0px);
+    }
+    to {
+        width: calc(25% - 0px);
+    }
+}
+
+
+@keyframes E_PageSectionFactsIcons--add-item__512 {
+    from {
+        width: -webkit-calc(25% - 0px);
+        width: -moz-calc(25% - 0px);
+        width: calc(25% - 0px);
+    }
+    to {
+        width: -webkit-calc(25% - 0px);
+        width: -moz-calc(25% - 0px);
+        width: calc(25% - 0px);
+    }
+}
+
+
+/*====================================================================*/
+/*----------------------- PAGESECTIONFACTSICONS ----------------------*/
+/*====================================================================*/
+
+.P_PageSectionFactsIcons--items [id^="__ph"] {
+    vertical-align: top;
+    margin-right: 44px;
+    margin-left: 44px;
+    margin-bottom: 48px;
+
+    display: inline-block !important;
+}
+
+@media (max-width: 1328px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+}
+
+
+@media (max-width: 1152px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}
+
+
+@media (max-width: 1088px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 44px;
+        margin-right: 44px;
+    }
+}
+
+
+@media (max-width: 1024px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+}
+
+@media (max-width: 888px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}
+
+@media (max-width: 840px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 44px;
+        margin-right: 44px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 680px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-bottom: 32px;
+    }
+}
+
+@media (max-width: 544px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
+
+@media (max-width: 512px) {
+
+    .P_PageSectionFactsIcons--items [id^="__ph"] {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+}
+
+
+
+/*---------------------------- ADD BUTTONS ----------------------------*/
+
+.E_PageSectionFactsIcons--add-item {
+    z-index: 10;
+    position:absolute;
+    right: -40px;
+    bottom: 80px;
+}
+
+
+.E_PageSectionFactsIcons--add-item__bottom {
+    z-index: 10;
+    margin: auto;
+    position:absolute;
+    top: auto;
+    right: 0px;
+    left: 0px;
+    bottom: -8px;
+}
+
+/*//////////////////////////// ADD BUTTONS ////////////////////////////*/
 
 /*====================================================================*/
 /*------------------------ PAGESECTIONFEATURE ------------------------*/
@@ -20820,7 +22271,7 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
     max-width: 88px;
 }
 
-.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeatureFull__top"] .P_PageSectionFeatureFull--title .P_PageElementText--underline, .P_underline-titles.P_font-type-3 [class*="P_PageSectionFeatureFull__bottom"] .P_PageSectionFeatureFull--title .P_PageElementText--underline {
+.P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__top"] .P_PageSectionFeatureFull--title .P_PageElementText--underline, .P_underline-titles.P_font-type-3 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeatureFull--title .P_PageElementText--underline {
     width: 20%;
 }
 
@@ -22931,6 +24382,15 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
 
     width: 1px;
     height: 32px;
+}
+
+/*====================================================================*/
+/*----------------------- PAGEELEMENTICONBROWSER ---------------------*/
+/*====================================================================*/
+
+.E_PageElementSettings__icon-browser .E_PageElementSettings--content {
+    min-width: 208px;
+    min-height: 320px;
 }
 
 /*====================================================================*/
@@ -25257,7 +26717,7 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.FileBrowser--file__icon.FileBrowser--file__selected:hover .FileBrowser--file-wrapper svg, .FileBrowser--file__icon:hover .FileBrowser--file-wrapper svg {
+.FileBrowser--file__icon:hover .FileBrowser--file-wrapper svg, .FileBrowser--file__icon.FileBrowser--file__selected .FileBrowser--file-wrapper svg, .FileBrowser--file__icon:hover .FileBrowser--file-wrapper svg *, .FileBrowser--file__icon.FileBrowser--file__selected .FileBrowser--file-wrapper svg * {
     fill: #ef6737;
     stroke: #ef6737;
 
@@ -25295,7 +26755,7 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
-.FileBrowser--file__icon.FileBrowser--file__selected:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before, .FileBrowser--file__icon:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before {
+.FileBrowser--file__icon.FileBrowser--file__selected:not(.FileBrowser--file__svg) .FileBrowser--file-wrapper:before, .FileBrowser--file__icon:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before {
     -webkit-box-shadow: 0px 0px 0px 1px #ef6737;
        -moz-box-shadow: 0px 0px 0px 1px #ef6737;
             box-shadow: 0px 0px 0px 1px #ef6737;
