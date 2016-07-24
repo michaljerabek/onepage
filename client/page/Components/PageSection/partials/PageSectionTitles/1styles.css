@@ -43,7 +43,7 @@
 @media (min-width: 1440px) {
 
     .P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
-        margin-top: calc(-6px);
+        margin-top: calc(-9px);
     }
 
     .P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
@@ -130,7 +130,6 @@
 /*---------------------------- UNDERLINE ----------------------------*/
 
 /*FONT - 3*/
-
 .P_underline-titles.P_font-type-3 .P_PageSectionTitles--title .P_PageElementText--underline {
     height: 0.0495em;
 
@@ -140,7 +139,7 @@
 
 .P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText,
 .P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText {
-    padding-bottom: 24px;
+    padding-bottom: 20px;
 }
 
 .P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline,

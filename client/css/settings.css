@@ -24,10 +24,16 @@
 
     --P_PageSection--shadow-10__text  : 0px 0px  8px rgba(0, 0, 0, 0.2);
     --P_PageSection--shadow-20__text  : 0px 0px 12px rgba(0, 0, 0, 0.4);
-    --P_PageSection--shadow-30__text  : 0px 0px 16px rgba(0, 0, 0, 0.6);
+    --P_PageSection--shadow-30__text  : 0px 0px 16px rgba(0, 0, 0, 0.575);
+    --P_PageSection--shadow-10__text-S: 0px 0px  8px rgba(0, 0, 0, 0.3);
+    --P_PageSection--shadow-20__text-S: 0px 0px 12px rgba(0, 0, 0, 0.475);
+    --P_PageSection--shadow-30__text-S: 0px 0px 16px rgba(0, 0, 0, 0.65);
+    --P_PageSection--shadow-10__text-L: 0px 0px  8px rgba(0, 0, 0, 0.2);
+    --P_PageSection--shadow-20__text-L: 0px 0px 12px rgba(0, 0, 0, 0.3);
+    --P_PageSection--shadow-30__text-L: 0px 0px 16px rgba(0, 0, 0, 0.475);
     --P_PageSection--shadow-10__box   : 0px 0px  8px rgba(0, 0, 0, 0.1);
     --P_PageSection--shadow-20__box   : 0px 0px 12px rgba(0, 0, 0, 0.175);
-    --P_PageSection--shadow-30__box   : 0px 0px 16px rgba(0, 0, 0, 0.25);
+    --P_PageSection--shadow-30__box   : 0px 0px 16px rgba(0, 0, 0, 0.235);
     --P_PageSection--shadow-10__filter: 0px 0px  3px rgba(0, 0, 0, 0.125);
     --P_PageSection--shadow-20__filter: 0px 0px  4px rgba(0, 0, 0, 0.25);
     --P_PageSection--shadow-30__filter: 0px 0px  6px rgba(0, 0, 0, 0.4);

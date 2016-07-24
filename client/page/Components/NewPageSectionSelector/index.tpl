@@ -30,28 +30,15 @@
         {{> SectionThumb {
                 type: "PageSectionFactsIcons",
                 name: "Fakty — ikony",
-                icon: "#icon-claim-content"
+                icon: "#icon-facts-icons"
             }
         }}
 
-        {{> SectionThumb {
-                type: "PageSectionA",
-                name: "PageSectionA",
-                icon: "#icon-picture"
-            }
-        }}
 
         {{> SectionThumb {
-                type: "PageSectionB",
-                name: "PageSectionB",
-                icon: "#icon-magnifier"
-            }
-        }}
-
-        {{> SectionThumb {
-                type: "PageSectionC",
-                name: "PageSectionC",
-                icon: "#icon-paint-bucket"
+                type: "PageSectionFactsNumbers",
+                name: "Fakty — čísla",
+                icon: "#icon-facts-numbers"
             }
         }}
 

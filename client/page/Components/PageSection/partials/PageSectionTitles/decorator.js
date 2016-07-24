@@ -24,7 +24,7 @@
 
         this.set("titlesEmpty", this.Title.empty && this.Subtitle.empty);
 
-        this.emptyTextListener = this.on("*.emptyText", function () {
+        var emptyTextListener = this.on("*.emptyText", function () {
 
             this.set("textsEmpty", this.Title.empty && this.Subtitle.empty);
             this.set("titleNotSubtitle", !this.Title.empty && this.Subtitle.empty);
@@ -34,7 +34,7 @@
 
         if (Ractive.EDIT_MODE) {
 
-            this.elementStateListener = this.on("*.elementState", function () {
+            var elementStateListener = this.on("*.elementState", function () {
 
                 var titleState = this.Title.get("state"),
                     subtitleState = this.Subtitle.get("state");
@@ -49,11 +49,11 @@
         return {
             teardown: function () {
 
-                this.emptyTextListener.cancel();
+                emptyTextListener.cancel();
 
-                if (this.elementStateListener) {
+                if (typeof elementStateListener !== "undefined") {
 
-                    this.elementStateListener.cancel();
+                    elementStateListener.cancel();
                 }
             }
         };

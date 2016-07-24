@@ -47,13 +47,13 @@
 
         hasEditor: false,
 
-        getNewItem: function () {
+        getNewItem: function (lang) {
 
-            var lang = this.get("lang"),
+            lang = lang || this.get("lang");
 
-                item = {
-                    text: {}
-                };
+            var item = {
+                text: {}
+            };
 
             item.icon = "";
             item.setColor = "fill";

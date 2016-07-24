@@ -132,10 +132,12 @@
                 this.initPageSectionSettings();
 
                 this.on("*.dragenter dragenter", function () {
+
                     this.set("dragover", true);
                 });
 
-                this.on("*.dragleave dragleave", function () {
+                this.on("*.dragleave dragleave *.dragend dragend", function () {
+
                     this.set("dragover", false);
                 });
 
