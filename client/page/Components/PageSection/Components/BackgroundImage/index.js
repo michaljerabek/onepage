@@ -298,7 +298,7 @@
 
             }.bind(this));
 
-            this.dropzone.on("dragleave dragend", function (event) {
+            this.dropzone.on("dragleave dragend drop", function () {
 
                 this.fire("pageSectionMessage", null);
 

@@ -1,0 +1,104 @@
+/*====================================================================*/
+/*------------------------- PAGEELEMENTFACT --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__fact {
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+
+    display: inline-block;
+}
+
+.E .P_PageElement__fact[data-ractive-transition^="outro"] {
+    animation: E_PageElementFact--remove-fact 0.3s ease-in-out forwards;
+}
+
+@keyframes E_PageElementFact--remove-fact {
+    to {
+        margin: 0;
+        width: 0;
+        height: 0;
+        min-height: 0;
+        min-width: 0;
+    }
+}
+
+.E .P_PageElement__fact {
+    transition:
+           margin 0.3s ease-in-out,
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+}
+
+.P_PageElementFact {
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    min-width: 200px;
+
+    display: block;
+}
+
+.P_PageElementFact .P_PageElement__icon {
+    width: 72px;
+    height: 72px;
+
+    margin: 0px auto;
+    margin-bottom: 20px;
+
+    display: block;
+}
+
+.P_PageElementFact .P_PageElement__text {
+    text-align: center;
+
+    position: relative;
+    margin: 0px auto;
+
+    max-width: 200px;
+
+    display: table;
+}
+
+.P_PageElementFact .P_PageElementText {
+    min-height: calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 1.63);
+}
+
+.P_PageElementFact .P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active) {
+    margin-bottom: calc(((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * -1.63) - 4px);
+    margin-top: -16px;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageElementFact .P_PageElementText {
+        min-height: calc(19px * 1.63);
+    }
+
+    .P_PageElementFact .P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active) {
+        margin-bottom: calc((-19px * 1.63) - 4px);
+        margin-top: -16px;
+    }
+
+}
+
+.P_PageElementFact .P_PageElement__text,
+.P_PageElementFact .P_PageElementText,
+.P_PageElementFact .P_font-title {
+    font-size: 19px;
+    font-size: calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    line-height: 1.63;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageElementFact .P_PageElementText {
+        font-size: 19px;
+    }
+}

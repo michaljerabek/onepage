@@ -27,6 +27,7 @@
                 PageElementText: require("./../PageElement/Types/PageElementText"),
                 PageElementButton: require("./../PageElement/Types/PageElementButton"),
                 PageElementImage: require("./../PageElement/Types/PageElementImage"),
+                PageElementIcon: require("./../PageElement/Types/PageElementIcon"),
 
                 BackgroundImage: require("./Components/BackgroundImage")
             },
@@ -38,11 +39,15 @@
 
                 ColorSettings: Ractive.EDIT_MODE ? require("./partials/settings/color-settings.tpl") : null,
 
+                PageSectionTitles: require("./partials/PageSectionTitles/index.tpl"),
+
                 PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionPartials/button-elements.tpl")
             },
 
             decorators = {
                 Sortable: require("./Decorators/Sortable"),
+
+                PageSectionTitles: require("./partials/PageSectionTitles/decorator"),
 
                 PageElementButtons: require("./../PageElement/Types/PageElementButton/PageSectionDecorators/PageElementButtons")
             },
@@ -127,10 +132,12 @@
                 this.initPageSectionSettings();
 
                 this.on("*.dragenter dragenter", function () {
+
                     this.set("dragover", true);
                 });
 
-                this.on("*.dragleave dragleave", function () {
+                this.on("*.dragleave dragleave *.dragend dragend", function () {
+
                     this.set("dragover", false);
                 });
 

@@ -44,6 +44,30 @@
     text-shadow: var(--P_PageSection--shadow-30__text);
 }
 
+.P_PageSection__shadow-10 .P_PageElementText.P_font-title {
+    text-shadow: var(--P_PageSection--shadow-10__text-L);
+}
+
+.P_PageSection__shadow-20 .P_PageElementText.P_font-title {
+    text-shadow: var(--P_PageSection--shadow-20__text-L);
+}
+
+.P_PageSection__shadow-30 .P_PageElementText.P_font-title {
+    text-shadow: var(--P_PageSection--shadow-30__text-L);
+}
+
+.P_PageSection__shadow-10 .P_PageElementText.P_font-body {
+    text-shadow: var(--P_PageSection--shadow-10__text-S);
+}
+
+.P_PageSection__shadow-20 .P_PageElementText.P_font-body {
+    text-shadow: var(--P_PageSection--shadow-20__text-S);
+}
+
+.P_PageSection__shadow-30 .P_PageElementText.P_font-body {
+    text-shadow: var(--P_PageSection--shadow-30__text-S);
+}
+
 .P_PageElementText a {
     text-decoration: none;
 
@@ -103,7 +127,7 @@ body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageEleme
     transition: var(--P_animations-40-hover);
 }
 
-.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active) > .P_PageElementText:nth-of-type(1n) {
+.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):not(.P_PageElement__no-mod-if-empty) > .P_PageElementText:nth-of-type(1n) {
     line-height: 0;
     font-size: 0;
 
@@ -120,7 +144,7 @@ body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageEleme
     transition: var(--default-transition);
 }
 
-.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):nth-of-type(1n) {
+.P_PageElement__text.P_PageElement__empty:not(.E_PageElement__active):nth-of-type(1n):not(.P_PageElement__no-mod-if-empty) {
     font-size: 0;
     line-height: 0;
 
@@ -220,19 +244,19 @@ body.E_actions-active .P_animations-40 .P_PageElement.E_PageElement .P_PageEleme
 .P_PageSection__shadow-10 .P_PageElementText--underline:after,
 .P_PageSection__shadow-10 .P_PageElementText--underline:before,
 .P_PageSection__shadow-10 .P_PageElementText--underline {
-    box-shadow: var(--P_PageSection--shadow-10__box);
+    box-shadow: var(--P_PageSection--shadow-10__box-1);
 }
 
 .P_PageSection__shadow-20 .P_PageElementText--underline:after,
 .P_PageSection__shadow-20 .P_PageElementText--underline:before,
 .P_PageSection__shadow-20 .P_PageElementText--underline {
-    box-shadow: var(--P_PageSection--shadow-20__box);
+    box-shadow: var(--P_PageSection--shadow-20__box-1);
 }
 
 .P_PageSection__shadow-30 .P_PageElementText--underline:after,
 .P_PageSection__shadow-30 .P_PageElementText--underline:before,
 .P_PageSection__shadow-30 .P_PageElementText--underline {
-    box-shadow: var(--P_PageSection--shadow-30__box);
+    box-shadow: var(--P_PageSection--shadow-30__box-1);
 }
 
 .P_PageSection__shadow-10 .P_PageElementText--underline-element {

@@ -242,6 +242,15 @@
             }
         },
 
+        superOninit: function () {
+
+        },
+
+        oninit: function () {
+
+            this.superOninit();
+        },
+
         initColorRefs: function () {
 
             this.on("ColorPickerPalette.setColor", function (event, x, y, palette) {

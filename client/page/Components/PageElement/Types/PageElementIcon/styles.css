@@ -1,0 +1,98 @@
+/*====================================================================*/
+/*------------------------- PAGEELEMENTICON --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__icon {
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+
+    position: relative;
+
+    display: inline-block;
+}
+
+.E .P_PageElement__icon {
+    transition:
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+}
+
+.P_PageElementIcon svg,
+.P_PageElementIcon img {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+
+    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
+}
+
+.P_PageElementIcon svg {
+    position: relative;
+    top: -2px;
+    left: -2px;
+
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    padding: 2px;
+}
+
+.P_PageElementIcon__fill svg,
+.P_PageElementIcon__fill svg * {
+    fill: currentColor;
+}
+
+.P_PageElementIcon__stroke svg,
+.P_PageElementIcon__stroke svg * {
+    stroke: currentColor;
+}
+
+.P_PageElementIcon__both svg,
+.P_PageElementIcon__both svg * {
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+.E_PageSection__stop-color-transitions .P_PageElementIcon svg,
+.E_PageSection__stop-color-transitions .P_PageElementIcon svg * {
+    transition: none;
+}
+
+.P_PageSection__shadow-30 .P_PageElementIcon svg,
+.P_PageSection__shadow-30 .P_PageElementIcon img {
+    filter: drop-shadow(var(--P_PageSection--shadow-30__filter));
+}
+
+.P_PageSection__shadow-20 .P_PageElementIcon svg,
+.P_PageSection__shadow-20 .P_PageElementIcon img {
+    filter: drop-shadow(var(--P_PageSection--shadow-20__filter));
+}
+
+.P_PageSection__shadow-10 .P_PageElementIcon svg,
+.P_PageSection__shadow-10 .P_PageElementIcon img {
+    filter: drop-shadow(var(--P_PageSection--shadow-10__filter));
+}
+
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- EDITMODE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElement__icon .E_PageElement--upload-overlay:after {
+    content: "Nahrát ikonu";
+
+    font-size: 12px;
+    white-space: normal;
+}
+
+.P_PageElement__icon .E_PageElement--activate {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+

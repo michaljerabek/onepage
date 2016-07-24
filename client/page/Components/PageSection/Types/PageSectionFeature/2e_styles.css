@@ -47,7 +47,7 @@
 [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate,
 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate,
 [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate {
-    margin-top: 0px;
+    margin-top: 16px;
 }
 
 /*title - ano | content - ne | buttons - ne -> buttons*/
@@ -129,7 +129,7 @@
 /*title - ano | content - ne -> content*/
 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate,
 [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate {
-    margin-top: 0px;
+    margin-top: 16px;
 }
 
 /*title - ano | buttons - ne -> buttons*/
@@ -168,7 +168,7 @@
 /*title - ano - content - ne -> content*/
 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate,
 [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate {
-    margin-top: 0px;
+    margin-top: 16px;
 }
 
 /*title - ano - buttons - ne -> buttons*/
@@ -286,7 +286,7 @@
     /*content - ne -> content*/
     [class*="P_PageSectionFeature__left"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
     [class*="P_PageSectionFeature__right"] .P_PageSectionFeature--content.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
-        margin-top: 0px;
+        margin-top: 16px;
     }
 
     /*title - ne | content - ne | buttons - ano -> title*/
@@ -346,7 +346,7 @@
     /*title - ano | content - ne -> content*/
     [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate,
     [class*="P_PageSectionFeature__top"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate {
-        margin-top: 0px;
+        margin-top: 16px;
     }
 
     /*title - ano | buttons - ne -> buttons*/
@@ -379,7 +379,7 @@
     /*title - ano - content - ne -> content*/
     [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title:not(.has-empty-PageElement) ~ .P_PageSectionFeature--content .E_PageElement--activate,
     [class*="P_PageSectionFeature__bottom"] .P_PageSectionFeature--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionFeature--content .E_PageElement--activate {
-        margin-top: 0px;
+        margin-top: 16px;
     }
 
     /*buttons - ne -> title*/

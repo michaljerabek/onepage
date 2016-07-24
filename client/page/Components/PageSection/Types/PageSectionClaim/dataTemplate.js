@@ -17,7 +17,7 @@ module.exports = function (lang) {
     data.title[lang] = "&#8222;Tvrzení&#8220; o nabídce";
 
     data.subtitle = {};
-    data.subtitle[lang] = "Vhodné pro velmi důležitou vlastnot nabídky. Sekci je možné roztáhnout přes celé okno prohlížeče.";
+    data.subtitle[lang] = "Vhodné pro velmi důležitou vlastnost nabídky. Sekci je možné roztáhnout přes celé okno prohlížeče.";
 
     return data;
 };

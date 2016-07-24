@@ -5,6 +5,7 @@
 
         var Ractive = require("ractive"),
 
+            on = require("./../../../../../../helpers/on"),
             PageSection = require("./../../"),
 
             components = {
@@ -17,14 +18,14 @@
                 pageSectionEditUI: "<BasicEditUI section='{{.section}}' />"
             };
 
-        module.exports = factory(Ractive, PageSection, components, partials);
+        module.exports = factory(Ractive, PageSection, components, partials, on);
 
     } else {
 
-        root.PageSectionHeader = factory(root.Ractive, root.PageSection);
+        root.PageSectionFeatureFull = factory(root.Ractive, root.PageSection);
     }
 
-}(this, function (Ractive, PageSection, components, partials) {
+}(this, function (Ractive, PageSection, components, partials, on) {
 
     return PageSection.extend({
 
@@ -62,9 +63,12 @@
 
                 }, {init: false});
 
-                if (window.innerWidth >= 1024 && this.get("layout.hor") === "right") {
+                if (on.client) {
 
-                    this.set("reverseButtons", true);
+                    if (window.innerWidth >= 1024 && this.get("layout.hor") === "right") {
+
+                        this.set("reverseButtons", true);
+                    }
                 }
 
                 this.observe("reverseButtons", function (state) {

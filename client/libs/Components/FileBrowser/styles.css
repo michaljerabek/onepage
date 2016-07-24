@@ -690,8 +690,10 @@
     transition: var(--default-transition);
 }
 
-.FileBrowser--file__icon.FileBrowser--file__selected:hover .FileBrowser--file-wrapper svg,
-.FileBrowser--file__icon:hover .FileBrowser--file-wrapper svg {
+.FileBrowser--file__icon:hover .FileBrowser--file-wrapper svg,
+.FileBrowser--file__icon.FileBrowser--file__selected .FileBrowser--file-wrapper svg,
+.FileBrowser--file__icon:hover .FileBrowser--file-wrapper svg *,
+.FileBrowser--file__icon.FileBrowser--file__selected .FileBrowser--file-wrapper svg * {
     fill: var(--color-selected);
     stroke: var(--color-selected);
 
@@ -713,7 +715,7 @@
     transition: var(--default-transition);
 }
 
-.FileBrowser--file__icon.FileBrowser--file__selected:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before,
+.FileBrowser--file__icon.FileBrowser--file__selected:not(.FileBrowser--file__svg) .FileBrowser--file-wrapper:before,
 .FileBrowser--file__icon:not(.FileBrowser--file__svg):hover .FileBrowser--file-wrapper:before {
     box-shadow: 0px 0px 0px 1px var(--color-selected);
 

@@ -1064,6 +1064,8 @@
         }
 
         if (this.opts.forcePlaceholderSize) {
+//            this.placeholder[0].style.height = dragging.el[0].getBoundingClientRect().height + "px";
+//            this.placeholder[0].style.width = dragging.el[0].getBoundingClientRect().width + "px";
             this.placeholder.height(parseFloat(dragging.el.css('height')))
             this.placeholder.width(parseFloat(dragging.el.css('width')))
         }

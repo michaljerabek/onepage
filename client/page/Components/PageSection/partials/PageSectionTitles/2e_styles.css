@@ -1,0 +1,34 @@
+/*====================================================================*/
+/*------------------------- PAGESECTIONTITLES ------------------------*/
+/*====================================================================*/
+
+/*---------------------------- ADD BUTTONS ----------------------------*/
+
+/*title - ne | subtitle - ne -> title*/
+.P_PageSection--content-wrapper.has-empty-titles:not(.has-active-subtitle) .P_PageSectionTitles--title.has-empty-PageElement .E_PageElement--activate {
+    margin-left: -28px;
+}
+
+/*title - ne | subtitle - ne -> subtitle*/
+.P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionTitles--subtitle .E_PageElement--activate,
+.P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) ~ .P_PageSectionTitles--subtitle .E_PageElement--activate {
+    margin-left: 28px;
+}
+
+/*title - ne | subtitle - ano -> title*/
+.has-active-subtitle .P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+.has-active-subtitle .P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+.has-subtitle-not-title .P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate,
+.has-subtitle-not-title .P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: -24px;
+}
+
+/*title - active | subtitle - ne -> subtitle */
+.P_PageSectionTitles--title.has-empty-PageElement.has-active-PageElement ~ .P_PageSectionTitles--subtitle.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: 4px;
+}
+
+/*title - ano | subtitle - ne -> subtitle */
+.P_PageSectionTitles--title:not(.has-empty-PageElement) ~ .P_PageSectionTitles--subtitle.has-empty-PageElement:not(.has-active-PageElement) .E_PageElement--activate {
+    margin-top: 24px;
+}

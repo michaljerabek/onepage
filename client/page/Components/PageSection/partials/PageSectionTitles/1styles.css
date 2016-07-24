@@ -1,0 +1,168 @@
+/*====================================================================*/
+/*------------------------- PAGESECTIONTITLES ------------------------*/
+/*====================================================================*/
+
+.P_PageSectionTitles {
+    text-align: center;
+
+    margin: 0 auto;
+
+    width: 85.627%;
+}
+
+@media (max-width: 800px) {
+
+    .P_PageSectionTitles {
+        width: 100%;
+    }
+}
+
+.P_PageSectionTitles,
+.P_PageSectionTitles--title,
+.P_PageSectionTitles--subtitle,
+.P_PageSectionTitles--title .P_PageElement,
+.P_PageSectionTitles--subtitle .P_PageElement {
+    transition: all 0.3s ease-in-out;
+    transition-property: margin, font-size, line-height, width, height, padding, min-width;
+}
+
+.P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    margin-top: calc((6px + (9 - 6) * (100vw - 320px) / (1440 - 320)) * -1);
+}
+
+/**Minimální velikost .P_PageElementText -> kvůli animaci*/
+/*font-size krát line-height*/
+.P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    min-height: calc((31px + (41 - 31) * (100vw - 320px) / (1440 - 320)) * 1.46);
+}
+
+.P_PageSectionTitles--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+    min-height: calc((17px + (19 - 17) * (100vw - 320px) / (1440 - 320)) * 2.11);
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        margin-top: calc(-9px);
+    }
+
+    .P_PageSectionTitles--title .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        min-height: calc(41px * 1.46);
+    }
+
+    .P_PageSectionTitles--subtitle .P_PageElement:not(.P_PageElement__empty) .P_PageElementText {
+        min-height: calc(19px * 2.11);
+    }
+}
+
+.P_PageSectionTitles--title,
+.P_PageSectionTitles--title .P_PageElement,
+.P_PageSectionTitles--title .P_font-title {
+    font-size: 41px;
+    font-size: calc(31px + (41 - 31) * (100vw - 320px) / (1440 - 320));
+    text-wrap: balanced;
+}
+
+.P_PageSectionTitles--title .P_PageElement,
+.P_PageSectionTitles--title .P_font-title {
+    line-height: 1.46;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionTitles--title .P_PageElement,
+    .P_PageSectionTitles--title .P_font-title {
+        font-size: 41px;
+    }
+
+}
+
+.P_PageSection--content-wrapper:not(.has-title-not-subtitle) .P_PageSectionTitles--title:not(.has-empty-PageElement),
+.P_PageSection--content-wrapper:not(.has-title-not-subtitle) .P_PageSectionTitles--title.has-empty-PageElement.has-active-PageElement,
+.has-title-not-subtitle.has-active-subtitle .P_PageSectionTitles--title:not(.has-empty-PageElement),
+.has-title-not-subtitle.has-active-subtitle .P_PageSectionTitles--title.has-empty-PageElement.has-active-PageElement {
+    margin-bottom: 0.39em;
+}
+
+.P_PageSectionTitles--subtitle,
+.P_PageSectionTitles--subtitle .P_PageElement,
+.P_PageSectionTitles--subtitle .P_font-body {
+    font-size: 19px;
+    font-size: calc(17px + (19 - 17) * (100vw - 320px) / (1440 - 320));
+    text-wrap: balanced;
+}
+
+.P_PageSectionTitles--subtitle .P_PageElement,
+.P_PageSectionTitles--subtitle .P_font-body {
+    line-height: 2.11;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageSectionTitles--subtitle .P_PageElement,
+    .P_PageSectionTitles--subtitle .P_font-body {
+        font-size: 19px;
+    }
+
+}
+
+.P_PageSectionTitles--title.has-empty-PageElement:not(.has-active-PageElement),
+.P_PageSectionTitles--subtitle.has-empty-PageElement:not(.has-active-PageElement) {
+    font-size: 0;
+    line-height: 0;
+}
+
+.P_PageSectionTitles--title .P_PageElement,
+.P_PageSectionTitles--subtitle .P_PageElement {
+    min-width: 0%;
+}
+
+.P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElement,
+.P_PageSectionTitles--subtitle:not(.has-empty-PageElement) .P_PageElement {
+    min-width: 85.627%;
+}
+
+.P_PageSectionTitles--title .P_PageElementText,
+.P_PageSectionTitles--subtitle .P_PageElementText {
+    width: 100%;
+}
+
+/*---------------------------- UNDERLINE ----------------------------*/
+
+/*FONT - 3*/
+.P_underline-titles.P_font-type-3 .P_PageSectionTitles--title .P_PageElementText--underline {
+    height: 0.0495em;
+
+    width: 20%;
+    max-width: 76px;
+}
+
+.P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText,
+.P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 20px;
+}
+
+.P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline,
+.P_underline-titles.P_font-type-3 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline {
+    bottom: 0.1em;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText,
+.P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText {
+    padding-bottom: 24px;
+}
+
+.P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline,
+.P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline {
+    bottom: 0.1em;
+}
+
+@media (max-width: 480px) {
+
+    .P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline,
+    .P_underline-titles.P_font-type-1 .P_PageSectionTitles--title:not(.has-empty-PageElement) .P_PageElementText--underline {
+        transform-origin: -200% 50%;
+        transform: scale(0.8);
+    }
+
+}

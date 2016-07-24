@@ -26,24 +26,19 @@
             }
         }}
 
+
         {{> SectionThumb {
-                type: "PageSectionA",
-                name: "PageSectionA",
-                icon: "#icon-picture"
+                type: "PageSectionFactsIcons",
+                name: "Fakty — ikony",
+                icon: "#icon-facts-icons"
             }
         }}
 
-        {{> SectionThumb {
-                type: "PageSectionB",
-                name: "PageSectionB",
-                icon: "#icon-magnifier"
-            }
-        }}
 
         {{> SectionThumb {
-                type: "PageSectionC",
-                name: "PageSectionC",
-                icon: "#icon-paint-bucket"
+                type: "PageSectionFactsNumbers",
+                name: "Fakty — čísla",
+                icon: "#icon-facts-numbers"
             }
         }}
 

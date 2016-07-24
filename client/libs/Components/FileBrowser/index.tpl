@@ -87,7 +87,7 @@
                                     {{#if .uploading}}FileBrowser--file__uploading{{/if}}
                                     {{#if .svg}}FileBrowser--file__svg{{/if}}
                                     {{#if .uploadError}}FileBrowser--file__error{{/if}}
-                                    {{#if ~/selectedPath.length && (~/selectedPath === .path || ~/selectedPath === @global.encodeURIComponent(.path))}}
+                                    {{#if ~/selectedPath.length && (~/selectedPath === .path || ~/selectedPath === @global.encodeURIComponent(.path) || ~/selectedPath === .svg)}}
                                         FileBrowser--file__selected
                                     {{/if}}
                                 "

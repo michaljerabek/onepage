@@ -336,7 +336,60 @@ var IconReq = (function() {
 
         uploadIcon = function (req, res) {
 
+            var mimeType = mime.lookup(req.file.path);
 
+            req.storageSize += req.file.size;
+
+            if (req.storageSize > config.upload.storageSize) {
+
+                fse.unlink(req.file.path, function () {});
+
+                return res.status(500).send("MAX_STORAGE");
+            }
+
+            //nahraný soubor je typu svg
+            if (mimeType.match(/svg|xml/)) {
+
+                fse.readFile(req.file.path, function (err, buffer) {
+
+                    if (err) {
+
+                        return res.status(500);
+                    }
+
+                    var content = buffer.toString(),
+
+                        purified = DOMPurify.sanitize(content);
+
+                    fse.writeFile(req.file.path, purified, function (err) {
+
+                        if (err) {
+
+                            fse.unlink(req.file.path, function () {});
+
+                            return res.status(500);
+                        }
+
+                        return res.json({
+                            originalname: req.file.originalname,
+                            name: req.file.filename,
+                            path: PublicPath.from(req.file.path),
+                            svg: purified
+                        });
+                    });
+                });
+
+                return;
+            }
+
+            //nahraný soubor je typu png
+            createThumbnail(req.file);
+
+            return res.json({
+                originalname: req.file.originalname,
+                name: req.file.filename,
+                path: PublicPath.from(req.file.path)
+            });
         },
 
         uploadIcons = function (req, res) {
