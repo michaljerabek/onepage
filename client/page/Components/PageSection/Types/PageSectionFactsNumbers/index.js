@@ -23,13 +23,13 @@
 
     } else {
 
-        root.PageSectionFactsIcons = factory(root.Ractive, root.PageSection);
+        root.PageSectionFactsNumbers = factory(root.Ractive, root.PageSection);
     }
 
 }(this, function (Ractive, PageSection, components, partials) {
 
     var CLASS = {
-        addItem: "E_PageSectionFactsIcons--add-item"
+        addItem: "E_PageSectionFactsNumbers--add-item"
     };
 
     return PageSection.extend({
@@ -70,6 +70,7 @@
                             d = dataItems.length - 1;
 
                         item.findComponent("PageElementText").$text.blur();
+                        item.findComponent("PageElementNumber").$text.blur();
 
                         for (d; d >= 0; d--) {
 
@@ -87,7 +88,7 @@
 
                     this.on("addItem", function () {
 
-                        this.push("section.items", this.components.PageElementFact.prototype.getNewItem.call(this, null, "icon"));
+                        this.push("section.items", this.components.PageElementFact.prototype.getNewItem.call(this, null, "number"));
 
                     }.bind(this));
 
@@ -119,11 +120,12 @@
 
                     }, {defer: true});
 
-                    Ractive.$win.on("resize.PageSectionFactsIcons-" + this.EVENT_NS, function () {
+                    Ractive.$win.on("resize.PageSectionFactsNumbers-" + this.EVENT_NS, function () {
 
                         clearTimeout(this.changeButtonPositionTimeout);
 
                         this.changeButtonPositionTimeout = setTimeout(this.checkButtonPosition.bind(this), 100);
+
                     }.bind(this));
                 }
             }
@@ -146,7 +148,7 @@
 
             clearTimeout(this.changeButtonPositionTimeout);
 
-            Ractive.$win.off("resize.PageSectionFactsIcons-" + this.EVENT_NS);
+            Ractive.$win.off("resize.PageSectionFactsNumbers-" + this.EVENT_NS);
         },
 
         setDefaultValues: function () {
@@ -169,7 +171,6 @@
                     this.set("addItemBottom", rect.right > document.documentElement.clientWidth - 10 || rect.left < 10);
                 }
             }
-
         },
 
         getTextPaths: function () {
@@ -184,6 +185,7 @@
             for (i; i >= 0; i--) {
 
                 paths.push("items." + i + ".text");
+                paths.push("items." + i + ".number");
             }
 
             return paths;

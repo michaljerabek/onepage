@@ -9,16 +9,29 @@
         element="{{.element}}"
         lang="{{.lang}}"
         tplLang="{{.tplLang}}"
-        color="{{.iconColor}}"
+        color="{{.factColor}}"
         defaultColors="{{.defaultColors}}"
         activateButton="false"
         defaultIcon="true"
         deletable="false"
     />
 
-    {{elseif .mode === "number"}}
+    {{/if}}
 
-        <PageElementNumber element="{{.element}}" lang="{{.lang}}" />
+    {{#if .mode === "number"}}
+
+        <PageElementNumber
+            source="number"
+            maxLength="5"
+            element="{{.element}}"
+            lang="{{.lang}}"
+            tplLang="{{.tplLang}}"
+            color="{{.factColor}}"
+            defaultColors="{{.defaultColors}}"
+            noModIfEmpty="true"
+            defaultValue="1"
+            colorType="specialColor"
+        />
 
     {{/if}}
 

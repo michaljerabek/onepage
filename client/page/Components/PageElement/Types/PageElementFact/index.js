@@ -47,7 +47,7 @@
 
         hasEditor: false,
 
-        getNewItem: function (lang) {
+        getNewItem: function (lang, type) {
 
             lang = lang || this.get("lang");
 
@@ -55,8 +55,18 @@
                 text: {}
             };
 
-            item.icon = "";
-            item.setColor = "fill";
+            if (type === "icon") {
+
+                item.icon = "";
+
+                item.setColor = "fill";
+
+            } else {
+
+                item.number = {};
+
+                item.number[lang] = "1";
+            }
 
             item.text[lang] = "Fakt";
 
