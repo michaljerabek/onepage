@@ -81,6 +81,75 @@
                 moveCaret--;
             }
         }
+    };
+
+    TextCleaner.prototype.numberObserver = function (currentValue, prevValue, path) {
+
+        if (this.skipTextObserver || this.removing) {
+
+            return;
+        }
+
+        var inputValue = currentValue,
+
+            moveCaret = 0;
+
+        //odstranit počáteční mezery
+        if (currentValue && currentValue.match(/^(?:\s+|\&nbsp\;)+/ig)) {
+
+            currentValue = currentValue.replace(/^(?:\s+|\&nbsp\;)+/ig, "");
+
+            moveCaret--;
+        }
+
+        if (currentValue && currentValue.match(/(<([^>]+)>)/ig)) {
+
+            //nahradit <br> mezerou
+            currentValue = currentValue.replace(/(\s{0}<(br[^>]+)>\s{0})/ig, " ");
+
+            //odstranit všechny tagy
+            currentValue = currentValue.replace(/(<([^>]+)>)/ig, "");
+        }
+
+        if (currentValue && currentValue.match(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig)) {
+
+            //dvě mezery nahradit jednou
+            currentValue = currentValue.replace(/(?:\&nbsp\;|\s)(?:\&nbsp\;|\s)+/ig, " ");
+
+            moveCaret--;
+        }
+
+
+        if (currentValue && currentValue.match(/[^0-9,. °Ω×~+-\/*\\><±∆∑∞%′″#@:]/ig)) {
+
+            //odstranit "nečíselné" znaky
+            currentValue = currentValue.replace(/[^0-9,. °Ω×~+-\/*\\><±∆∑∞%′″#@:]/ig, "");
+
+            moveCaret--;
+        }
+
+        if (currentValue) {
+
+            //omezit maximállní délku textu, $nbsp; je potřeba počítat jako 1 znak
+            var nbsp = currentValue.match(/\&nbsp\;/ig),
+
+                length = currentValue.length - (nbsp ? nbsp.length * 5 : 0);
+
+            if (this.checkLength(length) > 0) {
+
+                /*IE11*/
+                if (!!window.MSInputMethodContext && !!document.documentMode) {
+
+                    currentValue = currentValue.substr(0, currentValue.length - this.checkLength(length));
+
+                } else {
+
+                    currentValue = prevValue;
+                }
+
+                moveCaret--;
+            }
+        }
 
 
         if (currentValue !== inputValue) {

@@ -5,7 +5,7 @@ var PageElementFact = require("./../../../PageElement/Types/PageElementFact");
 module.exports = function (lang) {
 
     var data = {
-        type: "PageSectionFactsIcons"
+        type: "PageSectionFactsNumbers"
     };
 
     data.name = {};
@@ -15,17 +15,21 @@ module.exports = function (lang) {
     data.title[lang] = "Fakty o nabídce";
 
     data.subtitle = {};
-    data.subtitle[lang] = "Základní fakty o nabídce prezentované pomocí ikon.";
+    data.subtitle[lang] = "Základní fakty o nabídce prezentované pomocí čísel.";
 
     data.items = [
-        PageElementFact.prototype.getNewItem(lang, "icon"),
-        PageElementFact.prototype.getNewItem(lang, "icon"),
-        PageElementFact.prototype.getNewItem(lang, "icon")
+        PageElementFact.prototype.getNewItem(lang, "number"),
+        PageElementFact.prototype.getNewItem(lang, "number"),
+        PageElementFact.prototype.getNewItem(lang, "number")
     ];
 
     data.items[0].text[lang] = "Fakt 1";
     data.items[1].text[lang] = "Fakt 2";
     data.items[2].text[lang] = "Fakt 3";
+
+    data.items[0].number[lang] = "1";
+    data.items[1].number[lang] = "2";
+    data.items[2].number[lang] = "3";
 
     return data;
 };

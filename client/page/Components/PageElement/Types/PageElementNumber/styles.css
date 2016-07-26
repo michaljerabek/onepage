@@ -1,0 +1,98 @@
+.P_PageElement__number {
+    position: relative;
+
+    display: inline-block;
+
+    transition: var(--default-transition);
+}
+
+.P_PageElementNumber {
+    margin: 0;
+
+    min-height: 100%;
+    max-height: 100%;
+    min-width: 24px;
+    padding: 0;
+
+    display: inline-block;
+}
+
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .P_PageElementNumber,
+.P_PageSection--content:not(.E_PageSection__stop-color-transitions) .E_PageElement--outline ~ * .P_PageElementNumber {
+    transition:
+        padding 0.3s ease-in-out,
+        color 0.1s linear,
+        text-shadow 0.1s linear;
+}
+
+.P_PageSection--content.E_PageSection__stop-color-transitions .P_PageElementNumber,
+.P_PageSection--content.E_PageSection__stop-color-transitions .E_PageElement--outline ~ * .P_PageElementNumber {
+    transition:
+        padding 0.3s ease-in-out,
+        text-shadow 0.1s linear;
+}
+
+.P_PageSection__shadow-10 .P_PageElementNumber {
+    text-shadow: var(--P_PageSection--shadow-10__text);
+}
+
+.P_PageSection__shadow-20 .P_PageElementNumber {
+    text-shadow: var(--P_PageSection--shadow-20__text);
+}
+
+.P_PageSection__shadow-30 .P_PageElementNumber {
+    text-shadow: var(--P_PageSection--shadow-30__text);
+}
+
+.P_PageSection__shadow-10 .P_PageElementNumber.P_font-title {
+    text-shadow: var(--P_PageSection--shadow-10__text-L);
+}
+
+.P_PageSection__shadow-20 .P_PageElementNumber.P_font-title {
+    text-shadow: var(--P_PageSection--shadow-20__text-L);
+}
+
+.P_PageSection__shadow-30 .P_PageElementNumber.P_font-title {
+    text-shadow: var(--P_PageSection--shadow-30__text-L);
+}
+
+.P_PageSection__shadow-10 .P_PageElementNumber.P_font-body {
+    text-shadow: var(--P_PageSection--shadow-10__text-S);
+}
+
+.P_PageSection__shadow-20 .P_PageElementNumber.P_font-body {
+    text-shadow: var(--P_PageSection--shadow-20__text-S);
+}
+
+.P_PageSection__shadow-30 .P_PageElementNumber.P_font-body {
+    text-shadow: var(--P_PageSection--shadow-30__text-S);
+}
+
+
+.P_PageElement__number.P_PageElement__empty:not(.E_PageElement__active):not(.P_PageElement__no-mod-if-empty) > .P_PageElementNumber:nth-of-type(1n) {
+    line-height: 0;
+    font-size: 0;
+
+    margin: 0;
+
+    width: 0px;
+    min-width: 0px;
+    max-width: 0px;
+    height: 0px;
+    min-height: 0px;
+    max-height: 0px;
+    padding: 0;
+
+    transition: var(--default-transition);
+}
+
+.P_PageElement__number.P_PageElement__empty:not(.E_PageElement__active):nth-of-type(1n):not(.P_PageElement__no-mod-if-empty) {
+    font-size: 0;
+    line-height: 0;
+
+    transition: var(--default-transition);
+}
+
+.P_PageElement__number.P_PageElement__empty.E_PageElement__active > .P_PageElementNumber {
+    transition: var(--default-transition);
+}

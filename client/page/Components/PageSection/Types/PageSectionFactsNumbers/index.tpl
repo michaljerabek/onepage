@@ -25,16 +25,16 @@
 
         {{> PageSectionTitles}}
 
-        <div class="P_PageSectionFactsIcons--items
-                {{#if !~/section.items.length}}P_PageSectionFactsIcons--items__empty{{/if}}
-                P_PageSectionFactsIcons--items__{{~/section.items.length}}
+        <div class="P_PageSectionFactsNumbers--items
+                {{#if !~/section.items.length}}P_PageSectionFactsNumbers--items__empty{{/if}}
+                P_PageSectionFactsNumbers--items__{{~/section.items.length}}
             "
         >
 
             {{#if ~/editMode && ~/showAddItem && ~/pageElementSettings !== "icons"}}
             <div class="E_PageSection--add-button
-                        E_PageSectionFactsIcons--add-item
-                        {{#if ~/addItemBottom}}E_PageSectionFactsIcons--add-item__bottom{{/if}}
+                        E_PageSectionFactsNumbers--add-item
+                        {{#if ~/addItemBottom}}E_PageSectionFactsNumbers--add-item__bottom{{/if}}
                         "
                  on-tap="@this.fire('addItem')"
                  attr-out="{duration: 300}"
@@ -44,12 +44,12 @@
             </div>
             {{/if}}
 
-            <div class="P_PageSectionFactsIcons--items-wrapper" as-Sortable="'section.items','PageElementFact','fact'">
+            <div class="P_PageSectionFactsNumbers--items-wrapper" as-Sortable="'section.items','PageElementFact','fact'">
 
                 {{#each ~/section.items}}
 
                 <PageElementFact
-                    element="{{.}}"
+                    element="{{this}}"
                     sortable="{{~/section.items.length > 1}}"
                     delatable="{{~/section.items.length > 1}}"
                     factColor="{{~/section.specialColor}}"
@@ -57,7 +57,7 @@
                     defaultColors="{{~/section.defaultColors}}"
                     lang="{{~/lang}}"
                     tplLang="{{~/tplLang}}"
-                    mode="icon"
+                    mode="number"
                 />
 
                 {{/each}}
