@@ -118,6 +118,10 @@
     text-align: right;
 }
 
+[class*="P_PageSectionFeatureFull__right"] .P_PageSection--content-wrapper > * {
+    text-align: left;
+}
+
 [class*="P_PageSectionFeatureFull__left"] .P_PageSection--content-wrapper {
     text-align: left;
 }
@@ -224,20 +228,7 @@
 
 @media (min-width: 1024px) {
 
-    [class*="P_PageSectionFeatureFull__right"] .P_PageSection--buttons {
-        text-align: right;
-
-        margin-right: -16px;
-        margin-left: auto;
-    }
-
-    [class*="P_PageSectionFeatureFull__right"] .P_PageSection--buttons-wrapper {
-        text-align: right;
-
-        margin-left: 0;
-        margin-right: 0;
-    }
-
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSection--buttons,
     [class*="P_PageSectionFeatureFull__left"] .P_PageSection--buttons {
         text-align: left;
 
@@ -245,6 +236,7 @@
         margin-right: 0;
     }
 
+    [class*="P_PageSectionFeatureFull__right"] .P_PageSection--buttons-wrapper,
     [class*="P_PageSectionFeatureFull__left"] .P_PageSection--buttons-wrapper {
         text-align: left;
 
@@ -437,28 +429,18 @@
 
 @media (min-width: 1024px) {
 
+    .P_underline-titles [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title .P_PageElementText--underline:before,
     .P_underline-titles [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--title .P_PageElementText--underline:before {
         right: auto;
         left: 0;
     }
 
-    .P_underline-titles [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title .P_PageElementText--underline:before {
-        right: 0;
-        left: auto;
-    }
-
+    .P_underline-titles [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title .P_PageElementText--underline,
     .P_underline-titles [class*="P_PageSectionFeatureFull__left"] .P_PageSectionFeatureFull--title .P_PageElementText--underline {
         right: auto;
         left: 0;
         transform: none;
     }
-
-    .P_underline-titles [class*="P_PageSectionFeatureFull__right"] .P_PageSectionFeatureFull--title .P_PageElementText--underline {
-        right: 0;
-        left: auto;
-        transform: none;
-    }
-
 }
 
 /*FONT - 3*/

@@ -41,7 +41,7 @@
         tplLang="{{.tplLang}}"
         balanceText="false"
         maxLength="24"
-        font="title"
+        font="body"
         editor="title"
         activateButton="false"
         color="{{.textColor}}"
