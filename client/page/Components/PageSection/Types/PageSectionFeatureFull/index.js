@@ -57,25 +57,6 @@
                     if (state) {
 
                         this.set("section.layout", state.hor + "-" + state.ver);
-
-                        this.set("reverseButtons", state.hor === "right" && window.innerWidth >= 1024);
-                    }
-
-                }, {init: false});
-
-                if (on.client) {
-
-                    if (window.innerWidth >= 1024 && this.get("layout.hor") === "right") {
-
-                        this.set("reverseButtons", true);
-                    }
-                }
-
-                this.observe("reverseButtons", function (state) {
-
-                    if (state && window.innerWidth < 1024) {
-
-                        this.set("reverseButtons", false);
                     }
 
                 }, {init: false});
@@ -163,19 +144,9 @@
         },
 
         findSectionImages: function () {
-//
-            var images = PageSection.prototype.findSectionImages.apply(this);//,
-//
-//                image = this.get("section.image");
-//
-//            if (image && image.src) {
-//
-//                images.unshift({
-//                    src: image.src,
-//                    name: image.alt || decodeURIComponent(image.src).split("/").pop().replace(/[0-9]+-/, "")
-//                });
-//            }
-//
+
+            var images = PageSection.prototype.findSectionImages.apply(this);
+
             return images;
         }
 
