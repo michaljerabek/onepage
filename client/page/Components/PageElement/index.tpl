@@ -11,6 +11,7 @@
         {{#if .noModIfEmpty}}P_PageElement__no-mod-if-empty{{/if}}
         {{#if @this.isEmpty && @this.isEmpty()}}P_PageElement__empty{{/if}}
         P_PageElement__{{.type || 'unknown-type'}}
+        P_PageElement__layout-{{.layout || 'default'}}
         {{.specialClass1}} {{.specialClass2}} {{.specialClass3}}
     "
     id="{{.id}}"

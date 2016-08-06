@@ -49,6 +49,22 @@
     padding-left: 22px;
 }
 
+[class*="P_PageSectionFeatureFull__right"] .P_PageSection--content-wrapper {
+    text-align: right;
+}
+
+[class*="P_PageSectionFeatureFull__right"] .P_PageSection--content-wrapper > * {
+    text-align: left;
+}
+
+[class*="P_PageSectionFeatureFull__left"] .P_PageSection--content-wrapper {
+    text-align: left;
+}
+
+[class*="P_PageSectionFeatureFull__center"] .P_PageSection--content-wrapper {
+    text-align: center;
+}
+
 @media (max-width: 1023px) {
 
     .P_PageSectionFeatureFull:not(.P_PageSectionFeatureFull__center-center) .P_PageSection--center {
@@ -69,6 +85,10 @@
         margin-bottom: 0;
 
         width: 85.627%;
+    }
+
+    .P_PageSectionFeatureFull .P_PageSectionFeatureFull--text .P_PageElementText {
+        text-align: center;
     }
 
     .P_PageSectionFeatureFull .P_PageSectionFeatureFull--text {
@@ -112,22 +132,6 @@
         width: 100%;
     }
 
-}
-
-[class*="P_PageSectionFeatureFull__right"] .P_PageSection--content-wrapper {
-    text-align: right;
-}
-
-[class*="P_PageSectionFeatureFull__right"] .P_PageSection--content-wrapper > * {
-    text-align: left;
-}
-
-[class*="P_PageSectionFeatureFull__left"] .P_PageSection--content-wrapper {
-    text-align: left;
-}
-
-[class*="P_PageSectionFeatureFull__center"] .P_PageSection--content-wrapper {
-    text-align: center;
 }
 
 .P_PageSectionFeatureFull__center-center .P_PageSection--content-wrapper,

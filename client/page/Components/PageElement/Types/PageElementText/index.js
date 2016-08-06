@@ -276,11 +276,36 @@
 
         },
 
+        handleFocus: function (event) {
+
+            if (Ractive.EDIT_MODE) {
+
+                setTimeout(function() {
+
+                    this.Page.findAllComponents("PageElementText").forEach(function (element) {
+
+                        if (element !== this) {
+
+                            element.handleBlur(event);
+                        }
+
+                    }.bind(this));
+
+                }.bind(this), 0);
+            }
+
+        },
+
         handleBlur: function (event) {
 
-            if (event.original && event.original.relatedTarget && event.original.relatedTarget.className.match(/medium-editor/)) {
+            if (event.original && event.original.relatedTarget && event.original.relatedTarget.className.match(/medium-editor/) && $(event.original.relatedTarget).closest(".medium-editor-toolbar").length) {
 
                 return;
+            }
+
+            if (this.empty && typeof this.get("defaultValue") !== "undefined") {
+
+                this.set("element." + (this.get("source") || "title") + "." + this.get("lang"), "" + this.get("defaultValue"));
             }
 
             if (this.get("removeNbsp")) {

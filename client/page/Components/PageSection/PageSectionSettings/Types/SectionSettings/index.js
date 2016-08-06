@@ -30,7 +30,8 @@
             layoutHeader: require("./partials/layout-header.tpl"),
             layoutFeature: require("./partials/layout-feature.tpl"),
             layoutFeatureFull: require("./partials/layout-feature-full.tpl"),
-            layoutClaim: require("./partials/layout-claim.tpl")
+            layoutClaim: require("./partials/layout-claim.tpl"),
+            layoutServices: require("./partials/layout-services.tpl")
         },
 
         data: function () {

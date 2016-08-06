@@ -9,6 +9,7 @@
     style="color: {{.element.textColor || .element.defaultColors.textColor || .color || .defaultColors.textColor}};"
     contenteditable="{{!!editMode}}"
     on-blur="@this.handleBlur(event)"
+    on-focus="@this.handleFocus(event)"
     value="{{.element[.source || 'title'][.lang]}}"
 ></span>
 {{#if .hasUnderline}}
