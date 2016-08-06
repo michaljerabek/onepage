@@ -4,61 +4,16 @@
 
 .P_PageSectionFactsIcons--items [id^="__ph"] {
     vertical-align: top;
-    margin-right: 44px;
-    margin-left: 44px;
+    margin-right: 12px;
+    margin-left: 12px;
     margin-bottom: 48px;
 
     display: inline-block !important;
 }
 
-@media (max-width: 1328px) {
-
-    .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 24px;
-        margin-right: 24px;
-    }
-}
-
-
-@media (max-width: 1152px) {
-
-    .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 16px;
-        margin-right: 16px;
-    }
-}
-
-
-@media (max-width: 1088px) {
-
-    .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 44px;
-        margin-right: 44px;
-    }
-}
-
-
 @media (max-width: 1024px) {
 
     .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 24px;
-        margin-right: 24px;
-    }
-}
-
-@media (max-width: 888px) {
-
-    .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 16px;
-        margin-right: 16px;
-    }
-}
-
-@media (max-width: 840px) {
-
-    .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 44px;
-        margin-right: 44px;
         margin-bottom: 40px;
     }
 }
@@ -66,38 +21,9 @@
 @media (max-width: 680px) {
 
     .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 24px;
-        margin-right: 24px;
-    }
-}
-
-@media (max-width: 576px) {
-
-    .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 16px;
-        margin-right: 16px;
         margin-bottom: 32px;
     }
 }
-
-@media (max-width: 544px) {
-
-    .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 8px;
-        margin-right: 8px;
-    }
-}
-
-@media (max-width: 512px) {
-
-    .P_PageSectionFactsIcons--items [id^="__ph"] {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-
-}
-
-
 
 /*---------------------------- ADD BUTTONS ----------------------------*/
 

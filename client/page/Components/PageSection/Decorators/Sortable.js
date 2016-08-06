@@ -127,7 +127,15 @@
 
             items.splice(currentIndex, 0, items.splice(initIndex, 1)[0]);
 
-            this.merge(path, items);
+            this.merge(path, items).then(function () {
+
+                ui.item.css({
+                    marginTop: "",
+                    marginBottom: "",
+                    marginLeft: "",
+                    marginRight: ""
+                });
+            });
 
         }.bind(this));
 

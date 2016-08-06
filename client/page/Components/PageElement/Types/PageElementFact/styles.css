@@ -47,11 +47,11 @@
 }
 
 .P_PageElementFact .P_PageElement__icon {
-    width: 72px;
-    height: 72px;
-
     margin: 0px auto;
     margin-bottom: 20px;
+
+    width: 72px;
+    height: 72px;
 
     display: block;
 }

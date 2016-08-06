@@ -42,6 +42,13 @@
             }
         }}
 
+        {{> SectionThumb {
+                type: "PageSectionServices",
+                name: "Služby | Popis vlastností",
+                icon: "#icon-services-center"
+            }
+        }}
+
     </div>
 
 </div>

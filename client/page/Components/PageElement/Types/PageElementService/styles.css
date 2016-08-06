@@ -1,0 +1,201 @@
+/*====================================================================*/
+/*------------------------- PAGEELEMENTService --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__service {
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+
+    display: inline-block;
+}
+
+.E .P_PageElement__service[data-ractive-transition^="outro"] {
+    animation: E_PageElementService--remove-service 0.3s ease-in-out forwards;
+
+    overflow: hidden !important;
+}
+
+.E .P_PageElement__service[data-ractive-transition="intro"] {
+    overflow: hidden !important;
+}
+
+.E .P_PageElement__service[data-ractive-transition="intro"] .P_PageElement,
+.E .P_PageElement__service[data-ractive-transition^="outro"] .P_PageElement {
+    overflow: hidden !important;
+}
+
+@keyframes E_PageElementService--remove-service {
+    to {
+        margin: 0;
+        width: 0;
+        height: 0;
+        min-height: 0;
+        min-width: 0;
+        padding: 0;
+    }
+}
+
+.E .P_PageElement__service {
+    transition:
+           margin 0.3s ease-in-out,
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+}
+
+.P_PageElement__layout-left {
+    margin-top: -12px;
+
+    padding-top: 12px;
+}
+
+.P_PageElementService {
+    position: relative;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    display: block;
+}
+
+.P_PageElementService__center {
+    text-align: center;
+
+    width: 264px;
+    min-width: 264px;
+}
+
+.P_PageElementService__left {
+    text-align: left;
+
+    width: 100%;
+
+    display: table;
+}
+
+.P_PageElementService .P_PageElement__icon {
+    width: 64px;
+    height: 64px;
+}
+
+.P_PageElementService__center .P_PageElement__icon {
+    margin: 0px auto;
+    margin-bottom: 20px;
+
+    display: block;
+}
+
+.P_PageElementService__left .P_PageElement__icon {
+    position: absolute;
+    top: 4px;
+    left: 0;
+}
+
+@media (max-width: 480px) {
+
+    .P_PageElementService__left .P_PageElement__icon {
+        position: relative;
+        top: 0;
+
+        margin-bottom: 20px;
+    }
+}
+
+.P_PageElementService .P_PageElement__text {
+    position: relative;
+    margin-bottom: 12px;
+
+    display: table;
+}
+
+.P_PageElementService__center .P_PageElement__text {
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    max-width: 264px;
+}
+
+.P_PageElementService__left .P_PageElement__text {
+    text-align: left;
+
+    margin-left: 96px;
+
+    width: 100%;
+    max-width: calc(100% - 96px);
+}
+
+@media (max-width: 480px) {
+
+    .P_PageElementService__left .P_PageElement__text {
+        margin-left: auto;
+
+        max-width: calc(100% - 0px);
+    }
+}
+
+/*title*/
+
+.P_PageElementService .P_PageElementText {
+    min-height: calc((19px + (23 - 19) * (100vw - 320px) / (1440 - 320)) * 1.48);
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageElementService .P_PageElementText {
+        min-height: calc(23px * 1.48);
+    }
+
+}
+
+.P_PageElementService .P_PageElement__text,
+.P_PageElementService .P_PageElementText,
+.P_PageElementService .P_font-title {
+    font-size: 23px;
+    font-size: calc(19px + (23 - 19) * (100vw - 320px) / (1440 - 320));
+    line-height: 1.48;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageElementService .P_PageElementText {
+        font-size: 23px;
+    }
+}
+
+/*content*/
+
+.P_PageElementService .P_PageElement__text ~ .P_PageElement__text .P_PageElementText {
+    min-height: calc((14px + (17 - 14) * (100vw - 320px) / (1440 - 320)) * 1.88);
+}
+
+.P_PageElementService .P_PageElement__text ~ .P_PageElement__text {
+    margin-bottom: 0;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageElementService .P_PageElement__text ~ .P_PageElement__text .P_PageElementText {
+        min-height: calc(17px * 1.88);
+    }
+
+}
+
+.P_PageElementService .P_PageElement__text ~ .P_PageElement__text,
+.P_PageElementService .P_PageElement__text ~ .P_PageElement__text .P_PageElementText,
+.P_PageElementService .P_PageElement__text ~ .P_PageElement__text .P_font-title {
+    font-size: 17px;
+    font-size: calc(14px + (17 - 14) * (100vw - 320px) / (1440 - 320));
+    line-height: 1.88;
+}
+
+@media (min-width: 1440px) {
+
+    .P_PageElementService .P_PageElement__text ~ .P_PageElement__text .P_PageElementText {
+        font-size: 17px;
+    }
+}
