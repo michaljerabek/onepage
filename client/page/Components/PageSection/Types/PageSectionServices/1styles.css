@@ -24,10 +24,20 @@
     margin-bottom: -64px;
 }
 
+.P_PageSectionServices__center-image .P_PageSectionServices--items {
+    margin-top: 56px;
+    margin-bottom: -56px;
+}
+
 @media (max-width: 1024px) {
 
     .P_PageSectionServices--items {
         margin-top: 48px;
+    }
+
+    .P_PageSectionServices__center-image .P_PageSectionServices--items {
+        margin-top: 48px;
+        margin-bottom: -48px;
     }
 
     .P_PageSectionServices__center .P_PageSectionServices--items {
@@ -39,6 +49,11 @@
 
     .P_PageSectionServices--items {
         margin-top: 40px;
+    }
+
+    .P_PageSectionServices__center-image .P_PageSectionServices--items {
+        margin-top: 40px;
+        margin-bottom: -40px;
     }
 
     .P_PageSectionServices__center .P_PageSectionServices--items {
@@ -70,13 +85,17 @@
     vertical-align: top;
 }
 
-.P_PageSectionServices__center .P_PageSectionServices--items .P_PageElement__service {
+[class*="P_PageSectionServices__center"] .P_PageSectionServices--items .P_PageElement__service {
     margin-left: 12px;
     margin-right: 12px;
     margin-bottom: 48px;
 
     width: calc(25% - 24px);
     min-width: 264px;
+}
+
+.P_PageSectionServices__center-image .P_PageSectionServices--items .P_PageElement__service {
+    margin-bottom: 56px;
 }
 
 .P_PageSectionServices__left .P_PageSectionServices--items,
@@ -97,6 +116,14 @@
     animation:
         E_PageSectionServices__center--add-item__min-width 0.3s ease-in-out forwards,
         E_PageSectionServices__center--add-item__margin 0.3s ease-in-out forwards,
+        E_PageSectionServices__center--add-item 0.3s ease-in-out forwards;
+}
+
+
+.P_PageSectionServices__center-image .P_PageSectionServices--items .P_PageElement__service[data-ractive-transition="intro"] {
+    animation:
+        E_PageSectionServices__center--add-item__min-width 0.3s ease-in-out forwards,
+        E_PageSectionServices__center-image--add-item__margin 0.3s ease-in-out forwards,
         E_PageSectionServices__center--add-item 0.3s ease-in-out forwards;
 }
 
@@ -483,6 +510,19 @@
     }
 }
 
+@keyframes E_PageSectionServices__center-image--add-item__margin {
+    from {
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    to {
+        margin-bottom: 56px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+}
+
 @keyframes E_PageSectionServices__center--add-item {
     from {
         width: 0;
@@ -494,15 +534,21 @@
 
 @media (max-width: 1328px) {
 
-    .P_PageSectionServices__center .P_PageSectionServices--items .P_PageElement__service {
+    [class*="P_PageSectionServices__center"] .P_PageSectionServices--items .P_PageElement__service {
         width: calc(33.333% - 24px);
     }
-
 
     .P_PageSectionServices__center .P_PageSectionServices--items .P_PageElement__service[data-ractive-transition="intro"] {
         animation:
             E_PageSectionServices__center--add-item__min-width 0.3s ease-in-out forwards,
             E_PageSectionServices__center--add-item__margin 0.3s ease-in-out forwards,
+            E_PageSectionServices__center--add-item__1328 0.3s ease-in-out forwards;
+    }
+
+    .P_PageSectionServices__center-image .P_PageSectionServices--items .P_PageElement__service[data-ractive-transition="intro"] {
+        animation:
+            E_PageSectionServices__center--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionServices__center-image--add-item__margin 0.3s ease-in-out forwards,
             E_PageSectionServices__center--add-item__1328 0.3s ease-in-out forwards;
     }
 
@@ -519,15 +565,27 @@
 
 @media (max-width: 1024px) {
 
-    .P_PageSectionServices__center .P_PageSectionServices--items .P_PageElement__service {
+    [class*="P_PageSectionServices__center"] .P_PageSectionServices--items .P_PageElement__service {
+        margin-bottom: 40px;
+
         width: calc(50% - 24px);
     }
 
+    .P_PageSectionServices__center .P_PageSectionServices--items .P_PageElement__service {
+        margin-bottom: 48px;
+    }
 
     .P_PageSectionServices__center .P_PageSectionServices--items .P_PageElement__service[data-ractive-transition="intro"] {
         animation:
             E_PageSectionServices__center--add-item__min-width 0.3s ease-in-out forwards,
             E_PageSectionServices__center--add-item__margin__1024 0.3s ease-in-out forwards,
+            E_PageSectionServices__center--add-item__1024 0.3s ease-in-out forwards;
+    }
+
+    .P_PageSectionServices__center-image .P_PageSectionServices--items .P_PageElement__service[data-ractive-transition="intro"] {
+        animation:
+            E_PageSectionServices__center--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionServices__center-image--add-item__margin__1024 0.3s ease-in-out forwards,
             E_PageSectionServices__center--add-item__1024 0.3s ease-in-out forwards;
     }
 
@@ -546,6 +604,19 @@
     }
 }
 
+@keyframes E_PageSectionServices__center-image--add-item__margin__1024 {
+    from {
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    to {
+        margin-bottom: 48px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+}
+
 @keyframes E_PageSectionServices__center--add-item__1024 {
     from {
         width: 0;
@@ -557,8 +628,14 @@
 
 @media (max-width: 680px) {
 
-    .P_PageSectionServices__center .P_PageSectionServices--items .P_PageElement__service {
+    [class*="P_PageSectionServices__center"] .P_PageSectionServices--items .P_PageElement__service {
+        margin-bottom: 32px;
+
         width: calc(100% - 24px);
+    }
+
+    .P_PageSectionServices__center-image .P_PageSectionServices--items .P_PageElement__service {
+        margin-bottom: 40px;
     }
 
 
@@ -566,6 +643,13 @@
         animation:
             E_PageSectionServices__center--add-item__min-width 0.3s ease-in-out forwards,
             E_PageSectionServices__center--add-item__margin__680 0.3s ease-in-out forwards,
+            E_PageSectionServices__center--add-item__680 0.3s ease-in-out forwards;
+    }
+
+    .P_PageSectionServices__center-image .P_PageSectionServices--items .P_PageElement__service[data-ractive-transition="intro"] {
+        animation:
+            E_PageSectionServices__center--add-item__min-width 0.3s ease-in-out forwards,
+            E_PageSectionServices__center--add-item-images__margin__680 0.3s ease-in-out forwards,
             E_PageSectionServices__center--add-item__680 0.3s ease-in-out forwards;
     }
 
@@ -579,6 +663,19 @@
     }
     to {
         margin-bottom: 32px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+}
+
+@keyframes E_PageSectionServices__center-image--add-item__margin__680 {
+    from {
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    to {
+        margin-bottom: 40px;
         margin-left: 12px;
         margin-right: 12px;
     }

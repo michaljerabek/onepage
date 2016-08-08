@@ -61,7 +61,7 @@
     display: block;
 }
 
-.P_PageElementService__center {
+[class*="P_PageElementService__center"] {
     text-align: center;
 
     width: 264px;
@@ -81,11 +81,45 @@
     height: 64px;
 }
 
-.P_PageElementService__center .P_PageElement__icon {
+[class*="P_PageElementService__center"] .P_PageElement__image,
+[class*="P_PageElementService__center"] .P_PageElement__icon {
     margin: 0px auto;
     margin-bottom: 20px;
 
     display: block;
+}
+
+.P_PageElementService__center-image .P_PageElement__image {
+    width: 252px;
+    height: 154px;
+    min-width: 252px;
+    min-height: 154px;
+
+    display: table;
+}
+
+[class*="P_PageElementService__center"] .P_PageElementImage {
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 252px;
+    height: 154px;
+
+    display: block;
+}
+
+[class*="P_PageElementService__center"] .P_PageElementImage--image-wrapper {
+    height: 154px;
+    width: 252px;
+}
+
+[class*="P_PageElementService__center"] .P_PageElementImage--image-wrapper {
+    height: 154px;
+    width: 252px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .P_PageElementService__left .P_PageElement__icon {
@@ -111,7 +145,7 @@
     display: table;
 }
 
-.P_PageElementService__center .P_PageElement__text {
+[class*="P_PageElementService__center"] .P_PageElement__text {
     text-align: center;
 
     margin-left: auto;
