@@ -23,6 +23,13 @@
         min-width 0.3s ease-in-out;
 }
 
+.P_PageElementImage__CSS .P_PageElementImage--image {
+    width: 0;
+    height: 0;
+
+    visibility: hidden;
+}
+
 .P_PageElement__image.P_PageElement__empty:not(.E_PageElement__active) {
     width: 0;
     height: 0;
@@ -50,6 +57,10 @@
     min-width: 100%;
 
     border: none;
+}
+
+.P_PageElementImage--image-wrapper {
+    transition: background-image 0.1s linear, background-size 0.1s linear;
 }
 
 /*--------------------------------------------------------------------*/

@@ -3,16 +3,32 @@
     outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slide{{/if}}"
 >
 
-    <PageElementIcon
-        element="{{.element}}"
-        lang="{{.lang}}"
-        tplLang="{{.tplLang}}"
-        color="{{.iconColor}}"
-        defaultColors="{{.defaultColors}}"
-        activateButton="false"
-        defaultIcon="true"
-        deletable="false"
-    />
+    {{#if .layout === "center-image"}}
+
+        <PageElementImage
+            element="{{.element.image}}"
+            lang="{{.lang}}"
+            tplLang="{{.tplLang}}"
+            defaultImage="/img/img-sample.png"
+            deletable="false"
+            useCSS="true"
+            defaultBackgroundSize="cover"
+        />
+
+    {{else}}
+
+        <PageElementIcon
+            element="{{.element}}"
+            lang="{{.lang}}"
+            tplLang="{{.tplLang}}"
+            color="{{.iconColor}}"
+            defaultColors="{{.defaultColors}}"
+            activateButton="false"
+            defaultIcon="true"
+            deletable="false"
+        />
+
+    {{/if}}
 
     <PageElementText
         element="{{.element}}"

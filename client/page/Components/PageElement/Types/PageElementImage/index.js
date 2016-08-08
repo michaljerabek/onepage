@@ -334,7 +334,7 @@
 
         isEmpty: function () {
 
-            return !this.get("element.src");
+            return !this.get("element.src") && !this.get("defaultImage");
         }
     });
 

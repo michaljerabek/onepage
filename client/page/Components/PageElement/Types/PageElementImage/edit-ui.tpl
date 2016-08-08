@@ -1,4 +1,4 @@
-{{#if .element.src}}
+{{#if .element.src && .deletable !== false}}
 
     <div class="E_PageElementEditUI__left">
 
@@ -14,6 +14,29 @@
                     event: .element,
                     className: "E_PageElementEditUI--remove",
                     title: "Odstranit obrázek",
+                    preventDefault: true
+                }
+            }}
+
+        </span>
+    </div>
+{{/if}}
+
+{{#if .useCSS && .element.src}}
+
+    <div class="E_PageElementEditUI__bottom-left">
+
+        <span slideh-in="{duration: @this.Page.get('loaded') ? 300 : 0}"
+              slideh-out="{delay: 300, duration: @this.Page.get('loaded') ? 300 : 0}"
+        >
+
+            {{> FlatButton {
+                    size: "small",
+                    icon: .element.backgroundSize === "contain" || (!.element.backgroundSize && (.defaultBackgroundSize === "contain" || !.defaultBackgroundSize)) ? "#icon-fullscreen-on" : "#icon-fullscreen-off",
+                    set: "element.backgroundSize",
+                    value: .element.backgroundSize === "contain" || (!.element.backgroundSize && (.defaultBackgroundSize === "contain" || !.defaultBackgroundSize)) ? "cover" : "contain",
+                    className: "E_PageElementEditUI--background-size",
+                    title: .element.backgroundSize === "contain" || (!.element.backgroundSize && (.defaultBackgroundSize === "contain" || !.defaultBackgroundSize)) ? "Roztáhnout" : "Přizpůsobit",
                     preventDefault: true
                 }
             }}
