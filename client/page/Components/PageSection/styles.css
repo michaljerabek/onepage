@@ -15,6 +15,10 @@
         z-index 0s linear var(--default-transition-duration);
 }
 
+.P .P_PageSection {
+    z-index: 1;
+}
+
 .P_PageSection:hover,
 .P_PageSection__has-outline:hover,
 .P_PageSection__has-settings:hover,

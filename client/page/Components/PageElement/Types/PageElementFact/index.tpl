@@ -1,6 +1,6 @@
 <span class="P_PageElementFact"
-    intro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slide{{/if}}"
-    outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slide{{/if}}"
+    intro="{{#if .editMode && ~/pageLoaded && !.stopTransition}}slide{{/if}}"
+    outro="{{#if .editMode && ~/pageLoaded && !.stopTransition}}slide{{/if}}"
 >
 
     {{#if .mode === "icon"}}

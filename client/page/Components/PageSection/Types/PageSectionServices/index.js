@@ -196,6 +196,23 @@
 
             var images = PageSection.prototype.findSectionImages.apply(this);
 
+            if (this.get("section.layout") === "center-image") {
+
+                var items = this.get("section.items") || [],
+                    i = items.length - 1;
+
+                for (i; i >= 0; i--) {
+
+                    if (items[i].image && items[i].image.src) {
+
+                        images.unshift({
+                            src: items[i].image.src,
+                            name: items[i].image.alt || decodeURIComponent(items[i].image.src).split("/").pop().replace(/[0-9]+-/, "")
+                        });
+                    }
+                }
+            }
+
             return images;
         }
 

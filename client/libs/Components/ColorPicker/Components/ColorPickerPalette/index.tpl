@@ -7,7 +7,7 @@
         {{#with Date.now() + (Math.random() * 10000).toFixed() as selectId}}
 
         <label class="ColorPickerPalette--title" for="ColorPickerPalette--{{selectId}}">
-            <select id="ColorPickerPalette--{{selectId}}" class="ColorPickerPalette--image-selector" value="{{.image}}">
+            <select id="ColorPickerPalette--{{selectId}}" class="ColorPickerPalette--image-selector" value="{{.image}}" on-change="@this.update('selectElement')">
                 {{#each .images}}
                     <option value="{{.src}}">{{.name}}</option>
                 {{/each}}

@@ -5,8 +5,8 @@
 >
     {{#if .element.src || .defaultImage}}
     <span class="P_PageElementImage--image-wrapper"
-        intro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slidevh{{/if}}"
-        outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slidevh{{/if}}"
+        intro="{{#if .editMode && ~/pageLoaded && !.stopTransition}}slidevh{{/if}}"
+        outro="{{#if .editMode && ~/pageLoaded && !.stopTransition}}slidevh{{/if}}"
         style="
             {{#if .useCSS}}background-image: url({{.element.src || .defaultImage}}){{/if}};
             -webkit-background-size: {{.element.backgroundSize || .defaultBackgroundSize || 'contain'}};

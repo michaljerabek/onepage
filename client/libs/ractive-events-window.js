@@ -26,13 +26,6 @@
 
             var eventHandler = function (e) {
 
-                if (!this.owner.rendered) {
-
-                    window.removeEventListener("mousedown", eventHandler);
-
-                    return;
-                }
-
                 fire({
                     node: node,
                     original: e,
@@ -53,13 +46,6 @@
         windowMousemove: function (node, fire) {
 
             var eventHandler = function (e) {
-
-                if (!this.owner.rendered) {
-
-                    window.removeEventListener("mousemove", eventHandler);
-
-                    return;
-                }
 
                 fire({
                     node: node,
@@ -82,13 +68,6 @@
 
             var eventHandler = function (e) {
 
-                if (!this.owner.rendered) {
-
-                    window.removeEventListener("mouseup", eventHandler);
-
-                    return;
-                }
-
                 fire({
                     node: node,
                     original: e,
@@ -109,13 +88,6 @@
         windowTouchstart: function (node, fire) {
 
             var eventHandler = function (e) {
-
-                if (!this.owner.rendered) {
-
-                    window.removeEventListener("touchstart", eventHandler);
-
-                    return;
-                }
 
                 fire({
                     node: node,
@@ -138,13 +110,6 @@
 
             var eventHandler = function (e) {
 
-                if (!this.owner.rendered) {
-
-                    window.removeEventListener("touchmove", eventHandler);
-
-                    return;
-                }
-
                 fire({
                     node: node,
                     original: e,
@@ -166,13 +131,6 @@
 
             var eventHandler = function (e) {
 
-                if (!this.owner.rendered) {
-
-                    window.removeEventListener("touchend", eventHandler);
-
-                    return;
-                }
-
                 fire({
                     node: node,
                     original: e,
@@ -193,13 +151,6 @@
         windowResize: function (node, fire) {
 
             var eventHandler = function (e) {
-
-                if (!this.owner.rendered) {
-
-                    window.removeEventListener("resize", eventHandler);
-
-                    return;
-                }
 
                 fire({
                     node: node,

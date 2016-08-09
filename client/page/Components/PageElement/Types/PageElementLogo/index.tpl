@@ -3,8 +3,8 @@
     <span class="
             P_PageElementLogo
         "
-        slidevh-in="{duration: .editMode && @this.Page.get('loaded') && !.stopTransition ? 300 : 0}"
-        slidevh-out="{duration: .editMode && @this.Page.get('loaded') && !.stopTransition ? 300 : 0}"
+        slidevh-in="{duration: .editMode && ~/pageLoaded && !.stopTransition ? 300 : 0}"
+        slidevh-out="{duration: .editMode && ~/pageLoaded && !.stopTransition ? 300 : 0}"
         tabindex="0"
      >
         <div class="P_PageElementLogo--image"

@@ -54,6 +54,11 @@
             this.set("mostUsedColors", this.Page.findMostUsedColors());
             this.set("sectionsBgImages", this.Page.findSectionsBgImages());
 
+            if (this.parent.PageSection.findSectionImages) {
+
+                this.set("sectionImages", this.parent.PageSection.findSectionImages());
+            }
+
             this.observe("data.scrollToSection", function (value) {
 
                 if (value) {

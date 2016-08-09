@@ -83,6 +83,8 @@
                 left: 0
             });
 
+            this.forEachPageElement("set", "openPageElementSettings", null);
+
         }.bind(this));
 
         $sortableWrapper.on("sortable:start", function (e, ui) {

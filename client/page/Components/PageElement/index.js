@@ -201,6 +201,19 @@
 
             this.PageSection = this.getPageSection();
 
+            var pageLoaded = this.Page.get("loaded");
+
+            this.set("pageLoaded", pageLoaded);
+
+            if (!pageLoaded) {
+
+                this.pageLoadedObserver = this.Page.observe("loaded", function (state) {
+
+                    this.set("pageLoaded", state);
+
+                }.bind(this), {init: false});
+            }
+
             if (on.client) {
 
                 Ractive.$win = Ractive.$win || $(window);
@@ -554,6 +567,11 @@
         superOnteardown: function () {
 
             this.torndown = true;
+
+            if (this.pageLoadedObserver) {
+
+                this.pageLoadedObserver.cancel();
+            }
 
             if (this.dropzone) {
 
