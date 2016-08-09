@@ -56,8 +56,8 @@
 
                             {{#if ~/editMode}}
                                 <span class="P_PageElementMenu--link-self"
-                                    slideh-in="{duration: !@this.Page.saving && @this.Page.get('loaded') ? 300 : 0}"
-                                    slideh-out="{duration: !@this.Page.saving && @this.Page.get('loaded') ? 300 : 0}"
+                                    slideh-in="{duration: !@this.Page.saving && ~/pageLoaded ? 300 : 0}"
+                                    slideh-out="{duration: !@this.Page.saving && ~/pageLoaded ? 300 : 0}"
                                     on-touchstart="@this.fire('touchstart', event)"
                                     on-blur="@this.removeIfEmpty(.internalId, .menuText[~/lang]), @this.checkMenuOverflow()"
                                     on-tap="@this.action(event, .internalId, true)"
@@ -184,8 +184,8 @@
                                 <li class="P_PageElementMenu--hidden-link P_PageElementMenu--dropdown-item
                                         {{#if ~/activeLink === .internalId}}P_PageElementMenu--dropdown-item__active{{/if}}
                                     "
-                                    slide-in="{duration: !@this.Page.saving && @this.Page.get('loaded') ? 300 : 0}"
-                                    slide-out="{duration: !@this.Page.saving && @this.Page.get('loaded') ? 300 : 0}"
+                                    slide-in="{duration: !@this.Page.saving && ~/pageLoaded ? 300 : 0}"
+                                    slide-out="{duration: !@this.Page.saving && ~/pageLoaded ? 300 : 0}"
                                 >
                                     {{#if ~/editMode}}
                                         <span class="P_PageElementMenu--hidden-link-self P_PageElementMenu--dropdown-item-text"

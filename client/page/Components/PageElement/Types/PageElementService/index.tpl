@@ -1,6 +1,6 @@
 <span class="P_PageElementService P_PageElementService__{{.layout || 'center'}}"
-    intro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slide{{/if}}"
-    outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slide{{/if}}"
+    intro="{{#if .editMode && ~/pageLoaded && !.stopTransition}}slide{{/if}}"
+    outro="{{#if .editMode && ~/pageLoaded && !.stopTransition}}slide{{/if}}"
 >
 
     {{#if .layout === "center-image"}}

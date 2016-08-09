@@ -9,7 +9,7 @@
             },
             {
                 text: "Obrázky uprostřed",
-                icon: "#icon-services-center",
+                icon: "#icon-services-center-image",
                 value: "center-image"
             },
             {

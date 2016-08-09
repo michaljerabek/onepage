@@ -5,8 +5,8 @@
 >
 
     <span class="P_PageElementIcon--icon"
-        intro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slidevh{{/if}}"
-        outro="{{#if .editMode && @this.Page.get('loaded') && !.stopTransition}}slidevh{{/if}}"
+        intro="{{#if .editMode && ~/pageLoaded && !.stopTransition}}slidevh{{/if}}"
+        outro="{{#if .editMode && ~/pageLoaded && !.stopTransition}}slidevh{{/if}}"
         style="color: {{.color || .defaultColors.specialColor}}"
     >
 

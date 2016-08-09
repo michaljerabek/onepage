@@ -31,6 +31,7 @@
                 <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
                 <ColorPickerPalette title="Výchozí" colors="{{@this.Page.get('page.settings.colorPalette.colors')}}" id="defaultColors" />
                 <ColorPickerPalette title="Pozadí" image="{{.image}}"  images="{{.sectionsBgImages}}"/>
+                <ColorPickerPalette title="Obrázek" image="{{.image2}}"  images="{{.sectionImages}}"/>
 
             </ColorPicker>
 
@@ -43,6 +44,7 @@
                 <ColorPickerPalette title="Nejpoužívanější" colors="{{.mostUsedColors}}" />
                 <ColorPickerPalette title="Výchozí" colors="{{@this.Page.get('page.settings.colorPalette.colors')}}" id="defaultColors" />
                 <ColorPickerPalette title="Pozadí" image="{{.image}}"  images="{{.sectionsBgImages}}"/>
+                <ColorPickerPalette title="Obrázek" image="{{.image2}}"  images="{{.sectionImages}}"/>
 
             </ColorPicker>
 

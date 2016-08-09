@@ -98,6 +98,8 @@
     margin-bottom: 56px;
 }
 
+.P_PageSectionServices__center-image .P_PageSectionServices--items,
+.P_PageSectionServices__center-image .P_PageSectionServices--items-wrapper,
 .P_PageSectionServices__left .P_PageSectionServices--items,
 .P_PageSectionServices__left .P_PageSectionServices--items-wrapper {
     width: 100%;
