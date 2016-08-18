@@ -26,6 +26,11 @@
 
             var eventHandler = function (e) {
 
+                if (!this.owner.fragment || !this.owner.fragment.bound) {
+
+                    return this.handler.teardown();
+                }
+
                 fire({
                     node: node,
                     original: e,
@@ -46,6 +51,11 @@
         windowMousemove: function (node, fire) {
 
             var eventHandler = function (e) {
+
+                if (!this.owner.fragment || !this.owner.fragment.bound) {
+
+                    return this.handler.teardown();
+                }
 
                 fire({
                     node: node,
@@ -68,12 +78,18 @@
 
             var eventHandler = function (e) {
 
+                if (!this.owner.fragment || !this.owner.fragment.bound) {
+
+                    return this.handler.teardown();
+                }
+
                 fire({
                     node: node,
                     original: e,
                     clientX: e.clientX,
                     clientY: e.clientY
                 });
+
             }.bind(this);
 
             window.addEventListener("mouseup", eventHandler, false);
@@ -88,6 +104,11 @@
         windowTouchstart: function (node, fire) {
 
             var eventHandler = function (e) {
+
+                if (!this.owner.fragment || !this.owner.fragment.bound) {
+
+                    return this.handler.teardown();
+                }
 
                 fire({
                     node: node,
@@ -110,6 +131,11 @@
 
             var eventHandler = function (e) {
 
+                if (!this.owner.fragment || !this.owner.fragment.bound) {
+
+                    return this.handler.teardown();
+                }
+
                 fire({
                     node: node,
                     original: e,
@@ -131,6 +157,11 @@
 
             var eventHandler = function (e) {
 
+                if (!this.owner.fragment || !this.owner.fragment.bound) {
+
+                    return this.handler.teardown();
+                }
+
                 fire({
                     node: node,
                     original: e,
@@ -151,6 +182,11 @@
         windowResize: function (node, fire) {
 
             var eventHandler = function (e) {
+
+                if (!this.owner.fragment || !this.owner.fragment.bound) {
+
+                    return this.handler.teardown();
+                }
 
                 fire({
                     node: node,

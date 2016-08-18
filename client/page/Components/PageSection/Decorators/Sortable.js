@@ -55,7 +55,9 @@
         });
 
         var $placeholder,
-            initIndex;
+            initIndex,
+
+            clearMarginTimeout;
 
         $sortableWrapper.on("sortable:update", function (e, ui) {
 
@@ -71,6 +73,8 @@
         }.bind(this));
 
         $sortableWrapper.on("sortable:activate", function (e, ui) {
+
+            clearTimeout(clearMarginTimeout);
 
             if ($placeholder) {
 
@@ -120,6 +124,19 @@
 
             if (currentIndex === initIndex) {
 
+                clearTimeout(clearMarginTimeout);
+
+                clearMarginTimeout = setTimeout(function() {
+
+                    ui.item.css({
+                        marginTop: "",
+                        marginBottom: "",
+                        marginLeft: "",
+                        marginRight: ""
+                    });
+
+                }, 0);
+
                 return;
             }
 
@@ -144,6 +161,8 @@
 
         return {
             teardown: function () {
+
+                clearTimeout(clearMarginTimeout);
 
                 $sortableWrapper
                     .off("sortable:update")

@@ -59,6 +59,7 @@
                 EventEmitter.trigger("addToMenuChanged.PageSection", [state, this]);
 
             }, {init: false});
+
         },
 
         oncomplete: function () {

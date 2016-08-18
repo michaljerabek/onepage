@@ -2,6 +2,10 @@
 /*----------------------- PageSectionServices ----------------------*/
 /*====================================================================*/
 
+.P_PageSectionServices .E_PageSection__stop-transitions * {
+    transition: none !important;
+}
+
 .P_PageSectionServices--items {
     text-align: center;
     font-size: 0;

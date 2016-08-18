@@ -187,6 +187,7 @@
                                     slide-in="{duration: !@this.Page.saving && ~/pageLoaded ? 300 : 0}"
                                     slide-out="{duration: !@this.Page.saving && ~/pageLoaded ? 300 : 0}"
                                 >
+
                                     {{#if ~/editMode}}
                                         <span class="P_PageElementMenu--hidden-link-self P_PageElementMenu--dropdown-item-text"
                                             on-touchstart="@this.fire('touchstart', event), @this.set('editing', true)"

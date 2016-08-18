@@ -61,7 +61,8 @@
                     {{> ToggleField {
                             size: "small",
                             text: .name ? .name[~/lang] : "",
-                            value: "sections." + @key + ".addToMenu"
+                            value: "sections." + @key + ".addToMenu",
+                            id: "E_PageElementMenuSettings--Toggle__" + @index
                         }
                     }}
 

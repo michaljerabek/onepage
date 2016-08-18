@@ -57,7 +57,7 @@
                         handleW: event.node.offsetWidth
                     })"
                     on-mouseup-touchend-touchstart-click="event.original.preventDefault()"
-                   on-windowMousemove-windowTouchmove="
+                    on-windowMousemove-windowTouchmove="
                         ~/__Toggle[._value + '-move'] ? @this.set('__Toggle.' + ._value + '-move.beforeLastX', ~/__Toggle[._value + '-move'].lastX) &&
                         @this.set('__Toggle.' + ._value + '-transform', event.clientX - ~/__Toggle[._value + '-move'].initX) &&
                         @this.set('__Toggle.' + ._value + '-move.lastX', event.clientX) &&

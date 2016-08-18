@@ -247,6 +247,10 @@
 /*    content: "viewport-units-buggyfill; margin-top: calc((var(--P_PageSectionHeader_button-title-top-margin-vmax) * -1) + 17px + var(--P_PageSectionHeader_title-subtitle-top-margin)); margin-bottom: calc(var(--P_PageSectionHeader_button-title-top-margin-vmax) - 17px);";*/
 }
 
+.P_font-type-3 .P_PageSectionHeader--subtitle .P_PageElementText {
+    font-family: var(--P_font-type-3-body-font-family);
+}
+
 .P_underline-titles.P_font-type-1 .P_PageSectionHeader--subtitle {
     margin-top: calc((-1 * var(--P_PageSectionHeader_button-title-top-margin-pct)) + var(--P_PageSectionHeader_title-subtitle-top-margin__S));
     margin-top: calc((var(--P_PageSectionHeader_button-title-top-margin-vmax) * -1) + 17px + var(--P_PageSectionHeader_title-subtitle-top-margin__S));

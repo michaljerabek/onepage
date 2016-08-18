@@ -98,6 +98,10 @@
     display: table;
 }
 
+.P_PageElementService .P_PageElement__image ~ .P_PageElement__icon {
+    display: none;
+}
+
 [class*="P_PageElementService__center"] .P_PageElementImage {
     margin-left: auto;
     margin-right: auto;

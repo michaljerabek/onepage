@@ -320,35 +320,29 @@
 
                     this.observe("section.layout", function (layout) {
 
-                        this.forEachPageElement(function () {
-
-                            this.fire("layoutChanged", layout);
-                        });
+                        this.forEachPageElement("fire", "layoutChanged", layout);
 
                         this.layoutObserverTimeout = setTimeout(function() {
 
-                            this.forEachPageElement(function () {
-
-                                this.set("stopTransition", false);
-                            });
-
                             this.changingLayout = false;
+
+                            this.forEachPageElement("set", "stopTransition", false);
+
+                            this.set("stopTransitions", false);
 
                         }.bind(this), 0);
 
                     }, {init: false, defer: true});
 
-                    this.observe("section.layout", function (layout) {
+                    this.observe("section.layout", function () {
 
                         clearInterval(this.layoutObserverTimeout);
 
+                        this.set("stopTransitions", true);
+
                         this.changingLayout = true;
 
-                        this.forEachPageElement(function () {
-
-                            this.set("stopTransition", true);
-
-                        });
+                        this.forEachPageElement("set", "stopTransition", true);
 
                     }, {init: false});
                 }
