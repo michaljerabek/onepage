@@ -31,4 +31,16 @@ module.exports = function (req, db) {
             res(err || !result ? {error: err} : {saved: 1});
         });
     });
+
+    req("page.registerUserEmail", function (req, res) {
+
+        if (req.params.email) {
+
+            return setTimeout(function() {
+                res({ok: 1});
+            }, 1000);
+        }
+
+        res({error: 1});
+    });
 };

@@ -1,0 +1,259 @@
+/*====================================================================*/
+/*------------------------- PAGEELEMENTEMAIL -------------------------*/
+/*====================================================================*/
+
+.P_PageElement__email {
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+
+    display: inline-block;
+}
+
+.P_PageElementEmail--email {
+    font-size: 19px;
+    line-height: 56px;
+    vertical-align: top;
+
+    margin-right: 6px;
+    margin-left: 6px;
+    margin-top: 12px;
+
+    height: 56px;
+    padding: 0 16px;
+    min-width: 300px;
+    max-width: 300px;
+
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 0px;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    transition:
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+}
+
+
+.P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus,
+.P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover,
+body.E_actions-active .P_PageElement .P_PageElementEmail--email:focus,
+body.E_actions-active .P_PageElement .P_PageElementEmail--email:hover {
+    transform: scale(1.07142);
+}
+
+@media (max-width: 480px) {
+
+    .P_PageElementEmail--email {
+        transform: scale(0.92857);
+    }
+    .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus,
+    .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover,
+    body.E_actions-active .P_PageElement .P_PageElementEmail--email:focus,
+    body.E_actions-active .P_PageElement .P_PageElementEmail--email:hover {
+        transform: scale(1);
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageElementEmail--email {
+        min-width: 288px;
+        max-width: 288px;
+
+        transform: scale(0.85714);
+    }
+
+    .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus,
+    .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover,
+    body.E_actions-active .P_PageElement .P_PageElementEmail--email:focus,
+    body.E_actions-active .P_PageElement .P_PageElementEmail--email:hover {
+        transform: scale(0.92857);
+    }
+
+}
+
+.E_PageSection__stop-color-transitions .P_PageElementEmail--email {
+    transition: border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out;
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email,
+body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementEmail--email {
+    transition: transform var(--P_animations-10-duration) var(--P_animations-10-easing),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus,
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover,
+body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementEmail--email:focus,
+body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementEmail--email:hover {
+    transition: transform var(--P_animations-10-duration-hover) var(--P_animations-10-easing-hover),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email,
+body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementEmail--email {
+    transition: transform var(--P_animations-20-duration) var(--P_animations-20-easing),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus,
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover,
+body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementEmail--email:focus,
+body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementEmail--email:hover {
+    transition: transform var(--P_animations-20-duration-hover) var(--P_animations-20-easing-hover),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email,
+body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementEmail--email {
+    transition: transform var(--P_animations-30-duration) var(--P_animations-30-easing),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus,
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover,
+body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementEmail--email:focus,
+body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementEmail--email:hover {
+    transition: transform var(--P_animations-30-duration-hover) var(--P_animations-30-easing-hover),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email,
+body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementEmail--email {
+    transition: transform var(--P_animations-40-duration) var(--P_animations-40-easing),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus,
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover,
+body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementEmail--email:focus,
+body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementEmail--email:hover {
+    transition: transform var(--P_animations-40-duration-hover) var(--P_animations-40-easing-hover),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+}
+
+.P_PageElementEmail .P_PageElement__button {
+    margin: 0 6px;
+    margin-top: 12px;
+}
+
+@media (max-width: 480px) {
+
+    .P_PageElementEmail .P_PageElement__button {
+        margin-top: 8px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageElementEmail .P_PageElement__button {
+        margin-top: 4px;
+    }
+}
+
+
+@media (max-width: 536px) {
+
+    .P_PageElementEmail .P_PageElementButton--content-wrapper,
+    .P_PageElementEmail .P_PageElementbutton--text,
+    .P_PageElementEmail .P_PageElementbutton--text-wrapper {
+        text-align: center;
+
+        width: 100%;
+    }
+
+    .P_PageElementEmail .P_PageElementButton--text-wrapper {
+        min-width: 100%;
+
+        display: table;
+        table-layout: fixed;
+    }
+
+}
+
+.P_PageElementEmail ::-webkit-input-placeholder { font-style: italic; color: currentColor; opacity: 0.65; }
+.P_PageElementEmail ::-moz-placeholder          { font-style: italic; color: currentColor; opacity: 0.65; }
+.P_PageElementEmail :-ms-input-placeholder      { font-style: italic; color: currentColor; opacity: 0.65; }
+.P_PageElementEmail input:-moz-placeholder      { font-style: italic; color: currentColor; opacity: 0.65; }
+.P_PageElementEmail input:placeholder           { font-style: italic; color: currentColor; opacity: 0.65; }
+.E .P_PageElementEmail input { font-style: italic; }
+
+.P_roundness-0 .P_PageElementEmail--email {
+    border-radius: 0;
+}
+
+.P_roundness-10 .P_PageElementEmail--email {
+    border-radius: 4px;
+}
+
+.P_roundness-20 .P_PageElementEmail--email {
+    border-radius: 6px;
+}
+
+.P_roundness-30 .P_PageElementEmail--email,
+.P_roundness-40 .P_PageElementEmail--email {
+    padding: 0 20px;
+
+    border-radius: 28px;
+}
+
+.P_PageSection__shadow-10 .P_PageElementEmail--email {
+    box-shadow: inset var(--P_PageSection--shadow-10__box),
+        var(--P_PageSection--shadow-10__box);
+}
+
+.P_PageSection__shadow-20 .P_PageElementEmail--email {
+    box-shadow: inset var(--P_PageSection--shadow-20__box),
+        var(--P_PageSection--shadow-20__box);
+}
+
+.P_PageSection__shadow-30 .P_PageElementEmail--email {
+    box-shadow: inset var(--P_PageSection--shadow-30__box),
+        var(--P_PageSection--shadow-30__box);
+}
+
+.P_PageSection__shadow-10 .P_PageElementEmail--email {
+    text-shadow: var(--P_PageSection--shadow-10__text);
+}
+
+.P_PageSection__shadow-20 .P_PageElementEmail--email {
+    text-shadow: var(--P_PageSection--shadow-20__text);
+}
+
+.P_PageSection__shadow-30 .P_PageElementEmail--email {
+    text-shadow: var(--P_PageSection--shadow-30__text);
+}
+

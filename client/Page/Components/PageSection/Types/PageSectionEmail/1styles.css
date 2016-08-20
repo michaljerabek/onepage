@@ -1,0 +1,44 @@
+/*====================================================================*/
+/*-------------------------- PageSectionEmail ------------------------*/
+/*====================================================================*/
+
+.P_PageSectionEmail--form {
+    text-align: center;
+
+    margin-top: 44px;
+    margin-left: calc(-6px);
+
+    width: calc(100% + 12px);
+}
+
+.E .P_PageSectionEmail--form {
+    transition: margin 0.3s ease-in-out;
+}
+
+@media (max-width: 680px) {
+
+    .P_PageSectionEmail--form {
+        margin-top: 36px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .P_PageSectionEmail--form {
+        margin-top: 32px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSectionEmail--form {
+        margin-top: 24px;
+    }
+
+}
+
+.P_PageSectionTitles.has-empty-titles:not(.has-active-titles) ~ .P_PageSectionEmail--form {
+    margin-top: 0;
+}

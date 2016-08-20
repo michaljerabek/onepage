@@ -231,6 +231,21 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     text-shadow: var(--P_PageSection--shadow-30__text);
 }
 
+.P_PageSection__shadow-10 .P_PageElementButton--state,
+.P_PageSection__shadow-10 .P_PageElementButton--icon {
+    filter: drop-shadow(var(--P_PageSection--shadow-10__filter));
+}
+
+.P_PageSection__shadow-20 .P_PageElementButton--state,
+.P_PageSection__shadow-20 .P_PageElementButton--icon {
+    filter: drop-shadow(var(--P_PageSection--shadow-20__filter));
+}
+
+.P_PageSection__shadow-30 .P_PageElementButton--state,
+.P_PageSection__shadow-30 .P_PageElementButton--icon {
+    filter: drop-shadow(var(--P_PageSection--shadow-30__filter));
+}
+
 .P_PageElementButton--content-wrapper {
     vertical-align: middle;
     white-space: nowrap;
@@ -274,9 +289,11 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     position: relative;
 
     padding: 4px 20px;
-    min-width: 96px;
+    min-width: 140px;
     max-height: 52px;
     height: 52px;
+
+    opacity: 1;
 
     display: table-cell;
 
@@ -287,12 +304,20 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
     user-select: text;
 
     transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
         color 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
+        text-shadow 0.1s linear 0s,
+        opacity 0.3s linear 0s;
+}
+
+.P_Page__loaded .P_PageElementButton:not(.P_PageElementButton__default) .P_PageElementButton--text {
+    opacity: 0;
 }
 
 .E_PageSection__stop-color-transitions .P_PageElementButton--text {
-    transition: padding 0.3s ease-in-out 0s;
+    transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
+        opacity 0.3s linear 0s;
 }
 
 .E .P_PageElement:not([data-ractive-transition="intro-complete"]) .P_PageElementButton--text,
@@ -331,6 +356,86 @@ body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementButton:activ
 
 .P_PageElementButton__has-icon .P_PageElementButton--text {
     padding-left: 0;
+    min-width: 96px;
+}
+
+.P_PageElementButton--state {
+    font-size: 0;
+    line-height: 0;
+
+    margin: auto;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+
+    width: 32px;
+    height: 32px;
+
+    opacity: 0;
+
+    transition: opacity 0.3s linear;
+}
+
+    .P_animations-10 .P_PageElement .P_PageElementButton--state {
+        transition-duration: 0.3s;
+    }
+
+    .P_animations-20 .P_PageElement .P_PageElementButton--state {
+        transition-duration: 0.225s;
+    }
+
+    .P_animations-30 .P_PageElement .P_PageElementButton--state {
+        transition-duration: 0.15s;
+    }
+
+    .P_animations-40 .P_PageElement .P_PageElementButton--state {
+        transition-duration: 0.15s;
+    }
+
+    .P_PageElementButton__warn .P_PageElementButton--state__warn,
+    .P_PageElementButton__pending .P_PageElementButton--state__pending,
+    .P_PageElementButton__error .P_PageElementButton--state__error,
+    .P_PageElementButton__ok .P_PageElementButton--state__ok {
+        opacity: 1;
+    }
+
+.P_PageElementButton--state svg {
+    width: 100%;
+    height: 100%;
+
+    fill: currentColor;
+}
+
+.P_PageElementButton__pending .P_PageElementButton--state__pending svg {
+    animation: P_PageElementButton--state_rotate 1s infinite forwards linear;
+}
+
+
+.P_animations-10 .P_PageElement .P_PageElementButton--state__pending svg {
+    animation-duration: 1.5s;
+}
+
+.P_animations-20 .P_PageElement .P_PageElementButton--state__pending svg {
+    animation-duration: 1s;
+}
+
+.P_animations-30 .P_PageElement .P_PageElementButton--state__pending svg {
+    animation-duration: 0.75s;
+}
+
+.P_animations-40 .P_PageElement .P_PageElementButton--state__pending svg {
+    animation-duration: 0.75s;
+}
+
+@keyframes P_PageElementButton--state_rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
 }
 
 .P_PageElementButton--icon svg {

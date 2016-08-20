@@ -42,6 +42,48 @@
     transition: var(--default-transition);
 }
 
+.E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child,
+.E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child ~ .E_PageElementSettings--tab {
+    width: 50%;
+    flex-basis: 50%;
+}
+
+.E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child[data-ractive-transition="intro"],
+.E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child ~ .E_PageElementSettings--tab[data-ractive-transition="intro"] {
+    animation: E_PageElementSettings--show-tab-2 0.3s ease-in-out 0s forwards;
+}
+
+.E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child[data-ractive-transition="outro"],
+.E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child ~ .E_PageElementSettings--tab[data-ractive-transition="outro"] {
+    animation: E_PageElementSettings--hide-tab-2 0.3s ease-in-out 0s forwards;
+}
+
+@keyframes E_PageElementSettings--show-tab-2 {
+    from {
+        width: 0%;
+        max-width: 0%;
+        flex-basis: 0%;
+    }
+    to {
+        width: 50%;
+        max-width: 50%;
+        flex-basis: 50%;
+    }
+}
+
+@keyframes E_PageElementSettings--hide-tab-2 {
+    from {
+        max-width: 50%;
+        width: 50%;
+        flex-basis: 50%;
+    }
+    to {
+        max-width: 0%;
+        width: 0%;
+        flex-basis: 0%;
+    }
+}
+
 .E_PageElementSettings--tab:nth-last-child(n + 3):nth-last-child(-n + 3):first-child,
 .E_PageElementSettings--tab:nth-last-child(n + 3):nth-last-child(-n + 3):first-child ~ .E_PageElementSettings--tab {
     width: 33.33333%;

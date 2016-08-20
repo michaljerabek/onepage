@@ -7,10 +7,10 @@
             name: "userTextColor",
             text: "Text"
         } : null,
-        {
+        .actions !== false ? {
             name: "action",
             text: "Akce"
-        }
+        } : null
     ]
 }}
 
