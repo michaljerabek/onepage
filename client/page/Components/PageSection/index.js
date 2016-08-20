@@ -883,7 +883,7 @@
 
         superGetColorPaths: function () {
 
-            var paths = ["backgroundColor", "textColor"];
+            var paths = ["backgroundColor", "textColor", "specialColor"];
 
             var buttons = (this.get("section.buttons") || []).length;
 

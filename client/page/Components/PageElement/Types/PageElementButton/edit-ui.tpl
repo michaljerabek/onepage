@@ -1,16 +1,20 @@
 <div class="E_PageElementEditUI__left">
 
-    {{> FlatButton {
-            type: "default-danger",
-            size: "small",
-            icon: "#icon-trash",
-            fire: "removeButton",
-            event: .element,
-            className: "E_PageElementEditUI--remove",
-            title: "Odstranit tlačítko",
-            preventDefault: true
-        }
-    }}
+    {{#if .deletable !== false}}
+
+        {{> FlatButton {
+                type: "default-danger",
+                size: "small",
+                icon: "#icon-trash",
+                fire: "removeButton",
+                event: .element,
+                className: "E_PageElementEditUI--remove",
+                title: "Odstranit tlačítko",
+                preventDefault: true
+            }
+        }}
+
+    {{/if}}
 
 </div>
 
@@ -86,6 +90,7 @@
         lang="{{.lang}}"
         defaultColors="{{.defaultColors}}"
         color="{{.color}}"
+        actions="{{.actions}}"
     ></PageElementButtonSettings>
 {{/if}}
 

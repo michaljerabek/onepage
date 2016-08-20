@@ -68,6 +68,22 @@
 
         MAX_FILESIZE: 64,
 
+        STATES: {
+            DEFAULT: 1,
+            OK: 10,
+            ERROR: 100,
+            PENDING: 1000,
+            WARN: 10000
+        },
+
+        STATE_NAMES: {
+            1: "default",
+            10: "ok",
+            100: "error",
+            1000: "pending",
+            10000: "warn"
+        },
+
         components: {
         },
 
@@ -434,9 +450,18 @@
 
             if (empty) {
 
+                var defaultText = this.get("defaultText");
+
                 clearTimeout(this.balanceTextTimeout);
 
                 clearTimeout(this.fixTextTimeout);
+
+                if (defaultText) {
+
+                    this.set("element.text." + this.get("lang"), defaultText);
+
+                    return this.balanceText();
+                }
 
                 this.fire("removeButton", {}, this.get("element"), this);
 

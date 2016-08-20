@@ -9355,6 +9355,143 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     transition: all 0.3s        cubic-bezier(0.1, 0.4, 0.4, 1)        0s;
 }
 
+.E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child, .E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child ~ .E_PageElementSettings--tab {
+    width: 50%;
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+}
+
+.E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child[data-ractive-transition="intro"], .E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child ~ .E_PageElementSettings--tab[data-ractive-transition="intro"] {
+    -webkit-animation: E_PageElementSettings--show-tab-2 0.3s ease-in-out 0s forwards;
+       -moz-animation: E_PageElementSettings--show-tab-2 0.3s ease-in-out 0s forwards;
+         -o-animation: E_PageElementSettings--show-tab-2 0.3s ease-in-out 0s forwards;
+            animation: E_PageElementSettings--show-tab-2 0.3s ease-in-out 0s forwards;
+}
+
+.E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child[data-ractive-transition="outro"], .E_PageElementSettings--tab:nth-last-child(n + 2):nth-last-child(-n + 2):first-child ~ .E_PageElementSettings--tab[data-ractive-transition="outro"] {
+    -webkit-animation: E_PageElementSettings--hide-tab-2 0.3s ease-in-out 0s forwards;
+       -moz-animation: E_PageElementSettings--hide-tab-2 0.3s ease-in-out 0s forwards;
+         -o-animation: E_PageElementSettings--hide-tab-2 0.3s ease-in-out 0s forwards;
+            animation: E_PageElementSettings--hide-tab-2 0.3s ease-in-out 0s forwards;
+}
+
+@-webkit-keyframes E_PageElementSettings--show-tab-2 {
+    from {
+        width: 0%;
+        max-width: 0%;
+        -webkit-flex-basis: 0%;
+                flex-basis: 0%;
+    }
+    to {
+        width: 50%;
+        max-width: 50%;
+        -webkit-flex-basis: 50%;
+                flex-basis: 50%;
+    }
+}
+
+@-moz-keyframes E_PageElementSettings--show-tab-2 {
+    from {
+        width: 0%;
+        max-width: 0%;
+        flex-basis: 0%;
+    }
+    to {
+        width: 50%;
+        max-width: 50%;
+        flex-basis: 50%;
+    }
+}
+
+@-o-keyframes E_PageElementSettings--show-tab-2 {
+    from {
+        width: 0%;
+        max-width: 0%;
+        flex-basis: 0%;
+    }
+    to {
+        width: 50%;
+        max-width: 50%;
+        flex-basis: 50%;
+    }
+}
+
+@keyframes E_PageElementSettings--show-tab-2 {
+    from {
+        width: 0%;
+        max-width: 0%;
+        -webkit-flex-basis: 0%;
+            -ms-flex-preferred-size: 0%;
+                flex-basis: 0%;
+    }
+    to {
+        width: 50%;
+        max-width: 50%;
+        -webkit-flex-basis: 50%;
+            -ms-flex-preferred-size: 50%;
+                flex-basis: 50%;
+    }
+}
+
+@-webkit-keyframes E_PageElementSettings--hide-tab-2 {
+    from {
+        max-width: 50%;
+        width: 50%;
+        -webkit-flex-basis: 50%;
+                flex-basis: 50%;
+    }
+    to {
+        max-width: 0%;
+        width: 0%;
+        -webkit-flex-basis: 0%;
+                flex-basis: 0%;
+    }
+}
+
+@-moz-keyframes E_PageElementSettings--hide-tab-2 {
+    from {
+        max-width: 50%;
+        width: 50%;
+        flex-basis: 50%;
+    }
+    to {
+        max-width: 0%;
+        width: 0%;
+        flex-basis: 0%;
+    }
+}
+
+@-o-keyframes E_PageElementSettings--hide-tab-2 {
+    from {
+        max-width: 50%;
+        width: 50%;
+        flex-basis: 50%;
+    }
+    to {
+        max-width: 0%;
+        width: 0%;
+        flex-basis: 0%;
+    }
+}
+
+@keyframes E_PageElementSettings--hide-tab-2 {
+    from {
+        max-width: 50%;
+        width: 50%;
+        -webkit-flex-basis: 50%;
+            -ms-flex-preferred-size: 50%;
+                flex-basis: 50%;
+    }
+    to {
+        max-width: 0%;
+        width: 0%;
+        -webkit-flex-basis: 0%;
+            -ms-flex-preferred-size: 0%;
+                flex-basis: 0%;
+    }
+}
+
 .E_PageElementSettings--tab:nth-last-child(n + 3):nth-last-child(-n + 3):first-child, .E_PageElementSettings--tab:nth-last-child(n + 3):nth-last-child(-n + 3):first-child ~ .E_PageElementSettings--tab {
     width: 33.33333%;
     width: -webkit-calc(100% / 3);
@@ -12577,6 +12714,21 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.575);
 }
 
+.P_PageSection__shadow-10 .P_PageElementButton--state, .P_PageSection__shadow-10 .P_PageElementButton--icon {
+    -webkit-filter: drop-shadow(0px 0px  3px rgba(0, 0, 0, 0.125));
+            filter: drop-shadow(0px 0px  3px rgba(0, 0, 0, 0.125));
+}
+
+.P_PageSection__shadow-20 .P_PageElementButton--state, .P_PageSection__shadow-20 .P_PageElementButton--icon {
+    -webkit-filter: drop-shadow(0px 0px  4px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0px 0px  4px rgba(0, 0, 0, 0.25));
+}
+
+.P_PageSection__shadow-30 .P_PageElementButton--state, .P_PageSection__shadow-30 .P_PageElementButton--icon {
+    -webkit-filter: drop-shadow(0px 0px  6px rgba(0, 0, 0, 0.4));
+            filter: drop-shadow(0px 0px  6px rgba(0, 0, 0, 0.4));
+}
+
 .P_PageElementButton--content-wrapper {
     vertical-align: middle;
     white-space: nowrap;
@@ -12629,9 +12781,11 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     position: relative;
 
     padding: 4px 20px;
-    min-width: 96px;
+    min-width: 140px;
     max-height: 52px;
     height: 52px;
+
+    opacity: 1;
 
     display: table-cell;
 
@@ -12642,27 +12796,47 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
     user-select: text;
 
     -webkit-transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
         color 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
+        text-shadow 0.1s linear 0s,
+        opacity 0.3s linear 0s;
 
     -o-transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
         color 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
+        text-shadow 0.1s linear 0s,
+        opacity 0.3s linear 0s;
 
     -moz-transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
         color 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
+        text-shadow 0.1s linear 0s,
+        opacity 0.3s linear 0s;
 
     transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
         color 0.1s linear 0s,
-        text-shadow 0.1s linear 0s;
+        text-shadow 0.1s linear 0s,
+        opacity 0.3s linear 0s;
+}
+
+.P_Page__loaded .P_PageElementButton:not(.P_PageElementButton__default) .P_PageElementButton--text {
+    opacity: 0;
 }
 
 .E_PageSection__stop-color-transitions .P_PageElementButton--text {
-    -webkit-transition: padding 0.3s ease-in-out 0s;
-    -o-transition: padding 0.3s ease-in-out 0s;
-    -moz-transition: padding 0.3s ease-in-out 0s;
-    transition: padding 0.3s ease-in-out 0s;
+    -webkit-transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
+        opacity 0.3s linear 0s;
+    -o-transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
+        opacity 0.3s linear 0s;
+    -moz-transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
+        opacity 0.3s linear 0s;
+    transition: padding 0.3s ease-in-out 0s,
+        min-width 0.3s ease-in-out 0s,
+        opacity 0.3s linear 0s;
 }
 
 .E .P_PageElement:not([data-ractive-transition="intro-complete"]) .P_PageElementButton--text, .P_PageElement[data-ractive-transition="outro"] .P_PageElementButton--text {
@@ -12706,6 +12880,155 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 
 .P_PageElementButton__has-icon .P_PageElementButton--text {
     padding-left: 0;
+    min-width: 96px;
+}
+
+.P_PageElementButton--state {
+    font-size: 0;
+    line-height: 0;
+
+    margin: auto;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+
+    width: 32px;
+    height: 32px;
+
+    opacity: 0;
+
+    -webkit-transition: opacity 0.3s linear;
+
+    -o-transition: opacity 0.3s linear;
+
+    -moz-transition: opacity 0.3s linear;
+
+    transition: opacity 0.3s linear;
+}
+
+    .P_animations-10 .P_PageElement .P_PageElementButton--state {
+        -webkit-transition-duration: 0.3s;
+           -moz-transition-duration: 0.3s;
+             -o-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+    }
+
+    .P_animations-20 .P_PageElement .P_PageElementButton--state {
+        -webkit-transition-duration: 0.225s;
+           -moz-transition-duration: 0.225s;
+             -o-transition-duration: 0.225s;
+                transition-duration: 0.225s;
+    }
+
+    .P_animations-30 .P_PageElement .P_PageElementButton--state {
+        -webkit-transition-duration: 0.15s;
+           -moz-transition-duration: 0.15s;
+             -o-transition-duration: 0.15s;
+                transition-duration: 0.15s;
+    }
+
+    .P_animations-40 .P_PageElement .P_PageElementButton--state {
+        -webkit-transition-duration: 0.15s;
+           -moz-transition-duration: 0.15s;
+             -o-transition-duration: 0.15s;
+                transition-duration: 0.15s;
+    }
+
+    .P_PageElementButton__warn .P_PageElementButton--state__warn, .P_PageElementButton__pending .P_PageElementButton--state__pending, .P_PageElementButton__error .P_PageElementButton--state__error, .P_PageElementButton__ok .P_PageElementButton--state__ok {
+        opacity: 1;
+    }
+
+.P_PageElementButton--state svg {
+    width: 100%;
+    height: 100%;
+
+    fill: currentColor;
+}
+
+.P_PageElementButton__pending .P_PageElementButton--state__pending svg {
+    -webkit-animation: P_PageElementButton--state_rotate 1s infinite forwards linear;
+       -moz-animation: P_PageElementButton--state_rotate 1s infinite forwards linear;
+         -o-animation: P_PageElementButton--state_rotate 1s infinite forwards linear;
+            animation: P_PageElementButton--state_rotate 1s infinite forwards linear;
+}
+
+
+.P_animations-10 .P_PageElement .P_PageElementButton--state__pending svg {
+    -webkit-animation-duration: 1.5s;
+       -moz-animation-duration: 1.5s;
+         -o-animation-duration: 1.5s;
+            animation-duration: 1.5s;
+}
+
+.P_animations-20 .P_PageElement .P_PageElementButton--state__pending svg {
+    -webkit-animation-duration: 1s;
+       -moz-animation-duration: 1s;
+         -o-animation-duration: 1s;
+            animation-duration: 1s;
+}
+
+.P_animations-30 .P_PageElement .P_PageElementButton--state__pending svg {
+    -webkit-animation-duration: 0.75s;
+       -moz-animation-duration: 0.75s;
+         -o-animation-duration: 0.75s;
+            animation-duration: 0.75s;
+}
+
+.P_animations-40 .P_PageElement .P_PageElementButton--state__pending svg {
+    -webkit-animation-duration: 0.75s;
+       -moz-animation-duration: 0.75s;
+         -o-animation-duration: 0.75s;
+            animation-duration: 0.75s;
+}
+
+@-webkit-keyframes P_PageElementButton--state_rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(-360deg);
+                transform: rotate(-360deg);
+    }
+}
+
+@-moz-keyframes P_PageElementButton--state_rotate {
+    from {
+        -moz-transform: rotate(0deg);
+             transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(-360deg);
+             transform: rotate(-360deg);
+    }
+}
+
+@-o-keyframes P_PageElementButton--state_rotate {
+    from {
+        -o-transform: rotate(0deg);
+           transform: rotate(0deg);
+    }
+    to {
+        -o-transform: rotate(-360deg);
+           transform: rotate(-360deg);
+    }
+}
+
+@keyframes P_PageElementButton--state_rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+           -moz-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(-360deg);
+           -moz-transform: rotate(-360deg);
+             -o-transform: rotate(-360deg);
+                transform: rotate(-360deg);
+    }
 }
 
 .P_PageElementButton--icon svg {
@@ -12996,6 +13319,705 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
 }
 
 /*====================================================================*/
+/*------------------------- PAGEELEMENTEMAIL -------------------------*/
+/*====================================================================*/
+
+.P_PageElement__email {
+    font-size: 0;
+    line-height: 0;
+
+    position: relative;
+
+    display: inline-block;
+}
+
+.P_PageElementEmail--email {
+    font-size: 19px;
+    line-height: 56px;
+    vertical-align: top;
+
+    margin-right: 6px;
+    margin-left: 6px;
+    margin-top: 12px;
+
+    height: 56px;
+    padding: 0 16px;
+    min-width: 300px;
+    max-width: 300px;
+
+    background: transparent;
+    border: 1px solid currentColor;
+    -webkit-border-radius: 0px;
+       -moz-border-radius: 0px;
+            border-radius: 0px;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    -webkit-transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-border-radius 0.3s ease-in-out;
+
+    transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-border-radius 0.3s ease-in-out;
+
+    -o-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+
+    -moz-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -moz-border-radius 0.3s ease-in-out;
+
+    transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+
+    transition:
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+
+.P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus, .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover, body.E_actions-active .P_PageElement .P_PageElementEmail--email:focus, body.E_actions-active .P_PageElement .P_PageElementEmail--email:hover {
+    -webkit-transform: scale(1.07142);
+       -moz-transform: scale(1.07142);
+        -ms-transform: scale(1.07142);
+         -o-transform: scale(1.07142);
+            transform: scale(1.07142);
+}
+
+@media (max-width: 480px) {
+
+    .P_PageElementEmail--email {
+        -webkit-transform: scale(0.92857);
+           -moz-transform: scale(0.92857);
+            -ms-transform: scale(0.92857);
+             -o-transform: scale(0.92857);
+                transform: scale(0.92857);
+    }
+    .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus, .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover, body.E_actions-active .P_PageElement .P_PageElementEmail--email:focus, body.E_actions-active .P_PageElement .P_PageElementEmail--email:hover {
+        -webkit-transform: scale(1);
+           -moz-transform: scale(1);
+            -ms-transform: scale(1);
+             -o-transform: scale(1);
+                transform: scale(1);
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageElementEmail--email {
+        min-width: 288px;
+        max-width: 288px;
+
+        -webkit-transform: scale(0.85714);
+
+           -moz-transform: scale(0.85714);
+
+            -ms-transform: scale(0.85714);
+
+             -o-transform: scale(0.85714);
+
+                transform: scale(0.85714);
+    }
+
+    .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus, .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover, body.E_actions-active .P_PageElement .P_PageElementEmail--email:focus, body.E_actions-active .P_PageElement .P_PageElementEmail--email:hover {
+        -webkit-transform: scale(0.92857);
+           -moz-transform: scale(0.92857);
+            -ms-transform: scale(0.92857);
+             -o-transform: scale(0.92857);
+                transform: scale(0.92857);
+    }
+
+}
+
+.E_PageSection__stop-color-transitions .P_PageElementEmail--email {
+    -webkit-transition: padding 0.3s ease-in-out,
+        -webkit-border-radius 0.3s ease-in-out;
+    transition: padding 0.3s ease-in-out,
+        -webkit-border-radius 0.3s ease-in-out;
+    -o-transition: border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out;
+    -moz-transition: border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+    transition: border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out;
+    transition: border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementEmail--email {
+    -webkit-transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.45s cubic-bezier(.3, .2, .1, .9),
+        -webkit-border-radius 0.3s ease-in-out;
+    transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.45s cubic-bezier(.3, .2, .1, .9),
+        -webkit-border-radius 0.3s ease-in-out;
+    -o-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -o-transform 0.45s cubic-bezier(.3, .2, .1, .9);
+    -moz-transition: transform 0.45s cubic-bezier(.3, .2, .1, .9),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -moz-transform 0.45s cubic-bezier(.3, .2, .1, .9),
+        -moz-border-radius 0.3s ease-in-out;
+    transition: transform 0.45s cubic-bezier(.3, .2, .1, .9),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+    transition: transform 0.45s cubic-bezier(.3, .2, .1, .9),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.45s cubic-bezier(.3, .2, .1, .9),
+        -moz-transform 0.45s cubic-bezier(.3, .2, .1, .9),
+        -o-transform 0.45s cubic-bezier(.3, .2, .1, .9),
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+.P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus, .P_animations-10 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementEmail--email:focus, body.E_actions-active .P_animations-10 .P_PageElement .P_PageElementEmail--email:hover {
+    -webkit-transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.175s cubic-bezier(.5, .2, .6, .8),
+        -webkit-border-radius 0.3s ease-in-out;
+    transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.175s cubic-bezier(.5, .2, .6, .8),
+        -webkit-border-radius 0.3s ease-in-out;
+    -o-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -o-transform 0.175s cubic-bezier(.5, .2, .6, .8);
+    -moz-transition: transform 0.175s cubic-bezier(.5, .2, .6, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -moz-transform 0.175s cubic-bezier(.5, .2, .6, .8),
+        -moz-border-radius 0.3s ease-in-out;
+    transition: transform 0.175s cubic-bezier(.5, .2, .6, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+    transition: transform 0.175s cubic-bezier(.5, .2, .6, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.175s cubic-bezier(.5, .2, .6, .8),
+        -moz-transform 0.175s cubic-bezier(.5, .2, .6, .8),
+        -o-transform 0.175s cubic-bezier(.5, .2, .6, .8),
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementEmail--email {
+    -webkit-transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.25s cubic-bezier(.1, .2, .6, .8),
+        -webkit-border-radius 0.3s ease-in-out;
+    transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.25s cubic-bezier(.1, .2, .6, .8),
+        -webkit-border-radius 0.3s ease-in-out;
+    -o-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -o-transform 0.25s cubic-bezier(.1, .2, .6, .8);
+    -moz-transition: transform 0.25s cubic-bezier(.1, .2, .6, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -moz-transform 0.25s cubic-bezier(.1, .2, .6, .8),
+        -moz-border-radius 0.3s ease-in-out;
+    transition: transform 0.25s cubic-bezier(.1, .2, .6, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+    transition: transform 0.25s cubic-bezier(.1, .2, .6, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.25s cubic-bezier(.1, .2, .6, .8),
+        -moz-transform 0.25s cubic-bezier(.1, .2, .6, .8),
+        -o-transform 0.25s cubic-bezier(.1, .2, .6, .8),
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+.P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus, .P_animations-20 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementEmail--email:focus, body.E_actions-active .P_animations-20 .P_PageElement .P_PageElementEmail--email:hover {
+    -webkit-transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.1s cubic-bezier(.2, .1, .5, .3),
+        -webkit-border-radius 0.3s ease-in-out;
+    transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.1s cubic-bezier(.2, .1, .5, .3),
+        -webkit-border-radius 0.3s ease-in-out;
+    -o-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -o-transform 0.1s cubic-bezier(.2, .1, .5, .3);
+    -moz-transition: transform 0.1s cubic-bezier(.2, .1, .5, .3),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -moz-transform 0.1s cubic-bezier(.2, .1, .5, .3),
+        -moz-border-radius 0.3s ease-in-out;
+    transition: transform 0.1s cubic-bezier(.2, .1, .5, .3),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+    transition: transform 0.1s cubic-bezier(.2, .1, .5, .3),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.1s cubic-bezier(.2, .1, .5, .3),
+        -moz-transform 0.1s cubic-bezier(.2, .1, .5, .3),
+        -o-transform 0.1s cubic-bezier(.2, .1, .5, .3),
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementEmail--email {
+    -webkit-transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.175s cubic-bezier(0, .3, .9, .8),
+        -webkit-border-radius 0.3s ease-in-out;
+    transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.175s cubic-bezier(0, .3, .9, .8),
+        -webkit-border-radius 0.3s ease-in-out;
+    -o-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -o-transform 0.175s cubic-bezier(0, .3, .9, .8);
+    -moz-transition: transform 0.175s cubic-bezier(0, .3, .9, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -moz-transform 0.175s cubic-bezier(0, .3, .9, .8),
+        -moz-border-radius 0.3s ease-in-out;
+    transition: transform 0.175s cubic-bezier(0, .3, .9, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+    transition: transform 0.175s cubic-bezier(0, .3, .9, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.175s cubic-bezier(0, .3, .9, .8),
+        -moz-transform 0.175s cubic-bezier(0, .3, .9, .8),
+        -o-transform 0.175s cubic-bezier(0, .3, .9, .8),
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+.P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus, .P_animations-30 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementEmail--email:focus, body.E_actions-active .P_animations-30 .P_PageElement .P_PageElementEmail--email:hover {
+    -webkit-transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.085s cubic-bezier(.2, .1, .3, .1),
+        -webkit-border-radius 0.3s ease-in-out;
+    transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.085s cubic-bezier(.2, .1, .3, .1),
+        -webkit-border-radius 0.3s ease-in-out;
+    -o-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -o-transform 0.085s cubic-bezier(.2, .1, .3, .1);
+    -moz-transition: transform 0.085s cubic-bezier(.2, .1, .3, .1),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -moz-transform 0.085s cubic-bezier(.2, .1, .3, .1),
+        -moz-border-radius 0.3s ease-in-out;
+    transition: transform 0.085s cubic-bezier(.2, .1, .3, .1),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+    transition: transform 0.085s cubic-bezier(.2, .1, .3, .1),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.085s cubic-bezier(.2, .1, .3, .1),
+        -moz-transform 0.085s cubic-bezier(.2, .1, .3, .1),
+        -o-transform 0.085s cubic-bezier(.2, .1, .3, .1),
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementEmail--email {
+    -webkit-transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.15s cubic-bezier(.7, .3, .4, .8),
+        -webkit-border-radius 0.3s ease-in-out;
+    transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.15s cubic-bezier(.7, .3, .4, .8),
+        -webkit-border-radius 0.3s ease-in-out;
+    -o-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -o-transform 0.15s cubic-bezier(.7, .3, .4, .8);
+    -moz-transition: transform 0.15s cubic-bezier(.7, .3, .4, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -moz-transform 0.15s cubic-bezier(.7, .3, .4, .8),
+        -moz-border-radius 0.3s ease-in-out;
+    transition: transform 0.15s cubic-bezier(.7, .3, .4, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+    transition: transform 0.15s cubic-bezier(.7, .3, .4, .8),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.15s cubic-bezier(.7, .3, .4, .8),
+        -moz-transform 0.15s cubic-bezier(.7, .3, .4, .8),
+        -o-transform 0.15s cubic-bezier(.7, .3, .4, .8),
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+.P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:focus, .P_animations-40 .P_PageElement:not(.E_PageElement) .P_PageElementEmail--email:hover, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementEmail--email:focus, body.E_actions-active .P_animations-40 .P_PageElement .P_PageElementEmail--email:hover {
+    -webkit-transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.2s cubic-bezier(.35, .1, .3, 2.85),
+        -webkit-border-radius 0.3s ease-in-out;
+    transition: border-color 0.1s linear,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.2s cubic-bezier(.35, .1, .3, 2.85),
+        -webkit-border-radius 0.3s ease-in-out;
+    -o-transition: border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -o-transform 0.2s cubic-bezier(.35, .1, .3, 2.85);
+    -moz-transition: transform 0.2s cubic-bezier(.35, .1, .3, 2.85),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -moz-transform 0.2s cubic-bezier(.35, .1, .3, 2.85),
+        -moz-border-radius 0.3s ease-in-out;
+    transition: transform 0.2s cubic-bezier(.35, .1, .3, 2.85),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear;
+    transition: transform 0.2s cubic-bezier(.35, .1, .3, 2.85),
+        border-color 0.1s linear,
+        border-radius 0.3s ease-in-out,
+        padding 0.3s ease-in-out,
+        color  0.1s linear,
+        -webkit-transform 0.2s cubic-bezier(.35, .1, .3, 2.85),
+        -moz-transform 0.2s cubic-bezier(.35, .1, .3, 2.85),
+        -o-transform 0.2s cubic-bezier(.35, .1, .3, 2.85),
+        -webkit-border-radius 0.3s ease-in-out,
+        -moz-border-radius 0.3s ease-in-out;
+}
+
+.P_PageElementEmail .P_PageElement__button {
+    margin: 0 6px;
+    margin-top: 12px;
+}
+
+@media (max-width: 480px) {
+
+    .P_PageElementEmail .P_PageElement__button {
+        margin-top: 8px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageElementEmail .P_PageElement__button {
+        margin-top: 4px;
+    }
+}
+
+
+@media (max-width: 536px) {
+
+    .P_PageElementEmail .P_PageElementButton--content-wrapper, .P_PageElementEmail .P_PageElementbutton--text, .P_PageElementEmail .P_PageElementbutton--text-wrapper {
+        text-align: center;
+
+        width: 100%;
+    }
+
+    .P_PageElementEmail .P_PageElementButton--text-wrapper {
+        min-width: 100%;
+
+        display: table;
+        table-layout: fixed;
+    }
+
+}
+
+.P_PageElementEmail ::-webkit-input-placeholder { font-style: italic; color: currentColor; opacity: 0.65; }
+.P_PageElementEmail ::-moz-placeholder          { font-style: italic; color: currentColor; opacity: 0.65; }
+.P_PageElementEmail :-ms-input-placeholder      { font-style: italic; color: currentColor; opacity: 0.65; }
+.P_PageElementEmail input:-moz-placeholder      { font-style: italic; color: currentColor; opacity: 0.65; }
+.P_PageElementEmail input:placeholder           { font-style: italic; color: currentColor; opacity: 0.65; }
+.E .P_PageElementEmail input { font-style: italic; }
+
+.P_roundness-0 .P_PageElementEmail--email {
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+}
+
+.P_roundness-10 .P_PageElementEmail--email {
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+
+.P_roundness-20 .P_PageElementEmail--email {
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+}
+
+.P_roundness-30 .P_PageElementEmail--email, .P_roundness-40 .P_PageElementEmail--email {
+    padding: 0 20px;
+
+    -webkit-border-radius: 28px;
+
+       -moz-border-radius: 28px;
+
+            border-radius: 28px;
+}
+
+.P_PageSection__shadow-10 .P_PageElementEmail--email {
+    -webkit-box-shadow: inset 0px 0px  8px rgba(0, 0, 0, 0.1),
+        0px 0px  8px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: inset 0px 0px  8px rgba(0, 0, 0, 0.1),
+        0px 0px  8px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0px 0px  8px rgba(0, 0, 0, 0.1),
+        0px 0px  8px rgba(0, 0, 0, 0.1);
+}
+
+.P_PageSection__shadow-20 .P_PageElementEmail--email {
+    -webkit-box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.175),
+        0px 0px 12px rgba(0, 0, 0, 0.175);
+       -moz-box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.175),
+        0px 0px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.175),
+        0px 0px 12px rgba(0, 0, 0, 0.175);
+}
+
+.P_PageSection__shadow-30 .P_PageElementEmail--email {
+    -webkit-box-shadow: inset 0px 0px 16px rgba(0, 0, 0, 0.235),
+        0px 0px 16px rgba(0, 0, 0, 0.235);
+       -moz-box-shadow: inset 0px 0px 16px rgba(0, 0, 0, 0.235),
+        0px 0px 16px rgba(0, 0, 0, 0.235);
+            box-shadow: inset 0px 0px 16px rgba(0, 0, 0, 0.235),
+        0px 0px 16px rgba(0, 0, 0, 0.235);
+}
+
+.P_PageSection__shadow-10 .P_PageElementEmail--email {
+    text-shadow: 0px 0px  8px rgba(0, 0, 0, 0.2);
+}
+
+.P_PageSection__shadow-20 .P_PageElementEmail--email {
+    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+}
+
+.P_PageSection__shadow-30 .P_PageElementEmail--email {
+    text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.575);
+}
+
+
+/*====================================================================*/
+/*------------------------- PAGEELEMENTICON --------------------------*/
+/*====================================================================*/
+
+.P_PageElement__icon {
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+
+    position: relative;
+
+    display: inline-block;
+}
+
+.E .P_PageElement__icon {
+    -webkit-transition: height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    -o-transition: height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    -moz-transition: height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+    transition:
+           height 0.3s ease-in-out,
+            width 0.3s ease-in-out,
+       min-height 0.3s ease-in-out,
+        min-width 0.3s ease-in-out;
+}
+
+.P_PageElementIcon svg, .P_PageElementIcon img {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+}
+
+.P_PageElementIcon, .P_PageElementIcon svg, .P_PageElementIcon img {
+    -webkit-transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, -webkit-filter 0.1s linear;
+    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, -webkit-filter 0.1s linear;
+    -o-transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
+    -moz-transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
+    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
+    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear, -webkit-filter 0.1s linear;
+}
+
+.P_PageElementIcon svg {
+    position: relative;
+    top: -2px;
+    left: -2px;
+
+    width: -webkit-calc(100% + 4px);
+
+    width: -moz-calc(100% + 4px);
+
+    width: calc(100% + 4px);
+    height: -webkit-calc(100% + 4px);
+    height: -moz-calc(100% + 4px);
+    height: calc(100% + 4px);
+    padding: 2px;
+}
+
+.P_PageElementIcon__fill svg, .P_PageElementIcon__fill svg * {
+    fill: currentColor;
+}
+
+.P_PageElementIcon__stroke svg, .P_PageElementIcon__stroke svg * {
+    stroke: currentColor;
+}
+
+.P_PageElementIcon__both svg, .P_PageElementIcon__both svg * {
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+.E_PageSection__stop-color-transitions .P_PageElementIcon svg, .E_PageSection__stop-color-transitions .P_PageElementIcon svg * {
+    -webkit-transition: none;
+    -o-transition: none;
+    -moz-transition: none;
+    transition: none;
+}
+
+.P_PageSection__shadow-30 .P_PageElementIcon {
+    -webkit-filter: drop-shadow(0px 0px  6px rgba(0, 0, 0, 0.4));
+            filter: drop-shadow(0px 0px  6px rgba(0, 0, 0, 0.4));
+}
+
+.P_PageSection__shadow-20 .P_PageElementIcon {
+    -webkit-filter: drop-shadow(0px 0px  4px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0px 0px  4px rgba(0, 0, 0, 0.25));
+}
+
+.P_PageSection__shadow-10 .P_PageElementIcon {
+    -webkit-filter: drop-shadow(0px 0px  3px rgba(0, 0, 0, 0.125));
+            filter: drop-shadow(0px 0px  3px rgba(0, 0, 0, 0.125));
+}
+
+
+/*--------------------------------------------------------------------*/
+/*----------------------------- EDITMODE -----------------------------*/
+/*--------------------------------------------------------------------*/
+
+.P_PageElement__icon .E_PageElement--upload-overlay:after {
+    content: "Nahrát ikonu";
+
+    font-size: 12px;
+    white-space: normal;
+}
+
+.P_PageElement__icon .E_PageElement--activate {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+
+/*====================================================================*/
 /*------------------------- PAGEELEMENTFACT --------------------------*/
 /*====================================================================*/
 
@@ -13186,128 +14208,6 @@ body > .E_SectionThumb--clone .E_SectionThumb--content {
         font-size: 19px;
     }
 }
-
-/*====================================================================*/
-/*------------------------- PAGEELEMENTICON --------------------------*/
-/*====================================================================*/
-
-.P_PageElement__icon {
-    font-size: 0;
-    line-height: 0;
-    vertical-align: middle;
-
-    position: relative;
-
-    display: inline-block;
-}
-
-.E .P_PageElement__icon {
-    -webkit-transition: height 0.3s ease-in-out,
-            width 0.3s ease-in-out,
-       min-height 0.3s ease-in-out,
-        min-width 0.3s ease-in-out;
-    -o-transition: height 0.3s ease-in-out,
-            width 0.3s ease-in-out,
-       min-height 0.3s ease-in-out,
-        min-width 0.3s ease-in-out;
-    -moz-transition: height 0.3s ease-in-out,
-            width 0.3s ease-in-out,
-       min-height 0.3s ease-in-out,
-        min-width 0.3s ease-in-out;
-    transition:
-           height 0.3s ease-in-out,
-            width 0.3s ease-in-out,
-       min-height 0.3s ease-in-out,
-        min-width 0.3s ease-in-out;
-}
-
-.P_PageElementIcon svg, .P_PageElementIcon img {
-    width: 100%;
-    height: 100%;
-
-    border: none;
-}
-
-.P_PageElementIcon, .P_PageElementIcon svg, .P_PageElementIcon img {
-    -webkit-transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, -webkit-filter 0.1s linear;
-    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, -webkit-filter 0.1s linear;
-    -o-transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
-    -moz-transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
-    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear;
-    transition: color 0.1s linear, fill 0.1s linear, stroke 0.1s linear, filter 0.1s linear, -webkit-filter 0.1s linear;
-}
-
-.P_PageElementIcon svg {
-    position: relative;
-    top: -2px;
-    left: -2px;
-
-    width: -webkit-calc(100% + 4px);
-
-    width: -moz-calc(100% + 4px);
-
-    width: calc(100% + 4px);
-    height: -webkit-calc(100% + 4px);
-    height: -moz-calc(100% + 4px);
-    height: calc(100% + 4px);
-    padding: 2px;
-}
-
-.P_PageElementIcon__fill svg, .P_PageElementIcon__fill svg * {
-    fill: currentColor;
-}
-
-.P_PageElementIcon__stroke svg, .P_PageElementIcon__stroke svg * {
-    stroke: currentColor;
-}
-
-.P_PageElementIcon__both svg, .P_PageElementIcon__both svg * {
-    fill: currentColor;
-    stroke: currentColor;
-}
-
-.E_PageSection__stop-color-transitions .P_PageElementIcon svg, .E_PageSection__stop-color-transitions .P_PageElementIcon svg * {
-    -webkit-transition: none;
-    -o-transition: none;
-    -moz-transition: none;
-    transition: none;
-}
-
-.P_PageSection__shadow-30 .P_PageElementIcon {
-    -webkit-filter: drop-shadow(0px 0px  6px rgba(0, 0, 0, 0.4));
-            filter: drop-shadow(0px 0px  6px rgba(0, 0, 0, 0.4));
-}
-
-.P_PageSection__shadow-20 .P_PageElementIcon {
-    -webkit-filter: drop-shadow(0px 0px  4px rgba(0, 0, 0, 0.25));
-            filter: drop-shadow(0px 0px  4px rgba(0, 0, 0, 0.25));
-}
-
-.P_PageSection__shadow-10 .P_PageElementIcon {
-    -webkit-filter: drop-shadow(0px 0px  3px rgba(0, 0, 0, 0.125));
-            filter: drop-shadow(0px 0px  3px rgba(0, 0, 0, 0.125));
-}
-
-
-/*--------------------------------------------------------------------*/
-/*----------------------------- EDITMODE -----------------------------*/
-/*--------------------------------------------------------------------*/
-
-.P_PageElement__icon .E_PageElement--upload-overlay:after {
-    content: "Nahrát ikonu";
-
-    font-size: 12px;
-    white-space: normal;
-}
-
-.P_PageElement__icon .E_PageElement--activate {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-}
-
 
 /*====================================================================*/
 /*------------------------ PAGEELEMENTIMAGE --------------------------*/
@@ -20726,6 +21626,63 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
 
 
 /*====================================================================*/
+/*-------------------------- PageSectionEmail ------------------------*/
+/*====================================================================*/
+
+.P_PageSectionEmail--form {
+    text-align: center;
+
+    margin-top: 44px;
+    margin-left: -webkit-calc(-6px);
+    margin-left: -moz-calc(-6px);
+    margin-left: calc(-6px);
+
+    width: -webkit-calc(100% + 12px);
+
+    width: -moz-calc(100% + 12px);
+
+    width: calc(100% + 12px);
+}
+
+.E .P_PageSectionEmail--form {
+    -webkit-transition: margin 0.3s ease-in-out;
+    -o-transition: margin 0.3s ease-in-out;
+    -moz-transition: margin 0.3s ease-in-out;
+    transition: margin 0.3s ease-in-out;
+}
+
+@media (max-width: 680px) {
+
+    .P_PageSectionEmail--form {
+        margin-top: 36px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .P_PageSectionEmail--form {
+        margin-top: 32px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .P_PageSectionEmail--form {
+        margin-top: 24px;
+    }
+
+}
+
+.P_PageSectionTitles.has-empty-titles:not(.has-active-titles) ~ .P_PageSectionEmail--form {
+    margin-top: 0;
+}
+/*====================================================================*/
+/*-------------------------- PAGESECTIONEMAIL ------------------------*/
+/*====================================================================*/
+
+/*====================================================================*/
 /*----------------------- PAGESECTIONFACTSICONS ----------------------*/
 /*====================================================================*/
 
@@ -26663,6 +27620,15 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
 /*//////////////////////////// ADD BUTTONS ////////////////////////////*/
 
 /*====================================================================*/
+/*----------------------- PAGEELEMENTICONBROWSER ---------------------*/
+/*====================================================================*/
+
+.E_PageElementSettings__icon-browser .E_PageElementSettings--content {
+    min-width: 208px;
+    min-height: 320px;
+}
+
+/*====================================================================*/
 /*----------------------- PageElementButtonSettings ----------------------*/
 /*====================================================================*/
 
@@ -26789,15 +27755,6 @@ body:not(.E_actions-active) .E .P_PageElementMenu--hidden-link:after, body:not(.
 
     width: 1px;
     height: 32px;
-}
-
-/*====================================================================*/
-/*----------------------- PAGEELEMENTICONBROWSER ---------------------*/
-/*====================================================================*/
-
-.E_PageElementSettings__icon-browser .E_PageElementSettings--content {
-    min-width: 208px;
-    min-height: 320px;
 }
 
 /*====================================================================*/

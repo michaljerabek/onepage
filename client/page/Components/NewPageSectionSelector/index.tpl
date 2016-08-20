@@ -18,7 +18,6 @@
             }
         }}
 
-
         {{> SectionThumb {
                 type: "PageSectionClaim",
                 name: "Claim",
@@ -26,14 +25,12 @@
             }
         }}
 
-
         {{> SectionThumb {
                 type: "PageSectionFactsIcons",
                 name: "Fakty — ikony",
                 icon: "#icon-facts-icons"
             }
         }}
-
 
         {{> SectionThumb {
                 type: "PageSectionFactsNumbers",
@@ -46,6 +43,13 @@
                 type: "PageSectionServices",
                 name: "Služby | Popis vlastností",
                 icon: "#icon-services-center"
+            }
+        }}
+
+        {{> SectionThumb {
+                type: "PageSectionEmail",
+                name: "Email",
+                icon: "#icon-section-email"
             }
         }}
 
